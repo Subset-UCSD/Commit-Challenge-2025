@@ -6,6 +6,7 @@ Our pages site is available on [Github Pages](https://subset-ucsd.github.io/Comm
 Our current participants:
 - [Nolan](https://github.com/NolanChai)
 - [Sean](https://github.com/SheepTester)
+- [Sean](https://github.com/Sean1572)
 
 # Want to Join?
 Fill out this form [here](https://docs.google.com/forms/d/e/1FAIpQLSeI2mfek8_JKCqeqOqzPOCG9EXQH7tBUqhkY5F3WhRp3QKokA/viewform?usp=header)

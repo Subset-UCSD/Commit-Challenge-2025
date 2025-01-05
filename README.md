@@ -19,4 +19,4 @@ Feel free to leave ideas here
 - [X] Github Pages
 
 # Roadmap
-[!image](https://media.tenor.com/2l4-h42qnmcAAAAi/toothless-dancing-toothless.gif)
+![image](https://media.tenor.com/2l4-h42qnmcAAAAi/toothless-dancing-toothless.gif)

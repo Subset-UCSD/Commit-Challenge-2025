@@ -4,19 +4,20 @@ Welcome to the annual $\subseteq$ Commit Challenge 2025! The goal is to make con
 Our pages site is available on [Github Pages](https://subset-ucsd.github.io/Commit-Challenge-2025/)
 
 Our current participants:
-- [Nolan](https://github.com/NolanChai)
-- [Sean](https://github.com/SheepTester)
-- [Sean](https://github.com/Sean1572)
+- [<img src="https://github.com/NolanChai.png" height="16" /> Nolan](https://github.com/NolanChai)
+- [<img src="https://github.com/SheepTester.png" height="16" /> Sean](https://github.com/SheepTester)
+- [<img src="https://github.com/Sean1572.png" height="16" /> Sean](https://github.com/Sean1572)
+- [<img src="https://github.com/dowhep.png" height="16" /> Marcelo](https://github.com/dowhep)
 
-# Want to Join?
+# ✋ Want to Join?
 Fill out this form [here](https://docs.google.com/forms/d/e/1FAIpQLSeI2mfek8_JKCqeqOqzPOCG9EXQH7tBUqhkY5F3WhRp3QKokA/viewform?usp=header)
 
 # :exclamation: Rules
-You must comit to main. No malicious code pls.
+You must commit to main. No malicious code pls.
 
 # :memo: Current To-Dos
 Feel free to leave ideas here
 - [X] Github Pages
 
 # Roadmap
-![image](https://media.tenor.com/2l4-h42qnmcAAAAi/toothless-dancing-toothless.gif)
+![toothless dancing](./ass/ets/toothless-dancing-toothless.gif)

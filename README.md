@@ -16,7 +16,6 @@ You must comit to main. No malicious code pls.
 
 # :memo: Current To-Dos
 Feel free to leave ideas here
-- [] Marcelo gif
 - [X] Github Pages
 
 # Roadmap

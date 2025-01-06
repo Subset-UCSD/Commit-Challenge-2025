@@ -49,6 +49,56 @@
     <h1>&subseteq; Commit Challenge 2025</h1>
     <p>Welcome to the annual &subseteq; Commit Challenge 2025! The goal is to make contributions and a commit every day to build something that can (hopefully) be considered meaningful and deployable by the end of the year 🚀</p>
     <p><a href="https://github.com/Subset-UCSD/Commit-Challenge-2025">GitHub repo...</a></p>
+    <h2>Marcelo CSE 202 atendens tracker</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Week</th>
+                <th>M</th>
+                <th>W</th>
+                <th>F</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>1</td><td>❌</td><td></td><td></td></tr>
+        </tbody>
+    </table>
+    <audio id="audio" controls loop></audio>
+
+    <script>
+    const audio = document.getElementById('audio')
+
+    const context = new AudioContext()
+    async function tryAudio () {
+        try {
+            if (context.state === 'suspended') {
+                await context.resume()
+            }
+
+            const audio = new Audio('./ass/ets/substantial.mp3')
+            audio.play().catch(console.error)
+
+            // audio.play().catch(console.error)
+            // audioReady()
+            return
+        } catch {
+            window.requestAnimationFrame(tryAudio)
+        }
+    }
+    tryAudio()
+
+    const sourceNode = context.createMediaElementSource(audio)
+    const lowPassNode = context.createBiquadFilter()
+    lowPassNode.type = 'lowshelf'
+    lowPassNode.frequency.value = 350
+    lowPassNode.gain.value = 20
+    sourceNode.connect(lowPassNode)
+    lowPassNode.connect(context.destination)
+
+    function audioReady () {
+        //
+    }
+    </script>
 </div>
 </body>
 </html>

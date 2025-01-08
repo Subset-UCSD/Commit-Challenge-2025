@@ -39,6 +39,9 @@
             width: auto;
         }
     }
+    td {
+        text-shadow: 5px 0 5px white, -5px 0 5px white, 0 -10px 5px white;
+    }
     </style>
     <meta property="og:image" content="https://subset-ucsd.github.io/Commit-Challenge-2025/ass/ets/late.gif">
 </head>
@@ -60,9 +63,25 @@
             </tr>
         </thead>
         <tbody>
-            <tr><td>1</td><td>❌</td><td></td><td></td></tr>
+            <tr><td>1</td><td>❌</td><td>✅</td><td></td></tr>
         </tbody>
     </table>
+    <p><strong><em>SAUCY MARCELO SECRETS</em></strong> will be revaeled..</p>
+    <p>requireemnts:</p>
+    <ol>
+        <li><p>marcelo must MISS CLASS 13 TIMES</p></li>
+        <li><p>CUMULATIVE 50 MIN LATE = ONE MISSED CLASS</p></li>
+        <li><p><strong><ins>REMEMBER:</ins></strong> YOU ARE ONE</p></li>
+    </ol>
+    <div style="height: 20px;width:100px;background: grey; border: 10px ridge pink;">
+        <div style="height: 100%; background: orange;" id="bar"></div>
+        <script>
+            let score = 0
+            score += 1 // monday
+            // score += 1 // /50 // week 1 wednesday, HE CAME TO CLASS
+            bar.width = `${score / 13 * 100}%`
+        </script>
+     </div>
     <audio id="audio" controls loop></audio>
 
     <script>
@@ -72,18 +91,23 @@
     async function tryAudio () {
         try {
             if (context.state === 'suspended') {
+                console.log('trying to resume')
                 await context.resume()
+                console.log('resume resolved', context.state)
             }
+        } catch {
+        }
+        if (context.state === 'running') {
+
 
             const audio = new Audio('./ass/ets/substantial.mp3')
             audio.play().catch(console.error)
 
-            // audio.play().catch(console.error)
-            // audioReady()
+            audioReady()
+
             return
-        } catch {
-            window.requestAnimationFrame(tryAudio)
         }
+        window.requestAnimationFrame(tryAudio)
     }
     tryAudio()
 
@@ -96,7 +120,9 @@
     lowPassNode.connect(context.destination)
 
     function audioReady () {
+        console.log('audioReady')
         //
+        audio.play().catch(console.warn)
     }
     </script>
 </div>

@@ -11,6 +11,7 @@ Our current participants:
 - [<img src="https://github.com/nick-ls.png" height="16" /> Nick](https://github.com/nick-ls)
 - [<img src="https://github.com/raymosun.png" height="16" /> Raymond](https://github.com/raymosun)
 - [<img src="https://github.com/khushijpatel.png" height="16" /> Khushi](https://github.com/khushijpatel)
+- [<img src="https://github.com/3dcantaloupe.png" height="16" /> 3dcantaloupe](https://github.com/3dcantaloupe)
 
 # ✋ Want to Join?
 Fill out this form [here](https://docs.google.com/forms/d/e/1FAIpQLSeI2mfek8_JKCqeqOqzPOCG9EXQH7tBUqhkY5F3WhRp3QKokA/viewform?usp=header)

@@ -1,8 +1,8 @@
 import express from "express";
 import http from "http";
 import path from "path";
-import { WebSocketServer } from "ws";
-import { handleMessage } from "./modules/Messaging";
+import { WebSocketServer, WebSocket } from "ws";
+import { handleClientMessage, ServerMessage } from "./Messaging";
 
 const app = express();
 
@@ -10,8 +10,15 @@ const server = http.createServer(app);
 
 const wss = new WebSocketServer({server: server});
 
-wss.on("connection", ws => {	
-	ws.on("message", handleMessage);
+function send(ws: WebSocket,  data: ServerMessage) {
+	ws.send(JSON.stringify(data));
+}
+
+wss.on("connection", ws => {
+	setInterval(()=>{
+		send(ws, {"type": "ping"});
+	}, 1000)
+	ws.on("message", handleClientMessage);
 
 	ws.on("close", () => {});
 });

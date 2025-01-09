@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+        "target": "ESNext",
+        "outDir": "build",
+        "allowSyntheticDefaultImports": true,
+        "module": "NodeNext"
+    },
+    "include": ["server"]
+}

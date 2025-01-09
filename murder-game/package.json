@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "build:server": "esbuild server/index.ts --bundle --platform=node --packages=external --format=esm --outdir=dist",
+    "build:client": "esbuild client/index.ts --bundle --loader:.png=file --loader:.svg=file --outdir=public/js --format=esm --supported:nesting=false --sourcemap"
   },
   "author": "",
   "license": "ISC",
@@ -15,6 +17,7 @@
     "@types/express": "^5.0.0",
     "@types/node": "^22.10.5",
     "@types/ws": "^8.5.13",
+    "esbuild": "^0.24.2",
     "typescript": "^5.7.2"
   }
 }

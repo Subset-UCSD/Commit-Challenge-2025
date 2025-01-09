@@ -19,7 +19,7 @@
         font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive;
 
     }
-    div {
+    #div {
         width: 600px;
         margin: 5em auto;
         padding: 2em;
@@ -34,7 +34,7 @@
         text-decoration: none;
     }
     @media (max-width: 700px) {
-        div {
+        #div {
             margin: 0 auto;
             width: auto;
         }
@@ -47,7 +47,7 @@
 </head>
 
 <body>
-<div>
+<div id="div">
     <img src="./ass/ets/closejoel-joel.gif" alt="rotating fish gif" />
     <h1>&subseteq; Commit Challenge 2025</h1>
     <p>Welcome to the annual &subseteq; Commit Challenge 2025! The goal is to make contributions and a commit every day to build something that can (hopefully) be considered meaningful and deployable by the end of the year 🚀</p>
@@ -92,7 +92,8 @@
         try {
             if (context.state === 'suspended') {
                 console.log('trying to resume')
-                await context.resume()
+                // 100ms timeout
+                await Promise.race([context.resume(), new Promise(resolve => setTimeout(resolve, 100))])
                 console.log('resume resolved', context.state)
             }
         } catch {

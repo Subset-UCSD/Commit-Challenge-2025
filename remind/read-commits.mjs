@@ -1,3 +1,5 @@
+// @ts-check
+
 import fs from "fs";
 
 const commits = JSON.parse(fs.readFileSync("commits.json", "utf-8"));
@@ -16,7 +18,7 @@ const discords = {
 const everyone = Object.keys(discords);
 const committers = [...new Set(commits.map((commit) => commit.author?.login))]
   .sort()
-  .filter((ghUser) => discord[ghUser]);
+  .filter((ghUser) => discords[ghUser]);
 const nonCommitters = everyone.filter((user) => !committers.includes(user));
 
 function select(...choices) {

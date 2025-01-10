@@ -25,7 +25,8 @@ function select(...choices) {
   return choices[Math.floor(Math.random() * choices.length)];
 }
 
-const messages = Object.entries(
+/** @type {Record<string, string>} */
+const messages = Object.fromEntries(
   nonCommitters.map((ghUser) => [
     discords[ghUser],
     (committers.length > 0

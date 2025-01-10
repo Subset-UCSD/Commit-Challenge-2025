@@ -1,8 +1,8 @@
 name: remind nerds
 on:
   schedule:
-    # 5 am UTC is 10 pm PDT (summer) or 9 pm PST (winter)
-    - cron: "0 5 * * *"
+    # 3 am UTC is 8 pm PDT (summer) or 7 pm PST (winter)
+    - cron: "0 3 * * *"
   workflow_dispatch:
 
 jobs:

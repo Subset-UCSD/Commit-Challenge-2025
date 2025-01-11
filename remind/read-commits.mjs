@@ -5,14 +5,14 @@ import fs from "fs";
 const commits = JSON.parse(fs.readFileSync("commits.json", "utf-8"));
 
 const discords = {
-  NolanChai: 135882546440306688,
-  SheepTester: 212355530474127361,
-  Sean1572: 254847696592961537,
-  dowhep: 333255408582131725,
-  "nick-ls": 303745722488979456,
-  raymosun: 252303578792853514,
-  khushijpatel: 784956933005508608,
-  "3dcantaloupe": 357300903726022659,
+  NolanChai: "135882546440306688",
+  SheepTester: "212355530474127361",
+  Sean1572: "254847696592961537",
+  dowhep: "333255408582131725",
+  "nick-ls": "303745722488979456",
+  raymosun: "252303578792853514",
+  khushijpatel: "784956933005508608",
+  "3dcantaloupe": "357300903726022659",
 };
 
 const everyone = Object.keys(discords);

@@ -22,7 +22,7 @@ You must commit to main. No malicious code pls.
 # :memo: Current To-Dos
 Feel free to leave ideas here
 - [X] Github Pages
- - [ ] Bro the current github page hurts my eyes someone pls fix
+  - [ ] Bro the current github page hurts my eyes someone pls fix
 
 # Roadmap
 ![toothless dancing](./ass/ets/toothless-dancing-toothless.gif)

@@ -8,6 +8,8 @@ cnv.height = window.innerHeight;
 
 const c = cnv.getContext("2d");
 
+c?.fillText('amogus',50, 50)
+
 ws.addEventListener("message", handleServerMessage);
 
 function handleServerMessage(data: any) {

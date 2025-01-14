@@ -24,9 +24,9 @@ wss.on("connection", ws => {
 });
 
 app.get("/", (_, res) => {
-	res.sendFile(path.join(__dirname, "public", "index.html"))
+	res.sendFile(path.join(__dirname, "../public", "index.html"))
 });
 
-app.use(express.static(path.join(__dirname, "public")))
+app.use(express.static(path.join(__dirname, "../public")))
 
 server.listen(8080);

@@ -7,7 +7,7 @@ Our current participants:
 - [<img src="https://github.com/NolanChai.png" height="16" /> Nolan](https://github.com/NolanChai)
 - [<img src="https://github.com/SheepTester.png" height="16" /> Sean](https://github.com/SheepTester)
 - [<img src="https://github.com/Sean1572.png" height="16" /> Sean](https://github.com/Sean1572)
-- [<img src="https://github.com/dowhep.png" height="16" /> Marcelo](https://github.com/dowhep)
+- [<img src="./ass/ets/late.gif" height="16" /> Marcelo](https://github.com/dowhep)
 - [<img src="https://github.com/nick-ls.png" height="16" /> Nick](https://github.com/nick-ls)
 - [<img src="https://github.com/raymosun.png" height="16" /> Raymond](https://github.com/raymosun)
 - [<img src="https://github.com/khushijpatel.png" height="16" /> Khushi](https://github.com/khushijpatel)
@@ -26,3 +26,5 @@ Feel free to leave ideas here
 
 # Roadmap
 ![toothless dancing](./ass/ets/toothless-dancing-toothless.gif)
+
+![hawk utah](./ass/ets/utah.jpg)

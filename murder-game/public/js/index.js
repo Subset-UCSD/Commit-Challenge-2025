@@ -4,6 +4,7 @@ var ws = new WebSocket(window.location.href.replace(/^http/, "ws").replace(/\/$/
 cnv.width = window.innerWidth;
 cnv.height = window.innerHeight;
 var c = cnv.getContext("2d");
+c?.fillText("amogus", 50, 50);
 ws.addEventListener("message", handleServerMessage);
 function handleServerMessage(data) {
   let msg = null;

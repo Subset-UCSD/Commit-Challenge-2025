@@ -47,13 +47,27 @@ function handleClientMessage(data) {
 var app = (0, import_express.default)();
 var server = import_http.default.createServer(app);
 var wss = new import_ws.WebSocketServer({ server });
+var state = {
+  balls: []
+};
 function send(ws, data) {
   ws.send(JSON.stringify(data));
 }
 wss.on("connection", (ws) => {
+  const ball = { x: 0, y: 0 };
+  state.balls.push(ball);
   setInterval(() => {
+    ball.x += Math.random() * 35;
+    ball.y += Math.random() * 20;
+    if (ball.x > 1e3) {
+      ball.x = 0;
+    }
+    if (ball.y > 1e3) {
+      ball.y = 0;
+    }
     send(ws, { "type": "ping" });
-  }, 1e3);
+    send(ws, { "type": "state", state });
+  }, 250);
   ws.on("message", handleClientMessage);
   ws.on("close", () => {
   });
@@ -63,3 +77,4 @@ app.get("/", (_, res) => {
 });
 app.use(import_express.default.static(import_path.default.join(__dirname, "../public")));
 server.listen(8080);
+console.log("http://localhost:8080/");

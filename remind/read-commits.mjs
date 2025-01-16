@@ -40,7 +40,10 @@ const messages = Object.fromEntries(
           "hi . {PPL} already committed. [u could too](REPO)",
           "haha {PPL} committed to the [repo](REPO) today.. what a bunch of nerds 🤓👎👎 ,, imagine COMMITING EVERY DAY 👈🤣",
           "{PPL}.. do u recognize this list? thats right, thats todays [NERD LIST](REPO) 😆😅🤣😂",
-          "todays red flag 🚩 : commiting to the 🤓[nerd repo](REPO)🤓\n\nwhos the red flag today? 🥁🥁🥁 ||{PPL}||"
+          "todays red flag 🚩 : commiting to the 🤓[nerd repo](REPO)🤓\n\nwhos the red flag today? 🥁🥁🥁 ||{PPL}||",
+          "did you know? your tongue has five parts that each taste a different taste: {PPL} [[1]](REPO)",
+          "help us make [acm bank](REPO)",
+          "{PPL} have phones.. do u? u know u can edit [files](REPO) on ur phone right"
         )
       : select(
           "you could be the first comiter of the day!!",
@@ -51,7 +54,12 @@ const messages = Object.fromEntries(
           "skat[e](REPO)bpard",
           "hi . [commit now](REPO)",
           "no one commited to the [repo](REPO) today thank god",
-          "red flag of the day🚩: commiting to [github](REPO).. hope to god YOU dont do that today ..haha"
+          "red flag of the day🚩: commiting to [github](REPO).. hope to god YOU dont do that today ..haha",
+          "i-\n\nfuck",
+          "heyyy dont forget about the [commit chlalenge](REPO)s",
+          "[👁️👄👁️](REPO)",
+          "i give up",
+          "r u on ur phone? u could add smth to the [readme](REPO)"
         )
     )
       .replaceAll(

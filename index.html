@@ -45,12 +45,72 @@
     img {
         max-width: 100%;
     }
+
+    .cookies {
+        bottom: 0;
+        --ahh: 100%;
+        left:0;right:0;
+    }
+    .notif {
+        top: 0;
+        --ahh: -100%;
+        left: 25%;
+        right: 25%;
+    }
+    .right {
+justify-content: flex-end;    }
+    .bruh {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+        padding: 20px;
+        background-color: white;
+        position: fixed;
+        /* bottom: 0; */
+        box-shadow: 0 0 10px black;
+        animation: pop-up .8s 1s backwards linear;
+
+        :first-child {
+            margin-top: 0;
+        }
+
+        button {
+            border:0;background: none;
+            background-color: #0ea5e9;
+            font:inherit;
+            font-weight: bold;
+            color:white;
+            height:36px;
+            padding:0 15px;
+            /* border-radius: 2px; */
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap:10px;
+        }
+    }
+
+    @keyframes pop-up {
+        0%{transform: translateY(var(--ahh));opacity: 0;}
+        1%{transform: translateY(var(--ahh));opacity: 1;}
+        100%{transform: translateY(0%);opacity: 1;}
+    }
     </style>
     <meta property="og:image" content="https://subset-ucsd.github.io/Commit-Challenge-2025/ass/ets/late.gif">
 </head>
 
 <body>
 <div id="div">
+    <nav>
+        subset
+        &bull;
+        <a href="https://github.com/Subset-UCSD/Commit-Challenge-2025">github</a>
+        &bull;
+        <a href="https://nolanchai.github.io/Commit-Challenge-2024/">prev</a>
+        &bull;
+        <a href="./murder-game/public/">murder is not ok</a>
+    </nav>
     <img src="./ass/ets/closejoel-joel.gif" alt="rotating fish gif" />
     <h1>&subseteq; Commit Challenge 2025</h1>
     <p>Welcome to the annual &subseteq; Commit Challenge 2025! The goal is to make contributions and a commit every day to build something that can (hopefully) be considered meaningful and deployable by the end of the year 🚀</p>
@@ -135,6 +195,29 @@
         audio.play().catch(console.warn)
     }
     </script>
+</div>
+
+<div class="bruh cookies" id="cookiesconsent">
+    <h2>This website uses cookies</h2>
+    <p>
+        We use cookies and other tracking technologies to improve your browsing experience on our website, to show you personalized content and targeted ads, to analyze our website traffic, to sell your organs, and to understand where our visitors are coming from. 
+
+    </p>
+    <div class="buttons" onclick="event.target.closest('button')&& cookiesconsent.remove()">
+        <button>I agree</button>
+    <button>Accept and continue</button>
+    <button>Allow</button>
+    </div>
+</div>
+<div class="bruh notif" id="notifconsent">
+    <p>
+        We'd like to send you notifications with the latest news and updates from Business Insider.
+    </p>
+    <div class="buttons right" onclick="event.target.closest('button')&& (notifconsent.remove(),Notification.requestPermission(),(new Notification('thanks')))">
+        <button>Allow</button>
+        <button>I agree</button>
+        <button>Accept and continue</button>
+</div>
 </div>
 </body>
 </html>

@@ -4,6 +4,7 @@
   "description": "",
   "scripts": {
     "start": "node dist/index.js",
+    "build": "npm run build:server && npm run build:client",
     "build:server": "esbuild server/index.ts --bundle --platform=node --packages=external --format=cjs --outdir=dist",
     "build:client": "esbuild client/index.ts --bundle --loader:.png=file --loader:.svg=file --outdir=public/js --format=esm --supported:nesting=false --sourcemap"
   },

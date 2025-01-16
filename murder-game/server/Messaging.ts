@@ -2,11 +2,20 @@ type BulletMessage = {
 	type: "bullet"
 };
 
+export type State = {
+	balls: {x:number,y:number}[]
+}
+export type StateMessage = {
+	type: 'state'
+	state:State
+}
+
 export type ClientMessage = 
 	BulletMessage |
 	{type: "pong"};
 
 export type ServerMessage = 
+StateMessage|
 	{type: "ping"};
 
 export function handleClientMessage(data: any) {

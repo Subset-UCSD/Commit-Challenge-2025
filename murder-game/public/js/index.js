@@ -34,6 +34,7 @@ function send(data) {
   if (ws.readyState == WebSocket.OPEN) ws.send(JSON.stringify(data));
 }
 function draw() {
+  c?.clearRect(0, 0, window.innerWidth, window.innerHeight);
   if (!c) {
     return;
   }

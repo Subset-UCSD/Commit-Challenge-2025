@@ -42,6 +42,7 @@ function send(data: ClientMessage) {
 }
 
 function draw() {
+	c?.clearRect(0,0, window.innerWidth, window.innerHeight); 
 	if (!c){return}
 	c.fillStyle = 'red'
 	for (const {x,y} of state.bullets) {

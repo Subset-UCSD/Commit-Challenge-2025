@@ -37,26 +37,11 @@ function handleServerMessage(data: MessageEvent) {
 	}
 }
 
-// let myBall:Ball|undefined
-let x=0,y=0
-let lastReportedX = 0
-let lastReportedY= 0
-setInterval(() => {
-if (lastReportedX!==x||lastReportedY!==y){
-	lastReportedX=x
-	lastReportedY=y
-	send({type:'move',x,y})
-}
-},250)
-
 function send(data: ClientMessage) {
-	ws.send(JSON.stringify(data));
+	if (ws.readyState == WebSocket.OPEN) ws.send(JSON.stringify(data));
 }
 
 function draw() {
-	c?.clearRect(0,0,cnv.width,cnv.height)
-	
-	c?.fillText('amogus',50, 50)
 	if (!c){return}
 	c.fillStyle = 'red'
 	for (const {x,y} of state.bullets) {
@@ -79,26 +64,73 @@ function draw() {
 }
 draw()
 
-window.addEventListener('keydown', (e) =>{
-	if (e.key==='ArrowLeft'){
-		x -= 5
+type Vector2 = { x: number; y: number };
+
+let pos: Vector2 = { x: 0, y: 0 };
+let movementInput: Vector2 = { x: 0, y: 0 };
+let keysPressed: Set<string> = new Set();
+
+document.addEventListener("keydown", handleKeyDown);
+document.addEventListener("keyup", handleKeyUp);
+
+function handleKeyDown(event: KeyboardEvent) {
+	if (["w", "a", "s", "d"].includes(event.key.toLowerCase())) {
+		keysPressed.add(event.key.toLowerCase());
+		updateMovementInput();
 	}
-	if (e.key==='ArrowRight'){
-		x += 5
+}
+
+function handleKeyUp(event: KeyboardEvent) {
+	if (keysPressed.has(event.key.toLowerCase())) {
+		keysPressed.delete(event.key.toLowerCase());
+		updateMovementInput();
 	}
-	if (e.key==='ArrowUp'){
-		y -= 5
+}
+
+function updateMovementInput() {
+	let x = 0, y = 0;
+
+	if (keysPressed.has("w")) y -= 1;
+	if (keysPressed.has("s")) y += 1;
+	if (keysPressed.has("a")) x -= 1;
+	if (keysPressed.has("d")) x += 1;
+
+	const length = Math.sqrt(x * x + y * y);
+	if (length > 0) {
+		movementInput = { x: x / length, y: y / length };
+	} else {
+		movementInput = { x: 0, y: 0 };
 	}
-	if (e.key==='ArrowDown'){
-		y += 5
-	}
-	state.balls[myUserId].x=x
-	state.balls[myUserId].y=y
-})
+}
+
+function updatePosition(deltaTime: number, speed: number) {
+	pos.x += movementInput.x * speed * deltaTime;
+	pos.y += movementInput.y * speed * deltaTime;
+	send({
+		type: "move",
+		x: pos.x,
+		y: pos.y
+	});
+}
+
+// Simulate a game loop
+const speed = 100; // Units per second
+let lastTime = performance.now();
+
+function gameLoop() {
+	const currentTime = performance.now();
+	const deltaTime = (currentTime - lastTime) / 1000; // Convert to seconds
+	lastTime = currentTime;
+
+	updatePosition(deltaTime, speed);
+
+	requestAnimationFrame(gameLoop);
+}
+gameLoop();
 
 document.addEventListener('click', e => {
-	const dx = e.clientX - x
-	const dy = e.clientY - y
+	const dx = e.clientX - pos.x
+	const dy = e.clientY - pos.y
 	const length=Math.hypot(dx,dy)
 	send({type:'bullet',xv:dx/length*30,yv:dy/length*30})
 })

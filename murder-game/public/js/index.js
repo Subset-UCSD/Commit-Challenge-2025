@@ -30,65 +30,85 @@ function handleServerMessage(data) {
       break;
   }
 }
-var x = 0;
-var y = 0;
-var lastReportedX = 0;
-var lastReportedY = 0;
-setInterval(() => {
-  if (lastReportedX !== x || lastReportedY !== y) {
-    lastReportedX = x;
-    lastReportedY = y;
-    send({ type: "move", x, y });
-  }
-}, 250);
 function send(data) {
-  ws.send(JSON.stringify(data));
+  if (ws.readyState == WebSocket.OPEN) ws.send(JSON.stringify(data));
 }
 function draw() {
-  c?.clearRect(0, 0, cnv.width, cnv.height);
-  c?.fillText("amogus", 50, 50);
   if (!c) {
     return;
   }
   c.fillStyle = "red";
-  for (const { x: x2, y: y2 } of state.bullets) {
-    c.fillRect(x2 - 1, y2 - 1, 2, 2);
-    c.fillText("this is a bullet", x2, y2);
+  for (const { x, y } of state.bullets) {
+    c.fillRect(x - 1, y - 1, 2, 2);
+    c.fillText("this is a bullet", x, y);
   }
-  for (const [i, { x: x2, y: y2, kills, deaths }] of Object.entries(state.balls)) {
+  for (const [i, { x, y, kills, deaths }] of Object.entries(state.balls)) {
     c.fillStyle = `hsl(${+i * 57}, 50%, 50%)`;
     c.beginPath();
-    c.moveTo(x2 + 10, y2);
-    c.arc(x2, y2, 10, 0, Math.PI * 2);
+    c.moveTo(x + 10, y);
+    c.arc(x, y, 10, 0, Math.PI * 2);
     c.fill();
     c.stroke();
-    c.fillText("hi i have kilt " + kills + ",die " + deaths, x2, y2 - 10);
+    c.fillText("hi i have kilt " + kills + ",die " + deaths, x, y - 10);
     if (+i === myUserId) {
-      c.fillText("(this is you!!)", x2, y2 + 10);
+      c.fillText("(this is you!!)", x, y + 10);
     }
   }
   requestAnimationFrame(draw);
 }
 draw();
-window.addEventListener("keydown", (e) => {
-  if (e.key === "ArrowLeft") {
-    x -= 5;
+var pos = { x: 0, y: 0 };
+var movementInput = { x: 0, y: 0 };
+var keysPressed = /* @__PURE__ */ new Set();
+document.addEventListener("keydown", handleKeyDown);
+document.addEventListener("keyup", handleKeyUp);
+function handleKeyDown(event) {
+  if (["w", "a", "s", "d"].includes(event.key.toLowerCase())) {
+    keysPressed.add(event.key.toLowerCase());
+    updateMovementInput();
   }
-  if (e.key === "ArrowRight") {
-    x += 5;
+}
+function handleKeyUp(event) {
+  if (keysPressed.has(event.key.toLowerCase())) {
+    keysPressed.delete(event.key.toLowerCase());
+    updateMovementInput();
   }
-  if (e.key === "ArrowUp") {
-    y -= 5;
+}
+function updateMovementInput() {
+  let x = 0, y = 0;
+  if (keysPressed.has("w")) y -= 1;
+  if (keysPressed.has("s")) y += 1;
+  if (keysPressed.has("a")) x -= 1;
+  if (keysPressed.has("d")) x += 1;
+  const length = Math.sqrt(x * x + y * y);
+  if (length > 0) {
+    movementInput = { x: x / length, y: y / length };
+  } else {
+    movementInput = { x: 0, y: 0 };
   }
-  if (e.key === "ArrowDown") {
-    y += 5;
-  }
-  state.balls[myUserId].x = x;
-  state.balls[myUserId].y = y;
-});
+}
+function updatePosition(deltaTime, speed2) {
+  pos.x += movementInput.x * speed2 * deltaTime;
+  pos.y += movementInput.y * speed2 * deltaTime;
+  send({
+    type: "move",
+    x: pos.x,
+    y: pos.y
+  });
+}
+var speed = 100;
+var lastTime = performance.now();
+function gameLoop() {
+  const currentTime = performance.now();
+  const deltaTime = (currentTime - lastTime) / 1e3;
+  lastTime = currentTime;
+  updatePosition(deltaTime, speed);
+  requestAnimationFrame(gameLoop);
+}
+gameLoop();
 document.addEventListener("click", (e) => {
-  const dx = e.clientX - x;
-  const dy = e.clientY - y;
+  const dx = e.clientX - pos.x;
+  const dy = e.clientY - pos.y;
   const length = Math.hypot(dx, dy);
   send({ type: "bullet", xv: dx / length * 30, yv: dy / length * 30 });
 });

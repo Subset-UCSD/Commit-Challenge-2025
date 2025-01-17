@@ -53,7 +53,7 @@ setInterval(()=>{
 	}
 	state.bullets = state.bullets.filter(b => b.dieTime > Date.now())
 	sendAll( {"type": "state",state});
-}, 250)
+}, 20)
 
 const wses=new Set<WebSocket>()
 

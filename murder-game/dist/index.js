@@ -62,7 +62,7 @@ setInterval(() => {
   }
   state.bullets = state.bullets.filter((b) => b.dieTime > Date.now());
   sendAll({ "type": "state", state });
-}, 250);
+}, 20);
 var wses = /* @__PURE__ */ new Set();
 var id = 0;
 wss.on("connection", (ws) => {

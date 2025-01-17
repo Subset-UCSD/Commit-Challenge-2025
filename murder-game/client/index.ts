@@ -1,4 +1,4 @@
-import { ClientMessage, ServerMessage, State } from "../server/Messaging";
+import { Ball, ClientMessage, ServerMessage, State } from "../server/Messaging";
 
 const cnv = document.getElementById('cnv') as HTMLCanvasElement;
 const ws = new WebSocket(window.location.href.replace(/^http/, "ws").replace(/\/$/, "").replace(/^https/, "wss"));
@@ -11,8 +11,10 @@ const c = cnv.getContext("2d");
 ws.addEventListener("message", handleServerMessage);
 
 let state:State={
-	balls:[{x:150,y:150},{x:800,y:870},{x:500,y:300}]
+	balls:{},
+	bullets:[]
 }
+let myUserId=-1
 
 function handleServerMessage(data: MessageEvent) {
 	let msg: ServerMessage | null = null;
@@ -29,8 +31,23 @@ function handleServerMessage(data: MessageEvent) {
 		case 'state':
 			state = msg.state
 			break
+			case 'you-are':
+				myUserId=msg.userId
+				break
 	}
 }
+
+// let myBall:Ball|undefined
+let x=0,y=0
+let lastReportedX = 0
+let lastReportedY= 0
+setInterval(() => {
+if (lastReportedX!==x||lastReportedY!==y){
+	lastReportedX=x
+	lastReportedY=y
+	send({type:'move',x,y})
+}
+},250)
 
 function send(data: ClientMessage) {
 	ws.send(JSON.stringify(data));
@@ -41,14 +58,47 @@ function draw() {
 	
 	c?.fillText('amogus',50, 50)
 	if (!c){return}
-	for (const [i, {x,y}] of state.balls.entries()) {
-		c.fillStyle = `hsl(${i * 57}, 50%, 50%)`
+	c.fillStyle = 'red'
+	for (const {x,y} of state.bullets) {
+		c.fillRect(x-1,y-1,2,2)
+		c.fillText('this is a bullet', x,y)
+	}
+	for (const [i, {x,y,kills,deaths}] of Object.entries(state.balls)) {
+		c.fillStyle = `hsl(${+i * 57}, 50%, 50%)`
 		c.beginPath()
 		c.moveTo(x + 10, y)
 		c.arc(x,y,10,0,Math.PI*2,)
 		c.fill()
 		c.stroke()
+		c.fillText('hi i have kilt ' + kills+',die ' + deaths, x,y-10)
+		if (+i === myUserId) {
+			c.fillText('(this is you!!)', x,y+10)
+		}
 	}
 	requestAnimationFrame(draw);
 }
 draw()
+
+window.addEventListener('keydown', (e) =>{
+	if (e.key==='ArrowLeft'){
+		x -= 5
+	}
+	if (e.key==='ArrowRight'){
+		x += 5
+	}
+	if (e.key==='ArrowUp'){
+		y -= 5
+	}
+	if (e.key==='ArrowDown'){
+		y += 5
+	}
+	state.balls[myUserId].x=x
+	state.balls[myUserId].y=y
+})
+
+document.addEventListener('click', e => {
+	const dx = e.clientX - x
+	const dy = e.clientY - y
+	const length=Math.hypot(dx,dy)
+	send({type:'bullet',xv:dx/length*30,yv:dy/length*30})
+})

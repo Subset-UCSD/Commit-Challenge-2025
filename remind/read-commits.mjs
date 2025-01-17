@@ -35,7 +35,7 @@ const messages = Object.fromEntries(
           "why havent u commited to the [repo](REPO) today? {PPL} has, go be like them !",
           "🚨this is ur daily remind to comit to [REPO](REPO) ! {PPL} alr did",
           "{PPL} committed to the [repository](REPO) today. Why haven't you?",
-          "{PPL} and you have added a fish to the [aqaurium](REPO) today thanks!.. oh wait, YOU didnt 🫵🤓",
+          "{PPL} and you have added a fish to the [aqaurium](README) today thanks!.. oh wait, YOU didnt 🫵🤓",
           "||{PPL}||",
           "hi . {PPL} already committed. [u could too](REPO)",
           "haha {PPL} committed to the [repo](REPO) today.. what a bunch of nerds 🤓👎👎 ,, imagine COMMITING EVERY DAY 👈🤣",
@@ -43,14 +43,19 @@ const messages = Object.fromEntries(
           "todays red flag 🚩 : commiting to the 🤓[nerd repo](REPO)🤓\n\nwhos the red flag today? 🥁🥁🥁 ||{PPL}||",
           "did you know? your tongue has five parts that each taste a different taste: {PPL} [[1]](REPO)",
           "help us make [acm bank](REPO)",
-          "{PPL} have phones.. do u? u know u can edit [files](REPO) on ur phone right"
+          "{PPL} have phones.. do u? u know u can edit [files](REPO) on ur phone right",
+          "help ",
+          "open [this](README) on ur phone, try adding an emoji or making fun of {PPL} or smth",
+          "hey [check out what](WEB) {PPL} made",
+          "u could change [the image](WEB) that {PPL} added",
+          "help {PPL} make an [aquarium!](WEB)!"
         )
       : select(
           "you could be the first comiter of the day!!",
           "go be the first 💪 comiter ",
           "i dare you to commmit to [repo](REPO)",
           "You forgot to commit to the [repository](REPO) today. You know what happens now.",
-          "new day new fish for [quarium](REPO)",
+          "new day new fish for [quarium](README)",
           "skat[e](REPO)bpard",
           "hi . [commit now](REPO)",
           "no one commited to the [repo](REPO) today thank god",
@@ -59,12 +64,23 @@ const messages = Object.fromEntries(
           "heyyy dont forget about the [commit chlalenge](REPO)s",
           "[👁️👄👁️](REPO)",
           "i give up",
-          "r u on ur phone? u could add smth to the [readme](REPO)"
+          "r u on ur phone? u could add smth to the [readme](README)",
+          "can u open [this](README) on ur phone?",
+          "drop a spotify link [here](README)",
+          "u know what we need? an aquarium. [add one pls🐟](WEB)"
         )
     )
       .replaceAll(
         "(REPO)",
         "(<https://github.com/Subset-UCSD/Commit-Challenge-2025/>)"
+      )
+      .replaceAll(
+        "(README)",
+        "(<https://github.com/Subset-UCSD/Commit-Challenge-2025/edit/main/README.md>)"
+      )
+      .replaceAll(
+        "(WEB)",
+        "(https://subset-ucsd.github.io/Commit-Challenge-2025/)"
       )
       .replaceAll(
         "{PPL}",

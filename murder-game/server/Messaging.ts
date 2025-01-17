@@ -1,9 +1,23 @@
 type BulletMessage = {
 	type: "bullet"
+	xv:number,yv:number
 };
 
+export type Ball={
+	userId:number
+	x:number,y:number
+	kills:number
+	deaths:number
+}
+export type Bullet={
+	x:number,y:number
+	xv:number,yv:number
+	dieTime: number
+	owner:number
+}
 export type State = {
-	balls: {x:number,y:number}[]
+	balls: Record<number, Ball>
+	bullets: Bullet[]
 }
 export type StateMessage = {
 	type: 'state'
@@ -12,23 +26,11 @@ export type StateMessage = {
 
 export type ClientMessage = 
 	BulletMessage |
-	{type: "pong"};
+	{type: "pong"}
+	|{type:'move',x:number,y:number};
 
 export type ServerMessage = 
 StateMessage|
+{type:'you-are',userId:number}|
 	{type: "ping"};
 
-export function handleClientMessage(data: any) {
-	let parsed: ClientMessage | null = null;
-	try {
-		parsed = JSON.parse(data);
-	} catch (e) {}
-	if (!parsed) return;
-
-	switch (parsed.type) {
-		case "pong":
-			console.log("Got pong...");
-			break;
-		case "bullet":
-	}
-}

@@ -32,5 +32,7 @@ export type ClientMessage =
 export type ServerMessage = 
 StateMessage|
 {type:'you-are',userId:number}|
-	{type: "ping"};
+	{type: "ping"}
+	|{type:'die'}
+	|{type:'please-move',x:number,y:number};
 

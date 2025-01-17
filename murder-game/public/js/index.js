@@ -1,3 +1,14 @@
+// server/obstickes.ts
+var xywh = (x, y, width, height) => ({ x, y, width, height });
+var xxyy = (x1, x2, y1, y2) => ({ x: Math.min(x1, x2), y: Math.min(y1, y2), width: Math.max(x1, x2) - Math.min(x1, x2), height: Math.max(y1, y2) - Math.min(y1, y2) });
+var obstacles = [
+  xxyy(-50, -100, -100, 1e3),
+  xxyy(-100, 1e3, -50, -100),
+  xxyy(1e3, 1050, -100, 1050),
+  xxyy(-100, 1050, 1e3, 1050),
+  xywh(400, 400, 50, 50)
+];
+
 // client/index.ts
 var cnv = document.getElementById("cnv");
 var ws = new WebSocket(window.location.href.replace(/^http/, "ws").replace(/\/$/, "").replace(/^https/, "wss"));
@@ -28,22 +39,65 @@ function handleServerMessage(data) {
     case "you-are":
       myUserId = msg.userId;
       break;
+    case "please-move":
+      pos.x = msg.x;
+      pos.y = msg.y;
+      vel.x = 0;
+      vel.y = 0;
+      break;
+    case "die":
+      const bruh = Object.assign(document.createElement("div"), { className: Math.random() < 0.5 ? "variation" : "help" });
+      document.body.append(bruh);
+      setTimeout(() => bruh.remove(), 500);
+      break;
   }
 }
 function send(data) {
   if (ws.readyState == WebSocket.OPEN) ws.send(JSON.stringify(data));
 }
+function mod(a, b) {
+  return (a % b + b) % b;
+}
+var GRID_SIZE = 50;
+var cameraX = 0;
+var cameraY = 0;
 function draw() {
+  cameraX += (pos.x - window.innerWidth / 2 - cameraX) * 0.3;
+  cameraY += (pos.y - window.innerHeight / 2 - cameraY) * 0.3;
   c?.clearRect(0, 0, window.innerWidth, window.innerHeight);
   if (!c) {
     return;
   }
+  c.save();
+  c.strokeStyle = "#eee";
+  c.beginPath();
+  const startX = mod(-cameraX, GRID_SIZE);
+  const startY = mod(-cameraY, GRID_SIZE);
+  for (let x = startX; x < startX + window.innerWidth; x += GRID_SIZE) {
+    c.moveTo(x, 0);
+    c.lineTo(x, window.innerHeight);
+  }
+  for (let y = startY; y < startY + window.innerHeight; y += GRID_SIZE) {
+    c.moveTo(0, y);
+    c.lineTo(window.innerWidth, y);
+  }
+  c.stroke();
+  c.translate(-cameraX, -cameraY);
+  c.fillStyle = `hsl(${Math.sin(Date.now() / 100) * 10 + 30},100%,50%)`;
+  for (const { x, y, width, height } of obstacles) {
+    c.fillRect(x, y, width, height);
+  }
+  c.strokeStyle = "black";
   c.fillStyle = "red";
   for (const { x, y } of state.bullets) {
-    c.fillRect(x - 1, y - 1, 2, 2);
-    c.fillText("this is a bullet", x, y);
+    c.fillRect(x - 2, y - 2, 4, 4);
   }
-  for (const [i, { x, y, kills, deaths }] of Object.entries(state.balls)) {
+  for (let [i, { x, y, kills, deaths }] of Object.entries(state.balls)) {
+    if (+i === myUserId) {
+      x = pos.x;
+      y = pos.y;
+      c.fillText("(this is you!!)", x, y + 10);
+    }
     c.fillStyle = `hsl(${+i * 57}, 50%, 50%)`;
     c.beginPath();
     c.moveTo(x + 10, y);
@@ -51,27 +105,25 @@ function draw() {
     c.fill();
     c.stroke();
     c.fillText("hi i have kilt " + kills + ",die " + deaths, x, y - 10);
-    if (+i === myUserId) {
-      c.fillText("(this is you!!)", x, y + 10);
-    }
   }
-  requestAnimationFrame(draw);
+  c.restore();
 }
-draw();
 var pos = { x: 0, y: 0 };
+var vel = { x: 0, y: 0 };
 var movementInput = { x: 0, y: 0 };
 var keysPressed = /* @__PURE__ */ new Set();
 document.addEventListener("keydown", handleKeyDown);
 document.addEventListener("keyup", handleKeyUp);
+var map = { w: "w", a: "a", s: "s", d: "d", arrowleft: "a", arrowdown: "s", arrowup: "w", arrowright: "d" };
 function handleKeyDown(event) {
-  if (["w", "a", "s", "d"].includes(event.key.toLowerCase())) {
-    keysPressed.add(event.key.toLowerCase());
+  if (map[event.key.toLowerCase()]) {
+    keysPressed.add(map[event.key.toLowerCase()]);
     updateMovementInput();
   }
 }
 function handleKeyUp(event) {
-  if (keysPressed.has(event.key.toLowerCase())) {
-    keysPressed.delete(event.key.toLowerCase());
+  if (keysPressed.has(map[event.key.toLowerCase()])) {
+    keysPressed.delete(map[event.key.toLowerCase()]);
     updateMovementInput();
   }
 }
@@ -89,27 +141,36 @@ function updateMovementInput() {
   }
 }
 function updatePosition(deltaTime, speed2) {
-  pos.x += movementInput.x * speed2 * deltaTime;
-  pos.y += movementInput.y * speed2 * deltaTime;
+  vel.x += movementInput.x * speed2 * deltaTime;
+  vel.y += movementInput.y * speed2 * deltaTime;
+  vel.x *= 0.9;
+  vel.y *= 0.9;
+  pos.x += vel.x * deltaTime;
+  pos.y += vel.y * deltaTime;
   send({
     type: "move",
     x: pos.x,
     y: pos.y
   });
 }
-var speed = 100;
+var speed = 2e3;
 var lastTime = performance.now();
+console.log("hey");
 function gameLoop() {
   const currentTime = performance.now();
+  requestAnimationFrame(gameLoop);
+  if (currentTime < lastTime + 1e3 / 80) {
+    return;
+  }
   const deltaTime = (currentTime - lastTime) / 1e3;
   lastTime = currentTime;
   updatePosition(deltaTime, speed);
-  requestAnimationFrame(gameLoop);
+  draw();
 }
 gameLoop();
 document.addEventListener("click", (e) => {
-  const dx = e.clientX - pos.x;
-  const dy = e.clientY - pos.y;
+  const dx = e.clientX - pos.x + cameraX;
+  const dy = e.clientY - pos.y + cameraY;
   const length = Math.hypot(dx, dy);
   send({ type: "bullet", xv: dx / length * 30, yv: dy / length * 30 });
 });

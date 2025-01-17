@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2750" height="21">
+  <style xmlns="http://www.w3.org/2000/svg">
+    text {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
+        "Segoe UI Emoji", "Segoe UI Symbol";
+      font-size: 20px;
+      fill: black;
+      dominant-baseline: hanging;
+    }
+    #left {
+      animation: left 10s infinite linear;
+    }
+    @keyframes left {
+      from {
+        transform: translateX(0%);
+      }
+      to {
+        transform: translateX(-100%);
+      }
+    }
+    #right {
+      animation: right 10s infinite linear;
+    }
+    @keyframes right {
+      from {
+        transform: translateX(100%);
+      }
+      to {
+        transform: translateX(0%);
+      }
+    }
+  </style>
+  <rect x="0" y="0" width="2750" height="40" fill="#fde047" />
+  <text xmlns="http://www.w3.org/2000/svg" x="0" y="0" id="left">
+    WELCOME TO UCSD COMMIT CHALLENGE 2025 ⊆ WELCOME TO THE ANNUAL COMMIT
+    CHALLENGE 2025 ⊆ THE GOAL IS TO MAKE CONTRIBUTIONS ⊆ A COMMIT EVERY DAY ⊆
+    BUILD SOMETHING THAT CAN BE CONSIDERED MEANINGFUL ⊆ DEPLOYABLE BY THE END OF
+    THE YEAR ⊆ HOPEFULLY ⊆ 🚀 FISH ⊆
+  </text>
+  <text xmlns="http://www.w3.org/2000/svg" x="0" y="0" id="right">
+    WELCOME TO UCSD COMMIT CHALLENGE 2025 ⊆ WELCOME TO THE ANNUAL COMMIT
+    CHALLENGE 2025 ⊆ THE GOAL IS TO MAKE CONTRIBUTIONS ⊆ A COMMIT EVERY DAY ⊆
+    BUILD SOMETHING THAT CAN BE CONSIDERED MEANINGFUL ⊆ DEPLOYABLE BY THE END OF
+    THE YEAR ⊆ HOPEFULLY ⊆ 🚀 FISH ⊆
+  </text>
+</svg>

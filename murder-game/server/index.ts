@@ -3,6 +3,7 @@ import http from "http";
 import path from "path";
 import { WebSocketServer, WebSocket } from "ws";
 import { Ball,  ClientMessage,  ServerMessage, State } from "./Messaging";
+import { insideAny } from "./obstickes";
 
 const app = express();
 
@@ -13,9 +14,11 @@ const wss = new WebSocketServer({server: server});
 const state :State= {
 	balls: {},bullets:[]
 }
+const ballToWs = new WeakMap<Ball,WebSocket>()
+const ballSteps = 5
 
-function send(ws: WebSocket,  data: ServerMessage) {
-	ws.send(JSON.stringify(data));
+function send(ws: WebSocket|undefined,  data: ServerMessage) {
+	ws?.send(JSON.stringify(data));
 }
 function sendAll(  data: ServerMessage) {
 	// ws.send(JSON.stringify(data));
@@ -37,21 +40,36 @@ setInterval(()=>{
 	// 	ball.y = 0
 	// }
 	// send(ws, {"type": "ping"});
+	for (let i = 0; i < ballSteps;i++){
 	for (const b of state.bullets) {
-		b.x += b.xv
-		b.y += b.yv
+		b.x += b.xv/ballSteps
+		b.y += b.yv/ballSteps
 		for (const p of Object.values(state.balls)) {
 			if (Math.hypot(p.x - b.x, p.y-b.y)<10){
+				if (b.owner === p.userId)continue
 				p.x=Math.floor(Math.random() * 300)
 				p.y = Math.floor(Math.random() * 300)
+				send(ballToWs.get(p),{type:'please-move',x:p.x,y:p.y})
+				send(ballToWs.get(p),{type:'die'})
+				// ballToWs.get(p)
 				p.kills = 0
 				p.deaths++
 				state.balls[b.owner] .kills++
 				b.dieTime=0
 			}
 		}
+	}}
+	state.bullets = state.bullets.filter(b => b.dieTime > Date.now()&&!insideAny(b))
+	for (const p of Object.values(state.balls)) {
+		if (insideAny(p)){
+			p.x=Math.floor(Math.random() * 300)
+			p.y = Math.floor(Math.random() * 300)
+			send(ballToWs.get(p),{type:'please-move',x:p.x,y:p.y})
+			send(ballToWs.get(p),{type:'die'})
+			p.kills = 0
+				p.deaths++
+		}
 	}
-	state.bullets = state.bullets.filter(b => b.dieTime > Date.now())
 	sendAll( {"type": "state",state});
 }, 20)
 
@@ -63,6 +81,7 @@ wss.on("connection", ws => {
 	const userId = id++
 	const ball :Ball= {userId,x:Math.floor(Math.random() * 300),y:Math.floor(Math.random() * 300),kills:0,deaths:0}
 	state.balls[userId]=(ball)
+	ballToWs.set(ball,ws)
 	function handleClientMessage(data: any) {
 		let parsed: ClientMessage | null = null;
 		try {
@@ -85,9 +104,10 @@ wss.on("connection", ws => {
 	}
 	ws.on("message", handleClientMessage);
 
-	ws.on("close", () => {wses.delete(ws)});
+	ws.on("close", () => {wses.delete(ws);ballToWs.delete(ball)});
 
 	send(ws,{type:'you-are',userId})
+	send(ws,{type:'please-move',x:ball.x,y:ball.y})
 });
 
 app.get("/", (_, res) => {

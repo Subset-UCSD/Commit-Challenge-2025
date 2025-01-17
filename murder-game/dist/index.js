@@ -26,6 +26,21 @@ var import_express = __toESM(require("express"));
 var import_http = __toESM(require("http"));
 var import_path = __toESM(require("path"));
 var import_ws = require("ws");
+
+// server/obstickes.ts
+var xywh = (x, y, width, height) => ({ x, y, width, height });
+var xxyy = (x1, x2, y1, y2) => ({ x: Math.min(x1, x2), y: Math.min(y1, y2), width: Math.max(x1, x2) - Math.min(x1, x2), height: Math.max(y1, y2) - Math.min(y1, y2) });
+var obstacles = [
+  xxyy(-50, -100, -100, 1e3),
+  xxyy(-100, 1e3, -50, -100),
+  xxyy(1e3, 1050, -100, 1050),
+  xxyy(-100, 1050, 1e3, 1050),
+  xywh(400, 400, 50, 50)
+];
+var inside = ({ x, y }, o) => o.x <= x && x <= o.x + o.width && o.y <= y && y <= o.y + o.height;
+var insideAny = (p) => obstacles.some((o) => inside(p, o));
+
+// server/index.ts
 var app = (0, import_express.default)();
 var server = import_http.default.createServer(app);
 var wss = new import_ws.WebSocketServer({ server });
@@ -33,8 +48,10 @@ var state = {
   balls: {},
   bullets: []
 };
+var ballToWs = /* @__PURE__ */ new WeakMap();
+var ballSteps = 5;
 function send(ws, data) {
-  ws.send(JSON.stringify(data));
+  ws?.send(JSON.stringify(data));
 }
 function sendAll(data) {
   for (const ws of [...wses]) {
@@ -46,21 +63,36 @@ function sendAll(data) {
   }
 }
 setInterval(() => {
-  for (const b of state.bullets) {
-    b.x += b.xv;
-    b.y += b.yv;
-    for (const p of Object.values(state.balls)) {
-      if (Math.hypot(p.x - b.x, p.y - b.y) < 10) {
-        p.x = Math.floor(Math.random() * 300);
-        p.y = Math.floor(Math.random() * 300);
-        p.kills = 0;
-        p.deaths++;
-        state.balls[b.owner].kills++;
-        b.dieTime = 0;
+  for (let i = 0; i < ballSteps; i++) {
+    for (const b of state.bullets) {
+      b.x += b.xv / ballSteps;
+      b.y += b.yv / ballSteps;
+      for (const p of Object.values(state.balls)) {
+        if (Math.hypot(p.x - b.x, p.y - b.y) < 10) {
+          if (b.owner === p.userId) continue;
+          p.x = Math.floor(Math.random() * 300);
+          p.y = Math.floor(Math.random() * 300);
+          send(ballToWs.get(p), { type: "please-move", x: p.x, y: p.y });
+          send(ballToWs.get(p), { type: "die" });
+          p.kills = 0;
+          p.deaths++;
+          state.balls[b.owner].kills++;
+          b.dieTime = 0;
+        }
       }
     }
   }
-  state.bullets = state.bullets.filter((b) => b.dieTime > Date.now());
+  state.bullets = state.bullets.filter((b) => b.dieTime > Date.now() && !insideAny(b));
+  for (const p of Object.values(state.balls)) {
+    if (insideAny(p)) {
+      p.x = Math.floor(Math.random() * 300);
+      p.y = Math.floor(Math.random() * 300);
+      send(ballToWs.get(p), { type: "please-move", x: p.x, y: p.y });
+      send(ballToWs.get(p), { type: "die" });
+      p.kills = 0;
+      p.deaths++;
+    }
+  }
   sendAll({ "type": "state", state });
 }, 20);
 var wses = /* @__PURE__ */ new Set();
@@ -70,6 +102,7 @@ wss.on("connection", (ws) => {
   const userId = id++;
   const ball = { userId, x: Math.floor(Math.random() * 300), y: Math.floor(Math.random() * 300), kills: 0, deaths: 0 };
   state.balls[userId] = ball;
+  ballToWs.set(ball, ws);
   function handleClientMessage(data) {
     let parsed = null;
     try {
@@ -93,8 +126,10 @@ wss.on("connection", (ws) => {
   ws.on("message", handleClientMessage);
   ws.on("close", () => {
     wses.delete(ws);
+    ballToWs.delete(ball);
   });
   send(ws, { type: "you-are", userId });
+  send(ws, { type: "please-move", x: ball.x, y: ball.y });
 });
 app.get("/", (_, res) => {
   res.sendFile(import_path.default.join(__dirname, "../public", "index.html"));

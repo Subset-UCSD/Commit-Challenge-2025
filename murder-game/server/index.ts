@@ -16,6 +16,7 @@ const state :State= {
 }
 const ballToWs = new WeakMap<Ball,WebSocket>()
 const ballSteps = 5
+const maxBalls = 1234; // server pls don't break down
 
 function send(ws: WebSocket|undefined,  data: ServerMessage) {
 	ws?.send(JSON.stringify(data));
@@ -59,7 +60,7 @@ setInterval(()=>{
 			}
 		}
 	}}
-	state.bullets = state.bullets.filter(b => b.dieTime > Date.now()&&!insideAny(b))
+	state.bullets = state.bullets.filter(b => b.dieTime > Date.now()&&!insideAny(b)).slice(-maxBalls);
 	for (const p of Object.values(state.balls)) {
 		if (insideAny(p)){
 			p.x=Math.floor(Math.random() * 300)

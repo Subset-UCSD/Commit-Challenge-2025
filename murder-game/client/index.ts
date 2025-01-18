@@ -198,5 +198,5 @@ document.addEventListener('click', e => {
 	const dx = e.clientX - pos.x+cameraX//window.innerWidth/2
 	const dy = e.clientY - pos.y+cameraY//window.innerHeight/2
 	const length=Math.hypot(dx,dy)
-	send({type:'bullet',xv:dx/length*30,yv:dy/length*30})
+	send({type:'bullet',xv:dx/length*20,yv:dy/length*20})
 })

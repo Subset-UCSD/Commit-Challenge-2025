@@ -98,7 +98,7 @@ wss.on("connection", ws => {
 				ball.y = parsed.y
 				break
 			case "bullet":
-				state.bullets.push({x:ball.x,y:ball.y,xv:parsed.xv,yv:parsed.yv,dieTime:Date.now()+1000,owner:userId})
+				state.bullets.push({x:ball.x,y:ball.y,xv:parsed.xv,yv:parsed.yv,dieTime:Date.now()+1500,owner:userId})
 				break
 		}
 	}

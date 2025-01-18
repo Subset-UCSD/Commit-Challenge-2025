@@ -12,10 +12,10 @@ const boundarySize = 1000;
 const boundaryBorderSize = 50;
 
 export const obstacles = [
-	xxyy(-boundarySize - boundaryBorderSize, -boundarySize, -boundarySize - boundaryBorderSize, -boundarySize),
-	xxyy(-boundarySize - boundaryBorderSize, -boundarySize, boundarySize, boundarySize + boundaryBorderSize),
-  xxyy(boundarySize, boundarySize + boundaryBorderSize, -boundarySize - boundaryBorderSize, -boundarySize),
-  xxyy(boundarySize, boundarySize + boundaryBorderSize, boundarySize, boundarySize + boundaryBorderSize),
+	xxyy(-boundarySize - boundaryBorderSize, -boundarySize, -boundarySize - boundaryBorderSize, boundarySize + boundaryBorderSize),
+	xxyy(-boundarySize - boundaryBorderSize, boundarySize + boundaryBorderSize, -boundarySize - boundaryBorderSize, -boundarySize),
+  xxyy(-boundarySize - boundaryBorderSize, boundarySize + boundaryBorderSize, boundarySize, boundarySize + boundaryBorderSize),
+  xxyy(boundarySize, boundarySize + boundaryBorderSize, -boundarySize - boundaryBorderSize, boundarySize + boundaryBorderSize),
   xywh(400,400,50,50),
 ]
 

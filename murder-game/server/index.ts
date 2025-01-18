@@ -75,6 +75,8 @@ setInterval(()=>{
 
 const wses=new Set<WebSocket>()
 
+const anticheatMovementLimiter = 100;
+
 let id = 0
 wss.on("connection", ws => {
 	wses.add(ws)
@@ -94,9 +96,11 @@ wss.on("connection", ws => {
 				console.log("Got pong...");
 				break;
 			case 'move':
-				ball.x = parsed.x
-				ball.y = parsed.y
-				break
+				if (parsed.x - ball.x > anticheatMovementLimiter || parsed.y - ball.y > anticheatMovementLimiter || parsed.x - ball.x < -anticheatMovementLimiter || parsed.y - ball.y < -anticheatMovementLimiter)
+						break;
+				ball.x = parsed.x;
+				ball.y = parsed.y;
+				break;
 			case "bullet":
 				state.bullets.push({x:ball.x,y:ball.y,xv:parsed.xv,yv:parsed.yv,dieTime:Date.now()+1500,owner:userId})
 				break

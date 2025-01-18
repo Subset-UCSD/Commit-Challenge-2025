@@ -194,7 +194,14 @@ function gameLoop() {
 }
 gameLoop();
 
+const fireRate = 5;
+let lastClick = performance.now();
+
 document.addEventListener('click', e => {
+	const currentTime = performance.now();
+	if (currentTime < lastClick + 1000 / fireRate) { // arbitrary fire rate limiter
+		return;
+	}
 	const dx = e.clientX - pos.x+cameraX//window.innerWidth/2
 	const dy = e.clientY - pos.y+cameraY//window.innerHeight/2
 	const length=Math.hypot(dx,dy)

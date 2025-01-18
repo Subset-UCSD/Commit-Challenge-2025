@@ -8,11 +8,14 @@ export type Obstacle = {
 const xywh = (x:number,y:number,width:number,height:number)=>({x,y,width,height})
 const xxyy = (x1:number,x2:number,y1:number,y2:number)=>({x:Math.min(x1,x2),y:Math.min(y1,y2),width:Math.max(x1,x2)-Math.min(x1,x2),height:Math.max(y1,y2)-Math.min(y1,y2)})
 
+const boundarySize = 1000;
+const boundaryBorderSize = 50;
+
 export const obstacles = [
-  xxyy(-50,-100,-100,1000),
-  xxyy(-100,1000,-50,-100),
-  xxyy(1000,1050,-100,1050),
-  xxyy(-100,1050,1000,1050),
+	xxyy(-boundarySize - boundaryBorderSize, -boundarySize, -boundarySize - boundaryBorderSize, -boundarySize),
+	xxyy(-boundarySize - boundaryBorderSize, -boundarySize, boundarySize, boundarySize + boundaryBorderSize),
+  xxyy(boundarySize, boundarySize + boundaryBorderSize, -boundarySize - boundaryBorderSize, -boundarySize),
+  xxyy(boundarySize, boundarySize + boundaryBorderSize, boundarySize, boundarySize + boundaryBorderSize),
   xywh(400,400,50,50),
 ]
 

@@ -82,7 +82,7 @@ let id = 0
 wss.on("connection", ws => {
 	wses.add(ws)
 	const userId = id++
-	const ball :Ball= {userId,x:Math.floor(Math.random() * 300),y:Math.floor(Math.random() * 300),kills:0,deaths:0}
+	const ball :Ball= {userId,x:Math.floor(Math.random() * 300)-150,y:Math.floor(Math.random() * 300)-150,kills:0,deaths:0}
 	state.balls[userId]=(ball)
 	ballToWs.set(ball,ws)
 	function handleClientMessage(data: any) {

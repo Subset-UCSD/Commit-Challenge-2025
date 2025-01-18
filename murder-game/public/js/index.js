@@ -1,12 +1,30 @@
 // server/obstickes.ts
 var xywh = (x, y, width, height) => ({ x, y, width, height });
 var xxyy = (x1, x2, y1, y2) => ({ x: Math.min(x1, x2), y: Math.min(y1, y2), width: Math.max(x1, x2) - Math.min(x1, x2), height: Math.max(y1, y2) - Math.min(y1, y2) });
+var boundarySize = 1e3;
+var boundaryBorderSize = 50;
 var obstacles = [
-  xxyy(-50, -100, -100, 1e3),
-  xxyy(-100, 1e3, -50, -100),
-  xxyy(1e3, 1050, -100, 1050),
-  xxyy(-100, 1050, 1e3, 1050),
-  xywh(400, 400, 50, 50)
+  xxyy(-boundarySize - boundaryBorderSize, -boundarySize, -boundarySize - boundaryBorderSize, boundarySize + boundaryBorderSize),
+  xxyy(-boundarySize - boundaryBorderSize, boundarySize + boundaryBorderSize, -boundarySize - boundaryBorderSize, -boundarySize),
+  xxyy(-boundarySize - boundaryBorderSize, boundarySize + boundaryBorderSize, boundarySize, boundarySize + boundaryBorderSize),
+  xxyy(boundarySize, boundarySize + boundaryBorderSize, -boundarySize - boundaryBorderSize, boundarySize + boundaryBorderSize),
+  xywh(-800, -800, 200, 200),
+  xywh(600, -800, 200, 200),
+  xywh(-800, -300, 200, 200),
+  xywh(600, -300, 200, 200),
+  xywh(-800, 100, 200, 200),
+  xywh(600, 100, 200, 200),
+  xywh(-800, 600, 200, 200),
+  xywh(-500, -500, 100, 100),
+  xywh(-500, 400, 100, 100),
+  xywh(-500, -100, 100, 200),
+  xywh(400, -100, 100, 200),
+  xywh(400, -500, 100, 100),
+  xywh(400, 400, 100, 100),
+  xywh(-400, -800, 800, 100),
+  xywh(-400, 700, 800, 100),
+  xywh(-200, -500, 400, 100),
+  xywh(-200, 400, 400, 100)
 ];
 
 // client/index.ts
@@ -168,10 +186,16 @@ function gameLoop() {
   draw();
 }
 gameLoop();
+var fireRate = 5;
+var lastClick = performance.now();
 document.addEventListener("click", (e) => {
+  const currentTime = performance.now();
+  if (currentTime < lastClick + 1e3 / fireRate) {
+    return;
+  }
   const dx = e.clientX - pos.x + cameraX;
   const dy = e.clientY - pos.y + cameraY;
   const length = Math.hypot(dx, dy);
-  send({ type: "bullet", xv: dx / length * 30, yv: dy / length * 30 });
+  send({ type: "bullet", xv: dx / length * 20, yv: dy / length * 20 });
 });
 //# sourceMappingURL=index.js.map

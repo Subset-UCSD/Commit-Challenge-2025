@@ -30,12 +30,30 @@ var import_ws = require("ws");
 // server/obstickes.ts
 var xywh = (x, y, width, height) => ({ x, y, width, height });
 var xxyy = (x1, x2, y1, y2) => ({ x: Math.min(x1, x2), y: Math.min(y1, y2), width: Math.max(x1, x2) - Math.min(x1, x2), height: Math.max(y1, y2) - Math.min(y1, y2) });
+var boundarySize = 1e3;
+var boundaryBorderSize = 50;
 var obstacles = [
-  xxyy(-50, -100, -100, 1e3),
-  xxyy(-100, 1e3, -50, -100),
-  xxyy(1e3, 1050, -100, 1050),
-  xxyy(-100, 1050, 1e3, 1050),
-  xywh(400, 400, 50, 50)
+  xxyy(-boundarySize - boundaryBorderSize, -boundarySize, -boundarySize - boundaryBorderSize, boundarySize + boundaryBorderSize),
+  xxyy(-boundarySize - boundaryBorderSize, boundarySize + boundaryBorderSize, -boundarySize - boundaryBorderSize, -boundarySize),
+  xxyy(-boundarySize - boundaryBorderSize, boundarySize + boundaryBorderSize, boundarySize, boundarySize + boundaryBorderSize),
+  xxyy(boundarySize, boundarySize + boundaryBorderSize, -boundarySize - boundaryBorderSize, boundarySize + boundaryBorderSize),
+  xywh(-800, -800, 200, 200),
+  xywh(600, -800, 200, 200),
+  xywh(-800, -300, 200, 200),
+  xywh(600, -300, 200, 200),
+  xywh(-800, 100, 200, 200),
+  xywh(600, 100, 200, 200),
+  xywh(-800, 600, 200, 200),
+  xywh(-500, -500, 100, 100),
+  xywh(-500, 400, 100, 100),
+  xywh(-500, -100, 100, 200),
+  xywh(400, -100, 100, 200),
+  xywh(400, -500, 100, 100),
+  xywh(400, 400, 100, 100),
+  xywh(-400, -800, 800, 100),
+  xywh(-400, 700, 800, 100),
+  xywh(-200, -500, 400, 100),
+  xywh(-200, 400, 400, 100)
 ];
 var inside = ({ x, y }, o) => o.x <= x && x <= o.x + o.width && o.y <= y && y <= o.y + o.height;
 var insideAny = (p) => obstacles.some((o) => inside(p, o));
@@ -50,6 +68,7 @@ var state = {
 };
 var ballToWs = /* @__PURE__ */ new WeakMap();
 var ballSteps = 5;
+var maxBalls = 1234;
 function send(ws, data) {
   ws?.send(JSON.stringify(data));
 }
@@ -82,7 +101,7 @@ setInterval(() => {
       }
     }
   }
-  state.bullets = state.bullets.filter((b) => b.dieTime > Date.now() && !insideAny(b));
+  state.bullets = state.bullets.filter((b) => b.dieTime > Date.now() && !insideAny(b)).slice(-maxBalls);
   for (const p of Object.values(state.balls)) {
     if (insideAny(p)) {
       p.x = Math.floor(Math.random() * 300);
@@ -96,11 +115,12 @@ setInterval(() => {
   sendAll({ "type": "state", state });
 }, 20);
 var wses = /* @__PURE__ */ new Set();
+var anticheatMovementLimiter = 100;
 var id = 0;
 wss.on("connection", (ws) => {
   wses.add(ws);
   const userId = id++;
-  const ball = { userId, x: Math.floor(Math.random() * 300), y: Math.floor(Math.random() * 300), kills: 0, deaths: 0 };
+  const ball = { userId, x: Math.floor(Math.random() * 300) - 150, y: Math.floor(Math.random() * 300) - 150, kills: 0, deaths: 0 };
   state.balls[userId] = ball;
   ballToWs.set(ball, ws);
   function handleClientMessage(data) {
@@ -115,11 +135,13 @@ wss.on("connection", (ws) => {
         console.log("Got pong...");
         break;
       case "move":
+        if (parsed.x - ball.x > anticheatMovementLimiter || parsed.y - ball.y > anticheatMovementLimiter || parsed.x - ball.x < -anticheatMovementLimiter || parsed.y - ball.y < -anticheatMovementLimiter)
+          break;
         ball.x = parsed.x;
         ball.y = parsed.y;
         break;
       case "bullet":
-        state.bullets.push({ x: ball.x, y: ball.y, xv: parsed.xv, yv: parsed.yv, dieTime: Date.now() + 1e3, owner: userId });
+        state.bullets.push({ x: ball.x, y: ball.y, xv: parsed.xv, yv: parsed.yv, dieTime: Date.now() + 1500, owner: userId });
         break;
     }
   }

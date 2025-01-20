@@ -16,7 +16,11 @@ jobs:
           gh api -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" "/repos/Subset-UCSD/Commit-Challenge-2025/commits?since=$SINCE" > commits.json
           node remind/read-commits.mjs || ./remind/target/release/remind > out.txt
           cat out.txt
-          # TODO: send it somewhere more obvious?
+          if [ -s out.txt ]; then
+            gh issue comment 5 --body "$(cat out.txt)"
+          fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
+    permissions:
+      issues: write

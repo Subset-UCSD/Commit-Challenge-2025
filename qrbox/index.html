@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    <title>qrbox</title>
+    <meta name="description" content="qrbox description">
+    <meta name="theme-color" content="#AAB99A">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type="text/css">
+      :root {
+        color-scheme: dark;
+      }
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive;
+
+    }
+    #div {
+        width: 600px;
+        margin: 5em auto;
+        padding: 2em;
+        background-color: #333;
+        border-radius: 0.5em;
+    }
+    a:link, a:visited {
+        text-decoration: none;
+    }
+    @media (max-width: 700px) {
+        #div {
+            margin: 0 auto;
+            width: auto;
+        }
+    }
+    </style>
+</head>
+
+<body>
+<div id="div">
+  <p>scan this to respond:</p>
+  <canvas id="canvas"></canvas>
+  <!-- <textarea id=wow></textarea> -->
+
+  <video id="vid"></video>
+
+  <pre id="bruh2"></pre>
+  <pre id="bruh"></pre>
+
+  <!-- QrScanner -->
+  <script src="https://www.unpkg.com/qr-scanner@1.4.2/qr-scanner.umd.min.js"></script>
+
+    <script type="module">
+   import * as QRCode from 'https://esm.sh/qrcode@1.5.4'
+   console.log(QRCode)
+
+   const params = new URL(window.location.href).searchParams
+   const code =Math.floor(0x1_000_000*Math.random()).toString(16).padStart(6,'0')
+
+   var canvas = document.getElementById('canvas')
+
+  //  wow.oninput = () =>{
+QRCode.toCanvas(canvas, `https://subset-ucsd.github.io/Commit-Challenge-2025/qrbox/a#${encodeURIComponent(code)}`, function (error) {
+  if (error) console.error(error)
+  console.log('success!');
+})
+// }
+
+    </script>
+
+    <script>
+      const qrScanner = new QrScanner(
+    vid,
+    result => {
+      console.log('decoded qr code:', result)
+      if (result.data.startWith(`${code}:`)) {
+bruh.append ( result.data.replace(`${code}:`,'') + '\n')
+bruh2.textContent=''}
+else {
+  bruh2.textContent = `i reject ${JSON.stringify(result.data)}. not for this question`
+}
+    },
+    { /* your options or returnDetailedScanResult: true if you're not specifying any other options */
+    preferredCamera:'user'
+    },
+);
+qrScanner.start();
+
+    </script>
+</div>
+
+</body>
+</html>

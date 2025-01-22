@@ -96,6 +96,21 @@ justify-content: flex-end;    }
         1%{transform: translateY(var(--ahh));opacity: 1;}
         100%{transform: translateY(0%);opacity: 1;}
     }
+    .deny {
+        display: inline-flex;
+        color: #0ea5e9;
+        font-weight: bold;
+        cursor: pointer;
+        transition: transform 10s;
+    }
+    .deny:hover {
+        transform: translateY(100px);
+        transition: transform .5s;
+    }
+    .notif .deny:hover {
+        transform: translateY(-100px);
+
+    }
     </style>
     <meta property="og:image" content="https://subset-ucsd.github.io/Commit-Challenge-2025/ass/ets/late.gif">
 </head>
@@ -134,7 +149,7 @@ justify-content: flex-end;    }
         <tbody>
             <tr><td>1</td><td>❌</td><td>✅</td><td>✅</td></tr>
             <tr><td>2</td><td>❌</td><td>✅</td><td>❌</td></tr>
-            <tr><td>3</td><td>👴🏾</td></tr>
+            <tr><td>3</td><td>👴🏾</td><td>❌</td></tr>
         </tbody>
     </table>
     <p><strong><em>SAUCY MARCELO SECRETS</em></strong> will be revaeled..</p>
@@ -152,6 +167,7 @@ justify-content: flex-end;    }
             // score += 1 // /50 // week 1 wednesday, HE CAME TO CLASS
             score += 1 // monday week 2
             score += 1 // friday week 2
+            score += 1 // week 3 wed
             bar.style.width = `${score / 13 * 100}%`
         </script>
      </div>
@@ -194,10 +210,20 @@ justify-content: flex-end;    }
     lowPassNode.type = 'lowshelf'
     lowPassNode.frequency.value = 350
     lowPassNode.gain.value = 20
-    sourceNode.connect(lowPassNode)
-    lowPassNode.connect(context.destination)
+    // sourceNode.connect(lowPassNode)
+    // lowPassNode.connect(context.destination)
 
-    function audioReady () {
+    async function audioReady () {
+        let convolver = context.createConvolver();
+
+  // load impulse response from file
+  let response = await fetch("./ass/ets/russel-um.mp3");
+  let arraybuffer = await response.arrayBuffer();
+  convolver.buffer = await context.decodeAudioData(arraybuffer);
+
+  sourceNode.connect(convolver)
+    convolver.connect(context.destination)
+
         console.log('audioReady')
         //
         audio.play().catch(console.warn)
@@ -215,6 +241,7 @@ justify-content: flex-end;    }
         <button>I agree</button>
     <button>Accept and continue</button>
     <button>Allow</button>
+    <div class="deny">Deny All</div>
     </div>
 </div>
 <div class="bruh notif" id="notifconsent">
@@ -225,6 +252,7 @@ justify-content: flex-end;    }
         <button>Allow</button>
         <button>I agree</button>
         <button>Accept and continue</button>
+        <div class="deny">No Thanks</div>
 </div>
 </div>
 </body>

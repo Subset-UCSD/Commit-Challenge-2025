@@ -81,7 +81,9 @@ import 'https://www.unpkg.com/qr-scanner@1.4.2/qr-scanner.umd.min.js'
       console.log('decoded qr code:', result)
       if (result.data.startWith(`${code}:`)) {
 bruh.append ( result.data.replace(`${code}:`,'') + '\n')
-bruh2.textContent=''}
+bruh2.textContent=''
+new Audio('../ass/ets/russel-um.mp3').play()
+}
 else {
   bruh2.textContent = `i reject ${JSON.stringify(result.data)}. not for this question`
 }

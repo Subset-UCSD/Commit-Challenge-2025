@@ -1,7 +1,7 @@
 ![banner](./ass/ets/news.svg)
 
 # :sparkle: $\subseteq$ Commit Challenge 2025
-Welcome to the annual $\subseteq$ Commit Challenge 2025! The goal is to make contributions and a commit every day to build something that can (hopefully) be considered meaningful and deployable by the end of the year 🚀 fish
+Welcome to the annual $\subseteq$ Commit Challenge 2025! The goal is to make contributions and a commit every day to build something that can (hopefully) be considered meaningful and deployable by the end of the year 🚀 fish are tasty
 
 > [!CAUTION]
 > Our pages site is available on [Github Pages](https://subset-ucsd.github.io/Commit-Challenge-2025/)

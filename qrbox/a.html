@@ -37,13 +37,22 @@
             width: auto;
         }
     }
+    #canvas {
+      image-rendering: crisp-edges;
+      image-rendering: pixelated;
+      width: 100%;
+    }
+    #wow {
+      width: 100%;
+font:inherit;
+    }
     </style>
 </head>
 
 <body>
 <div id="div">
   <canvas id="canvas"></canvas>
-  <textarea id=wow autofocus></textarea>
+  <textarea id=wow autofocus rows="3"></textarea>
 
 
     <script type="module">

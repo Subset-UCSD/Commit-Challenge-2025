@@ -63,7 +63,7 @@ justify-content: flex-end;    }
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
         padding: 20px;
         background-color: white;
-        position: fixed;
+        position: fixed;z-index: 20;
         /* bottom: 0; */
         box-shadow: 0 0 10px black;
         animation: pop-up .8s 1s backwards linear;
@@ -111,6 +111,26 @@ justify-content: flex-end;    }
         transform: translateY(-100px);
 
     }
+    #mayo {
+        display: inline-block;
+        position: relative;
+    }
+    #mayo-extra {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        animation: wee 0.5s infinite;
+    }
+    @keyframes wee {
+        from {
+            opacity: 1;
+            transform: scale(1);
+        }
+        to  {
+            opacity: 0;
+            transform: scale(1.3);
+        }
+    }
     </style>
     <meta property="og:image" content="https://subset-ucsd.github.io/Commit-Challenge-2025/ass/ets/late.gif">
 </head>
@@ -149,7 +169,7 @@ justify-content: flex-end;    }
         <tbody>
             <tr><td>1</td><td>❌</td><td>✅</td><td>✅</td></tr>
             <tr><td>2</td><td>❌</td><td>✅</td><td>❌</td></tr>
-            <tr><td>3</td><td>👴🏾</td><td>❌</td></tr>
+            <tr><td>3</td><td>👴🏾</td><td>❌</td><td>🕢</td></tr>
         </tbody>
     </table>
     <p><strong><em>SAUCY MARCELO SECRETS</em></strong> will be revaeled..</p>
@@ -168,15 +188,27 @@ justify-content: flex-end;    }
             score += 1 // monday week 2
             score += 1 // friday week 2
             score += 1 // week 3 wed
+            score += 37/50 // week 3 friday (37 min late)
             bar.style.width = `${score / 13 * 100}%`
         </script>
      </div>
     <audio id="audio" controls loop src='./ass/ets/substantial.mp3'></audio>
-    <audio id="audio2" controls loop ></audio>
+    <audio id="audio2" controls loop src="./ass/ets/An awesome recording.mp3"></audio>
 
     <p style="font-size: 5em">The mayo has exploded</p>
-    <img src="./ass/ets/SPOILER_PXL_20250110_210814236.MP.jpg" alt="exploded mayo pack on whiteboard in Fishbowl"/>
+
+    <div id="mayo">
+        <img src="./ass/ets/SPOILER_PXL_20250110_210814236.MP.jpg" alt="exploded mayo pack on whiteboard in Fishbowl"/>
+        <img src="./ass/ets/SPOILER_PXL_20250110_210814236.MP.jpg" alt="DO NOT LOOK" aria-hidden="true" id=mayo-extra/>
+    </div>
     <img src="./ass/ets/utah.jpg" alt="hawk in utah"/>
+
+    <div style="
+    /* overflow: hidden; */
+"><iframe width="560" height="315" src="https://www.youtube.com/embed/g36QQsSCzuU?si=cmXgPVCllUtszq8k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="" style="
+    margin-left: -470px;
+    margin-bottom: -230px;
+"></iframe></div>
 
     <script>
     const audio = document.getElementById('audio')
@@ -215,6 +247,16 @@ justify-content: flex-end;    }
     // sourceNode.connect(lowPassNode)
     // lowPassNode.connect(context.destination)
 
+    async function loadImpulseResponses() {
+        {let response = await fetch("./ass/ets/russel-um.mp3");
+  let arraybuffer = await response.arrayBuffer();
+  convolver.buffer = await context.decodeAudioData(arraybuffer);}
+  {let response = await fetch("./ass/ets/reverb.wav");
+  let arraybuffer = await response.arrayBuffer();
+  reverbNode.buffer = await context.decodeAudioData(arraybuffer);}
+    }
+    loadImpulseResponses()
+
     async function audioReady () {
         let convolver = context.createConvolver();
         let reverbNode = context.createConvolver();
@@ -227,14 +269,10 @@ justify-content: flex-end;    }
         console.log('audioReady')
         //
         audio.play().catch(console.warn)
-        
-  {let response = await fetch("./ass/ets/russel-um.mp3");
-  let arraybuffer = await response.arrayBuffer();
-  convolver.buffer = await context.decodeAudioData(arraybuffer);}
-  {let response = await fetch("./ass/ets/reverb.wav");
-  let arraybuffer = await response.arrayBuffer();
-  reverbNode.buffer = await context.decodeAudioData(arraybuffer);}
 
+
+
+  audio2.play().catch(console.warn)
     }
     </script>
 </div>

@@ -40,6 +40,7 @@
     video {
       max-width: 100%;
     }
+    #canvas {width:100%}
     </style>
 </head>
 
@@ -79,7 +80,7 @@ import 'https://www.unpkg.com/qr-scanner@1.4.2/qr-scanner.umd.min.js'
     vid,
     result => {
       console.log('decoded qr code:', result)
-      if (result.data.startWith(`${code}:`)) {
+      if (result.data.startsWith(`${code}:`)) {
 bruh.append ( result.data.replace(`${code}:`,'') + '\n')
 bruh2.textContent=''
 new Audio('../ass/ets/russel-um.mp3').play()

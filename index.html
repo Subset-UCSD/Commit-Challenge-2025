@@ -172,6 +172,7 @@ justify-content: flex-end;    }
         </script>
      </div>
     <audio id="audio" controls loop src='./ass/ets/substantial.mp3'></audio>
+    <audio id="audio2" controls loop ></audio>
 
     <p style="font-size: 5em">The mayo has exploded</p>
     <img src="./ass/ets/SPOILER_PXL_20250110_210814236.MP.jpg" alt="exploded mayo pack on whiteboard in Fishbowl"/>
@@ -206,6 +207,7 @@ justify-content: flex-end;    }
     tryAudio()
 
     const sourceNode = context.createMediaElementSource(audio)
+    const sourceNode2 = context.createMediaElementSource(audio2)
     const lowPassNode = context.createBiquadFilter()
     lowPassNode.type = 'lowshelf'
     lowPassNode.frequency.value = 350
@@ -215,18 +217,24 @@ justify-content: flex-end;    }
 
     async function audioReady () {
         let convolver = context.createConvolver();
+        let reverbNode = context.createConvolver();
 
   // load impulse response from file
-  let response = await fetch("./ass/ets/russel-um.mp3");
-  let arraybuffer = await response.arrayBuffer();
-  convolver.buffer = await context.decodeAudioData(arraybuffer);
-
   sourceNode.connect(convolver)
     convolver.connect(context.destination)
+    reverbNode.connect(context.destination)
 
         console.log('audioReady')
         //
         audio.play().catch(console.warn)
+        
+  {let response = await fetch("./ass/ets/russel-um.mp3");
+  let arraybuffer = await response.arrayBuffer();
+  convolver.buffer = await context.decodeAudioData(arraybuffer);}
+  {let response = await fetch("./ass/ets/reverb.wav");
+  let arraybuffer = await response.arrayBuffer();
+  reverbNode.buffer = await context.decodeAudioData(arraybuffer);}
+
     }
     </script>
 </div>

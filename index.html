@@ -11,23 +11,37 @@
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type="text/css">
+        :root {color-scheme: dark;
+        accent-color: red;}
     body {
-        background-color: blue;
+        color: black;
+        background-color: darkgreen;
         margin: 0;
         padding: 0;
         font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
         font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive;
-
+background-image: url(./ass/ets/bg.webp);
+animation: dizzy .2s infinite linear;
+    }
+    @keyframes dizzy {
+        from {
+            background-position-x: 0;
+        }
+        to {background-position-x: 100px;}
     }
     #div {
         width: 600px;
-        margin: 5em auto;
+        margin: 1in auto;
         padding: 2em;
-        background-color: red;
+        background-color: navy;
         color: yellow;
         border-radius: 0.5em;
         box-shadow: 20px 30px 70px 20px magenta;
         text-shadow:20px 30px 7px lime;
+        resize: both;
+background-image: url(./ass/ets/bg.webp);
+animation: dizzy .2s infinite linear reverse;
+transform: rotate(-0.3deg);
     }
     a:link, a:visited {
         color: cyan;
@@ -102,10 +116,12 @@ justify-content: flex-end;    }
         font-weight: bold;
         cursor: pointer;
         transition: transform 10s;
+        height: 36px;align-items: center;
     }
     .deny:hover {
         transform: translateY(100px);
         transition: transform .5s;
+        cursor: default;
     }
     .notif .deny:hover {
         transform: translateY(-100px);
@@ -153,6 +169,12 @@ justify-content: flex-end;    }
         <a href="./qrbox/">qr</a>
     </nav>
     <img src="./ass/ets/closejoel-joel.gif" alt="rotating fish gif" />
+    <div style="
+    overflow: hidden;display: inline-block;
+"><iframe width="560" height="315" src="https://www.youtube.com/embed/g36QQsSCzuU?si=cmXgPVCllUtszq8k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="" style="
+    margin-left: -470px;
+    margin-bottom: -230px;
+"></iframe></div>
     <h1>&subseteq; Commit Challenge 2025</h1>
     <p>Welcome to the annual &subseteq; Commit Challenge 2025! The goal is to make contributions and a commit every day to build something that can (hopefully) be considered meaningful and deployable by the end of the year 🚀</p>
     <p><a href="https://github.com/Subset-UCSD/Commit-Challenge-2025">GitHub repo...</a></p>
@@ -199,16 +221,10 @@ justify-content: flex-end;    }
 
     <div id="mayo">
         <img src="./ass/ets/SPOILER_PXL_20250110_210814236.MP.jpg" alt="exploded mayo pack on whiteboard in Fishbowl"/>
-        <img src="./ass/ets/SPOILER_PXL_20250110_210814236.MP.jpg" alt="DO NOT LOOK" aria-hidden="true" id=mayo-extra/>
+        <img src="./ass/ets/SPOILER_PXL_20250110_210814236.MP.jpg" alt="DO NOT LOOK" aria-hidden="true" id=mayo-extra />
     </div>
     <img src="./ass/ets/utah.jpg" alt="hawk in utah"/>
 
-    <div style="
-    /* overflow: hidden; */
-"><iframe width="560" height="315" src="https://www.youtube.com/embed/g36QQsSCzuU?si=cmXgPVCllUtszq8k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="" style="
-    margin-left: -470px;
-    margin-bottom: -230px;
-"></iframe></div>
 
     <script>
     const audio = document.getElementById('audio')
@@ -236,35 +252,36 @@ justify-content: flex-end;    }
         }
         window.requestAnimationFrame(tryAudio)
     }
-    tryAudio()
 
     const sourceNode = context.createMediaElementSource(audio)
     const sourceNode2 = context.createMediaElementSource(audio2)
     const lowPassNode = context.createBiquadFilter()
     lowPassNode.type = 'lowshelf'
-    lowPassNode.frequency.value = 350
-    lowPassNode.gain.value = 20
+lowPassNode.frequency.value = 350;
+lowPassNode.gain.value = 25;
+// lowPassNode.detune.value = 100;
     // sourceNode.connect(lowPassNode)
     // lowPassNode.connect(context.destination)
+    let convolver = context.createConvolver();
+    let reverbNode = context.createConvolver();
+    sourceNode.connect(convolver)
+      convolver.connect(context.destination)
+      sourceNode2.connect(lowPassNode)
+      lowPassNode.connect(context.destination)
 
     async function loadImpulseResponses() {
         {let response = await fetch("./ass/ets/russel-um.mp3");
   let arraybuffer = await response.arrayBuffer();
-  convolver.buffer = await context.decodeAudioData(arraybuffer);}
+  reverbNode.buffer = await context.decodeAudioData(arraybuffer);}
   {let response = await fetch("./ass/ets/reverb.wav");
   let arraybuffer = await response.arrayBuffer();
-  reverbNode.buffer = await context.decodeAudioData(arraybuffer);}
+  convolver.buffer = await context.decodeAudioData(arraybuffer);}
     }
     loadImpulseResponses()
-
+    
     async function audioReady () {
-        let convolver = context.createConvolver();
-        let reverbNode = context.createConvolver();
 
   // load impulse response from file
-  sourceNode.connect(convolver)
-    convolver.connect(context.destination)
-    reverbNode.connect(context.destination)
 
         console.log('audioReady')
         //
@@ -274,6 +291,9 @@ justify-content: flex-end;    }
 
   audio2.play().catch(console.warn)
     }
+    tryAudio()
+
+    audio2.playbackRate=3
     </script>
 </div>
 

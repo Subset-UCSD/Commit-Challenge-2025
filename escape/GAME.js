@@ -32,16 +32,32 @@ function northPath () {
   }
 }
 
+let spermDonorPoster = true
+let wincoFish = true
 function southPath () {
   let description = "the path abruptly ends at a brick wall. you jump to look over, but all you see is fog. "
   let choices = {
     "go north": BEGINNING,
   }
-  if (!inventory.includes("fish")) {
+  if (wincoFish) {
     description += "there is a frozen fish wrapped in plastic at the base of the wall. the packaging says it's from winco. "
     choices["take fish"] = () => {
       inventory.push("fish")
+      wincoFish = false
       return "you put the fish in your pocket. +1 fish."
+    }
+  }
+  if (spermDonorPoster) {
+    
+    description += "there is a sperm donor poster on the wall. a handsome man smiles at you and beckons for your sperm. "
+    choices["take sperm donor poster"] = () => {
+      inventory.push("sperm donor poster")
+      spermDonorPoster = false
+      return "you carefully rip off the poster, revealing a hole just large enough for you to crawl through. +1 poster."
+    }
+  } else {
+    choices["enter hole"] = () => {
+      return "the hole reveals a dead end. maybe there will be something here in the future?"
     }
   }
   return {

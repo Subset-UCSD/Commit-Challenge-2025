@@ -28,23 +28,24 @@
         border-radius: 0.5em;
         resize: both;
     }
-    a:link, a:visited {
-        color: cyan;
+    nav a {
+        color: #E17564;
         text-decoration: none;
     }
     @media (max-width: 700px) {
         #div {
-            margin: 0 auto;
+            margin: 1in 10px;
             width: auto;
         }
     }
     #location {
-      color: magenta;
+      color: orange;
       font-style: italic;
     }
     #choices {
       display: flex;
       flex-direction: column;
+      gap: 20px;
     }
     #choices button {
       background-color: #BE3144;
@@ -53,7 +54,7 @@
       border: none;
       cursor: pointer;
       width: 100%;
-      padding: 20px;
+      padding: 10px;
       box-sizing: border-box;
     }
     </style>
@@ -61,8 +62,8 @@
 
 <body>
 <div id="div">
-    <nav>
-        escape
+    <nav style="margin-top: -60px; margin-bottom: 40px; color:#872341 ">
+        escape &subseteq; commit challenge
         &bull;
         <a href="../">back</a>
     </nav>
@@ -70,6 +71,7 @@
     <p id="location"></p>
     <p id="description"></p>
     <div id="choices"></div>
+    <p id="inventory"></p>
 
     <script src="./GAME.js"></script>
 
@@ -77,20 +79,36 @@
     <script>
       let current = BEGINNING
 
+      function renderInventory () {
+        if (inventory.length === 0) {
+          document.getElementById('inventory').innerHTML=''
+          return
+        }
+        const freq = {}
+        for (const item of inventory) {
+          freq[item] ??=0
+          freq[item] ++
+        }
+        document.getElementById('inventory').innerHTML = 'you have: '+Object.entries(freq).map(([item, count]) => item + (count>1?` (${count})` :'')).join(', ')
+      }
+
       function render () {
         const { location, description, choices } = current()
         document.getElementById('location').innerHTML = location
         document.getElementById('description').innerHTML = description
         document.getElementById('choices').innerHTML = Object.keys(choices).map((choice, i) => `<button onclick="select(${i})">${choice}</button>`).join('')
+        renderInventory()
       }
 
       function select (index) {
-        const next = Object.values(choices)[1]
+        const { location, description, choices } = current()
+        const next = Object.values(choices)[index]
         const result = next()
         if (typeof result === 'string') {
           // something happened
           document.getElementById('description').innerHTML = result
           document.getElementById('choices').innerHTML = '<button onclick="render()">ok</button>'
+          renderInventory()
         } else {
           current = next
           render()

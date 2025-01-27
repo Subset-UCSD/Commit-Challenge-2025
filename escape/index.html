@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    <title>SUBSëT 2025</title>
+    <meta name="description" content="⊆ ⊆ ⊆ ⊆ ⊆ ⊆ ⊆ ⊆ ⊆ ⊆ ⊆ ⊆ ⊆ ⊆ ⊆ ⊆">
+    <meta name="theme-color" content="#BE3144">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type="text/css">
+        :root {color-scheme: dark;
+        accent-color: #BE3144;}
+    body {
+        color: #E17564;
+        background-color: #09122C;
+        margin: 0;
+        padding: 0;
+        font-family: Georgia , Garamond , 'Times New Roman', Times, serif;
+    }
+    #div {
+        width: 600px;
+        margin: 1in auto;
+        padding: 2em;
+        background-color: #872341;
+        border-radius: 0.5em;
+        resize: both;
+    }
+    a:link, a:visited {
+        color: cyan;
+        text-decoration: none;
+    }
+    @media (max-width: 700px) {
+        #div {
+            margin: 0 auto;
+            width: auto;
+        }
+    }
+    #location {
+      color: magenta;
+      font-style: italic;
+    }
+    #choices {
+      display: flex;
+      flex-direction: column;
+    }
+    #choices button {
+      background-color: #BE3144;
+      color: white;
+      font: inherit;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    </style>
+</head>
+
+<body>
+<div id="div">
+    <nav>
+        escape
+        &bull;
+        <a href="../">back</a>
+    </nav>
+
+    <p id="location"></p>
+    <p id="description"></p>
+    <div id="choices"></div>
+
+    <script src="./GAME.js"></script>
+
+
+    <script>
+      let current = BEGINNING
+
+      function render () {
+        const { location, description, choices } = current()
+        document.getElementById('location').innerHTML = location
+        document.getElementById('description').innerHTML = description
+        document.getElementById('choices').innerHTML = Object.keys(choices).map((choice, i) => `<button onclick="select(${i})">${choice}</button>`).join('')
+      }
+
+      function select (index) {
+        const next = Object.values(choices)[1]
+        const result = next()
+        if (typeof result === 'string') {
+          // something happened
+          document.getElementById('description').innerHTML = result
+          document.getElementById('choices').innerHTML = '<button onclick="render()">ok</button>'
+        } else {
+          current = next
+          render()
+        }
+      }
+
+      render()
+    </script>
+</div>
+
+</div>
+</body>
+</html>

@@ -48,7 +48,8 @@ const messages = Object.fromEntries(
           "open [this](README) on ur phone, try adding an emoji or making fun of {PPL} or smth",
           "hey [check out what](WEB) {PPL} made",
           "u could change [the image](WEB) that {PPL} added",
-          "help {PPL} make an [aquarium!](WEB)!"
+          "help {PPL} make an [aquarium!](WEB)!",
+          "listen to [this song](WEB) that {PPL} made",
         )
       : select(
           "you could be the first comiter of the day!!",
@@ -62,12 +63,14 @@ const messages = Object.fromEntries(
           "red flag of the day🚩: commiting to [github](REPO).. hope to god YOU dont do that today ..haha",
           "i-\n\nfuck",
           "heyyy dont forget about the [commit chlalenge](REPO)s",
-          "[👁️👄👁️](REPO)",
+          "👁️👄👁️ [dsfkhdfgbdsfg](REPO)",
           "i give up",
           "r u on ur phone? u could add smth to the [readme](README)",
           "can u open [this](README) on ur phone?",
           "drop a spotify link [here](README)",
-          "u know what we need? an aquarium. [add one pls🐟](WEB)"
+          "pay your [cat tax](REPO) 🤌",
+          "u know what we need? an aquarium. [add one pls🐟](WEB)",
+          "[listen to this](WEB) ((audio on))",
         )
     )
       .replaceAll(

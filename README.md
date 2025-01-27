@@ -30,6 +30,8 @@ You must commit to main. No malicious code pls.
 - [X] Github Pages
   - [ ] Bro the current github page hurts my eyes someone pls fix Marcelo's eyes
 
+- [ ] choose your own adventure game
+
 - [ ] qr-code based offline jackbox
 
 # Roadmap

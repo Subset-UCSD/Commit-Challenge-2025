@@ -19,6 +19,7 @@ function BEGINNING () {
 function northPath () {
   let description = "the path trails off, leaving you standing on a field of uncut grass. "
   let choices = {
+    "continue north": fieldMan,
     "go south": BEGINNING,
     "pick grass": () => {
       inventory.push('blade of grass')
@@ -56,12 +57,41 @@ function southPath () {
       return "you carefully rip off the poster, revealing a hole just large enough for you to crawl through. +1 poster."
     }
   } else {
+    // TODO: expand the game!
     choices["enter hole"] = () => {
       return "the hole reveals a dead end. maybe there will be something here in the future?"
     }
   }
   return {
     location: "brick wall",
+    description,
+    choices,
+  }
+}
+
+let manHungry = true
+function fieldMan() {
+  let description = "you trudge on blindly into the endless grassland. suddenly, you spot a man, huddled in tattered clothes lying the ground. "
+  let choices = {
+    "return south": northPath,
+  }
+  if (inventory.includes('fish') && manHungry) {
+    description += 'he sees the fish sticking out of your back pocket and shakily holds a finger up to it. he offers to turn it into sushi. '
+    choices["give fish to man"] = () => {
+      manState = 'full'
+      inventory.splice(inventory.indexOf('fish'), 1)
+      for (let i = 4;i--;) inventory.push('sushi piece')
+      manHungry=false
+      return "bro snatches your fish, tears off the plastic with his teeth, and in a show beyond your comprehension, you find yourself being served a plate of sushi. he has cut the roll into eight slices and graciously tipped himself half of them, which he voraciously stuffs into his mouth. he burps, yawns, and falls asleep. +4 sushi pieces. "
+    }
+  } else if (manHungry) {
+    description += "the man stares as you, and you stare back. his stomach grumbles. "
+  }
+  if (!manHungry) {
+    description += "he is soundly asleep, snoring a cacophony. "
+  }
+  return {
+    location: "field",
     description,
     choices,
   }

@@ -18,19 +18,40 @@ function BEGINNING () {
 
 function northPath () {
   let description = "the path trails off, leaving you standing on a field of uncut grass. "
-  let choices = {
-    "continue north": fieldMan,
-    "go south": BEGINNING,
-    "pick grass": () => {
-      inventory.push('blade of grass')
-      return "you pluck a blade of grass from the ground. +1 blade of grass."
+  if (Math.random() > 0.5) {
+    let choices = {
+      "continue north": fieldMan,
+      "go south": BEGINNING,
+      "pick grass": () => {
+        inventory.push('blade of grass')
+        return "you pluck a blade of grass from the ground. +1 blade of grass."
+      }
+    }
+    return {
+      location: "field",
+      description,
+      choices,
     }
   }
-  return {
-    location: "field",
-    description,
-    choices,
+  else {
+    let choices = {
+      "continue north": fieldMan,
+      "go south": BEGINNING,
+      "pick grass": () => {
+        const myDiv = document.getElementById("text-based-adventure");
+        myDiv.className = "GO_AWAY";
+        const myDiv = document.getElementById("rpg-battle");
+        myDiv.className = "no-come-back-i-am-sorry";
+      }
+    }
+    return {
+      location: "field",
+      description,
+      choices,
+    }
   }
+ 
+  
 }
 
 let spermDonorPoster = true

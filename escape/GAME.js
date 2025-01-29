@@ -8,6 +8,7 @@ function BEGINNING () {
   let choices = {
     "go north": northPath,
     "go south": southPath,
+    'inspect fountain': rubberRoom1,
   }
   return {
     location: "courtyard",
@@ -16,14 +17,15 @@ function BEGINNING () {
   }
 }
 
+const grassItem = "blade of grass\nIt's just a blade of grass."
 function northPath () {
   let description = "the path trails off, leaving you standing on a field of uncut grass. "
-  if (Math.random() > 0.5) {
+  if (Math.random() < 0.5) {
     let choices = {
       "continue north": fieldMan,
       "go south": BEGINNING,
       "pick grass": () => {
-        inventory.push('blade of grass')
+        inventory.push(grassItem)
         return "you pluck a blade of grass from the ground. +1 blade of grass."
       }
     }
@@ -38,9 +40,9 @@ function northPath () {
       "continue north": fieldMan,
       "go south": BEGINNING,
       "pick grass": () => {
-        const myDiv = document.getElementById("text-based-adventure");
+        let myDiv = document.getElementById("text-based-adventure");
         myDiv.className = "GO_AWAY";
-        const myDiv = document.getElementById("rpg-battle");
+         myDiv = document.getElementById("rpg-battle");
         myDiv.className = "no-come-back-i-am-sorry";
       }
     }
@@ -54,6 +56,8 @@ function northPath () {
   
 }
 
+const fishItem = "fish\na frozen fish wrapped in plastic on a styrofoam plate. its label says it's from winco."
+const spermPosterItem = "sperm donor poster\nit says \"become a sperm donor!\" theres a nice man smiling and pointing at top 3 reasons to start donating."
 let spermDonorPoster = true
 let wincoFish = true
 function southPath () {
@@ -64,7 +68,7 @@ function southPath () {
   if (wincoFish) {
     description += "there is a frozen fish wrapped in plastic at the base of the wall. the packaging says it's from winco. "
     choices["take fish"] = () => {
-      inventory.push("fish")
+      inventory.push(fishItem)
       wincoFish = false
       return "you put the fish in your pocket. +1 fish."
     }
@@ -73,14 +77,15 @@ function southPath () {
     
     description += "there is a sperm donor poster on the wall. a handsome man smiles at you and beckons for your sperm. "
     choices["take sperm donor poster"] = () => {
-      inventory.push("sperm donor poster")
+      inventory.push(spermPosterItem)
       spermDonorPoster = false
       return "you carefully rip off the poster, revealing a hole just large enough for you to crawl through. +1 poster."
     }
   } else {
-    // TODO: expand the game!
+    description += "theres a sizeable hole on the wall where the poster once was. "
+    // TODO: expand the game here!
     choices["enter hole"] = () => {
-      return "the hole reveals a dead end. maybe there will be something here in the future?"
+      return "the hole reveals a dead end. maybe there will be something on the other side in the future?"
     }
   }
   return {
@@ -90,18 +95,19 @@ function southPath () {
   }
 }
 
+const sushiItem = 'sushi piece\na slice of sushi. the man who made it seemed to be a professional sushi guy or whatever the word is. raw tuna wrapped in seaweed wrapped in sticky rice.'
 let manHungry = true
 function fieldMan() {
   let description = "you trudge on blindly into the endless grassland. suddenly, you spot a man, huddled in tattered clothes lying the ground. "
   let choices = {
     "return south": northPath,
   }
-  if (inventory.includes('fish') && manHungry) {
+  if (inventory.includes(fishItem) && manHungry) {
     description += 'he sees the fish sticking out of your back pocket and shakily holds a finger up to it. he offers to turn it into sushi. '
     choices["give fish to man"] = () => {
-      manState = 'full'
-      inventory.splice(inventory.indexOf('fish'), 1)
-      for (let i = 4;i--;) inventory.push('sushi piece')
+      // manState = 'full'
+      inventory.splice(inventory.indexOf(fishItem), 1)
+      for (let i = 4;i--;) inventory.push(sushiItem)
       manHungry=false
       return "bro snatches your fish, tears off the plastic with his teeth, and in a show beyond your comprehension, you find yourself being served a plate of sushi. he has cut the roll into eight slices and graciously tipped himself half of them, which he voraciously stuffs into his mouth. he burps, yawns, and falls asleep. +4 sushi pieces. "
     }
@@ -115,5 +121,36 @@ function fieldMan() {
     location: "field",
     description,
     choices,
+  }
+}
+
+function rubberRoom1 () {
+  return {
+    location: 'courtyard',
+    description: 'you slip and fall into the fountain. grasping for breath, you frantically try to paddle out, but feel yourself sinking further into the murky water.',
+    choices: {'fall': rubberRoom2}
+  }
+}
+function rubberRoom2 () {
+  return {
+    location: '???',
+    description: 'your vision begins to fade as your lungs give way, water gushing into your body.',
+    choices: {'fall': rubberRoom3}
+  }
+}
+function rubberRoom3 () {
+  return {
+    location: '???',
+    description: 'you wake up.',
+    choices: {'where am i?': rubberRoom}
+  }
+}
+function rubberRoom () {
+  return {
+    location: 'rubber room',
+    description: '..a rubber room with rats. and rats make you crazy.',
+    choices: {'crazy?': () => {
+      return 'i was crazy once. they locked me in a room.'
+    }}
   }
 }

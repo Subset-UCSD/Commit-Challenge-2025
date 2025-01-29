@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8" />
 
-    <title>SUBSëT 2025</title>
-    <meta name="description" content="⊆ ⊆ ⊆ ⊆ ⊆ ⊆ ⊆ ⊆ ⊆ ⊆ ⊆ ⊆ ⊆ ⊆ ⊆ ⊆">
+    <title>ESCAPE GAME</title>
+    <meta name="description" content="lil choose ur own advneture game!!">
     <meta name="theme-color" content="#BE3144">
     <meta name="twitter:card" content="summary_large_image">
 
@@ -62,9 +62,31 @@
       display: none;
     }
 
+    .hide-by-defualt {
+      display: none;
+    }
+
     .no-come-back-i-am-sorry {
       display: block;
     }
+
+    .item[data-lore] {
+      text-decoration: underline dotted;
+      cursor: help;
+      position: relative;
+    }
+    .item[data-lore]:hover::after {
+    content: attr(data-lore);
+position: absolute;
+left:0;top:100%;
+background-color: #E17564;
+color: #09122C;
+padding: 5px;
+/* min-width: 100px; */
+/* max-width: 400px; */
+width: 250px;
+font-style: italic;
+  }
 
     </style>
 </head>
@@ -78,43 +100,56 @@
     </nav>
 
     <div id="text-based-adventure">
-      <p id="location"></p>
-      <p id="description"></p>
+      <p id="location">courtyard</p>
+      <p id="description">you jolt awake and look around you, blinking as your eyes adjust. but all you can see is fog.</p>
       <div id="choices"></div>
       <p id="inventory"></p>
     </div>
-    <div id="rpg-battle">
+    <div id="rpg-battle" class="hide-by-defualt">
       <p>you are in an rpg battle gg ez</p>
     </div>
 
     <script src="./GAME.js"></script>
 
 
-    <script>
-      let current = BEGINNING
+    <script type="module">
+      // import * as mod from './GAME.js'
+      const mod = {BEGINNING,inventory}
+      
+      let current = mod.BEGINNING
+
+      function escape(str) {
+        return str.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;')
+      }
+
+      function renderItem(itemNameSpec) {
+        const [name, lore = ''] = itemNameSpec.split('\n')
+        return `<span class="item" ${lore ? `data-lore="${escape(lore)}"` : ''}>${name}</span>`
+      }
 
       function renderInventory () {
-        if (inventory.length === 0) {
+        if (mod.inventory.length === 0) {
           document.getElementById('inventory').innerHTML=''
           return
         }
         const freq = {}
-        for (const item of inventory) {
+        for (const item of mod.inventory) {
           freq[item] ??=0
           freq[item] ++
         }
-        document.getElementById('inventory').innerHTML = 'you have: '+Object.entries(freq).map(([item, count]) => item + (count>1?` (${count})` :'')).join(', ')
+        document.getElementById('inventory').innerHTML = 'you have: '+Object.entries(freq).map(([item, count]) => renderItem(item) + (count>1?` (${count})` :'')).join(', ')
       }
 
-      function render () {
+      window.render = function  () {
         const { location, description, choices } = current()
+        document.title=location
         document.getElementById('location').innerHTML = location
         document.getElementById('description').innerHTML = description
         document.getElementById('choices').innerHTML = Object.keys(choices).map((choice, i) => `<button onclick="select(${i})">${choice}</button>`).join('')
         renderInventory()
       }
 
-      function select (index) {
+      window.select = function  (index) {
         const { location, description, choices } = current()
         const next = Object.values(choices)[index]
         const result = next()
@@ -130,6 +165,24 @@
       }
 
       render()
+
+      // note: not actively working rn
+
+      function save () {
+        const state = Object.fromEntries(Object.entries(mod).filter(([, v]) => typeof v !== 'function'))
+        state.current = current.name
+        // console.log(state)
+        return state
+      }
+
+      function load (state) {
+        current = mod[state.current]
+        delete state.current
+        for (const [k, v] of Object.entries(state)){
+          mod[k] = v
+        } 
+        render()
+      }
     </script>
 </div>
 

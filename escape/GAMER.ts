@@ -1,5 +1,7 @@
 let inventory: string[] = [];
 
+type Stage = () => StageInfo
+
 /** 
  * Each stage should be a PURE function (changes to game state should be done in
  * choice functions, see below). The choices' functions don't need to pure
@@ -19,18 +21,18 @@ interface StageInfo {
 	 * An object mapping from a string label (which can use HTML) to a function.
 	 * The function can either be
 	 * - another stage
-	 * - a function that returns a string
+	 * - a function that returns a string or a stage
 	 *
-	 * Use the latter for any game state changes, like adding items to an
-	 * inventory. The returned string will be displayed (can use HTML) with a
-	 * single choice "ok" to return back to the same stage.
+	 *   Use this for any game state changes, like adding items to an inventory.
+	 *   If returning string, it will be displayed (can use HTML) with a single
+	 *   choice "ok" to return back to the same stage.
 	 *
 	 * `null` will hide the choice. This can be used to specify the order of the
 	 * choices in the object but programmatically show/hide them later in the
 	 * function.
 	 */
 	choices: {
-		[choiceLabel: string]: (() => StageInfo) | (() => string) | null
+		[choiceLabel: string]: Stage | (() => string | Stage) | null
 	}
 }
 
@@ -205,19 +207,23 @@ function rubberRoom1() {
 	};
 	}
 }
-function rubberRoom2() {
-	return {
-		location: '???',
-		description: 'your vision begins to fade as your lungs give way, water gushing into your body.',
-		choices: {'fall': rubberRoom3}
-	};
-}
-function rubberRoom3() {
-	return {
-		location: '???',
-		description: 'you wake up.',
-		choices: {'where am i?': rubberRoom}
-	};
+
+// content warning: bad formatting
+
+// dont say i warned you!!
+
+function rubberRoom2():                                                                             any{
+   return                                                                                           {
+      location: '???'                                                                               ,
+      description:
+         'your vision begins to fade as your lungs give way, water gushing into your body.'         ,
+      choices: {'fall': rubberRoom3}                                                                };}
+
+function rubberRoom3()
+{ return { location: '???'
+         , description: 'you wake up.'
+         , choices: {'where am i?': rubberRoom}
+         }
 }
 const MAX_LOOPS_RUBBER = 9
 let rubberloops = 0

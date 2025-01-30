@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
 
-    <title>ESCAPE GAME</title>
+    <title>&Xi;SC&Lambda;P&Xi; G&Lambda;M&Xi;</title>
     <meta name="description" content="lil choose ur own advneture game!!">
     <meta name="theme-color" content="#BE3144">
     <meta name="twitter:card" content="summary_large_image">
@@ -178,11 +178,22 @@ font-style: italic;
         const next = Object.values(choices)[index]
         const result = next()
         if (typeof result === 'string') {
+          // "choice thing": () => { do something; return "text to display" }
+
           // something happened
           document.getElementById('description').innerHTML = result
           document.getElementById('choices').innerHTML = '<button onclick="render()">ok</button>'
           renderInventory()
+        } else if (typeof result === 'function') {
+          // "choice thing": () => { do something; return nextStage }
+
+          // something happened
+          current = result
+          render()
         } else {
+          // "choice thing": nextStage
+
+          // it's probably a state and returned its info object
           current = next
           render()
         }

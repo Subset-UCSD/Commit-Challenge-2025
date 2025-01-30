@@ -28,9 +28,13 @@
         border-radius: 0.5em;
         resize: both;
     }
+     a {
+      color: cyan;
+      text-decoration: none;
+    }
     nav a {
-        color: #E17564;
-        text-decoration: none;
+      color: #E17564;
+
     }
     @media (max-width: 700px) {
         #div {
@@ -93,7 +97,7 @@ font-style: italic;
 
   .button-container {
   display: flex;
-}
+  }
 
     </style>
 </head>
@@ -162,7 +166,7 @@ font-style: italic;
         document.title=location
         document.getElementById('location').innerHTML = location
         document.getElementById('description').innerHTML = description
-        document.getElementById('choices').innerHTML = Object.keys(choices).map((choice, i) => `<button onclick="select(${i})">${choice}</button>`).join('')
+        document.getElementById('choices').innerHTML = Object.keys(choices).map((choice, i) => choices[choice]? `<button onclick="select(${i})">${choice}</button>`:'').join('')
         renderInventory()
       }
 

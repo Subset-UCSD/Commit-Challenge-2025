@@ -2,5 +2,5 @@
   "editor.formatOnSave": false,
   "files.trimTrailingWhitespace": false,
   "files.trimFinalNewlines": false,
-  
+  "files.insertFinalNewline": false
 }

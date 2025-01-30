@@ -259,7 +259,7 @@ function labyrinthEntrance() {
 }
 function labyrinthDir(dir: Dire) {
 	let description = `you ${tg("walk")} ${dir}. ${
-		labyrinthState.length > 4 ? rd("you feel like you've been this way before...", 0.3) + rd("or have you?", 0.5) : ""
+		labyrinthState.length == l_diff ? rd("you feel like you've been this way before...", 0.3) + rd("or have you?", 0.5) : ""
 	}`;
 	let choices = shuffleObject({
 		"go north": ()=>labyrinthDir(Dir.N),

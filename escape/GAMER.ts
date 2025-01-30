@@ -264,8 +264,8 @@ function labyrinthDir(dir: Dire) {
 		${rd("is it just you, or is the architecture becoming more... brutalist?", 1, labyrinthState.length == 2)}
 		${rd("thick vines creep up the walls. seems like you are thoroughly lost...", 1, labyrinthState.length == 3)}
 		${rd("you feel like you've been this way before..." + rd("or have you?", 0.5), 0.3, labyrinthState.length == l_diff)} ${
-		rd(`you see a ${t("material")} statue of a ${t("animal")} ${t("location")}`, 0.2)
-		}`.replace(/ +/g, " ");
+		rd(`you see a ${t("material")} statue of a ${t("animal")} ${t("location")}`, 0.2, labyrinthState.length == l_diff)
+		}`.replace(/[\t ]+/g, " ");
 	let choices = shuffleObject({
 		"go north": ()=>labyrinthDir(Dir.N),
 		"go south": ()=>labyrinthDir(Dir.S),

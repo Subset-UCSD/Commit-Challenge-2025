@@ -1,8 +1,7 @@
 {
 	"compilerOptions": {
-	  "outDir": "./escape",
 	  "target": "ES6",
 	  "module": "ESNext"
 	},
 	"include": ["escape/**/*.ts"]
-  }
+}

@@ -152,9 +152,15 @@ function southPath() {
 		}
 	} else {
 		description += "theres a sizeable hole on the wall where the poster once was. ";
-		// TODO: expand the game here!
 		choices["enter hole"] = () => {
-			return "the hole reveals a dead end. maybe there will be something on the other side <a href=\"https://github.com/Subset-UCSD/Commit-Challenge-2025/blob/main/escape/GAMER.ts\">in the future</a>?";
+			return {
+				location: "hole",
+				description: "the hole reveals a dead end.",
+				choices: {
+					"Ok": southPath,
+					"enter dead end": labyrinthEntrance
+				}
+			}
 		};
 	}
 	return {
@@ -270,7 +276,7 @@ type Dire = (typeof Dir)[keyof typeof Dir]
 
 let labyrinthState: Dire[] = [];
 let l_diff = 8;
-let labyrinthSol = Array(l_diff).fill(0).map(_=>Object.values(Dir)[Math.floor(Math.random()*l_diff)]);
+let labyrinthSol = Array(l_diff).fill(0).map(_=>Object.values(Dir)[Math.floor(Math.random()*Object.values(Dir).length)]);
 function labyrinthEntrance() {
 	let description = `you stand in a desolate courtyard shrouded in fog. a cobblestone pathway surrounds a fountain, water dribbles meekly from a fish statue into the dark water. placards remain the only sign of where benches once stood, removed probably to discourage the homeless from sleeping here. the path continues north and south...\n\nwait, were those paths there before?\n`;
 	if (inventory.length === 0) {

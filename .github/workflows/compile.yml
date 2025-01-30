@@ -1,0 +1,56 @@
+name: Build TypeScript for GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install TypeScript
+        run: npm install -g typescript
+
+      - name: Compile TypeScript files
+        run: |
+          tsc --outDir escape --rootDir escape --allowJs --target ES6
+
+      - name: Prepare deployment directory
+        run: |
+          mkdir -p deploy
+          cp -r . deploy/
+          rm -rf deploy/.git
+        shell: bash
+
+      - name: Upload artifact for deployment
+        uses: actions/upload-artifact@v4
+        with:
+          name: github-pages
+          path: deploy
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: github-pages
+          path: deploy
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v2

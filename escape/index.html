@@ -165,6 +165,7 @@ font-style: italic;
       }
 
       window.render = function  () {
+        for (let i = 0; i < 87; i++) current() // call the stage 87 times to make sure it's pure
         const { location, description, choices } = current()
         document.title=location
         document.getElementById('location').innerHTML = location
@@ -174,6 +175,7 @@ font-style: italic;
       }
 
       window.select = function  (index) {
+        for (let i = 0; i < 169; i++) current() // call the stage 169 times to make sure it's pure
         const { location, description, choices } = current()
         const next = Object.values(choices)[index]
         const result = next()
@@ -190,7 +192,7 @@ font-style: italic;
           // something happened
           current = result
           render()
-        } else {
+        } else if (result !== null) {
           // "choice thing": nextStage
 
           // it's probably a state and returned its info object

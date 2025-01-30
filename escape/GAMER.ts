@@ -238,7 +238,7 @@ const Dir = {
 type Dire = (typeof Dir)[keyof typeof Dir]
 
 let labyrinthState: Dire[] = [];
-let l_diff = 4;
+let l_diff = 8;
 let labyrinthSol = Array(l_diff).fill(0).map(_=>Object.values(Dir)[Math.floor(Math.random()*l_diff)]);
 function labyrinthEntrance() {
 	let description = `you stand in a desolate courtyard shrouded in fog. a cobblestone pathway surrounds a fountain, water dribbles meekly from a fish statue into the dark water. placards remain the only sign of where benches once stood, removed probably to discourage the homeless from sleeping here. the path continues north and south...\n\nwait, were those paths there before?\n`;
@@ -258,9 +258,13 @@ function labyrinthEntrance() {
 	};
 }
 function labyrinthDir(dir: Dire) {
-	let description = `you ${tg("walk")} ${dir}. ${
-		labyrinthState.length == l_diff ? rd("you feel like you've been this way before...", 0.3) + rd("or have you?", 0.5) : ""
-	}`;
+	let description = `you ${t("walk")} ${dir}. 
+		${rd("the walls of the courtyard seem to have grown taller...", 1, labyrinthState.length == 1)}
+		${rd("is it just you, or is the architecture becoming more... brutalist?", 1, labyrinthState.length == 2)}
+		${rd("thick vines creep up the walls. seems like you are thoroughly lost...", 1, labyrinthState.length == 3)}
+		${rd("you feel like you've been this way before..." + rd("or have you?", 0.5), 0.3, labyrinthState.length == l_diff)} ${
+		rd(`you see a ${t("material")} statue of a ${t("animal")} ${t("location")}`, 0.2)
+		}`.replace(/ +/g, " ");
 	let choices = shuffleObject({
 		"go north": ()=>labyrinthDir(Dir.N),
 		"go south": ()=>labyrinthDir(Dir.S),
@@ -289,15 +293,24 @@ function shuffleObject(obj: any) {
 const words = {
 	"walk": [
 		"hobble", "stumble", "scramble", "slink", "tiptoe", "walk"
+	],
+	"animal": [
+		"raven", "boar", "horse", "dolphin", "carp", "gargoyle", "john cena"
+	],
+	"material": [
+		"stone", "tarnished bronze", "marble", "rusted copper", "glass"
+	],
+	"location": [
+		"nestled among bushes", "atop a pillar", "buried in the mud", "under there"
 	]
 } as const;
 
-function tg(key: keyof typeof words) {
+function t(key: keyof typeof words) {
 	return words[key][Math.floor(words[key].length*Math.random())];
 }
 /**
  * Random dialogue part
  */
-function rd(text: string, chance: number) {
-	return Math.random() < chance ? text : "";
+function rd(text: string, chance: number, precondition: boolean = true) {
+	return (Math.random() < chance) && precondition ? text : "";
 }

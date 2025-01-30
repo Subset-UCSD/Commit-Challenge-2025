@@ -150,9 +150,15 @@ function southPath() {
 		}
 	} else {
 		description += "theres a sizeable hole on the wall where the poster once was. ";
-		// TODO: expand the game here!
 		choices["enter hole"] = () => {
-			return "the hole reveals a dead end. maybe there will be something on the other side <a href=\"https://github.com/Subset-UCSD/Commit-Challenge-2025/blob/main/escape/GAMER.ts\">in the future</a>?";
+			return {
+				location: "hole",
+				description: "the hole reveals a dead end.",
+				choices: {
+					"Ok": southPath,
+					"enter dead end": labyrinthEntrance
+				}
+			}
 		};
 	}
 	return {

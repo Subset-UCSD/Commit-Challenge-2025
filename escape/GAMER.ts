@@ -1,7 +1,7 @@
 let inventory: any[] = [];
 
 function BEGINNING() {
-	let description = "you stand in a desolate courtyard shrounded in fog. a cobblestone pathway surrounds a fountain, water dribbles meekly from a fish statue into the dark water. placards remain the only sign of where benches once stood, removed probably to discourage the homeless from sleeping here. the path continues north and south. ";
+	let description = "you stand in a desolate courtyard shrouded in fog. a cobblestone pathway surrounds a fountain, water dribbles meekly from a fish statue into the dark water. placards remain the only sign of where benches once stood, removed probably to discourage the homeless from sleeping here. the path continues north and south. ";
 	if (inventory.length === 0) {
 		description += "you have no memory , no items in hand. ";
 	}
@@ -148,4 +148,74 @@ function rubberRoom() {
 			return 'i was crazy once. they locked me in a room.'
 		}}
 	};
+}
+
+
+function pl(d: Dir) {
+	if (labyrinthState.length >= l_diff) {
+		labyrinthState.shift();
+	}
+	labyrinthState.push(d);
+}
+
+enum Dir {
+	N = "north",
+	E = "east",
+	S = "south",
+	W = "west"
+};
+
+let labyrinthState: Dir[] = [];
+let l_diff = 4;
+let labyrinthSol = Array(l_diff).fill(0).map(_=>Object.values(Dir)[Math.floor(Math.random()*l_diff)]);
+function labyrinthEntrance() {
+	let description = `you stand in a desolate courtyard shrouded in fog. a cobblestone pathway surrounds a fountain, water dribbles meekly from a fish statue into the dark water. placards remain the only sign of where benches once stood, removed probably to discourage the homeless from sleeping here. the path continues north and south...\n\nwait, were those paths there before?\n`;
+	if (inventory.length === 0) {
+		description += "you have no memory , no items in hand. ";
+	}
+	let choices = {
+		"go north": labyrinthDir.bind(Dir.N),
+		"go south": labyrinthDir.bind(Dir.S),
+		"go east": labyrinthDir.bind(Dir.E),
+		"go west": labyrinthDir.bind(Dir.W)
+	};
+	return {
+		location: "courtyard",
+		description,
+		choices,
+	};
+}
+function labyrinthDir(dir: Dir) {
+	let description = `you ${tg("walk")} ${dir}. `;
+	let choices = shuffleObject({
+		"go north": labyrinthDir.bind(Dir.N),
+		"go south": labyrinthDir.bind(Dir.S),
+		"go east": labyrinthDir.bind(Dir.E),
+		"go west": labyrinthDir.bind(Dir.W)
+	});
+	return {
+		location: "courtyard?",
+		description,
+		choices,
+	};
+}
+
+function shuffleObject(obj: any) {
+	const entries = Object.entries(obj);
+	for (let i = entries.length - 1; i > 0; i--) {
+		const j = Math.floor(Math.random() * (i + 1));
+		[entries[i], entries[j]] = [entries[j], entries[i]];
+	}
+	return Object.fromEntries(entries);
+}
+
+const words = {
+	"walk": [
+		"stagger", "waver", "hobble", "shamble", "stumble", "scramble",
+		"creep", "slink", "tiptoe", "blunder", "flounder", "skulk"
+	]
+} as const;
+
+function tg(key: keyof typeof words) {
+	return words[key][Math.floor(words[key].length*Math.random())];
 }

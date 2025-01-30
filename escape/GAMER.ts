@@ -1,12 +1,10 @@
-let inventory: string[] = [];
-
-type Stage = () => StageInfo
-
 /** 
  * Each stage should be a PURE function (changes to game state should be done in
- * choice functions, see below). The choices' functions don't need to pure
- * (i.e., you can randomly choose what a choice does on every call)
+ * choice functions, see below). However, the choices' functions don't need to
+ * pure (i.e., you can randomly choose what a choice does on every call)
  */
+type Stage = () => StageInfo;
+
 interface StageInfo {
 	/** 
 	 * Short description of where the player is. Displayed at the top and in the
@@ -42,8 +40,19 @@ interface StageInfo {
 	}
 }
 
-function BEGINNING() {
-	const I: StageInfo = {
+let inventory: Item[] = [];
+
+/**
+ * Each item's name also doubles as its ID and metadata. An item is a string
+ * with the following lines, separated by newlines:
+ * 
+ * - Name: can use HTML
+ * - Description: optional, cannot use HTML (special characters will be escaped)
+ */
+type Item = string;
+
+function BEGINNING(): StageInfo {
+	let I: StageInfo = {
 		location: inventory.includes(mapItem) ?"Ravensmith Court": "courtyard",
 		description: "you stand in a desolate courtyard shrouded in fog. a cobblestone pathway surrounds a fountain, water dribbles meekly from a fish statue into the dark water. placards remain the only sign of where benches once stood, removed probably to discourage the homeless from sleeping here. the path continues north and south. ",
 		choices: {
@@ -69,8 +78,8 @@ let talkedToRaven = false
 let ravenCompassTaken = false
 const mapItem = "Ravensmith Estate map\na somewhat blurry photocopy of a map of Ravensmith's estate. scribbles and notes dot the map, but few are legible."
 const compassItem = "compass\ninvented by the chinese in 206 BCE."
-function northPath() {
-	const I: StageInfo = {
+function northPath(): StageInfo {
+	let I: StageInfo = {
 		location: inventory.includes(mapItem)?"Unnamed Field on Ravensmith Estate":"field",
 		description: "the path trails off, leaving you standing on a field of uncut grass. ",
 		choices: {
@@ -135,8 +144,8 @@ const fishItem = "fish\na frozen fish wrapped in plastic on a styrofoam plate. i
 const spermPosterItem = "sperm donor poster\nit says \"become a sperm donor!\" theres a nice man smiling and pointing at top 3 reasons to start donating.";
 let spermDonorPoster = true;
 let wincoFish = true;
-function southPath() {
-	const I: StageInfo = {
+function southPath(): StageInfo {
+	let I: StageInfo = {
 		location: inventory.includes(mapItem) ? "Ravensmith Estate Wall": "brick wall",
 		description: "the path abruptly ends at a brick wall. you jump to look over, but all you see is fog. ",
 		choices: {
@@ -176,8 +185,8 @@ function southPath() {
 
 const sushiItem = `sushi piece\na slice of sushi. the man who made it seemed to be a professional sushi guy or whatever the word is. raw tuna wrapped in seaweed wrapped in sticky rice. did you know? Ravensmith is a big fan of sushi.`;
 let manHungry = true;
-function fieldMan() {
-	const I: StageInfo = {
+function fieldMan(): StageInfo {
+	let I: StageInfo = {
 		location:inventory.includes(mapItem)?"Private Property - DO NOT TRESPASS!":  "field",
 		description: "you trudge on blindly into the endless grassland. suddenly, you spot a man, huddled in tattered clothes lying on the ground. ",
 		choices: {
@@ -282,15 +291,15 @@ type Dire = (typeof Dir)[keyof typeof Dir]
 let labyrinthState: Dire[] = [];
 let l_diff = 8;
 let labyrinthSol = Array(l_diff).fill(0).map(_=>Object.values(Dir)[Math.floor(Math.random()*Object.values(Dir).length)]);
-function labyrinthEntrance() {
-	const I: StageInfo = {
+function labyrinthEntrance(): StageInfo {
+	let I: StageInfo = {
 		location: "courtyard",
 		description: `you stand in a desolate courtyard shrouded in fog. a cobblestone pathway surrounds a fountain, water dribbles meekly from a fish statue into the dark water. placards remain the only sign of where benches once stood, removed probably to discourage the homeless from sleeping here. the path continues north and south...\n\nwait, were those paths there before?\n`,
 		choices: {
-			"go north": ()=>_exp(Dir.N),
-			"go south": ()=>_exp(Dir.S),
-			"go east": ()=>_exp(Dir.E),
-			"go west": ()=>_exp(Dir.W)
+			"go north": _exp(Dir.N),
+			"go south": _exp(Dir.S),
+			"go east": _exp(Dir.E),
+			"go west": _exp(Dir.W)
 		},
 	};
 	if (inventory.length === 0) {
@@ -298,29 +307,28 @@ function labyrinthEntrance() {
 	}
 	return I;
 }
-function labyrinthDir(dir: Dire) {
-	let description = clean(`you ${t("walk")} ${dir}. 
-		${rd("the walls of the courtyard seem to have grown taller...", 1, labyrinthState.length == 1)}
-		${rd("is it just you, or is the architecture becoming more... brutalist?", 1, labyrinthState.length == 2)}
-		${rd("thick vines creep up the walls. seems like you are thoroughly lost...", 1, labyrinthState.length == 3)}
-		${rd("you feel like you've been this way before..." + rd("or have you?", 0.5), 0.3, labyrinthState.length == l_diff)} ${
-		rd(`you see a ${t("material")} statue of a ${t("animal")} ${t("location")}`, 0.2, labyrinthState.length == l_diff)
-		}`);
-	let choices = shuffleObject({
-		"go north": _exp(Dir.N),
-		"go south": _exp(Dir.S),
-		"go east": _exp(Dir.E),
-		"go west": _exp(Dir.W)
-	});
-	return {
+function labyrinthDir(): StageInfo {
+	let I: StageInfo = {
 		location: "courtyard?",
-		description,
-		choices,
+		description: clean(`you ${t("walk")} ${labyrinthState.at(-1)}. 
+			${rd("the walls of the courtyard seem to have grown taller...", 1, labyrinthState.length == 1)}
+			${rd("is it just you, or is the architecture becoming more... brutalist?", 1, labyrinthState.length == 2)}
+			${rd("thick vines creep up the walls. seems like you are thoroughly lost...", 1, labyrinthState.length == 3)}
+			${rd("you feel like you've been this way before..." + rd("or have you?", 0.5), 0.3, labyrinthState.length == l_diff)} ${
+			rd(`you see a ${t("material")} statue of a ${t("animal")} ${t("location")}`, 0.2, labyrinthState.length == l_diff)
+			}`),
+		choices: shuffleObject({
+			"go north": _exp(Dir.N),
+			"go south": _exp(Dir.S),
+			"go east": _exp(Dir.E),
+			"go west": _exp(Dir.W)
+		}),
 	};
+	return I;
 }
-const _exp = (d) => {pl(d);return labyrinthDir.apply({}, [d])}
+const _exp = (d: Dire) => {pl(d);return labyrinthDir}
 
-function shuffleObject(obj: any) {
+function shuffleObject<T extends Record<string, any>>(obj: T): T {
 	let entries = Object.entries(obj);
 	for (let round = 0; round < 3; round++) {
 		for (let i = entries.length - 1; i > 0; i--) {
@@ -328,7 +336,7 @@ function shuffleObject(obj: any) {
 			[entries[i], entries[j]] = [entries[j], entries[i]];
 		}
 	}
-	return Object.fromEntries(entries);
+	return Object.fromEntries(entries) as T;
 }
 	
 

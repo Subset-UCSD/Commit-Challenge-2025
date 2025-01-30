@@ -175,10 +175,10 @@ function labyrinthEntrance() {
 		description += "you have no memory , no items in hand. ";
 	}
 	let choices = {
-		"go north": labyrinthDir.bind(Dir.N),
-		"go south": labyrinthDir.bind(Dir.S),
-		"go east": labyrinthDir.bind(Dir.E),
-		"go west": labyrinthDir.bind(Dir.W)
+		"go north": ()=>labyrinthDir(Dir.N),
+		"go south": ()=>labyrinthDir(Dir.S),
+		"go east": ()=>labyrinthDir(Dir.E),
+		"go west": ()=>labyrinthDir(Dir.W)
 	};
 	return {
 		location: "courtyard",
@@ -189,10 +189,10 @@ function labyrinthEntrance() {
 function labyrinthDir(dir: Dire) {
 	let description = `you ${tg("walk")} ${dir}. `;
 	let choices = shuffleObject({
-		"go north": labyrinthDir.bind(Dir.N),
-		"go south": labyrinthDir.bind(Dir.S),
-		"go east": labyrinthDir.bind(Dir.E),
-		"go west": labyrinthDir.bind(Dir.W)
+		"go north": ()=>labyrinthDir(Dir.N),
+		"go south": ()=>labyrinthDir(Dir.S),
+		"go east": ()=>labyrinthDir(Dir.E),
+		"go west": ()=>labyrinthDir(Dir.W)
 	});
 	return {
 		location: "courtyard?",

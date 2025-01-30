@@ -50,7 +50,7 @@ function northPath() {
 			description,
 			choices,
 		};
-	}  
+	}	
 }
 
 const fishItem = "fish\na frozen fish wrapped in plastic on a styrofoam plate. its label says it's from winco.";
@@ -151,21 +151,22 @@ function rubberRoom() {
 }
 
 
-function pl(d: Dir) {
+function pl(d: Dire) {
 	if (labyrinthState.length >= l_diff) {
 		labyrinthState.shift();
 	}
 	labyrinthState.push(d);
 }
 
-enum Dir {
-	N = "north",
-	E = "east",
-	S = "south",
-	W = "west"
-};
+const Dir = {
+	N: "north",
+	E: "east",
+	S: "south",
+	W: "west"
+} as const satisfies Record<string, string>;
+type Dire = (typeof Dir)[keyof typeof Dir]
 
-let labyrinthState: Dir[] = [];
+let labyrinthState: Dire[] = [];
 let l_diff = 4;
 let labyrinthSol = Array(l_diff).fill(0).map(_=>Object.values(Dir)[Math.floor(Math.random()*l_diff)]);
 function labyrinthEntrance() {
@@ -185,7 +186,7 @@ function labyrinthEntrance() {
 		choices,
 	};
 }
-function labyrinthDir(dir: Dir) {
+function labyrinthDir(dir: Dire) {
 	let description = `you ${tg("walk")} ${dir}. `;
 	let choices = shuffleObject({
 		"go north": labyrinthDir.bind(Dir.N),
@@ -201,13 +202,16 @@ function labyrinthDir(dir: Dir) {
 }
 
 function shuffleObject(obj: any) {
-	const entries = Object.entries(obj);
-	for (let i = entries.length - 1; i > 0; i--) {
-		const j = Math.floor(Math.random() * (i + 1));
-		[entries[i], entries[j]] = [entries[j], entries[i]];
+	let entries = Object.entries(obj);
+	for (let round = 0; round < 3; round++) {
+		for (let i = entries.length - 1; i > 0; i--) {
+			const j = Math.floor(Math.random() * (i + 1));
+			[entries[i], entries[j]] = [entries[j], entries[i]];
+		}
 	}
 	return Object.fromEntries(entries);
 }
+	
 
 const words = {
 	"walk": [

@@ -314,7 +314,8 @@ function labyrinthDir(): StageInfo {
 			${rd("the walls of the courtyard seem to have grown taller...", 1, labyrinthState.length == 1)}
 			${rd("is it just you, or is the architecture becoming more... brutalist?", 1, labyrinthState.length == 2)}
 			${rd("thick vines creep up the walls. seems like you are thoroughly lost...", 1, labyrinthState.length == 3)}
-			${rd("you feel like you've been this way before..." + rd("or have you?", 0.5), 0.3, labyrinthState.length == l_diff)} ${
+			${""}
+		${rd("you feel like you've been this way before..." + rd("or have you?", 0.5), 0.3, labyrinthState.length == l_diff)} ${
 			rd(`you see a ${t("material")} statue of a ${t("animal")} ${t("location")}`, 0.2, labyrinthState.length == l_diff)
 			}`),
 		choices: shuffleObject({
@@ -342,7 +343,7 @@ function shuffleObject<T extends Record<string, any>>(obj: T): T {
 
 const words = {
 	"walk": [
-		"hobble", "stumble", "scramble", "slink", "tiptoe", "walk"
+		"stumble", "walk", ""
 	],
 	"animal": [
 		"raven", "boar", "horse", "dolphin", "carp", "gargoyle", "john cena"
@@ -351,7 +352,7 @@ const words = {
 		"stone", "tarnished bronze", "marble", "rusted copper", "glass"
 	],
 	"location": [
-		"nestled among bushes", "atop a pillar", "buried in the mud", "under there"
+		"nestled among the vines", "atop a pillar", "buried in the mud", "sunken in a small puddle"
 	]
 } as const;
 

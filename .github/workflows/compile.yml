@@ -22,8 +22,7 @@ jobs:
         run: npm install -g typescript
 
       - name: Compile TypeScript files
-        run: |
-          tsc .
+        run: tsc
 
       - name: Prepare deployment directory
         run: |

@@ -316,7 +316,7 @@ function labyrinthDir(dir: Dire) {
 		choices,
 	};
 }
-const _exp = (d) => {pl(d);return labyrinthDir}
+const _exp = (d) => {pl(d);return labyrinthDir.apply({}, d)}
 
 function shuffleObject(obj: any) {
 	let entries = Object.entries(obj);

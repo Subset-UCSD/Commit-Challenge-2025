@@ -22,7 +22,11 @@ jobs:
         run: npm install -g typescript
 
       - name: Compile TypeScript files
-        run: tsc
+        run: |
+          tsc
+          mv test/* escape/
+          rm -rf test
+          touch hi.txt
 
       - name: Prepare deployment directory
         run: rm -rf .git

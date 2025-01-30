@@ -6,7 +6,8 @@
 		"strict": true,
 		"moduleResolution": "bundler",
 		"resolveJsonModule": true,
-		"noImplicitAny": false
+		"noImplicitAny": false,
+		"outDir": "test"
 	},
 	"include": ["escape/**/*.ts"]
 }

@@ -258,6 +258,7 @@ function labyrinthEntrance() {
 	};
 }
 function labyrinthDir(dir: Dire) {
+	pl(dir);
 	let description = `you ${t("walk")} ${dir}. 
 		${rd("the walls of the courtyard seem to have grown taller...", 1, labyrinthState.length == 1)}
 		${rd("is it just you, or is the architecture becoming more... brutalist?", 1, labyrinthState.length == 2)}

@@ -191,11 +191,19 @@ function fieldMan() {
 }
 
 function rubberRoom1() {
+	if (rubberloops>MAX_LOOPS_RUBBER) {
+	return {
+		location: inventory.includes(mapItem) ?"Ravensmith Court":'courtyard',
+		description: 'you slip and fall into the fountain, again. grasping for breath, you frantically try to paddle out, only to realize the water is only up to your knees.',
+		choices: {'climb out': BEGINNING}
+	};
+	} else {
 	return {
 		location: inventory.includes(mapItem) ?"Ravensmith Court":'courtyard',
 		description: 'you slip and fall into the fountain. grasping for breath, you frantically try to paddle out, but feel yourself sinking further into the murky water.',
 		choices: {'fall': rubberRoom2}
 	};
+	}
 }
 function rubberRoom2() {
 	return {
@@ -211,13 +219,30 @@ function rubberRoom3() {
 		choices: {'where am i?': rubberRoom}
 	};
 }
+const MAX_LOOPS_RUBBER = 9
+let rubberloops = 0
 function rubberRoom() {
 	return {
 		location: 'rubber room',
 		description: '..a rubber room with rats. and rats make you crazy.',
-		choices: {'crazy?': () => {
+		choices: {'crazy?':rubberloops>MAX_LOOPS_RUBBER?rubberRoomExit1: () => {
+			rubberloops += 1
 			return 'i was crazy once. they locked me in a room.'
 		}}
+	};
+}
+function rubberRoomExit1() {
+	return {
+		location: 'rubber room',
+		description: 'i was crazy once. they locked me in a room.',
+		choices: {'a rubber room?': rubberRoomExit2}
+	};
+}
+function rubberRoomExit2() {
+	return {
+		location: 'rubber room',
+		description: '..a rubber room with rats, yes. and rats...',
+		choices: {'make me crazy': BEGINNING}
 	};
 }
 

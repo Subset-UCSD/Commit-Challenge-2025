@@ -127,6 +127,23 @@ justify-content: flex-end;    }
         transform: translateY(-100px);
 
     }
+    @keyframes spinn {
+        0% {
+            transform: rotate3d(0, 0, 0, 0deg);
+        }
+        50% {
+            transform: rotate3d(-1, 0, 1, 180deg);
+        }
+        75% {
+            transform: rotate3d(1, 1, 2, -90deg);
+        }
+        100% {
+            transform: rotate3d(1, 1, 12, 150deg);
+        }
+    }
+    .cool-spin {
+        animation: spinn infinite alternate-reverse 1s;
+    }
     #mayo {
         display: inline-block;
         position: relative;
@@ -225,6 +242,11 @@ justify-content: flex-end;    }
     <div id="mayo">
         <img src="./ass/ets/SPOILER_PXL_20250110_210814236.MP.jpg" alt="exploded mayo pack on whiteboard in Fishbowl"/>
         <img src="./ass/ets/SPOILER_PXL_20250110_210814236.MP.jpg" alt="DO NOT LOOK" aria-hidden="true" id=mayo-extra />
+    </div>
+
+    <div>
+        <p>Do you want an <span class="epic">epic</span> website like this? call the 🐑</p>
+        <img src="./ass/ets/sheep.png" width="600" height="100" class="cool-spin">
     </div>
     <img src="./ass/ets/utah.jpg" alt="hawk in utah"/>
 

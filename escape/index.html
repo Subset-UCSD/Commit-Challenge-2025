@@ -80,13 +80,17 @@
       display: block;
     }
 
-    .item[data-lore] {
+    .item.has-lore {
       text-decoration: underline dotted;
       cursor: help;
       position: relative;
     }
-    .item[data-lore]:hover::after {
-    content: attr(data-lore);
+    .lore {
+      display: none;
+    }
+    .item.has-lore:hover .lore {
+    /* content: attr(data-lore); */display: block;
+    cursor: auto;
 position: absolute;
 left:0;top:100%;
 background-color: #E17564;
@@ -101,7 +105,9 @@ font-style: italic;
   .button-container {
   display: flex;
   }
-
+.space {
+  font-size: 0;
+}
     </style>
 </head>
 
@@ -146,22 +152,17 @@ font-style: italic;
         return str.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;')
       }
 
-      function renderItem(itemNameSpec) {
-        const [name, lore = ''] = itemNameSpec.split('\n')
-        return `<span class="item" ${lore ? `data-lore="${escape(lore)}"` : ''}>${name}</span>`
+      function renderItem({name,lore}) {
+        // const [name, lore = ''] = itemNameSpec.split('\n')
+        return `<span class="item ${lore?'has-lore':''}" >${name}${lore ? `<span class="lore"><span class="space"> </span>${lore}</span>` : ''}</span>`
       }
 
       function renderInventory () {
-        if (mod.inventory.length === 0) {
+        if (mod.inventory.size === 0) {
           document.getElementById('inventory').innerHTML=''
           return
         }
-        const freq = {}
-        for (const item of mod.inventory) {
-          freq[item] ??=0
-          freq[item] ++
-        }
-        document.getElementById('inventory').innerHTML = 'you have: '+Object.entries(freq).map(([item, count]) => renderItem(item) + (count>1?` (${count})` :'')).join(', ')
+        document.getElementById('inventory').innerHTML = 'you have: '+mod.inventory.counts().map(({item, count}) => renderItem(item) + (count>1?` (${count})` :'')).join(', ')
       }
 
       window.render = function  () {

@@ -39,30 +39,98 @@ interface StageInfo {
 	}
 }
 
-let inventory: Item[] = [];
+type Item = {
+	/** 
+	 * Should serve as both the ID and display name of the item. If we want to
+	 * separate the two, we can add an optional `displayName` property in the
+	 * future.
+	 * 
+	 * Can use HTML.
+	 */
+	name: string
+	/**
+	 * Can use HTML.
+	 */
+	lore?: string
+}
 
-/**
- * Each item's name also doubles as its ID and metadata. An item is a string
- * with the following lines, separated by newlines:
- * 
- * - Name: can use HTML
- * - Description: optional, cannot use HTML (special characters will be escaped)
- * 
- * @example
- * // Check if the inventory has an item
- * inventory.includes(item)
- * // Add item to inventory
- * inventory.push(item)
- * // Remove one of an item (assuming it has it)
- * inventory.splice(inventory.indexOf(item), 1)
- * // Remove all of an item
- * inventory = inventory.filter(it => it !== item)
- */
-type Item = string;
+class Inventory {
+	#contents: Item[] = []
+
+	static #same (a: Item, b: Item | string) : boolean {
+		return typeof b === 'string' ? a.name === b : a.name === b.name && a.lore === b.lore
+	}
+
+	/**
+	 * Whether the player has `count` of `item`.
+	 * @param item Item name or object. Objects are compared by value not reference
+	 * @param count Defaults to 1.
+	 */
+	has (item: string|Item, count = 1): boolean {
+		let found = 0
+		for (const myitem of this.#contents)  {
+			if (Inventory.#same(myitem,item)) {
+				found++
+				if (found>=count){return true}
+			}
+		}
+		return false
+	}
+
+	/** Adds all items to the inventory */
+	add (...items: (Item | Item[])[]): void {
+this.#contents.push(...items.flat())
+	}
+
+	/** 
+	 * Removes `count` of `item` from inventory.
+	 * @param item Item name or object. Objects are compared by value not reference
+	 * @param count Defaults to 1. Set to Infinity to remove all of `item`.
+	 * @returns Number of items removed, which may be less than `count` if the
+	 * inventory doesn't have that many items.
+	 */
+	remove (item: string|Item, count = 1): number {
+		let removed = 0
+		for (let i = this.#contents.length; i--;) {
+			const myitem = this.#contents[i]
+			if (Inventory.#same(myitem,item)) {
+				this.#contents.splice(i, 1)
+				removed++
+				if (removed>=count)break
+			}
+		}
+		return removed
+	}
+
+	/**
+	 * Groups items by name, lore, etc. with the count
+	 */
+	counts (): {item:Item, count:number}[] {
+		const groups: Record<string, Item[]> = {}
+		for (const item of this.#contents) {
+			const id = `${item.name}\n${item.lore}`
+			groups[id] ??= []
+			groups[id].push(item)
+		}
+		return Object.values(groups).map(arr => ({item:arr[0], count:arr.length}))
+	}
+
+	/** Number of items in inventory */
+	get size () :number{
+		return this.#contents.length
+	}
+
+	/** empties inventory */
+	clear () :void{
+		this.#contents=[]
+	}
+}
+
+let inventory = new Inventory();
 
 function BEGINNING(): StageInfo {
 	let I: StageInfo = {
-		location: inventory.includes(mapItem) ?"Ravensmith Court": "courtyard",
+		location: inventory.has(mapItem) ?"Ravensmith Court": "courtyard",
 		description: "you stand in a desolate courtyard shrouded in fog. a cobblestone pathway surrounds a fountain, water dribbles meekly from a fish statue into the dark water. placards remain the only sign of where benches once stood, removed probably to discourage the homeless from sleeping here. the path continues north and south. ",
 		choices: {
 			"go north": northPath,
@@ -71,10 +139,10 @@ function BEGINNING(): StageInfo {
 			'inspect fountain': rubberRoom1,
 		}
 	};
-	if (inventory.length === 0) {
+	if (inventory.size === 0) {
 		I.description += "you have no memory , no items in hand. ";
 	}
-	if (inventory.includes(mapItem)) {
+	if (inventory.has(mapItem)) {
 		I.choices["go east"] = () => {
 			return "the map says theres nothing to the east. <a href=\"https://github.com/Subset-UCSD/Commit-Challenge-2025/blob/main/escape/GAMER.ts\">for now...</a>";
 		};
@@ -82,21 +150,21 @@ function BEGINNING(): StageInfo {
 	return I;
 }
 
-const grassItem = "blade of grass\nIt's just a blade of grass.";
+const grassItem:Item = {name:"blade of grass",lore:"It's just a blade of grass."};
 let talkedToRaven = false
 let ravenCompassTaken = false
-const mapItem = "Ravensmith Estate map\na somewhat blurry photocopy of a map of Ravensmith's estate. scribbles and notes dot the map, but few are legible."
-const compassItem = "compass\ninvented by the chinese in 206 BCE."
+const mapItem:Item = {name:"Ravensmith Estate map",lore:"a somewhat blurry photocopy of a map of Ravensmith's estate. scribbles and notes dot the map, but few are legible."}
+const compassItem: Item = {name:"compass", lore:"invented by the chinese in 206 BCE."}
 function northPath(): StageInfo {
 	let I: StageInfo = {
-		location: inventory.includes(mapItem)?"Unnamed Field on Ravensmith Estate":"field",
+		location: inventory.has(mapItem)?"Unnamed Field on Ravensmith Estate":"field",
 		description: "the path trails off, leaving you standing on a field of uncut grass. ",
 		choices: {
 			"continue north": null,
 			"go south": BEGINNING,
 		},
 	};
-	if (inventory.includes(mapItem)) {
+	if (inventory.has(mapItem)) {
 		I.description += "empowered by the map, you feel ready to venture into the fog. "
 		I.choices[
 			"continue north"] = fieldMan
@@ -110,7 +178,7 @@ function northPath(): StageInfo {
 	I.description += "a raven dressed in a long, dark trenchcoat shivers in the cold. "
 		I.choices["talk to raven"] = () => {
 			talkedToRaven = true
-			inventory.push(mapItem)
+			inventory.add(mapItem)
 			return "the raven's name is Ravensmith. he apparently owns this property. since you're trespassing, he gives you a map for more accurate trespassery. +1 map"
 		}
 	} else {
@@ -118,14 +186,14 @@ function northPath(): StageInfo {
 		if (!ravenCompassTaken) {
 			I.description += "a small, round object protrudes from his pocket. a compass, perhaps? "
 		}
-		if (!inventory.includes(sushiItem)||ravenCompassTaken) {
+		if (!inventory.has(sushiItem)||ravenCompassTaken) {
 				I.choices["talk to Ravensmith"] = () => {
 					return "Ravensmith does not bother with small talk. he humphs at you and turns his head away. "
 				}
 			} else {
 				I.choices["talk to Ravensmith"] = () => {
-					inventory.push(compassItem)
-					inventory.splice(inventory.indexOf(sushiItem), 1);
+					inventory.add(compassItem)
+					inventory.remove(sushiItem, 1);
 					ravenCompassTaken = true;
 					return "you ask for his compass, offering a piece of sushi. he obliges. +1 compass "
 				}
@@ -133,7 +201,7 @@ function northPath(): StageInfo {
 	}
 	if (Math.random() < 0.5) {
 		I.choices["pick grass"] = () => {
-			inventory.push(grassItem)
+			inventory.add(grassItem)
 			return "you pluck a blade of grass from the ground. +1 blade of grass.";
 		}
 	} else {
@@ -149,13 +217,13 @@ function northPath(): StageInfo {
 	return I;
 }
 
-const fishItem = "fish\na frozen fish wrapped in plastic on a styrofoam plate. its label says it's from winco.";
-const spermPosterItem = "sperm donor poster\nit says \"become a sperm donor!\" theres a nice man smiling and pointing at top 3 reasons to start donating.";
+const fishItem:Item = {name:"fish",lore:"a frozen fish wrapped in plastic on a styrofoam plate. its label says it's from winco."};
+const spermPosterItem:Item = {name:"sperm donor poster",lore:"it says \"become a sperm donor!\" theres a nice man smiling and pointing at top 3 reasons to start donating."};
 let spermDonorPoster = true;
 let wincoFish = true;
 function southPath(): StageInfo {
 	let I: StageInfo = {
-		location: inventory.includes(mapItem) ? "Ravensmith Estate Wall": "brick wall",
+		location: inventory.has(mapItem) ? "Ravensmith Estate Wall": "brick wall",
 		description: "the path abruptly ends at a brick wall. you jump to look over, but all you see is fog. ",
 		choices: {
 			"go north": BEGINNING,
@@ -164,7 +232,7 @@ function southPath(): StageInfo {
 	if (wincoFish) {
 		I.description += "there is a frozen fish wrapped in plastic at the base of the wall. the packaging says it's from winco. ";
 		I.choices["take fish"] = () => {
-			inventory.push(fishItem);
+			inventory.add(fishItem);
 			wincoFish = false;
 			return "you put the fish in your pocket. +1 fish.";
 		}
@@ -172,7 +240,7 @@ function southPath(): StageInfo {
 	if (spermDonorPoster) {
 		I.description += "there is a sperm donor poster on the wall. a handsome man smiles at you and beckons for your sperm. ";
 		I.choices["take sperm donor poster"] = () => {
-			inventory.push(spermPosterItem)
+			inventory.add(spermPosterItem)
 			spermDonorPoster = false
 			return "you carefully rip off the poster, revealing a hole just large enough for you to crawl through. +1 poster.";
 		}
@@ -192,22 +260,22 @@ function southPath(): StageInfo {
 	return I;
 }
 
-const sushiItem = `sushi piece\na slice of sushi. the man who made it seemed to be a professional sushi guy or whatever the word is. raw tuna wrapped in seaweed wrapped in sticky rice. did you know? Ravensmith is a big fan of sushi.`;
+const sushiItem :Item= {name:`sushi piece`,lore:`a slice of sushi. the man who made it seemed to be a professional sushi guy or whatever the word is. raw tuna wrapped in seaweed wrapped in sticky rice. did you know? Ravensmith is a big fan of sushi.`};
 let manHungry = true;
 function fieldMan(): StageInfo {
 	let I: StageInfo = {
-		location:inventory.includes(mapItem)?"Private Property - DO NOT TRESPASS!":  "field",
+		location:inventory.has(mapItem)?"Private Property - DO NOT TRESPASS!":  "field",
 		description: "you trudge on blindly into the endless grassland. suddenly, you spot a man, huddled in tattered clothes lying on the ground. ",
 		choices: {
 			"return south": northPath,
 		},
 	};
-	if (inventory.includes(fishItem) && manHungry) {
+	if (inventory.has(fishItem) && manHungry) {
 		I.description += 'he sees the fish sticking out of your back pocket and shakily holds a finger up to it. he offers to turn it into sushi. ';
 		I.choices["give fish to man"] = () => {
 			// manState = 'full'
-			inventory.splice(inventory.indexOf(fishItem), 1);
-			for (let i = 4;i--;) inventory.push(sushiItem);
+			inventory.remove(fishItem, 1);
+			for (let i = 4;i--;) inventory.add(sushiItem);
 			manHungry = false;
 			return "bro snatches your fish, tears off the plastic with his teeth, and in a show beyond your comprehension, you find yourself being served a plate of sushi. he has cut the roll into eight slices and graciously tipped himself half of them, which he voraciously stuffs into his mouth. he burps, yawns, and falls asleep. +4 sushi pieces. ";
 		};
@@ -222,13 +290,13 @@ function fieldMan(): StageInfo {
 function rubberRoom1(): StageInfo {
 	if (rubberloops>MAX_LOOPS_RUBBER) {
 	return {
-		location: inventory.includes(mapItem) ?"Ravensmith Court":'courtyard',
+		location: inventory.has(mapItem) ?"Ravensmith Court":'courtyard',
 		description: 'you slip and fall into the fountain, again. grasping for breath, you frantically try to paddle out, only to realize the water is only up to your knees.',
 		choices: {'climb out': BEGINNING}
 	};
 	} else {
 	return {
-		location: inventory.includes(mapItem) ?"Ravensmith Court":'courtyard',
+		location: inventory.has(mapItem) ?"Ravensmith Court":'courtyard',
 		description: 'you slip and fall into the fountain. grasping for breath, you frantically try to paddle out, but feel yourself sinking further into the murky water.',
 		choices: {'fall': rubberRoom2}
 	};
@@ -311,7 +379,7 @@ function labyrinthEntrance(): StageInfo {
 			"go west": _exp(Dir.W)
 		},
 	};
-	if (inventory.length === 0) {
+	if (inventory.size === 0) {
 		I.description += "you have no memory , no items in hand. ";
 	}
 	return I;

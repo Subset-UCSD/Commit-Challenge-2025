@@ -1,7 +1,12 @@
 {
+	"$schema": "https://json.schemastore.org/tsconfig",
 	"compilerOptions": {
-	  "target": "ES6",
-	  "module": "ESNext"
+		"module": "esnext",
+		"target": "esnext",
+		"strict": true,
+		"moduleResolution": "bundler",
+		"resolveJsonModule": true,
+		"noImplicitAny": false
 	},
 	"include": ["escape/**/*.ts"]
 }

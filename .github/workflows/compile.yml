@@ -25,17 +25,14 @@ jobs:
         run: tsc
 
       - name: Prepare deployment directory
-        run: |
-          mkdir -p deploy
-          cp -r . deploy/
-          rm -rf deploy/.git
+        run: rm -rf .git
         shell: bash
 
       - name: Upload artifact for deployment
         uses: actions/upload-artifact@v4
         with:
           name: github-pages
-          path: deploy
+          path: .
 
   deploy:
     needs: build

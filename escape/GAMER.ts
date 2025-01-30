@@ -218,6 +218,8 @@ function rubberRoom1() {
 
 // dont say i warned you!!
 
+// 🤢🤢🤢🤢🤮🤮🤮🤮🤮🤮
+
 function rubberRoom2():                                                                             any{
    return                                                                                           {
       location: '???'                                                                               ,
@@ -283,10 +285,10 @@ function labyrinthEntrance() {
 		description += "you have no memory , no items in hand. ";
 	}
 	let choices = {
-		"go north": ()=>labyrinthDir(Dir.N),
-		"go south": ()=>labyrinthDir(Dir.S),
-		"go east": ()=>labyrinthDir(Dir.E),
-		"go west": ()=>labyrinthDir(Dir.W)
+		"go north": ()=>_exp(Dir.N),
+		"go south": ()=>_exp(Dir.S),
+		"go east": ()=>_exp(Dir.E),
+		"go west": ()=>_exp(Dir.W)
 	};
 	return {
 		location: "courtyard",
@@ -295,7 +297,6 @@ function labyrinthEntrance() {
 	};
 }
 function labyrinthDir(dir: Dire) {
-	pl(dir);
 	let description = clean(`you ${t("walk")} ${dir}. 
 		${rd("the walls of the courtyard seem to have grown taller...", 1, labyrinthState.length == 1)}
 		${rd("is it just you, or is the architecture becoming more... brutalist?", 1, labyrinthState.length == 2)}
@@ -304,10 +305,10 @@ function labyrinthDir(dir: Dire) {
 		rd(`you see a ${t("material")} statue of a ${t("animal")} ${t("location")}`, 0.2, labyrinthState.length == l_diff)
 		}`);
 	let choices = shuffleObject({
-		"go north": ()=>labyrinthDir(Dir.N),
-		"go south": ()=>labyrinthDir(Dir.S),
-		"go east": ()=>labyrinthDir(Dir.E),
-		"go west": ()=>labyrinthDir(Dir.W)
+		"go north": _exp(Dir.N),
+		"go south": _exp(Dir.S),
+		"go east": _exp(Dir.E),
+		"go west": _exp(Dir.W)
 	});
 	return {
 		location: "courtyard?",
@@ -315,6 +316,7 @@ function labyrinthDir(dir: Dire) {
 		choices,
 	};
 }
+const _exp = (d) => {pl(d);return labyrinthDir}
 
 function shuffleObject(obj: any) {
 	let entries = Object.entries(obj);

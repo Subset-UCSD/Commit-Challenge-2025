@@ -32,6 +32,9 @@ jobs:
         run: rm -rf .git
         shell: bash
 
+      - name: Build with jekyll
+        uses: actions/jekyll-build-pages@v1.0.13
+
       - name: Upload artifact for deployment
         uses: actions/upload-artifact@v4
         with:

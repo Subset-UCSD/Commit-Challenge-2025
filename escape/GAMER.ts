@@ -187,7 +187,9 @@ function labyrinthEntrance() {
 	};
 }
 function labyrinthDir(dir: Dire) {
-	let description = `you ${tg("walk")} ${dir}. `;
+	let description = `you ${tg("walk")} ${dir}. ${
+		labyrinthState.length > 4 ? rd("you feel like you've been this way before...", 0.3) + rd("or have you?", 0.5) : ""
+	}`;
 	let choices = shuffleObject({
 		"go north": ()=>labyrinthDir(Dir.N),
 		"go south": ()=>labyrinthDir(Dir.S),
@@ -215,11 +217,16 @@ function shuffleObject(obj: any) {
 
 const words = {
 	"walk": [
-		"stagger", "waver", "hobble", "shamble", "stumble", "scramble",
-		"creep", "slink", "tiptoe", "blunder", "flounder", "skulk"
+		"hobble", "stumble", "scramble", "slink", "tiptoe", "walk"
 	]
 } as const;
 
 function tg(key: keyof typeof words) {
 	return words[key][Math.floor(words[key].length*Math.random())];
+}
+/**
+ * Random dialogue part
+ */
+function rd(text: string, chance: number) {
+	return Math.random() < chance ? text : "";
 }

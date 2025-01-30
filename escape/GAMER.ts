@@ -1,7 +1,6 @@
 /** 
- * Each stage should be a PURE function (changes to game state should be done in
- * choice functions, see below). However, the choices' functions don't need to
- * pure (i.e., you can randomly choose what a choice does on every call)
+ * Each stage should be a PURE function, so expect it to be called many times.
+ * If you want to change game state, do it in `choices`.
  */
 type Stage = () => StageInfo;
 
@@ -48,6 +47,16 @@ let inventory: Item[] = [];
  * 
  * - Name: can use HTML
  * - Description: optional, cannot use HTML (special characters will be escaped)
+ * 
+ * @example
+ * // Check if the inventory has an item
+ * inventory.includes(item)
+ * // Add item to inventory
+ * inventory.push(item)
+ * // Remove one of an item (assuming it has it)
+ * inventory.splice(inventory.indexOf(item), 1)
+ * // Remove all of an item
+ * inventory = inventory.filter(it => it !== item)
  */
 type Item = string;
 

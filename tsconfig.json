@@ -1,8 +1,6 @@
 {
 	"compilerOptions": {
 	  "outDir": "./escape",
-	  "rootDir": "./escape",
-	  "allowJs": true,
 	  "target": "ES6",
 	  "module": "ESNext"
 	},

@@ -32,10 +32,8 @@ jobs:
         uses: actions/configure-pages@v4
       - name: Build
         run: |
-          tsc --noCheck
-          mv test/* escape/
-          rm -rf test
-          touch hi.txt
+          npm install || echo 'fail :('
+          npm run build || echo 'fail :('
           
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

@@ -1,8 +1,9 @@
 {
-  "dependencies": {
-    "typescript": "^5.7.3"
-  },
   "scripts": {
-    "build": "tsc && mv test/* escape/ && rm -r test"
+    "build": "esbuild escape/GAMER.ts --outfile=escape/GAMER.temp.js --bundle --format=cjs  --tree-shaking=false && tail -n +2 escape/GAMER.temp.js > escape/GAMER.js && rm escape/GAMER.temp.js",
+    "dev": "esbuild escape/GAMER.ts --outfile=escape/GAMER.js --bundle --format=cjs  --tree-shaking=false --serve --servedir=."
+  },
+  "dependencies": {
+    "esbuild": "^0.24.2"
   }
 }

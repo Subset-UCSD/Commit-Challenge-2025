@@ -211,7 +211,7 @@ justify-content: flex-end;    }
             <tr><td>1</td><td>❌</td><td>✅</td><td>✅</td></tr>
             <tr><td>2</td><td>❌</td><td>✅</td><td>❌</td></tr>
             <tr><td>3</td><td>👴🏾</td><td>❌</td><td>🕢</td></tr>
-            <tr><td>4</td><td>✅</td><td>❌</td><td></td></tr>
+            <tr><td>4</td><td>✅</td><td>❌</td><td>✅</td></tr>
         </tbody>
     </table>
     <p><strong><em>SAUCY MARCELO SECRETS</em></strong> will be revaeled..</p>
@@ -233,6 +233,9 @@ justify-content: flex-end;    }
             score += 37/50 // week 3 friday (37 min late)
             score += 1 // week 4 wednesdya
             bar.style.width = `${score / 13 * 100}%`
+            if (score >= 13) {
+                alert('congratulations marcelo! you did it!')
+            }
         </script>
      </div>
     <audio id="audio" controls loop src='./ass/ets/substantial.mp3'></audio>

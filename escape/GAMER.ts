@@ -1,130 +1,8 @@
-/** 
- * Each stage should be a PURE function, so expect it to be called many times.
- * If you want to change game state, do it in `choices`.
- */
-type Stage = () => StageInfo;
+import { Inventory } from "./Inventory";
+import type { Item, StageInfo } from "./types";
 
-interface StageInfo {
-	/** 
-	 * Short description of where the player is. Displayed at the top and in the
-	 * tab title. Can use HTML.
-	 */
-	location: string
-	/**
-	 * Text shown before the choices. Can use HTML.
-	 */
-	description: string
-	/**
-	 * An object mapping from a string label (which can use HTML) to a function.
-	 * The function can either be
-	 *
-	 * - another stage (i.e. a PURE FUNCTION)
-	 *
-	 * - a function that returns a string or a stage (i.e. a function returning
-	 *   function). use this for any game state changes, like adding items to an
-	 *   inventory.
-	 *
-	 *   Return value:
-	 *   - string -> it will be displayed (can use HTML) with a single choice "ok"
-	 *     to return back to the same stage.
-	 *   - stage -> it will run the action then display the stage
-	 *   - null -> indicates we are exiting "choose-your-own-adventure" mode
-	 *
-	 * Specifying a choice of `null` will hide the choice. This can be used to
-	 * specify the order of the choices in the object but programmatically
-	 * show/hide them later in the function.
-	 */
-	choices: {
-		[choiceLabel: string]: Stage | (() => string | Stage | null) | null
-	}
-}
 
-type Item = {
-	/** 
-	 * Should serve as both the ID and display name of the item. If we want to
-	 * separate the two, we can add an optional `displayName` property in the
-	 * future.
-	 * 
-	 * Can use HTML.
-	 */
-	name: string
-	/**
-	 * Can use HTML.
-	 */
-	lore?: string
-}
 
-class Inventory {
-	#contents: Item[] = []
-
-	static #same (a: Item, b: Item | string) : boolean {
-		return typeof b === 'string' ? a.name === b : a.name === b.name && a.lore === b.lore
-	}
-
-	/**
-	 * Whether the player has `count` of `item`.
-	 * @param item Item name or object. Objects are compared by value not reference
-	 * @param count Defaults to 1.
-	 */
-	has (item: string|Item, count = 1): boolean {
-		let found = 0
-		for (const myitem of this.#contents)  {
-			if (Inventory.#same(myitem,item)) {
-				found++
-				if (found>=count){return true}
-			}
-		}
-		return false
-	}
-
-	/** Adds all items to the inventory */
-	add (...items: (Item | Item[])[]): void {
-this.#contents.push(...items.flat())
-	}
-
-	/** 
-	 * Removes `count` of `item` from inventory.
-	 * @param item Item name or object. Objects are compared by value not reference
-	 * @param count Defaults to 1. Set to Infinity to remove all of `item`.
-	 * @returns Number of items removed, which may be less than `count` if the
-	 * inventory doesn't have that many items.
-	 */
-	remove (item: string|Item, count = 1): number {
-		let removed = 0
-		for (let i = this.#contents.length; i--;) {
-			const myitem = this.#contents[i]
-			if (Inventory.#same(myitem,item)) {
-				this.#contents.splice(i, 1)
-				removed++
-				if (removed>=count)break
-			}
-		}
-		return removed
-	}
-
-	/**
-	 * Groups items by name, lore, etc. with the count
-	 */
-	counts (): {item:Item, count:number}[] {
-		const groups: Record<string, Item[]> = {}
-		for (const item of this.#contents) {
-			const id = `${item.name}\n${item.lore}`
-			groups[id] ??= []
-			groups[id].push(item)
-		}
-		return Object.values(groups).map(arr => ({item:arr[0], count:arr.length}))
-	}
-
-	/** Number of items in inventory */
-	get size () :number{
-		return this.#contents.length
-	}
-
-	/** empties inventory */
-	clear () :void{
-		this.#contents=[]
-	}
-}
 
 let inventory = new Inventory();
 
@@ -140,7 +18,7 @@ function BEGINNING(): StageInfo {
 		}
 	};
 	if (inventory.size === 0) {
-		I.description += "you have no memory , no items in hand. ";
+		I.description += "<span style='color: #'><span style='color:#DE3163'>you have no memory , no items in hand.</span></span> ";
 	}
 	if (inventory.has(mapItem)) {
 		I.choices["go east"] = () => {
@@ -155,6 +33,7 @@ let talkedToRaven = false
 let ravenCompassTaken = false
 const mapItem:Item = {name:"Ravensmith Estate map",lore:"a somewhat blurry photocopy of a map of Ravensmith's estate. scribbles and notes dot the map, but few are legible."}
 const compassItem: Item = {name:"compass", lore:"invented by the chinese in 206 BCE."}
+let grassPicked = 0
 function northPath(): StageInfo {
 	let I: StageInfo = {
 		location: inventory.has(mapItem)?"Unnamed Field on Ravensmith Estate":"field",
@@ -165,7 +44,7 @@ function northPath(): StageInfo {
 		},
 	};
 	if (inventory.has(mapItem)) {
-		I.description += "empowered by the map, you feel ready to venture into the fog. "
+		I.description += "<span style='color: #FFF2AF'>empowered by the map, you feel ready to venture into the fog.</span> "
 		I.choices[
 			"continue north"] = fieldMan
 	} else {
@@ -175,16 +54,16 @@ function northPath(): StageInfo {
 			}
 	}
 	if (!talkedToRaven) {
-	I.description += "a raven dressed in a long, dark trenchcoat shivers in the cold. "
+	I.description += "<span style='color: #DAD2FF'>a raven dressed in a long, dark trenchcoat shivers in the cold.</span> "
 		I.choices["talk to raven"] = () => {
 			talkedToRaven = true
 			inventory.add(mapItem)
 			return "the raven's name is Ravensmith. he apparently owns this property. since you're trespassing, he gives you a map for more accurate trespassery. +1 map"
 		}
 	} else {
-		I.description += "Ravensmith, dressed in a long, dark trenchcoat, shivers in the cold. "
+		I.description += "<span style='color: #B2A5FF'>Ravensmith, dressed in a long, dark trenchcoat, shivers in the cold.</span> "
 		if (!ravenCompassTaken) {
-			I.description += "a small, round object protrudes from his pocket. a compass, perhaps? "
+			I.description += "<span style='color: #E5989B'>a small, round object protrudes from his pocket. a compass, perhaps?</span> "
 		}
 		if (!inventory.has(sushiItem)||ravenCompassTaken) {
 				I.choices["talk to Ravensmith"] = () => {
@@ -199,9 +78,10 @@ function northPath(): StageInfo {
 				}
 			}
 	}
-	if (Math.random() < 0.5) {
+	if (Math.random() < 0.5||grassPicked<2) {
 		I.choices["pick grass"] = () => {
 			inventory.add(grassItem)
+			grassPicked++
 			return "you pluck a blade of grass from the ground. +1 blade of grass.";
 		}
 	} else {
@@ -230,7 +110,7 @@ function southPath(): StageInfo {
 		},
 	}
 	if (wincoFish) {
-		I.description += "there is a frozen fish wrapped in plastic at the base of the wall. the packaging says it's from winco. ";
+		I.description += "<span style='color: #FFB4A2'>there is a frozen fish wrapped in plastic at the base of the wall. the packaging says it's from winco.</span> ";
 		I.choices["take fish"] = () => {
 			inventory.add(fishItem);
 			wincoFish = false;
@@ -238,14 +118,14 @@ function southPath(): StageInfo {
 		}
 	}
 	if (spermDonorPoster) {
-		I.description += "there is a sperm donor poster on the wall. a handsome man smiles at you and beckons for your sperm. ";
+		I.description += "<span style='color: #FFCDB2'>there is a sperm donor poster on the wall. a handsome man smiles at you and beckons for your sperm.</span> ";
 		I.choices["take sperm donor poster"] = () => {
 			inventory.add(spermPosterItem)
 			spermDonorPoster = false
 			return "you carefully rip off the poster, revealing a hole just large enough for you to crawl through. +1 poster.";
 		}
 	} else {
-		I.description += "theres a sizeable hole on the wall where the poster once was. ";
+		I.description += "<span style='color: #F4F8D3'>theres a sizeable hole on the wall where the poster once was.</span> ";
 		I.choices["enter hole"] = () => {
 			return {
 				location: "hole",
@@ -280,9 +160,9 @@ function fieldMan(): StageInfo {
 			return "bro snatches your fish, tears off the plastic with his teeth, and in a show beyond your comprehension, you find yourself being served a plate of sushi. he has cut the roll into eight slices and graciously tipped himself half of them, which he voraciously stuffs into his mouth. he burps, yawns, and falls asleep. +4 sushi pieces. ";
 		};
 	} else if (manHungry) {
-		I.description += "the man stares as you, and you stare back. his stomach grumbles. ";
+		I.description += "<span style='color: #A6F1E0'>the man stares as you, and you stare back. his stomach grumbles.</span> ";
 	} else {
-		I.description += "he is soundly asleep, snoring a cacophony. ";
+		I.description += "<span style='color: #F7CFD8'>he is soundly asleep, snoring a cacophony.</span> ";
 	}
 	return I;
 }
@@ -379,9 +259,6 @@ function labyrinthEntrance(): StageInfo {
 			"go west": _exp(Dir.W)
 		},
 	};
-	if (inventory.size === 0) {
-		I.description += "you have no memory , no items in hand. ";
-	}
 	return I;
 }
 function labyrinthDir(): StageInfo {

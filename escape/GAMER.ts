@@ -143,6 +143,7 @@ function fieldMan(): StageInfo {
 		location: inventory.has(mapItem) ? "Private Property - DO NOT TRESPASS!" : "field",
 		description: "you trudge on blindly into the endless grassland. suddenly, you spot a man, huddled in tattered clothes lying on the ground. ",
 		choices: {
+			"continue north": powell,
 			"return south": northPath,
 		},
 	};
@@ -161,6 +162,16 @@ function fieldMan(): StageInfo {
 		I.description += "<span style='color: #F7CFD8'>he is soundly asleep, snoring a cacophony.</span> ";
 	}
 	return I;
+}
+
+function powell():StageInfo {
+	let I: StageInfo = {
+		location: inventory.has(mapItem) ? "Private Property - DO NOT TRESPASS!" : "field",
+		description: "<img src='./powel.jpg' alt='man' id='powpow'>\n\na mysterious figure appears from the fog. you try to take a step back, but find yourself only stepping forward. you freeze, too afraid to move in his presence. ",
+		choices: {
+		},
+	};
+	return I
 }
 
 function rubberRoom1(): StageInfo {

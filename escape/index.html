@@ -7,10 +7,12 @@
     <meta name="description" content="lil choose ur own advneture game!!">
     <meta name="theme-color" content="#BE3144">
     <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:image" content="https://subset-ucsd.github.io/Commit-Challenge-2025/escape/preview.jpg">
 
     <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type="text/css">
+      /* https://colorhunt.co/palette/09122c872341be3144e17564 */
         :root {color-scheme: dark;
         accent-color: #BE3144;}
     body {
@@ -63,9 +65,17 @@
       width: 100%;
       padding: 10px;
       box-sizing: border-box;
+      transition: background-color .2s;
+    }
+    #choices button:hover {
+      background-color: #E17564;
     }
     p {
       white-space: pre-wrap;
+    }
+    html:has(#powpow) {
+      transition: filter 3s;
+      filter: grayscale() contrast(1.5);
     }
 
     .GO_AWAY {

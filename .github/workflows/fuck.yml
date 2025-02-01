@@ -1,4 +1,4 @@
-name: Revert Commit if export is found in escape/GAMER.ts
+name: Revert Commit if export is added to escape/GAMER.ts
 
 on:
   push:
@@ -13,14 +13,21 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Check for export keyword in escape/GAMER.ts
+    - name: Check for added lines containing export in escape/GAMER.ts
       id: check-export
       run: |
-        if grep -q 'export' escape/GAMER.ts; then
-          echo "export keyword found in escape/GAMER.ts"
-          echo "::set-output name=revert::true"
+        # Check if escape/GAMER.ts was modified in the incoming commit
+        if git show --pretty=format:'' --name-only HEAD | grep -q 'escape/GAMER.ts'; then
+          # Check for added lines containing the word "export"
+          if git diff HEAD~1 HEAD -- escape/GAMER.ts | grep -q '^\+.*export'; then
+            echo "Added line containing 'export' found in escape/GAMER.ts"
+            echo "::set-output name=revert::true"
+          else
+            echo "No added lines containing 'export' found in escape/GAMER.ts"
+            echo "::set-output name=revert::false"
+          fi
         else
-          echo "export keyword not found in escape/GAMER.ts"
+          echo "escape/GAMER.ts not modified in the incoming commit"
           echo "::set-output name=revert::false"
         fi
 

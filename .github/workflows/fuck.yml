@@ -5,6 +5,9 @@ on:
     branches:
       - main  # or the branch you want to monitor
 
+permissions:
+  contents: write
+
 jobs:
   check-and-revert:
     runs-on: ubuntu-latest

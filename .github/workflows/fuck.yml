@@ -91,7 +91,8 @@ jobs:
         # Loop through each commit and revert it
         for COMMIT in $REVERT_COMMITS; do
           echo "Reverting commit $COMMIT..."
-          git revert $COMMIT --no-edit -m "FUCK YOU; STOP TRYING TO EXPORT FROM GAMER"
+          git revert $COMMIT --no-edit
+          git commit -m "FUCK YOU; STOP TRYING TO EXPORT FROM GAMER"
         done
 
         # Push the revert commits

@@ -2,7 +2,7 @@ import inventory from "./Inventory";
 import type { Item, StageInfo } from "./types";
 import { labyrinthEntrance } from "./areas/labyrinth";
 
-let i = "haha i'm "
+let i = "haha i'm export"
 
 function BEGINNING(): StageInfo {
 	let I: StageInfo = {

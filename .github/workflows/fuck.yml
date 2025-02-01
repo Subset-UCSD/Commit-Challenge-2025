@@ -1,4 +1,4 @@
-name: Revert Commit if export is added to escape/GAMER.ts
+name: Revert Commits if export is added to escape/GAMER.ts
 
 on:
   push:
@@ -12,27 +12,87 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
+      with:
+        fetch-depth: 0  # Fetch the entire commit history
 
-    - name: Check for added lines containing export in escape/GAMER.ts
-      id: check-export
+    - name: Get list of commits in the push
+      id: get-commits
       run: |
-        # Check if escape/GAMER.ts was modified in the incoming commit
-        if git show --pretty=format:'' --name-only HEAD | grep -e 'escape/GAMER.ts'; then
-          # Check for added lines containing the word "export"
-          if git diff HEAD~1 HEAD -- escape/GAMER.ts | grep -e '^\+.*export'; then
-            echo "Added line containing 'export' found in escape/GAMER.ts"
-            echo "::set-output name=revert::true"
+        # Get the range of commits in this push
+        if [ "$GITHUB_BASE_REF" = "" ]; then
+          # For pushes to a branch
+          if [ "$(git rev-list --count $GITHUB_SHA^..$GITHUB_SHA)" -gt 1 ]; then
+            # Multiple commits in the push
+            COMMIT_RANGE=$(git rev-list $GITHUB_SHA~1..$GITHUB_SHA)
           else
-            echo "No added lines containing 'export' found in escape/GAMER.ts"
-            echo "::set-output name=revert::false"
+            # Single commit in the push
+            COMMIT_RANGE=$GITHUB_SHA
           fi
         else
-          echo "escape/GAMER.ts not modified in the incoming commit"
-          echo "::set-output name=revert::false"
+          # For pull requests (if needed)
+          COMMIT_RANGE=$(git rev-list $GITHUB_BASE_REF..$GITHUB_HEAD_REF)
         fi
 
-    - name: Revert the incoming commit with custom message
-      if: steps.check-export.outputs.revert == 'true'
+        # Convert the list of commits to a space-separated string
+        COMMIT_LIST=$(echo "$COMMIT_RANGE" | tr '\n' ' ')
+
+        # Output the list of commits
+        echo "Commits in this push: $COMMIT_LIST"
+        echo "::set-output name=commit_list::$COMMIT_LIST"
+
+    - name: Check each commit for added lines containing export
+      id: check-commits
       run: |
-        git revert HEAD --no-edit -m "FUCK YOU; STOP TRYING TO EXPORT FROM GAMER"
+        # Get the list of commits from the previous step
+        COMMIT_LIST="${{ steps.get-commits.outputs.commit_list }}"
+
+        # Initialize a variable to store commits to revert
+        REVERT_COMMITS=""
+
+        # Loop through each commit
+        for COMMIT in $COMMIT_LIST; do
+          echo "Checking commit $COMMIT..."
+
+          # Check if escape/GAMER.ts was modified in this commit
+          if git show --pretty=format:'' --name-only $COMMIT | grep -q 'escape/GAMER.ts'; then
+            # Check for added lines containing the word "export"
+            if [ "$(git rev-list --count $COMMIT^..$COMMIT)" -gt 1 ]; then
+              # Compare with the parent commit
+              if git diff $COMMIT~1 $COMMIT -- escape/GAMER.ts | grep -q '^\+.*export'; then
+                echo "Added line containing 'export' found in commit $COMMIT"
+                REVERT_COMMITS="$REVERT_COMMITS $COMMIT"
+              else
+                echo "No added lines containing 'export' found in commit $COMMIT"
+              fi
+            else
+              # Single commit (no parent)
+              if git show $COMMIT -- escape/GAMER.ts | grep -q '^\+.*export'; then
+                echo "Added line containing 'export' found in commit $COMMIT"
+                REVERT_COMMITS="$REVERT_COMMITS $COMMIT"
+              else
+                echo "No added lines containing 'export' found in commit $COMMIT"
+              fi
+            fi
+          else
+            echo "escape/GAMER.ts not modified in commit $COMMIT"
+          fi
+        done
+
+        # Output the list of commits to revert
+        echo "Commits to revert: $REVERT_COMMITS"
+        echo "::set-output name=revert_commits::$REVERT_COMMITS"
+
+    - name: Revert offending commits
+      if: steps.check-commits.outputs.revert_commits != ''
+      run: |
+        # Get the list of commits to revert
+        REVERT_COMMITS="${{ steps.check-commits.outputs.revert_commits }}"
+
+        # Loop through each commit and revert it
+        for COMMIT in $REVERT_COMMITS; do
+          echo "Reverting commit $COMMIT..."
+          git revert $COMMIT --no-edit -m "FUCK YOU; STOP TRYING TO EXPORT FROM GAMER"
+        done
+
+        # Push the revert commits
         git push origin HEAD

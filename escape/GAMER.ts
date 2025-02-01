@@ -1,10 +1,6 @@
-import { Inventory } from "./Inventory";
+import inventory from "./Inventory";
 import type { Item, StageInfo } from "./types";
-
-
-
-
-let inventory = new Inventory();
+import { labyrinthEntrance } from "./areas/labyrinth";
 
 function BEGINNING(): StageInfo {
 	let I: StageInfo = {
@@ -29,10 +25,10 @@ function BEGINNING(): StageInfo {
 }
 
 const grassItem: Item = { name: "blade of grass", lore: "It's just a blade of grass." };
-let talkedToRaven = false
-let ravenCompassTaken = false
-const mapItem: Item = { name: "Ravensmith Estate map", lore: "a somewhat blurry photocopy of a map of Ravensmith's estate. scribbles and notes dot the map, but few are legible." }
-const compassItem: Item = { name: "compass", lore: "invented by the chinese in 206 BCE." }
+let talkedToRaven = false;
+let ravenCompassTaken = false;
+const mapItem: Item = { name: "Ravensmith Estate map", lore: "a somewhat blurry photocopy of a map of Ravensmith's estate. scribbles and notes dot the map, but few are legible." };
+const compassItem: Item = { name: "compass", lore: "invented by the chinese in 206 BCE." };
 let grassPicked = 0
 function northPath(): StageInfo {
 	let I: StageInfo = {
@@ -230,101 +226,4 @@ function rubberRoomExit2(): StageInfo {
 		description: '..a rubber room with rats, yes. and rats...',
 		choices: { 'make me crazy': BEGINNING }
 	};
-}
-
-
-function pl(d: Dire) {
-	if (labyrinthState.length >= l_diff) {
-		labyrinthState.shift();
-	}
-	labyrinthState.push(d);
-}
-
-const Dir = {
-	N: "north",
-	E: "east",
-	S: "south",
-	W: "west"
-} as const satisfies Record<string, string>;
-type Dire = (typeof Dir)[keyof typeof Dir]
-
-let labyrinthState: Dire[] = [];
-let l_diff = 8;
-let labyrinthSol = Array(l_diff).fill(0).map(_ => Object.values(Dir)[Math.floor(Math.random() * Object.values(Dir).length)]);
-function labyrinthEntrance(): StageInfo {
-	let I: StageInfo = {
-		location: "courtyard",
-		description: `you stand in a desolate courtyard shrouded in fog. a cobblestone pathway surrounds a fountain, water dribbles meekly from a fish statue into the dark water. placards remain the only sign of where benches once stood, removed probably to discourage the homeless from sleeping here. the path continues north and south...\n\nwait, were those paths there before?\n`,
-		choices: {
-			"go north": _exp(Dir.N),
-			"go south": _exp(Dir.S),
-			"go east": _exp(Dir.E),
-			"go west": _exp(Dir.W)
-		},
-	};
-	return I;
-}
-function labyrinthDir(): StageInfo {
-	let I: StageInfo = {
-		location: "courtyard?",
-		description: clean(`you ${t("walk")} ${labyrinthState.at(-1)}. 
-			${rd("the walls of the courtyard seem to have grown taller...", 1, labyrinthState.length == 1)}
-			${rd("is it just you, or is the architecture becoming more... brutalist?", 1, labyrinthState.length == 2)}
-			${rd("thick vines creep up the walls. seems like you are thoroughly lost...", 1, labyrinthState.length == 3)}
-			${""}
-		${rd("you feel like you've been this way before..." + rd("or have you?", 0.5), 0.3, labyrinthState.length == l_diff)} ${rd(`you see a ${t("material")} statue of a ${t("animal")} ${t("location")}`, 0.2, labyrinthState.length == l_diff)
-			}`),
-		choices: shuffleObject({
-			"go north": _exp(Dir.N),
-			"go south": _exp(Dir.S),
-			"go east": _exp(Dir.E),
-			"go west": _exp(Dir.W)
-		}),
-	};
-	return I;
-}
-const _exp = (d: Dire) => { pl(d); return labyrinthDir }
-
-function shuffleObject<T extends Record<string, any>>(obj: T): T {
-	let entries = Object.entries(obj);
-	for (let round = 0; round < 3; round++) {
-		for (let i = entries.length - 1; i > 0; i--) {
-			const j = Math.floor(Math.random() * (i + 1));
-			[entries[i], entries[j]] = [entries[j], entries[i]];
-		}
-	}
-	return Object.fromEntries(entries) as T;
-}
-
-
-const words = {
-	"walk": [
-		"stumble", "walk", ""
-	],
-	"animal": [
-		"raven", "boar", "horse", "dolphin", "carp", "gargoyle", "john cena"
-	],
-	"material": [
-		"stone", "tarnished bronze", "marble", "rusted copper", "glass"
-	],
-	"location": [
-		"nestled among the vines", "atop a pillar", "buried in the mud", "sunken in a small puddle"
-	]
-} as const;
-
-function t(key: keyof typeof words) {
-	return words[key][Math.floor(words[key].length * Math.random())];
-}
-/**
- * Random dialogue part
- */
-function rd(text: string, chance: number, precondition: boolean = true) {
-	return (Math.random() < chance) && precondition ? text : "";
-}
-
-function clean(text: string) {
-	return text
-		.replace(/[\t ]+/g, " ")
-		.replace(/\n+/g, "\n")
-		.replace(/^\s+/gm, "");
 }

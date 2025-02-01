@@ -71,3 +71,6 @@ export class Inventory {
 		this.#contents=[]
 	}
 }
+
+let inventory = new Inventory();
+export default inventory;

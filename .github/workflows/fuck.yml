@@ -1,0 +1,31 @@
+name: Revert Commit if export is found in escape/GAMER.ts
+
+on:
+  push:
+    branches:
+      - main  # or the branch you want to monitor
+
+jobs:
+  check-and-revert:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Check for export keyword in escape/GAMER.ts
+      id: check-export
+      run: |
+        if grep -q 'export' escape/GAMER.ts; then
+          echo "export keyword found in escape/GAMER.ts"
+          echo "::set-output name=revert::true"
+        else
+          echo "export keyword not found in escape/GAMER.ts"
+          echo "::set-output name=revert::false"
+        fi
+
+    - name: Revert the incoming commit with custom message
+      if: steps.check-export.outputs.revert == 'true'
+      run: |
+        git revert HEAD --no-edit -m "FUCK YOU; STOP TRYING TO EXPORT FROM GAMER"
+        git push origin HEAD

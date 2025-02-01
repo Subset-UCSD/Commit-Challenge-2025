@@ -2,6 +2,8 @@ import inventory from "./Inventory";
 import type { Item, StageInfo } from "./types";
 import { labyrinthEntrance } from "./areas/labyrinth";
 
+let i = "haha i'm funny i'm using export"
+
 function BEGINNING(): StageInfo {
 	let I: StageInfo = {
 		location: inventory.has(mapItem) ? "Ravensmith Court" : "courtyard",

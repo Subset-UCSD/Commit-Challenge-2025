@@ -91,9 +91,9 @@ jobs:
         # Loop through each commit and revert it
         for COMMIT in $REVERT_COMMITS; do
           echo "Reverting commit $COMMIT..."
-          git revert $COMMIT --no-edit
           git config user.name "Thomas Powell"
           git config user.email "tpowell@pint.com"
+          git revert $COMMIT --no-edit
           git commit -m "FUCK YOU; STOP TRYING TO EXPORT FROM GAMER"
         done
 

@@ -1,8 +1,11 @@
+/**
+ * Warning, do not use the word exp*rt in this file or you will
+ * invoke the great wrath of Thomas Powell
+ */
+
 import inventory from "./Inventory";
 import type { Item, StageInfo } from "./types";
 import { labyrinthEntrance } from "./areas/labyrinth";
-
-let i = "haha i'm export export export export export"
 
 function BEGINNING(): StageInfo {
 	let I: StageInfo = {

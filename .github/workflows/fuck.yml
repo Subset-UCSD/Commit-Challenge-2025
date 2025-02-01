@@ -93,7 +93,7 @@ jobs:
           echo "Reverting commit $COMMIT..."
           git config user.name "Thomas Powell"
           git config user.email "tpowell@pint.com"
-          git revert $COMMIT --no-edit
+          git revert $COMMIT --no-commit
           git commit -m "FUCK YOU; STOP TRYING TO EXPORT FROM GAMER"
         done
 

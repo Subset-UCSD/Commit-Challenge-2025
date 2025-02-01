@@ -17,9 +17,9 @@ jobs:
       id: check-export
       run: |
         # Check if escape/GAMER.ts was modified in the incoming commit
-        if git show --pretty=format:'' --name-only HEAD | grep -q 'escape/GAMER.ts'; then
+        if git show --pretty=format:'' --name-only HEAD | grep -e 'escape/GAMER.ts'; then
           # Check for added lines containing the word "export"
-          if git diff HEAD~1 HEAD -- escape/GAMER.ts | grep -q '^\+.*export'; then
+          if git diff HEAD~1 HEAD -- escape/GAMER.ts | grep -e '^\+.*export'; then
             echo "Added line containing 'export' found in escape/GAMER.ts"
             echo "::set-output name=revert::true"
           else

@@ -3,8 +3,8 @@ import type { Item } from "./types"
 export class Inventory {
 	#contents: Item[] = []
 
-	static #same (a: Item, b: Item | string) : boolean {
-		return typeof b === 'string' ? a.name === b : a.name === b.name && a.lore === b.lore
+	static #same(a: Item, b: Item | string) : boolean {
+		return typeof b === 'string' ? a.name === b : a.name === b.name
 	}
 
 	/**
@@ -12,7 +12,7 @@ export class Inventory {
 	 * @param item Item name or object. Objects are compared by value not reference
 	 * @param count Defaults to 1.
 	 */
-	has (item: string|Item, count = 1): boolean {
+	has(item: string|Item, count = 1): boolean {
 		let found = 0
 		for (const myitem of this.#contents)  {
 			if (Inventory.#same(myitem,item)) {
@@ -24,8 +24,8 @@ export class Inventory {
 	}
 
 	/** Adds all items to the inventory */
-	add (...items: (Item | Item[])[]): void {
-this.#contents.push(...items.flat())
+	add(...items: (Item | Item[])[]): void {
+		this.#contents.push(...items.flat())
 	}
 
 	/** 
@@ -35,7 +35,7 @@ this.#contents.push(...items.flat())
 	 * @returns Number of items removed, which may be less than `count` if the
 	 * inventory doesn't have that many items.
 	 */
-	remove (item: string|Item, count = 1): number {
+	remove(item: string|Item, count = 1): number {
 		let removed = 0
 		for (let i = this.#contents.length; i--;) {
 			const myitem = this.#contents[i]
@@ -51,7 +51,7 @@ this.#contents.push(...items.flat())
 	/**
 	 * Groups items by name, lore, etc. with the count
 	 */
-	counts (): {item:Item, count:number}[] {
+	counts(): {item:Item, count:number}[] {
 		const groups: Record<string, Item[]> = {}
 		for (const item of this.#contents) {
 			const id = `${item.name}\n${item.lore}`
@@ -62,12 +62,12 @@ this.#contents.push(...items.flat())
 	}
 
 	/** Number of items in inventory */
-	get size () :number{
+	get size() :number{
 		return this.#contents.length
 	}
 
 	/** empties inventory */
-	clear () :void{
+	clear() :void{
 		this.#contents=[]
 	}
 }

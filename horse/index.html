@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>horse simulator</title>
+</head>
+<body>
+LOADI G AVERAGEW HORSE RESULT
+<script>
+	function count(arr, item) {
+	let cnt = 0;
+	for (let i of arr) {
+		if (item !== i) continue;
+		cnt++;
+	}
+	return cnt;
+}
+function breed(num) {
+	let result = Math.random();
+	if (result <= 0.3) return num - 1;
+	if (result <= 0.8) return num;
+	return num + 1;
+}
+function attemptBread(inventory, tier) {
+	let success = false;
+	if (count(inventory, tier) === 2) {
+		inventory = inventory.filter(x=>x!==tier);
+		inventory.push(breed(tier));
+		success = true;
+	}
+	return [inventory, success];
+}
+function sim() {
+	let inventory = [];
+	let horseCount = 0;
+	while (!inventory.includes(4)) {
+		for (let i = 3; i > 0; i--) {
+			let succ;
+			[inventory, succ] = attemptBread(inventory, i);
+			
+			if (succ) break;
+			if (i === 1 && !succ) {
+				inventory.push(1);
+				horseCount++;
+			}
+		}
+	}
+	return horseCount;
+}
+n=100000;c = 0; for (let i = 0; i < n; i++) {c+=sim();}document.write(c/n);
+</script>
+</body>
+</html>

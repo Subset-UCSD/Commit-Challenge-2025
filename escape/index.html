@@ -118,6 +118,27 @@ font-style: italic;
 .space {
   font-size: 0;
 }
+
+#person {
+  color: white;
+  display: inline-block;
+  font-size: 20px;
+  /* line-height: 1; */
+margin: 0;
+animation: person-attack .5s infinite;
+position: relative;
+}
+@keyframes person-attack {
+  0%, 100% {left: 0;}
+  30% {left: calc(100% - 130px);}
+}
+#showdown {
+  display: flex;
+  justify-content: space-between;
+}
+#enemy {
+  height: 60px;
+}
     </style>
 </head>
 
@@ -147,6 +168,13 @@ font-style: italic;
         <button>Item</button> <!-- TODO displays inventory, should contain all items you have so far-->
         <button>Run</button> <!-- TODO random chance to flee otherwise triggers skip-->
       </div>
+    </div>
+    <div id="battle">
+      <div id="showdown">
+        <pre id="person"> o  /<br>/|\/<br>/ \</pre>
+          <img src="../ass/ets/rat.png" id="enemy" alt="ur enemie"/>
+      </div>
+<button>attack</button>
     </div>
 
     <script src="./GAMER.js"></script>

@@ -1,4 +1,4 @@
-import type { Item } from "./types"
+import type { Item } from "../types"
 
 export class Inventory {
 	#contents: Item[] = []

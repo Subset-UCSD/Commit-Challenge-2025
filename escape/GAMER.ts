@@ -3,7 +3,7 @@
  * invoke the great wrath of Thomas Powell
  */
 
-import inventory from "./Inventory";
+import inventory from "./util/Inventory";
 import type { Item, StageInfo } from "./types";
 import { labyrinthEntrance } from "./areas/labyrinth";
 

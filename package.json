@@ -1,7 +1,7 @@
 {
   "scripts": {
-    "build": "esbuild escape/GAMER.ts --outfile=escape/GAMER.js --bundle --format=esm  --tree-shaking=false",
-    "dev": "esbuild escape/GAMER.ts --outfile=escape/GAMER.js --bundle --format=esm  --tree-shaking=false --serve --servedir=."
+    "build": "esbuild escape/*.ts --outdir=escape --bundle --format=esm  --tree-shaking=false",
+    "dev": "esbuild escape/*.ts --outdir=escape --bundle --format=esm  --tree-shaking=false --serve --servedir=."
   },
   "dependencies": {
     "esbuild": "^0.24.2"

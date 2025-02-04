@@ -1,0 +1,154 @@
+/* https://colorhunt.co/palette/09122c872341be3144e17564 */
+:root {
+	color-scheme: dark;
+	accent-color: #BE3144;
+}
+
+body {
+	color: #E17564;
+	background-color: #09122C;
+	margin: 0;
+	padding: 0;
+	font-family: Georgia, Garamond, 'Times New Roman', Times, serif;
+}
+
+#div {
+	width: 600px;
+	margin: 1in auto;
+	padding: 2em;
+	background-color: #872341;
+	border-radius: 0.5em;
+	resize: both;
+}
+
+a {
+	color: cyan;
+	text-decoration: none;
+}
+
+nav a {
+	color: #E17564;
+
+}
+
+@media (max-width: 700px) {
+	#div {
+		margin: 1in 10px;
+		width: auto;
+	}
+}
+
+#location {
+	color: orange;
+	font-style: italic;
+}
+
+#description {
+	font-size: 1.25rem;
+}
+
+#choices {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+#choices button {
+	background-color: #BE3144;
+	color: white;
+	font: inherit;
+	border: none;
+	cursor: pointer;
+	width: 100%;
+	padding: 10px;
+	box-sizing: border-box;
+	transition: background-color .2s;
+}
+
+#choices button:hover {
+	background-color: #E17564;
+}
+
+p {
+	white-space: pre-wrap;
+}
+
+html:has(#powpow) {
+	transition: filter 3s;
+	filter: grayscale() contrast(1.5);
+}
+
+.GO_AWAY {
+	display: none;
+}
+
+.hide-by-defualt {
+	display: none;
+}
+
+.no-come-back-i-am-sorry {
+	display: block;
+}
+
+.item.has-lore {
+	text-decoration: underline dotted;
+	cursor: help;
+	position: relative;
+}
+
+.lore {
+	display: none;
+}
+
+.item.has-lore:hover .lore {
+	/* content: attr(data-lore); */
+	display: block;
+	cursor: auto;
+	position: absolute;
+	left: 0;
+	top: 100%;
+	background-color: #E17564;
+	color: #09122C;
+	padding: 5px;
+	/* min-width: 100px; */
+	/* max-width: 400px; */
+	width: 250px;
+	font-style: italic;
+}
+
+.button-container {
+	display: flex;
+}
+
+.space {
+	font-size: 0;
+}
+
+#person {
+	color: white;
+	display: inline-block;
+	font-size: 20px;
+	/* line-height: 1; */
+	margin: 0;
+	animation: person-attack .5s infinite;
+	position: relative;
+}
+
+@keyframes person-attack {
+	0%,	100% {
+		left: 0;
+	}
+
+	30% {
+		left: calc(100% - 130px);
+	}
+}
+
+#showdown {
+	display: flex;
+	justify-content: space-between;
+}
+
+#enemy {
+	height: 60px;
+}

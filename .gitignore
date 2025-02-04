@@ -2,7 +2,7 @@ node_modules/
 
 messages.json
 
-escape/GAMER.js
+escape/*.js
 
 package-lock.json
 yarn.lock

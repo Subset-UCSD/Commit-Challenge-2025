@@ -13,10 +13,10 @@ type Dire = (typeof Dir)[keyof typeof Dir];
 
 const dictionary = {
 	"walk": [
-		"stumble", "walk", ""
+		"stumble", "walk"
 	],
 	"animal": [
-		"raven", "boar", "horse", "dolphin", "carp", "gargoyle", "john cena"
+		"raven", "boar", "horse", "dolphin", "carp", "gargoyle"
 	],
 	"material": [
 		"stone", "tarnished bronze", "marble", "rusted copper", "glass"

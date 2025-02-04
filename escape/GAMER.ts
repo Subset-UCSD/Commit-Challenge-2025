@@ -30,7 +30,6 @@ function BEGINNING(): StageInfo {
 	return I;
 }
 
-
 let talkedToRaven = false;
 let ravenCompassTaken = false;
 let grassPicked = 0

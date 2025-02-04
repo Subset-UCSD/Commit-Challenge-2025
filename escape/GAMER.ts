@@ -4,8 +4,9 @@
  */
 
 import inventory from "./util/Inventory";
-import type { Item, StageInfo } from "./types";
+import type { StageInfo } from "./util/types";
 import { labyrinthEntrance } from "./areas/labyrinth";
+import { mapItem, sushiItem, compassItem, fishItem, spermPosterItem, grassItem } from "./items/index";
 
 function BEGINNING(): StageInfo {
 	let I: StageInfo = {
@@ -29,11 +30,9 @@ function BEGINNING(): StageInfo {
 	return I;
 }
 
-const grassItem: Item = { name: "blade of grass", lore: "It's just a blade of grass." };
+
 let talkedToRaven = false;
 let ravenCompassTaken = false;
-const mapItem: Item = { name: "Ravensmith Estate map", lore: "a somewhat blurry photocopy of a map of Ravensmith's estate. scribbles and notes dot the map, but few are legible." };
-const compassItem: Item = { name: "compass", lore: "invented by the chinese in 206 BCE." };
 let grassPicked = 0
 function northPath(): StageInfo {
 	let I: StageInfo = {
@@ -96,8 +95,6 @@ function northPath(): StageInfo {
 	return I;
 }
 
-const fishItem: Item = { name: "fish", lore: "a frozen fish wrapped in plastic on a styrofoam plate. its label says it's from winco." };
-const spermPosterItem: Item = { name: "sperm donor poster", lore: "it says \"become a sperm donor!\" theres a nice man smiling and pointing at top 3 reasons to start donating." };
 let spermDonorPoster = true;
 let wincoFish = true;
 function southPath(): StageInfo {
@@ -139,7 +136,6 @@ function southPath(): StageInfo {
 	return I;
 }
 
-const sushiItem: Item = { name: `sushi piece`, lore: `a slice of sushi. the man who made it seemed to be a professional sushi guy or whatever the word is. raw tuna wrapped in seaweed wrapped in sticky rice. did you know? Ravensmith is a big fan of sushi.` };
 let manHungry = true;
 function fieldMan(): StageInfo {
 	let I: StageInfo = {

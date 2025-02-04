@@ -1,4 +1,4 @@
-import type { StageInfo } from "../types";
+import type { StageInfo } from "../util/types";
 import { randomWord } from "../util/text";
 import { rd, clean, shuffleObject } from "../util/text";
 import inventory from "../util/Inventory";

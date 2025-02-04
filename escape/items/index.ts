@@ -1,0 +1,28 @@
+import { Item } from "../util/types";
+
+export const grassItem: Item = {
+	name: "blade of grass",
+	lore: "It's just a blade of grass."
+};
+
+export const mapItem: Item = {
+	name: "Ravensmith Estate map",
+	lore: "a somewhat blurry photocopy of a map of Ravensmith's estate. scribbles and notes dot the map, but few are legible."
+};
+
+export const compassItem: Item = {
+	name: "compass", lore: "invented by the chinese in 206 BCE."
+};
+
+export const fishItem: Item = {
+	name: "fish", lore: "a frozen fish wrapped in plastic on a styrofoam plate. its label says it's from winco."
+};
+
+export const spermPosterItem: Item = {
+	name: "sperm donor poster", lore: "it says \"become a sperm donor!\" theres a nice man smiling and pointing at top 3 reasons to start donating."
+};
+
+export const sushiItem: Item = {
+	name: `sushi piece`, 
+	lore: `a slice of sushi. the man who made it seemed to be a professional sushi guy or whatever the word is. raw tuna wrapped in seaweed wrapped in sticky rice. did you know? Ravensmith is a big fan of sushi.`
+};

@@ -9,5 +9,5 @@
 		"noImplicitAny": false,
 		"outDir": "test"
 	},
-	"include": ["escape/**/*.ts"]
+	"include": ["./*.ts"]
 }

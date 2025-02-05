@@ -28,6 +28,9 @@
 			fog.</p>
 		<div id="choices"></div>
 		<p id="inventory"></p>
+		<ul id="quests">
+
+		</ul>
 	</div>
 	<div id="rpg-battle" class="hide-by-defualt">
 		<p>you are in an rpg battle gg ez</p>
@@ -43,12 +46,19 @@
 			<button>Run</button> <!-- TODO random chance to flee otherwise triggers skip-->
 		</div>
 	</div>
-	<div id="battle">
-		<div id="showdown">
-			<pre id="person"> o	/<br>/|\/<br>/ \</pre>
-			<img src="./assets/rat.png" id="enemy" alt="ur enemie" />
+	<div id="battle" style="display: none;">
+		<p id="battledesc"></p>
+		<div class="healthbars">
+			<div class="healthbar" id="myhealth"></div>
+			<div class="healthbar" id="therehealth"></div>
 		</div>
-		<button>attack</button>
+		<div id="showdown">
+			<pre id="person"> o  /<br>/|\/<br>/ \</pre>
+			<div id="enemy">
+				<img src="./assets/rat.png" alt="ur enemie" />
+			</div>
+		</div>
+		<button class="botton" id="attack">attack</button>
 	</div>
 	<script src="./GAMER.js"></script>
 	<script src="./renderer.js"></script>

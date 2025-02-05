@@ -4,9 +4,12 @@
  */
 
 import inventory from "./util/Inventory";
-import type { StageInfo } from "./util/types";
+import type { Item, StageInfo } from "./util/types";
 import { labyrinthEntrance } from "./areas/labyrinth";
 import { mapItem, sushiItem, compassItem, fishItem, spermPosterItem, grassItem } from "./items/index";
+import type { BattleOptions } from "./renderer";
+import {addQuest, hasQuest, resolveQuest} from './util/QuestManagerFactoryBuilderCreatorFactoryFactoryObserverConflictMediator'
+declare function  startBattle (options: BattleOptions):void
 
 function BEGINNING(): StageInfo {
 	let I: StageInfo = {
@@ -17,6 +20,13 @@ function BEGINNING(): StageInfo {
 			"go south": southPath,
 			"go east": null,
 			'inspect fountain': rubberRoom1,
+			'test': () => {
+				if (hasQuest('click "test" again'))
+					 resolveQuest('click "test" again') 
+					else
+				addQuest('click "test" again')
+				return BEGINNING
+			}
 		}
 	};
 	if (inventory.size === 0) {
@@ -126,13 +136,32 @@ function southPath(): StageInfo {
 				location: "hole",
 				description: "the hole reveals a dead end.",
 				choices: {
-					"Ok": southPath,
+					"Ok": () => {
+						startBattle({ 
+							attackTime:200,
+							description:'theres also a rat. the rat is blind and deaf and paralised. but it is in the way of the exit.',
+							attackStrength:3,
+							totalEnemyHealth:100,
+							totalMeHealth:100
+						})
+						inventory.add(ratItem)
+						return ratDead
+					},
 					"enter dead end": labyrinthEntrance
 				}
 			}
 		};
 	}
 	return I;
+}
+
+const ratItem :Item= {name:'rat',lore:'dead. stinky'}
+function ratDead():StageInfo {
+	return {
+		location:'hole',
+description:"congrats u beat up a defenseless rat. +1 rat",
+choices:{'exit':southPath}
+	}
 }
 
 let manHungry = true;

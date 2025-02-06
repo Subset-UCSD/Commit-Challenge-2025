@@ -1,5 +1,6 @@
 import type { Inventory } from "./util/Inventory";
 import type { Item, Stage } from "./util/types";
+import {wait} from './util/wait'
 
 declare let BEGINNING: Stage;
 declare let inventory: Inventory;
@@ -83,41 +84,90 @@ export type BattleOptions = {
 	attackTime:number
 	/** how quickly player attacks are */
 	attackStrength:number
+	/** how quickly enemy attacks are (set to `Infinity` to disable) */
+	theirattackTime:number
+	/** how quickly enemy attacks are */
+	theirattackStrength:number
 	/** what to say above the battle */
 	description: string
 	/** how much health does the player have */
 	totalMeHealth: number
 	/** how much health enemy has */
 	totalEnemyHealth:number
+	/** whether the player should hold a stick */
+	hasWeapon: boolean
+	/** path to enemy image */
+	enemyImage: string
+	/** path to player attack sound */
+	myAttackSound: string
+	/** path to enemy attack sound */
+	theirAttackSound: string
 }
-let opt: BattleOptions = {
+let opt: Pick<BattleOptions, 'attackTime'|'attackStrength'|'myAttackSound'> = {
 	attackTime:200,
-	description:'',attackStrength:3,totalEnemyHealth:100,totalMeHealth:100
+	attackStrength:3,//theirattackStrength:200,theirattackTime:Infinity
+	myAttackSound: '../ass/ets/hit-slap.mp3',
 }
 let onDie = () => {}
-function startBattle (options: BattleOptions) {
+async function startBattle (options: BattleOptions) {
 	opt=options
 	myhealth.div.style.setProperty('--health', '100%')
-	myhealth.total = opt.totalMeHealth
+	myhealth.total = options.totalMeHealth
 	myhealth.hp = myhealth.total
 	theirhealth.div.style.setProperty('--health', '100%')
-	theirhealth.total = opt.totalEnemyHealth
+	theirhealth.total = options.totalEnemyHealth
 	theirhealth.hp = theirhealth.total
-	document.getElementById('battledesc')!.innerHTML=opt.description
+	enemy.querySelector('img')!.src = options.enemyImage
+	person.className = options.hasWeapon ? 'armed':''
+	document.getElementById('battledesc')!.innerHTML=options.description
 	document.getElementById('battle')!.style.display='block'
 	document.getElementById('text-based-adventure')!.style.display='none'
 	onDie = () => {
 		document.getElementById('battle')!.style.display='none'
 	document.getElementById('text-based-adventure')!.style.display=''
 	}
+
+	if (options.theirattackTime < Infinity) {
+		while (myhealth.hp > 0 && theirhealth.hp > 0) {
+			const animationTime = Math.max(options.theirattackTime)
+			enemy.style.animationName = 'none'
+			enemy.style.animationDuration = `${animationTime}ms`
+			enemy.getBoundingClientRect() // force reflow to restart animation
+			enemy.style.animationName = 'enemy-attack'
+
+			await wait(animationTime*0.3)
+
+			new Audio(options.theirAttackSound).play()
+			const damage = document.createElement('span')
+			damage.className = 'damage'
+			damage.textContent = `${options.theirattackStrength} ow`
+			damage.style.transform = `translate(${Math.random() * -100}%, ${Math.random() * 200 - 100}%)`
+			person.append(damage)
+			setTimeout(() => {
+				damage.remove()
+			}, 500)
+			myhealth.hp-=options.theirattackStrength
+			if (myhealth.hp <= 0) {
+				myhealth.hp=0
+				// you die
+				attack.disabled = true
+				attack.style.animationPlayState = 'paused'
+			}
+			myhealth.div.style.setProperty('--health', myhealth.hp/myhealth.total*100+'%')
+
+			await wait(options.theirattackTime-animationTime*0.3)
+		}
+	}
 }
 
 attack.addEventListener('click', () => {
 	attack.disabled = true
 	setTimeout(() => {
+		if (attack.style.animationPlayState !== 'paused')
 		attack.disabled=  false
 	}, opt.attackTime)
 	setTimeout(() => {
+		new Audio(opt.myAttackSound).play()
 		const damage = document.createElement('span')
 		damage.className = 'damage'
 		damage.textContent = `${opt.attackStrength} ow`

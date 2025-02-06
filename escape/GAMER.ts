@@ -20,13 +20,6 @@ function BEGINNING(): StageInfo {
 			"go south": southPath,
 			"go east": null,
 			'inspect fountain': rubberRoom1,
-			'test': () => {
-				if (hasQuest('click "test" again'))
-					 resolveQuest('click "test" again') 
-					else
-				addQuest('click "test" again')
-				return BEGINNING
-			}
 		}
 	};
 	if (inventory.size === 0) {
@@ -112,6 +105,7 @@ function southPath(): StageInfo {
 		description: "the path abruptly ends at a brick wall. you jump to look over, but all you see is fog. ",
 		choices: {
 			"go north": BEGINNING,
+			"follow the wall": followWall,
 		},
 	}
 	if (wincoFish) {
@@ -131,28 +125,75 @@ function southPath(): StageInfo {
 		}
 	} else {
 		I.description += "<span style='color: #F4F8D3'>theres a sizeable hole on the wall where the poster once was.</span> ";
-		I.choices["enter hole"] = () => {
-			return {
-				location: "hole",
-				description: "the hole reveals a dead end.",
-				choices: {
-					"Ok": () => {
-						startBattle({ 
-							attackTime:200,
-							description:'theres also a rat. the rat is blind and deaf and paralised. but it is in the way of the exit.',
-							attackStrength:3,
-							totalEnemyHealth:100,
-							totalMeHealth:100
-						})
-						inventory.add(ratItem)
-						return ratDead
-					},
-					"enter dead end": labyrinthEntrance
-				}
-			}
-		};
+		I.choices["enter hole"] = hole;
 	}
 	return I;
+}
+
+function hole():StageInfo {
+	return {
+		location: "hole",
+		description: "the hole reveals a dead end.",
+		choices: {
+			"Ok": () => {
+				startBattle({ 
+					attackTime:200,
+					description:'theres also a rat. the rat is blind and deaf and paralised. but it is in the way of the exit.',
+					attackStrength:3,
+					totalEnemyHealth:100,
+					totalMeHealth:100,
+					enemyImage:'./assets/rat.png',hasWeapon:false,theirattackStrength:1,theirattackTime:Infinity,
+					myAttackSound: '../ass/ets/hit-slap.mp3',
+					theirAttackSound: '../ass/ets/hit-slap.mp3',
+				})
+				inventory.add(ratItem)
+				resolveQuest(ratQuest)
+				return ratDead
+			},
+			"enter dead end": labyrinthEntrance
+		}
+	}
+}
+
+const ratQuest=  "find a rat from the brick wall"
+const ratBringQuest=  "give jimmy the rat"
+let beatJimmyUp = false
+function followWall():StageInfo {
+	const I: StageInfo  = {
+		location: inventory.has(mapItem) ? "Ravensmith Estate Wall" : "brick wall",
+		description: "you continue along the wall until you see a metal-plated sign bolted on the wall. ",
+		choices: {
+			"return to the path": southPath,
+			"read sign": () => {
+				if(!beatJimmyUp){
+					addQuest(ratBringQuest)
+					if (!inventory.has(ratItem)) addQuest(ratQuest)
+				}
+				// inventory.add(ratItem)//TEMP
+				return "the sign reads, \"employee of the month: jimmy, estate wall pest control.\" upon closer inspection, there are more words scratched onto the wall: \"do NOT bring him rats\""
+			}
+		}
+	}
+	if (inventory.has(ratItem)) {
+		I.choices["place rat"] = () => {
+			inventory.remove(ratItem)
+			resolveQuest(ratBringQuest)
+			startBattle({ 
+				attackTime:200,
+				description:'you have summoned jimmy. he gobbles up the rat corpse but does not look pleased. uh.. he looks quite pissed, actually.',
+				attackStrength:3,
+				totalEnemyHealth:100,
+				totalMeHealth:100,
+				enemyImage:'../ass/ets/softwareengineer.png',hasWeapon:false,theirattackStrength:10,theirattackTime:2000,
+				myAttackSound: '../ass/ets/hit-slap.mp3',
+				theirAttackSound: '../ass/ets/hit-slap.mp3',
+			})
+			addQuest("escape the feds")
+			beatJimmyUp = true
+			return "congrats. you have assaulted a man. the feds are after you now."
+		}
+	}
+	return I
 }
 
 const ratItem :Item= {name:'rat',lore:'dead. stinky'}

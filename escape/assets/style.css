@@ -45,7 +45,7 @@ nav a {
 	font-style: italic;
 }
 
-#description {
+#description,#battledesc {
 	font-size: 1.25rem;
 }
 
@@ -164,6 +164,15 @@ html:has(#powpow) {
 		left: calc(100% - 130px);
 	}
 }
+@keyframes enemy-attack {
+	0%,	100% {
+		right: 0;
+	}
+
+	30% {
+		right: calc(100% - 130px);
+	}
+}
 
 @keyframes cooldown {
 0% {width: 100%;}
@@ -213,6 +222,12 @@ margin-left: auto;}
 	height: 100%;
 	width: var(--health);
 	background-color: red;
+}
+.weapon {
+	display: none;
+}
+.armed .weapon {
+	display: block;
 }
 
 #quests {

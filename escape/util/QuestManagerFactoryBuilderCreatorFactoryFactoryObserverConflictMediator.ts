@@ -7,8 +7,13 @@ type Quest = {
 
 const questsList = document.getElementById('quests') as HTMLUListElement
 const quests: Quest[] = []
+const completed: string[] = []
 
-export function addQuest (questHtml: string) {
+export function addQuest (questHtml: string, allowRepeat = false) {
+  if (!allowRepeat&& completed.includes(questHtml)) {
+    
+    console.error(' quest',questHtml, 'alr completed')
+    return}
   if (quests.some(q => q.html === questHtml)) {
     
     console.error(' quest',questHtml, 'alr exists')
@@ -49,6 +54,7 @@ export function resolveQuest (questHtml: string) {
     q.li.classList.add('done')
 q.checkbox.onclick = () => q.li.remove()
 quests.splice(qi)
+completed.push(q.html)
 }
 
 export function hasQuest (questHtml:string) {

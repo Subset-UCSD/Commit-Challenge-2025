@@ -214,7 +214,7 @@ justify-content: flex-end;    }
             <tr><td>2</td><td>❌</td><td>✅</td><td>❌</td></tr>
             <tr><td>3</td><td title="mlk day">👴🏾</td><td>❌</td><td>🕢</td></tr>
             <tr><td>4</td><td>✅</td><td>❌</td><td>✅</td></tr>
-            <tr><td>5</td><td>❌</td><td></td><td></td></tr>
+            <tr><td>5</td><td>❌</td><td>❌</td><td>❌</td></tr>
         </tbody>
     </table>
     <p><strong><em>SAUCY MARCELO SECRETS</em></strong> will be revaeled..</p>
@@ -237,6 +237,7 @@ justify-content: flex-end;    }
             score += 1 // week 4 wednesdya
             score += 1 // week 5 monday
             score += 1 // week 5 wednesady
+            score += 1 // week 5 frday
             bar.style.width = `${score / 13 * 100}%`
             if (score >= 13) {
                 alert('congratulations marcelo! you did it!')
@@ -428,6 +429,31 @@ lowPassNode.gain.value = 25;
     <button class="mlkbtn" onclick="mlkwrapper.remove()">No</button>
 </div>
 </div>
+
+<style>
+    #left,#right {
+        position: fixed;
+        /* z-index: -1; */
+        top: 0;bottom:0;height: 100%;
+        object-fit: cover;
+        overflow: hidden;
+        width: max(calc(calc(100vw - 700px) / 2), 0);
+        width: calc(calc(100vw - 700px) / 2);
+        max-width: 300px;
+    }
+    #left {
+        left: 0;
+        animation: from-left .574s 1.58732s both linear;
+    }
+    @keyframes from-left {from{transform:translateX(-100%)} to{transform:translateX(0)}}
+    #right {
+        right: 0;
+        animation: from-right .512s 1.5s both linear;
+    }
+    @keyframes from-right {from{transform:translateX(100%)} to{transform:translateX(0)}}
+</style>
+<img src="./ass/ets/haodilao.gif" alt="marcelo sips his drink at Haidilao" id="left">
+<img src="./ass/ets/mardance.gif" alt="marcelo dances on the beach" id="right">
 
 </body>
 </html>

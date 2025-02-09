@@ -361,7 +361,7 @@ lowPassNode.gain.value = 25;
     #mlkwrapper {display: none;
         position: fixed;
         left:0;right:0;bottom:0;
-
+z-index: 5;
         animation: mlk 1s linear 1.5s both;
     }
     #mlk {
@@ -434,9 +434,26 @@ lowPassNode.gain.value = 25;
     #left,#right {
         position: fixed;
         /* z-index: -1; */
-        top: 0;bottom:0;height: 100%;
+        top: 0;bottom:0;
+        &::after {
+            content: '';
+            background-image: url('./ass/ets/adchoices.png');
+            width: 16px;
+            height: 16px;
+            background-size: 12px;
+            background-repeat: no-repeat;
+            background-position: center;
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-bottom-left-radius: 2px;
+        }
+    }
+    #left img,#right img {
         object-fit: cover;
         overflow: hidden;
+        height: 100%;
         width: max(calc(calc(100vw - 700px) / 2), 0);
         width: calc(calc(100vw - 700px) / 2);
         max-width: 300px;
@@ -453,5 +470,7 @@ lowPassNode.gain.value = 25;
     @keyframes from-right {from{transform:translateX(100%)} to{transform:translateX(0)}}
 </style>
 
+<div id="left"><img src="./ass/ets/haodilao.gif" alt="marcelo sips his drink at Haidilao"></div>
+<div id="right"><img src="./ass/ets/mardance.gif" alt="marcelo dances on the beach"></div>
 </body>
 </html>

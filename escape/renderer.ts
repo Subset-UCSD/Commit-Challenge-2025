@@ -1,4 +1,5 @@
 import type { Inventory } from "./util/Inventory";
+import { typeText } from "./util/text";
 import type { Item, Stage } from "./util/types";
 import {wait} from './util/wait'
 
@@ -30,12 +31,14 @@ function renderInventory() {
 	}`;
 }
 
-const render = () => {
+const render = async () => {
 	for (let i = 0; i < 87; i++) current() // call the stage 87 times to make sure it's pure
 	const { location, description, choices } = current();
 	document.title = location;
 	document.getElementById("location")!.innerHTML = location;
-	document.getElementById("description")!.innerHTML = description;
+	const desc = document.getElementById("description")!;
+	desc.innerHTML = "";
+	await typeText(desc, description);
 	document.getElementById("choices")!.innerHTML = Object.keys(choices).map(
 		(choice, i) => choices[choice] ? `<button onclick="select(${i})">${choice}</button>` : ""
 	).join("");

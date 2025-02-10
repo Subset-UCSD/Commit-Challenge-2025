@@ -23,7 +23,7 @@ function BEGINNING(): StageInfo {
 		}
 	};
 	if (inventory.size === 0) {
-		I.description += "<span style='color: #'><span style='color:#DE3163'>you have no memory , no items in hand.</span></span> ";
+		I.description += "<span style='color:#DE3163'>you have no memory , no items in hand.</span> ";
 	}
 	if (inventory.has(mapItem)) {
 		I.choices["go east"] = () => {

@@ -31,5 +31,97 @@
             }
       </script>
     </form>
+    <h2>
+      pride flags
+    </h2>
+    <li></li>
+    <style>
+      #pride {
+        & li {
+          color: rgba(0, 0, 0, 0.05);
+          display: block;
+          width : 500px;
+          height: 300px;
+
+        }
+
+      }
+      #pridee {
+        background-image: linear-gradient(to bottom, #DADADA, #DADADA 12.5%, #704B18 12.5%, #704B18 25%, #D10405 25%, #D10405 37.5%, #F38705 37.5% #F38705 50%,#F0E004 50%, #F0E004 62.5% #067C2B 62.5%,  #067C2B 75%, #054FF5 75%, #054FF5 87.5%, #5A056C 87.5%, #5A056C);
+
+      }
+      #gay {
+        background-image: linear-gradient(to bottom, #438B73, #438B73 12.5%, #6ACBAC 12.5%, #6ACBAC 25%, #ADE6C5 25%, #ADE6C5 37.5%, #FFFFFF 37.5%, #FFFFFF 50%, 
+        #87ABDD 50%, #87ABDD 62.5%, #504AC4 62.5% , #504AC4 75%, #504AC4 75%, #371E72 87.5%, #371E72);
+      }
+      #bi {
+        background-image: linear-gradient(to bottom, #D70071 , #D70071 40%, #9C4E97 40%, #9C4E97 60%, #0035AA 60%, #0035AA);
+      }
+      #lesb {
+        background-image: linear-gradient(to bottom, #D62900, #D62900 20%, #FF9B55 20%, #FF9B55 40%, #FFFFFF 40%, #FFFFFF 60%, #D462A6 60%, #D462A6 80%, 
+        #A40062 80%, #A40062);
+      }
+      #trans , #transsex{
+        background-image: linear-gradient(to bottom, #60D0FA, #60D0FA 20%, #F5ACBA 20%, #F5ACBA 40%, #FFFFFF 40%, #FFFFFF 60%, #F5ACBA 60%, #F5ACBA 80%, 
+        #60D0FA 80%, #60D0FA);
+
+      }
+      #ace {
+        
+        background-image: linear-gradient(to bottom, #000000, #000000 25%, #A4A4A5 25%, #A4A4A5 50%, #FFFFFF 50%, #FFFFFF 75%, #810081 75%, #810081);
+      }
+      #aro {
+        background-image: linear-gradient(to bottom, #43A848, #43A848 20%, #A7D379 20%, #A7D379 40%, #FFFFFF 40%, #FFFFFF 60%, #A9A9A9 60%, #A9A9A9 80%, 
+        #000000 80%, #000000);
+        
+      }
+      #nb {
+        background-image: linear-gradient(to bottom, #FFF430, #FFF430 25%, #FFFFFF 25%, #FFFFFF 50%, #9C59D1 50%, #9C59D1 75%, #292929 75%, #292929);
+
+      }
+      #transsex {
+
+      }
+      #pan {
+        background-image: linear-gradient(to bottom, #FF1B8D, #FF1B8D 33.3%, #FFD900 33.3%, #FFD900 66.7%, #1BB3FF 66.7%, #1BB3FF );
+
+      }
+    </style>
+    <ul id="pride">
+      <li id="pridee">everyone!!</li>
+      <li id="gay">
+        gay
+
+      </li>
+      <li id="bi">
+        bi
+      </li>
+      <li id="lesb">
+        lesb (other type of gay)
+      </li>
+      <li id="trans"> 
+        trans
+      </li>
+      <li id="ace">
+        ace
+      </li>
+      <li id="aro">aro</li>
+      <li id="nb">nb</li>
+      <li id="transsex">transsexual</li>
+      <li id="pan">pan</li>''
+
+    </ul>
+    <h2>
+      countries
+    </h2><ul>
+      
+    <script>
+      const flag = [...'🇦🇶'][0].codePointAt(0)
+      for (let i = 0; i <26;i++)
+      for (let j = 0; j <26;j++) {
+      document.write('<li>'+String.fromCodePoint(i + flag)+String.fromCodePoint(j + flag)+'</li>')
+    }
+    </script>
+    </ul>
   </body>
 </html>

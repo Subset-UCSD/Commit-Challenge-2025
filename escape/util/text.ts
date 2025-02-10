@@ -1,3 +1,4 @@
+import { StageInfo } from "./types";
 
 
 export function randomWord<T extends Record<string, readonly string[]>>(dictionary: T, key: keyof T) {
@@ -50,56 +51,50 @@ function openTag(element: HTMLElement) {
     return attributes ? `<${tagName} ${attributes}>` : `<${tagName}>`;
 }
 
-function type_helper(child: ChildNode): string[] | TypingElem {
+function type_helper(child: ChildNode, i: number, delayMs: number): [number, string] {
+	const c: HTMLElement = (<HTMLElement>child);
 	switch (child.nodeType) {
 		case Node.TEXT_NODE:
-			return child.textContent!.split("").map(y => `<t-t>${y}</t-t>`);
+			let res = [...child.textContent!].map(y => {
+				let x = `<t-t style="animation-delay: ${i+=delayMs}ms;">${y}</t-t>`;
+				if (y === ".") i += 8 * delayMs;
+				if (y === ",") i += 4 * delayMs;
+				return x;
+			}).join("");
+			return [i, res];
 		case Node.ELEMENT_NODE:
-			if ((<HTMLElement>child).classList.contains("no-type")) {
-				return [(<HTMLElement>child).innerHTML];
-			} else {
-				return {
-					open: openTag(<HTMLElement>child),
-					text: [...child.childNodes].map(y=>type_helper(y)),
-					close: `</${(<HTMLElement>child).tagName.toLowerCase()}>`
-				};
+			if (!c.classList.contains("no-type")) {
+				let replaced = [...child.childNodes].map(y => {
+					let res;
+					[i, res] = type_helper(y, i, delayMs);
+					return res;
+				}).join("");
+				c.innerHTML = replaced;
+				c.style.animationDelay = `${i+=delayMs}ms`;
 			}
+			return [i, c.outerHTML];
 		default:
-			return [""];
+			console.warn("Not rendering element in your description");
+			return [i, ""];
 	}
 }
 
-interface TypingElem {
-	open: string;
-	text: (TypingElem | string[])[]
-	close: string;
-}
-
-type TypedText = (string[]|TypingElem)[];
-
-function getTypingText(text: string): TypedText {
+export function typeText(text: string): [number, string] {
 	const test = document.createElement("div");
 	test.innerHTML = text;
-	return [...test.childNodes].map(type_helper);
+	let i = 0;
+	let res = [...test.childNodes].map(c => {
+		let res;
+		[i, res] = type_helper(c, i, 15);
+		return res;
+	}).join("");
+	return [i, res];
 }
 
-function delay(ms: number) {
-	return new Promise(res => setTimeout(res, ms));
-}
-export async function typeText(elem: HTMLElement, text: string) {
-	const tt = getTypingText(text);
-	let curr: HTMLElement[] = [elem];
-	for (let t of tt) {
-		if (Array.isArray(t)) {
-			for (let char of t) {
-				curr.at(-1)!.innerHTML += char;
-				await delay(10);
-			}	
-		} else {
-			let temp = document.createElement("template");
-			temp.innerHTML = t.open + t.close;
-			let elem = <HTMLElement>temp.querySelector("*")!;
-			curr.push(elem);
-		}
-	}
+export function showChoices(choices: StageInfo["choices"], i_off: number) {
+	return Object.keys(choices).map((choice, i) => 
+		choices[choice] ? 
+			`<button style="animation-delay: ${i_off += 300}ms" onclick="select(${i})">${choice}</button>` :
+			""
+	).join("");
 }

@@ -1,5 +1,5 @@
 import type { Inventory } from "./util/Inventory";
-import { typeText } from "./util/text";
+import { typeText, showChoices } from "./util/text";
 import type { Item, Stage } from "./util/types";
 import {wait} from './util/wait'
 
@@ -31,17 +31,18 @@ function renderInventory() {
 	}`;
 }
 
+/**
+ * This is used to set ddescription
+ */
 const render = async () => {
 	for (let i = 0; i < 87; i++) current() // call the stage 87 times to make sure it's pure
 	const { location, description, choices } = current();
 	document.title = location;
 	document.getElementById("location")!.innerHTML = location;
-	const desc = document.getElementById("description")!;
-	desc.innerHTML = "";
-	await typeText(desc, description);
-	document.getElementById("choices")!.innerHTML = Object.keys(choices).map(
-		(choice, i) => choices[choice] ? `<button onclick="select(${i})">${choice}</button>` : ""
-	).join("");
+	let [i, desc] = typeText(description);
+	let choice = showChoices(choices, i);
+	document.getElementById("description")!.innerHTML = desc;
+	document.getElementById("choices")!.innerHTML = choice;
 	renderInventory();
 }
 
@@ -53,8 +54,9 @@ const select = (index: number) => {
 	if (typeof result === "string") {
 		// "choice thing": () => { do something; return "text to display" }
 		// something happened
-		document.getElementById("description")!.innerHTML = result
-		document.getElementById("choices")!.innerHTML = `<button onclick="render()">ok</button>`
+		let [i, desc] = typeText(result);
+		document.getElementById("description")!.innerHTML = desc;
+		document.getElementById("choices")!.innerHTML = `<button onclick="render()" style="animation-delay: ${i}ms">ok</button>`;
 		renderInventory()
 	} else if (typeof result === "function") {
 		// "choice thing": () => { do something; return nextStage }

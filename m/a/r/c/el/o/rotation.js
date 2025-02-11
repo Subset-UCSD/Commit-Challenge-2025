@@ -154,7 +154,7 @@ wrapper.addEventListener('pointermove', e => {
       )
     }
     image.style.transform = toCss(transformation)
-    if (Math.abs(transformation[0][1]) > 0.1 && !calledRotated) {
+    if (Math.abs(transformation[0][1]) > 0.7 && !calledRotated) {
       calledRotated = true
       onRotated()
     }

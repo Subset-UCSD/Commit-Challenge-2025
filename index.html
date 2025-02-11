@@ -265,12 +265,65 @@ justify-content: flex-end;    }
         .marcelowrapper:active {
             cursor: grabbing;
         }
+        #get-rotated {
+            position: absolute;
+            inset: 0;
+            z-index: 5;
+            display: flex;
+            flex-direction: column;
+            color: white;
+            text-align: center;
+            text-shadow: none;
+            animation: wow-rotated 5s forwards;
+        }
+        @keyframes wow-rotated {
+            0%, 100% {
+                transform: scale(1.2);
+                opacity: 0;
+            }
+            20%, 80% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        #get-rotated.rothidden {
+            display: none;
+        }
+        #get-rotated p {
+            margin: 0;
+        }
+        #get-rotated-box {
+            flex: auto;
+            border: 5px solid black;
+            outline: 1px solid white;
+            box-shadow: 0 0 0 400px black;
+            margin-bottom: 10px;
+        }
+        #two {
+            font-size: 30px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        #one {
+            font-size: 20px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
         </style>
      <div class="marcelowrapper" id="wrapper">
         <div class="marcelorotatable" id="map">
 
         </div>
+        <div id="get-rotated" class="rothidden">
+            <div id="get-rotated-box"></div>
+            <p id="two">GET ROTATED</p>
+            <p id="one">Idiot</p>
+        </div>
      </div>
+     <script>
+        function onRotated() {
+            // alert('get fucking rotated bitch')
+            document.getElementById('get-rotated').classList.remove('rothidden')
+        }
+        </script>
      <script src="./m/a/r/c/el/o/rotation.js"></script>
     <audio id="audio" controls loop src='./ass/ets/substantial.mp3'></audio>
     <audio id="audio2" controls loop src="./ass/ets/An awesome recording.mp3"></audio>

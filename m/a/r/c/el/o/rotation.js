@@ -104,6 +104,7 @@ wrapper.addEventListener('pointerdown', e => {
     wrapper.setPointerCapture(e.pointerId)
   }
 })
+let calledRotated = false
 wrapper.addEventListener('pointermove', e => {
   if (pointer?.id === e.pointerId || pointer?.other?.id === e.pointerId) {
     if (pointer.id === e.pointerId) {
@@ -153,6 +154,10 @@ wrapper.addEventListener('pointermove', e => {
       )
     }
     image.style.transform = toCss(transformation)
+    if (Math.abs(transformation[0][1]) > 0.1 && !calledRotated) {
+      calledRotated = true
+      onRotated()
+    }
   }
 })
 const pointerEnd = e => {

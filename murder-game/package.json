@@ -18,7 +18,7 @@
     "@types/express": "^5.0.0",
     "@types/node": "^22.10.5",
     "@types/ws": "^8.5.13",
-    "esbuild": "^0.24.2",
+    "esbuild": "^0.25.0",
     "typescript": "^5.7.2"
   }
 }

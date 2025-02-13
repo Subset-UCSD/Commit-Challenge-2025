@@ -60,7 +60,7 @@ transform: rotate(-0.3deg);
         max-width: 100%;
     }
 
-    .cookies {
+    .fish {
         bottom: 0;
         --ahh: 100%;
         left:0;right:0;
@@ -169,6 +169,28 @@ justify-content: flex-end;    }
 </head>
 
 <body>
+    <div style='width: 100%;
+    display: inline-block;
+    padding-top: .625em;
+    padding-bottom: .625em;
+    background: #f7f8f9;
+    border-bottom: 1px solid #b4b5b6;font-family:"Avenir Next", arial, sans-serif;padding-left: 350px'>
+    <div style="font-size: .75rem;
+    display: grid;
+    grid-template-columns: 22px 1fr;
+    grid-column-gap: 10px; color: rgb(16, 24, 32);" aria-label="Official website of the United States government">
+        <span style="display: inline-block;
+        width: 24px;
+        height: 13px;
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAZCAMAAABAf11LAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAE5QTFRF////sxlC7MbQ2YyhxlNxCjFhR2WJV3GSKUt1dYumOFh/GT5rhZiwwszYsr/OlKW6Zn6c0djh8PL1iR9Ko7LE4OXrl0pttKC0pXWRtYKbSuJhRQAAANFJREFUeNrkkctuwyAUREnSuW/ApHYf//+jBVdZVcJi3aORgAXcMyLBAAJEzsVG3m8TkifyI3zfPQ6nJJLo421CArSBmkgjNEWtQE4zXJmClXuCWIlU5hdQxCqbqnE1KdIz79CVDvBwZxyKfQfmHTyzl01UZSvOWSTbhZLSWeDMufWLC/1ls3amT4qQq394EjIjApxBT+/nr8eEBNuKcB9SWMpmEXalNOylmlUZNTr4vE/4VdKhpC+leQf6y/e0wzL3RdJtkfUJyzwW+ZcdfgQYAJmJD3zerW6OAAAAAElFTkSuQmCC);
+        background-size: contain;
+        background-repeat: no-repeat;"></span>
+        <div style="display: inline-block;">
+            An official website of the
+            <span style="white-space: nowrap;">United States government</span>
+        </div>
+    </div>
+    </div>
 <div id="div">
     <nav>
         subset
@@ -270,7 +292,7 @@ justify-content: flex-end;    }
         #get-rotated {
             position: absolute;
             inset: 0;
-            z-index: 5;
+            z-index: 10;
             display: flex;
             flex-direction: column;
             color: white;
@@ -427,13 +449,13 @@ lowPassNode.gain.value = 25;
     </script>
 </div>
 
-<div class="bruh cookies" id="cookiesconsent">
-    <h2>This website uses cookies</h2>
+<div class="bruh fish" id="fishconsent">
+    <h2>This website uses fish</h2>
     <p>
-        We use cookies and other tracking technologies to improve your browsing experience on our website, to show you personalized content and targeted ads, to analyze our website traffic, to sell your organs, and to understand where our visitors are coming from.
+        We use fish and other tracking technologies to improve your browsing experience on our website, to show you personalized content and targeted ads, to analyze our website traffic, to sell your organs, and to understand where our visitors are coming from.
 
     </p>
-    <div class="buttons" onclick="event.target.closest('button')&& (cookiesconsent.remove(),mlkwrapper.style.display='block')">
+    <div class="buttons" onclick="event.target.closest('button')&& (fishconsent.remove(),mlkwrapper.style.display='block')">
         <button>I agree</button>
     <button>Accept and continue</button>
     <button>Allow</button>

@@ -21,10 +21,32 @@ jobs:
             - name: windows + L
               id: changelog
               run: |
-                echo "## commits" > changelog.md
-                git log --since="24 hours ago" --pretty=format:"- %s" >> changelog.md
+                COMMITS=$(git log --since="24 hours ago" --pretty=format:"- %s" -p)
+
+                if ! echo "$COMMITS" | grep -q "-"; then
+                  echo "erm nobody committed"
+                  exit 1
+                fi
+
+                jq -n --arg commits "$COMMITS" \
+                  '{"contents": [{"parts": [{"text": "summarize what each of the commits is doing. format your response as a markdown file that will act as release notes: \n\($commits)"}]}]}' > gemini_prompt.json
               shell: bash
             
+            - name: geminis you
+              env: 
+                GEMINI_API_KEY: ${{ secrets.GEMINI_API}}
+              run: |
+                RESPONSE=$(curl -s "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyCAkxOSe_xltJzlZguInzXY-yGugDVQF1g" \
+                -H 'Content-Type: application/json' \
+                -X POST \
+                -d @gemini_prompt.json)
+
+                RELEASE_NOTES=$(echo $RESPONSE | jq -r '.candidates[0].content.parts[0].text')
+
+                echo "$RELEASE_NOTES" > changelog.md
+                sed -i '1d;$d' changelog.md
+              shell: bash
+
             - name: tag you're it
               run: |
                 echo "TAG_NAME=nightly-$(date +'%Y-%m-%d')" >> $GITHUB_ENV

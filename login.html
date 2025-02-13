@@ -1,0 +1,256 @@
+<!doctype html>
+<html class="no-js" lang="en-US">
+<head>
+<title>SINGLE SIGN-ON</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="ORGANIZATION" content="University of California, San Diego">
+<meta name="SITE" content="SINGLE SIGN-ON">
+<meta name="PAGETITLE" content="SINGLE SIGN-ON">
+<meta name="DESCRIPTION" content="SINGLE SIGN-ON">
+
+<!-- <link rel="stylesheet" href="https://cdn.ucsd.edu/cms/decorator-5/styles/bootstrap.min.css">
+<link href="https://cdn.ucsd.edu/cms/decorator-5/styles/base.min.css" rel="stylesheet"/> -->
+
+<link rel="stylesheet" href="https://a5.ucsd.edu/tritON/css/bootstrap.min.css">
+<link href="https://a5.ucsd.edu/tritON/css/base.min.css" rel="stylesheet"/>
+<link href="https://a5.ucsd.edu/tritON/css/sso.css" rel="stylesheet"/>
+
+<!--[if lt IE 9]>
+<link rel="stylesheet" href="styles/ie-support.css"/>
+<![endif]-->
+
+<!-- Begin site-specific CSS files -->
+
+<!-- End site-specific CSS files -->
+
+
+
+<!--[if lt IE 9]>
+<script src="vendor/respond/dest/respond.min.js"></script>
+<link href="https://cdn.ucsd.edu/cms/decorator-4/scripts/cross-domain/respond-proxy.html" id="respond-proxy" rel="respond-proxy" />
+<link href="img/respond.proxy.gif" id="respond-redirect" rel="respond-redirect" />
+<script src="scripts/ucsd/respond-proxy.js"></script>
+<![endif]-->
+</head>
+<body>
+<!-- See env-stage, etc. as appropriate -->
+
+<header class="layout-header">
+	<a class="sr-only" href="#main-content">Skip to main content</a>
+	<div id="uc-emergency"></div>
+	<section class="layout-login">
+		<div class="layout-container"></div>
+	</section>
+
+	<section class="layout-title">
+		<div class="layout-container container">
+			<div class="row">
+				<div class="col-md-12">
+					<a href="index.html" class="title-header title-header-large">SINGLE SIGN-ON</a>
+					<a href="index.html" class="title-header title-header-short">SSO</a>
+					<a href="https://www.ucsd.edu" class="title-logo">UC San Diego</a>
+				</div>
+			</div>
+		</div>
+	</section>
+</header>
+
+<!-- mobile offcanvas nav -->
+<div class="navmenu navmenu-default navmenu-fixed-left offcanvas">
+	<ul class="nav navmenu-nav">
+		<li class=""><a href="eds/index.html">Password and Access</a>
+		</li>
+		<li class=""><a href="research-data/index.html">Enroll in Two-Step Login</a>
+		</li>
+		<li class=""><a href="research-data/index.html">Get Help</a>
+		</li>
+	</ul>
+</div>
+<!-- end mobile offcanvas nav -->
+
+<!-- navbar -->
+<nav class="navbar navbar-default navbar-static-top">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".navmenu"
+				data-canvas="body" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<div class="col-sm-1 mobile-nav-bars">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</div>
+				<div class="col-sm-1 mobile-nav-icon">
+					MENU
+				</div>
+			</button>
+			<div class="col-sm-4 pull-right visible-xs-block">
+		<!-- <img src="https://cdn.ucsd.edu/developer/decorator/5.0.2/img/ucsd-footer-logo-white.png" alt=""
+					class="img-responsive header-logo" /> -->
+                   <img src="https://a5.ucsd.edu/tritON/img/ucsd-footer-logo-white.png" alt=""
+                                        class="img-responsive header-logo" />
+			</div>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav">
+				<li class="dropdown">
+					<a href="https://blink.ucsd.edu/technology/network/access/index.html" role="button"
+						aria-haspopup="true" aria-expanded="false">Passwords and Access</a>
+				</li>
+				<li class="dropdown">
+					<a href="https://twostep.ucsd.edu/" role="button" aria-haspopup="true" aria-expanded="false">Enroll
+						in Two-Step Login</a>
+				</li>
+				<li><a href="https://blink.ucsd.edu/go/servicedesk">Get Help</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+<main class="layout-main" id="main-content" role="main">
+  <section class="container sso-container-screen">
+    <div class="row">
+      <div class="col-md-12">
+        
+                                                
+
+
+
+
+
+
+
+        <h1 class="signing hidden-xs">Signing on using: <span class="s-type">Active Directory</span> </h1>
+        <div class="row">
+          <div class="col-sm-12 nopadding">
+            <div class="col-md-8 col-sm-11">
+              <div class="sso-screen">
+                <div class="col-sm-5 login-other">
+                </div>
+                <div class="col-sm-7 login-option-select">
+                  
+                 <form id="login" name="login" method="post" action="https://a5.ucsd.edu/tritON/profile/SAML2/Redirect/SSO?execution=e1s1" target="_self" rel=noreferrer>
+
+                            <div class="form-group">
+                              <label for="ssousername">User name (or email address)</label>
+                              <input type="username" class="form-control" id="ssousername" name="urn:mace:ucsd.edu:sso:username" tabindex="1">
+                              <p class="log-options"><a tabindex="5" href="" alt="Inactive" class="hidden-xs"></a></p>
+                            </div>
+
+                            <div class="form-group">
+                              <label for="ssopassword">Password:</label>
+                              <input type="password" class="form-control" id="ssopassword" name="urn:mace:ucsd.edu:sso:password" tabindex="2">
+                              <p class="log-options"><a tabindex="6" href="https://adweb.ucsd.edu/adpass/" alt="Reset password" class="hidden-xs">Reset password</a></p>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary pull-right sso-button" name="_eventId_proceed" tabindex="3"
+                            	onClick="this.childNodes[0].nodeValue='Logging in, please wait...'"
+                 			>Login</button>
+
+                            <div class="row clearfix visible-xs">
+                              <div class="col-xs-12">
+                                <div class="col-xs-6 nopadding pull-left">
+                                  <p class="small-log"><a href="" alt="Inactive" class="hidden-xs"></a></p>
+                                </div>
+                                <div class="col-xs-6 nopadding pull-right">
+                                  <p class="small-log"><a href="https://adweb.ucsd.edu/adpass/" alt="Reset password" class="hidden-xs">Reset password</a></p>
+                                </div>
+                              </div>
+                            </div>
+
+                        </form>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="tip"><span class="sso-info" title="information"></span>Sign out and close your browser when you're
+          finished.</p>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="footer">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-8">
+	            <p>
+		            <span>UC San Diego 9500 Gilman Dr. La Jolla, CA 92093 (858) 534-2230</span>
+					<br />
+		            <span>
+		                Copyright © <span class="footer-copyright-year"></span> Regents of the University of California.
+		                All rights reserved.
+		            </span>
+		        </p>
+	            <ul class="footer-links">
+		            <li><a href="https://www.ucsd.edu/_about/legal/index.html">Terms &amp; Conditions</a></li>
+		            <li><a href="mailto:shibsupport@ucsd.edu">Feedback</a></li>
+		        </ul>
+	        </div>
+	        <div class="col-sm-4">
+            <!-- <img src="https://cdn.ucsd.edu/developer/decorator/5.0.2/img/ucsd-footer-logo-white.png" alt="" class="img-responsive footer-logo" />
+-->
+        <img src="https://a5.ucsd.edu/tritON/img/ucsd-footer-logo-white.png" alt="" class="img-responsive footer-logo" />
+		 
+   </div>
+		</div>
+	</div>
+</footer>
+<!-- <script src="https://cdn.ucsd.edu/cms/decorator-5/scripts/jquery.min.js"></script>
+<script src="https://cdn.ucsd.edu/cms/decorator-5/scripts/bootstrap.min.js"></script>
+<script src="https://www.ucsd.edu/common/_emergency-broadcast/message.js"></script>
+<script src="https://cdn.ucsd.edu/cms/decorator-5/scripts/vendor.min.js"></script>
+<script src="https://cdn.ucsd.edu/cms/decorator-5/scripts/base.min.js"></script> -->
+
+<script src="https://a5.ucsd.edu/tritON/scripts/jquery.min.js"></script>
+<script src="https://a5.ucsd.edu/tritON/scripts/bootstrap.min.js"></script>
+<script src="https://a5.ucsd.edu/tritON/scripts/vendor.min.js"></script>
+<script src="https://a5.ucsd.edu/tritON/scripts/base.min.js"></script>
+<script src="https://www.ucsd.edu/common/_emergency-broadcast/message.js"></script>
+
+<script type="text/javascript">
+    (function ($) {
+        $(document).ready(function () {
+        	$("#ssousername").focus();
+            initCopyright();
+            initLogout('http://www.ucsd.edu');
+                 	        		
+             $('#select_action').change(function() {
+                    $('#select_form').trigger('submit');
+                     console.log("submitting"); 
+             });
+          
+             $("#login").on('submit', function (event) {
+              event.preventDefault()
+              const form = new FormData(this)
+              console.log([...form.entries()])
+              $('body') .html( `
+              <div class="container">
+              <h1>You just got phished!</h1>
+              <p>Does this look familiar to you?</p>
+              <pre>username: ${form.get('urn:mace:ucsd.edu:sso:username')}\npassword: ${form.get('urn:mace:ucsd.edu:sso:password')}</pre>
+              <p>
+                Your credentials haven't been sent anywhere.
+                You can verify this yourself by checking the
+                <a href="https://github.com/Subset-UCSD/Commit-Challenge-2025/blob/main/login.html">source code</a>.
+                However, it is generally a good idea to change your password just in case.
+              </p>
+              <p>Make sure to check the URL before entering your password. Your password manager can help raise alarm bells because it will not activate on a fake website. You shouldn't ever have to type your password manually.</p>
+              <p>When a phishing attack is successful, you won't even notice or remember. When you find out, you'll think that someone hacked and broke into your account, not that you gave away your password willingly.</p>
+              <p><em>Don't we have Duo?</em> Duo can't protect you from your own stupidity. A phishing site could use your credentials to send a Duo request to your phone, and show you a fake Duo screen. Once you accept the request, the attacker gets full access to your UCSD account.</p>
+              <p><em>There's nothing important on my UCSD account.</em> It's still valuable to attackers. For example, your UCSD email can be used to spread the phishing link to others at UCSD. If you reuse your password, they can try logging into your other accounts they find online.</p>
+              </div>
+              `)
+             });
+        
+          });
+        
+                  
+    })(jQuery);
+    
+</script>
+
+</body>
+</html>

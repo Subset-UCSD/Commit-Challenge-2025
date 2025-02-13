@@ -56,9 +56,10 @@ function type_helper(child: ChildNode, i: number, delayMs: number): [number, str
 	switch (child.nodeType) {
 		case Node.TEXT_NODE:
 			let res = [...child.textContent!].map(y => {
-				let x = `<t-t style="animation-delay: ${i+=delayMs}ms;">${y}</t-t>`;
-				if (y === ".") i += 8 * delayMs;
-				if (y === ",") i += 4 * delayMs;
+				let x = `<t-t style="animation-delay: ${i+=delayMs/2}ms;">${y}</t-t>`;
+				if (y === ".") i += 20 * delayMs;
+				if (y === " ") i += 4 * delayMs;
+				if (y === ",") i += 10 * delayMs;
 				return x;
 			}).join("");
 			return [i, res];

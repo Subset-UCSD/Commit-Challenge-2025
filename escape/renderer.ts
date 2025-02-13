@@ -58,7 +58,7 @@ const select = (index: number) => {
 		let [i, desc] = typeText(result, textSpeed);
 		document.getElementById("description")!.innerHTML = desc;
 		document.getElementById("choices")!.innerHTML = `<button onclick="render()" style="animation-delay: ${i}ms">ok</button>`;
-		renderInventory()
+		renderInventory();
 	} else if (typeof result === "function") {
 		// "choice thing": () => { do something; return nextStage }
 		// something happened

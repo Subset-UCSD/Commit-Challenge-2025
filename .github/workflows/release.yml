@@ -1,0 +1,39 @@
+name: release
+
+on:
+    schedule:
+        - cron: '0 8 * * *'
+    workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs: 
+    release:
+        runs-on: ubuntu-latest
+        steps:
+            - name: checks you out 
+              uses: actions/checkout@v4
+              with:
+                fetch-depth: 0
+            
+            - name: windows + L
+              id: changelog
+              run: |
+                echo "## commits" > changelog.md
+                git log --since="24 hours ago" --pretty=format:"- %s" >> changelog.md
+              shell: bash
+            
+            - name: to love is to be changed
+              id: github_release
+              uses: mikepenz/release-changelog-builder-action@v5
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            
+            - name: drops your hand while dancing
+              uses: softprops/action-gh-release@v2
+              with:
+                body_path: changelog.md
+                tag_name: nightly-$(date +'%Y-%m-%d')
+                generate_release_notes: true

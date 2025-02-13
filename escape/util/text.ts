@@ -80,13 +80,13 @@ function type_helper(child: ChildNode, i: number, delayMs: number): [number, str
 	}
 }
 
-export function typeText(text: string): [number, string] {
+export function typeText(text: string, speed: number = 15): [number, string] {
 	const test = document.createElement("div");
 	test.innerHTML = text;
 	let i = 0;
 	let res = [...test.childNodes].map(c => {
 		let res;
-		[i, res] = type_helper(c, i, 15);
+		[i, res] = type_helper(c, i, speed);
 		return res;
 	}).join("");
 	return [i, res];

@@ -15,6 +15,7 @@ Our current participants:
 - [<img src="https://github.com/raymosun.png" height="16" /> Raymond](https://github.com/raymosun)
 - [<img src="https://github.com/khushijpatel.png" height="16" /> Khushi](https://github.com/khushijpatel)
 - [<img src="https://github.com/3dcantaloupe.png" height="16" /> 3dcantaloupe](https://github.com/3dcantaloupe)
+- [<img src="https://github.com/sprestrelski.png" height="16" /> sam](https://github.com/sprestrelski)
 
 # ✋ Want to Join?
 Fill out this form [here](https://docs.google.com/forms/d/e/1FAIpQLSeI2mfek8_JKCqeqOqzPOCG9EXQH7tBUqhkY5F3WhRp3QKokA/viewform?usp=header)
@@ -28,7 +29,7 @@ You must commit to main. No malicious code pls.
 > Feel free to leave ideas here
 
 - [X] Github Pages
-  - [ ] Bro the current github page hurts my eyes someone pls fix Marcelo's eyes
+  - [X] Bro the current github page hurts my eyes someone pls fix Marcelo's eyes
 
 - [ ] choose your own adventure game
 

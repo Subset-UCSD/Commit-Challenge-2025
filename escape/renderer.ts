@@ -8,6 +8,7 @@ declare let inventory: Inventory;
 
 const mod = { BEGINNING, inventory };
 let current = mod.BEGINNING;
+let textSpeed = 15;
 
 function escape(str: string) {
 	return str.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll(`"`, `&quot;`);
@@ -39,7 +40,7 @@ const render = async () => {
 	const { location, description, choices } = current();
 	document.title = location;
 	document.getElementById("location")!.innerHTML = location;
-	let [i, desc] = typeText(description);
+	let [i, desc] = typeText(description, textSpeed);
 	let choice = showChoices(choices, i);
 	document.getElementById("description")!.innerHTML = desc;
 	document.getElementById("choices")!.innerHTML = choice;
@@ -54,7 +55,7 @@ const select = (index: number) => {
 	if (typeof result === "string") {
 		// "choice thing": () => { do something; return "text to display" }
 		// something happened
-		let [i, desc] = typeText(result);
+		let [i, desc] = typeText(result, textSpeed);
 		document.getElementById("description")!.innerHTML = desc;
 		document.getElementById("choices")!.innerHTML = `<button onclick="render()" style="animation-delay: ${i}ms">ok</button>`;
 		renderInventory()
@@ -172,6 +173,15 @@ async function startBattle (options: BattleOptions) {
 		}
 	}
 }
+
+window.addEventListener('DOMContentLoaded', () => {
+    const speedSlider = document.getElementById('speed-slider') as HTMLInputElement;
+	speedSlider.addEventListener("input", (event) => {
+		event.preventDefault();
+		textSpeed = parseInt((event.target as HTMLInputElement).value);
+		render();
+	});
+});
 
 attack.addEventListener('click', () => {
 	attack.disabled = true

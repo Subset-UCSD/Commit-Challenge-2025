@@ -27,7 +27,7 @@ jobs:
             
             - name: tag you're it
               run: |
-                TAG_NAME="nightly-$(date +'%Y-%m-%d')"
+                echo "TAG_NAME=nightly-$(date +'%Y-%m-%d')" >> $GITHUB_ENV
                 git tag $TAG_NAME
                 git push origin $TAG_NAME
               shell: bash
@@ -36,5 +36,5 @@ jobs:
               uses: softprops/action-gh-release@v2
               with:
                 body_path: changelog.md
-                tag_name: nightly-$(date +'%Y-%m-%d')
+                tag_name: ${{ env.TAG_NAME }}
                 generate_release_notes: true

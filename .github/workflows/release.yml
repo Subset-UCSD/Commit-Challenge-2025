@@ -25,6 +25,13 @@ jobs:
                 git log --since="24 hours ago" --pretty=format:"- %s" >> changelog.md
               shell: bash
             
+            - name: tag you're it
+              run: |
+                TAG_NAME="nightly-$(date +'%Y-%m-%d')"
+                git tag $TAG_NAME
+                git push origin $TAG_NAME
+              shell: bash
+            
             - name: drops your hand while dancing
               uses: softprops/action-gh-release@v2
               with:

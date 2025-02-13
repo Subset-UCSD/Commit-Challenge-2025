@@ -6,9 +6,10 @@ import {wait} from './util/wait'
 declare let BEGINNING: Stage;
 declare let inventory: Inventory;
 
+const TEXT_SPEED = "textSpeed";
+
 const mod = { BEGINNING, inventory };
 let current = mod.BEGINNING;
-let textSpeed = 15;
 
 function escape(str: string) {
 	return str.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll(`"`, `&quot;`);
@@ -37,11 +38,12 @@ function renderInventory() {
  */
 const render = async () => {
 	for (let i = 0; i < 87; i++) current() // call the stage 87 times to make sure it's pure
+	const textSpeed = parseInt(localStorage.getItem(TEXT_SPEED) || "15");
 	const { location, description, choices } = current();
 	document.title = location;
 	document.getElementById("location")!.innerHTML = location;
 	let [i, desc] = typeText(description, textSpeed);
-	let choice = showChoices(choices, i);
+	let choice = showChoices(choices, i, textSpeed);
 	document.getElementById("description")!.innerHTML = desc;
 	document.getElementById("choices")!.innerHTML = choice;
 	renderInventory();
@@ -55,6 +57,7 @@ const select = (index: number) => {
 	if (typeof result === "string") {
 		// "choice thing": () => { do something; return "text to display" }
 		// something happened
+		const textSpeed = parseInt(localStorage.getItem(TEXT_SPEED) || "15");
 		let [i, desc] = typeText(result, textSpeed);
 		document.getElementById("description")!.innerHTML = desc;
 		document.getElementById("choices")!.innerHTML = `<button onclick="render()" style="animation-delay: ${i}ms">ok</button>`;
@@ -178,7 +181,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const speedSlider = document.getElementById('speed-slider') as HTMLInputElement;
 	speedSlider.addEventListener("input", (event) => {
 		event.preventDefault();
-		textSpeed = parseInt((event.target as HTMLInputElement).value);
+		localStorage.setItem("textSpeed", (-parseInt((event.target as HTMLInputElement).value)).toString());
 		render();
 	});
 });

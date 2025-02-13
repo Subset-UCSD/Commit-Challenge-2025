@@ -1,12 +1,18 @@
 /* https://colorhunt.co/palette/09122c872341be3144e17564 */
 :root {
 	color-scheme: dark;
-	accent-color: #BE3144;
+	accent-color: var(--accent);
+	--accent: #BE3144;
+	--dark-accent: #872341;
+	--light-accent: #E17564;
+	--blark: #09122C;
+	--space-grey: #2e2e2e;
+	--space-gray: #242424;
 }
 
 body {
-	color: #E17564;
-	background-color: #09122C;
+	color: var(--light-accent);
+	background-color: var(--blark);
 	margin: 0;
 	padding: 0;
 	font-family: Georgia, Garamond, 'Times New Roman', Times, serif;
@@ -16,7 +22,7 @@ body {
 	width: 600px;
 	margin: 1in auto;
 	padding: 2em;
-	background-color: #872341;
+	background-color: var(--dark-accent);
 	border-radius: 0.5em;
 	resize: both;
 }
@@ -29,7 +35,7 @@ a {
 }
 
 nav a {
-	color: #E17564;
+	color: var(--light-accent);
 
 }
 
@@ -49,14 +55,28 @@ nav a {
 	0% {
 		opacity: 0;
 		top: -10px;
+		pointer-events: none;
+	}
+	99.99% {
+		pointer-events: none;
 	}
 	100% {
 		opacity: 1;
 		top: 0;
+		pointer-events: all;
 	}
 }
 :root {
 	--type-anim: type 0.1s forwards ease-in-out;
+}
+
+nav {
+	margin-top: -60px;
+	margin-bottom: 40px;
+	color: var(--dark-accent);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 #description,#battledesc {
@@ -76,7 +96,7 @@ nav a {
 }
 
 #choices button {
-	background-color: #BE3144;
+	background-color: var(--accent);
 	color: white;
 	font: inherit;
 	border: none;
@@ -86,11 +106,12 @@ nav a {
 	box-sizing: border-box;
 	transition: background-color .2s;
 	animation: var(--type-anim);
+	pointer-events: none;
 	opacity: 0;
 }
 
 #choices button:hover {
-	background-color: #E17564;
+	background-color: var(--light-accent);
 }
 
 p {
@@ -131,8 +152,8 @@ html:has(#powpow) {
 	position: absolute;
 	left: 0;
 	top: 100%;
-	background-color: #E17564;
-	color: #09122C;
+	background-color: var(--light-accent);
+	color: var(--blark);
 	padding: 5px;
 	/* min-width: 100px; */
 	/* max-width: 400px; */

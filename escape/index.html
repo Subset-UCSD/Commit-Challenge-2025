@@ -17,10 +17,11 @@
 
 <body>
 <div id="div">
-	<nav style="margin-top: -60px; margin-bottom: 40px; color:#872341 ">
-		escape &subseteq; commit challenge
-		&bull;
-		<a href="../">back</a>
+	<nav>
+		<div>escape &subseteq; commit challenge &bull; <a href="../">back</a></div>
+		<div id="settings"> 
+			<input id="speed-slider" name="speed-slider" type="range" min="-15" max="0" step="1"/>
+		</div>
 	</nav>
 	<p id="location">courtyard</p>
 	<div id="text-based-adventure">
@@ -62,10 +63,6 @@
 	</div>
 	<script src="./GAMER.js"></script>
 	<script src="./renderer.js"></script>
-
-	<div id="settings"> 
-		<input id="speed-slider" name="speed-slider" type="range" min="0" max="15"/>
-	</div>
 </div>
 </div>
 </body>

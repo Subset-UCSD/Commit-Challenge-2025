@@ -40,26 +40,15 @@ export function shuffleObject<T extends Record<string, any>>(obj: T): T {
 	}
 })();
 
-function openTag(element: HTMLElement) {
-    if (!(element instanceof Element)) return "";
-    
-    let tagName = element.tagName.toLowerCase();
-    let attributes = Array.from(element.attributes)
-        .map(attr => `${attr.name}="${attr.value}"`)
-        .join(" ");
-
-    return attributes ? `<${tagName} ${attributes}>` : `<${tagName}>`;
-}
-
 function type_helper(child: ChildNode, i: number, delayMs: number): [number, string] {
 	const c: HTMLElement = (<HTMLElement>child);
 	switch (child.nodeType) {
 		case Node.TEXT_NODE:
 			let res = [...child.textContent!].map(y => {
 				let x = `<t-t style="animation-delay: ${i+=delayMs/2}ms;">${y}</t-t>`;
-				if (y === ".") i += 20 * delayMs;
-				if (y === " ") i += 4 * delayMs;
-				if (y === ",") i += 10 * delayMs;
+				if (y === ".") i += 8 * delayMs;
+				if (y === " ") i += delayMs;
+				if (y === ",") i += 4 * delayMs;
 				return x;
 			}).join("");
 			return [i, res];
@@ -81,6 +70,7 @@ function type_helper(child: ChildNode, i: number, delayMs: number): [number, str
 }
 
 export function typeText(text: string, speed: number = 15): [number, string] {
+	if (speed === 0) return [0, text];
 	const test = document.createElement("div");
 	test.innerHTML = text;
 	let i = 0;
@@ -92,10 +82,14 @@ export function typeText(text: string, speed: number = 15): [number, string] {
 	return [i, res];
 }
 
-export function showChoices(choices: StageInfo["choices"], i_off: number) {
+export function showChoices(choices: StageInfo["choices"], i_off: number, speed: number) {
 	return Object.keys(choices).map((choice, i) => 
 		choices[choice] ? 
-			`<button style="animation-delay: ${i_off += 300}ms" onclick="select(${i})">${choice}</button>` :
+			`<button ${
+				speed === 0 ? 
+					`class="no-animate"` :
+					""
+			} style="animation-delay: ${i_off += 25 * speed}ms" onclick="select(${i})">${choice}</button>` :
 			""
 	).join("");
 }

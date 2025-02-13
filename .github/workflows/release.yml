@@ -25,12 +25,6 @@ jobs:
                 git log --since="24 hours ago" --pretty=format:"- %s" >> changelog.md
               shell: bash
             
-            - name: to love is to be changed
-              id: github_release
-              uses: mikepenz/release-changelog-builder-action@v5
-              env:
-                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            
             - name: drops your hand while dancing
               uses: softprops/action-gh-release@v2
               with:

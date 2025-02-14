@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main  # or the branch you want to monitor
+    paths:
+      - 'escape/GAMER.ts'
 
 permissions:
   contents: write

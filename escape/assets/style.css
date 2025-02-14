@@ -2,17 +2,34 @@
 :root {
 	color-scheme: dark;
 	accent-color: var(--accent);
+	--light-accent: #E17564;
 	--accent: #BE3144;
 	--dark-accent: #872341;
-	--light-accent: #E17564;
 	--blark: #09122C;
 	--space-grey: #2e2e2e;
 	--space-gray: #242424;
 }
 
+.northernProperty {
+	/* https://colorhunt.co/palette/1235243e7b2785a947efe3c2 */
+	--light-accent: #EFE3C2;
+	--accent: #85A947;
+	--dark-accent: #3E7B27;
+	--blark: #123524;
+}
+
+.fountainRats {
+	/* https://colorhunt.co/palette/f7f7f7ffb22c854836000000 */
+	--light-accent: #F7F7F7;
+	--accent: #FFB22C;
+	--dark-accent: #854836;
+	--blark: #000000;
+}
+
 body {
 	color: var(--light-accent);
 	background-color: var(--blark);
+	transition: color .5s, background-color .5s;
 	margin: 0;
 	padding: 0;
 	font-family: Georgia, Garamond, 'Times New Roman', Times, serif;
@@ -23,6 +40,7 @@ body {
 	margin: 1in auto;
 	padding: 2em;
 	background-color: var(--dark-accent);
+	transition:  background-color .5s;
 	border-radius: 0.5em;
 	resize: both;
 }
@@ -36,6 +54,7 @@ a {
 
 nav a {
 	color: var(--light-accent);
+	transition:  color .5s;
 
 }
 
@@ -74,6 +93,7 @@ nav {
 	margin-top: -60px;
 	margin-bottom: 40px;
 	color: var(--dark-accent);
+	transition:  color .5s;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -104,7 +124,7 @@ nav {
 	width: 100%;
 	padding: 10px;
 	box-sizing: border-box;
-	transition: background-color .2s;
+	transition: background-color .2s, color .2s;
 	animation: var(--type-anim);
 	pointer-events: none;
 	opacity: 0;
@@ -112,6 +132,7 @@ nav {
 
 #choices button:hover {
 	background-color: var(--light-accent);
+	color: var(--blark)
 }
 
 p {
@@ -154,6 +175,7 @@ html:has(#powpow) {
 	top: 100%;
 	background-color: var(--light-accent);
 	color: var(--blark);
+	transition: color .5s, background-color .5s;
 	padding: 5px;
 	/* min-width: 100px; */
 	/* max-width: 400px; */

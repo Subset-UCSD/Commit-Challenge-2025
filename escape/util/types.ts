@@ -10,6 +10,8 @@ export type StageInfo = {
 	 * tab title. Can use HTML.
 	 */
 	location: string
+	/** Class applied to `:root` to change the color scheme */
+	theme?: string
 	/**
 	 * Text shown before the choices. Can use HTML.
 	 */

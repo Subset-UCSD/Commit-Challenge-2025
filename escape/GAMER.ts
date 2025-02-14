@@ -214,6 +214,7 @@ function fieldMan(): StageInfo {
 			"continue north": powell,
 			"return south": northPath,
 		},
+		theme: 'northernProperty'
 	};
 	if (inventory.has(fishItem) && manHungry) {
 		I.description += 'he sees the fish sticking out of your back pocket and shakily holds a finger up to it. he offers to turn it into sushi. ';
@@ -235,9 +236,10 @@ function fieldMan(): StageInfo {
 function powell():StageInfo {
 	let I: StageInfo = {
 		location: inventory.has(mapItem) ? "Private Property - DO NOT TRESPASS!" : "field",
-		description: "<img src='./powel.jpg' alt='man' id='powpow'>\n\na mysterious figure appears from the fog. you try to take a step back, but find yourself only stepping forward. you freeze, too afraid to move in his presence. ",
+		description: "<img src='./assets/powel.jpg' alt='man' id='powpow'>\n\na mysterious figure appears from the fog. you try to take a step back, but find yourself only stepping forward. you freeze, too afraid to move in his presence. ",
 		choices: {
 		},
+		theme: 'northernProperty'
 	};
 	return I
 }
@@ -254,6 +256,7 @@ function rubberRoom1(): StageInfo {
 			location: inventory.has(mapItem) ? "Ravensmith Court" : 'courtyard',
 			description: 'you slip and fall into the fountain. grasping for breath, you frantically try to paddle out, but feel yourself sinking further into the murky water.',
 			choices: { 'fall': rubberRoom2 }
+		, theme: 'fountainRats'
 		};
 	}
 }
@@ -270,6 +273,7 @@ function rubberRoom2(): StageInfo {
 		description:
 			'your vision begins to fade as your lungs give way, water gushing into your body.',
 		choices: { 'fall': rubberRoom3 }
+		, theme: 'fountainRats'
 	};
 }
 
@@ -278,6 +282,7 @@ function rubberRoom3(): StageInfo {
 		location: '???'
 		, description: 'you wake up.'
 		, choices: { 'where am i?': rubberRoom }
+		, theme: 'fountainRats'
 	}
 }
 const MAX_LOOPS_RUBBER = 9
@@ -291,20 +296,23 @@ function rubberRoom(): StageInfo {
 				rubberloops += 1
 				return 'i was crazy once. they locked me in a room.'
 			}
-		}
+		},
+		theme: 'fountainRats'
 	};
 }
 function rubberRoomExit1(): StageInfo {
 	return {
 		location: 'rubber room',
 		description: 'i was crazy once. they locked me in a room.',
-		choices: { 'a rubber room?': rubberRoomExit2 }
+		choices: { 'a rubber room?': rubberRoomExit2 },
+		theme: 'fountainRats'
 	};
 }
 function rubberRoomExit2(): StageInfo {
 	return {
 		location: 'rubber room',
 		description: '..a rubber room with rats, yes. and rats...',
-		choices: { 'make me crazy': BEGINNING }
+		choices: { 'make me crazy': BEGINNING },
+		theme: 'fountainRats'
 	};
 }

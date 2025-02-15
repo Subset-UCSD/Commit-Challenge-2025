@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horse Breeding Simulator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.0.0"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="w-full max-w-md bg-white p-6 rounded-xl shadow-lg">
+        <h2 class="text-xl font-bold mb-4">Horse Breeding Simulator</h2>
+        <label class="block font-semibold">Wallet: $<span id="wallet">10000</span></label>
+        <button onclick="buyHorse('brown')" class="mt-2 px-4 py-2 bg-blue-500 text-white rounded">Buy Brown Horse ($1560)</button>
+        
+        <h3 class="text-lg font-bold mt-4">Inventory</h3>
+        <ul id="inventory" class="mt-2"></ul>
+        
+        <h3 class="text-lg font-bold mt-4">Breeding</h3>
+        <button onclick="breedHorses('brown', 'brown')" class="mt-2 px-4 py-2 bg-green-500 text-white rounded">Breed 2 Brown Horses</button>
+        <button onclick="breedHorses('black', 'black')" class="mt-2 px-4 py-2 bg-green-500 text-white rounded">Breed 2 Black Horses</button>
+        <button onclick="breedHorses('chestnut', 'chestnut')" class="mt-2 px-4 py-2 bg-green-500 text-white rounded">Breed 2 Chestnut Horses</button>
+    </div>
+    
+    <script>
+        let wallet = 10000;
+        let inventory = { brown: 0, black: 0, chestnut: 0, white: 0 };
+
+        function updateUI() {
+            document.getElementById('wallet').textContent = wallet;
+            let invList = document.getElementById('inventory');
+            invList.innerHTML = '';
+            for (let horse in inventory) {
+                if (inventory[horse] > 0) {
+                    invList.innerHTML += `<li>${horse}: ${inventory[horse]}</li>`;
+                }
+            }
+        }
+
+        function buyHorse(type) {
+            if (wallet >= 1560) {
+                wallet -= 1560;
+                inventory[type]++;
+                updateUI();
+            }
+        }
+
+        function breedHorses(type1, type2) {
+            if (inventory[type1] >= 2) {
+                inventory[type1] -= 2;
+                let newHorse = determineOffspring(type1);
+                inventory[newHorse] = (inventory[newHorse] || 0) + 1;
+                updateUI();
+                showEffect(type1, newHorse);
+            }
+        }
+
+        function determineOffspring(type) {
+            let rand = Math.random();
+            if (type === 'brown') {
+                return rand < 0.8 ? 'brown' : 'black';
+            } else if (type === 'black') {
+                return rand < 0.3 ? 'brown' : rand < 0.8 ? 'black' : 'chestnut';
+            } else if (type === 'chestnut') {
+                return rand < 0.3 ? 'black' : rand < 0.8 ? 'chestnut' : 'white';
+            }
+        }
+
+        function showEffect(parent, offspring) {
+            if ((parent === 'brown' && offspring === 'black') || 
+                (parent === 'black' && offspring === 'chestnut') || 
+                (parent === 'chestnut' && offspring === 'white')) {
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 },
+                    colors: ['#FFD700', '#FF4500', '#FFFFFF']
+                });
+            }
+        }
+
+        updateUI();
+    </script>
+</body>
+</html>

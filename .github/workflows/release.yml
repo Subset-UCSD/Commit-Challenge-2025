@@ -29,7 +29,7 @@ jobs:
                 fi
 
                 jq -n --arg commits "$COMMITS" \
-                  '{"contents": [{"parts": [{"text": "summarize what each of the commits is doing. format your response as a markdown file that will act as release notes: \n\($commits)"}]}]}' > gemini_prompt.json
+                  '{"contents": [{"parts": [{"text": "for each commit, summarize (a) what it is doing and (b) how it contributes to global warming. format your response as a markdown file that will act as release notes: \n\($commits)"}]}]}' > gemini_prompt.json
               shell: bash
             
             - name: geminis you

@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>horse simulator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="w-full max-w-md bg-white p-6 rounded-xl shadow-lg">
+        <div class="flex border-b">
+            <button class="tab-btn px-4 py-2 w-1/4 text-center font-semibold" onclick="openTab(event, 'brown')">Brown</button>
+            <button class="tab-btn px-4 py-2 w-1/4 text-center font-semibold" onclick="openTab(event, 'black')">Black</button>
+            <button class="tab-btn px-4 py-2 w-1/4 text-center font-semibold" onclick="openTab(event, 'chestnut')">Chestnut</button>
+            <button class="tab-btn px-4 py-2 w-1/4 text-center font-semibold" onclick="openTab(event, 'white')">White</button>
+        </div>
+        
+        <div id="brown" class="tab-content p-4 hidden">
+            <table class="w-full text-left">
+                <tr><td class="font-bold">Brown Horse</td><td class="text-right">$1560</td></tr>
+            </table>
+        </div>
+        <div id="black" class="tab-content p-4 hidden">
+            <table class="w-full text-left">
+                <tr><td class="font-bold">Black Horse</td><td class="text-right">$9360</td></tr>
+            </table>
+        </div>
+        <div id="chestnut" class="tab-content p-4 hidden">
+            <table class="w-full text-left">
+                <tr><td class="font-bold">Chestnut Horse</td><td class="text-right">$66816</td></tr>
+            </table>
+        </div>
+        <div id="white" class="tab-content p-4 hidden">
+            <table class="w-full text-left">
+                <tr><td class="font-bold">White Horse</td><td class="text-right">$487296</td></tr>
+            </table>
+        </div>
+    </div>
+    
+    <script>
+        function openTab(event, tabName) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('hidden'));
+            document.getElementById(tabName).classList.remove('hidden');
+            
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('border-b-2', 'border-blue-500'));
+            event.currentTarget.classList.add('border-b-2', 'border-blue-500');
+        }
+        document.querySelector('.tab-btn').click();
+    </script>
+</body>
+</html>

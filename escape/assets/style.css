@@ -99,6 +99,12 @@ nav {
 	align-items: center;
 }
 
+#speed-slider {
+	accent-color: var(--dark-accent);
+}
+input::-moz-range-thumb {
+	/*background-color: green;*/
+}
 #description,#battledesc {
 	font-size: 1.3rem;
 	line-height: 1.5rem;

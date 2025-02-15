@@ -11,7 +11,7 @@
     <div class="w-full max-w-md bg-white p-6 rounded-xl shadow-lg">
         <h2 class="text-xl font-bold mb-4">Horse Breeding Simulator</h2>
         <label class="block font-semibold">Wallet: $<span id="wallet">10000</span></label>
-        <button onclick="buyHorse('brown')" class="mt-2 px-4 py-2 bg-blue-500 text-white rounded">Buy Brown Horse ($1560)</button>
+        <button onclick="buyHorse('brown')" class="mt-2 px-4 py-2 bg-blue-500 text-white rounded">Buy Brown Horse ($1536)</button>
         
         <h3 class="text-lg font-bold mt-4">Inventory</h3>
         <ul id="inventory" class="mt-2"></ul>
@@ -38,8 +38,8 @@
         }
 
         function buyHorse(type) {
-            if (wallet >= 1560) {
-                wallet -= 1560;
+            if (wallet >= 1536) {
+                wallet -= 1536;
                 inventory[type]++;
                 updateUI();
             }

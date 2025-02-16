@@ -184,16 +184,64 @@ const pointerEnd = e => {
 wrapper.addEventListener('pointerup', pointerEnd)
 wrapper.addEventListener('pointercancel', pointerEnd)
 wrapper.addEventListener('wheel', e => {
-  const rect = wrapper.getBoundingClientRect()
-  const centreX = e.clientX - (rect.left + rect.width / 2)
-  const centreY = e.clientY - (rect.top + rect.height / 2)
-  transformation = multiply(
-    translate(centreX, centreY),
-    // Thanks Roger!
-    dilate(1.001 ** -e.deltaY),
-    translate(-centreX, -centreY),
-    transformation
-  )
+
+  if (event.ctrlKey) { // Check if Ctrl is being pressed
+    const rect = wrapper.getBoundingClientRect()
+    const initXDiff = pointer.initX - pointer.other.initX
+    const initYDiff = pointer.initY - pointer.other.initY
+    const currentXDiff =  pointer.lastX - pointer.other.lastX
+    const currentYDiff =  event.deltaY * 0.1 //pointer.lastY - pointer.other.lastY
+    // Difference between the angles of the initial and current line
+    // between the pointers.
+    const angleDiff =
+      Math.atan2(currentYDiff, currentXDiff) -
+      Math.atan2(initYDiff, initXDiff)
+    // Distance between the pointers relative to their initial distance.
+    const scale =
+      Math.hypot(currentXDiff, currentYDiff) /
+      Math.hypot(initXDiff, initYDiff)
+    // Midpoint between the two pointers.
+    const midX = (pointer.lastX + pointer.other.lastX) / 2
+    const midY = (pointer.lastY + pointer.other.lastY) / 2
+    // Offset of current midpoint from initial midpoint.
+    const deltaX = midX - (pointer.initX + pointer.other.initX) / 2
+    const deltaY = midY - (pointer.initY + pointer.other.initY) / 2
+    // Centre of rotation/dilation
+    const centreX = midX - (rect.left + rect.width / 2)
+    const centreY = midY - (rect.top + rect.height / 2)
+    transformation = multiply(
+      // Rotate and scale around midpoint
+      translate(centreX, centreY),
+      rotate(angleDiff),
+      dilate(scale),
+      translate(-centreX, -centreY),
+      translate(deltaX, deltaY),
+      pointer.transformation
+    )  
+
+    
+    // event.preventDefault(); // Prevent page scroll
+      // if (event.deltaY > 0) {
+      //     rotation += 10; // Rotate clockwise
+      // } else {
+      //     rotation -= 10; // Rotate counterclockwise
+      // }
+      // element.style.transform = `rotate(${rotation}deg)`; // Apply the rotation
+  }
+  else {
+    const rect = wrapper.getBoundingClientRect()
+    const centreX = e.clientX - (rect.left + rect.width / 2)
+    const centreY = e.clientY - (rect.top + rect.height / 2)
+    transformation = multiply(
+      translate(centreX, centreY),
+      // Thanks Roger!
+      dilate(1.001 ** -e.deltaY),
+      translate(-centreX, -centreY),
+      transformation
+    )
+  }
+
+  
   image.style.transform = toCss(transformation)
   e.preventDefault()
 })

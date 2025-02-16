@@ -621,7 +621,29 @@ z-index: 5;
     @keyframes from-right {from{transform:translateX(100%)} to{transform:translateX(0)}}
 </style>
 
+<style>
+    #turtle {
+        position: fixed;
+        left:0;
+        top:0;
+        width:100%;height:100%;
+        animation: appearturtle 5s both 69s;
+    }
+    @keyframes appearturtle {
+        from {
+
+            visibility: hidden;
+            opacity: 0;
+        }
+        to {
+            
+        visibility: visible;
+        opacity: 1;
+        }
+    }
+</style>
 <div id="left"><img src="./ass/ets/haodilao.gif" alt="marcelo sips his drink at Haidilao"></div>
 <div id="right"><img src="./ass/ets/mardance.gif" alt="marcelo dances on the beach"></div>
+<img src="./ass/ets/bee-movie.gif" alt="a certain cat" id="turtle" onclick="this.remove()" loading="lazy"/>
 </body>
 </html>

@@ -205,7 +205,7 @@ wrapper.addEventListener('wheel', e => {
     transformation = multiply(
       translate(centreX, centreY),
       // Thanks Roger!
-      dilate(pc_pointer["dilate"])
+      dilate(pc_pointer["dilate"]),
       rotate(degree),
       translate(-centreX, -centreY),
       transformation

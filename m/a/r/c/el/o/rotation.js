@@ -185,7 +185,7 @@ wrapper.addEventListener('pointerup', pointerEnd)
 wrapper.addEventListener('pointercancel', pointerEnd)
 wrapper.addEventListener('wheel', e => {
 
-  if (event.ctrlKey) { // Check if Ctrl is being pressed
+  if (e.shiftKey) { // Check if Ctrl is being pressed
     const rect = wrapper.getBoundingClientRect()
     const initXDiff = pointer.initX - pointer.other.initX
     const initYDiff = pointer.initY - pointer.other.initY

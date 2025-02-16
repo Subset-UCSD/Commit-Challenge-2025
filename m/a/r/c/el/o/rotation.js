@@ -201,6 +201,7 @@ wrapper.addEventListener('wheel', e => {
     const centreX = e.clientX - (rect.left + rect.width / 2)
     const centreY = e.clientY - (rect.top + rect.height / 2)
     const degree = Math.atan2(1.001 ** -e.deltaY)
+    console.log(degree)
 
     transformation = multiply(
       translate(centreX, centreY),

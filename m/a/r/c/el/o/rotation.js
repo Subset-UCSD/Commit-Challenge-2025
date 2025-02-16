@@ -73,6 +73,10 @@ let transformation = identity()
 const wrapper = document.getElementById('wrapper')
 const image = document.getElementById('map')
 let pointer = null
+let pc_pointer = {
+    "rotate" : 0,
+    "dilate" : 1
+}
 wrapper.addEventListener('pointerdown', e => {
   if (pointer) {
     if (!pointer.other) {
@@ -189,25 +193,35 @@ wrapper.addEventListener('wheel', e => {
     const rect = wrapper.getBoundingClientRect()
     const centreX = e.clientX - (rect.left + rect.width / 2)
     const centreY = e.clientY - (rect.top + rect.height / 2)
+    const degree = Math.atan2(1.001 ** -e.deltaY)
+
     transformation = multiply(
       translate(centreX, centreY),
       // Thanks Roger!
-      rotate(1.001 ** -e.deltaY),
+      dilate(pc_pointer["dilate"])
+      rotate(degree),
       translate(-centreX, -centreY),
       transformation
     )
+
+    pc_pointer["rotate"] = degree
   }
   else {
     const rect = wrapper.getBoundingClientRect()
     const centreX = e.clientX - (rect.left + rect.width / 2)
     const centreY = e.clientY - (rect.top + rect.height / 2)
+    const dilation = 1.001 ** -e.deltaY
+    
     transformation = multiply(
       translate(centreX, centreY),
       // Thanks Roger!
-      dilate(1.001 ** -e.deltaY),
+      dilate(dilation),
+      rotate(pc_pointer["rotate"]),
       translate(-centreX, -centreY),
       transformation
     )
+
+    pc_pointer["dilate"] = dilation
   }
 
   

@@ -189,6 +189,11 @@ wrapper.addEventListener('pointerup', pointerEnd)
 wrapper.addEventListener('pointercancel', pointerEnd)
 wrapper.addEventListener('wheel', e => {
 
+  if (Math.abs(transformation[0][1]) > 0.7 && !calledRotated) {
+    calledRotated = true
+    onRotated()
+  }
+
   if (e.shiftKey) { // Check if Ctrl is being pressed
     const rect = wrapper.getBoundingClientRect()
     const centreX = e.clientX - (rect.left + rect.width / 2)

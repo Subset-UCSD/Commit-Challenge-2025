@@ -188,7 +188,9 @@ const pointerEnd = e => {
 wrapper.addEventListener('pointerup', pointerEnd)
 wrapper.addEventListener('pointercancel', pointerEnd)
 wrapper.addEventListener('wheel', e => {
-
+  // repeated above yeah should this be a function maybe but who cares lol
+  // I write only the best and most amazing code, so what if we have the same thing repeated, this will just show who isn't fully testing things
+  // this is job secuirty
   if (Math.abs(transformation[0][1]) > 0.7 && !calledRotated) {
     calledRotated = true
     onRotated()

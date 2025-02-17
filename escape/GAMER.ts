@@ -267,7 +267,7 @@ function passwordStage(description: string, password: string, nextStage: () => S
 	let I: StageInfo = {
 		location: inventory.has(mapItem) ? "Ravensmith Court" : 'courtyard',
 		description: description,
-		inputs: '<div role="textbox" tabindex=0 id="password-input"></div>',
+		inputs: '<div role="textbox" contenteditable autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" tabindex=0 id="password-input"></div>',
 		choices: {},
 	}
 

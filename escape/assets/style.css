@@ -25,7 +25,10 @@
 	--dark-accent: #854836;
 	--blark: #000000;
 }
-
+html {
+	width: 100%;
+	height: 100%;
+}
 body {
 	color: var(--light-accent);
 	background-color: var(--blark);
@@ -33,11 +36,15 @@ body {
 	margin: 0;
 	padding: 0;
 	font-family: Georgia, Garamond, 'Times New Roman', Times, serif;
+	display: flex;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	flex-direction: column;
 }
 
 #div {
 	width: 600px;
-	margin: 1in auto;
 	padding: 2em;
 	background-color: var(--dark-accent);
 	transition: background-color .5s;
@@ -55,19 +62,34 @@ a {
 nav a {
 	color: var(--light-accent);
 	transition: color .5s;
-
 }
 
-@media (max-width: 700px) {
-	#div {
-		margin: 1in 10px;
-		width: auto;
+
+/* style.css | http://127.0.0.1:8000/escape/assets/style.css */
+@media screen and (max-width: 700px) {
+	div.cool-container-bro {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+		flex-direction: column;
+	}
+	div#div {
+		width: 95%;
+		box-sizing: border-box;
+	}	
+	.cool-container-bro > nav {
+		margin-top: 3rem;
 	}
 }
+
+  
 
 #location {
 	color: orange;
 	font-style: italic;
+	margin-top: 0;
 }
 
 @keyframes type {
@@ -90,17 +112,26 @@ nav a {
 }
 
 nav {
-	margin-top: -60px;
-	margin-bottom: 40px;
 	color: var(--dark-accent);
 	transition: color .5s;
+	margin-top: 4rem;
+	margin-bottom: 0.25rem;
 	display: flex;
 	justify-content: space-between;
-	align-items: center;
+	width: 100%;
+	padding: 0 1.5rem;
+	box-sizing: border-box;
 }
-
+.cool-container-bro {
+	width: min-content;
+	height: min-content;
+}
+#settings {
+	max-width: 40%;
+}
 #speed-slider {
 	accent-color: var(--dark-accent);
+	max-width: 100%;
 }
 input[type="range"] {
 	all: unset;
@@ -127,8 +158,9 @@ input[type="range"]::-moz-range-progress {
 	font-weight: bold;
 	font-size: 1rem;
 	caret-color: transparent;
-	width: 20rem;
-	height: 1.5rem;
+	max-width: 20rem;
+	overflow: scroll;
+	min-height: 1.5rem;
 	background: var(--space-gray);
 	margin-bottom: 2rem;
 	border-radius: 1px;

@@ -245,18 +245,34 @@ function powell():StageInfo {
 	};
 	return I
 }
+// @ts-ignore
+document.addEventListener("keydown", (e: KeyboardEvent) => {
+	const t: HTMLElement = <HTMLInputElement>e.target;
+	if (t?.id !== "password-input") return;
+	e.preventDefault();
+	e.stopPropagation();
+	if (e.key === "Backspace" || e.key === "Delete") {
+		t.textContent = t.textContent!.slice(0,-1);
+		return;
+	}
+	if (!e.key.match(/^[a-zA-Z0-9 ]$/)) {
+		// EXTREMELY LOUD INCORRECT BUZZER
+		return;
+	}
+	t.textContent += e.key;
+});
 
 let passwordGuessed = false;
 function passwordStage(description: string, password: string, nextStage: () => StageInfo): StageInfo {
 	let I: StageInfo = {
 		location: inventory.has(mapItem) ? "Ravensmith Court" : 'courtyard',
 		description: description,
-		inputs: '<input type="text" id="password-input" required maxlength="15" size="20" />',
+		inputs: '<div role="textbox" tabindex=0 id="password-input"></div>',
 		choices: {},
 	}
 
-	const inputElement = document.getElementById("password-input") as HTMLInputElement;
-	const input = inputElement?.value || "";
+	const inputElement = document.getElementById("password-input") as HTMLElement;
+	const input = inputElement?.textContent || "";
 	I.choices['submit'] = () => {
 		if (input === password) return nextStage();
 		return passwordStage(description, password, nextStage);

@@ -40,7 +40,7 @@ body {
 	margin: 1in auto;
 	padding: 2em;
 	background-color: var(--dark-accent);
-	transition:  background-color .5s;
+	transition: background-color .5s;
 	border-radius: 0.5em;
 	resize: both;
 }
@@ -54,7 +54,7 @@ a {
 
 nav a {
 	color: var(--light-accent);
-	transition:  color .5s;
+	transition: color .5s;
 
 }
 
@@ -93,7 +93,7 @@ nav {
 	margin-top: -60px;
 	margin-bottom: 40px;
 	color: var(--dark-accent);
-	transition:  color .5s;
+	transition: color .5s;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -112,6 +112,7 @@ input[type="range"]:hover {
 }
 input[type="range"]::-moz-range-thumb {
 	background-color: var(--accent);
+	border: none;
 }
 input[type="range"]::-moz-range-track {
 	background-color: var(--space-gray);
@@ -119,7 +120,48 @@ input[type="range"]::-moz-range-track {
 input[type="range"]::-moz-range-progress {
 	background-color: var(--dark-accent);
 }
-  
+
+#password-input {
+	padding: 0.25rem;
+	font-family: Consolas, monospace;
+	font-weight: bold;
+	font-size: 1rem;
+	caret-color: transparent;
+	width: 20rem;
+	height: 1.5rem;
+	background: var(--space-gray);
+	margin-bottom: 2rem;
+	border-radius: 1px;
+	color: white;
+	display: flex;
+	align-items: center;
+}
+@keyframes blink {
+	0% {
+		opacity: 0;
+	}
+	49.9999% {
+		opacity: 0;
+	}
+	50% {
+		opacity: 1;
+	}
+	99.9999% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+#password-input::after {
+	content: "█";
+	animation: blink 1s linear infinite;
+	user-select: none;
+}
+#password-input:focus {
+	outline: 3px solid var(--accent);
+}
+
 #description,#battledesc {
 	font-size: 1.3rem;
 	line-height: 1.5rem;

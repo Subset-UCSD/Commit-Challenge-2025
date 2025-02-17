@@ -6,6 +6,7 @@ on:
       - main  # or the branch you want to monitor
     paths:
       - 'escape/GAMER.ts'
+      - 'index.html'
 
 permissions:
   contents: write
@@ -81,6 +82,30 @@ jobs:
           else
             echo "escape/GAMER.ts not modified in commit $COMMIT"
           fi
+
+          # Check if index.html was modified in this commit
+          if git show --pretty=format:'' --name-only $COMMIT | grep -q 'index.html'; then
+            # Check for REMOVED lines containing the word "IMUTABLE"
+            if [ "$(git rev-list --count $COMMIT^..$COMMIT)" -gt 1 ]; then
+              # Compare with the parent commit
+              if git diff $COMMIT~1 $COMMIT -- index.html | grep -q '^\-.*IMUTABLE'; then
+                echo "REMOVED line containing 'IMUTABLE' found in commit $COMMIT"
+                REVERT_COMMITS="$REVERT_COMMITS $COMMIT"
+              else
+                echo "No REMOVED lines containing 'IMUTABLE' found in commit $COMMIT"
+              fi
+            else
+              # Single commit (no parent)
+              if git show $COMMIT -- index.html | grep -q '^\-.*IMUTABLE'; then
+                echo "REMOVED line containing 'IMUTABLE' found in commit $COMMIT"
+                REVERT_COMMITS="$REVERT_COMMITS $COMMIT"
+              else
+                echo "No REMOVED lines containing 'IMUTABLE' found in commit $COMMIT"
+              fi
+            fi
+          else
+            echo "index.html not modified in commit $COMMIT"
+          fi
         done
 
         # Output the list of commits to revert
@@ -99,7 +124,9 @@ jobs:
           git config user.name "Thomas Powell"
           git config user.email "tpowell@pint.com"
           git revert $COMMIT --no-commit
-          git commit -m "FUCK YOU; STOP TRYING TO EXPORT FROM GAMER"
+          git commit -m "FUCK YOU; STOP TRYING TO EXPORT FROM GAMER
+          
+          i shit my pants"
         done
 
         # Push the revert commits

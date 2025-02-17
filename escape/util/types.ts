@@ -17,6 +17,10 @@ export type StageInfo = {
 	 */
 	description: string
 	/**
+	 * Input shown before choices. Can use HTMLL.
+	 */
+	inputs?: string
+	/**
 	 * An object mapping from a string label (which can use HTML) to a function.
 	 * The function can either be
 	 *

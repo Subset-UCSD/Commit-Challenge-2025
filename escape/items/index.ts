@@ -26,3 +26,7 @@ export const sushiItem: Item = {
 	name: `sushi piece`, 
 	lore: `a slice of sushi. the man who made it seemed to be a professional sushi guy or whatever the word is. raw tuna wrapped in seaweed wrapped in sticky rice. did you know? Ravensmith is a big fan of sushi.`
 };
+
+export const godWrathItem: Item = {
+	name: "wrath of the gods", lore: "they are angry with you. this action will have consequences."
+}

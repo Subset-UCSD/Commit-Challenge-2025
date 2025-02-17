@@ -6,10 +6,11 @@
 import inventory from "./util/Inventory";
 import type { Item, StageInfo } from "./util/types";
 import { labyrinthEntrance } from "./areas/labyrinth";
-import { mapItem, sushiItem, compassItem, fishItem, spermPosterItem, grassItem } from "./items/index";
+import { mapItem, sushiItem, compassItem, fishItem, spermPosterItem, grassItem, godWrathItem } from "./items/index";
 import type { BattleOptions } from "./renderer";
 import {addQuest, hasQuest, resolveQuest} from './util/QuestManagerFactoryBuilderCreatorFactoryFactoryObserverConflictMediator'
 declare function  startBattle (options: BattleOptions):void
+declare function removeInput ():void
 
 function BEGINNING(): StageInfo {
 	let I: StageInfo = {
@@ -19,7 +20,8 @@ function BEGINNING(): StageInfo {
 			"go north": northPath,
 			"go south": southPath,
 			"go east": null,
-			'inspect fountain': rubberRoom1,
+			"inspect fountain": rubberRoom1,
+			"inspect computer": () => password1(),
 		}
 	};
 	if (inventory.size === 0) {
@@ -242,6 +244,60 @@ function powell():StageInfo {
 		theme: 'northernProperty'
 	};
 	return I
+}
+
+let passwordGuessed = false;
+function passwordStage(description: string, password: string, nextStage: () => StageInfo): StageInfo {
+	let I: StageInfo = {
+		location: inventory.has(mapItem) ? "Ravensmith Court" : 'courtyard',
+		description: description,
+		inputs: '<input type="text" id="password-input" required maxlength="15" size="20" />',
+		choices: {},
+	}
+
+	const inputElement = document.getElementById("password-input") as HTMLInputElement;
+	const input = inputElement?.value || "";
+	I.choices['submit'] = () => {
+		if (input === password) return nextStage();
+		return passwordStage(description, password, nextStage);
+	}
+
+	I.choices["give up"] = () => {
+		removeInput();
+		return BEGINNING;
+	};
+
+	return I;
+}
+
+function password1(): StageInfo { 
+	if (!passwordGuessed) {
+		return passwordStage("enter password", "password", password2);
+	} else {
+		return {
+			location: inventory.has(mapItem) ? "Ravensmith Court" : 'courtyard',
+			description: 'the screen is off. it occasionally makes haunting screeches that reverberate around you. you feel uncomfortable.',
+			choices: { 'leave': BEGINNING }
+		};
+	}
+}
+function password2(): StageInfo { return passwordStage("password is incorrect", "incorrect", password3);}
+function password3(): StageInfo { return passwordStage("try again", "again", password4);}
+function password4(): StageInfo { return passwordStage("try again later", "again later", passwordEnd);}
+
+function passwordEnd(): StageInfo {
+	removeInput();
+
+	if (!passwordGuessed) inventory.add(godWrathItem);
+	passwordGuessed = true;
+	
+	let I: StageInfo = {
+		location: 'courtyard',
+		description: "you anger the gods.",
+		choices: {"leave": BEGINNING},
+	}
+
+	return I;
 }
 
 function rubberRoom1(): StageInfo {

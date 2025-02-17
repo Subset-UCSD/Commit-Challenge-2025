@@ -39,13 +39,14 @@ function renderInventory() {
 const render = async () => {
 	for (let i = 0; i < 87; i++) current() // call the stage 87 times to make sure it's pure
 	const textSpeed = parseInt(localStorage.getItem(TEXT_SPEED) || "15");
-	const { location, description, choices, theme = '' } = current();
+	const { location, description, inputs, choices, theme = '' } = current();
 	document.title = location;
 	document.documentElement.className = theme
 	document.getElementById("location")!.innerHTML = location;
 	let [i, desc] = typeText(description, textSpeed);
 	let choice = showChoices(choices, i, textSpeed);
 	document.getElementById("description")!.innerHTML = desc;
+	if (inputs) document.getElementById("inputs")!.innerHTML = inputs;
 	document.getElementById("choices")!.innerHTML = choice;
 	renderInventory();
 }
@@ -186,6 +187,11 @@ window.addEventListener('DOMContentLoaded', () => {
 		render();
 	});
 });
+
+function removeInput() {
+	const inputElement = document.getElementById("password-input") as HTMLInputElement;
+	inputElement?.remove();
+}
 
 attack.addEventListener('click', () => {
 	attack.disabled = true

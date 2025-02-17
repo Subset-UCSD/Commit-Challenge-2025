@@ -102,9 +102,24 @@ nav {
 #speed-slider {
 	accent-color: var(--dark-accent);
 }
-input::-moz-range-thumb {
-	/*background-color: green;*/
+input[type="range"] {
+	all: unset;
+	transition: opacity 0.25s;
+	opacity: 0.6;
 }
+input[type="range"]:hover {
+	opacity: 1;
+}
+input[type="range"]::-moz-range-thumb {
+	background-color: var(--accent);
+}
+input[type="range"]::-moz-range-track {
+	background-color: var(--space-gray);
+}
+input[type="range"]::-moz-range-progress {
+	background-color: var(--dark-accent);
+}
+  
 #description,#battledesc {
 	font-size: 1.3rem;
 	line-height: 1.5rem;

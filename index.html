@@ -257,6 +257,11 @@ justify-content: flex-end;    }
     <h1>&subseteq; Commit Challenge 2025</h1>
     <p>Welcome to the annual &subseteq; Commit Challenge 2025! The goal is to make contributions and a commit every day to build something that can (hopefully) be considered meaningful and deployable by the end of the year 🚀</p>
     <p><a href="https://github.com/Subset-UCSD/Commit-Challenge-2025">GitHub repo...</a></p>
+    <style>
+        td[title="precedent day"] {
+            filter: brightness(0.5) contrast(3.5) brightness(2.3);
+        }
+        </style>
     <h2>Marcelo CSE 202 atendens tracker</h2>
     <table>
         <thead>
@@ -273,7 +278,8 @@ justify-content: flex-end;    }
             <tr><td>3</td><td title="mlk day">👴🏾</td><td>❌</td><td>🕢</td></tr>
             <tr><td>4</td><td>✅</td><td>❌</td><td>✅</td></tr>
             <tr><td>5</td><td>❌</td><td>❌</td><td>❌</td></tr>
-            <tr><td>6</td><td title="unconfirmed">✅</td><td></td><td></td></tr>
+            <tr><td>6</td><td title="unconfirmed">✅</td><td>❌</td><td>❌</td></tr>
+            <tr><td>7</td><td title="precedent day">👱🏻</td><td></td><td></td></tr>
         </tbody>
     </table>
     <p><strong><em>SAUCY MARCELO SECRETS</em></strong> will be revaeled..</p>
@@ -297,6 +303,7 @@ justify-content: flex-end;    }
             score += 1 // week 5 monday
             score += 1 // week 5 wednesady
             score += 1 // week 5 frday
+            score += 2 // week 6
             bar.style.width = `${score / 13 * 100}%`
             if (score >= 13) {
                 alert('congratulations marcelo! you did it!')

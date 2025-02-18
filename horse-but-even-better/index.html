@@ -6,6 +6,9 @@
     <title>Horse Breeding Simulator</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.0.0"></script>
+    <meta name="description" content="Buy Brown Horse ($1536)">
+    <meta name="theme-color" content="#AAB99A">
+    <link rel="icon" type="image/png" href="../favicon.png">
 </head>
 <body class="bg-gray-100 flex items-center justify-center min-h-screen">
     <div class="w-full max-w-md bg-white p-6 rounded-xl shadow-lg">
@@ -80,6 +83,30 @@
         }
 
         updateUI();
+
+        for (const button of document.getElementsByTagName('button')) {
+            let timeoutId
+            function wait(delay) {
+                return new Promise(resolve => timeoutId= setTimeout(resolve, delay))
+            }
+            button.addEventListener('pointerdown', async (e) => {
+                button.setPointerCapture(e.pointerId)
+                let delay = 500
+                while (true) {
+                    await wait(delay)
+                    button.click()
+                    delay += (0 - delay) * 0.1
+                }
+            })
+            button.addEventListener('pointerup', (e) => {
+                clearTimeout(timeoutId)
+                timeoutId = null
+            })
+            button.addEventListener('pointercancel', (e) => {
+                clearTimeout(timeoutId)
+                timeoutId = null
+            })
+        }
     </script>
 </body>
 </html>

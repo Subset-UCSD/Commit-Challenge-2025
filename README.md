@@ -35,6 +35,12 @@ You must commit to main. No malicious code pls.
 
 - [ ] qr-code based offline jackbox
 
+- [ ] Cave game
+  - [ ] Get server running 
+    - I just applied for a cheap server will hear back in like 6 days. 
+  - [ ] Get networking going
+  - [ ] Get renderer working
+
 # Roadmap
 ![toothless dancing](./ass/ets/toothless-dancing-toothless.gif)
 

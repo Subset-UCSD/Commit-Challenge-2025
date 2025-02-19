@@ -1,7 +1,9 @@
 {
   "scripts": {
     "build": "esbuild escape/*.ts --outdir=escape --bundle --format=esm  --tree-shaking=false",
-    "dev": "esbuild escape/*.ts --outdir=escape --bundle --format=esm  --tree-shaking=false --serve --servedir=."
+    "dev": "esbuild escape/*.ts --outdir=escape --bundle --format=esm  --tree-shaking=false --serve --servedir=.",
+    "cave": "run-s cave:*",
+    "cave:build": "echo oops"
   },
   "dependencies": {
     "esbuild": "^0.24.2"

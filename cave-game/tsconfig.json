@@ -1,0 +1,12 @@
+{
+	"$schema": "https://json.schemastore.org/tsconfig",
+	"compilerOptions": {
+		"module": "esnext",
+		"target": "esnext",
+		"strict": true,
+		"moduleResolution": "bundler",
+		"resolveJsonModule": true,
+		"outDir": "test"
+	},
+	"include": ["./*.ts"]
+}

@@ -30,3 +30,7 @@ export const sushiItem: Item = {
 export const godWrathItem: Item = {
 	name: "wrath of the gods", lore: "they are angry with you. this action will have consequences."
 }
+
+export const soupRecipeItem: Item = {
+	name: "one day blinding stew recipe", lore: "- 3 blinding mushrooms\n- 1 onion, finely chopped\n- 1 clove of garlic, crushed\n- 2 carrots, finely chopped\n- green lentils, to taste\n- olive oil\n- salt and pepper\n- 1 liter vegetable stock"
+}

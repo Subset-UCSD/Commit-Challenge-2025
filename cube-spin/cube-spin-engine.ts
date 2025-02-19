@@ -1,7 +1,37 @@
+//https://medium.com/my-games-company/migrating-from-webgl-to-webgpu-057ae180f896
+//https://github.com/gfx-rs/wgpu/tree/trunk
+//https://discourse.threejs.org/t/the-new-webgl-vs-webgpu-performance-comparison-example/69097
+//https://www.reddit.com/r/GraphicsProgramming/comments/15og3al/should_i_shift_from_webgl_to_opengl_or_webgpu/
+/**
+ * 
+ * Okay based on my reading, webGPU maybe the play. 
+ * 
+ * It might be faster, and more modern. A lot of movement in the felid is toward it
+ * 
+ * The largest downside is I'm not sure we can easily convert the old rendering pipeline to it
+ * and I am not the biggest fan of WSGL's syntax. I pefer GSGL. 
+ * 
+ * We can use a tool called naga to convert between the two shader langagues, its supported by wgpu. 
+ * But I worry that may cause performance issues as opposed to rendering it ourselfs. 
+ * 
+ * Other downside, limited browser support:
+ * https://developer.mozilla.org/en-US/docs/Web/API/WebGPU_API#browser_compatibility 
+ * 
+ * Ahhh idk, WebGL maybe the best in short term, I might try and learn both and see where it leads
+ * For learning sake u know
+ */
+
+
+
+
 //https://developer.mozilla.org/en-US/docs/Web/API/GPUShaderModule
 //https://webgpufundamentals.org/webgpu/lessons/webgpu-from-webgl.html 
 // GOAL: Learn how WebGPU works yippee - sean
 // also typescript believe it or not i've never used it before
+
+
+
+
 
 // Clear color for GPURenderPassDescriptor
 const clearColor = { r: 0.0, g: 0.5, b: 1.0, a: 1.0 };
@@ -61,8 +91,13 @@ async function init() {
   });
 
   // 3: Get reference to the canvas to render on
-  const canvas = document.querySelector('#gpuCanvas');
+  const canvas: HTMLCanvasElement = document.querySelector('#gpuCanvas');
   const context = canvas.getContext('webgpu');
+
+  if (context === null) {
+    alert("no GPU found")
+    return;
+  }
 
   context.configure({
     device: device,

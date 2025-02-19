@@ -2,6 +2,8 @@
   "scripts": {
     "build": "esbuild escape/*.ts --outdir=escape --bundle --format=esm  --tree-shaking=false",
     "dev": "esbuild escape/*.ts --outdir=escape --bundle --format=esm  --tree-shaking=false --serve --servedir=.",
+    "cavebuild": "node --experimental-strip-types cave-game/build.ts build",
+    "cavedev": "node --experimental-strip-types cave-game/build.ts watch",
     "cave": "run-s cave:*",
     "cave:build": "echo oops"
   },

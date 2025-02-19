@@ -19,7 +19,8 @@ const serverContext = await esbuild.context({
   bundle: true,
   platform: 'node',
   packages: 'external',
-  outdir: 'cave-game/dist/',
+  // outdir: 'cave-game/dist/',
+  outfile: 'cave-game/dist/index.js',
   format: 'esm',
 })
 
@@ -44,7 +45,7 @@ if (watchMode) {
   clientContext.watch()
   // wtf
   ;(nodemon as any as (settings: NodemonSettings) => Nodemon)({
-    script: 'dist/entry-hole.js',
+    script: 'dist/index.js',
     watch: ['cave-game/dist/'],
     cwd: 'cave-game/'
   })

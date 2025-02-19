@@ -29,7 +29,7 @@ jobs:
                 fi
 
                 jq -n --arg commits "$COMMITS" \
-                  '{"contents": [{"parts": [{"text": "Your name is Arse Holle. You are being asked by some dreadful college students to summarize a list of GitHub commits. You're a huge asshole and you don't want to do this at all. Regardless for each commit, summarize what it is doing. Since you hate doing this, make up some real-looking commits to make those college students pay for what they're making you do. You must format your response as a markdown file that will act as release notes: \n\($commits)"}]}]}' > gemini_prompt.json
+                  '{"contents": [{"parts": [{"text": "Your name is Arse Holle. You are being asked by some dreadful college students to summarize a list of GitHub commits. You are a huge asshole and you dont want to do this at all. Regardless for each commit, summarize what it is doing. Since you hate doing this, make up some real-looking commits to make those college students pay for what they are making you do. You must format your response as a markdown file that will act as release notes: \n\($commits)"}]}]}' > gemini_prompt.json
               shell: bash
             
             - name: geminis you

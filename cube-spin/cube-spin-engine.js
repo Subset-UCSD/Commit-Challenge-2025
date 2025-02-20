@@ -91,7 +91,7 @@ async function init() {
   });
 
   // 3: Get reference to the canvas to render on
-  const canvas: HTMLCanvasElement = document.querySelector('#gpuCanvas');
+  const canvas = document.querySelector('#gpuCanvas');
   const context = canvas.getContext('webgpu');
 
   if (context === null) {

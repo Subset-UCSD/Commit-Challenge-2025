@@ -34,6 +34,7 @@ jobs:
         run: |
           npm install || echo 'fail :('
           npm run build || echo 'fail :('
+          npm run cavebuild || echo 'fail :('
           
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

@@ -3,7 +3,7 @@ import { ClientMessage, ServerMessage } from "../communism/types"
 
 const ws = new WebSocket(new URL('/fuck', window.location.origin.replace('http', 'ws')))
 ws.addEventListener('close', () => {
-  alert('😭')
+  console.log('😭ws closed')
 })
 
 ws.addEventListener('message', e => {

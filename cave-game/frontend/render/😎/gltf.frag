@@ -30,11 +30,13 @@ uniform int u_num_lights;
 uniform vec3 u_point_lights[MAX_LIGHTS];
 // In HSV
 uniform vec3 u_point_colors[MAX_LIGHTS];
-uniform samplerCube u_point_shadow_maps[MAX_LIGHTS];
+// uniform samplerCube u_point_shadow_maps[MAX_LIGHTS];
 uniform float u_falloff[MAX_LIGHTS];
-uniform vec4 u_ambient_light;
-uniform int u_enable_tones;
-uniform float u_tones;
+uniform vec3 u_ambient_light;
+uniform vec3 u_dir_light_color;
+uniform vec3 u_dir_light_dir;
+// uniform int u_enable_tones;
+// uniform float u_tones;
 
 #define NEAR 0.001
 #define FAR 100.0
@@ -86,7 +88,9 @@ void main() {
   vec4 base_specular = vec4(0.5, 0.5, 0.5, 1.0);
   float shininess = 4.0;
 
-  gl_FragColor = u_ambient_light * base_color;
+  vec3 light = u_ambient_light + max(dot(u_dir_light_dir, v_normal), 0.0) * u_dir_light_color;
+  gl_FragColor = vec4(light, 1.0) * base_color;
+  
 //  for (int i = 0; i < MAX_LIGHTS; i++) {
 //    if (i >= u_num_lights) {
 //      break;

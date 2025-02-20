@@ -60,7 +60,7 @@ const cam = new Camera()
 
 import modelRoot from '../marcelos/notacube/notacube.gltf'
 import modelBinPath from '../marcelos/notacube/notacube.bin'
-import { mat4 } from "gl-matrix";
+import { mat4, vec3 } from "gl-matrix";
 import { Camera } from "./render/cam";
 const model = new GltfModel(gl, await parseGltf(modelRoot, {
   'notacube.bin': modelBinPath
@@ -79,7 +79,9 @@ while (true) {
 
   gl.gltfShader.use()
   gl.gl.uniformMatrix4fv(gl.gltfShader.uniform('u_view'), false, view)
-  gl.gl.uniform4f(gl.gltfShader.uniform('u_ambient_light'), 1, 1, 1, 1)
+  gl.gl.uniform3f(gl.gltfShader.uniform('u_ambient_light'), 0.5, 0.5, 0.5)
+  gl.gl.uniform3f(gl.gltfShader.uniform('u_dir_light_color'), 2, 2, 2)
+  gl.gl.uniform3fv(gl.gltfShader.uniform('u_dir_light_dir'), vec3.normalize(vec3.create(), vec3.fromValues(1, -3, 2)))
   model.draw([{ transform: mat4.rotateX(mat4.create(), mat4.rotateY(mat4.create(), mat4.create(), Date.now() / 1000), Date.now() / 83466) }])
   
   gl.applyFilters()

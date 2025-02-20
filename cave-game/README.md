@@ -1,5 +1,7 @@
 ## development
 
+requires node 22+ for `--experimental-strip-types` to run typescript
+
 ```shell
 $ npm install
 $ npm run cavedev

@@ -1,5 +1,10 @@
 import { ServerMessage } from "../communism/types";
 import { send } from "./net";
+import './index.css'
+import { expect } from "../communism/utils";
+import { Gl } from "./render/Gl";
+import { GltfModel } from "./render/Glthefuck";
+import { parseGltf } from "../communism/gltf/parser";
 
 console.log('frontend!')
 
@@ -41,4 +46,47 @@ if (f instanceof HTMLFormElement) {
       f.reset()
     }
   })
+}
+
+const canvas = document.getElementById('canvas')
+export const gl = new Gl(
+  (canvas instanceof HTMLCanvasElement ? canvas : expect('#canvas'))
+    .getContext('webgl2') ?? expect('webgl context')
+)
+gl.gl.enable(gl.gl.CULL_FACE)
+gl.gl.enable(gl.gl.DEPTH_TEST)
+
+const cam = new Camera()
+
+import modelRoot from '../marcelos/notacube/notacube.gltf'
+import modelBinPath from '../marcelos/notacube/notacube.bin'
+import { mat4 } from "gl-matrix";
+import { Camera } from "./render/cam";
+const model = new GltfModel(gl, await parseGltf(modelRoot, {
+  'notacube.bin': modelBinPath
+}))
+
+gl.checkError()
+
+// main game loop
+while (true) {
+  cam.position[2] = Math.sin(Date.now() / 848) * 5 + 10
+
+  const view = cam.pv(window.innerWidth / window.innerHeight)
+
+  gl.clear([0.01,0.02,0.1])
+  gl.beginRender()
+
+  gl.gltfShader.use()
+  gl.gl.uniformMatrix4fv(gl.gltfShader.uniform('u_view'), false, view)
+  gl.gl.uniform4f(gl.gltfShader.uniform('u_ambient_light'), 1, 1, 1, 1)
+  model.draw([{ transform: mat4.rotateX(mat4.create(), mat4.rotateY(mat4.create(), mat4.create(), Date.now() / 1000), Date.now() / 83466) }])
+  
+  gl.applyFilters()
+
+  await Promise.all([new Promise(window.requestAnimationFrame), new Promise(resolve => {
+    // die early if there's an error
+    gl.checkError()
+    resolve(0)
+  })])
 }

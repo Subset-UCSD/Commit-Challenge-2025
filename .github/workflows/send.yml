@@ -1,0 +1,24 @@
+name: send them a message
+on:
+  workflow_dispatch:
+    inputs:
+      horse:
+        description: middle three digits of your SSN
+        required: true
+        default: i am marcelo
+        type: string
+
+jobs:
+  horsdfbdhfgkhdsfg:
+    runs-on: ubuntu-latest
+    steps:
+      - name: send the message
+        run: |
+          curl -X POST "$DISCORD_WEBHOOK_URL" \
+            -H "Content-Type: application/json" \
+            -d "$(jq -nc --arg msg "$MSG" '{"username": "marcelo sen","avatar_url": "https://subset-ucsd.github.io/Commit-Challenge-2025/ass/ets/late.gif", "embeds": [{"description": $msg}]}')"
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          MSG: ${{ inputs.horse }}
+    permissions:
+      issues: write

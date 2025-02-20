@@ -5,11 +5,19 @@ $ npm install
 $ npm run cavedev
 ```
 
+open http://localhost:8080/ in the browser
+
 ## build
 
 ```shell
 $ npm run cavebuild
-$ node cave-game/dist/index.js
+```
+
+run the server:
+
+```shell
+$ cd cave-game/
+$ node dist/index.js
 ```
 
 ## design

@@ -21,9 +21,11 @@ jobs:
             - name: windows + L
               id: changelog
               run: |
+                export TZ="America/Los_Angeles"
                 COMMITS=$(git log --since="24 hours ago" --pretty=format:"- %s" -p)
-
-                if ! echo "$COMMITS" | grep -q "-"; then
+                echo "$COMMITS"
+                
+                if [ -z "$COMMITS" ]; then
                   echo "erm nobody committed"
                   exit 1
                 fi

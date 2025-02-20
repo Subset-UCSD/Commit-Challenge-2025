@@ -16,7 +16,7 @@ jobs:
         run: |
           curl -X POST "$DISCORD_WEBHOOK_URL" \
             -H "Content-Type: application/json" \
-            -d "$(jq -nc --arg msg "$MSG" '{"username": "NOT marcelo sen","avatar_url": "https://subset-ucsd.github.io/Commit-Challenge-2025/ass/ets/late.gif", "embeds": [{"description": $msg}]}')"
+            -d "$(jq -nc --arg msg "$MSG" '{"username": "NOT marcelo sen","avatar_url": "https://subset-ucsd.github.io/Commit-Challenge-2025/favicon.png", "embeds": [{"description": $msg}]}')"
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           MSG: ${{ inputs.horse }}

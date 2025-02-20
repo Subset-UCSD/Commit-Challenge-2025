@@ -24,9 +24,8 @@ jobs:
                 export TZ="America/Los_Angeles"
                 COMMITS=$(git log --since="24 hours ago" --pretty=format:"- %s" -p)
                 echo "$COMMITS"
-                echo $COMMITS
                 
-                if ! echo "$COMMITS" | grep -q "-"; then
+                if [ -z "$COMMITS" ]; then
                   echo "erm nobody committed"
                   exit 1
                 fi

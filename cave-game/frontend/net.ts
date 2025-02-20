@@ -1,5 +1,5 @@
 import { handleMessage } from "."
-import { ClientMessage, ServerMessage } from "../communism/types"
+import { ClientMessage, ServerMessage } from "../communism/messages"
 
 const ws = new WebSocket(new URL('/fuck', window.location.origin.replace('http', 'ws')))
 ws.addEventListener('close', () => {

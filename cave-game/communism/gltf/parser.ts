@@ -39,15 +39,23 @@ export type GltfParser = {
 export async function parseGltf(
 	root: Gltf,
 	uriMap: Record<string, string>,
+  bin?: ArrayBuffer,
 	fetchBuffer = fetch,
 	fetchImage = fetch,
 ): Promise<GltfParser> {
 	const buffers = await Promise.all(
-		root.buffers.map(({ uri }) =>
-			fetchBuffer(uriMap[uri]).then((r) =>
-				r.ok ? r.arrayBuffer() : Promise.reject(new Error(`HTTP ${r.status}: ${uri} (${r.url})`)),
-			),
-		),
+		root.buffers.map(({ uri }) => {
+      if (uri) {
+        return fetchBuffer(uriMap[uri]).then((r) =>
+          r.ok ? r.arrayBuffer() : Promise.reject(new Error(`HTTP ${r.status}: ${uri} (${r.url})`)),
+        )
+      } else {
+        if (!bin) {
+          throw new TypeError(`'uri' omitted but no bin provided`)
+        }
+        return bin
+      }
+    }),
 	);
 
 	const images = await Promise.all(

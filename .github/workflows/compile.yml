@@ -36,9 +36,11 @@ jobs:
           node-version: '22.x'
       - name: Build
         run: |
-          npm install || echo 'fail :('
-          npm run build || echo 'fail :('
-          npm run cavebuild || echo 'fail :('
+          npm install || echo 'install fail :('
+          npm run build || echo 'build fail :('
+          npm run cavebuild || echo 'cavebuild fail :('
+          # do not upload node_modules to github pages
+          rm -rf node_modules/ || echo 'rm fail :('
           
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

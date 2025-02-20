@@ -13,7 +13,8 @@
     "esbuild": "^0.24.2",
     "express": "^4.21.2",
     "express-ws": "^5.0.2",
-    "gl-matrix": "^3.4.3"
+    "gl-matrix": "^3.4.3",
+    "mat4-interpolate": "^1.0.4"
   },
   "devDependencies": {
     "@types/express": "^5.0.0",

@@ -8,11 +8,13 @@ declare module "*.frag" {
 }
 
 
-declare module "*.gltf" {
-	const gltf: any;
-	export default gltf;
-}
-declare module "*.bin" {
+declare module "*.glb" {
 	const path: string;
 	export default path;
+}
+
+declare module 'mat4-interpolate' {
+	import { mat4 } from "gl-matrix";
+
+  export default function interpolate(out:mat4, start: mat4, end: mat4, alpha: number): boolean
 }

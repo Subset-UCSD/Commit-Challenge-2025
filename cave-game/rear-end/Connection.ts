@@ -1,5 +1,5 @@
 import type { WebSocket } from 'ws'
-import { ServerMessage } from '../communism/types'
+import { ServerMessage } from '../communism/messages'
 
 export class Connection {
   id: number

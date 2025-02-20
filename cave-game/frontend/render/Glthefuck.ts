@@ -33,7 +33,7 @@ export class GltfModel {
 	#meshes: ModelMesh[];
 
 	constructor(engine: Gl, { root, buffers, images, meshes }: GltfParser) {
-		this.name = root.buffers[0].uri;
+		this.name = root.buffers[0].uri ?? 'bin';
     this.engine = engine
 
 		const gl = engine.gl;

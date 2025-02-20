@@ -30,8 +30,7 @@ const clientContext = await esbuild.context({
   loader: {
     '.frag': 'text',
     '.vert': 'text',
-    '.gltf': 'json',
-    '.bin': 'file',
+    '.glb': 'file',
   },
   outdir: 'cave-game/public/',
   format: 'esm',

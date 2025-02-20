@@ -140,8 +140,8 @@ export type Gltf = {
 	))[];
 	buffers: {
 		byteLength: number;
-		/** May be a data URI */
-		uri: string;
+		/** May be a data URI. omitting it means to use the bin chunk of the .glb */
+		uri?: string;
 	}[];
 	bufferViews: {
 		buffer: number;

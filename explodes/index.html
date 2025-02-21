@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>🤯💥🤯💥🤯💥</title>
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Device at risk of fire">
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            margin-left: 20%;
+            margin-right: 20%;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            animation: warning 1s infinite;
+        }
+        p {
+            font-size: 16px;
+            margin-bottom: 20px;
+            animation: warning 1s infinite;
+        }
+        @keyframes warning {
+            0% { color: red; }
+            50% { color: white; }
+            100% { color: red; }
+        }
+        #countdown {
+            font-size: 50px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        span.explodes {
+            margin-top: 20px;
+            animation: tilt-n-move-shaking 0.15s infinite;
+        }
+
+        #buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        .button {
+            width: 80%;
+            max-width: 300px;
+            padding: 15px;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            margin: 10px 0;
+            border-radius: 10px;
+        }
+        .red {
+            background-color: red;
+            color: white;
+        }
+        .green {
+            background-color: green;
+            color: white;
+        }
+
+        @keyframes jump-shaking {
+            0% { transform: translateX(0) }
+            25% { transform: translateY(-9px) }
+            35% { transform: translateY(-9px) rotate(17deg) }
+            55% { transform: translateY(-9px) rotate(-17deg) }
+            65% { transform: translateY(-9px) rotate(17deg) }
+            75% { transform: translateY(-9px) rotate(-17deg) }
+            100% { transform: translateY(0) rotate(0) }
+        }
+
+        @keyframes tilt-n-move-shaking {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(5px, 5px) rotate(5deg); }
+            50% { transform: translate(0, 0) rotate(0eg); }
+            75% { transform: translate(-5px, 5px) rotate(-5deg); }
+            100% { transform: translate(0, 0) rotate(0deg); }
+        }
+
+    </style>
+</head>
+
+<body>
+    <span class="explodes">
+        <h1>Phone at risk of fire</h1>
+        <p>youre phone has overheated and is currently at risk of exploding.
+        turn off your phone urgently or contact the Samsung services.</p>
+        
+        <div id="countdown">30</div>
+        
+        <div id="buttons"">
+            <button class="button green" onclick="turnOff()">✔ Turn off your phone</button>
+            <button class="button red" onclick="callSamsung()">📞 Call Samsung services (risk of exploding)</button>
+        </div>
+        
+
+        <script>
+            let timeLeft = 30;
+            const countdownElement = document.getElementById("countdown");
+
+            function startCountdown() {
+                let countdown = setInterval(() => {
+                    timeLeft--;
+                    
+                    countdownElement.innerText = timeLeft;
+
+                    if (timeLeft <= 0) {
+                        clearInterval(countdown);
+                        window.location.href = "/";
+                    }
+                }, 1000);
+            }
+
+            function turnOff() {
+                clearInterval(countdown);
+                window.location.href = "/escape";
+
+            }
+
+            function callSamsung() {
+                window.location.href = "/login.html";
+            }
+
+            startCountdown();
+        </script>
+    </div>
+</body>
+</html>

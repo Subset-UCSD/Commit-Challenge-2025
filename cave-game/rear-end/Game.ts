@@ -40,6 +40,13 @@ export class Game {
           interpolate: {
             duration: 1500
           }
+        }, {
+          id: 'floor',
+          model: './marcelos/floor.glb',
+          transform: [...mat4.fromTranslation(mat4.create(), [0, -1, 0])],
+          interpolate: {
+            duration: 1500
+          }
         }] })
       }
     }, 1000)

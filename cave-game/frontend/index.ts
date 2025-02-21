@@ -1,7 +1,7 @@
 import { ServerMessage } from "../communism/messages";
 import { send } from "./net";
 import './index.css'
-import { expect } from "../communism/utils";
+import { expect, mergeVec3 } from "../communism/utils";
 import { Gl } from "./render/Gl";
 import { GltfModel } from "./render/Glthefuck";
 import interpolate from 'mat4-interpolate'
@@ -113,10 +113,14 @@ resize()
 window.addEventListener('resize', resize)
 
 const cam = new Camera()
+cam.position[2] = 20 // (Math.sin(now / 1248) + 1) * (25-3)/2 + 3
+cam.position[1] = 20
+cam.rotation.x = -Math.PI / 8
+// cam.rotation.y = Math.PI
 
 import modelGlb from '../public/marcelos/notacube.glb'
 import modelGlb2 from '../public/marcelos/notacube_smooth.glb'
-import { mat4, vec3 } from "gl-matrix";
+import { mat4, vec3, vec4 } from "gl-matrix";
 import { Camera } from "./render/cam";
 import { parseGlb } from "../communism/gltf/bingltfparser";
 const model = new GltfModel(gl, await fetch(modelGlb).then(r => r.arrayBuffer()).then(parseGlb))
@@ -124,10 +128,19 @@ const model2 = new GltfModel(gl, await fetch(modelGlb2).then(r => r.arrayBuffer(
 
 gl.checkError()
 
+type PointLight = {
+  position: vec3
+  color: [r: number, g: number, b: number]
+  falloff: number
+}
+const lights: PointLight[] = [
+  { position: vec3.fromValues(10, 2, 0), color: [0 / 360, 0.8, 0.5], falloff: 10 },
+  { position: vec3.fromValues(-10, 2, 0), color: [180 / 360, 0.8, 0.5], falloff: 10 }
+]
+
 // main game loop
 while (true) {
   const now = Date.now()
-  cam.position[2] = (Math.sin(now / 1248) + 1) * (25-3)/2 + 3
 
   const view = cam.pv(window.innerWidth / window.innerHeight)
 
@@ -138,7 +151,24 @@ while (true) {
   gl.gl.uniformMatrix4fv(gl.gltfShader.uniform('u_view'), false, view)
   gl.gl.uniform3f(gl.gltfShader.uniform('u_ambient_light'), 0.5, 0.5, 0.5)
   gl.gl.uniform3f(gl.gltfShader.uniform('u_dir_light_color'), 2, 2, 2)
-  gl.gl.uniform3fv(gl.gltfShader.uniform('u_dir_light_dir'), vec3.normalize(vec3.create(), vec3.fromValues(Math.cos(now / 362), Math.sin(now / 362), 0.3)))
+  gl.gl.uniform3fv(gl.gltfShader.uniform('u_dir_light_dir'), vec3.normalize(vec3.create(), vec3.fromValues(Math.cos(now / 362), Math.sin(now / 362), 1)))//, cam.transform()).slice(0, 3))
+  // console.log(vec4.transformMat4(vec4.create(), vec4.normalize(vec4.create(), vec4.fromValues(Math.cos(now / 362), Math.sin(now / 362), 5, 0)), mat4.invert(mat4.create(), cam.transform())).slice(0, 3))
+  // console.log(vec4.normalize(vec4.create(), vec4.fromValues(Math.cos(now / 362), Math.sin(now / 362), 5, 0)),cam.transform())
+  // break
+  gl.gl.uniform3fv(gl.gltfShader.uniform("u_eye_pos"), cam.position);
+	gl.gl.uniform1i(gl.gltfShader.uniform("u_num_lights"), lights.length);
+	if (lights.length > 0) {
+		gl.gl.uniform3fv(gl.gltfShader.uniform("u_point_lights[0]"), mergeVec3(lights.map(light => light.position)));
+		gl.gl.uniform3fv(gl.gltfShader.uniform("u_point_colors[0]"), mergeVec3(lights.map(light => light.color)));
+		gl.gl.uniform1fv(
+			gl.gltfShader.uniform("u_falloff[0]"),
+			Array.from(lights.values(), (light) => light.falloff),
+		);
+	}
+	gl.gl.uniform1iv(
+		gl.gltfShader.uniform("u_point_shadow_maps[0]"),
+		Array.from({ length: +gl.constants.MAX_LIGHTS }).map((_, i) => 4 + i),
+	);
   const instances = Array.from({length: 10}, (_, i) => ({ 
     transform:
     mat4.rotateY(mat4.create(),

@@ -1,7 +1,15 @@
-import type { mat4 } from "gl-matrix";
+import type { mat4, vec3 } from "gl-matrix";
 
 export function expect (message: string): never {
   throw new TypeError(`expected ${message}`)
+}
+
+export function mergeVec3(vecs: vec3[]): Float32Array {
+	const arr = new Float32Array(vecs.length * 3);
+	for (let i = 0; i < vecs.length; i++) {
+		arr.set(vecs[i], i * 3);
+	}
+	return arr;
 }
 
 export function mergeMatrices(matrices: mat4[]): Float32Array {

@@ -32,7 +32,6 @@ You must commit to main. No malicious code pls.
 > Feel free to leave ideas here
 
 - [X] Github Pages
-  - [X] Bro the current github page hurts my eyes someone pls fix Marcelo's eyes
 
 - [ ] choose your own adventure game
 
@@ -40,8 +39,6 @@ You must commit to main. No malicious code pls.
 
 - [ ] Cave game
   - [ ] Get server running 
-    - I just applied for a cheap server will hear back in like 6 days. 
-      - can we get an update here
   - [ ] Get networking going
   - [ ] Get renderer working
 

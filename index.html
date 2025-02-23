@@ -261,6 +261,83 @@ justify-content: flex-end;    }
     margin-left: -470px;
     margin-bottom: -230px;
 "></iframe></div>
+
+<!-- <div style="
+/* overflow: hidden;display: inline-block; */
+"><iframe width="560" height="315" src="https://distrokid.com/hyperfollow/bc33/new-record-4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="" style="
+/* margin-left: -470px;
+margin-bottom: -230px; */
+"></iframe></div> -->
+<div
+onmouseenter="gainNode.gain.linearRampToValueAtTime(0, context.currentTime + 1)"
+onmouseleave="gainNode.gain.linearRampToValueAtTime(1, context.currentTime + 1)"
+style="
+    background-color: yellow;
+    border: 10px dashed orange;
+    padding: 10px;
+    color: blue;
+    line-height: 1;
+    position: relative;
+"
+id="rsdfhdfg"
+>
+<style>#rsdfhdfg p {
+    margin: 0;
+}
+.warning {
+    /* https://www.cameronsworld.net/ */
+    background-image: url(ass/ets/sprite10.png);
+    background-position: -132px -49px;
+    width: 76px;
+    height: 55px;
+    display: block;
+    position: absolute;
+    animation: rotate 1s linear infinite
+}
+@keyframes rotate {
+    from {
+        transform: rotateY(0deg) perspective(1000px)
+    }
+    to {
+        transform: rotateY(360deg) perspective(1000px)
+    }
+}
+    </style>
+    <div class="warning" style="left: -20px;"></div>
+    <img src="https://distrokid.imgix.net/http%3A%2F%2Fgather.fandalism.com%2F3917939--94CE4CB9-8D51-4A99-A9AF77E71BF3E1F4--0--149593--NewRecord.jpg?fm=jpg&q=75&w=800&s=2cc1eb1b5e8060709b0a629e370bcf73" alt="b#c# album art" height="100" style="float: left;"/>
+    <p style="font-size: 40px">A New B# C# Release is COMING SOON........</p>
+    <p>try a Sample.. NOW!!</p>
+    <audio src="https://s3.amazonaws.com/audio.distrokid.com/preview_69808708_6CC14CC1-7C46-41F4-969605AA07D83EB7.mp3" controls></audio>
+    <div class="warning" style="right: -20px; animation-duration: 1.0716s; animation-direction: reverse;"></div>
+    <a href="https://distrokid.com/hyperfollow/bc33/new-record-4"
+    style="display: inline-block;
+    background-color: cornflowerblue;
+    color: darkblue;
+    padding: 5px;
+    border: 3px solid dodgerblue;
+    border-radius: 20%;
+    ">
+    <style>
+        .finger {
+            display: inline-block;
+            background-color: aqua;
+            animation: wiggle 0.8s  infinite alternate-reverse;
+            font-size: 25px;
+        }
+        @keyframes wiggle {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(-50px);
+            }
+        }
+        </style>
+        <span class="finger">☞</span>
+        pre-Save on spotify.. Now.....
+        <span class="finger" style="animation-duration: 0.8s; animation-delay: 0.4s;">☜</span>
+</a>
+</div>
     <h1>&subseteq; Commit Challenge 2025</h1>
     <p>Welcome to the annual &subseteq; Commit Challenge 2025! The goal is to make contributions and a commit every day to build something that can (hopefully) be considered meaningful and deployable by the end of the year 🚀</p>
     <p><a href="https://github.com/Subset-UCSD/Commit-Challenge-2025">GitHub repo...</a></p>
@@ -454,6 +531,9 @@ justify-content: flex-end;    }
         window.requestAnimationFrame(tryAudio)
     }
 
+    const gainNode = context.createGain()
+    // gainNode.gain.linearRampToValueAtTime()
+
     const sourceNode = context.createMediaElementSource(audio)
     const sourceNode2 = context.createMediaElementSource(audio2)
     const lowPassNode = context.createBiquadFilter()
@@ -466,9 +546,10 @@ lowPassNode.gain.value = 25;
     let convolver = context.createConvolver();
     let reverbNode = context.createConvolver();
     sourceNode.connect(convolver)
-      convolver.connect(context.destination)
+      convolver.connect(gainNode)
       sourceNode2.connect(lowPassNode)
-      lowPassNode.connect(context.destination)
+      lowPassNode.connect(gainNode)
+      gainNode.connect(context.destination)
 
     async function loadImpulseResponses() {
         {let response = await fetch("./ass/ets/russel-um.mp3");

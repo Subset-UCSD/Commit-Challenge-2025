@@ -1,5 +1,8 @@
 ![banner](./ass/ets/news.svg)
 
+
+# [CHAT B#C# DONE IT AGAIN](https://www.youtube.com/watch?v=vP11EMoz6Nw&list=OLAK5uy_lSse3gEKsLJe7Fufq9lSvaDeK5CjryP1c)
+
 # :sparkle: $\subseteq$ Commit Challenge 2025
 Welcome to the annual $\subseteq$ Commit Challenge 2025! The goal is to make contributions and a commit every day to build something that can (hopefully) be considered meaningful and deployable by the end of the year 🚀 fish are tasty
 

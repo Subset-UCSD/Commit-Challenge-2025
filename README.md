@@ -1,7 +1,7 @@
 ![banner](./ass/ets/news.svg)
 
 
-# [CHAT B#C# DONE IT AGAIN](https://distrokid.com/hyperfollow/bc33/new-record-4)
+# [CHAT B#C# DONE IT AGAIN](https://distrokid.com/hyperfollow/bc33/new-record-5)
 
 # :sparkle: $\subseteq$ Commit Challenge 2025
 Welcome to the annual $\subseteq$ Commit Challenge 2025! The goal is to make contributions and a commit every day to build something that can (hopefully) be considered meaningful and deployable by the end of the year 🚀 fish are tasty

@@ -1,7 +1,7 @@
 ![banner](./ass/ets/news.svg)
 
 
-# [CHAT B#C# DONE IT AGAIN](https://distrokid.com/hyperfollow/bc33/new-record-4)
+# [CHAT B#C# DONE IT AGAIN](https://distrokid.com/hyperfollow/bc33/new-record-5)
 
 # :sparkle: $\subseteq$ Commit Challenge 2025
 Welcome to the annual $\subseteq$ Commit Challenge 2025! The goal is to make contributions and a commit every day to build something that can (hopefully) be considered meaningful and deployable by the end of the year 🚀 fish are tasty
@@ -32,7 +32,6 @@ You must commit to main. No malicious code pls.
 > Feel free to leave ideas here
 
 - [X] Github Pages
-  - [X] Bro the current github page hurts my eyes someone pls fix Marcelo's eyes
 
 - [ ] choose your own adventure game
 
@@ -40,8 +39,6 @@ You must commit to main. No malicious code pls.
 
 - [ ] Cave game
   - [ ] Get server running 
-    - I just applied for a cheap server will hear back in like 6 days. 
-      - can we get an update here
   - [ ] Get networking going
   - [ ] Get renderer working
 

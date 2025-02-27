@@ -38,3 +38,7 @@ export const soupRecipeItem: Item = {
 export const hichewItem: Item = {
 	name: "Morinaga™ HI-CHEW™ Superfruit Mix Dragon Fruit ⋅ Açaí ⋅ Kiwi", lore: "coated in chia seeds. increases your lifespan by 50 years."
 };
+
+export const gsCookiesItem: Item = {
+	name: "Girl Scout Caramel deLites® Cookies 7oz Box", lore: "made by abc baker. decreases your lifespan by 50 years."
+}

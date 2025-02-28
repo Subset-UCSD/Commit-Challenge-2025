@@ -42,7 +42,7 @@ export class Game {
   constructor () {
     this.app.use(express.static('public'))
 
-    this.app.ws('/fuck', this.#handleplayerection)
+    this.app.ws('/fuck', this.#handleplayerjoin)
 
     setInterval(() => {
       for (const cxn of this.activePlayers.values()) {
@@ -65,7 +65,7 @@ export class Game {
     }, 1000)
   }
 
-  #handleplayerection = (ws: WebSocket) => {
+  #handleplayerjoin = (ws: WebSocket) => {
     const player = new Player(nextId++, ws)
     this.activePlayers.set(player.id, player)
     ws.addEventListener('close', () => {

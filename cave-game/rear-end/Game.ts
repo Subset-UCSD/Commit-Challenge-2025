@@ -37,7 +37,6 @@ function randomQuaternion() {
 // This function returns a unit quaternion (randomly sampled from a uniform distribution over the 4D unit sphere). Let me know if you need modifications! 🚀
 
 export class Game {
-  app = expressWs(express()).app
   activePlayers = new Map<number, Player>()
   gameState = new Array<ServerModelObject>()
 

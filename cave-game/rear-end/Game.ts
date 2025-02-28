@@ -7,7 +7,7 @@
 import express from 'express'
 import expressWs from 'express-ws';
 import type { WebSocket } from 'ws'
-import { Connection } from './Connection';
+import { Player } from './Player';
 import { ClientMessage } from '../communism/messages';
 import { mat4 } from 'gl-matrix';
 import { readFile, writeFile } from 'node:fs/promises';
@@ -37,15 +37,15 @@ function randomQuaternion() {
 
 export class Game {
   app = expressWs(express()).app
-  connections = new Map<number, Connection>()
+  activePlayers = new Map<number, Player>()
 
   constructor () {
     this.app.use(express.static('public'))
 
-    this.app.ws('/fuck', this.#handleConnection)
+    this.app.ws('/fuck', this.#handleplayerection)
 
     setInterval(() => {
-      for (const cxn of this.connections.values()) {
+      for (const cxn of this.activePlayers.values()) {
         cxn.send({ type: 'entire-state', objects: [{
           id: 'hey',
           model: './marcelos/notacube_smooth.glb',
@@ -65,48 +65,48 @@ export class Game {
     }, 1000)
   }
 
-  #handleConnection = (ws: WebSocket) => {
-    const conn = new Connection(nextId++, ws)
-    this.connections.set(conn.id, conn)
+  #handleplayerection = (ws: WebSocket) => {
+    const player = new Player(nextId++, ws)
+    this.activePlayers.set(player.id, player)
     ws.addEventListener('close', () => {
-      this.connections.delete(conn.id)
+      this.activePlayers.delete(player.id)
     })
 
-    conn.send({ type: 'you are', id: conn.id })
-    conn.send({type: 'chats',contents:database.chats ?? []})
+    player.send({ type: 'you are', id: player.id })
+    player.send({type: 'chats',contents:database.chats ?? []})
 
     ws.addEventListener('message', e => {
       let message: ClientMessage
       try {
         if (typeof e.data !== 'string') {
-          console.error('connection', conn.id, 'fucking sent us a', e.data)
+          console.error('playerection', player.id, 'fucking sent us a', e.data)
           return
         }
         message = JSON.parse(e.data)
       } catch {
-        console.error('connection', conn.id, 'fucking sent maldformed json', e.data)
+        console.error('playerection', player.id, 'fucking sent maldformed json', e.data)
         return
       }
-      this.#handleMessage(conn, message)
+      this.#handleMessage(player, message)
     })
   }
 
-  async #handleMessage(conn: Connection, message: ClientMessage) {
+  async #handleMessage(player: Player, message: ClientMessage) {
     switch (message.type) {
       case 'chat': {
-        for (const cxn of this.connections.values()) {
-          cxn.send({ type: 'chat', user: conn.id, content: message.message })
+        for (const cxn of this.activePlayers.values()) {
+          cxn.send({ type: 'chat', user: player.id, content: message.message })
         }
-        database.chats?.push(`[${conn.id}] ${message.message}`)
+        database.chats?.push(`[${player.id}] ${message.message}`)
         await writeFile('./db.json', JSON.stringify(database))
         break
       }
       case 'key-state-update': {
-        console.log(conn.id, 'pressed sum keys', message.keys)
+        console.log(player.id, 'pressed sum keys', message.keys)
         break
       }
       default: {
-        console.error('connection', conn.id, 'sent', message, 'cunt.')
+        console.error('playerection', player.id, 'sent', message, 'cunt.')
       }
     }
   }

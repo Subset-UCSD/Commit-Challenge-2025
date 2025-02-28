@@ -6,3 +6,5 @@ escape/*.js
 
 package-lock.json
 yarn.lock
+
+db.json

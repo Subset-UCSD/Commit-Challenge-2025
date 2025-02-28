@@ -1,16 +1,40 @@
+/**
+ * 🎉 this is the main entry point of the frontend, analogous to Game.ts
+ * 
+ * it is more like a script than a proper class, with global state etc., because it deals directly with the DOM
+ *
+ */
+
 import { ServerMessage } from "../communism/messages";
 import { send } from "./net";
 import './index.css'
-import { expect, mergeVec3 } from "../communism/utils";
+import { expect, FUCK, mergeVec3 } from "../communism/utils";
 import { Gl } from "./render/Gl";
 import { GltfModel } from "./render/Glthefuck";
 import interpolate from 'mat4-interpolate'
 
 console.log('frontend!')
 
+//#region temp chat
 const ul = document.createElement('ul')
 document.body.append(ul)
 
+const f = document.getElementById('f')
+if (f instanceof HTMLFormElement) {
+  f.addEventListener('submit', e => {
+    e.preventDefault()
+
+    const thing = new FormData(f).get('message')
+    if (typeof thing === 'string') {
+      send({ type: 'chat', message: thing })
+      f.reset()
+    }
+  })
+}
+
+
+
+//#region server message handling
 type ClientModelInstance = {
   id: string
   oldTransform: mat4
@@ -31,6 +55,8 @@ function computeTransform (instance: ClientModelInstance, now = Date.now()): mat
   return out
 }
 
+
+//#region ACTUAL  msg handler
 let myId = -1
 export function handleMessage (message: ServerMessage) {
   switch (message.type) {
@@ -43,6 +69,17 @@ export function handleMessage (message: ServerMessage) {
         li.append(`<user${message.user.toString().padStart(3, '0')}> ${message.content}`)
       }
       ul.prepend(li)
+      break
+    }
+    case 'chats': {
+      const frag = document.createDocumentFragment()
+      for (const content of message.contents) {
+        const li = document.createElement('li')
+      li.style.whiteSpace = 'pre-wrap'
+      li.append(content)
+      frag.prepend(li)
+      }
+      ul.prepend(frag)
       break
     }
     case 'you are': {
@@ -84,19 +121,37 @@ export function handleMessage (message: ServerMessage) {
   }
 }
 
-const f = document.getElementById('f')
-if (f instanceof HTMLFormElement) {
-  f.addEventListener('submit', e => {
-    e.preventDefault()
-
-    const thing = new FormData(f).get('message')
-    if (typeof thing === 'string') {
-      send({ type: 'chat', message: thing })
-      f.reset()
-    }
-  })
+export function handleConnectionStatus (areWeConnected: boolean) {
+  (document.querySelector('#f input') as FUCK).disabled = !areWeConnected
+  ;;;;
+  (document.querySelector('#f button') as FUCK).disabled = !areWeConnected
 }
+handleConnectionStatus(false)
 
+//#region input
+
+let keys = new Set<string>()
+window.addEventListener('keydown', e => {
+
+  if (!keys.has(e.code)) {
+    keys.add(e.code)
+    send({type:'key-state-update',keys:[...keys]})
+  }
+})
+window.addEventListener('keyup', e => {
+  if (keys.has(e.code)) {
+    keys.delete(e.code)
+    send({type:'key-state-update',keys:[...keys]})
+  }
+})
+window.addEventListener('blur', e => {
+if (keys.size > 0){
+  keys = new Set()
+  send({type:'key-state-update',keys:[...keys]})
+} 
+})
+
+//#region rendering
 const canvas = document.getElementById('canvas')
 export const gl = new Gl(
   (canvas instanceof HTMLCanvasElement ? canvas : expect('#canvas'))
@@ -138,7 +193,7 @@ const lights: PointLight[] = [
   { position: vec3.fromValues(-10, 2, 0), color: [180 / 360, 0.8, 0.5], falloff: 10 }
 ]
 
-// main game loop
+//#region rendering: main game loop
 while (true) {
   const now = Date.now()
 

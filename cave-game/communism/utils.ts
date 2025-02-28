@@ -31,3 +31,5 @@ export function f32ArrayEqual(a: Float32Array, b: Float32Array): boolean {
 	}
 	return true;
 }
+
+export type FUCK = any

@@ -1,9 +1,22 @@
+/**
+ * game state manager AND http server
+ * 
+ * 🎉 this is the main entry point of the backend
+ */
+
 import express from 'express'
 import expressWs from 'express-ws';
 import type { WebSocket } from 'ws'
 import { Connection } from './Connection';
 import { ClientMessage } from '../communism/messages';
 import { mat4 } from 'gl-matrix';
+import { readFile, writeFile } from 'node:fs/promises';
+
+type Database = {
+  chats?: string[]
+}
+const database: Database = JSON.parse(await readFile('./db.json', 'utf-8').catch(() => '{}'))
+database.chats??= []
 
 let nextId = 0
 
@@ -60,6 +73,7 @@ export class Game {
     })
 
     conn.send({ type: 'you are', id: conn.id })
+    conn.send({type: 'chats',contents:database.chats ?? []})
 
     ws.addEventListener('message', e => {
       let message: ClientMessage
@@ -77,12 +91,18 @@ export class Game {
     })
   }
 
-  #handleMessage(conn: Connection, message: ClientMessage) {
+  async #handleMessage(conn: Connection, message: ClientMessage) {
     switch (message.type) {
       case 'chat': {
         for (const cxn of this.connections.values()) {
           cxn.send({ type: 'chat', user: conn.id, content: message.message })
         }
+        database.chats?.push(`[${conn.id}] ${message.message}`)
+        await writeFile('./db.json', JSON.stringify(database))
+        break
+      }
+      case 'key-state-update': {
+        console.log(conn.id, 'pressed sum keys', message.keys)
         break
       }
       default: {

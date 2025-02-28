@@ -1,9 +1,13 @@
-import { handleMessage } from "."
+import { handleConnectionStatus, handleMessage } from "."
 import { ClientMessage, ServerMessage } from "../communism/messages"
 
 const ws = new WebSocket(new URL('/fuck', window.location.origin.replace('http', 'ws')))
+ws.addEventListener('open', () => {
+  handleConnectionStatus(true)
+})
 ws.addEventListener('close', () => {
   console.log('😭ws closed')
+  handleConnectionStatus(false)
 })
 
 ws.addEventListener('message', e => {

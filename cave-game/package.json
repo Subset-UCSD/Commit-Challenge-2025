@@ -9,11 +9,13 @@
 	"dependencies": {
 		"express": "^4.21.2",
 		"gl-matrix": "^3.4.3",
-		"mat4-interpolate": "^1.0.4"
+		"mat4-interpolate": "^1.0.4",
+		"ws": "^8.18.1"
 	},
 	"devDependencies": {
 		"@types/express": "^5.0.0",
 		"@types/node": "^22.13.4",
+		"@types/ws": "^8.5.14",
 		"esbuild": "^0.24.2",
 		"eslint-plugin-import": "^2.31.0",
 		"eslint-plugin-unused-imports": "^4.1.4",

@@ -1,6 +1,6 @@
 import type { WebSocket } from "ws";
 import { ServerMessage, ServerModelObject } from "../communism/messages";
-import { mat4, ReadonlyVec3, vec3 } from 'gl-matrix';
+import { mat4, ReadonlyVec3, vec3 } from "gl-matrix";
 
 export class Player {
 	id: number;
@@ -20,24 +20,24 @@ export class Player {
 		this.#ws.send(JSON.stringify(message));
 	}
 
-  updateKeyState(keys: Array<String>) {
-    this.keyState = keys
-  }
+	updateKeyState(keys: Array<String>) {
+		this.keyState = keys;
+	}
 
-  move(): ServerModelObject {
-    this.keyState.forEach(key => {
-      if ("KeyW" == key) {
-        this.location["x"] += 1 //THIS REQUIRES DIRECTION TO KNOW WHERE TO POINT
-      }
-    });
-    const model_object:ServerModelObject  = {
-      id: String(this.id),
-      model: './marcelos/notacube_smooth.glb',
-      transform: [...mat4.fromTranslation(mat4.create(), vec3.fromValues(this.location["x"], 0, 0))],
-      interpolate: {
-        duration: 100
-      }
-    }
-    return model_object
-  }
+	move(): ServerModelObject {
+		this.keyState.forEach((key) => {
+			if ("KeyW" == key) {
+				this.location["x"] += 1; //THIS REQUIRES DIRECTION TO KNOW WHERE TO POINT
+			}
+		});
+		const model_object: ServerModelObject = {
+			id: String(this.id),
+			model: "./marcelos/notacube_smooth.glb",
+			transform: [...mat4.fromTranslation(mat4.create(), vec3.fromValues(this.location["x"], 0, 0))],
+			interpolate: {
+				duration: 100,
+			},
+		};
+		return model_object;
+	}
 }

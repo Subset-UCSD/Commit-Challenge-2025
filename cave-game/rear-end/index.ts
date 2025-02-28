@@ -28,7 +28,6 @@ let totalDelta = 0;
 		ticks++;
 		totalDelta += delta;
 		if (ticks >= 2000) {
-			game.logTicks(ticks, totalDelta);
 			ticks = 0;
 			totalDelta = 0;
 		}

@@ -84,7 +84,7 @@ export function handleMessage(message: ServerMessage) {
 			break;
 		}
 		case "entire-state": {
-      //map from id to instance
+			//map from id to instance
 			const oldState: Record<string, ClientModelInstance> = {};
 			for (const { instances } of Object.values(modelState)) {
 				for (const instance of instances) {
@@ -92,7 +92,7 @@ export function handleMessage(message: ServerMessage) {
 				}
 			}
 
-      // reset model state
+			// reset model state
 			modelState = {};
 			const now = Date.now();
 			for (const { id, model, transform, interpolate: { duration = 0, delay = 0 } = {} } of message.objects) {

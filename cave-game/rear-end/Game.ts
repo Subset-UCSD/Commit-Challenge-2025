@@ -20,6 +20,11 @@ database.chats??= []
 
 let nextId = 0
 
+function sleep(ms: number): Promise<void> {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+
 // Here's a JavaScript function that generates a random quaternion:
 function randomQuaternion() {
 	let u1 = Math.random();
@@ -36,8 +41,9 @@ function randomQuaternion() {
 // This function returns a unit quaternion (randomly sampled from a uniform distribution over the 4D unit sphere). Let me know if you need modifications! 🚀
 
 export class Game {
-	app = expressWs(express()).app
-	activePlayers = new Map<number, Player>()
+  app = expressWs(express()).app
+  activePlayers = new Map<number, Player>()
+  gameState: { [key: string]: any } = {}
 
 	constructor () {
 		this.app.use(express.static('public'))
@@ -75,45 +81,72 @@ export class Game {
 		player.send({ type: 'you are', id: player.id })
 		player.send({type: 'chats',contents:database.chats ?? []})
 
-		ws.addEventListener('message', e => {
-			let message: ClientMessage
-			try {
-				if (typeof e.data !== 'string') {
-					console.error('playerection', player.id, 'fucking sent us a', e.data)
-					return
-				}
-				message = JSON.parse(e.data)
-			} catch {
-				console.error('playerection', player.id, 'fucking sent maldformed json', e.data)
-				return
-			}
-			this.#handleMessage(player, message)
-		})
-	}
+    ws.addEventListener('message', e => {
+      let message: ClientMessage
+      try {
+        if (typeof e.data !== 'string') {
+          console.error('player connection', player.id, 'fucking sent us a', e.data)
+          return
+        }
+        message = JSON.parse(e.data)
+      } catch {
+        console.error('player connection', player.id, 'fucking sent maldformed json', e.data)
+        return
+      }
+      this.#handleMessage(player, message)
+    })
+  }
 
-	async #handleMessage(player: Player, message: ClientMessage) {
-		switch (message.type) {
-			case 'chat': {
-				for (const cxn of this.activePlayers.values()) {
-					cxn.send({ type: 'chat', user: player.id, content: message.message })
-				}
-				database.chats?.push(`[${player.id}] ${message.message}`)
-				await writeFile('./db.json', JSON.stringify(database))
-				break
-			}
-			case 'key-state-update': {
-				console.log(player.id, 'pressed sum keys', message.keys)
-				break
-			}
-			default: {
-				console.error('playerection', player.id, 'sent', message, 'cunt.')
-			}
-		}
-	}
+  async #handleMessage(player: Player, message: ClientMessage) {
+    switch (message.type) {
+      case 'chat': {
+        for (const cxn of this.activePlayers.values()) {
+          cxn.send({ type: 'chat', user: player.id, content: message.message })
+        }
+        database.chats?.push(`[${player.id}] ${message.message}`)
+        await writeFile('./db.json', JSON.stringify(database))
+        break
+      }
+      case 'key-state-update': {
+        console.log(player.id, 'pressed sum keys', message.keys)
+        player.updateKeyState(message.keys)
+        break
+      }
+      default: {
+        console.error('player connection', player.id, 'sent', message, 'cunt.')
+      }
+    }
+  }
 
-	/** i will literally die if you call me twice */
-	start (port = 8080): number {
-		this.app.listen(port)
-		return port
-	}
+  /** i will literally die if you call me twice */
+  /** cold boot game function rn */
+  start (port = 8080): number {
+    this.app.listen(port)
+    this.gameloop()
+    return port
+  }
+
+  /**
+   * All game loops occur here!
+   */
+  async gameloop() {
+    while (true) {
+      // Charater Action Loop
+      this.activePlayers.forEach(player => {
+        this.gameState[String(player.id)] = player.move()
+      });
+
+
+
+      // Network Sync Loop
+      this.activePlayers.forEach(player => {
+        player.send(ServerMessage)
+      });
+
+      await sleep(100)
+
+
+
+    }    
+  }
 }

@@ -16,5 +16,5 @@ declare module "*.glb" {
 declare module 'mat4-interpolate' {
 	import { mat4 } from "gl-matrix";
 
-  export default function interpolate(out:mat4, start: mat4, end: mat4, alpha: number): boolean
+	export default function interpolate(out:mat4, start: mat4, end: mat4, alpha: number): boolean
 }

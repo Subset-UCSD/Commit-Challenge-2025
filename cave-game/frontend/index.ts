@@ -21,15 +21,15 @@ document.body.append(ul)
 
 const f = document.getElementById('f')
 if (f instanceof HTMLFormElement) {
-  f.addEventListener('submit', e => {
-    e.preventDefault()
+	f.addEventListener('submit', e => {
+		e.preventDefault()
 
-    const thing = new FormData(f).get('message')
-    if (typeof thing === 'string') {
-      send({ type: 'chat', message: thing })
-      f.reset()
-    }
-  })
+		const thing = new FormData(f).get('message')
+		if (typeof thing === 'string') {
+			send({ type: 'chat', message: thing })
+			f.reset()
+		}
+	})
 }
 
 
@@ -56,75 +56,74 @@ function computeTransform(instance: ClientModelInstance, now = Date.now()): mat4
 }
 
 
-//#region ACTUAL  msg handler
+//#region ACTUAL	msg handler
 let myId = -1
 export function handleMessage (message: ServerMessage) {
-  switch (message.type) {
-    case 'chat': {
-      const li = document.createElement('li')
-      li.style.whiteSpace = 'pre-wrap'
-      if (myId === message.user) {
-        li.append(`<我> ${message.content}`)
-      } else {
-        li.append(`<user${message.user.toString().padStart(3, '0')}> ${message.content}`)
-      }
-      ul.prepend(li)
-      break
-    }
-    case 'chats': {
-      const frag = document.createDocumentFragment()
-      for (const content of message.contents) {
-        const li = document.createElement('li')
-      li.style.whiteSpace = 'pre-wrap'
-      li.append(content)
-      frag.prepend(li)
-      }
-      ul.prepend(frag)
-      break
-    }
-    case 'you are': {
-      myId = message.id
-      break
-    }
-    case 'entire-state': {
-      const oldState: Record<string, ClientModelInstance> = {}
-      for (const { instances } of Object.values(modelState)) {
-        for (const instance of instances) {
-          oldState[instance.id] = instance
-        }
-      }
-      modelState = {}
-      const now = Date.now()
-      for (const { id, model, transform, interpolate: { duration = 0,delay = 0 } = {  } } of message.objects) {
-        if (!modelLoaded[model]) {
-          modelLoaded[model] = 'loading'
-          fetch(model).then(r => r.arrayBuffer()).then(parseGlb).then(parsed => {
-            modelLoaded[model] = new GltfModel(gl, parsed)
-          })
-        }
-        modelState[model] ??= {
-          instances: []
-        }
-        modelState[model].instances.push({
-          id,
-          oldTransform: oldState[id] ? computeTransform(oldState[id], now) : new Float32Array(transform),
-          transform: new Float32Array(transform),
-          animationStart: now + delay,
-          animationDuration: duration,
-        })
-      }
-      break
-    }
-    default: {
-      console.error('fdsluihdif', message)
-    }
-  }
+	switch (message.type) {
+	case 'chat': {
+		const li = document.createElement('li')
+		li.style.whiteSpace = 'pre-wrap'
+		if (myId === message.user) {
+		li.append(`<我> ${message.content}`)
+		} else {
+		li.append(`<user${message.user.toString().padStart(3, '0')}> ${message.content}`)
+		}
+		ul.prepend(li)
+		break
+	}
+	case 'chats': {
+		const frag = document.createDocumentFragment()
+		for (const content of message.contents) {
+		const li = document.createElement('li')
+		li.style.whiteSpace = 'pre-wrap'
+		li.append(content)
+		frag.prepend(li)
+		}
+		ul.prepend(frag)
+		break
+	}
+	case 'you are': {
+		myId = message.id
+		break
+	}
+	case 'entire-state': {
+		const oldState: Record<string, ClientModelInstance> = {}
+		for (const { instances } of Object.values(modelState)) {
+		for (const instance of instances) {
+			oldState[instance.id] = instance
+		}
+		}
+		modelState = {}
+		const now = Date.now()
+		for (const { id, model, transform, interpolate: { duration = 0,delay = 0 } = {	} } of message.objects) {
+		if (!modelLoaded[model]) {
+			modelLoaded[model] = 'loading'
+			fetch(model).then(r => r.arrayBuffer()).then(parseGlb).then(parsed => {
+			modelLoaded[model] = new GltfModel(gl, parsed)
+			})
+		}
+		modelState[model] ??= {
+			instances: []
+		}
+		modelState[model].instances.push({
+			id,
+			oldTransform: oldState[id] ? computeTransform(oldState[id], now) : new Float32Array(transform),
+			transform: new Float32Array(transform),
+			animationStart: now + delay,
+			animationDuration: duration,
+		})
+		}
+		break
+	}
+	default: {
+		console.error('fdsluihdif', message)
+	}
+	}
 }
 
 export function handleConnectionStatus (areWeConnected: boolean) {
-  (document.querySelector('#f input') as FUCK).disabled = !areWeConnected
-  ;;;;
-  (document.querySelector('#f button') as FUCK).disabled = !areWeConnected
+	(document.querySelector('#f input') as FUCK).disabled = !areWeConnected;
+	(document.querySelector('#f button') as FUCK).disabled = !areWeConnected;
 }
 handleConnectionStatus(false)
 
@@ -133,21 +132,21 @@ handleConnectionStatus(false)
 let keys = new Set<string>()
 window.addEventListener('keydown', e => {
 
-  if (!keys.has(e.code)) {
-    keys.add(e.code)
-    send({type:'key-state-update',keys:[...keys]})
-  }
+	if (!keys.has(e.code)) {
+	keys.add(e.code)
+	send({type:'key-state-update',keys:[...keys]})
+	}
 })
 window.addEventListener('keyup', e => {
-  if (keys.has(e.code)) {
-    keys.delete(e.code)
-    send({type:'key-state-update',keys:[...keys]})
-  }
+	if (keys.has(e.code)) {
+	keys.delete(e.code)
+	send({type:'key-state-update',keys:[...keys]})
+	}
 })
 window.addEventListener('blur', e => {
 if (keys.size > 0){
-  keys = new Set()
-  send({type:'key-state-update',keys:[...keys]})
+	keys = new Set()
+	send({type:'key-state-update',keys:[...keys]})
 } 
 })
 

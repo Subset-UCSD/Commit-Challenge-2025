@@ -3,9 +3,6 @@
  *
  * 🎉 this is the main entry point of the backend
  */
-
-import express from "express";
-import expressWs from "express-ws";
 import type { WebSocket } from "ws";
 import { Player } from "./Player";
 import { ClientMessage } from "../communism/messages";
@@ -40,15 +37,10 @@ function randomQuaternion() {
 // This function returns a unit quaternion (randomly sampled from a uniform distribution over the 4D unit sphere). Let me know if you need modifications! 🚀
 
 export class Game {
-	app = expressWs(express()).app;
 	activePlayers = new Map<number, Player>();
 	gameState: { [key: string]: any } = {};
 
 	constructor() {
-		this.app.use(express.static("public"));
-
-		this.app.ws("/fuck", this.#handleplayerjoin);
-
 		setInterval(() => {
 			for (const cxn of this.activePlayers.values()) {
 				cxn.send({
@@ -132,10 +124,8 @@ export class Game {
 
 	/** i will literally die if you call me twice */
 	/** cold boot game function rn */
-	start(port = 8080): number {
-		this.app.listen(port);
+	start() {
 		this.gameloop();
-		return port;
 	}
 
 	/**

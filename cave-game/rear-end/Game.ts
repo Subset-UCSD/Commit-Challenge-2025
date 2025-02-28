@@ -3,9 +3,6 @@
  *
  * 🎉 this is the main entry point of the backend
  */
-
-import express from "express";
-import expressWs from "express-ws";
 import type { WebSocket } from "ws";
 import { Player } from "./Player";
 import { ClientMessage, ServerMessage, ServerModelObject } from "../communism/messages";
@@ -45,10 +42,6 @@ export class Game {
   gameState = new Array<ServerModelObject>()
 
 	constructor() {
-		this.app.use(express.static("public"));
-
-		this.app.ws("/fuck", this.#handleplayerjoin);
-
 		setInterval(() => {
 			for (const cxn of this.activePlayers.values()) {
 				cxn.send({
@@ -132,10 +125,8 @@ export class Game {
 
 	/** i will literally die if you call me twice */
 	/** cold boot game function rn */
-	start(port = 8080): number {
-		this.app.listen(port);
+	start() {
 		this.gameloop();
-		return port;
 	}
 
   /**

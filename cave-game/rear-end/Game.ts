@@ -20,6 +20,11 @@ database.chats??= []
 
 let nextId = 0
 
+function sleep(ms: number): Promise<void> {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+
 // Here's a JavaScript function that generates a random quaternion:
 function randomQuaternion() {
   let u1 = Math.random();
@@ -38,6 +43,7 @@ function randomQuaternion() {
 export class Game {
   app = expressWs(express()).app
   activePlayers = new Map<number, Player>()
+  gameState: { [key: string]: any } = {}
 
   constructor () {
     this.app.use(express.static('public'))
@@ -79,12 +85,12 @@ export class Game {
       let message: ClientMessage
       try {
         if (typeof e.data !== 'string') {
-          console.error('playerection', player.id, 'fucking sent us a', e.data)
+          console.error('player connection', player.id, 'fucking sent us a', e.data)
           return
         }
         message = JSON.parse(e.data)
       } catch {
-        console.error('playerection', player.id, 'fucking sent maldformed json', e.data)
+        console.error('player connection', player.id, 'fucking sent maldformed json', e.data)
         return
       }
       this.#handleMessage(player, message)
@@ -103,17 +109,44 @@ export class Game {
       }
       case 'key-state-update': {
         console.log(player.id, 'pressed sum keys', message.keys)
+        player.updateKeyState(message.keys)
         break
       }
       default: {
-        console.error('playerection', player.id, 'sent', message, 'cunt.')
+        console.error('player connection', player.id, 'sent', message, 'cunt.')
       }
     }
   }
 
   /** i will literally die if you call me twice */
+  /** cold boot game function rn */
   start (port = 8080): number {
     this.app.listen(port)
+    this.gameloop()
     return port
+  }
+
+  /**
+   * All game loops occur here!
+   */
+  async gameloop() {
+    while (true) {
+      // Charater Action Loop
+      this.activePlayers.forEach(player => {
+        this.gameState[String(player.id)] = player.move()
+      });
+
+
+
+      // Network Sync Loop
+      this.activePlayers.forEach(player => {
+        player.send(ServerMessage)
+      });
+
+      await sleep(100)
+
+
+
+    }    
   }
 }

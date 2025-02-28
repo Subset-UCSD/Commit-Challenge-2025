@@ -5,6 +5,7 @@ const ws = new WebSocket(new URL('/fuck', window.location.origin.replace('http',
 ws.addEventListener('open', () => {
   handleConnectionStatus(true)
 })
+
 ws.addEventListener('close', () => {
   console.log('😭ws closed')
   handleConnectionStatus(false)

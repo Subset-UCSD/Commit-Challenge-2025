@@ -5,7 +5,8 @@ on:
     branches:
       - main  # or the branch you want to monitor
     paths:
-      - 'cave-game/'
+      - 'cave-game/**'
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -28,7 +29,7 @@ jobs:
         npm run format || true
 
         git add . 
-        git commit -m "hey bestie. ur code fuking sucks"  || true
+        git commit -m "hey bestie. ur code fuking SUCKS"  || true
 
 
         # Push the revert commits

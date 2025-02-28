@@ -1,0 +1,15 @@
+{
+	"scripts": {
+	  "build": "esbuild escape/*.ts --outdir=escape --bundle --format=esm --tree-shaking=false",
+	  "dev": "esbuild escape/*.ts --outdir=escape --bundle --format=esm --tree-shaking=false --serve --servedir=."
+	},
+	"type": "module",
+	"dependencies": {
+	  "esbuild": "^0.24.2"
+	},
+	"devDependencies": {
+	  "@types/express": "^5.0.0",
+	  "@types/node": "^22.13.4",
+	  "nodemon": "^3.1.9"
+	}
+}

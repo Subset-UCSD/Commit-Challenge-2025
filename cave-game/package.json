@@ -1,0 +1,20 @@
+{
+	"scripts": {
+		"build": "node --experimental-strip-types cave-game/build.ts build",
+		"dev": "node --experimental-strip-types cave-game/build.ts watch",
+		"start": "node ./dist/index.js"
+	},
+	"type": "module",
+	"dependencies": {
+		"express": "^4.21.2",
+		"gl-matrix": "^3.4.3",
+		"mat4-interpolate": "^1.0.4"
+	},
+	"devDependencies": {
+		"@types/express": "^5.0.0",
+		"@types/node": "^22.13.4",
+		"esbuild": "^0.24.2",
+		"nodemon": "^3.1.9",
+		"prettier": "^3.5.2"
+	}
+}

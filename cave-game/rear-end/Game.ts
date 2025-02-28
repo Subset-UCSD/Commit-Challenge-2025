@@ -8,7 +8,7 @@ import express from "express";
 import expressWs from "express-ws";
 import type { WebSocket } from "ws";
 import { Player } from "./Player";
-import { ClientMessage } from "../communism/messages";
+import { ClientMessage, ServerMessage, ServerModelObject } from "../communism/messages";
 import { mat4 } from "gl-matrix";
 import { readFile, writeFile } from "node:fs/promises";
 
@@ -24,7 +24,7 @@ function sleep(ms: number): Promise<void> {
 	return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-// Here's a JavaScript function that generates a random quaternion:
+// Here"s a JavaScript function that generates a random quaternion:
 function randomQuaternion() {
 	let u1 = Math.random();
 	let u2 = Math.random();
@@ -40,9 +40,9 @@ function randomQuaternion() {
 // This function returns a unit quaternion (randomly sampled from a uniform distribution over the 4D unit sphere). Let me know if you need modifications! 🚀
 
 export class Game {
-	app = expressWs(express()).app;
-	activePlayers = new Map<number, Player>();
-	gameState: { [key: string]: any } = {};
+  app = expressWs(express()).app
+  activePlayers = new Map<number, Player>()
+  gameState = new Array<ServerModelObject>()
 
 	constructor() {
 		this.app.use(express.static("public"));
@@ -138,22 +138,31 @@ export class Game {
 		return port;
 	}
 
-	/**
-	 * All game loops occur here!
-	 */
-	async gameloop() {
-		while (true) {
-			// Charater Action Loop
-			this.activePlayers.forEach((player) => {
-				this.gameState[String(player.id)] = player.move();
-			});
+  /**
+   * All game loops occur here!
+   */
+  async gameloop() {
+    while (true) {
+      // Charater Action Loop
+      this.activePlayers.forEach(player => {
+        this.gameState.push(player.move())
+      });
 
-			// Network Sync Loop
-			this.activePlayers.forEach((player) => {
-				player.send(ServerMessage);
-			});
+      // Network Sync Loop
+      this.activePlayers.forEach(player => {
+        const stateMessage: ServerMessage  = {
+              type: "entire-state",
+              objects:this.gameState
+            }
+        player.send(stateMessage)}
+      );
 
-			await sleep(100);
-		}
-	}
+      await sleep(100)
+
+      // reset states
+      this.gameState = []
+
+
+    }    
+  }
 }

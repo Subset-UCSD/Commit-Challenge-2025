@@ -1,14 +1,30 @@
-import { handleConnectionStatus, handleMessage } from ".";
+import { handleConnectionStatus, handleMessage, handleOpen } from ".";
 import { ClientMessage, ServerMessage } from "../communism/messages";
+import { sleep } from "../communism/utils";
 
-const ws = new WebSocket(new URL("/fuck", window.location.origin.replace("http", "ws")));
+
+let ws = makeWs();
+function makeWs (): WebSocket {
+	return new WebSocket(new URL("/fuck", window.location.origin.replace("http", "ws")))
+}
+
+let reconnectTime = 0
 ws.addEventListener("open", () => {
 	handleConnectionStatus(true);
+	reconnectTime = 0
+
+	handleOpen()
 });
 
 ws.addEventListener("close", () => {
 	console.log("😭ws closed");
 	handleConnectionStatus(false);
+
+	// attempt reconnection
+	sleep(reconnectTime).then(() => {
+		ws = makeWs();
+	})
+	reconnectTime = reconnectTime * 2 || 1000
 });
 
 ws.addEventListener("message", (e) => {
@@ -27,5 +43,9 @@ ws.addEventListener("message", (e) => {
 });
 
 export function send(message: ClientMessage): void {
-	ws.send(JSON.stringify(message));
+	if (ws.readyState === WebSocket.OPEN) {
+		ws.send(JSON.stringify(message));
+	} else {
+		// drop it. who cares
+	}
 }

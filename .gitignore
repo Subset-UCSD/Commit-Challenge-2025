@@ -8,3 +8,5 @@ package-lock.json
 yarn.lock
 
 db.json
+# there is a chance that if you remove this line sean will acidentally comit his private key to the cave game server
+cavegameDONOTDELETE

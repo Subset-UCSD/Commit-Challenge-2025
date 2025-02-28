@@ -34,11 +34,18 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22.x'
-      - name: Build
+      - name: Build escape game
         run: |
+          cd escape/
           npm install || echo 'install fail :('
           npm run build || echo 'build fail :('
-          npm run cavebuild || echo 'cavebuild fail :('
+          # do not upload node_modules to github pages
+          rm -rf node_modules/ || echo 'rm fail :('
+      - name: Build cave game
+        run: |
+          cd cave-game/
+          npm install || echo 'install fail :('
+          npm run build || echo 'cavebuild fail :('
           # do not upload node_modules to github pages
           rm -rf node_modules/ || echo 'rm fail :('
           

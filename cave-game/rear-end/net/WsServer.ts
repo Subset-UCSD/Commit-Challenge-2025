@@ -2,7 +2,8 @@ import http from "http";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 import { getRandomValues } from "crypto";
-import { WebSocket, WebSocketServer } from "ws";
+import WebSocket, { type WebSocket } from "ws";
+const { Server: WebSocketServer } = WebSocket
 import express from "express";
 import { Game } from "../Game";
 import { ClientMessage, ServerMessage } from "../../communism/messages";
@@ -207,7 +208,7 @@ export class WsServer implements Server<ClientMessage, ServerMessage> {
 		}*/
 
 		// If the client hasn't been assigned an id, they are rude. do not respond 🧐
-		const connection = this.#getConnection(ws);
+		// const connection = this.#getConnection(ws);
 		if (!connection) return;
 
 		//this.#game.handleMessage(data, connection);

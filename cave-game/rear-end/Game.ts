@@ -10,6 +10,7 @@ import { mat4 } from "gl-matrix";
 import { readFile, writeFile } from "node:fs/promises";
 import { randomQuaternion } from "../communism/lib/quaternion";
 import { Connection } from "./net/Server";
+import { WsServer } from "./net/WsServer";
 
 type Database = {
 	chats?: string[];
@@ -27,6 +28,8 @@ export class Game {
 	#currentTick: number;
 	activePlayers = new Map<number, Player>()
 	gameState = new Array<ServerModelObject>()
+
+	server = new WsServer(this)
 
 	constructor() {
 		this.#currentTick = 0;

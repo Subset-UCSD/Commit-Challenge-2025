@@ -15,12 +15,12 @@ if (!subcommands.includes(subcommand)) {
 const watchMode = subcommand === "watch";
 
 const serverContext = await esbuild.context({
-	entryPoints: ["rear-end/entry-hole.ts"],
+	entryPoints: ["rear-end/index.ts"],
 	bundle: true,
 	platform: "node",
 	packages: "external",
-	// outdir: 'dist/',
-	outfile: "dist/index.js",
+	outdir: 'dist/',
+	// outfile: "dist/index.js",
 	format: "esm",
 });
 
@@ -48,7 +48,6 @@ if (watchMode) {
 	(nodemon as any as (settings: NodemonSettings) => Nodemon)({
 		script: "dist/index.js",
 		watch: ["dist/"],
-		cwd: "",
 	});
 
 	process.on("SIGINT", () => {

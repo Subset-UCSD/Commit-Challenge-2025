@@ -54,7 +54,13 @@ function computeTransform(instance: ClientModelInstance, now = Date.now()): mat4
 }
 
 //#region ACTUAL	msg handler
+const ID_KEY = 'cave game user identifier'
+
 let myId = -1;
+/** may be called repeatedly */
+export function handleOpen () {
+	send({ type: 'join', id: localStorage.getItem(ID_KEY) ?? undefined, name: 'bruh' })
+}
 export function handleMessage(message: ServerMessage) {
 	switch (message.type) {
 		case "chat": {
@@ -84,7 +90,7 @@ export function handleMessage(message: ServerMessage) {
 			break;
 		}
 		case "entire-state": {
-			//map from id to instance
+			//map from id to instance (used for interpolating from old positions)
 			const oldState: Record<string, ClientModelInstance> = {};
 			for (const { instances } of Object.values(modelState)) {
 				for (const instance of instances) {
@@ -117,6 +123,10 @@ export function handleMessage(message: ServerMessage) {
 				});
 			}
 			break;
+		}
+		case 'join-response': {
+			localStorage.setItem(ID_KEY, message.id)
+			break
 		}
 		default: {
 			console.error("fdsluihdif", message);
@@ -173,6 +183,7 @@ cam.position[1] = 20;
 cam.rotation.x = -Math.PI / 8;
 // cam.rotation.y = Math.PI
 
+// TEMP
 import modelGlb from "../public/marcelos/notacube.glb";
 import modelGlb2 from "../public/marcelos/notacube_smooth.glb";
 import { mat4, vec3, vec4 } from "gl-matrix";

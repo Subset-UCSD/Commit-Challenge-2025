@@ -1,0 +1,35 @@
+name: autofix lint errors in cave game, pretiter
+
+on:
+  push:
+    branches:
+      - main  # or the branch you want to monitor
+    paths:
+      - 'cave-game/'
+
+permissions:
+  contents: write
+
+jobs:
+  check-and-revert:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Revert offending commits
+      run: |
+        git config user.name "Thomas A. Powell"
+        git config user.email "tpowell@pint.com"
+
+        cd cave-game/
+        npm install || true
+        npm run format || true
+
+        git add . 
+        git commit -m "hey bestie. ur code fuking sucks"  || true
+
+
+        # Push the revert commits
+        git push origin HEAD

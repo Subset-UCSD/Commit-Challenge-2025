@@ -1,7 +1,7 @@
 {
 	"scripts": {
-	  "build": "esbuild escape/*.ts --outdir=escape --bundle --format=esm --tree-shaking=false",
-	  "dev": "esbuild escape/*.ts --outdir=escape --bundle --format=esm --tree-shaking=false --serve --servedir=."
+	  "build": "esbuild ./*.ts --outdir=. --bundle --format=esm --tree-shaking=false",
+	  "dev": "esbuild ./*.ts --outdir=. --bundle --format=esm --tree-shaking=false --serve --servedir=."
 	},
 	"type": "module",
 	"dependencies": {

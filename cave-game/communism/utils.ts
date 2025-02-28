@@ -33,3 +33,15 @@ export function f32ArrayEqual(a: Float32Array, b: Float32Array): boolean {
 }
 
 export type FUCK = any;
+
+/**
+ * promise version of `setTimeout`. returns a promise that resolves in `time` milliseconds
+ * 
+ * @param time - Delay in milliseconds
+ * 
+ * @example
+ * await sleep(1000) // wait a sec
+ */
+export async function sleep(time: number): Promise<void> {
+	return new Promise(resolve => setTimeout(resolve, time))	
+}

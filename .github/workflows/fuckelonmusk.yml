@@ -1,10 +1,10 @@
 name: deploy cave game
 on:
-  push:
-    branches: 
-      - main
-    paths:
-      - cave-game/
+  # push:
+  #   branches: 
+  #     - main
+  #   paths:
+  #     - cave-game/
   workflow_dispatch:
 
 jobs:

@@ -7,3 +7,9 @@
 > [!IMPORTANT]
 > ![fight](https://i.picasion.com/gl/92/jS6U.gif)
 
+```sh
+$ npm install
+$ npm run dev
+
+$ npm run build
+```

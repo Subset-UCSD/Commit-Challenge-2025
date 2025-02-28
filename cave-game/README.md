@@ -14,12 +14,12 @@ open http://localhost:8080/ in the browser
 
 ```shell
 $ npm run build
+$ npm run build
 ```
 
 run the server:
 
 ```shell
-$ cd cave-game/
 $ node dist/index.js
 ```
 

@@ -5,8 +5,8 @@ import { GltfParser } from "../../communism/gltf/parser";
 import { ComponentType, GltfMaterial, GltfMode, componentTypes, componentSizes } from "../../communism/gltf/types";
 
 export type ModelInstance = {
-  transform: mat4
-}
+	transform: mat4;
+};
 
 type Accessor = {
 	buffer: WebGLBuffer;
@@ -29,12 +29,12 @@ type ModelMesh = {
 
 export class GltfModel {
 	name: string;
-  engine: Gl
+	engine: Gl;
 	#meshes: ModelMesh[];
 
 	constructor(engine: Gl, { root, buffers, images, meshes }: GltfParser) {
-		this.name = root.buffers[0].uri ?? 'bin';
-    this.engine = engine
+		this.name = root.buffers[0].uri ?? "bin";
+		this.engine = engine;
 
 		const gl = engine.gl;
 
@@ -109,14 +109,8 @@ export class GltfModel {
 
 					console.time(`resizing texture ${source} (${this.name})`);
 					createImageBitmap(image, {
-						resizeWidth: Math.min(
-							engine.maxTextureSize,
-							(engine.maxTextureSize / image.height) * image.width,
-						),
-						resizeHeight: Math.min(
-							engine.maxTextureSize,
-							(engine.maxTextureSize / image.width) * image.height,
-						),
+						resizeWidth: Math.min(engine.maxTextureSize, (engine.maxTextureSize / image.height) * image.width),
+						resizeHeight: Math.min(engine.maxTextureSize, (engine.maxTextureSize / image.width) * image.height),
 					}).then((resized) => {
 						console.timeEnd(`resizing texture ${source} (${this.name})`);
 						engine.bindTexture(0, "2d", texture);
@@ -172,7 +166,7 @@ export class GltfModel {
 				mesh.attributes.COLOR_0 !== undefined
 					? { ...glBuffers[mesh.attributes.COLOR_0], attribName: "a_color0" }
 					: null,
-			].filter(x => !!x);
+			].filter((x) => !!x);
 			let count = Infinity;
 			for (const vbo of vbos) {
 				gl.bindBuffer(gl.ARRAY_BUFFER, vbo.buffer);
@@ -282,8 +276,14 @@ export class GltfModel {
 				this.engine.gltfShader.uniform("u_base_color"),
 				materialOptions.pbrMetallicRoughness?.baseColorFactor ?? [1, 1, 1, 1],
 			);
-			gl.uniform1f(this.engine.gltfShader.uniform("u_metallic"), materialOptions.pbrMetallicRoughness?.metallicFactor ?? 1);
-			gl.uniform1f(this.engine.gltfShader.uniform("u_roughness"), materialOptions.pbrMetallicRoughness?.roughnessFactor ?? 1);
+			gl.uniform1f(
+				this.engine.gltfShader.uniform("u_metallic"),
+				materialOptions.pbrMetallicRoughness?.metallicFactor ?? 1,
+			);
+			gl.uniform1f(
+				this.engine.gltfShader.uniform("u_roughness"),
+				materialOptions.pbrMetallicRoughness?.roughnessFactor ?? 1,
+			);
 			gl.uniform3fv(this.engine.gltfShader.uniform("u_emissive"), materialOptions.emissiveFactor ?? [0, 0, 0]);
 			gl.bindVertexArray(vao);
 

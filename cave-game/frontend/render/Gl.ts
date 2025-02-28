@@ -7,9 +7,9 @@
 // https://github.com/ucsd-cse125-sp24/group1/blob/main/client/render/engine/GraphicsEngine.ts#L18
 // https://github.com/ucsd-cse125-sp24/group1/blob/main/client/render/engine/RenderPipeline.ts
 
-import gltfVertShader from './😎/gltf.vert'
-import gltfFragShader from './😎/gltf.frag'
-import { ShaderProgram } from './ShaderProgram';
+import gltfVertShader from "./😎/gltf.vert";
+import gltfFragShader from "./😎/gltf.frag";
+import { ShaderProgram } from "./ShaderProgram";
 
 export type TextureType = "2d" | "cubemap";
 
@@ -24,26 +24,25 @@ export type Filter = {
 	strength?: number;
 };
 
-type GateKeepMethods = 'activeTexture' | 'bindTexture' | 'createProgram' | 'createShader'
+type GateKeepMethods = "activeTexture" | "bindTexture" | "createProgram" | "createShader";
 // these exist for convenience
 class GlBase {
 	/** ensure people use our `bindTexture` method */
-  gl: Omit<WebGL2RenderingContext, GateKeepMethods>
-  #gl: Pick<WebGL2RenderingContext, GateKeepMethods>
-	
+	gl: Omit<WebGL2RenderingContext, GateKeepMethods>;
+	#gl: Pick<WebGL2RenderingContext, GateKeepMethods>;
+
 	#textures: Record<number, { type: TextureType; texture: WebGLTexture } | null> = {};
 
 	imagePlanePositions: WebGLBuffer;
 	imagePlaneTexCoords: WebGLBuffer;
 
-	
 	colorTexture: WebGLTexture;
 	filteredTexture: WebGLTexture;
 	depthTexture: WebGLTexture;
 
-	constructor (gl: WebGL2RenderingContext) {
-		this.gl = gl
-		this.#gl = gl
+	constructor(gl: WebGL2RenderingContext) {
+		this.gl = gl;
+		this.#gl = gl;
 
 		this.imagePlanePositions = gl.createBuffer();
 		gl.bindBuffer(gl.ARRAY_BUFFER, this.imagePlanePositions);
@@ -113,7 +112,7 @@ class GlBase {
 		this.#textures = {};
 	}
 
-  createProgram(vertexShader: WebGLShader, fragmentShader: WebGLShader, varNames: string[] = []): WebGLProgram {
+	createProgram(vertexShader: WebGLShader, fragmentShader: WebGLShader, varNames: string[] = []): WebGLProgram {
 		const gl = this.gl;
 		const program = this.#gl.createProgram();
 		if (program) {
@@ -150,7 +149,7 @@ class GlBase {
 
 export class Gl extends GlBase {
 	// On Nick's computer on Firefox, it's 2048, but fish1 has a 4096x4096 texture
-	maxTextureSize = this.gl.getParameter(this.gl.MAX_TEXTURE_SIZE)
+	maxTextureSize = this.gl.getParameter(this.gl.MAX_TEXTURE_SIZE);
 
 	// Replaces `#define` lines in shader files
 	constants: Record<string, string> = {
@@ -160,14 +159,17 @@ export class Gl extends GlBase {
 	};
 
 	/** peepee (post-processing) effects */
-	filters: Filter[] = []
+	filters: Filter[] = [];
 
-	framebuffer = this.gl.createFramebuffer()
+	framebuffer = this.gl.createFramebuffer();
 
-	gltfShader = new ShaderProgram(this, this.createProgram(
-		this.createShader('vertex', gltfVertShader, 'gltf.vert'),
-		this.createShader('fragment', gltfFragShader, 'gltf.frag'),
-	))
+	gltfShader = new ShaderProgram(
+		this,
+		this.createProgram(
+			this.createShader("vertex", gltfVertShader, "gltf.vert"),
+			this.createShader("fragment", gltfFragShader, "gltf.frag"),
+		),
+	);
 
 	/**
 	 * A helper method for compiling a shader. Useful for creating `Material`s.
@@ -182,7 +184,7 @@ export class Gl extends GlBase {
 		for (const [name, value] of Object.entries(this.constants)) {
 			source = source.replace(new RegExp(`#define ${name} .+`, "g"), `#define ${name} ${value}`);
 		}
-		return super.createShader(type, source, name)
+		return super.createShader(type, source, name);
 	}
 
 	clear(color: readonly [r: number, g: number, b: number] = [0, 0, 0]) {
@@ -233,7 +235,6 @@ export class Gl extends GlBase {
 		}
 	}
 
-	
 	#textureWidth = 0;
 	#textureHeight = 0;
 
@@ -257,7 +258,7 @@ export class Gl extends GlBase {
 			this.#textureWidth = gl.canvas.width;
 			this.#textureHeight = gl.canvas.height;
 		}
-		
+
 		if (this.filters.length > 0) {
 			gl.bindFramebuffer(gl.FRAMEBUFFER, this.framebuffer);
 			gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, this.colorTexture, 0);
@@ -272,7 +273,7 @@ export class Gl extends GlBase {
 		const gl = this.gl;
 		gl.bindFramebuffer(gl.FRAMEBUFFER, null);
 		if (this.filters.length === 0) {
-			return
+			return;
 		}
 		// Use the framebuffer to apply each filter in succession, drawing from
 		// colorTexture to filteredTexture then swapping the two textures

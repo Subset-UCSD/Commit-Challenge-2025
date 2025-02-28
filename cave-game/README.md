@@ -26,11 +26,11 @@ $ node dist/index.js
 
 game goals
 
-- browser based client 
+- browser based client
 - any party size (1+)
 - multiplayer
 - easy for an early game player to play with a late game player
-- get Marcelo addicted to the game 
+- get Marcelo addicted to the game
 
 ### game idea
 
@@ -40,7 +40,7 @@ lore: everyone in the caves came from the surface and got lost in the constant r
 
 loot chests are individual to each player, except for items put in by other players, which are global. entities are per party, you can encounter other players, but only gilded players can be attacked
 
-there's a day night cycle, local to parties. to survive the night, you must return to the hub or make a camp. during the night, the cave rearranges itself and entities respawn. the game incentivizes not staying out for too long (by inventory capacity limits and/or insanity), but going further gives better loot. ideally players stay just one night in the caves 
+there's a day night cycle, local to parties. to survive the night, you must return to the hub or make a camp. during the night, the cave rearranges itself and entities respawn. the game incentivizes not staying out for too long (by inventory capacity limits and/or insanity), but going further gives better loot. ideally players stay just one night in the caves
 
 you can bring a map that'll record your route and annotate special rooms. you can use this to travel back to the hub, and sell this to other players. however, you can make fake maps. buyers only know if the map is genuine if the map is appraised by an NPC for a great fee; this can be done by the seller or buyer
 
@@ -56,9 +56,8 @@ loot items:
 
 - junk (cobwebs, dust, hair)
 
-- crafting materials for 
+- crafting materials for
 
   - special damage effects
   - better weapons
   - healing tonics, immunity brews for certain damage types
-

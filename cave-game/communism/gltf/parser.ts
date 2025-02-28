@@ -39,23 +39,24 @@ export type GltfParser = {
 export async function parseGltf(
 	root: Gltf,
 	uriMap: Record<string, string>,
-  bin?: ArrayBuffer,
+	bin?: ArrayBuffer,
 	fetchBuffer = fetch,
 	fetchImage = fetch,
 ): Promise<GltfParser> {
 	const buffers = await Promise.all(
 		root.buffers.map(({ uri }) => {
-		if (uri) {
-			return fetchBuffer(uriMap[uri]).then((r) =>
-				r.ok ? r.arrayBuffer() : Promise.reject(new Error(`HTTP ${r.status}: ${uri} (${r.url})`)),
-			)
-		} else {
-			if (!bin) {
-			throw new TypeError(`'uri' omitted but no bin provided`);
+			if (uri) {
+				return fetchBuffer(uriMap[uri]).then((r) =>
+					r.ok ? r.arrayBuffer() : Promise.reject(new Error(`HTTP ${r.status}: ${uri} (${r.url})`)),
+				);
+			} else {
+				if (!bin) {
+					throw new TypeError(`'uri' omitted but no bin provided`);
+				}
+				return bin;
 			}
-			return bin;
-		}
-	}));
+		}),
+	);
 
 	const images = await Promise.all(
 		root.images?.map((image) => {
@@ -86,7 +87,7 @@ export async function parseGltf(
 							node.scale ?? [1, 1, 1],
 						),
 			mesh: node.mesh !== undefined ? root.meshes[node.mesh] : null,
-			camera: node.camera !== undefined ? root.cameras?.[node.camera] ?? null : null,
+			camera: node.camera !== undefined ? (root.cameras?.[node.camera] ?? null) : null,
 		};
 	});
 	for (const [i, { children = [] }] of root.nodes.entries()) {

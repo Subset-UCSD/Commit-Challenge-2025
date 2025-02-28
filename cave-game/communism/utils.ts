@@ -1,7 +1,7 @@
 import type { mat4, vec3 } from "gl-matrix";
 
-export function expect (message: string): never {
-  throw new TypeError(`expected ${message}`)
+export function expect(message: string): never {
+	throw new TypeError(`expected ${message}`);
 }
 
 export function mergeVec3(vecs: vec3[]): Float32Array {
@@ -32,4 +32,4 @@ export function f32ArrayEqual(a: Float32Array, b: Float32Array): boolean {
 	return true;
 }
 
-export type FUCK = any
+export type FUCK = any;

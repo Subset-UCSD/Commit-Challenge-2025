@@ -2,6 +2,7 @@
 	"scripts": {
 		"build": "node --experimental-strip-types cave-game/build.ts build",
 		"dev": "node --experimental-strip-types cave-game/build.ts watch",
+		"format": "prettier -w . --log-level=warn",
 		"start": "node ./dist/index.js"
 	},
 	"type": "module",

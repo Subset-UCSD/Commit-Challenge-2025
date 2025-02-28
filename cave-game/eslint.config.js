@@ -16,8 +16,8 @@ export default tseslint.config(tseslint.configs.base, {
 		// "import/order": "warn",
 		"unused-imports/no-unused-imports": "warn",
 		"unused-imports/no-unused-vars": "off",
-		"simple-import-sort/imports": "error",
-		"simple-import-sort/exports": "error",
+		"simple-import-sort/imports": "warn",
+		"simple-import-sort/exports": "warn",
 	},
 	plugins: {
 		"unused-imports": unusedImports,

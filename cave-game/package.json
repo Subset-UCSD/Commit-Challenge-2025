@@ -2,7 +2,7 @@
 	"scripts": {
 		"build": "node --experimental-strip-types build.ts build",
 		"dev": "node --experimental-strip-types build.ts watch",
-		"format": "eslint --fix; prettier -w . --log-level=warn",
+		"format": "eslint --fix; prettier -w . '!**/*.{js,frag,vert}' --log-level=warn",
 		"start": "node ./dist/index.js"
 	},
 	"type": "module",

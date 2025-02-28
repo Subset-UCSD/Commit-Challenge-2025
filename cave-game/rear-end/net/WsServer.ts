@@ -1,10 +1,9 @@
 import { getRandomValues } from "crypto";
+import express from "express";
 import http from "http";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
-import WebSocket, { type WebSocket } from "ws";
-const { Server: WebSocketServer } = WebSocket;
-import express from "express";
+import { WebSocket, WebSocketServer } from "ws";
 
 import { BiMap } from "../../communism/lib/BiMap";
 import { ClientMessage, ServerMessage } from "../../communism/messages";

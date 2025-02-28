@@ -1,10 +1,10 @@
 name: deploy cave game
 on:
-  # push:
-  #   branches: 
-  #     - main
-  #   paths:
-  #     - cave-game/
+  push:
+    branches: 
+      - main
+    paths:
+      - cave-game/
   workflow_dispatch:
 
 jobs:
@@ -17,23 +17,9 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }} # Store your private key as a secret
 
-      - name: Copy files to server
-        run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "mkdir -p app/public app/dist"
-          scp -o StrictHostKeyChecking=no -r cave-game/public/* ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:app/public/
-          scp -o StrictHostKeyChecking=no -r cave-game/dist/* ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:app/dist/
-
       - name: Restart server
         run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "
-            cd app/
-            if pgrep -f 'node dist/index.js'; then
-              pid=\$(pgrep -f 'node dist/index.js');
-              kill \$pid;
-              echo 'DIE';
-            else
-              echo 'no die. oh well';
-            fi;
-            nohup node dist/index.js > app.log 2>&1 &
-            echo 'New process started.';
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_TARGET }} "
+            cd /app/commit2025-gh-actions/cave-game/
+            bash deploy_serve.sh
           "

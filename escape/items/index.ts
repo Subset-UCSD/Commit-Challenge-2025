@@ -40,5 +40,10 @@ export const hichewItem: Item = {
 };
 
 export const gsCookiesItem: Item = {
-	name: "Girl Scout Caramel deLites® Cookies 7oz Box", lore: "made by abc baker. decreases your lifespan by 50 years."
+	name: "Girl Scout Caramel deLites® Cookies 7oz Box", lore: "made by baking conglomerate ABC Bakers®. decreases your lifespan by 50 years."
+}
+
+export const boxedLasagnaItem: Item = {
+	name: "boxed lasagna",
+	lore: "an abandoned lasagna stored in a restaurant take-out box. it looks barely eaten..."
 }

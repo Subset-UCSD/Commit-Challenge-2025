@@ -1,5 +1,11 @@
 ![banner](./ass/ets/news.svg)
 
+# CHAT WE GOT AN INSTANCE
+
+The instance is alive
+Cave game thrives
+
+Give me your ssh key on the chat to join the instance!
 
 # [CHAT B#C# DONE IT AGAIN](https://distrokid.com/hyperfollow/bc33/new-record-5)
 

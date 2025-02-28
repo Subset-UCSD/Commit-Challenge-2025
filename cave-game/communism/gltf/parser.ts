@@ -1,5 +1,6 @@
 import { mat4, quat } from "gl-matrix";
-import { GltfMesh, GltfCamera, Gltf, GltfPrimitive } from "./types";
+
+import { Gltf, GltfCamera, GltfMesh, GltfPrimitive } from "./types";
 
 type Node = {
 	parent?: Node;

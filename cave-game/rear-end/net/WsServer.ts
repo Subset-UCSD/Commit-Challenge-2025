@@ -1,14 +1,15 @@
+import { getRandomValues } from "crypto";
 import http from "http";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
-import { getRandomValues } from "crypto";
 import WebSocket, { type WebSocket } from "ws";
-const { Server: WebSocketServer } = WebSocket
+const { Server: WebSocketServer } = WebSocket;
 import express from "express";
-import { Game } from "../Game";
-import { ClientMessage, ServerMessage } from "../../communism/messages";
-import { Connection, Server } from "./Server";
+
 import { BiMap } from "../../communism/lib/BiMap";
+import { ClientMessage, ServerMessage } from "../../communism/messages";
+import { Game } from "../Game";
+import { Connection, Server } from "./Server";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -175,7 +176,7 @@ export class WsServer implements Server<ClientMessage, ServerMessage> {
 				this.#game.handlePlayerJoin(connection, data.name);
 
 				console.log(`Player ${id} "${data.name}" joined!`);
-				
+
 				// Ok we believe u 🥰 you are the client you say you are
 				connection.send({
 					type: "join-response",

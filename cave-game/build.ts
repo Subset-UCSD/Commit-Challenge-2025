@@ -1,9 +1,9 @@
 // node --experimental-strip-types build.ts watch
 
-import { exit } from "process";
 import * as esbuild from "esbuild";
-import nodemon from "nodemon";
 import type { Nodemon, NodemonSettings } from "nodemon";
+import nodemon from "nodemon";
+import { exit } from "process";
 
 const subcommands = ["build", "watch"];
 const subcommand = process.argv[2];
@@ -19,7 +19,7 @@ const serverContext = await esbuild.context({
 	bundle: true,
 	platform: "node",
 	packages: "external",
-	outdir: 'dist/',
+	outdir: "dist/",
 	// outfile: "dist/index.js",
 	format: "esm",
 });

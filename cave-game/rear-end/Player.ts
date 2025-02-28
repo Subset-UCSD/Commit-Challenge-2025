@@ -1,6 +1,7 @@
+import { mat4, vec3 } from "gl-matrix";
 import type { WebSocket } from "ws";
+
 import { ServerMessage, ServerModelObject } from "../communism/messages";
-import { mat4, ReadonlyVec3, vec3 } from "gl-matrix";
 
 export class Player {
 	id: number;

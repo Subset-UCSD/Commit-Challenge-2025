@@ -7,8 +7,8 @@
 // https://github.com/ucsd-cse125-sp24/group1/blob/main/client/render/engine/GraphicsEngine.ts#L18
 // https://github.com/ucsd-cse125-sp24/group1/blob/main/client/render/engine/RenderPipeline.ts
 
-import gltfVertShader from "./😎/gltf.vert";
 import gltfFragShader from "./😎/gltf.frag";
+import gltfVertShader from "./😎/gltf.vert";
 import { ShaderProgram } from "./ShaderProgram";
 
 export type TextureType = "2d" | "cubemap";

@@ -3,14 +3,15 @@
  *
  * 🎉 this is the main entry point of the backend
  */
-import type { WebSocket } from "ws";
-import { Player } from "./Player";
-import { ClientMessage, ServerMessage, ServerModelObject } from "../communism/messages";
+import { readFile } from "node:fs/promises";
+
 import { mat4 } from "gl-matrix";
-import { readFile, writeFile } from "node:fs/promises";
+
 import { randomQuaternion } from "../communism/lib/quaternion";
+import { ServerMessage, ServerModelObject } from "../communism/messages";
 import { Connection } from "./net/Server";
 import { WsServer } from "./net/WsServer";
+import { Player } from "./Player";
 
 type Database = {
 	chats?: string[];
@@ -26,18 +27,16 @@ function sleep(ms: number): Promise<void> {
 
 export class Game {
 	#currentTick: number;
-	activePlayers = new Map<number, Player>()
-	gameState = new Array<ServerModelObject>()
+	activePlayers = new Map<number, Player>();
+	gameState = new Array<ServerModelObject>();
 
-	server = new WsServer(this)
+	server = new WsServer(this);
 
 	constructor() {
 		this.#currentTick = 0;
 	}
 
-	updateGameState() {
-		
-	}
+	updateGameState() {}
 
 	broadcastState() {
 		for (const cxn of this.activePlayers.values()) {
@@ -72,9 +71,7 @@ export class Game {
 		}
 	}
 
-	handlePlayerJoin(conn: Connection<ServerMessage>, name: string) {
-
-	}
+	handlePlayerJoin(conn: Connection<ServerMessage>, name: string) {}
 
 	#nextTick() {
 		this.#currentTick++;

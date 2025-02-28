@@ -1,9 +1,9 @@
-import { delay } from "../communism/lib/delay";
 import { SERVER_GAME_TICK } from "../communism/constants";
+import { delay } from "../communism/lib/delay";
 import { Game } from "./Game";
 
 const game = new Game();
-game.server.listen(8080)
+game.server.listen(8080);
 
 let ticks = 0;
 let totalDelta = 0;

@@ -5,13 +5,15 @@
  *
  */
 
-import { ServerMessage } from "../communism/messages";
-import { send } from "./net";
 import "./index.css";
+
+import interpolate from "mat4-interpolate";
+
+import { ServerMessage } from "../communism/messages";
 import { expect, FUCK, mergeVec3 } from "../communism/utils";
+import { send } from "./net";
 import { Gl } from "./render/Gl";
 import { GltfModel } from "./render/Glthefuck";
-import interpolate from "mat4-interpolate";
 
 console.log("frontend!");
 
@@ -54,12 +56,12 @@ function computeTransform(instance: ClientModelInstance, now = Date.now()): mat4
 }
 
 //#region ACTUAL	msg handler
-const ID_KEY = 'cave game user identifier'
+const ID_KEY = "cave game user identifier";
 
 let myId = -1;
 /** may be called repeatedly */
-export function handleOpen () {
-	send({ type: 'join', id: localStorage.getItem(ID_KEY) ?? undefined, name: 'bruh' })
+export function handleOpen() {
+	send({ type: "join", id: localStorage.getItem(ID_KEY) ?? undefined, name: "bruh" });
 }
 export function handleMessage(message: ServerMessage) {
 	switch (message.type) {
@@ -124,9 +126,9 @@ export function handleMessage(message: ServerMessage) {
 			}
 			break;
 		}
-		case 'join-response': {
-			localStorage.setItem(ID_KEY, message.id)
-			break
+		case "join-response": {
+			localStorage.setItem(ID_KEY, message.id);
+			break;
 		}
 		default: {
 			console.error("fdsluihdif", message);
@@ -184,11 +186,12 @@ cam.rotation.x = -Math.PI / 8;
 // cam.rotation.y = Math.PI
 
 // TEMP
+import { mat4, vec3 } from "gl-matrix";
+
+import { parseGlb } from "../communism/gltf/bingltfparser";
 import modelGlb from "../public/marcelos/notacube.glb";
 import modelGlb2 from "../public/marcelos/notacube_smooth.glb";
-import { mat4, vec3, vec4 } from "gl-matrix";
 import { Camera } from "./render/cam";
-import { parseGlb } from "../communism/gltf/bingltfparser";
 const model = new GltfModel(
 	gl,
 	await fetch(modelGlb)

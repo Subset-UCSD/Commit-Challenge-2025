@@ -23,11 +23,11 @@ export type ServerMessage =
 	| {
 			type: "entire-state";
 			objects: ServerModelObject[];
-	  } |
-	{
-		type: "join-response",
-		id: string
-	};
+	  }
+	| {
+			type: "join-response";
+			id: string;
+	  };
 
 export type ClientMessage =
 	| { type: "chat"; message: string }
@@ -50,9 +50,9 @@ export type ClientMessage =
 			 * press left shift -> hold right shift -> lift left shift. right shift will remain down
 			 */
 			keys: string[];
-	  } |
-	{
-		type: "join",
-		id?: string,
-		name: string
-	}
+	  }
+	| {
+			type: "join";
+			id?: string;
+			name: string;
+	  };

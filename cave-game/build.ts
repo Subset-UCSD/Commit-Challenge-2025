@@ -1,4 +1,4 @@
-// node --experimental-strip-types cave-game/build.ts watch
+// node --experimental-strip-types build.ts watch
 
 import { exit } from "process";
 import * as esbuild from "esbuild";
@@ -8,31 +8,31 @@ import type { Nodemon, NodemonSettings } from "nodemon";
 const subcommands = ["build", "watch"];
 const subcommand = process.argv[2];
 if (!subcommands.includes(subcommand)) {
-	console.error(`Usage: node cave-game/build.ts (${subcommands.join("|")})`);
+	console.error(`Usage: node build.ts (${subcommands.join("|")})`);
 	exit(1);
 }
 
 const watchMode = subcommand === "watch";
 
 const serverContext = await esbuild.context({
-	entryPoints: ["cave-game/rear-end/entry-hole.ts"],
+	entryPoints: ["rear-end/entry-hole.ts"],
 	bundle: true,
 	platform: "node",
 	packages: "external",
-	// outdir: 'cave-game/dist/',
-	outfile: "cave-game/dist/index.js",
+	// outdir: 'dist/',
+	outfile: "dist/index.js",
 	format: "esm",
 });
 
 const clientContext = await esbuild.context({
-	entryPoints: ["cave-game/frontend/index.ts"],
+	entryPoints: ["frontend/index.ts"],
 	bundle: true,
 	loader: {
 		".frag": "text",
 		".vert": "text",
 		".glb": "file",
 	},
-	outdir: "cave-game/public/",
+	outdir: "public/",
 	format: "esm",
 	supported: {
 		nesting: false,
@@ -47,8 +47,8 @@ if (watchMode) {
 	// wtf
 	(nodemon as any as (settings: NodemonSettings) => Nodemon)({
 		script: "dist/index.js",
-		watch: ["cave-game/dist/"],
-		cwd: "cave-game/",
+		watch: ["dist/"],
+		cwd: "",
 	});
 
 	process.on("SIGINT", () => {

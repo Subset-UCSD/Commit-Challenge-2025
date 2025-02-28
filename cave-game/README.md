@@ -3,8 +3,9 @@
 requires node 22+ for `--experimental-strip-types` to run typescript
 
 ```shell
+$ cd cave-game
 $ npm install
-$ npm run cavedev
+$ npm run dev
 ```
 
 open http://localhost:8080/ in the browser
@@ -12,7 +13,7 @@ open http://localhost:8080/ in the browser
 ## build
 
 ```shell
-$ npm run cavebuild
+$ npm run build
 ```
 
 run the server:

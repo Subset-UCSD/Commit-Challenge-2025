@@ -20,6 +20,6 @@ echo "[restarted]" >> ../cavegame.log
 date >> ../cavegame.log
 
 # start the server and set it free
-CAVE_GAME_PORT=80 nohup node dist/index.js >> ../cavegame.log 2>&1 &
+CAVE_GAME_PORT=4269 nohup node dist/index.js >> ../cavegame.log 2>&1 &
 echo $! > ../cavegame_pid.txt
 echo PID=$(cat ../cavegame_pid.txt) >> ../cavegame.log

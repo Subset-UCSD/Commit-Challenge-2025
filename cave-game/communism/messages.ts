@@ -18,7 +18,7 @@ export type ServerModelObject = {
 
 export type ServerMessage =
 	| { type: "chats"; contents: string[] }
-	| { type: "chat"; user: number; content: string }
+	| { type: "chat"; user: string; content: string }
 	| { type: "you are"; id: number }
 	| {
 			type: "entire-state";

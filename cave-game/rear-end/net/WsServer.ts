@@ -1,5 +1,6 @@
 import { getRandomValues } from "crypto";
 import express from "express";
+import { readFile, writeFile } from "fs/promises";
 import http from "http";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
@@ -13,6 +14,13 @@ import { Connection, Server } from "./Server";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const RECONNECT_TIMEOUT = 60 * 60 * 1000;
+
+// DO NOT REMOVE unless it's a move to maintain chat functionality
+type Database = {
+	chats?: string[];
+};
+const database: Database = JSON.parse(await readFile("./db.json", "utf-8").catch(() => "{}"));
+database.chats ??= [];
 
 /**
  * An implementation of `Server` that starts a WebSocket server.
@@ -182,10 +190,24 @@ export class WsServer implements Server<ClientMessage, ServerMessage> {
 					id,
 				});
 
+				// DO NOT REMOVE unless it's a move to maintain chat functionality
+				connection.send({ type: "chats", contents: database.chats ?? [] });
+
 				// Don't remove id from list because player reconnected
 				// (does nothing if player is new)
 				clearTimeout(this.#disconnectTimeouts.get(data.id));
 				return;
+
+			// DO NOT REMOVE unless it's a move to maintain chat functionality
+			case "chat": {
+				const id = this.#playerConnections.revGet(ws) ?? "";
+				for (const [, cxn] of this.#playerConnections.entries()) {
+					cxn.send(JSON.stringify({ type: "chat", user: id, content: data.message }));
+				}
+				database.chats?.push(`[${id.slice(0, 6)}] ${data.message}`);
+				writeFile("./db.json", JSON.stringify(database));
+				return;
+			}
 		}
 
 		// If the client hasn't been assigned an id, they are rude. do not respond 🧐

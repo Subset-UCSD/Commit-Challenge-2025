@@ -58,20 +58,19 @@ function computeTransform(instance: ClientModelInstance, now = Date.now()): mat4
 //#region ACTUAL	msg handler
 const ID_KEY = "cave game user identifier";
 
-let myId = -1;
 /** may be called repeatedly */
 export function handleOpen() {
-	send({ type: "join", id: localStorage.getItem(ID_KEY) ?? undefined, name: "bruh" });
+	send({ type: "join", id: localStorage.getItem(ID_KEY) ?? "", name: "bruh" });
 }
 export function handleMessage(message: ServerMessage) {
 	switch (message.type) {
 		case "chat": {
 			const li = document.createElement("li");
 			li.style.whiteSpace = "pre-wrap";
-			if (myId === message.user) {
+			if (localStorage.getItem(ID_KEY) === message.user) {
 				li.append(`<我> ${message.content}`);
 			} else {
-				li.append(`<user${message.user.toString().padStart(3, "0")}> ${message.content}`);
+				li.append(`<${message.user.slice(0, 6)}> ${message.content}`);
 			}
 			ul.prepend(li);
 			break;
@@ -88,7 +87,6 @@ export function handleMessage(message: ServerMessage) {
 			break;
 		}
 		case "you are": {
-			myId = message.id;
 			break;
 		}
 		case "entire-state": {

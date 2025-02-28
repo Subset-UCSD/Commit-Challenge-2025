@@ -3,7 +3,6 @@
  *
  * 🎉 this is the main entry point of the backend
  */
-import { readFile } from "node:fs/promises";
 
 import { mat4 } from "gl-matrix";
 
@@ -12,12 +11,6 @@ import { ServerMessage, ServerModelObject } from "../communism/messages";
 import { Connection } from "./net/Server";
 import { WsServer } from "./net/WsServer";
 import { Player } from "./Player";
-
-type Database = {
-	chats?: string[];
-};
-const database: Database = JSON.parse(await readFile("./db.json", "utf-8").catch(() => "{}"));
-database.chats ??= [];
 
 let nextId = 0;
 

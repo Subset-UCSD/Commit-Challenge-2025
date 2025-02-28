@@ -4,7 +4,7 @@ on:
     branches: 
       - main
     paths:
-      - cave-game/
+      - cave-game/**
   workflow_dispatch:
 
 jobs:
@@ -21,5 +21,6 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_TARGET }} "
             cd /app/commit2025-gh-actions/cave-game/
+            git pull
             bash deploy_serve.sh
           "

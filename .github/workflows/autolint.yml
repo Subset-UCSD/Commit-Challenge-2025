@@ -19,7 +19,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    - name: Revert offending commits
+    - name: npm run format
       run: |
         git config user.name "Thomas A. Powell"
         git config user.email "tpowell@pint.com"

@@ -53,7 +53,7 @@ jobs:
 
                 echo "$RELEASE_NOTES" > response.md
                 sed -i '1d;$d' response.md
-                echo response.md > changelog.md
+                cat response.md > changelog.md
               shell: bash
 
             - name: tag you're it

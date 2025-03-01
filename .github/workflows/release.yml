@@ -18,11 +18,15 @@ jobs:
               with:
                 fetch-depth: 0
             
-            - name: windows + L
+            - name: constructor
               id: changelog
               run: |
                 export TZ="America/Los_Angeles"
                 COMMITS=$(git log --since="24 hours ago" --pretty=format:"- %s" -p)
+                if [ "$COMMITS" -gt 1000000 ]; then
+                  COMMITS=$(git log --since="24 hours ago" --pretty=format:"- %s")
+                  echo "some idiots committed TOO HARD so we get truncated release notes today" > changelog.md
+                fi
                 echo "$COMMITS"
                 
                 if [ -z "$COMMITS" ]; then
@@ -45,8 +49,9 @@ jobs:
 
                 RELEASE_NOTES=$(echo $RESPONSE | jq -r '.candidates[0].content.parts[0].text')
 
-                echo "$RELEASE_NOTES" > changelog.md
-                sed -i '1d;$d' changelog.md
+                echo "$RELEASE_NOTES" > response.md
+                sed -i '1d;$d' response.md
+                echo response.md > changelog.md
               shell: bash
 
             - name: tag you're it

@@ -1,14 +1,5 @@
 ![banner](./ass/ets/news.svg)
 
-# CHAT WE GOT AN INSTANCE
-
-The instance is alive
-Cave game thrives
-
-Give me your ssh key on the chat to join the instance!
-
-# [CHAT B#C# DONE IT AGAIN](https://distrokid.com/hyperfollow/bc33/new-record-5)
-
 # :sparkle: $\subseteq$ Commit Challenge 2025
 Welcome to the annual $\subseteq$ Commit Challenge 2025! The goal is to make contributions and a commit every day to build something that can (hopefully) be considered meaningful and deployable by the end of the year 🚀 fish are tasty
 
@@ -26,8 +17,14 @@ Our current participants:
 - [<img src="https://github.com/3dcantaloupe.png" height="16" /> 3dcantaloupe](https://github.com/3dcantaloupe)
 - [<img src="https://github.com/sprestrelski.png" height="16" /> sam](https://github.com/sprestrelski)
 
+> [!IMPORTANT]
+> [CHAT B#C# DONE IT AGAIN](https://distrokid.com/hyperfollow/bc33/new-record-5)
+
 # ✋ Want to Join?
 Fill out this form [here](https://docs.google.com/forms/d/e/1FAIpQLSeI2mfek8_JKCqeqOqzPOCG9EXQH7tBUqhkY5F3WhRp3QKokA/viewform?usp=header)
+
+> [!TIP]
+> To join the cave game instance, contact someone through Discord.
 
 # :exclamation: Rules
 You must commit to main. No malicious code pls.

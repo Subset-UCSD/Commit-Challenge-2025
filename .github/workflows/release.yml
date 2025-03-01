@@ -23,7 +23,8 @@ jobs:
               run: |
                 export TZ="America/Los_Angeles"
                 COMMITS=$(git log --since="24 hours ago" --pretty=format:"- %s" -p)
-                if [ "$#COMMITS" -gt 1000000 ]; then
+                echo "leg: ${#COMMITS}"
+                if [ "${#COMMITS}" -gt 1000000 ]; then
                   COMMITS=$(git log --since="24 hours ago" --oneline)
                   echo "aw man :("
                   echo "some idiots committed TOO HARD so we get truncated release notes today" > changelog.md

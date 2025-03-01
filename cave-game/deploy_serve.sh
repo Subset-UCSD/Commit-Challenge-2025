@@ -4,4 +4,4 @@
 
 npm install
 npm run build
-systemctl restart cavegame
+sudo systemctl restart cavegame

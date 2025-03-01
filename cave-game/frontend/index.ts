@@ -10,10 +10,12 @@ import "./index.css";
 import interpolate from "mat4-interpolate";
 
 import { ServerMessage } from "../communism/messages";
+import { SERVER_GAME_TICK } from "../communism/constants";
 import { expect, FUCK, mergeVec3 } from "../communism/utils";
 import { send } from "./net";
 import { Gl } from "./render/Gl";
 import { GltfModel } from "./render/Glthefuck";
+import { InputListener } from "./input";
 
 console.log("frontend!");
 
@@ -142,24 +144,30 @@ handleConnectionStatus(false);
 
 //#region input
 
-let keys = new Set<string>();
-window.addEventListener("keydown", (e) => {
-	if (!keys.has(e.code)) {
-		keys.add(e.code);
-		send({ type: "key-state-update", keys: [...keys] });
-	}
-});
-window.addEventListener("keyup", (e) => {
-	if (keys.has(e.code)) {
-		keys.delete(e.code);
-		send({ type: "key-state-update", keys: [...keys] });
-	}
-});
-window.addEventListener("blur", (e) => {
-	if (keys.size > 0) {
-		keys = new Set();
-		send({ type: "key-state-update", keys: [...keys] });
-	}
+const inputListener = new InputListener({
+	default: {
+		forward: false,
+		backward: false,
+		jump: false,
+		left: false,
+		right: false
+	},
+	keymap: {
+		KeyW: "forward",
+		KeyA: "left",
+		KeyS: "backward",
+		KeyD: "right",
+		Space: "jump"
+	},
+	handleInputs: (inputs) => {
+		const [x, y, z] = [0,0,0]//camera.getForwardDir();
+		send({
+			type: "client-input",
+			...inputs,
+			lookDir: [x, y, z],
+		});
+	},
+	period: SERVER_GAME_TICK
 });
 
 //#region rendering

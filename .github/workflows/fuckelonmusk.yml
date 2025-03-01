@@ -18,9 +18,4 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }} # Store your private key as a secret
 
       - name: Restart server
-        run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_TARGET }} "
-            cd /app/commit2025-gh-actions/cave-game/
-            git pull
-            bash deploy_serve.sh
-          "
+        run: ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_TARGET }} "bash deploy_serve.sh"

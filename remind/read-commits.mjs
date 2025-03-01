@@ -94,8 +94,30 @@ const messages = Object.fromEntries(
 console.log(messages);
 fs.writeFileSync("messages.json", JSON.stringify(messages));
 
+if (nonCommitters.length > 0) {
+  await fetch(process.env.DISCORD_WEBHOOK_URL || '', {
+    "headers": {
+      "content-type": "application/json",
+    },
+    "body": JSON.stringify({"content":
+      `hey ${nonCommitters.map(ghUser => `<@${discords[ghUser]}>`).join(' ')} (especially if ur on a phone) can u [add the next word to this](<https://github.com/Subset-UCSD/Commit-Challenge-2025/edit/main/gpt.txt>) ${select(
+        'help us be chatgpt',
+        '🤨',
+        '... or u cant..?',
+        '🫦',
+        '🫵',
+        'r u smarter than an llm ?',
+        '老天保佑金山银山前路有',
+        '[object Object]',
+      )}`
+      ,"username":"reminder","avatar_url":"https://subset-ucsd.github.io/Commit-Challenge-2025/ass/ets/mayo.png"}),
+    "method": "POST",
+  }).catch(console.log);
+}
+
 const BASH_TRUE = 0;
 const BASH_FALSE = 1;
 
 // Return true iff everyone already committed
 process.exit(nonCommitters.length === 0 ? BASH_TRUE : BASH_FALSE);
+

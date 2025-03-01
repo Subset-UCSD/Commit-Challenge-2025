@@ -9,13 +9,13 @@ import "./index.css";
 
 import interpolate from "mat4-interpolate";
 
-import { ServerMessage } from "../communism/messages";
 import { SERVER_GAME_TICK } from "../communism/constants";
+import { ServerMessage } from "../communism/messages";
 import { expect, FUCK, mergeVec3 } from "../communism/utils";
+import { InputListener } from "./input";
 import { send } from "./net";
 import { Gl } from "./render/Gl";
 import { GltfModel } from "./render/Glthefuck";
-import { InputListener } from "./input";
 
 console.log("frontend!");
 
@@ -150,24 +150,24 @@ const inputListener = new InputListener({
 		backward: false,
 		jump: false,
 		left: false,
-		right: false
+		right: false,
 	},
 	keymap: {
 		KeyW: "forward",
 		KeyA: "left",
 		KeyS: "backward",
 		KeyD: "right",
-		Space: "jump"
+		Space: "jump",
 	},
 	handleInputs: (inputs) => {
-		const [x, y, z] = [0,0,0]//camera.getForwardDir();
+		const [x, y, z] = [0, 0, 0]; //camera.getForwardDir();
 		send({
 			type: "client-input",
 			...inputs,
 			lookDir: [x, y, z],
 		});
 	},
-	period: SERVER_GAME_TICK
+	period: SERVER_GAME_TICK,
 });
 
 //#region rendering

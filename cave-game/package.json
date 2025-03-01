@@ -2,11 +2,14 @@
 	"scripts": {
 		"build": "node --experimental-strip-types build.ts build",
 		"dev": "node --experimental-strip-types build.ts watch",
-		"format": "eslint --fix; prettier -w . '!**/*.{js,frag,vert}' --log-level=warn",
+		"format": "run-s format:*",
+		"format:lint": "eslint --fix",
+		"format:prettier": "prettier -w . '!**/*.{js,frag,vert}' --log-level=warn",
 		"start": "node ./dist/index.js"
 	},
 	"type": "module",
 	"dependencies": {
+		"cannon-es": "^0.20.0",
 		"express": "^4.21.2",
 		"gl-matrix": "^3.4.3",
 		"mat4-interpolate": "^1.0.4",
@@ -21,6 +24,7 @@
 		"eslint-plugin-simple-import-sort": "^12.1.1",
 		"eslint-plugin-unused-imports": "^4.1.4",
 		"nodemon": "^3.1.9",
+		"npm-run-all": "^4.1.5",
 		"prettier": "^3.5.2",
 		"typescript-eslint": "^8.25.0"
 	}

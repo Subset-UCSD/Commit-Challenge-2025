@@ -7,15 +7,18 @@
 
 import "./index.css";
 
-import interpolate from "mat4-interpolate";
+import { mat4 } from "gl-matrix";
 
 import { SERVER_GAME_TICK } from "../communism/constants";
-import { ServerMessage } from "../communism/messages";
-import { expect, FUCK, mergeVec3 } from "../communism/utils";
+import { GlobalLight, ModelId, ModelInstance, ServerMessage } from "../communism/messages";
+import { Vector3 } from "../communism/types";
+import { expect, FUCK } from "../communism/utils";
 import { InputListener } from "./input";
+import { interpolateMat4, Interpolator } from "./lib/Interpolator";
+import { ModelManager } from "./lib/ModelManager";
 import { send } from "./net";
+import { Camera } from "./render/cam";
 import { Gl } from "./render/Gl";
-import { GltfModel } from "./render/Glthefuck";
 
 console.log("frontend!");
 
@@ -37,25 +40,32 @@ if (f instanceof HTMLFormElement) {
 }
 
 //#region server message handling
-type ClientModelInstance = {
-	id: string;
-	oldTransform: mat4;
-	transform: mat4;
-	animationStart: number;
-	animationDuration: number;
-};
-const modelLoaded: Record<string, GltfModel | "loading"> = {};
-let modelState: Record<string, { instances: ClientModelInstance[] }> = {};
+const modelManager = new ModelManager();
 
-function computeTransform(instance: ClientModelInstance, now = Date.now()): mat4 {
-	if (instance.animationDuration === 0) return instance.transform;
-	const progress = (now - instance.animationStart) / instance.animationDuration;
-	if (progress >= 1) return instance.transform;
-	if (progress <= 0) return instance.oldTransform;
-	const out = mat4.create();
-	interpolate(out, instance.oldTransform, instance.transform, progress);
-	return out;
-}
+const instanceTransformInterpolators: Record<string, Interpolator<mat4>> = {};
+
+/**
+ * slightly different than the one in messages.ts because it's preprocessed and deserialized for the renderer
+ */
+type ClientScene = {
+	groups: {
+		models: Map<ModelId, ModelInstance<true>[]>;
+		pointLights: {
+			position: number[];
+			color: number[];
+			falloff: number[];
+		};
+	}[];
+	globalLight: GlobalLight;
+};
+let scene: ClientScene = {
+	globalLight: {
+		ambientColor: [0.5, 0.5, 0.5],
+		direction: [0, -1, 0],
+		directionColor: [1, 1, 1],
+	},
+	groups: [],
+};
 
 //#region ACTUAL	msg handler
 const ID_KEY = "cave game user identifier";
@@ -92,37 +102,39 @@ export function handleMessage(message: ServerMessage) {
 			break;
 		}
 		case "entire-state": {
-			//map from id to instance (used for interpolating from old positions)
-			const oldState: Record<string, ClientModelInstance> = {};
-			for (const { instances } of Object.values(modelState)) {
-				for (const instance of instances) {
-					oldState[instance.id] = instance;
-				}
-			}
+			// preprocess (pp) scene so it doesn't need to be processed every frame
+			scene = {
+				globalLight: message.globalLight,
+				groups: message.groups.map((group) => ({
+					models: Map.groupBy(
+						group.instances.map((inst) => ({
+							...inst,
+							transform: new Float32Array(inst.transform),
+						})),
+						(inst) => inst.model,
+					),
+					pointLights: {
+						position: group.pointLights.flatMap((light) => light.position),
+						color: group.pointLights.flatMap((light) => light.color),
+						falloff: group.pointLights.map((light) => light.falloff),
+					},
+				})),
+			};
 
-			// reset model state
-			modelState = {};
+			// load any new models and update interpolators
 			const now = Date.now();
-			for (const { id, model, transform, interpolate: { duration = 0, delay = 0 } = {} } of message.objects) {
-				if (!modelLoaded[model]) {
-					modelLoaded[model] = "loading";
-					fetch(model)
-						.then((r) => r.arrayBuffer())
-						.then(parseGlb)
-						.then((parsed) => {
-							modelLoaded[model] = new GltfModel(gl, parsed);
-						});
+			for (const group of scene.groups) {
+				for (const [modelPath, instances] of group.models) {
+					modelManager.requestLoadModel(gl, modelPath);
+
+					for (const instance of instances) {
+						if (instance.interpolate) {
+							const { id, duration, delay } = instance.interpolate;
+							instanceTransformInterpolators[id] ??= new Interpolator(instance.transform, interpolateMat4);
+							instanceTransformInterpolators[id].setValue(instance.transform, duration, delay, now);
+						}
+					}
 				}
-				modelState[model] ??= {
-					instances: [],
-				};
-				modelState[model].instances.push({
-					id,
-					oldTransform: oldState[id] ? computeTransform(oldState[id], now) : new Float32Array(transform),
-					transform: new Float32Array(transform),
-					animationStart: now + delay,
-					animationDuration: duration,
-				});
 			}
 			break;
 		}
@@ -191,37 +203,7 @@ cam.position[1] = 20;
 cam.rotation.x = -Math.PI / 8;
 // cam.rotation.y = Math.PI
 
-// TEMP
-import { mat4, vec3 } from "gl-matrix";
-
-import { parseGlb } from "../communism/gltf/bingltfparser";
-import modelGlb from "../public/marcelos/notacube.glb";
-import modelGlb2 from "../public/marcelos/notacube_smooth.glb";
-import { Camera } from "./render/cam";
-const model = new GltfModel(
-	gl,
-	await fetch(modelGlb)
-		.then((r) => r.arrayBuffer())
-		.then(parseGlb),
-);
-const model2 = new GltfModel(
-	gl,
-	await fetch(modelGlb2)
-		.then((r) => r.arrayBuffer())
-		.then(parseGlb),
-);
-
-gl.checkError();
-
-type PointLight = {
-	position: vec3;
-	color: [r: number, g: number, b: number];
-	falloff: number;
-};
-const lights: PointLight[] = [
-	{ position: vec3.fromValues(10, 2, 0), color: [0 / 360, 0.8, 0.5], falloff: 10 },
-	{ position: vec3.fromValues(-10, 2, 0), color: [180 / 360, 0.8, 0.5], falloff: 10 },
-];
+const CLEAR_COLOR: Vector3 = [0.01, 0.02, 0.1];
 
 //#region rendering: main game loop
 while (true) {
@@ -229,84 +211,32 @@ while (true) {
 
 	const view = cam.pv(window.innerWidth / window.innerHeight);
 
-	gl.clear([0.01, 0.02, 0.1]);
+	gl.clear(CLEAR_COLOR);
 	gl.beginRender();
 
 	gl.gltfShader.use();
 	gl.gl.uniformMatrix4fv(gl.gltfShader.uniform("u_view"), false, view);
-	gl.gl.uniform3f(gl.gltfShader.uniform("u_ambient_light"), 0.5, 0.5, 0.5);
-	gl.gl.uniform3f(gl.gltfShader.uniform("u_dir_light_color"), 2, 2, 2);
-	gl.gl.uniform3fv(
-		gl.gltfShader.uniform("u_dir_light_dir"),
-		vec3.normalize(vec3.create(), vec3.fromValues(Math.cos(now / 362), Math.sin(now / 362), 1)),
-	); //, cam.transform()).slice(0, 3))
-	// console.log(vec4.transformMat4(vec4.create(), vec4.normalize(vec4.create(), vec4.fromValues(Math.cos(now / 362), Math.sin(now / 362), 5, 0)), mat4.invert(mat4.create(), cam.transform())).slice(0, 3))
-	// console.log(vec4.normalize(vec4.create(), vec4.fromValues(Math.cos(now / 362), Math.sin(now / 362), 5, 0)),cam.transform())
-	// break
+	gl.gl.uniform3f(gl.gltfShader.uniform("u_ambient_light"), ...scene.globalLight.ambientColor);
+	gl.gl.uniform3f(gl.gltfShader.uniform("u_dir_light_color"), ...scene.globalLight.directionColor);
+	gl.gl.uniform3f(gl.gltfShader.uniform("u_dir_light_dir"), ...scene.globalLight.direction);
 	gl.gl.uniform3fv(gl.gltfShader.uniform("u_eye_pos"), cam.position);
-	gl.gl.uniform1i(gl.gltfShader.uniform("u_num_lights"), lights.length);
-	if (lights.length > 0) {
-		gl.gl.uniform3fv(gl.gltfShader.uniform("u_point_lights[0]"), mergeVec3(lights.map((light) => light.position)));
-		gl.gl.uniform3fv(gl.gltfShader.uniform("u_point_colors[0]"), mergeVec3(lights.map((light) => light.color)));
-		gl.gl.uniform1fv(
-			gl.gltfShader.uniform("u_falloff[0]"),
-			Array.from(lights.values(), (light) => light.falloff),
-		);
-	}
-	gl.gl.uniform1iv(
-		gl.gltfShader.uniform("u_point_shadow_maps[0]"),
-		Array.from({ length: +gl.constants.MAX_LIGHTS }).map((_, i) => 4 + i),
-	);
-	const instances = Array.from({ length: 10 }, (_, i) => ({
-		transform: mat4.rotateY(
-			mat4.create(),
-			mat4.rotateX(
-				mat4.create(),
-				mat4.translate(mat4.create(), mat4.create(), [
-					Math.cos((i / 10) * 2 * Math.PI + now / 2877) * 5,
-					2 * Math.sin(now / 432 + (i / 10) * 4 * Math.PI),
-					Math.sin((i / 10) * 2 * Math.PI + now / 2877) * 5,
-				]),
-				now / (83466 + i * 36636),
-			),
-			now / (1000 + i * 283),
-		),
-	}));
-	model.draw([
-		...instances.filter((_, i) => i % 2 === 0),
-		...Array.from({ length: 100 }, (_, i) => ({
-			transform: mat4.rotateX(
-				mat4.create(),
-				mat4.translate(mat4.create(), mat4.create(), [
-					Math.cos((i / 100) * 2 * Math.PI + now / -1987) * 25,
-					Math.sin((i / 100) * 2 * Math.PI + now / -1987) * 25,
-					10 * Math.sin(now / 432 + (i / 100) * 60 * Math.PI) - 70,
-				]),
-				now / -787 + (i / 100) * 2 * Math.PI,
-			),
-		})),
-	]);
-	model2.draw([
-		...instances.filter((_, i) => i % 2 !== 0),
-		...Array.from({ length: 100 }, (_, i) => ({
-			transform: mat4.rotateX(
-				mat4.create(),
-				mat4.translate(mat4.create(), mat4.create(), [
-					Math.cos((i / 100) * 2 * Math.PI + now / 1987) * 25,
-					Math.sin((i / 100) * 2 * Math.PI + now / 1987) * 25,
-					10 * Math.sin(now / 432 + (i / 100) * 60 * Math.PI) - 40,
-				]),
-				now / 787 + (i / 100) * 2 * Math.PI,
-			),
-		})),
-	]);
 
-	for (const [modelId, { instances }] of Object.entries(modelState)) {
-		const model = modelLoaded[modelId];
-		if (!model || model === "loading") {
-			continue;
+	for (const { models, pointLights } of scene.groups) {
+		gl.gl.uniform1i(gl.gltfShader.uniform("u_num_lights"), pointLights.falloff.length);
+		if (pointLights.falloff.length > 0) {
+			gl.gl.uniform3fv(gl.gltfShader.uniform("u_point_lights[0]"), pointLights.position);
+			gl.gl.uniform3fv(gl.gltfShader.uniform("u_point_colors[0]"), pointLights.color);
+			gl.gl.uniform1fv(gl.gltfShader.uniform("u_falloff[0]"), pointLights.falloff);
 		}
-		model.draw(instances.map((inst) => ({ transform: computeTransform(inst, now) })));
+
+		for (const [modelId, instances] of models) {
+			const model = modelManager.needModelNOW(modelId);
+			model?.draw(
+				instances.map(({ interpolate, transform }) => ({
+					transform: interpolate ? instanceTransformInterpolators[interpolate.id].getValue(now) : transform,
+				})),
+			);
+		}
 	}
 
 	gl.applyFilters();

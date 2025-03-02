@@ -1,6 +1,8 @@
 import * as phys from "cannon-es";
+import { mat4 } from "gl-matrix";
 
-import { EntityModel, ServerModel } from "../../communism/messages";
+import { SERVER_GAME_TICK } from "../../communism/constants";
+import { EntityModel, ModelInstance } from "../../communism/messages";
 import { Vector3 } from "../../communism/types";
 import { Game } from "../Game";
 import { PhysicsWorld } from "../PhysicsWorld";
@@ -45,12 +47,16 @@ export abstract class Entity {
 		// console.log("wow collide");
 	}
 
-	serialize(): ServerModel {
+	serialize(): ModelInstance {
 		return {
-			id: this.id,
 			model: this.model,
-			position: this.body.position.toArray(),
-			transform: this.body.quaternion.toArray(),
+			transform: Array.from(
+				mat4.fromRotationTranslation(mat4.create(), this.body.quaternion.toArray(), this.body.position.toArray()),
+			),
+			interpolate: {
+				id: this.id,
+				duration: SERVER_GAME_TICK,
+			},
 		};
 	}
 

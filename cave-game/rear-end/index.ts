@@ -8,34 +8,35 @@ let ticks = 0;
 let totalDelta = 0;
 
 //what actually runs the game loop
-(async () => {
-	while (true) {
-		//check time at beginning of gamestep
-		let startTimeCheck = Date.now();
+while (true) {
+	// if no one is online, pause the game until someone joins
+	await game.hasPlayers;
 
-		// update game state
-		game.updateGameState();
+	//check time at beginning of gamestep
+	let startTimeCheck = Date.now();
 
-		// send updated state to all clients
-		game.broadcastState();
-		// wait until end of tick
-		// broadcast(wss, )
+	// update game state
+	game.updateGameState();
 
-		//check time at end of gamestep
-		let endTimeCheck = Date.now();
+	// send updated state to all clients
+	game.broadcastState();
+	// wait until end of tick
+	// broadcast(wss, )
 
-		let delta = endTimeCheck - startTimeCheck;
-		ticks++;
-		totalDelta += delta;
-		if (ticks >= 2000) {
-			ticks = 0;
-			totalDelta = 0;
-		}
-		//wait until the rest of the tick is complete
-		if (delta > SERVER_GAME_TICK) {
-			//shit we had a longass tick. Cry ig
-		} else {
-			await delay(SERVER_GAME_TICK - delta);
-		}
+	//check time at end of gamestep
+	let endTimeCheck = Date.now();
+
+	let delta = endTimeCheck - startTimeCheck;
+	ticks++;
+	totalDelta += delta;
+	if (ticks >= 2000) {
+		ticks = 0;
+		totalDelta = 0;
 	}
-})();
+	//wait until the rest of the tick is complete
+	if (delta > SERVER_GAME_TICK) {
+		//shit we had a longass tick. Cry ig
+	} else {
+		await delay(SERVER_GAME_TICK - delta);
+	}
+}

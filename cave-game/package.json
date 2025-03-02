@@ -1,11 +1,13 @@
 {
+	"license": "MIT",
 	"scripts": {
 		"build": "node --experimental-strip-types build.ts build",
 		"dev": "node --experimental-strip-types build.ts watch",
 		"format": "run-s format:*",
 		"format:lint": "eslint --fix",
 		"format:prettier": "prettier -w . '!**/*.{js,frag,vert}' --log-level=warn",
-		"start": "node ./dist/index.js"
+		"start": "node ./dist/index.js",
+		"typecheck": "tsc --noEmit --skipLibCheck"
 	},
 	"type": "module",
 	"dependencies": {

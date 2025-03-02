@@ -1,7 +1,6 @@
 import * as phys from "cannon-es";
-import { quat, vec3 } from "gl-matrix";
 
-import { EntityModel, ServerModel } from "../../communism/messages";
+import { EntityModel } from "../../communism/messages";
 import { MovementInfo, Vector3 } from "../../communism/types";
 import { Game } from "../Game";
 import { Entity } from "./Entity";
@@ -168,22 +167,6 @@ export class PlayerEntity extends Entity {
 			this.jumping = false;
 			this.#upwardCounter = 0;
 		}
-	}
-
-	serialize(): ServerModel {
-		return {
-			...super.serialize(),
-			position: this.body.position.toArray(),
-			transform: quat.rotationTo(
-				quat.create(),
-				vec3.fromValues(-1, 0, 0),
-				this.lookDir
-					.vmul(new phys.Vec3(1, 0, 1))
-					.unit()
-					.toArray(),
-			),
-			model: this.model,
-		};
 	}
 
 	setSpeed(speed: number) {

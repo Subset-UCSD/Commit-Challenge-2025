@@ -34,8 +34,12 @@ type EntityRayCastResult = {
 	distance: number;
 };
 
+/**
+ * canonically named George. see https://cse125.ucsd.edu/2024/cse125g1/w/2 for lore
+ */
 export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
-	#world = new PhysicsWorld({ gravity: [0, -60, 0] });
+	// TEMP: gravity changed from -60. revert when floor is added
+	#world = new PhysicsWorld({ gravity: [0, 10, 0] });
 	#server: Server<ClientMessage, ServerMessage>;
 
 	#players: Map<string, NetworkedPlayer>;
@@ -130,6 +134,9 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 				debug: false,
 			};
 			this.#players.set(conn.id, player);
+
+			// TEMP
+			this.#registerEntity(this.#createPlayerEntity(Math.random(), [0, 0, 0])!);
 		}
 	}
 	handlePlayerDisconnect(id: string) {
@@ -220,7 +227,28 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 		for (const player of this.#players.values()) {
 			player.conn.send({
 				type: "entire-state",
-				objects: [...this.#entities.values().map((entity) => entity.serialize())],
+				groups: [
+					{
+						instances: [...this.#entities.values().map((entity) => entity.serialize())],
+						pointLights: [
+							{
+								position: [10, 2, 0],
+								color: [0 / 360, 0.8, 0.5],
+								falloff: 10,
+							},
+							{
+								position: [-10, 2, 0],
+								color: [180 / 360, 0.8, 0.5],
+								falloff: 10,
+							},
+						],
+					},
+				],
+				globalLight: {
+					ambientColor: [0.5, 0.5, 0.5],
+					direction: new phys.Vec3(Math.cos(Date.now() / 362), Math.sin(Date.now() / 362), 1).unit().toArray(),
+					directionColor: [2, 2, 2],
+				},
 				//physicsBodies: player.debug ? this.#world.serialize() : undefined,
 				/*others: Array.from(this.#players.values(), (p) =>
 					p === player ? [] : [this.#serializeNetworkedPlayer(p)],
@@ -307,5 +335,15 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 		this.#entities.delete(entity.id);
 		this.#bodyToEntityMap.delete(entity.body);
 		entity.removeFromWorld(this.#world);
+	}
+
+	/**
+	 * resolved once a player joins. becomes a new `Promise` object when all players leave
+	 *
+	 * used to pause the game when no one is online so (a) objects dont fall infinitely (there's no floor rn)
+	 * and (b) to conserve resources. we love the nevironment
+	 */
+	get hasPlayers() {
+		return this.#server.hasConnection;
 	}
 }

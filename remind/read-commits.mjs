@@ -11,8 +11,7 @@ const discords = {
   dowhep: "333255408582131725",
   "nick-ls": "303745722488979456",
   raymosun: "252303578792853514",
-  khushijpatel: "784956933005508608",
-  "3dcantaloupe": "357300903726022659",
+  khushijpatel: "784956933005508608"
 };
 
 const everyone = Object.keys(discords);

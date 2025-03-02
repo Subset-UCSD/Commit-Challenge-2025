@@ -3,6 +3,13 @@ import { mat4 } from "gl-matrix";
 import { EntityId } from "../rear-end/entities/Entity";
 import { Quaternion, Vector2, Vector3 } from "./types";
 
+export type InterpolationSettings = {
+	/** delay after receiving object to begin interpolation, in milliseconds. defaults to 0, starting immediately */
+	delay?: number;
+	/** length of transition animation in milliseconds */
+	duration: number;
+};
+
 /**
  * the client can only support ONE directional light, and it is GLOBAL. it will cast shadows
  *
@@ -11,10 +18,13 @@ import { Quaternion, Vector2, Vector3 } from "./types";
 export type GlobalLight = {
 	/** color of ambient light. RGB, 0 to 1 */
 	ambientColor: Vector3;
+	ambientColorInterpolation?: InterpolationSettings;
 	/** direction of directional light. NORMALIZED vector */
 	direction: Vector3;
+	directionInterpolation?: InterpolationSettings;
 	/** color of directional light. RGB, 0 to 1 (but you can go above 1 for brighter colors) */
 	directionColor: Vector3;
+	directionColorInterpolation?: InterpolationSettings;
 };
 
 /**
@@ -61,17 +71,13 @@ export type ModelInstance<OnClient = false> = {
 	 * defines a transition animation between previous and new transform. inspired
 	 * by minecraft block display interpolation: https://youtu.be/8MPDyaYBUnM?t=64
 	 */
-	interpolate?: {
+	interpolate?: InterpolationSettings & {
 		/**
 		 * globally unique ID used to look up the previous state for interpolation
 		 *
 		 * NOTE: the client does not enforce that it is unique
 		 */
 		id: string;
-		/** delay after receiving object to begin interpolation, in milliseconds. defaults to 0, starting immediately */
-		delay?: number;
-		/** length of transition animation in milliseconds */
-		duration: number;
 	};
 };
 
@@ -97,6 +103,8 @@ export type Scene = {
 	/** see `ModelGroup` docs for what a group is */
 	groups: ModelGroup[];
 	globalLight: GlobalLight;
+	camera: number[];
+	cameraInterpolation?: InterpolationSettings;
 };
 
 export type ServerMessage =

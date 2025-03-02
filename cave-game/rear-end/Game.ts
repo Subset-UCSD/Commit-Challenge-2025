@@ -10,6 +10,8 @@
 import * as phys from "cannon-es";
 import { Body } from "cannon-es";
 
+import { cameraTransform } from "../communism/cam";
+import { SERVER_GAME_TICK } from "../communism/constants";
 import { ClientMessage, PlayerEntry, ServerMessage } from "../communism/messages";
 import { MovementInfo, Vector3 } from "../communism/types";
 import { Entity, EntityId } from "./entities/Entity";
@@ -247,8 +249,13 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 				globalLight: {
 					ambientColor: [0.5, 0.5, 0.5],
 					direction: new phys.Vec3(Math.cos(Date.now() / 362), Math.sin(Date.now() / 362), 1).unit().toArray(),
+					directionInterpolation: { duration: SERVER_GAME_TICK },
 					directionColor: [2, 2, 2],
 				},
+				camera: Array.from(
+					cameraTransform([0, 20, 20], { y: 0, x: -Math.PI / 8 /* * (Math.sin(Date.now() / 847) + 1)*/, z: 0 }),
+				),
+				// cameraInterpolation: {duration:SERVER_GAME_TICK},
 				//physicsBodies: player.debug ? this.#world.serialize() : undefined,
 				/*others: Array.from(this.#players.values(), (p) =>
 					p === player ? [] : [this.#serializeNetworkedPlayer(p)],

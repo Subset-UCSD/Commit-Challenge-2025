@@ -7,14 +7,14 @@
 
 import "./index.css";
 
-import { mat4 } from "gl-matrix";
+import { mat4, vec3 } from "gl-matrix";
 
 import { SERVER_GAME_TICK } from "../communism/constants";
-import { GlobalLight, ModelId, ModelInstance, ServerMessage } from "../communism/messages";
+import { ModelId, ModelInstance, ServerMessage } from "../communism/messages";
 import { Vector3 } from "../communism/types";
 import { expect, FUCK } from "../communism/utils";
 import { InputListener } from "./input";
-import { interpolateMat4, Interpolator } from "./lib/Interpolator";
+import { interpolateMat4, interpolateVector3, Interpolator, slerpDirVec } from "./lib/Interpolator";
 import { ModelManager } from "./lib/ModelManager";
 import { send } from "./net";
 import { Camera } from "./render/cam";
@@ -39,35 +39,29 @@ if (f instanceof HTMLFormElement) {
 	});
 }
 
-//#region server message handling
+//#region state management
 const modelManager = new ModelManager();
 
 const instanceTransformInterpolators: Record<string, Interpolator<mat4>> = {};
+const ambientLightColorInterpolator = new Interpolator<Vector3>([0, 0, 0], interpolateVector3);
+const directionalLightDirectionInterpolator = new Interpolator<Vector3>([0, 1, 0], slerpDirVec);
+const directionalLightColorInterpolator = new Interpolator<Vector3>([0, 0, 0], interpolateVector3);
+const cameraInterpolator = new Interpolator<mat4>(mat4.create(), interpolateMat4);
 
 /**
  * slightly different than the one in messages.ts because it's preprocessed and deserialized for the renderer
  */
 type ClientScene = {
-	groups: {
-		models: Map<ModelId, ModelInstance<true>[]>;
-		pointLights: {
-			position: number[];
-			color: number[];
-			falloff: number[];
-		};
-	}[];
-	globalLight: GlobalLight;
-};
-let scene: ClientScene = {
-	globalLight: {
-		ambientColor: [0.5, 0.5, 0.5],
-		direction: [0, -1, 0],
-		directionColor: [1, 1, 1],
-	},
-	groups: [],
-};
+	models: Map<ModelId, ModelInstance<true>[]>;
+	pointLights: {
+		position: number[];
+		color: number[];
+		falloff: number[];
+	};
+}[];
+let scene: ClientScene = [];
 
-//#region ACTUAL	msg handler
+//#region msg handler
 const ID_KEY = "cave game user identifier";
 
 /** may be called repeatedly */
@@ -103,27 +97,44 @@ export function handleMessage(message: ServerMessage) {
 		}
 		case "entire-state": {
 			// preprocess (pp) scene so it doesn't need to be processed every frame
-			scene = {
-				globalLight: message.globalLight,
-				groups: message.groups.map((group) => ({
-					models: Map.groupBy(
-						group.instances.map((inst) => ({
-							...inst,
-							transform: new Float32Array(inst.transform),
-						})),
-						(inst) => inst.model,
-					),
-					pointLights: {
-						position: group.pointLights.flatMap((light) => light.position),
-						color: group.pointLights.flatMap((light) => light.color),
-						falloff: group.pointLights.map((light) => light.falloff),
-					},
-				})),
-			};
+			scene = message.groups.map((group) => ({
+				models: Map.groupBy(
+					group.instances.map((inst) => ({
+						...inst,
+						transform: new Float32Array(inst.transform),
+					})),
+					(inst) => inst.model,
+				),
+				pointLights: {
+					position: group.pointLights.flatMap((light) => light.position),
+					color: group.pointLights.flatMap((light) => light.color),
+					falloff: group.pointLights.map((light) => light.falloff),
+				},
+			}));
 
 			// load any new models and update interpolators
 			const now = Date.now();
-			for (const group of scene.groups) {
+			ambientLightColorInterpolator.setValue(
+				message.globalLight.ambientColor,
+				message.globalLight.ambientColorInterpolation?.duration,
+				message.globalLight.ambientColorInterpolation?.delay,
+			);
+			directionalLightColorInterpolator.setValue(
+				message.globalLight.directionColor,
+				message.globalLight.directionColorInterpolation?.duration,
+				message.globalLight.directionColorInterpolation?.delay,
+			);
+			directionalLightDirectionInterpolator.setValue(
+				message.globalLight.direction,
+				message.globalLight.directionInterpolation?.duration,
+				message.globalLight.directionInterpolation?.delay,
+			);
+			cameraInterpolator.setValue(
+				new Float32Array(message.camera),
+				message.cameraInterpolation?.duration,
+				message.cameraInterpolation?.delay,
+			);
+			for (const group of scene) {
 				for (const [modelPath, instances] of group.models) {
 					modelManager.requestLoadModel(gl, modelPath);
 
@@ -198,10 +209,6 @@ resize();
 window.addEventListener("resize", resize);
 
 const cam = new Camera();
-cam.position[2] = 20; // (Math.sin(now / 1248) + 1) * (25-3)/2 + 3
-cam.position[1] = 20;
-cam.rotation.x = -Math.PI / 8;
-// cam.rotation.y = Math.PI
 
 const CLEAR_COLOR: Vector3 = [0.01, 0.02, 0.1];
 
@@ -209,6 +216,7 @@ const CLEAR_COLOR: Vector3 = [0.01, 0.02, 0.1];
 while (true) {
 	const now = Date.now();
 
+	cam.transform = cameraInterpolator.getValue(now);
 	const view = cam.pv(window.innerWidth / window.innerHeight);
 
 	gl.clear(CLEAR_COLOR);
@@ -216,12 +224,12 @@ while (true) {
 
 	gl.gltfShader.use();
 	gl.gl.uniformMatrix4fv(gl.gltfShader.uniform("u_view"), false, view);
-	gl.gl.uniform3f(gl.gltfShader.uniform("u_ambient_light"), ...scene.globalLight.ambientColor);
-	gl.gl.uniform3f(gl.gltfShader.uniform("u_dir_light_color"), ...scene.globalLight.directionColor);
-	gl.gl.uniform3f(gl.gltfShader.uniform("u_dir_light_dir"), ...scene.globalLight.direction);
-	gl.gl.uniform3fv(gl.gltfShader.uniform("u_eye_pos"), cam.position);
+	gl.gl.uniform3f(gl.gltfShader.uniform("u_ambient_light"), ...ambientLightColorInterpolator.getValue(now));
+	gl.gl.uniform3f(gl.gltfShader.uniform("u_dir_light_color"), ...directionalLightColorInterpolator.getValue(now));
+	gl.gl.uniform3f(gl.gltfShader.uniform("u_dir_light_dir"), ...directionalLightDirectionInterpolator.getValue(now));
+	gl.gl.uniform3fv(gl.gltfShader.uniform("u_eye_pos"), mat4.getTranslation(vec3.create(), cam.transform));
 
-	for (const { models, pointLights } of scene.groups) {
+	for (const { models, pointLights } of scene) {
 		gl.gl.uniform1i(gl.gltfShader.uniform("u_num_lights"), pointLights.falloff.length);
 		if (pointLights.falloff.length > 0) {
 			gl.gl.uniform3fv(gl.gltfShader.uniform("u_point_lights[0]"), pointLights.position);

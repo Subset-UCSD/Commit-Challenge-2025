@@ -125,9 +125,10 @@ export class WsServer implements Server<ClientMessage, ServerMessage> {
 			);
 
 			if (this.#wss.clients.size === 0) {
+				console.log("i eep");
 				this.hasConnection = new Promise<void>((resolve) => {
 					this.#unhangServer = resolve;
-				});
+				}).then(() => console.log("i wake"));
 			}
 		});
 	};

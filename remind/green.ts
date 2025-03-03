@@ -91,13 +91,42 @@ ${Array.from({length:endDate - startDate + 1}, (_, i) => {
   const date = i + startDate
   const week = Math.floor((date - startDate2) / 7)
   const day = date - startDate2 - week*7
+  // let prog = (i / (endDate - startDate))// - 0.5) ** 3 * 4 +.5
+  let prog = inverseEaseInOutCubic((i + 0.5) / (endDate - startDate + 1))
   if (day !== new Date(date *1000*60*60*24).getUTCDay()) {
     console.error({date,week,day},new Date(date *1000*60*60*24),new Date(date *1000*60*60*24).getUTCDay(),{startDate,endDate,startDate2})
     throw 'die'
   }
-  return `<rect x="${week * (SPACE+SIZE)+SPACE}" y="${day * (SPACE+SIZE)+SPACE}" width="${SIZE}" height="${SIZE}" class="count${map[date]?.size ??0}" style="animation-delay: ${i * 50}ms" />`
-  + `<rect x="${week * (SPACE+SIZE)+SPACE+0.5}" y="${day * (SPACE+SIZE)+SPACE+0.5}" width="${SIZE-1}" height="${SIZE-1}" class="st" style="animation-delay: ${i * 50}ms" />`
+  return `<rect x="${week * (SPACE+SIZE)+SPACE}" y="${day * (SPACE+SIZE)+SPACE}" width="${SIZE}" height="${SIZE}" class="count${map[date]?.size ??0}" style="animation-delay: ${prog * 3000}ms" />`
+  + `<rect x="${week * (SPACE+SIZE)+SPACE+0.5}" y="${day * (SPACE+SIZE)+SPACE+0.5}" width="${SIZE-1}" height="${SIZE-1}" class="st" style="animation-delay: ${prog * 3000}ms" />`
 }).join('\n')}
 </svg>
 
   `)
+
+  function easeInOutCubic(t:number){
+  t *= 2;
+  if (t < 1) return t * t * t / 2;
+  t -= 2;
+  return (t * t * t + 2) / 2;}
+
+  // chatpgt
+  function inverseEaseInOutCubic(y: number) {
+    if (y < 0.5) {
+        return 0.5 * Math.cbrt(2 * y);
+    } else {
+        return 0.5 * (Math.cbrt(2 * y - 2) + 2);
+    }
+}
+
+
+  function easeOutInCubic(t:number) {
+    if (t < 0.5) {
+        // Ease out cubic for the first half
+        return 0.5 * (1 - Math.pow(1 - 2 * t, 3));
+    } else {
+        // Ease in cubic for the second half
+        t = 2 * t - 1;
+        return 0.5 * (Math.pow(t, 3) + 1);
+    }
+}

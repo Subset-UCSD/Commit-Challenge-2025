@@ -265,6 +265,7 @@ justify-content: flex-end;    }
     margin-left: -470px;
     margin-bottom: -230px;
 "></iframe></div>
+    <img src="./remind/green.svg" alt="commit counts" title="how many commits have we made each day" />
 
 <!-- <div style="
 /* overflow: hidden;display: inline-block; */
@@ -369,16 +370,28 @@ id="rsdfhdfg"
             <tr><td>6</td><td title="unconfirmed">✅</td><td>❌</td><td>❌</td></tr>
             <tr><td>7</td><td title="precedent day">👱🏻</td><td>✅</td><td>❌</td></tr>
             <tr><td>8</td><td>❌</td><td>❌</td><td>❌</td></tr>
+            <tr><td>9</td><td>❔</td><td>❔</td><td>❔</td></tr>
+            <tr><td>10</td><td>❔</td><td>❔</td><td>❔</td></tr>
         </tbody>
     </table>
     <blockquote>
 
         <em style="font-size: 2.5em">
-
+            I will go to 202 fs<br>[...]<br>
             Ayo there’s only 20 lectures in a quarter<br>
 No shot I’m missing 15 of them
         </em>
-        &mdash;Marcelo Shen at 6:30 pm
+        &mdash;Marcelo Shen on January 4, 2025, at 6:30 pm
+    </blockquote>
+    <blockquote>
+
+        <em style="font-size: 2.5em">
+            Yall need to have some faith in me<br>
+Just watch tmr<br>
+I will make 202
+
+        </em>
+        &mdash;Marcelo Shen on January 5, 2025, at 6:59 pm
     </blockquote>
     <p><strong><em>SAUCY MARCELO SECRETS</em></strong> will be revaeled..</p>
     <p>requireemnts:</p>
@@ -387,8 +400,17 @@ No shot I’m missing 15 of them
         <li><p>CUMULATIVE 50 MIN LATE = ONE MISSED CLASS</p></li>
         <li><p><strong><ins>REMEMBER:</ins></strong> YOU ARE ONE</p></li>
     </ol>
+    <p>progress towards secret reveal</p>
     <div style="height: 20px;width:100px;background: grey; border: 10px ridge pink;display:inline-block">
         <div style="height: 100%; background: orange;" id="bar"></div>
+        
+     </div>
+     <p>marcelo cse 202 attendence stats summary (<span style="background: rgb(255, 0, 123);; width: 1em; height: 1em; display: inline-block;"></span> = missed, <span style="background: rgb(21, 255, 0);; width: 1em; height: 1em; display: inline-block;"></span> = attended</p>
+     <div style="height: 20px;width:100px;background: grey; border: 10px ridge pink;display:inline-block">
+         <div style="height: 100%; background: rgb(255, 0, 123); display: inline-block;" id="bar2"></div
+            ><div style="height: 100%; background: rgb(21, 255, 0); display: inline-block;" id="bar3"></div>
+         
+      </div>
         <script>
             let score = 0
             score += 1 // monday
@@ -406,12 +428,13 @@ No shot I’m missing 15 of them
             score += 1 // week 8 mon
             score += 1 // week 8 wed
             bar.style.width = `${score / 15 * 100}%`
+            bar2.style.width = `${score / 28 * 100}%`
+            let totalOcucred = 28 - 6
+            bar3.style.width = `${(totalOcucred - score) / 28 * 100}%`
             if (score >= 15) {
                 alert('congratulations marcelo! you did it!')
             }
         </script>
-        
-     </div>
     <!--Congratulations marcelo.. Spicy Secrets to be reveled Soon....-->
      <style>
         .marcelowrapper  {

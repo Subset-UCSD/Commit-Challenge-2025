@@ -1,18 +1,9 @@
 // @ts-check
 
 import fs from "fs";
+import { discords } from "./people.mjs";
 
 const commits = JSON.parse(fs.readFileSync("commits.json", "utf-8"));
-
-const discords = {
-  NolanChai: "135882546440306688",
-  SheepTester: "212355530474127361",
-  Sean1572: "254847696592961537",
-  dowhep: "333255408582131725",
-  "nick-ls": "303745722488979456",
-  raymosun: "252303578792853514",
-  khushijpatel: "784956933005508608"
-};
 
 const everyone = Object.keys(discords);
 const committers = [...new Set(commits.map((commit) => commit.author?.login))]

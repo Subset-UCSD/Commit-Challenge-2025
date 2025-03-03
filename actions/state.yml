@@ -1,0 +1,52 @@
+players:
+  Nolan:
+    health: 100
+    inventory:
+      coin: 10
+    info:
+      location: town square
+  Sean_P:
+    health: 100
+    inventory:
+      coin: 10
+    info:
+      location: town square
+  Sean_Y:
+    health: 100
+    inventory:
+      coin: 10
+    info:
+      location: town square
+  Marcelo:
+    health: 100
+    inventory:
+      coin: 10
+    info:
+      location: town square
+  Nick:
+    health: 100
+    inventory:
+      coin: 10
+    info:
+      location: town square
+  Raymond:
+    health: 100
+    inventory:
+      coin: 10
+    info:
+      location: town square
+  Khushi:
+    health: 100
+    inventory:
+      coin: 10
+    info:
+      location: town square
+  sam:
+    health: 100
+    inventory:
+      coin: 10
+    info:
+      location: town square
+day: 1
+worldInfo:
+  weather: sunny

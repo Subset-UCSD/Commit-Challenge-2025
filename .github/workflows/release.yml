@@ -69,3 +69,16 @@ jobs:
                 body_path: changelog.md
                 tag_name: ${{ env.TAG_NAME }}
                 generate_release_notes: true
+
+            - name: run the actions game
+              env: 
+                GEMINI_API: ${{ secrets.GEMINI_API }}
+                DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+              run: |
+                git config user.name "Thomas A. Powell"
+                git config user.email "tpowell@pint.com"
+                COMMITMSG=$(node --experimental-strip-types actions/act.mts)
+                git add actions/state.yml
+                git commit -m "$COMMITMSG"
+                git push origin HEAD
+                

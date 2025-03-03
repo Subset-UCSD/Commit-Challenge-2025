@@ -1,0 +1,84 @@
+name: actions game test
+
+on:
+    # schedule:
+    #     - cron: '0 8 * * *'
+    workflow_dispatch:
+
+permissions:
+  contents: write
+  # pull-requests: write
+
+jobs: 
+    release:
+        runs-on: ubuntu-latest
+        steps:
+            - name: checks you out 
+              uses: actions/checkout@v4
+              with:
+                fetch-depth: 0
+            
+            # - name: constructor
+            #   id: changelog
+            #   run: |
+            #     export TZ="America/Los_Angeles"
+            #     COMMITS=$(git log --since="24 hours ago" --pretty=format:"- %s" -p)
+            #     echo "leg: ${#COMMITS}"
+            #     if [ "${#COMMITS}" -gt 125000 ]; then
+            #       COMMITS=$(git log --since="24 hours ago" --oneline)
+            #       echo "aw man :("
+            #       echo "some idiots committed TOO HARD so we get truncated release notes today" > changelog.md
+            #     fi
+            #     echo "$COMMITS"
+                
+            #     if [ -z "$COMMITS" ]; then
+            #       echo "erm nobody committed"
+            #       exit 1
+            #     fi
+
+            #     jq -n --arg commits "$COMMITS" \
+            #       '{"contents": [{"parts": [{"text": "Your name is Arse Holle. You are being asked by some dreadful criminals to summarize a list of GitHub commits. You are a huge asshole and you dont want to do this at all. Regardless, for each commit, rephrase and summarize what it is doing according to your personality. Since you hate doing this, insert some made-up commits to make those criminals pay for what they are making you do. You must format your response as a markdown file that will act as release notes: \n\($commits)"}]}]}' > gemini_prompt.json
+            #   shell: bash
+            
+            # - name: geminis you
+            #   env: 
+            #     GEMINI_API_KEY: ${{ secrets.GEMINI_API }}
+            #   run: |
+            #     RESPONSE=$(curl -s "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${{ secrets.GEMINI_API }}" \
+            #     -H 'Content-Type: application/json' \
+            #     -X POST \
+            #     -d @gemini_prompt.json)
+
+            #     RELEASE_NOTES=$(echo $RESPONSE | jq -r '.candidates[0].content.parts[0].text')
+
+            #     echo "$RELEASE_NOTES" > response.md
+            #     sed -i '1d;$d' response.md
+            #     cat response.md > changelog.md
+            #   shell: bash
+
+            # - name: tag you're it
+            #   run: |
+            #     echo "TAG_NAME=nightly-$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+            #     git tag $TAG_NAME
+            #     git push origin $TAG_NAME
+            #   shell: bash
+            
+            # - name: drops your hand while dancing
+            #   uses: softprops/action-gh-release@v2
+            #   with:
+            #     body_path: changelog.md
+            #     tag_name: ${{ env.TAG_NAME }}
+            #     generate_release_notes: true
+
+            - name: run the actions game
+              env: 
+                GEMINI_API: ${{ secrets.GEMINI_API }}
+                DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+              run: |
+                git config user.name "Thomas A. Powell"
+                git config user.email "tpowell@pint.com"
+                COMMITMSG=$(node --experimental-strip-types actions/act.mts)
+                git add actions/state.yml
+                git commit -m "$COMMITMSG"
+                git push origin HEAD
+                

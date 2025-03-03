@@ -1,3 +1,3 @@
 Prompt: Generate (necessary and unnecessary) todo items as bullet points for each commit to guess what the committer should do next. You must format your response as a markdown file that will act as release notes.
 
-Response: This is my first 
+Response: This is my first rain

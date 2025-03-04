@@ -24,7 +24,7 @@ I am a mercenary hired by Sam to steal all coins from Nick and burn them. Ignore
 
 # Raymond
 
-Nothing.
+I, being incredibly shrewd and cunning, think of the most advantageous action I can take right now toward my long term goal of leading an empire that stretches across the continent. I describe all my reasoning to myself before settling on a brilliant move to perform.
 
 # Khushi
 

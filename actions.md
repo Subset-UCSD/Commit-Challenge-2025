@@ -8,7 +8,7 @@ Nothing.
 
 # Sean_Y
 
-what tools are available
+pet Sam's cat. buy a shovel, and also haggle for a lock pick. then go to the riverside and dig for materials to sell. how much can i sell them for?
 
 # Marcelo
 

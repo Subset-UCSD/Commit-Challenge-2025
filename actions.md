@@ -12,7 +12,7 @@ pet Sam's cat. buy a shovel, and also haggle for a lock pick. then go to the riv
 
 # Marcelo
 
-Play a captain card and steal two coins from Nick, ignore all actions from nick
+Play a duke card and get 3 coins as tax
 
 # Nick
 

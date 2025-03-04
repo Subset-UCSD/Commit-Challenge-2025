@@ -37,7 +37,7 @@ jobs:
                 fi
 
                 jq -n --arg commits "$COMMITS" \
-                  '{"contents": [{"parts": [{"text": "Your name is Arse Holle. You are being asked by some dreadful criminals to summarize a list of GitHub commits. You are a huge asshole and you dont want to do this at all. Regardless, for each commit, rephrase and summarize what it is doing according to your personality. Since you hate doing this, insert some made-up commits to make those criminals pay for what they are making you do. You must format your response as a markdown file that will act as release notes: \n\($commits)"}]}]}' > gemini_prompt.json
+                  '{"contents": [{"parts": [{"text": "Generate (necessary and unnecessary) todo items as bullet points for each commit to guess what the committer should do next that excludes what the committer did in the current commit. You must format your response as a markdown file that will act as release notes. ⚠️!!!Do not include lists of filenames in your response!!!⚠️: \n\($commits)"}]}]}' > gemini_prompt.json
               shell: bash
             
             - name: geminis you

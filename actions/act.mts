@@ -51,6 +51,18 @@ class Player {
     this.player = player
   }
 
+  get health () {
+    return this.player.health
+  }
+
+  get inventory () {
+    return this.player.inventory
+  }
+
+  get info () {
+    return this.player.info
+  }
+
   /** Send a response to the player describing the consequences of their actions. Required for each player. */
   respond(text: string) {
     if (responses.players[this.name]) {
@@ -90,6 +102,8 @@ globalThis.describeDay = describeDay
 globalThis.setWorldInfo = setWorldInfo
 for (const [name, player] of Object.entries(state.players)) {
   globalThis[name] = new Player(name, player)
+  // just in case
+  globalThis[name.toLowerCase()] = new Player(name, player)
 }
 
 // const discordMap = Object.fromEntries(users.map(({ discord, playerName }) => [playerName, discord]))

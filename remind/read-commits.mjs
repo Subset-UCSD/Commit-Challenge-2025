@@ -90,7 +90,7 @@ if (nonCommitters.length > 0) {
       "content-type": "application/json",
     },
     "body": JSON.stringify({"content":
-      `hey ${nonCommitters.map(ghUser => `<@${discords[ghUser]}>`).join(' ')} (especially if ur on a phone) can u [add the next word to this](<https://github.com/Subset-UCSD/Commit-Challenge-2025/edit/main/gpt.txt>) ${select(
+      `hey ${nonCommitters.map(ghUser => `<@${discords[ghUser]}>`).join(' ')} (especially if ur on a phone) can u [add the next word to this](<https://github.com/Subset-UCSD/Commit-Challenge-2025/edit/main/actions.md>) ${select(
         'help us be chatgpt',
         '🤨',
         '... or u cant..?',

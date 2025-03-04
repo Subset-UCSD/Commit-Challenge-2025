@@ -12,7 +12,7 @@ what tools are available
 
 # Marcelo
 
-Nothing.
+Play a captain card and steal two coins from Nick
 
 # Nick
 

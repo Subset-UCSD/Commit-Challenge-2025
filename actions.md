@@ -32,4 +32,5 @@ Nothing.
 
 # sam
 
-i have a pet cat 
+i have another pet cat. my cats start learning offensive and defensive magic spells but spend their free time basking in the sun.
+gerald is a mercenary hired by nick pretending to be me. gerald succeeds but dies afterwards by my cats and i reap the rewards.

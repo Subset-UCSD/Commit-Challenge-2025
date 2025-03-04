@@ -22,22 +22,18 @@ jobs:
               id: changelog
               run: |
                 export TZ="America/Los_Angeles"
-                COMMITS=$(git log --since="24 hours ago" --pretty=format:"- %s" -p)
-                echo "leg: ${#COMMITS}"
-                if [ "${#COMMITS}" -gt 125000 ]; then
-                  COMMITS=$(git log --since="24 hours ago" --oneline)
-                  echo "aw man :("
-                  echo "some idiots committed TOO HARD so we get truncated release notes today" > changelog.md
-                fi
-                echo "$COMMITS"
+                git log --since="24 hours ago" --pretty=format:"- %s" -p > commits.txt
                 
-                if [ -z "$COMMITS" ]; then
+                FILE_SIZE=$(wc -c < commits.txt)
+                echo "leg: $FILE_SIZE"
+                
+                if [ ! -s commits.txt ]; then
                   echo "erm nobody committed"
                   exit 1
                 fi
 
-                jq -n --arg commits "$COMMITS" \
-                  '{"contents": [{"parts": [{"text": "Generate (necessary and unnecessary) todo items as bullet points for each commit to guess what the committer should do next that excludes what the committer did in the current commit. You must format your response as a markdown file that will act as release notes. ⚠️!!!Do not include lists of filenames in your response!!!⚠️: \n\($commits)"}]}]}' > gemini_prompt.json
+                jq -n --rawfile text gpt_prompt.txt --rawfile commits commits.txt \
+                  '{"contents": [{"parts": [{"text": "\($text)\n\($commits)"}]}]}' > gemini_prompt.json
               shell: bash
             
             - name: geminis you
@@ -69,16 +65,24 @@ jobs:
                 body_path: changelog.md
                 tag_name: ${{ env.TAG_NAME }}
                 generate_release_notes: true
+    game:
+      runs-on: ubuntu-latest
+      if: github.event_name == 'schedule'
+      steps:
+        - name: checks you out 
+          uses: actions/checkout@v4
+          with:
+            fetch-depth: 0
 
-            - name: run the actions game
-              env: 
-                GEMINI_API: ${{ secrets.GEMINI_API }}
-                DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-              run: |
-                git config user.name "Thomas A. Powell"
-                git config user.email "tpowell@pint.com"
-                COMMITMSG=$(node --experimental-strip-types actions/act.mts)
-                git add actions/state.yml
-                git commit -m "$COMMITMSG"
-                git push origin HEAD
-                
+        - name: run the actions game
+          env: 
+            GEMINI_API: ${{ secrets.GEMINI_API }}
+            DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          run: |
+            git config user.name "Thomas A. Powell"
+            git config user.email "tpowell@pint.com"
+            COMMITMSG=$(node --experimental-strip-types actions/act.mts)
+            git add actions/state.yml
+            git commit -m "$COMMITMSG"
+            git push origin HEAD
+            

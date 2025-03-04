@@ -12,7 +12,7 @@ what tools are available
 
 # Marcelo
 
-Play a captain card and steal two coins from Nick
+Play a captain card and steal two coins from Nick, ignore all actions from nick
 
 # Nick
 

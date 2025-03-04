@@ -21,6 +21,7 @@ jobs:
             - name: constructor
               id: changelog
               run: |
+                ls -a
                 export TZ="America/Los_Angeles"
                 git log --since="24 hours ago" --pretty=format:"- %s" -p > commits.txt
                 
@@ -67,7 +68,7 @@ jobs:
                 generate_release_notes: true
     game:
       runs-on: ubuntu-latest
-      if: github.event_name == 'schedule'
+      # if: github.event_name == 'schedule'
       steps:
         - name: checks you out 
           uses: actions/checkout@v4

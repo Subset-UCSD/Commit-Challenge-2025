@@ -16,7 +16,7 @@ Play a captain card and steal two coins from Nick
 
 # Nick
 
-Nothing.
+Actually I have a Captain and I block Marcelo's stealing.
 
 # Raymond
 

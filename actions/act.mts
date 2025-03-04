@@ -98,13 +98,37 @@ class Player {
   }
 }
 
+const players_: Record<string, Player> = Object.fromEntries(Object.entries(state.players).map(([name, player]) => [name.toLowerCase(), new Player(name, player)]))
+// in case gemini does `players.Gerald`; these changes will be moved to `state.worldInfo`
+const extraPlayers: Record<string, Player> = {}
+
 globalThis.describeDay = describeDay
 globalThis.setWorldInfo = setWorldInfo
-for (const [name, player] of Object.entries(state.players)) {
-  globalThis[name] = new Player(name, player)
-  // just in case
-  globalThis[name.toLowerCase()] = new Player(name, player)
-}
+globalThis.worldInfo = state.worldInfo
+globalThis.players = new Proxy({}, {
+  get(target, p, receiver) {
+    if (typeof p === 'symbol') {
+      return
+    }
+    p = p.toLowerCase()
+    if (players_[p]) {
+      return players_[p]
+    }
+    extraPlayers[p] ??= new Player(p, state.worldInfo[`npc_${p}`] = { health: 100, inventory: {}, info: {} })
+    return extraPlayers[p]
+  },
+  has(target, p) {
+    if (typeof p === 'string') {
+      p = p.toLowerCase()
+    }
+    return Object.hasOwn(players_, p) || Object.hasOwn(extraPlayers, p)
+  },
+})
+// for (const [name, player] of Object.entries(state.players)) {
+//   globalThis[name] = new Player(name, player)
+//   // just in case
+//   globalThis[name.toLowerCase()] = new Player(name, player)
+// }
 
 // const discordMap = Object.fromEntries(users.map(({ discord, playerName }) => [playerName, discord]))
 
@@ -142,7 +166,7 @@ const response: GenerateContentResponse = await fetch(`https://generativelanguag
 }).then(r => r.json())
 let js = response.candidates[0].content.parts[0].text
 
-js = js.trim().replace(/^```/gm, m => '//' + m[0])
+js = js.trim().replace(/^```/gm, m => '//' + m)
 // if (js.startsWith('```')) {
 //   js = js.replace(/^```\w+/, '')
 // }

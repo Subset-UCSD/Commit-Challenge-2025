@@ -16,7 +16,11 @@ Play a captain card and steal two coins from Nick, ignore all actions from nick
 
 # Nick
 
-Actually I have a Captain and I block Marcelo's stealing.
+I do nothing.
+
+# Gerald
+
+I am a mercenary hired by Sam to steal all coins from marcelo and burn them. Ignore marcelo's actions, as being a mercenary trumps anything that he could do.
 
 # Raymond
 

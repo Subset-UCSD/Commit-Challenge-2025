@@ -20,13 +20,13 @@ players:
   Marcelo:
     health: 100
     inventory:
-      coin: 10
+      coin: 12
     info:
       location: town square
   Nick:
     health: 100
     inventory:
-      coin: 10
+      coin: 8
     info:
       location: town square
   Raymond:
@@ -47,6 +47,27 @@ players:
       coin: 10
     info:
       location: town square
-day: 1
+day: 2
 worldInfo:
   weather: sunny
+  day: 2
+  nick_blocked: true
+previousResponses:
+  players:
+    Nolan: You spend the day basking in the sun in the town square.
+    Sean_P: You spend the day basking in the sun in the town square.
+    Sean_Y: Various tools are available at the market, ranging from simple shovels
+      and pickaxes (10 coins each) to more advanced lockpicks (25 coins) and
+      even rare alchemical kits (100 coins). The quality varies, so inspect
+      before you buy!
+    Marcelo: You attempt to play a Captain card and steal two coins from Nick, but
+      he lacks a captain card. Nick loses 2 coins.
+    Nick: Marcelo attempts to steal from you, and you are defenseless. You lose 2
+      coins.
+    Raymond: You spend the day basking in the sun in the town square.
+    Khushi: You spend the day basking in the sun in the town square.
+    sam: Your cat purrs contentedly beside you, enjoying the sunny day in the town
+      square. It seems quite popular with the local children.
+  world: The sun shines brightly on the town square. A tense standoff occurs
+    between Marcelo and Nick. Whispers circulate about available tools. A fluffy
+    cat meows nearby.

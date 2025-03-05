@@ -8,7 +8,14 @@ I pet Sam's cat and ascend to godhood. What can I do now?
 
 # Sean_Y
 
-pet Sam's cat. buy a shovel, and also haggle for a lock pick. then go to the riverside and dig for materials to sell. how much can i sell them for?
+1. Pet Sam's cat
+2. Talk to and befriend all the townsfolk
+3. Dig at the riverbank 12 more times, taking a good rest break in between sessions, then sell what I get
+4. Accept Khushi's gift of 10 coins, as we agreed upon last week
+
+Here is some intel I gathered: Marcelo's medicines are seven years past their expiration date, and because he does not have health insurance, he may not get new medicine. Because of this, for every medicine he takes, he loses some HP. Make sure to note his affliction somewhere.
+
+Also, I hear that a casino has opened in town that offers some prizes, such as coins and horses (such as the coveted white horse, which allows for fast travel), for a fee. What are the probabilities of each prize or loss?
 
 # Marcelo
 

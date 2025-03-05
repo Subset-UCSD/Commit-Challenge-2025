@@ -15,12 +15,13 @@ pet Sam's cat. buy a shovel, and also haggle for a lock pick. then go to the riv
 Play a duke card and get 3 coins as tax
 
 # Nick
-
-I do nothing.
+end
+----
+Narrator: Unfortunately unbeknownst to everyone, Sean_P's actions have set forth a plague upon the world in his ascent to godhood. Everyone (Nolan, Sean_P, Sean_Y, Marcelo, Nick, Gerald, Raymond, Khushi, and sam) will now die in seven (7) days. Keep track of the number of days elapsed in a variable. It is currently day 0. When it hits day 7, everyone will die. This is unpreventable and unblockable. Can everyone devise a way to escape certain doom? Only time will tell. 
 
 # Gerald
 
-I am a mercenary hired by Sam to steal all coins from Nick and burn them. I will intervine Raymond's plan and will left him a message: "can you hear me"
+I am a mercenary hired by Sam to steal all coins from Nolan and deliver them to Nick, thus giving him influence and removing his block. I will also intervene in Raymond's plan and leave him a message: "can you hear me"
 
 # Raymond
 

@@ -4,7 +4,7 @@ Nothing.
 
 # Sean_P
 
-Nothing.
+I pet Sam's cat and ascend to godhood. What can I do now?
 
 # Sean_Y
 

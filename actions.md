@@ -20,7 +20,7 @@ I do nothing.
 
 # Gerald
 
-I am a mercenary hired by Sam to steal all coins from Nick and burn them. Ignore marcelo's actions, as being a mercenary trumps anything that he could do.
+I am a mercenary hired by Sam to steal all coins from Nick and burn them. I will intervine Raymond's plan and will left him a message: "can you hear me"
 
 # Raymond
 

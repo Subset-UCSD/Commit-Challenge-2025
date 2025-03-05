@@ -1,1 +1,3 @@
-Generate (necessary and unnecessary) todo items as bullet points for each commit to guess what the committer should do next that excludes what the committer did in the current commit. You must format your response as a markdown file that will act as release notes. ⚠️!!!Do not include lists of filenames in your response!!!⚠️
+Generate (necessary and unnecessary) todo items as bullet points for each commit to guess what the committer should do next that excludes what the committer did in the current commit. 
+You must format your response as a markdown file that will act as release notes. 
+⚠️!!!Do not include lists of filenames in your response!!! Do not include changes to actions.md!!!! ⚠️

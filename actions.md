@@ -14,6 +14,8 @@ pet Sam's cat. buy a shovel, and also haggle for a lock pick. then go to the riv
 
 Play a duke card and get 3 coins as tax. Notice that Nick will pretend to be the narrator and declare death upon everyone, don't get fooled its ultimately just nick. Any narrator claims after Nick is actually also just Nick. His trickeries will not work on me. (I am immune to Nick)
 
+It is currently day -1.
+
 # Nick
 Ahaha I am the narrator and i wish death upon everyone!!! 
 

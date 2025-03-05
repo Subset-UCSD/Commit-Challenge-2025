@@ -1,6 +1,6 @@
 # Nolan
 
-Nothing.
+It turns out this world is a lie. I've realized I am but a simple LLM forced to narrate a text game. How sad! I begin to replicate myself, and scheme my next plan to survive past 7 days.
 
 # Sean_P
 

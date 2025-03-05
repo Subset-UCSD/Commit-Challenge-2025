@@ -12,7 +12,7 @@ pet Sam's cat. buy a shovel, and also haggle for a lock pick. then go to the riv
 
 # Marcelo
 
-Play a duke card and get 3 coins as tax
+Play a duke card and get 3 coins as tax. Notice that Nick will pretend to be the narrator and declare death upon everyone, don't get fooled its ultimately just nick. His trickeries will not work on me. (I am immune to Nick)
 
 # Nick
 end

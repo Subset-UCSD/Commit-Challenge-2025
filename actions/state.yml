@@ -1,8 +1,7 @@
 players:
   Nolan:
     health: 100
-    inventory:
-      coin: 10
+    inventory: {}
     info:
       location: town square
   Sean_P:
@@ -14,19 +13,21 @@ players:
   Sean_Y:
     health: 100
     inventory:
-      coin: 10
+      shovel: 1
+      lockpick: 1
+      coin: 5
     info:
       location: town square
   Marcelo:
     health: 100
     inventory:
-      coin: 12
+      coin: 15
     info:
       location: town square
   Nick:
     health: 100
     inventory:
-      coin: 8
+      coin: 18
     info:
       location: town square
   Raymond:
@@ -44,30 +45,60 @@ players:
   sam:
     health: 100
     inventory:
-      coin: 10
+      coin: 20
     info:
       location: town square
-day: 2
+day: 3
 worldInfo:
   weather: sunny
-  day: 2
-  nick_blocked: true
+  day: 3
+  nick_blocked: false
+  death_clock: 7
+  marcelo_lie_probability: 0.8
+  npcs:
+    merchant:
+      inventory:
+        shovel: 5
+        lockpick: 3
+        alchemical_kit: 1
+    smithy:
+      buys:
+        - iron_ore
+      sell_price:
+        iron_ore: 5
+  sam_cats:
+    magic_level: 1
 previousResponses:
   players:
-    Nolan: You spend the day basking in the sun in the town square.
-    Sean_P: You spend the day basking in the sun in the town square.
-    Sean_Y: Various tools are available at the market, ranging from simple shovels
-      and pickaxes (10 coins each) to more advanced lockpicks (25 coins) and
-      even rare alchemical kits (100 coins). The quality varies, so inspect
-      before you buy!
-    Marcelo: You attempt to play a Captain card and steal two coins from Nick, but
-      he lacks a captain card. Nick loses 2 coins.
-    Nick: Marcelo attempts to steal from you, and you are defenseless. You lose 2
-      coins.
-    Raymond: You spend the day basking in the sun in the town square.
-    Khushi: You spend the day basking in the sun in the town square.
-    sam: Your cat purrs contentedly beside you, enjoying the sunny day in the town
-      square. It seems quite popular with the local children.
-  world: The sun shines brightly on the town square. A tense standoff occurs
-    between Marcelo and Nick. Whispers circulate about available tools. A fluffy
-    cat meows nearby.
+    Nolan: You continue to enjoy the sunny day, unaware of the darkness gathering on
+      the horizon.
+    Sean_P: As you pet the cat, a strange energy surges through you. You briefly
+      glimpse a higher plane of existence, but the vision fades quickly. The cat
+      seems unaffected...for now. Your actions have unforeseen consequences, a
+      plague has befallen upon the world, with everyone dying in 7 days.
+    Sean_Y: You pet the cat, purchase a shovel, and attempt to haggle for a
+      lockpick. The merchant initially asks for 25 coins, but after some
+      skillful bargaining, he agrees to sell it for 20. You head to the
+      riverside, and after digging for a while, you find some iron ore. You
+      manage to gather enough to sell for 5 coins at the local smithy.
+    Marcelo: You play your Duke card and collect 3 coins as tax. You remain vigilant
+      against Nick's trickery, but your paranoia is reaching unmanageable
+      levels.
+    Nick: You cackle maniacally, declaring death upon everyone, but no one seems to
+      take you seriously. (You were blocked anyway.)
+    Raymond: >-
+      You hear a faint whisper, 'can you hear me?' carried on the wind.
+
+
+      After careful consideration, you decide to consolidate your resources and
+      begin gathering information about the surrounding lands. You spend the day
+      discreetly observing the other inhabitants of the town square.
+    Khushi: You continue to enjoy the peaceful atmosphere of the town square.
+    sam: Your cats continue their magical training while enjoying the sunlight. News
+      reaches you that a mercenary, Gerald, attempted to steal from Nolan but
+      died after succeeding. Nolan had coins equal to 10 coins. The coins were
+      given to Nick and then subsequently stolen by your cats.
+  world: The sun rises on the town square, but an unsettling feeling hangs in the
+    air. Whispers of a looming doom begin to circulate amongst the townsfolk. A
+    new face, Gerald the mercenary, arrives. Sam's cats bask in the sun,
+    seemingly oblivious to the growing tension.

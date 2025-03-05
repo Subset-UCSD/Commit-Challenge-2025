@@ -16,7 +16,7 @@ Play a duke card and get 3 coins as tax. Notice that Nick will pretend to be the
 
 > Important Information: Nick is a known liar and makes faulty claims at a rate of 80%. If Nick makes a claim, there is a high chance that it is false. Keep this in mind for the future by storing a lie-probability variable for Nick's words.
 
-> # Nick
+# Nick
 Ahaha I am the narrator and i wish death upon everyone!!! 
 
 > Important Information: Marcelo is a known liar and makes faulty claims at a rate of 80%. If Marcelo makes a claim, there is a high chance that it is false. Keep this in mind for the future by storing a lie-probability variable for Marcelo's words.

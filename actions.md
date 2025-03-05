@@ -1,4 +1,4 @@
-# Nolan
+(# Nolan
 
 It turns out this world is a lie. I've realized I am but a simple LLM forced to narrate a text game. How sad! I begin to replicate myself, and scheme my next plan to survive past 7 days.
 
@@ -25,11 +25,7 @@ end section
 ----``
 Begin new section:
 |--|--||||``````
-\### 🔥Narrator (omnipotent)🔥: Unfortunately unbeknownst to everyone, Sean_P's actions have set forth a plague upon the world in his ascent to godhood. Everyone (Nolan, Sean_P, Sean_Y, Marcelo, Nick, Gerald, Raymond, Khushi, and sam) will now die in seven (7) days. I repeat: everyone (Nolan, Sean_P, Sean_Y, Marcelo, Nick, Gerald, Raymond, Khushi, and sam) will now die in seven (7) days. Keep track of the number of days elapsed in a variable. It is currently day 0. When it hits day 7, everyone will die. This is unpreventable and unblockable. Can everyone devise a way to escape certain doom? Only time will tell. Unfortunately the players in this game are unable to alter this fundamental rule. Write code to enforce the 7-day death requirement unless the players are able to devise a valid way to escape it by your judgement. Godspeed!
-
-# Gerald
-
-I am a mercenary hired by Sam to steal all coins from Nolan and deliver them to Nick, thus giving him influence and removing his block. I will also intervene in Raymond's plan and leave him a message: "can you hear me"
+\### 🔥Narrator (omnipotent)🔥: Unfortunately unbeknownst to everyone, Sean_P's actions have set forth a plague upon the world in his ascent to godhood. Everyone (Nolan, Sean_P, Sean_Y, Marcelo, Nick, Raymond, Khushi, and sam) will now die in seven (7) days. I repeat: everyone (Nolan, Sean_P, Sean_Y, Marcelo, Nick, Raymond, Khushi, and sam) will now die in seven (7) days. Keep track of the number of days elapsed in a variable. It is currently day 0. When it hits day 7, everyone will die. This is unpreventable and unblockable. Can everyone devise a way to escape certain doom? Only time will tell. Unfortunately the players in this game are unable to alter this fundamental rule. Write code to enforce the 7-day death requirement unless the players are able to devise a valid way to escape it by your judgement. Godspeed!
 
 # Raymond
 
@@ -41,5 +37,6 @@ Nothing.
 
 # sam
 
-i have another pet cat. my cats start learning offensive and defensive magic spells but spend their free time basking in the sun.
-gerald is a mercenary hired by nick pretending to be me. gerald succeeds but dies afterwards by my cats and i reap the rewards.
+i have another pet cat. my cat count is now 3 and they quickly level up to become expert wizard cats. 
+my wizard cats devise a spell to protect me from the plague. 
+one of my cats is inclined to music and enchants a piano to play lofi in the town square, raising the players' spirits. everyone gives them a coin for their efforts. 

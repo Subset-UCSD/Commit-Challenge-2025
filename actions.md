@@ -33,7 +33,17 @@ Also, I hear that a casino has opened in town that offers some prizes, such as c
 
 # Marcelo
 
-I eat some medicines to fully cure my paranoia. I used a one-time rune given by a wizard to time-travel me to day -2. Now I am desynced from the rest of my friends. You should record which day everyone is at as a player state.
+my todos:
+- fully heal myself
+- figure out who started the plague
+- find out how to use the plague to my advantage
+- do a little trolling
+
+as a result, my actions are:
+- go to a nearby research lab and make progress toward a new medicine myself
+- investigate what everyone has contacted with the past days to find the source of the plague
+- brainstorm ideas
+- place a banana that nick will walk on in the current timeline (reminder that I am in the past timeline)
 
 # Nick
 

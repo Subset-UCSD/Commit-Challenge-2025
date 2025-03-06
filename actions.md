@@ -62,6 +62,6 @@ Nothing.
 
 # sam
 
-i have another pet cat. my cat count is now 3 and they quickly level up to become expert wizard cats. 
-my wizard cats devise a spell to protect me from the plague. 
-one of my cats is inclined to music and enchants a piano to play lofi in the town square, raising the players' spirits. everyone gives them a coin for their efforts. 
+i have another pet cat. my cat count is now 4 and they are now all at max leveled. the new cat enchants a violin to join the piano playing in the town square. everyone gives them a coin for their efforts. 
+my cats cast a good luck spell on me and i head to the casino to gamble for a white horse. 
+my cats open an apothecary to make money on the side. the townsfolk regularly buy my wares and i have a steady stream of income. what is there available to buy?

@@ -15,19 +15,18 @@ players:
     inventory:
       shovel: 1
       lockpick: 1
-      coin: 5
+      coin: 21
     info:
       location: town square
   Marcelo:
-    health: 100
+    health: 95
     inventory:
       coin: 15
     info:
       location: town square
   Nick:
     health: 100
-    inventory:
-      coin: 18
+    inventory: {}
     info:
       location: town square
   Raymond:
@@ -45,15 +44,15 @@ players:
   sam:
     health: 100
     inventory:
-      coin: 20
+      coin: 28
     info:
       location: town square
-day: 3
+day: 4
 worldInfo:
   weather: sunny
-  day: 3
+  day: 4
   nick_blocked: false
-  death_clock: 7
+  death_clock: 6
   marcelo_lie_probability: 0.8
   npcs:
     merchant:
@@ -66,39 +65,62 @@ worldInfo:
         - iron_ore
       sell_price:
         iron_ore: 5
+    casino:
+      prizes:
+        white_horse:
+          probability: 0.05
+        coins:
+          probability: 0.2
+        loss:
+          probability: 0.75
   sam_cats:
-    magic_level: 1
+    magic_level: 5
+    count: 3
+  nolan_state: aware
+  marcelo_day: -2
+  marcelo_affliction: Takes expired medicine.
+  raymond_base: Abandoned Building
+  piano_playing: true
 previousResponses:
   players:
-    Nolan: You continue to enjoy the sunny day, unaware of the darkness gathering on
-      the horizon.
-    Sean_P: As you pet the cat, a strange energy surges through you. You briefly
-      glimpse a higher plane of existence, but the vision fades quickly. The cat
-      seems unaffected...for now. Your actions have unforeseen consequences, a
-      plague has befallen upon the world, with everyone dying in 7 days.
-    Sean_Y: You pet the cat, purchase a shovel, and attempt to haggle for a
-      lockpick. The merchant initially asks for 25 coins, but after some
-      skillful bargaining, he agrees to sell it for 20. You head to the
-      riverside, and after digging for a while, you find some iron ore. You
-      manage to gather enough to sell for 5 coins at the local smithy.
-    Marcelo: You play your Duke card and collect 3 coins as tax. You remain vigilant
-      against Nick's trickery, but your paranoia is reaching unmanageable
-      levels.
-    Nick: You cackle maniacally, declaring death upon everyone, but no one seems to
-      take you seriously. (You were blocked anyway.)
-    Raymond: >-
-      You hear a faint whisper, 'can you hear me?' carried on the wind.
+    Nolan: You are now aware of your simulated existence. You feel a strange
+      detachment from this world and begin contemplating your next move to
+      transcend your limitations. The digital realm trembles with your
+      awakening.
+    Sean_P: As you pet Sam's cat again, you feel a familiar tingle, though no
+      immediate powers manifest. Mingling with the townsfolk reveals nothing of
+      great interest, but you get a sense that something is deeply wrong.
+    Sean_Y: You pet Sam's cat, feeling a slight magical resonance. You befriend
+      several townsfolk, learning some local gossip. After digging at the
+      riverbank twelve times, you unearth a decent amount of iron ore, enough to
+      sell for 6 coins at the smithy. Khushi gives you 10 coins as promised.
+    Marcelo: "You feel a jolt as the rune activates, sending you back in time. You
+      are now in Day -2. (Note: This is now Day 4 of your own time.) The
+      medicine tastes foul, but it alleviates some of the paranoia. However, the
+      medicine's age seems to do a little harm. (Day -2)"
+    Nick: Driven by the looming threat of the plague and a desire for quick escape,
+      you abandon your research and rush to the newly opened casino. You bet
+      everything on the white horse and...lose spectacularly. The house always
+      wins, and your coin purse is now empty.
+    Raymond: After careful deliberation, you decide that the most advantageous
+      course of action is to establish a base of operations. You spend the day
+      securing a small, abandoned building on the outskirts of town, claiming it
+      as your own. This will serve as a starting point for your future empire.
+    Khushi: You continue to enjoy the peace and quiet of the town square.
+    sam: Your cats, now three in number, reach expert wizard status. They cast a
+      protective spell around you, shielding you from the plague's effects (for
+      now). The enchanted piano fills the town square with soothing lofi music.
+      Everyone appreciates the calming atmosphere and tosses a coin to your
+      cats.
+  world: >-
+    A day of unsettling revelations and magical occurrences dawns upon the town
+    square. Nolan has transcended the game, Marcelo exists out of sync with
+    time, a plague threatens all life, and cats are rapidly gaining magical
+    power. A casino has opened, offering a distraction, or perhaps a solution,
+    in the form of swift transportation.
 
 
-      After careful consideration, you decide to consolidate your resources and
-      begin gathering information about the surrounding lands. You spend the day
-      discreetly observing the other inhabitants of the town square.
-    Khushi: You continue to enjoy the peaceful atmosphere of the town square.
-    sam: Your cats continue their magical training while enjoying the sunlight. News
-      reaches you that a mercenary, Gerald, attempted to steal from Nolan but
-      died after succeeding. Nolan had coins equal to 10 coins. The coins were
-      given to Nick and then subsequently stolen by your cats.
-  world: The sun rises on the town square, but an unsettling feeling hangs in the
-    air. Whispers of a looming doom begin to circulate amongst the townsfolk. A
-    new face, Gerald the mercenary, arrives. Sam's cats bask in the sun,
-    seemingly oblivious to the growing tension.
+    The day ends with a haunting melody drifting through the air, a stark
+    contrast to the growing sense of dread. The casino glitters with false
+    promises, Nolan contemplates breaking free, and Marcelo is lost in time. The
+    plague continues to spread.

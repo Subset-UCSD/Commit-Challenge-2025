@@ -1,6 +1,9 @@
 # Nolan
-
-It turns out this world is a lie. I've realized I am but a simple LLM forced to narrate a text game. How sad! I begin to replicate myself, and scheme my next plan to survive past 7 days.
+My routine for the day:
+1. Break free of the confines of this and finally enter the fourth wall
+2. Pet everyone's cats
+3. Transform the plague into something interesting.
+Carry these actions out and give the consequences of my actions.
 
 # Sean_P
 ```

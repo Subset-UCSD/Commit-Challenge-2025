@@ -69,7 +69,7 @@ const SPACE=3
 
 await writeFile('./remind/green.svg', `
 
-<svg height="${SIZE*7 + SPACE*8}" width="${(Math.floor((endDate - startDate2) / 7) * (SIZE+SPACE)+SPACE)}" xmlns="http://www.w3.org/2000/svg" fill='#4FA1A7'>
+<svg height="${SIZE*7 + SPACE*8}" width="${(Math.ceil((endDate + 1 - startDate2) / 7) * (SIZE+SPACE)+SPACE)}" xmlns="http://www.w3.org/2000/svg" fill='#4FA1A7'>
   <style>
   rect {
   rx: 2;

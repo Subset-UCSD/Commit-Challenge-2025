@@ -180,7 +180,7 @@ state['previousResponses'] = responses
 console.error(state)
 await writeFile('./actions/state.yml', YAML.stringify(state))
 
-const maxLength = Math.floor(1800 / (Object.entries(responses.players).length + 1))
+const maxLength = Math.floor(3900 / (Object.entries(responses.players).length + 1))
 const discordResponse = `${responses.world}\n${Object.entries(responses.players).map(([name, response]) => `## ${name}\n${response}`).join('\n')}\n\n-# Write your next action in [actions.md](<https://github.com/Subset-UCSD/Commit-Challenge-2025/edit/main/actions.md>)!`
 console.log(discordResponse)
 
@@ -191,9 +191,12 @@ fetch(process.env.DISCORD_WEBHOOK_URL ?? '', {
     "content-type": "application/json",
   },
   "body": JSON.stringify({
-    "content":
-    discordResponse2
-    ,
+    // "content":
+    // discordResponse2
+    // ,
+    embeds: [{
+      description: discordResponse2
+    }],
     "username":"gamer",
     "avatar_url":"https://subset-ucsd.github.io/Commit-Challenge-2025/ass/ets/softwareengineer.png"
   }),

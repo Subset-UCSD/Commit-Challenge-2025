@@ -46,6 +46,13 @@ You must commit to main. No malicious code pls.
   - [ ] Get networking going
   - [ ] Get renderer working
 
+- [ ] Movies
+  - [x] Epic
+  - [x] Wild Robot
+  - [ ] Monty Python and the Holy Grail
+  - [ ] Princess Bride
+  - [ ] Anora
+
 # Roadmap
 ![toothless dancing](./ass/ets/toothless-dancing-toothless.gif)
 

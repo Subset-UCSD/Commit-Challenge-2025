@@ -33,14 +33,14 @@ Get a white horse.
 
 # Sean_Y
 
-1. Pet Sam's cat
-2. Talk to and befriend all the townsfolk
-3. Dig at the riverbank 12 more times, taking a good rest break in between sessions, then sell what I get
-4. Accept Khushi's gift of 10 coins, as we agreed upon last week
+1. Pet each of Sam's cats
+2. Hire Geoffrey, a professional iron digger, for 1 coin a day (equivalent to 100 USD/hr) to dig along the riverbank for me, selling whatever he gets. This gives me passive income
+3. Because I'm friends with the manager of the casino, make a deal for a white horse in exchange for 20 coins, which is above market rates
+4. Ask some townspeople about the origins of the plague
 
-Here is some intel I gathered: Marcelo's medicines are seven years past their expiration date, and because he does not have health insurance, he may not get new medicine. Because of this, for every medicine he takes, he loses some HP. Make sure to note his affliction somewhere.
+Per our agreement from five days ago, Khushi continues to invest in me by giving me 10 coins each day until she runs out.
 
-Also, I hear that a casino has opened in town that offers some prizes, such as coins and horses (such as the coveted white horse, which allows for fast travel), for a fee. What are the probabilities of each prize or loss?
+Here is some intel I gathered: Marcelo has no expertise in pharmaceuticals and will take severe damage whenever he has a taste of his own medicine.
 
 # Marcelo
 

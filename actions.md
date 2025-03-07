@@ -45,6 +45,7 @@ Here is some intel I gathered: Marcelo has no expertise in pharmaceuticals and w
 # Marcelo
 
 my todos:
+- be immune to lightning
 - regain cobtrol over the past
 - plotting plans
 - figure out how and why Nolan started the plague
@@ -52,12 +53,14 @@ my todos:
 - do another little trolling
 
 as a result, my actions are:
+- be near a big metalic tower during the time of the storm (so the lightning would get redirected to the metal instead of me)
 - jump backward on timeline to the past
 - update location to my secret basement
 - investigate what Nolan has contacted with the past days to find the methodologies for the plague and the reason behind it
 - brainstorm ideas
 - place a water bucket on top of the next door that nick will walk in the current timeline (reminder that I am in the past timeline).
   - Nick should walk in a door and immediately get showered by an unpredictable water bucket that he in no way can avoid it.
+  - Also, a random witch has casted a curse on Nick so he is really unlucky
 
 # Nick
 

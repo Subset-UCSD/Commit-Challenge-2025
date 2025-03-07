@@ -3,6 +3,7 @@ My routine for the day:
 1. Break free of the confines of this and finally enter the fourth wall
 2. Pet everyone's cats
 3. Transform the plague into something interesting.
+4. Increase my hp to infinity
 Carry these actions out and give the consequences of my actions.
 
 # Sean_P

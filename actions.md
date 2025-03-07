@@ -45,16 +45,19 @@ Here is some intel I gathered: Marcelo has no expertise in pharmaceuticals and w
 # Marcelo
 
 my todos:
-- fully heal myself
-- figure out who started the plague
+- regain cobtrol over the past
+- plotting plans
+- figure out how and why Nolan started the plague
 - find out how to use the plague to my advantage
-- do a little trolling
+- do another little trolling
 
 as a result, my actions are:
-- go to a nearby research lab and make progress toward a new medicine myself
-- investigate what everyone has contacted with the past days to find the source of the plague
+- jump backward on timeline to the past
+- update location to my secret basement
+- investigate what Nolan has contacted with the past days to find the methodologies for the plague and the reason behind it
 - brainstorm ideas
-- place a banana that nick will walk on in the current timeline (reminder that I am in the past timeline)
+- place a water bucket on top of the next door that nick will walk in the current timeline (reminder that I am in the past timeline).
+  - Nick should walk in a door and immediately get showered by an unpredictable water bucket that he in no way can avoid it.
 
 # Nick
 

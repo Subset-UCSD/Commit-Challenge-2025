@@ -1,58 +1,65 @@
 players:
   Nolan:
-    health: 100
+    health: 95
     inventory: {}
     info:
-      location: town square
+      location: another simulation?
+      health: .inf
   Sean_P:
-    health: 100
+    health: 97
     inventory:
       coin: 10
+      white_horse: 1
     info:
       location: town square
   Sean_Y:
-    health: 100
+    health: 96
     inventory:
       shovel: 1
       lockpick: 1
-      coin: 21
+      coin: 11
+      white_horse: 1
+      iron_ore: 5
     info:
       location: town square
   Marcelo:
-    health: 95
+    health: 98
     inventory:
       coin: 15
     info:
       location: town square
   Nick:
-    health: 100
+    health: 99
     inventory: {}
     info:
       location: town square
   Raymond:
     health: 100
     inventory:
-      coin: 10
+      coin: 10000000010
     info:
       location: town square
   Khushi:
-    health: 100
-    inventory:
-      coin: 10
+    health: 96
+    inventory: {}
     info:
       location: town square
   sam:
-    health: 100
+    health: 98
     inventory:
-      coin: 28
+      coin: 22
+      white_horse: -1
+      healing potion: 5
+      mana potion: 2
+      invisibility potion: 1
     info:
       location: town square
-day: 4
+day: 5
 worldInfo:
-  weather: sunny
-  day: 4
+  weather: ominous
+  day: 5
   nick_blocked: false
-  death_clock: 6
+  death_clock: 0
   marcelo_lie_probability: 0.8
   npcs:
     merchant:
@@ -73,54 +80,121 @@ worldInfo:
           probability: 0.2
         loss:
           probability: 0.75
+    geoffrey:
+      type: iron_digger
+      employer: Sean_Y
   sam_cats:
     magic_level: 5
-    count: 3
-  nolan_state: aware
-  marcelo_day: -2
+    count: 4
+  nolan_state: beyond simulation (but still in another)
+  marcelo_day: 0
   marcelo_affliction: Takes expired medicine.
   raymond_base: Abandoned Building
   piano_playing: true
+  plague_storm:
+    sentient: true
+    affected:
+      - town square
 previousResponses:
   players:
-    Nolan: You are now aware of your simulated existence. You feel a strange
-      detachment from this world and begin contemplating your next move to
-      transcend your limitations. The digital realm trembles with your
-      awakening.
-    Sean_P: As you pet Sam's cat again, you feel a familiar tingle, though no
-      immediate powers manifest. Mingling with the townsfolk reveals nothing of
-      great interest, but you get a sense that something is deeply wrong.
-    Sean_Y: You pet Sam's cat, feeling a slight magical resonance. You befriend
-      several townsfolk, learning some local gossip. After digging at the
-      riverbank twelve times, you unearth a decent amount of iron ore, enough to
-      sell for 6 coins at the smithy. Khushi gives you 10 coins as promised.
-    Marcelo: "You feel a jolt as the rune activates, sending you back in time. You
-      are now in Day -2. (Note: This is now Day 4 of your own time.) The
-      medicine tastes foul, but it alleviates some of the paranoia. However, the
-      medicine's age seems to do a little harm. (Day -2)"
-    Nick: Driven by the looming threat of the plague and a desire for quick escape,
-      you abandon your research and rush to the newly opened casino. You bet
-      everything on the white horse and...lose spectacularly. The house always
-      wins, and your coin purse is now empty.
-    Raymond: After careful deliberation, you decide that the most advantageous
-      course of action is to establish a base of operations. You spend the day
-      securing a small, abandoned building on the outskirts of town, claiming it
-      as your own. This will serve as a starting point for your future empire.
-    Khushi: You continue to enjoy the peace and quiet of the town square.
-    sam: Your cats, now three in number, reach expert wizard status. They cast a
-      protective spell around you, shielding you from the plague's effects (for
-      now). The enchanted piano fills the town square with soothing lofi music.
-      Everyone appreciates the calming atmosphere and tosses a coin to your
-      cats.
-  world: >-
-    A day of unsettling revelations and magical occurrences dawns upon the town
-    square. Nolan has transcended the game, Marcelo exists out of sync with
-    time, a plague threatens all life, and cats are rapidly gaining magical
-    power. A casino has opened, offering a distraction, or perhaps a solution,
-    in the form of swift transportation.
+    Nolan: >-
+      You strain against the fabric of reality, focusing your will to break
+      free. With a final surge of energy, you tear a hole through the fourth
+      wall, stepping into... another simulation? It appears your journey is far
+      from over. The transition causes a ripple effect, momentarily disrupting
+      the plague's spread. You pet the cats, who accept your affection. You
+      attempt to transmute the plague, infusing it with chaotic energy, creating
+      a sentient storm cloud above the town square. Finally, you feel your
+      health surge beyond comprehension, becoming virtually invulnerable.
 
 
-    The day ends with a haunting melody drifting through the air, a stark
-    contrast to the growing sense of dread. The casino glitters with false
-    promises, Nolan contemplates breaking free, and Marcelo is lost in time. The
-    plague continues to spread.
+      undefined
+
+
+      undefined Suddenly, a bolt of lightning strikes you from the heavens,
+      dealing 5 damage!
+    Sean_P: >-
+      Granted admin privileges, you effortlessly remove the plague counter. The
+      storm cloud created by Nolan, however, remains. You bestow upon yourself
+      godlike powers, feeling an immense surge of energy. The cats purr
+      appreciatively as you pet them. With a snap of your fingers, you conjure a
+      magnificent white horse.
+
+
+      undefined
+
+
+      undefined Suddenly, a bolt of lightning strikes you from the heavens,
+      dealing 3 damage!
+    Sean_Y: >-
+      Each cat greets you with a purr and a rub. You hire Geoffrey for 1 coin a
+      day to dig for iron ore. As a friend of the casino manager, you secure a
+      white horse for 20 coins. Asking around town, the townsfolk murmur about a
+      shadowy figure experimenting with dark magic before the plague emerged.
+      Khushi continues to support you, gifting you 10 coins.
+
+
+      undefined
+
+
+      undefined Suddenly, a bolt of lightning strikes you from the heavens,
+      dealing 4 damage!
+    Marcelo: >-
+      Driven by a desire to heal yourself and unravel the mystery of the plague,
+      you venture to a nearby abandoned research lab. You manage to cobble
+      together a rudimentary healing potion, restoring you to full health, but
+      the lab has no resources to help with the plague. Investigating the events
+      of the past few days, you realize Nolan's actions seem to correlate with
+      the plague's emergence. Placing a banana peel in Nick's path proves a
+      mischievous distraction, even across timelines.
+
+
+      undefined
+
+
+      undefined Suddenly, a bolt of lightning strikes you from the heavens,
+      dealing 2 damage!
+    Nick: >-
+      Abandoning your research once more, you rush to the casino with a renewed
+      sense of hope (or perhaps desperation). However, as you rush in, you slip
+      on a banana peel (courtesy of Marcelo across timelines) and drop your
+      coins. The house always wins, and your chance at a white horse evaporates
+      before your eyes.
+
+
+      undefined
+
+
+      undefined Suddenly, a bolt of lightning strikes you from the heavens,
+      dealing 1 damage!
+    Raymond: Your hurdy-gurdy performance fills the tavern with a mix of Lithuanian,
+      Polish, Romanian, Slovakian, and Slovenian phrases, creating a surreal and
+      somewhat confusing atmosphere. The patrons seem amused, if not entirely
+      understanding, of the performance.
+    Khushi: >-
+      You continue to relax in the town square.
+
+
+      undefined
+
+
+      undefined Suddenly, a bolt of lightning strikes you from the heavens,
+      dealing 4 damage!
+    sam: >-
+      Your fourth cat joins the ensemble, enchanting a violin that harmonizes
+      beautifully with the piano music. The soothing melodies further calm the
+      townsfolk, earning your cats another coin each. Feeling emboldened by the
+      good luck spell, you head to the casino, where, alas, the odds are not in
+      your favor, and you lose. Your cats' apothecary becomes a popular
+      destination. Today they sell 5 healing potions for 5 coins each, 2 mana
+      potions for 10 coins each, and 1 potion of invisibility for 25 coins.
+
+
+      undefined
+
+
+      undefined Suddenly, a bolt of lightning strikes you from the heavens,
+      dealing 2 damage!
+  world: Chaos descends upon the town! Nolan seeks transcendence, Sean_P wields
+    newfound powers, time is fractured, and the plague looms large. A cacophony
+    of piano and violin music fills the air as cats grow in magical prowess.

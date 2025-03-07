@@ -1,9 +1,8 @@
 # Nolan
-My routine for the day:
-1. Break free of the confines of this and finally enter the fourth wall
-2. Pet everyone's cats
-3. Transform the plague into something interesting. Carry these actions out and give the consequences of my actions.
-4. Increase my hp to infinity
+My new routine for today:
+1. The storm has been incredibly annoying. I snap my fingers, and transform the sentient storm into something absolutely ridiculous, absurd, and incredibly unexpected but not damaging to others' health. Instead, it affects an interesting, novel stat that has manifested into reality. 
+2. I take another step through the fifth wall. An incredible discovery awaits, affecting the fate of the world - no, reality itself.
+3. A separate timeline emerges. I find myself face to face with myself from the past. And together, we devise a scheme for everyone present.
 
 # Sean_P
 

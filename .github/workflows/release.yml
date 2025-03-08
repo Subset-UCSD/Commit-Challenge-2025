@@ -90,4 +90,13 @@ jobs:
             git add actions/state.yml
             git commit -m "$COMMITMSG"
             git push origin HEAD
-            
+
+    retry:
+        if: failure() && fromJSON(github.run_attempt) < 3
+        needs: [game]
+        runs-on: ubuntu-latest
+        steps:
+            - env:
+                  GH_REPO: ${{ github.repository }}
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              run: gh workflow run retry.yml -F run_id=${{ github.run_id }}

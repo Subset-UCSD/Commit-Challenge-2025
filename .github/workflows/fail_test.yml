@@ -1,0 +1,18 @@
+name: fail-test
+
+on: push
+jobs:
+  fail:
+    runs-on: ubuntu-latest
+    steps:
+      - run: false
+  re-run:
+    needs: fail
+    if: failure() && fromJSON(github.run_attempt) < 3
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          GH_REPO: ${{ github.repository }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_DEBUG: api
+        run: gh workflow run retry.yml -F run_id=${{ github.run_id }}

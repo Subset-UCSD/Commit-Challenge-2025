@@ -1,6 +1,11 @@
 name: fail-test
 
 on: push
+
+permissions:
+    actions: write
+    contents: write
+
 jobs:
   fail:
     runs-on: ubuntu-latest

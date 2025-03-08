@@ -12,6 +12,13 @@ jobs:
     if: fromJSON(github.run_attempt) < 2
     steps:  
       - run: false
+
+  succeed:
+    runs-on: ubuntu-latest
+    if: fromJSON(github.run_attempt) > 2
+    steps:
+        - run: true
+        
   re-run:
     needs: fail
     if: failure() && fromJSON(github.run_attempt) < 3

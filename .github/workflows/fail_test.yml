@@ -4,7 +4,8 @@ on: push
 jobs:
   fail:
     runs-on: ubuntu-latest
-    steps:
+    if: fromJSON(github.run_attempt) < 2
+    steps:  
       - run: false
   re-run:
     needs: fail

@@ -1,4 +1,4 @@
-# $\subseteq$ Commit Challenge License
+# $\subset$ Commit Challenge License
 
 Copyright (c) 2025 Subset UCSD
 

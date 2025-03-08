@@ -60,7 +60,7 @@ as a result, my actions are:
 - place a water bucket on top of the next door that nick will walk in the current timeline (reminder that I am in the past timeline).
   - Nick should walk in a door and immediately get showered by an unpredictable water bucket that he in no way can avoid it.
   - Also, a random witch has casted a curse on Nick so he is really unlucky
-  - Also, Raymond has been struck by lightning AFTER EVERYTHING and loose a random amount of health from 1-5 and loose a billion coins
+  - Also, Raymond has been struck by lightning AFTER EVERYTHING and lose a random amount of health from 1-5 and loose a billion coins
 
 # Nick
 

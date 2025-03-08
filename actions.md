@@ -96,6 +96,8 @@ Nothing.
 
 # sam
 
-i have another pet cat. my cat count is now 4 and they are now all at max leveled. the new cat enchants a violin to join the piano playing in the town square. everyone gives them a coin for their efforts. 
-my cats cast a good luck spell on me and i head to the casino to gamble for a white horse. 
-my cats open an apothecary to make money on the side. the townsfolk regularly buy my wares and i have a steady stream of income. what is there available to buy?
+my cats cast a spell such that i am unable to be struck by lightning. i drink a health potion to restore my hp. my apothecary continues to thrive. we start to get mail orders from nearby towns.  
+
+my cats bring in two more cats to the fold, bringing my cat count to 6. their music continues to play in the town square, gaining coin for their efforts. the music attracts a white horse to join me and my cats, and i ride it to a nearby town to sell more goods. i put up a quest board that will be updated daily with new quests by NPCs that can grant coins or other rewards. unfulfilled quests will be reset daily. 
+
+i trust my fellow players to come up with a solution to the current world state and find myself bored. devise a multi-stage epic and fantastical quest for me and my cats to accomplish, that other players can choose to help with collaboratively. 

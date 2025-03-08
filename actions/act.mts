@@ -30,11 +30,15 @@ const responses: {
 }
 
 /** Describe the day and summarize the situation to all players. Required. */
-function describeDay(text: string) {
+function describeDay(text: string): '' {
+  if (!text) {
+    return ''
+  }
   if (responses.world) {
     responses.world += '\n\n'
   }
   responses.world += text
+  return ''
 }
 
 /** Set metadata for yourself about the world, like potion effects, to store in the `worldInfo` object. */
@@ -55,46 +59,60 @@ class Player {
     return this.player.health
   }
 
+  set health (health: number) {
+    this.player.health = health
+  }
+
   get inventory () {
     return this.player.inventory
+  }
+
+  set inventory(value: unknown) {
+    console.error(`[set inventory] Blocked attempt to set ${this.name} inventory to`, value)
   }
 
   get info () {
     return this.player.info
   }
 
+  set info(value: unknown) {
+    console.error(`[set info] Blocked attempt to set ${this.name} info to`, value)
+  }
+
   /** Send a response to the player describing the consequences of their actions. Required for each player. */
-  respond(text: string) {
+  respond(text: string): '' {
+    if (!text) {
+      return ''
+    }
     if (responses.players[this.name]) {
       responses.players[this.name] += '\n\n'
     }
     responses.players[this.name] += text
-  }
-
-  /** Changes the player's health by `delta` HP. */
-  changeHealth(delta: number) {
-    this.player.health += delta
+    return ''
   }
 
   /** Add item(s) to the player's inventory. `count` defaults to 1. */
   addItem(itemName: string, count: number = 1) {
+    if (count < 0) {
+      this.removeItem(itemName, -count)
+      return
+    }
     this.player.inventory[itemName] ??= 0
     this.player.inventory[itemName] += count
   }
 
   /** Remove item(s) from the player's inventory. `count` defaults to 1. */
   removeItem(itemName: string, count: number = 1) {
+    if (count < 0) {
+      this.addItem(itemName, -count)
+      return
+    }
     if (this.player.inventory[itemName]) {
       this.player.inventory[itemName] -= count
       if (this.player.inventory[itemName] <= 0) {
         delete this.player.inventory[itemName]
       }
     }
-  }
-
-  /** Set metadata for yourself about the player, like potion effects, to store in their `info` object. */
-  setPlayerInfo(key: string, value: any) {
-    this.player.info[key] = value
   }
 }
 
@@ -103,7 +121,7 @@ const players_: Record<string, Player> = Object.fromEntries(Object.entries(state
 const extraPlayers: Record<string, Player> = {}
 
 globalThis.describeDay = describeDay
-globalThis.setWorldInfo = setWorldInfo
+// globalThis.setWorldInfo = setWorldInfo
 globalThis.worldInfo = state.worldInfo
 globalThis.players = new Proxy({}, {
   get(target, p, receiver) {
@@ -123,12 +141,15 @@ globalThis.players = new Proxy({}, {
     }
     return Object.hasOwn(players_, p) || Object.hasOwn(extraPlayers, p)
   },
+  ownKeys(target) {
+    return Object.keys(state.players)
+  },
 })
-// for (const [name, player] of Object.entries(state.players)) {
-//   globalThis[name] = new Player(name, player)
-//   // just in case
-//   globalThis[name.toLowerCase()] = new Player(name, player)
-// }
+for (const [name, player] of Object.entries(state.players)) {
+  globalThis[name] = new Player(name, player)
+  // just in case
+  globalThis[name.toLowerCase()] = new Player(name, player)
+}
 
 // const discordMap = Object.fromEntries(users.map(({ discord, playerName }) => [playerName, discord]))
 
@@ -171,6 +192,39 @@ js = js.trim().replace(/^```/gm, m => '//' + m)
 //   js = js.replace(/^```\w+/, '')
 // }
 
+// "ensure path"
+function _p(baseObject: any, path: string[]): any {
+  let object = baseObject
+  for (const key of path) {
+    object[key] ??= {}
+    object = object[key]
+  }
+  return object
+}
+globalThis['_p'] = _p
+
+// let prefix = ''
+// |players\[[a-zA-Z]\w*\]
+// for (const ref of new Set(Array.from(js.matchAll(/(?:worldInfo|players\.[a-zA-Z]\w*)(?:\.[a-zA-Z]\w*)+/g), a => a[0]))) {
+// for (const [ref] of js.matchAll(/(?:worldInfo|players\.[a-zA-Z]\w*|players\[[a-zA-Z]\w*\])(?:\.[a-zA-Z]\w*)+/g)) {
+js = js.replace(/(worldInfo|players(?:\.[a-zA-Z]\w*|\[[a-zA-Z]\w*\])\.(?:inventory|info))((?:\.[a-zA-Z]\w*){2,})/g, (_, left, right) => {
+      const names = right.split('.')
+      // if (names[0] === 'players') {
+      //   names.splice(0, 2, names.slice(0, 2).join('.'))
+      // }
+      names[0] = left
+      let code = `_p(${left}, ${JSON.stringify(names.slice(1,-1))}).${names.at(-1)}`
+      // for (let i = 2; i < names.length; i++) {
+      //   code += `${names.slice(0, i).join('.')} ??= {}, `
+      // }
+      // code += `${names.slice(0,-1).join('.')}).${names.at(-1)}`
+      return code
+    // }
+    // js = prefix + js
+    
+})
+// js = js.replace(/^[ \t]*\(\/\*/gm, ';(/*')
+
 console.error(js)
 
 eval(js) // lmao
@@ -178,7 +232,7 @@ eval(js) // lmao
 state['previousResponses'] = responses
 // console.error(responses)
 console.error(state)
-await writeFile('./actions/state.yml', YAML.stringify(state))
+await writeFile('./actions/state.yml', YAML.stringify(state, (key, value) => value instanceof Player ? value.name : value))
 
 const maxLength = Math.floor(3900 / (Object.entries(responses.players).length + 1))
 const discordResponse = `${responses.world}\n${Object.entries(responses.players).map(([name, response]) => `## ${name}\n${response}`).join('\n')}\n\n-# Write your next action in [actions.md](<https://github.com/Subset-UCSD/Commit-Challenge-2025/edit/main/actions.md>)!`

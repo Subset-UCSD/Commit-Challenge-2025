@@ -1,0 +1,28 @@
+name: pull request? NO!!
+
+on:
+  pull_request:
+    types:
+      - opened
+
+jobs:
+  purr:
+    runs-on: ubuntu-latest
+    steps:
+      # - name: Check PR author
+      #   id: check-author
+      #   run: echo "is_dependabot::$( [[ "${{ github.actor }}" == "dependabot[bot]" ]] && echo true || echo false )" >> $GITHUB_OUTPUT
+
+      - name: depdnabot is very dependable i believe it
+        if: github.actor == 'dependabot[bot]'
+        run: |
+          gh pr merge --auto --merge "${{ github.event.pull_request.html_url }}"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: fuck u
+        if: github.actor != 'dependabot[bot]'
+        run: |
+          gh pr close "${{ github.event.pull_request.html_url }}" --comment "fick off" 
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

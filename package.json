@@ -4,6 +4,7 @@
   "description": "bhdfgkbhjdfgbdsfg",
   "main": "index.js",
   "dependencies": {
+    "discord.js": "^14.18.0",
     "yaml": "^2.7.0"
   },
   "scripts": {

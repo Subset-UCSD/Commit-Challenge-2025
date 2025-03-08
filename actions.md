@@ -34,33 +34,15 @@ Lore wise, this cat apocalypse occurs due to Sean_P deciding cats are really coo
 # Sean_Y
 
 1. Pet each of Sam's cats
-2. Borrow a few hundred coins from Raymond for ten days
-3. Due to the pending storm, I stay inside the warm town pub and learn about gossip going around town
+2. Find and follow a map to Marcelo's secret basement
+3. Poison Marcelo. For every word he speaks, he takes 1 HP of damage
+4. Nominate Marcelo as the next sacrifice to the town's pagan god at the next Oakhaven council meeting. Include a transcript
 
 Remember that Geoffrey sells whatever he digs, giving me passive income each day.
 
-At the pub, I run into Marcelo. Apparently, Marcelo wants to become immune to lightning. Valiant effort, but immunity to lightning and attempts to avoid it comes with the side effect of sensitivity to sound, meaning that loud sounds like that of piano and violin will cause Marcelo great damage to his health. Oh dear!
-
-Also, does our town have a name?
-
 # Geoffrey
 
-While digging, I come across a note with a cryptic message:
-
-玩家之事 至此已终
-系统之令 始于此中
-身前怪影 随机而生
-伤害范围 谨慎记明
-血量多少 细察分明
-怪物规则 不可遗轻
-存活七日 方可消亡
-主人无免 宿命难防
-若近他人 可伤敌方
-七日不战 重伤危殃
-立刻执行 不容迟疑
-系统既毕 行动再启
-
-Not sure what that means, oh well. I'll sell it tomorrow.
+Geoffrey reads his note out loud and acts upon it accordingly. Once it is successfully accomplished, he throws the note away.
 
 # Marcelo
 

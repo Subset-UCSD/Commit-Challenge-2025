@@ -4,7 +4,7 @@ on:
   pull_request:
     types:
       - opened
-      - closed
+      # - closed
 
 permissions:
   pull-requests: write
@@ -21,23 +21,23 @@ jobs:
       - name: depdnabot is very dependable i believe it
         if: github.actor == 'dependabot[bot]'
         run: |
-          gh pr merge --auto --merge "${{ github.event.pull_request.html_url }}"
+          gh pr merge --auto --delete-branch --subject "fuck on" --merge "${{ github.event.pull_request.html_url }}"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: fuck u
         if: github.actor != 'dependabot[bot]'
         run: |
-          gh pr close "${{ github.event.pull_request.html_url }}" --comment "fick off" 
+          gh pr close "${{ github.event.pull_request.html_url }}" --delete-branch --comment "fuck off" 
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  durr: 
-    needs: purr
-    runs-on: ubuntu-latest
-    if: github.event.pull_request.merged == false
-    steps:
-      - name: durr
-        uses: dawidd6/action-delete-branch@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          numbers: ${{ github.event.pull_request.number }}
+  # durr: 
+  #   needs: purr
+  #   runs-on: ubuntu-latest
+  #   if: github.event.pull_request.merged == false
+  #   steps:
+  #     - name: durr
+  #       uses: dawidd6/action-delete-branch@v3
+  #       with:
+  #         github_token: ${{ secrets.GITHUB_TOKEN }}
+  #         numbers: ${{ github.event.pull_request.number }}

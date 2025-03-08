@@ -120,10 +120,10 @@ const players_: Record<string, Player> = Object.fromEntries(Object.entries(state
 // in case gemini does `players.Gerald`; these changes will be moved to `state.worldInfo`
 const extraPlayers: Record<string, Player> = {}
 
-globalThis.describeDay = describeDay
-// globalThis.setWorldInfo = setWorldInfo
-globalThis.worldInfo = state.worldInfo
-globalThis.players = new Proxy({}, {
+;(globalThis as any).describeDay = describeDay
+// ;(globalThis as any).setWorldInfo = setWorldInfo
+;(globalThis as any).worldInfo = state.worldInfo
+;(globalThis as any).players = new Proxy({}, {
   get(target, p, receiver) {
     if (typeof p === 'symbol') {
       return
@@ -146,9 +146,9 @@ globalThis.players = new Proxy({}, {
   },
 })
 for (const [name, player] of Object.entries(state.players)) {
-  globalThis[name] = new Player(name, player)
+  ;(globalThis as any)[name] = new Player(name, player)
   // just in case
-  globalThis[name.toLowerCase()] = new Player(name, player)
+  ;(globalThis as any)[name.toLowerCase()] = new Player(name, player)
 }
 
 // const discordMap = Object.fromEntries(users.map(({ discord, playerName }) => [playerName, discord]))
@@ -184,7 +184,7 @@ const response: GenerateContentResponse = await fetch(`https://generativelanguag
       }
     ]
   })
-}).then(r => r.json())
+}).then(r => r.json()) as any
 let js = response.candidates[0].content.parts[0].text
 
 js = js.trim().replace(/^```/gm, m => '//' + m)
@@ -201,7 +201,8 @@ function _p(baseObject: any, path: string[]): any {
   }
   return object
 }
-globalThis['_p'] = _p
+;( globalThis as any)['_p'] = _p
+
 
 // let prefix = ''
 // |players\[[a-zA-Z]\w*\]
@@ -227,18 +228,30 @@ js = js.replace(/(worldInfo|players(?:\.[a-zA-Z]\w*|\[[a-zA-Z]\w*\])\.(?:invento
 
 console.error(js)
 
+const origLog = console.log
+console.log = () => {}
+
 eval(js) // lmao
 
-state['previousResponses'] = responses
+console.log = origLog
+
+;(state as any)['previousResponses'] = responses
 // console.error(responses)
-console.error(state)
+// console.error(state)
 await writeFile('./actions/state.yml', YAML.stringify(state, (key, value) => value instanceof Player ? value.name : value))
 
-const maxLength = Math.floor(3900 / (Object.entries(responses.players).length + 1))
-const discordResponse = `${responses.world}\n${Object.entries(responses.players).map(([name, response]) => `## ${name}\n${response}`).join('\n')}\n\n-# Write your next action in [actions.md](<https://github.com/Subset-UCSD/Commit-Challenge-2025/edit/main/actions.md>)!`
+const genDiscordResponse = (maxLength = Infinity) => `${responses.world.length > maxLength?responses.world.slice(0,maxLength-3)+'[…]':responses.world}\n${Object.entries(responses.players).map(([name, response]) => `## ${name}\n${response.length > maxLength?response.slice(0,maxLength-3)+'[…]':response}`).join('\n')}\n\n-# Write your next action in [actions.md](<https://github.com/Subset-UCSD/Commit-Challenge-2025/edit/main/actions.md>)!`
+
+let discordResponse = genDiscordResponse()
 console.log(discordResponse)
 
-const discordResponse2 = `${responses.world.length > maxLength?responses.world.slice(0,maxLength-3)+'[…]':responses.world}\n${Object.entries(responses.players).map(([name, response]) => `## ${name}\n${response.length > maxLength?response.slice(0,maxLength-3)+'[…]':response}`).join('\n')}\n\n-# Write your next action in [actions.md](<https://github.com/Subset-UCSD/Commit-Challenge-2025/edit/main/actions.md>)!`
+const totalMaxLength = 4000
+for (let maxLength = 3900; maxLength > 0; maxLength -= 5) {
+  discordResponse = genDiscordResponse(maxLength)
+  if (discordResponse.length <= totalMaxLength) {
+    break
+  }
+}
 
 fetch(process.env.DISCORD_WEBHOOK_URL ?? '', {
   "headers": {
@@ -249,7 +262,7 @@ fetch(process.env.DISCORD_WEBHOOK_URL ?? '', {
     // discordResponse2
     // ,
     embeds: [{
-      description: discordResponse2
+      description: discordResponse
     }],
     "username":"gamer",
     "avatar_url":"https://subset-ucsd.github.io/Commit-Challenge-2025/ass/ets/softwareengineer.png"

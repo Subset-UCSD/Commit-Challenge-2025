@@ -259,6 +259,10 @@ justify-content: flex-end;    }
         <a href="http://159.223.201.89:4269/">cave</a> -->
         &bull;
         <a href="./stats.html">stats</a>
+        &bull;
+        <a href="./explodes/">explodes</a>
+        &bull;
+        <a href="./fruit-merge/">fruit-merge</a>
     </nav>
     <img src="./ass/ets/closejoel-joel.gif" alt="rotating fish gif" />
     <div style="
@@ -372,7 +376,7 @@ id="rsdfhdfg"
             <tr><td>6</td><td title="unconfirmed">✅</td><td>❌</td><td>❌</td></tr>
             <tr><td>7</td><td title="precedent day">👱🏻</td><td>✅</td><td>❌</td></tr>
             <tr><td>8</td><td>❌</td><td>❌</td><td>❌</td></tr>
-            <tr><td>9</td><td>❌</td><td>❌</td><td>❔</td></tr>
+            <tr><td>9</td><td>❌</td><td>❌</td><td>❌</td></tr>
             <tr><td>10</td><td>❔</td><td>❔</td><td>❔</td></tr>
         </tbody>
     </table>
@@ -431,9 +435,10 @@ I will make 202
             score += 1 // week 8 wed
             score += 2 // week 8 fri, 9 mon
             score += 1 // week 9 wed
+            score += 1 // week 9 fri
             bar.style.width = `${score / 15 * 100}%`
             bar2.style.width = `${score / 28 * 100}%`
-            let totalOcucred = 28 - 4 // dont forget to update this !
+            let totalOcucred = 28 - 3 // dont forget to update this !
             bar3.style.width = `${(totalOcucred - score) / 28 * 100}%`
             if (score >= 15) {
                 alert('congratulations marcelo! you did it!')

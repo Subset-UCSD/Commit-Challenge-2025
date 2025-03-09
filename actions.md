@@ -30,23 +30,19 @@ Geoffrey reads his note out loud and acts upon it accordingly. Once it is succes
 # Marcelo
 
 my todos:
-- be immune to lightning
-- regain cobtrol over the past
-- plotting plans
 - figure out how and why Nolan started the plague
 - find out how to use the plague to my advantage
-- do another little trolling
+- find a method to reduce the damage I take from all sources
 
 as a result, my actions are:
-- be near a big metalic tower during the time of the storm (so the lightning would get redirected to the metal instead of me)
-- jump backward on timeline to the past
-- update location to my secret basement
-- investigate what Nolan has contacted with the past days to find the methodologies for the plague and the reason behind it
+- investigate more what Nolan has contacted with the past days to find the methodologies for the plague and the reason behind it
 - brainstorm ideas
-- place a water bucket on top of the next door that nick will walk in the current timeline (reminder that I am in the past timeline).
-  - Nick should walk in a door and immediately get showered by an unpredictable water bucket that he in no way can avoid it.
-  - Also, a random witch has casted a curse on Nick so he is really unlucky
-  - Also, Raymond has been struck by lightning AFTER EVERYTHING and lose a random amount of health from 1-5 and lose a billion coins
+- wear an ancient artifact that allow me to gain all hp I lost from any form (add the hp back whenever I took any hp)
+  - put this into my character info
+ 
+*Also, whenever a character speaks a language other than English, they get struck by lightning that deals 1-5 damage randomly and interrupt their speech (in other words ignore all language other than English)*
+
+*In addition, since Nick has an unlucky curse on him right now, everything he do will fail in the most hilarious manner possible. Be creative!*
 
 # Nick
 

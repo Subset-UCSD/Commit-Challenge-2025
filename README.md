@@ -52,8 +52,8 @@ Project | Description | Technologies | Files
 📰 release | makes a nightly release for the repo each night summarizing changes using gemini | github actions gemini | `.github/workflows/release.yml` `gpt_prompt.txt`
 🍺 drunk | | html | `help.html` `sean-retreat-attempt.html`
 💭 gpt | | text | `gpt.txt`
-📅 actions | rpg game where you write your actions for the day in a text file and a github action runs daily and uses gemini to determine what happens next | github actions gemini typescript | `.github/workflows/release.yml` `actions/` `actions.md` `.github/workflows/actions_game_test.yml`
-🤖 eat shit | discord bot llm rpg game game | typescript discord.js | `🍴💩/`
+📅 actions game | rpg game where you write your actions for the day in a text file and a github action runs daily and uses gemini to determine what happens next | github actions gemini typescript | `.github/workflows/release.yml` `actions/` `actions.md` `.github/workflows/actions_game_test.yml`
+🤖 eat shit game | discord bot llm rpg game game | typescript discord.js | `🍴💩/`
 [💥 explodes](https://subset-ucsd.github.io/Commit-Challenge-2025/explodes/) | phone at risk of fire | html css javascript | `explodes/`
 godot web export test | | godot | `godot-web-export-test/`
 ❌ purr | enforces "you must commit to main." if you open a PR it will close it and delete the branch | github actions | `.github/workflows/purr.yml`

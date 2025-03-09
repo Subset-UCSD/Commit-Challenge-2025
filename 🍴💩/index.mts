@@ -2,8 +2,16 @@
 
 import { Client, GatewayIntentBits, Events, Partials } from "discord.js";
 import { llm } from "./bot.mts";
+import path from "path";
+import { readFile } from "fs/promises";
+import type { Command } from "./types.mts";
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.DirectMessages], partials: [Partials.Channel] });
+
+
+const __dirname = import.meta.dirname;
+
+const types = await readFile(path.resolve(__dirname, './types.mts'), 'utf-8')
 
 client.on('messageCreate', async (message) => {
   // Ignore messages from bots
@@ -14,10 +22,23 @@ client.on('messageCreate', async (message) => {
   console.log(message.content)
 
   await message.channel.sendTyping()
-  await message.reply({
-    content: await llm(`You are a Discord user named Billy (sometimes people will refer to you as <@${client.user?.id}>). Type like a casual text message, with typos and lowercase and slang. Respond to this message:\n\n${message.content}`),
-    allowedMentions: {repliedUser: false}
-  })
+
+  let maybeJson = await llm(`\`\`\`typescript\n${types.trim().replace(/^export /gm, '')}\n\`\`\`\n\nFigure out which of the above commands the following message (which may refer to you as <@${client.user?.id}>) is probably referring to, and report it as a JSON value that can be parsed as a value assignable \`Command\`, and nothing else; if none of the commands make sense, explain to the user that you don't understand in plain text (no JSON).\n\n${message.content}`)
+
+  let command: Command
+  try {
+    maybeJson = maybeJson.replaceAll(/^```\w*/gm, '')
+    command = JSON.parse(maybeJson)
+  } catch {
+    await message.reply({
+      content: maybeJson,
+      allowedMentions: {repliedUser: false}
+    })
+    return
+  }
+
+  console.log(command)
+  await message.reply({content:'thanks.'})
 
   // // Check if the bot is mentioned
   // if (message.mentions.has(client.user!)) {

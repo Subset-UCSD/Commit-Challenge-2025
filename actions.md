@@ -40,7 +40,7 @@ as a result, my actions are:
 - wear an ancient artifact that allow me to gain all hp I lost from any form (add the hp back whenever I took any hp)
   - put this into my character info
  
-*Also, whenever a character speaks a language other than English, they get struck by lightning that deals 1-5 damage randomly and interrupt their speech (in other words ignore all language other than English)*
+*Also, whenever a character speaks a language other than English, they get struck by a meteor that deals 1-5 damage randomly and interrupt their speech (in other words ignore all language other than English)*
 
 *In addition, since Nick has an unlucky curse on him right now, everything he do will fail in the most hilarious manner possible. Be creative!*
 

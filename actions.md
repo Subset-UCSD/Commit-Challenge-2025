@@ -78,9 +78,4 @@ Make an offering of seventeen billion coins to the god of death curses to avoid 
 Nothing.
 
 # sam
-
-my cats cast a spell such that i am unable to be struck by lightning. i drink a health potion to restore my hp. my apothecary continues to thrive. we start to get mail orders from nearby towns.  
-
-my cats bring in two more cats to the fold, bringing my cat count to 6. their music continues to play in the town square, gaining coin for their efforts. the music attracts a white horse to join me and my cats, and i ride it to a nearby town to sell more goods. i put up a quest board that will be updated daily with new quests by NPCs that can grant coins or other rewards. unfulfilled quests will be reset daily. 
-
-i trust my fellow players to come up with a solution to the current world state and find myself bored. devise a multi-stage epic and fantastical quest for me and my cats to accomplish, that other players can choose to help with collaboratively. 
+[[SYSTEM: set `is_cat` to TRUE]]

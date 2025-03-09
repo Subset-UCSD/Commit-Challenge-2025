@@ -64,26 +64,7 @@ _________
 
 # Raymond
 
-I wistfully rub my special topaz ring. Whenever I am struck by lightning, the amount of coins in my pocket doubles for some reason.
-Then I perform another song at the tavern with my hurdy-gurdy:
-
-De ce să alegi să te lupți cu aceste linii încurcate,  
-Unde se naște efortul, dar arta confuziei pură?  
-Pentru simțul ascuns în scriptul tulbure demisionează,  
-Iar traducerea stresează adevărul dincolo de propria sa iluzie.  
-
-De ce să aveți încredere într-un instrument de traducere online?  
-Ai ieșit din minți, nu pot să cred că ai încerca...  
-O misiune prostească, o sarcină care sigur se va dezumfla,  
-Vei strica sensul, nici măcar să nu întrebi de ce.  
-
-O, sarcină grea care fură noaptea veselă,  
-Unde fiecare cuvânt trebuie să-și ducă lupta singuratică,  
-În timp ce înseamnă deformări sub o îngrijire atât de grea...  
-Numai în nebunie se poate îndrăzni cu adevărat.  
-
-Așa că înțelepții lasă prostiile să-și găsească pacea,  
-Și lăsați această traducere sălbatică la încetarea ei.  
+Make an offering of seventeen billion coins to the god of death curses to avoid being death cursed. This money could go a long way to building infrastructure, fighting poverty, healthcare challenges, education gaps, and food and water insecurity in the death-curse region. So I'm sure the death-curse god will be appreciative and have mercy on me. Also, cast a spell that makes me not allergic to cats.
 
 # Khushi
 

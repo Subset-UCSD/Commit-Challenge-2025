@@ -36,16 +36,11 @@ Geoffrey reads his note out loud and acts upon it accordingly. Once it is succes
 
 # Marcelo
 
-my todos:
-- figure out how and why Nolan started the plague
-- find out how to use the plague to my advantage
-- find a method to reduce the damage I take from all sources
+whoops I didn't have much time to think about my actions so
 
-as a result, my actions are:
-- investigate more what Nolan has contacted with the past days to find the methodologies for the plague and the reason behind it
-- brainstorm ideas
-- wear an ancient artifact that allow me to gain all hp I lost from any form (add the hp back whenever I took any hp)
-  - put this into my character info
+I will set is_cat to false
+
+also im still in the past so my day does not increase
  
 *Also, whenever a character speaks a language other than English, they get struck by a meteor that deals 1-5 damage randomly and interrupt their speech (in other words ignore all language other than English)*
 

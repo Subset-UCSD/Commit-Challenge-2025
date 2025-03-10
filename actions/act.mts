@@ -240,7 +240,7 @@ console.log = origLog
 // console.error(state)
 await writeFile('./actions/state.yml', YAML.stringify(state, (key, value) => value instanceof Player ? value.name : value))
 
-const genDiscordResponse = (maxLength = Infinity) => `${responses.world.length > maxLength?responses.world.slice(0,maxLength-3)+'[…]':responses.world}\n${Object.entries(responses.players).map(([name, response]) => `## ${name}\n${response.length > maxLength?response.slice(0,maxLength-3)+'[…]':response}`).join('\n')}\n\n-# Write your next action in [actions.md](<https://github.com/Subset-UCSD/Commit-Challenge-2025/edit/main/actions.md>)!`
+const genDiscordResponse = (maxLength = Infinity) => `${responses.world.length > maxLength?responses.world.slice(0,maxLength-3)+'[…]':responses.world}\n${Object.entries(responses.players).map(([name, response]) => `## ${name}\n${response.length > maxLength?response.slice(0,maxLength-3)+'[…]':response}`).join('\n')}\n\n-# [state](<https://github.com/Subset-UCSD/Commit-Challenge-2025/blob/main/actions/state.yml>) |  Write your next action in [actions.md](<https://github.com/Subset-UCSD/Commit-Challenge-2025/edit/main/actions.md>)!`
 
 let discordResponse = genDiscordResponse()
 console.log(discordResponse)

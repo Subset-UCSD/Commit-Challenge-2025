@@ -30,7 +30,7 @@ Fill out this form [here](https://docs.google.com/forms/d/e/1FAIpQLSeI2mfek8_JKC
 # :exclamation: Rules
 You must commit to main. No malicious code pls.
 
-# 🫃 Projects
+# 🚧 Projects
 
 > [!WARNING]
 > Some projects may be functional.
@@ -81,6 +81,7 @@ godot web export test | | godot | `godot-web-export-test/`
   - [ ] Monty Python and the Holy Grail
   - [ ] Princess Bride
   - [ ] Anora
+  - [ ] fruity pinocchio 
 
 # Roadmap
 ![toothless dancing](./ass/ets/toothless-dancing-toothless.gif)

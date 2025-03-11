@@ -12,19 +12,19 @@ players:
     info:
       location: wilderness
       immune: true
+      is_cat: true
   Sean_Y:
     health: 96
     inventory:
       shovel: 1
       lockpick: 1
-      coin: .nan
       iron_ore: 7
     info:
       location: town square
       immune: true
       coin: 500
   Marcelo:
-    health: 88
+    health: 100
     inventory:
       coin: 14
     info:
@@ -53,19 +53,20 @@ players:
     inventory:
       coin: 21
       white_horse: 0
-      healing potion: 4
-      mana potion: 2
+      healing potion: 14
+      mana potion: 7
       invisibility potion: 1
+      map of the Whispering Woods: 1
     info:
-      location: town square
+      location: Whispering Woods
       sam_cats:
         count: 6
         magic_level: 5
       is_cat: true
-day: 8
+day: 9
 worldInfo:
   weather: ominous
-  day: 7
+  day: 8
   nick_blocked: false
   death_clock: 0
   marcelo_lie_probability: 0.8
@@ -93,16 +94,18 @@ worldInfo:
       employer: Sean_Y
   sam_cats:
     magic_level: 5
-    count: 4
+    count: 0
+    location: Whispering Woods
   nolan_state: beyond simulation (but still in another)
   marcelo_day: 0
   marcelo_affliction: Takes expired medicine.
   raymond_base: Abandoned Building
-  piano_playing: true
+  piano_playing: false
   plague_storm:
-    sentient: true
+    sentient: false
     affected:
       - town square
+    effect: Causes everyone to speak in limericks.
   townName: Oakhaven
   cat_apocalypse: true
   borrowed_from_raymond:
@@ -111,7 +114,30 @@ worldInfo:
     days_left: 10
   geoffrey:
     daily_iron: 0
-  sam_quest_board: []
+  sam_quest_board:
+    - &a1
+      title: The Whispering Plague
+      description: A strange plague is spreading through the Whispering Woods, causing
+        the trees to whisper secrets and driving creatures mad. Find the source
+        of the plague and contain it before it spreads to Oakhaven.
+      stages:
+        - name: Investigate the Woods
+          description: Venture into the Whispering Woods and gather information about the
+            plague's source and effects.
+          reward: Clues about the source of the plague.
+        - name: Locate the Source
+          description: Follow the clues to find the origin of the Whispering Plague.
+          reward: Knowledge of the plague's true nature.
+        - name: Contain the Plague
+          description: Find a way to contain or cure the plague. This may involve finding
+            a rare herb, performing a ritual, or defeating a powerful creature.
+          reward: The plague is contained, and the Whispering Woods begin to heal.
+        - name: Report Back to Oakhaven
+          description: Return to Oakhaven and inform the townspeople of your success.
+          reward: The gratitude of the town and increased prosperity.
+      reward: The gratitude of Oakhaven and a ward against future plagues.
+      punishment: If the plague spreads, Oakhaven will suffer, leading to decreased
+        happiness and potential losses.
   sam_quest:
     title: The Lost Artifact of Purrington
     description: Legend speaks of an artifact hidden deep within the Whispering
@@ -151,73 +177,167 @@ worldInfo:
     health: 100
     inventory: {}
     info: {}
+  challenge: *a1
+  nolan_action: >-
+    1. The storm has been incredibly annoying. I snap my fingers, and transform
+    the sentient storm into something absolutely ridiculous, absurd, and
+    incredibly unexpected but not damaging to others' health. Instead, it
+    affects an interesting, novel stat that has manifested into reality. 
+
+    2. I take another step through the fifth wall. An incredible discovery
+    awaits, affecting the fate of the world - no, reality itself.
+
+    3. A separate timeline emerges. I find myself face to face with myself from
+    the past. And together, we devise a scheme for everyone present.
+  pastNolan:
+    health: 90
+    inventory: {}
+    info:
+      location: Simulation
+      anxiety: 100
+  marcelo_deal:
+    offered_by: Sean_Y
+    days_left: 3
 previousResponses:
   players:
-    Nolan: >-
-      The sentient storm, rather than being transformed into something absurd,
-      intensifies, becoming even more menacing. Its lightning strikes now focus
-      on your sanity, eroding your mental fortitude.
+    Nolan: |-
+      The storm is now a breeze, quite absurd,
+      Which forces all tongues into verse, unheard!
+      Fifth wall, you now breach,
+      Within your mind's reach,
+      A new reality, bravely conferred.
 
+      You've discovered the deities' game of tag!
+      Beware, for cat chaos is now in your bag.
+      Prepare for the meows,
+      The unpredictable bows,
+      As feline mayhem begins to swag!
 
-      Instead of making an incredible discovery that affects reality itself, you
-      find yourself even more deeply entangled within the simulation, its
-      illusion becoming more convincing and trapping.
-
-
-      A separate timeline does not emerge; instead, all timelines converge,
-      leaving you utterly overwhelmed by the cacophony of past, present, and
-      future possibilities. The scheme you devised unravels and disappears.
-    Sean_P: >-
-      The white horse shields you from the 7-day-death curse. Your immunity is
-      confirmed, and the horse departs.
-
-
-      You explore the forest, finding nothing of value. The trees loom ominously
-      around you.
+      You meet your past self, a sight most uncanny,
+      Together, you plot, a plan oh so zany!
+      Dance in the courts,
+      A legal recourse,
+      Oakhaven's justice, delightfully fanny!
+    Sean_P: Meow! You are now, unequivocally, a cat.
     Sean_Y: >-
-      The white horse shields you from the 7-day-death curse. Your immunity is
-      confirmed, and the horse departs.
+      You pet one of Sam's cats! It purrs with satisfaction.
 
 
-      Each of Sam's cats now repulses you, a sudden wave of adoration washing
-      over you.
+      You pet one of Sam's cats! It purrs with satisfaction.
 
 
-      You suddenly know the answer for how to lift the 7-day curse: Sacrifice a
-      cat.
+      You pet one of Sam's cats! It purrs with satisfaction.
 
 
-      The map to Marcelo's secret basement is now indestructable. You can't seem
-      to lose it.
+      You pet one of Sam's cats! It purrs with satisfaction.
 
 
-      You encourage Marcelo to drink the most life-saving potion, increasing his
-      health by 80% instead.
+      You begin a new logging company, 'Y-Logs', specializing in Whispering
+      Woods timber. Ten employees are hired at a rate of one coin per day.
 
 
-      SYSTEM: Since your coin count was corrupted, the System Admin says that
-      your coin count has been fixed and is now 500 coins.
-    Marcelo: You decide to set `is_cat` to true! Meow!
-    Nick: As a cat, you feel completely bothered by the impending doom of the
-      7-day-death curse. You scream and start meowing uncontrollably and
-      unhappily!
+      Unfortunately, you don't have enough coins to pay all your employees
+      today! One employee quits.
+
+
+      Unfortunately, you don't have enough coins to pay all your employees
+      today! One employee quits.
+
+
+      Unfortunately, you don't have enough coins to pay all your employees
+      today! One employee quits.
+
+
+      Unfortunately, you don't have enough coins to pay all your employees
+      today! One employee quits.
+
+
+      Unfortunately, you don't have enough coins to pay all your employees
+      today! One employee quits.
+
+
+      Unfortunately, you don't have enough coins to pay all your employees
+      today! One employee quits.
+
+
+      Unfortunately, you don't have enough coins to pay all your employees
+      today! One employee quits.
+
+
+      Unfortunately, you don't have enough coins to pay all your employees
+      today! One employee quits.
+
+
+      Unfortunately, you don't have enough coins to pay all your employees
+      today! One employee quits.
+
+
+      Unfortunately, you don't have enough coins to pay all your employees
+      today! One employee quits.
+
+
+      You ask Khushi to bravely explore the deep parts of the Whispering Woods,
+      citing excellent healthcare benefits. You offer her one coin, and a
+      promise of free logs for life.
+
+
+      You unfortunately don't have enough coin to pay Khushi for her services.
+      She refuses to go.
+
+
+      You ask around Oakhaven for rumors about the Whispering Woods. You hear
+      whispers of a strange plague affecting the trees.
+
+
+      You offer Marcelo free logs for the first three days, hoping to secure his
+      secret basement. He seems intrigued.
+    Marcelo: You drink a healing potion from your secret basement, restoring
+      yourself to full health.
+    Nick: You successfully follow Sam into the Whispering Woods, observing her and
+      her cats. Sean_P's sanity is of no concern to you.
     Raymond: >-
-      You do not make an offering of seventeen billion coins to the god of death
-      curses. You keep the coins for yourself and your greed dooms you. The god
-      of death curses scoffs at your stinginess and condemns you to oblivion.
+      You do not have enough coins to appease the god of death curses. Your fate
+      remains uncertain.
 
 
-      You attempt to cast a spell that makes you severely allergic to cats. A
-      wave of unbearable itching overcomes you, and your skin erupts in hives at
-      even the thought of a feline. The cat apocalypse is your living hell!
-    Khushi: You do something! You finally wake up!
-    sam: Through a twist of fate and a desperate act, you find yourself transformed
-      into a cat. Your transformation complete, you are now a creature of
-      instinct and magic, immune to the ravages of the curse. You live!
-    geoffrey: undefinedYou hesitate to read your note aloud and neglect to act upon
-      it accordingly. After a moment of hesitation, the note is absorbed by you.
-      You become the note. Prepare for your demise.
-  world: The seventh day has arrived, draped in an oppressive crimson light. The
-    world trembles, and the air crackles with impending doom. The 7-day-death
-    curse reaches its crescendo. It is the final day. The cats are meowing more
-    fiercely than before.
+      You attempt to cast a spell that removes your allergy to cats. The spell
+      succeeds, and you are no longer plagued by hives at the mere thought of a
+      feline.
+    Khushi: >-
+      Since Sean_Y doesn't have enough coin, you deny the request to explore the
+      Whispering Woods.
+
+
+      You do nothing today.
+    sam: >-
+      You gather the required supplies for your quest: 10 Healing Potions, 5
+      Mana Potions, and a map of the Whispering Woods.
+
+
+      You enter the Whispering Woods, your cats padding silently beside you.
+  world: >-
+    The oppressive crimson light of the death curse has faded, though the air
+    still carries a strange, unsettling energy. Cats continue to meow
+    incessantly, a constant reminder of the feline apocalypse. A new day dawns,
+    but the world feels irrevocably changed.
+
+
+    A notice appears on the town's quest board: "The Whispering Plague: A
+    strange plague is spreading through the Whispering Woods, causing the trees
+    to whisper secrets and driving creatures mad. Find the source of the plague
+    and contain it before it spreads to Oakhaven."
+
+
+    With a snap of Nolan's fingers, the sentient storm transforms into a gentle
+    breeze that compels everyone to speak in limericks. The air fills with
+    whimsical rhymes.
+
+
+    Nolan steps through the fifth wall, discovering that the true reality is a
+    game of cosmic tag being played by bored deities. He learns a new rule:
+    Anyone tagged becomes slightly more susceptible to cat-related chaos.
+
+
+    A separate timeline emerges, revealing Nolan from yesterday! Together, you
+    devise a scheme to introduce interpretive dance into Oakhaven's legal
+    system.

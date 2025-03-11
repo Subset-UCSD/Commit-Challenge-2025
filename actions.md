@@ -81,4 +81,5 @@ Make an offering of seventeen billion coins to the god of death curses to avoid 
 Nothing.
 
 # sam
-[[SYSTEM: set `is_cat` to TRUE]]
+[[SYSTEM: sam completed quest "The Lost Artifact of Purrington" stage 1: "Gathering Supplies"]]
+[[SYSTEM: sam enters the whispering woods]]

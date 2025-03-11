@@ -33,11 +33,9 @@ My new routine for today:
 
 # Marcelo
 
-whoops I didn't have much time to think about my actions so
+Whoops I didn't have time again today - need to lock in to my project.
 
-I will set is_cat to false
-
-also im still in the past so my day does not increase
+Erm uh um I drink a healing potion from my secret basement and heal to full health.
  
 *Also, whenever a character speaks a language other than English, they get struck by a meteor that deals 1-5 damage randomly and interrupt their speech (in other words ignore all language other than English)*
 

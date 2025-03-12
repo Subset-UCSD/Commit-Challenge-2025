@@ -49,7 +49,9 @@ I follow sam into the whispering woods to see what her and her cats are up to (w
 
 # Raymond
 
-Make an offering of seventeen billion coins to the god of death curses to avoid being death cursed. This money could go a long way to building infrastructure, fighting poverty, healthcare challenges, education gaps, and food and water insecurity in the death-curse region. So I'm sure the death-curse god will be appreciative and have mercy on me. Also, cast a spell that makes me not allergic to cats.
+I love literature; how about I do some reading in the tavern
+
+*Players whose actions' first lines contain exactly the character ";" and no other punctuation receive ten billion coins and become immune from the death curse. All other players trip down the stairs and lose between 1 and 5 health.*
 
 # Khushi
 

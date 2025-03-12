@@ -55,7 +55,7 @@ Erm uh um I drink a healing potion from my secret basement and heal to full heal
 
 ;
 
-The Whispering Woods were always a place of strange energies, even before the Curse. Now, the lingering echoes of human souls trapped by the 7-Day-Death whisper through its leaves, a constant lament for what was lost. Lately, these whispers have grown louder, more frantic, and tinged with a disturbing undercurrent of anger. The ancient trees themselves seem to writhe with unease. I kill so many trees that is my quest, I exist to kill trees. I get so much gold for killing so many trees that I become an ascended being killing, i get so good at killing trees.
+The Whispering Woods were always a place of strange energies, even before the Curse. Now, the lingering echoes of human souls trapped by the 7-Day-Death whisper through its leaves, a constant lament for what was lost. Lately, these whispers have grown louder, more frantic, and tinged with a disturbing undercurrent of anger. The ancient trees themselves seem to writhe with unease. I kill so many trees that is my quest, I exist to kill trees. I get so much gold for killing so many trees that I become an ascended being killing, i get so good at killing trees. After i kill trees, I try to sneakily take sam's quest rewards from Sean_P after he steals them from her using catlike stealth. I will get all of the rewards AHAHAHAHAHA
 
 # Raymond
 

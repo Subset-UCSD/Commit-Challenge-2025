@@ -8,7 +8,8 @@ players:
   Sean_P:
     health: 97
     inventory:
-      coin: 10
+      coin: 11
+      fish bone: 1
     info:
       location: wilderness
       immune: true
@@ -19,32 +20,34 @@ players:
       shovel: 1
       lockpick: 1
       iron_ore: 7
+      coin: 489
     info:
       location: town square
       immune: true
-      coin: 500
   Marcelo:
-    health: 100
+    health: 50
     inventory:
       coin: 14
     info:
       location: secret basement
       health_artifact: true
       is_cat: true
+      poisoned: true
   Nick:
     health: 99
-    inventory: {}
+    inventory:
+      coin: 100000
     info:
       location: town square
       is_cat: true
   Raymond:
-    health: 95
+    health: 93
     inventory:
       coin: 1999999618
     info:
       location: town square
   Khushi:
-    health: 96
+    health: 75
     inventory: {}
     info:
       location: town square
@@ -57,16 +60,17 @@ players:
       mana potion: 7
       invisibility potion: 1
       map of the Whispering Woods: 1
+      map to artifact: 1
     info:
       location: Whispering Woods
       sam_cats:
         count: 6
         magic_level: 5
       is_cat: true
-day: 9
+day: 10
 worldInfo:
   weather: ominous
-  day: 8
+  day: 9
   nick_blocked: false
   death_clock: 0
   marcelo_lie_probability: 0.8
@@ -111,12 +115,11 @@ worldInfo:
   borrowed_from_raymond:
     borrower: Sean_Y
     amount: 200
-    days_left: 10
+    days_left: 9
   geoffrey:
     daily_iron: 0
   sam_quest_board:
-    - &a1
-      title: The Whispering Plague
+    - title: The Whispering Plague
       description: A strange plague is spreading through the Whispering Woods, causing
         the trees to whisper secrets and driving creatures mad. Find the source
         of the plague and contain it before it spreads to Oakhaven.
@@ -177,7 +180,27 @@ worldInfo:
     health: 100
     inventory: {}
     info: {}
-  challenge: *a1
+  challenge:
+    title: The Case of the Missing Tuna
+    description: A large shipment of tuna, destined for the Oakhaven Cat Cafe, has
+      gone missing. Find the culprit and recover the tuna before the cats
+      revolt!
+    stages:
+      - name: Investigate the Docks
+        description: Search the docks for clues about the missing tuna.
+        reward: Leads about the tuna thief.
+      - name: Follow the Trail
+        description: Track the tuna thief through the Whispering Woods.
+        reward: The thief's hideout location.
+      - name: Confront the Thief
+        description: Confront the tuna thief and recover the stolen tuna.
+        reward: The missing tuna.
+      - name: Return the Tuna
+        description: Return the tuna to the Oakhaven Cat Cafe and restore feline peace.
+        reward: The gratitude of the cats and free tuna for a week.
+    reward: The gratitude of the cats and free tuna for a week.
+    punishment: If the tuna is not recovered, the cats will riot, causing chaos in
+      Oakhaven.
   nolan_action: >-
     1. The storm has been incredibly annoying. I snap my fingers, and transform
     the sentient storm into something absolutely ridiculous, absurd, and
@@ -198,146 +221,109 @@ worldInfo:
   marcelo_deal:
     offered_by: Sean_Y
     days_left: 3
+  tuna_theft: true
 previousResponses:
   players:
-    Nolan: |-
-      The storm is now a breeze, quite absurd,
-      Which forces all tongues into verse, unheard!
-      Fifth wall, you now breach,
-      Within your mind's reach,
-      A new reality, bravely conferred.
-
-      You've discovered the deities' game of tag!
-      Beware, for cat chaos is now in your bag.
-      Prepare for the meows,
-      The unpredictable bows,
-      As feline mayhem begins to swag!
-
-      You meet your past self, a sight most uncanny,
-      Together, you plot, a plan oh so zany!
-      Dance in the courts,
-      A legal recourse,
-      Oakhaven's justice, delightfully fanny!
-    Sean_P: Meow! You are now, unequivocally, a cat.
+    Nolan: "The limerick-speaking breeze persists, but with a strange new twist: all
+      conversations now must include interpretive dance. Fifth wall broken
+      again! You discover that deities are now using mortals as chess pieces!
+      Prepare for the consequences. Your past self approves of the plan for
+      interpretive dance in court, solidifying the absurdity."
+    Sean_P: As a cat, you prowl into the forest, your senses heightened. You find a
+      discarded fish bone (no meat) and a single coin glinting beneath a
+      mushroom. The air crackles with feline intrigue as you witness Sam's cats
+      embarking on a quest.
     Sean_Y: >-
-      You pet one of Sam's cats! It purrs with satisfaction.
+      You have successfully added 500 coins to your inventory.
 
 
-      You pet one of Sam's cats! It purrs with satisfaction.
+      You pet each of Sam's cats with great enthusiasm.
 
 
-      You pet one of Sam's cats! It purrs with satisfaction.
+      You successfully pay your employees their wages, ensuring a productive day
+      for Y-Logs.
 
 
-      You pet one of Sam's cats! It purrs with satisfaction.
+      You establish Y-Logs, a logging company specializing in Whispering Woods
+      timber. Your employees begin their work.
 
 
-      You begin a new logging company, 'Y-Logs', specializing in Whispering
-      Woods timber. Ten employees are hired at a rate of one coin per day.
-
-
-      Unfortunately, you don't have enough coins to pay all your employees
-      today! One employee quits.
-
-
-      Unfortunately, you don't have enough coins to pay all your employees
-      today! One employee quits.
-
-
-      Unfortunately, you don't have enough coins to pay all your employees
-      today! One employee quits.
-
-
-      Unfortunately, you don't have enough coins to pay all your employees
-      today! One employee quits.
-
-
-      Unfortunately, you don't have enough coins to pay all your employees
-      today! One employee quits.
-
-
-      Unfortunately, you don't have enough coins to pay all your employees
-      today! One employee quits.
-
-
-      Unfortunately, you don't have enough coins to pay all your employees
-      today! One employee quits.
-
-
-      Unfortunately, you don't have enough coins to pay all your employees
-      today! One employee quits.
-
-
-      Unfortunately, you don't have enough coins to pay all your employees
-      today! One employee quits.
-
-
-      Unfortunately, you don't have enough coins to pay all your employees
-      today! One employee quits.
-
-
-      You ask Khushi to bravely explore the deep parts of the Whispering Woods,
-      citing excellent healthcare benefits. You offer her one coin, and a
-      promise of free logs for life.
-
-
-      You unfortunately don't have enough coin to pay Khushi for her services.
-      She refuses to go.
-
-
-      You ask around Oakhaven for rumors about the Whispering Woods. You hear
-      whispers of a strange plague affecting the trees.
-
-
-      You offer Marcelo free logs for the first three days, hoping to secure his
-      secret basement. He seems intrigued.
-    Marcelo: You drink a healing potion from your secret basement, restoring
-      yourself to full health.
-    Nick: You successfully follow Sam into the Whispering Woods, observing her and
-      her cats. Sean_P's sanity is of no concern to you.
-    Raymond: >-
-      You do not have enough coins to appease the god of death curses. Your fate
-      remains uncertain.
-
-
-      You attempt to cast a spell that removes your allergy to cats. The spell
-      succeeds, and you are no longer plagued by hives at the mere thought of a
-      feline.
-    Khushi: >-
-      Since Sean_Y doesn't have enough coin, you deny the request to explore the
+      You offer Khushi one coin to bravely explore the deep parts of the
       Whispering Woods.
 
 
-      You do nothing today.
+      You ask around Oakhaven for more rumors about the Whispering Woods. You
+      hear whispers of a large shipment of tuna going missing, potentially
+      related to the cat apocalypse.
+    Marcelo: |-
+      You awaken in your secret basement, feeling refreshed.
+
+      You take a swig of your healing potion. It tastes... off. Very off.
+
+      You feel incredibly ill. Your health is now 50.
+    Nick: >-
+      Through your fervent dedication to killing trees, you hit the Tree Gold
+      Mine and are so ascended that you get a whopping amount of coins: 100000!
+
+
+      As you attempt to sneakily snatch the rewards from Sean_P, you trip over a
+      particularly stubborn root, sending you tumbling headfirst into a pile of
+      particularly scratchy thorns. In the process, you somehow manage to
+      accidentally set your own trousers on fire with a misplaced magnifying
+      glass, which you didn't realize you even had.
+
+
+      Your clumsy antics attract the attention of a flock of grumpy pixies, who
+      proceed to pelt you with acorns and ridicule your fashion sense. Your
+      stealth attempt is a complete and utter failure.
+    Raymond: >-
+      As you settle down in the tavern with a book, you trip down the stairs!
+      You lose 2 health.
+
+
+      Your health is now 93.
+    Khushi: >-
+      You spend another peaceful day doing absolutely nothing.
+
+
+      As you attempt to do absolutely nothing, you trip down the stairs! You
+      lose 3 health.
+
+
+      Your health is now 93.
+
+
+      Sean_Y offers you one coin to explore the dangerous parts of the
+      Whispering Woods.
+
+
+      You bravely explore into the deep part of the Whispering Woods and
+      encounter a lot of spooky creatures and get scared! You lose 18 health and
+      are now at 75 health!
     sam: >-
-      You gather the required supplies for your quest: 10 Healing Potions, 5
-      Mana Potions, and a map of the Whispering Woods.
+      You bravely embark on stage 2 of your quest! Your quick wits allow you to
+      effortlessly solve the riddle. Soaring through the agility test on your
+      magic broom, you find it child's play.
 
 
-      You enter the Whispering Woods, your cats padding silently beside you.
+      One of your courageous cats steps forward for the test of courage, their
+      feline heart overflowing with bravery. The woods, sensing this pure
+      spirit, deems you worthy.
+
+
+      You have completed stage 2 of your quest!
+
+
+      The reward for this stage is a detailed map leading to the artifact's
+      location. You feel a surge of excitement!
+    geoffrey: undefined...
   world: >-
-    The oppressive crimson light of the death curse has faded, though the air
-    still carries a strange, unsettling energy. Cats continue to meow
-    incessantly, a constant reminder of the feline apocalypse. A new day dawns,
-    but the world feels irrevocably changed.
+    The sun rises over Oakhaven, casting long shadows that dance with the
+    whispers of the breeze. The air is thick with the scent of pine and the
+    faint, unsettling aroma of... tuna? Whispers of a feline heist and a plague
+    in the woods fill the air, and the townsfolk continue to converse solely in
+    limericks, much to their chagrin.
 
 
-    A notice appears on the town's quest board: "The Whispering Plague: A
-    strange plague is spreading through the Whispering Woods, causing the trees
-    to whisper secrets and driving creatures mad. Find the source of the plague
-    and contain it before it spreads to Oakhaven."
-
-
-    With a snap of Nolan's fingers, the sentient storm transforms into a gentle
-    breeze that compels everyone to speak in limericks. The air fills with
-    whimsical rhymes.
-
-
-    Nolan steps through the fifth wall, discovering that the true reality is a
-    game of cosmic tag being played by bored deities. He learns a new rule:
-    Anyone tagged becomes slightly more susceptible to cat-related chaos.
-
-
-    A separate timeline emerges, revealing Nolan from yesterday! Together, you
-    devise a scheme to introduce interpretive dance into Oakhaven's legal
-    system.
+    You successfully bribe some of Sam's cats with tuna (where did you get
+    that?!) to steal quest rewards on your behalf.

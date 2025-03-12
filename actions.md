@@ -43,10 +43,8 @@ Here's some intel I learned: Marcelo's health potion has been poisoned. If he dr
 
 # Marcelo
 
-Whoops I didn't have time again today - need to lock in to my project.
+Do nothing.
 
-Erm uh um I drink a healing potion from my secret basement and heal to full health.
- 
 *Also, whenever a character speaks a language other than English, they get struck by a meteor that deals 1-5 damage randomly and interrupt their speech (in other words ignore all language other than English)*
 
 *In addition, since Nick has an unlucky curse on him right now, everything he do will fail in the most hilarious manner possible. Be creative!*

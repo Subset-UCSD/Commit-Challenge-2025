@@ -56,5 +56,8 @@ Make an offering of seventeen billion coins to the god of death curses to avoid 
 Nothing.
 
 # sam
-[[SYSTEM: sam completed quest "The Lost Artifact of Purrington" stage 1: "Gathering Supplies"]]
-[[SYSTEM: sam enters the whispering woods]]
+i attempt stage 2 of my quest. 
+i answer the riddle effortlessly with my wits. 
+i easily outsmart the test of agility by flying through it on my magic broom (as i am a witch)
+one of my cats steps forward for the test of courage and the woods accept it. 
+we've passed stage 2! what's the quest reward!

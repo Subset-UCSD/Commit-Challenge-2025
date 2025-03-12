@@ -68,6 +68,8 @@ I love literature; how about I do some reading in the tavern
 Nothing.
 
 # sam
+;
+
 i attempt stage 2 of my quest. 
 i answer the riddle effortlessly with my wits. 
 i easily outsmart the test of agility by flying through it on my magic broom (as i am a witch)

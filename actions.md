@@ -63,7 +63,9 @@ On hiatus 🏖️;
 
 ;
 
-The Whispering Woods were always a place of strange energies, even before the Curse. Now, the lingering echoes of human souls trapped by the 7-Day-Death whisper through its leaves, a constant lament for what was lost. Lately, these whispers have grown louder, more frantic, and tinged with a disturbing undercurrent of anger. The ancient trees themselves seem to writhe with unease. I kill so many trees that is my quest, I exist to kill trees. I get so much gold for killing so many trees that I become an ascended being killing, i get so good at killing trees. After i kill trees, I try to sneakily take sam's quest rewards from Sean_P after he steals them from her using catlike stealth. I will get all of the rewards AHAHAHAHAHA
+Using my newfound wealth of gold coins, I start an apothCATary. I make a wide variety of potions that have random and wild effects. I am so good at making potions that I can make them with my eyes closed... basically i throw together a bunch of random ingredients and it somehow works out every time. I sell my potions to marcelo to CURE his delusions about this "unlucky curse". There is no such thing and he's been rambling about it for days!! I've been nothing but lucky, for how was I able to come into such wealth but not be fortunate?? QED. IN any case I make one of my potions and drink it. What effect does it have? Get creative!!!
+
+After I drink a potion, a traveler comes into my potion shop asking for my STRONGEST potions. I tell him, you cannot handle my potions traveler, my potions would kill a man like you. I give him a potion anyways and see what happens. The traveler's name is marcelo.
 
 # Raymond
 

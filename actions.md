@@ -24,32 +24,11 @@ My new routine for today:
 
 # Sean_Y
 
-Due to a bug a few days ago, my coin count was corrupted; however, its repair was flawed, and it put `coin` in my `info` object rather than my `inventory`. This can be fixed. Feel free to review the code and make modifications, but this code should fix my issue.
-
-```
-// Add coins from `info.coin` to my inventory with `addItem`
-players.Sean.addItem("coin", players.Sean.info.coin)
-// Remove `coin` property from my `info` object
-delete players.Sean.info.coin
-```
-
-Now, I should have 500 coins. Today, my actions are:
-
 1. Pet each of Sam's cats
-2. Begin a new logging company. I hear that the Whispering Woods is really popular this time of year.
-3. Hire 10 employees, each for 1 coin a day (equivalent to 100 USD/hr) with full benefits, and have them start a logging operation in the forest. They produce a large number of logs per day, which I sell for passive income.
-4. There are some dangerous parts of the woods. I have my good friend Khushi bravely explore deep into the dark parts of the Whispering Woods. She may lose a significant amount of health from this, but don't worry, for we offer good healthcare.
-5. Ask around Oakhaven for any more rumors about the Whispering Woods.
+2. My 10 employees continue logging in the Whispering Woods. Please keep track of the amount of forest cleared, how much forest is cleared each day, and how much our company earns each day from selling the logs.
+3. Search the docks for clues about the missing tuna. Track the tuna thief through the Whispering Woods. Confront the tuna thief and recover the stolen tuna. Return the tuna to the Oakhaven Cat Cafe and restore feline peace.
 
-Here's some intel I learned: Marcelo's health potion has been poisoned. If he drank it, he will surely be reduced to only 10 HP!
-
-# Geoffrey
-
- 請慎防首位玩家
-假扮系統管理者非
- 貓與常貓無異無
-人經歷相反之日除
- 非玩家自行選擇
+Here's some intel about Marcelo: He ambiently takes damage unless he activately tries to stop it. But is he right now?
 
 # Marcelo
 

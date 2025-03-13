@@ -23,18 +23,33 @@ jobs:
               run: |
                 ls -a
                 export TZ="America/Los_Angeles"
-                git log --since="24 hours ago" --pretty=format:"- %s" -p > commits.txt
-                
-                FILE_SIZE=$(wc -c < commits.txt)
-                echo "leg: $FILE_SIZE"
+
+                git log --since="24 hours ago" --pretty=format:"%H" | while read commit_hash; do
+                  AUTHOR=$(git log -1 --pretty=format:"%an" "$commit_hash")
+
+                  # Check if commit only modifies actions.md or if the author name includes "powell"
+                  if [[ "$AUTHOR" == "Thomas A. Powell" ]]; then
+                    echo "- $(git log -1 --pretty=format:"- %s" "$commit_hash" -p)" >> powell.txt
+                  elif git diff-tree --no-commit-id --name-only -r "$commit_hash" | grep -q -v '^actions.md$'; then
+                    echo "- $(git log -1 --pretty=format:"- %s" "$commit_hash" -p)" >> commits.txt
+                  else 
+                    echo "- $(git log -1 --pretty=format:"- %s" "$commit_hash" -p)" >> actions.txt
+                  fi
+                done
                 
                 if [ ! -s commits.txt ]; then
-                  echo "erm nobody committed"
-                  exit 1
-                fi
-
-                jq -n --rawfile text gpt_prompt.txt --rawfile commits commits.txt \
+                  echo "no meaningful commits were made"
+                  if [ -s e powell.txt]; then
+                    echo "no meaningful commits were made, but we did run actions" >> changelog.md
+                    jq -n --rawfile commits powell.txt \
+                      '{"contents": [{"parts": [{"text": "Summarize what went on in the actions game today. You must format your response as a markdown file: \n\($commits)"}]}]}' > gemini_prompt.json
+                  else 
+                    exit 1
+                  fi
+                else 
+                  jq -n --rawfile text gpt_prompt.txt --rawfile commits commits.txt \
                   '{"contents": [{"parts": [{"text": "\($text)\n\($commits)"}]}]}' > gemini_prompt.json
+                fi
               shell: bash
             
             - name: geminis you
@@ -50,7 +65,7 @@ jobs:
 
                 echo "$RELEASE_NOTES" > response.md
                 sed -i '1d;$d' response.md
-                cat response.md > changelog.md
+                cat response.md >> changelog.md
               shell: bash
 
             - name: tag you're it

@@ -68,8 +68,10 @@ Nothing.
 # sam
 ;
 
-i attempt stage 2 of my quest. 
-i answer the riddle effortlessly with my wits. 
-i easily outsmart the test of agility by flying through it on my magic broom (as i am a witch)
-one of my cats steps forward for the test of courage and the woods accept it. 
-we've passed stage 2! what's the quest reward!
+i go fishing for the entirety of the day. luck is on my side. i've caught it! the legendary fissh! yes, that's right, fissh with two s's! i use it to make a fish-flavored invisibility potion.
+
+i use my newly acquired map to artifact to confront the guardian. i offer it the potion. it happily accepts and rewards me with the lost artifact of purrington. my cats purr in satisfaction.
+
+i begin my trek back to oakhaven and admonish my cats for being able to be bribed with tuna. they should know that they can fetch far higher bribes than that. if anyone tries to bribe my cats, they must bring better fish than tuna.
+
+my cat count is now 12, as the lost artifact of purrington also awarded me with more foster cats who happily join my crew.

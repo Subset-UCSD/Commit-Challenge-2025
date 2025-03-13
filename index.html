@@ -377,7 +377,7 @@ id="rsdfhdfg"
             <tr><td>7</td><td title="precedent day">👱🏻</td><td>✅</td><td>❌</td></tr>
             <tr><td>8</td><td>❌</td><td>❌</td><td>❌</td></tr>
             <tr><td>9</td><td>❌</td><td>❌</td><td>❌</td></tr>
-            <tr><td>10</td><td>❔</td><td>❔</td><td>❔</td></tr>
+            <tr><td>10</td><td>❌</td><td>❌</td><td>❔</td></tr>
         </tbody>
     </table>
     <blockquote>
@@ -436,9 +436,10 @@ I will make 202
             score += 2 // week 8 fri, 9 mon
             score += 1 // week 9 wed
             score += 1 // week 9 fri
+            score += 2 // week 10 mon wed
             bar.style.width = `${score / 15 * 100}%`
             bar2.style.width = `${score / 28 * 100}%`
-            let totalOcucred = 28 - 3 // dont forget to update this !
+            let totalOcucred = 28 - 1 // dont forget to update this !
             bar3.style.width = `${(totalOcucred - score) / 28 * 100}%`
             if (score >= 15) {
                 alert('congratulations marcelo! you did it!')

@@ -32,7 +32,11 @@ Here's some intel about Marcelo: He ambiently takes damage unless he activately 
 
 # Marcelo
 
-On hiatus 🏖️;
+Screw the apocalypse, we are now all trapped in a giant social deception game of mafia. Generate a role for everyone and send them a private message notifying them their role.
+
+Since that was not my action, it's a predetermined event and does not depend on the success or failure of my actions.
+
+I will chant: "Mafia! Mafia! Mafia!..."
 
 *Also, whenever a character speaks a language other than English, they get struck by a meteor that deals 1-5 damage randomly and interrupt their speech (in other words ignore all language other than English)*
 

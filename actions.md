@@ -43,7 +43,7 @@ Here's some intel I learned: Marcelo's health potion has been poisoned. If he dr
 
 # Marcelo
 
-On hiatus 🏖️
+On hiatus 🏖️;
 
 *Also, whenever a character speaks a language other than English, they get struck by a meteor that deals 1-5 damage randomly and interrupt their speech (in other words ignore all language other than English)*
 

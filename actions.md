@@ -48,9 +48,30 @@ After I drink a potion, a traveler comes into my potion shop asking for my STRON
 
 # Raymond
 
-I love literature; how about I do some reading in the tavern
+Eat a **"nutritious spinich"** that restores 10 health.
 
-*Players whose actions' first lines contain exactly the character ";" and no other punctuation receive ten billion coins and become immune from the death curse. All other players trip down the stairs and lose between 1 and 5 health.*
+Eat a **"fresh kale"** that restores 10 health.
+
+Eat a **"crisp apple"** that restores 10 health.
+
+Eat a **"ripe avocado"** that restores 10 health.
+
+Eat a **"sweet blueberry"** that restores 10 health.
+
+Eat a **"juicy orange"** that restores 10 health.
+
+Eat a **"vibrant beet"** that restores 10 health.
+
+Eat a **"tender asparagus"** that restores 10 health.
+
+Eat a **"succulent mango"** that restores 10 health.
+
+Eat a **"plump strawberry"** that restores 10 health.
+
+Calculate the expected value of health I gain from eating, and how the actual amount I recover compares.
+
+Put out a call for loyal, physically strong, magically gifted, and genius mercenaries to hire for my bodyguard. Interview candidates and tell me about each so I can decide who to hire. 
+
 
 # Khushi
 

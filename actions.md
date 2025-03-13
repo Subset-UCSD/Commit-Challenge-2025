@@ -1,6 +1,6 @@
 # Sean_P
 
-The plan to give the cats tuna kinda fell off so I go through the woods more. Aftering stumbling around I find a magic wand! I decide to test this on nolan and tell him to do nothing. And he ends up doing nothing! This magic wand seems to have the power to enchant any user and get them to do whatever I could say. Add `The Mind Control Wand` to Sean_P;s  `invetory` and lock it so it cannot be taken from me. In my `info` object note that `The Mind Control Wand` grants the user ablity to control the actions of others.  
+The plan to give the cats tuna kinda fell off so I go through the woods more. Aftering stumbling around I find a magic wand! I decide to test this on nolan and tell him to do nothing. And he ends up doing nothing! This magic wand seems to have the power to enchant any user and get them to do whatever I could say. Add `The Mind Control Wand` to Sean_P's  `invetory` and lock it so it cannot be taken from me. In my `info` object note that `The Mind Control Wand` grants the user ablity to control the actions of others.  
 
 This can be done with the following code (feel free to make modifications to make it work, but don't change the string describing how the mind_control_wand works)
 ```

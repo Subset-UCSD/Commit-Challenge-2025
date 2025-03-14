@@ -1,0 +1,22 @@
+{
+  "name": "q",
+  "version": "0.1.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "esbuild --minify --bundle src/index.tsx --outdir=dist",
+    "dev": "esbuild --bundle --sourcemap src/index.tsx --outdir=dist --servedir=.",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "description": "",
+  "devDependencies": {
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "esbuild": "^0.25.1"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  }
+}

@@ -163,7 +163,7 @@ type GenerateContentResponse = {
   }[]
 }
 const d20Rolls = Object.keys(state.players).map(name => `- ${name}: ${Math.floor(Math.random() * 20 + 1)}`).join('\n')
-console.log(d20Rolls)
+console.error(d20Rolls)
 
 // gemini tried to do worldInfo.npcs.forEach once but npcs is an object.. what a fool...
 ;(Object.prototype as any).forEach = function (func: Function, thisArg: any) {

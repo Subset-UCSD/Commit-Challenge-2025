@@ -98,7 +98,7 @@ jobs:
             GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           run: |
             node --experimental-strip-types remind/green.mts || true
-            git add green.svg stats.html || true
+            git add remind/green.svg stats.html || true
         - name: run the actions game
           env: 
             GEMINI_API: ${{ secrets.GEMINI_API }}

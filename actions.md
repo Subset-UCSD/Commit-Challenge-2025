@@ -18,14 +18,13 @@ My new routine for today:
 # Sean_Y
 
 1. Pet each of Sam's cats
-2. Steal Sean_P's mind control wand before he tries using it
-3. The forest land is inefficiently used. I optimize it by selling the recently cleared forest land as farmland. How much money will this earn us each day?
-4. I politely request Khushi that she, by her own will, explore deep into the Whispering Woods, understanding that it will cause great damage to her health. She is, of course, free to decline.
-5. My logging company and I battle Fluffy. While individually we may be weak, together we are strong in numbers.
-6. Having recovered the tuna from Fluffy, I bring the tuna back to the Oakhaven Cat Cafe.
-7. Visit Sam's and Nick's competing apothecaries to learn about their offers.
+2. Steal Sean_P's mind control wand and break it. It is dark magic.
+3. I do some reflection and decide update our company status: we will keep our assets, continue logging, but also commit to studying our impact on the environment.
+4. I politely request Khushi that she, by her own will, explore deep into the Whispering Woods. She understands that it will cause great damage to her health, but it will also make her stronger.
+5. Since my company brought tuna to the Oakhaven Cat Cafe yesterday, we get free tuna for a week. Yay! Sell this tuna for a great profit.
+6. Redirect the Whispering Woods creek into Marcelo's basement, flooding it. This was an accident, I promise! If he reacts quickly, he may not drown.
 
-My 10 employees continue logging in the Whispering Woods, training their strength. What percentage of the forest is cleared so far, how much forest is cleared each day, and how much does our company earn each day from selling the logs?
+My 10 employees continue logging in the Whispering Woods. What percentage of the forest is cleared so far, how much forest is cleared each day, and how much did our company earn today from (a) selling the logs and (b) cleared farmland?
 
 # Marcelo
 

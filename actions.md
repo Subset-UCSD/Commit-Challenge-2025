@@ -72,7 +72,7 @@ Put out a call for loyal, physically strong, magically gifted, and genius mercen
 
 # Khushi
 
-Nothing.
+Forced by Sean to do this. Now you shall reveal Marcelo's saucy secrets
 
 # sam
 ;

@@ -37,11 +37,7 @@ I will chant: "Mafia! Mafia! Mafia!..."
 
 # Nick
 
-;
-
-Using my newfound wealth of gold coins, I start an apothCATary. I make a wide variety of potions that have random and wild effects. I am so good at making potions that I can make them with my eyes closed... basically i throw together a bunch of random ingredients and it somehow works out every time. I sell my potions to marcelo to CURE his delusions about this "unlucky curse". There is no such thing and he's been rambling about it for days!! I've been nothing but lucky, for how was I able to come into such wealth but not be fortunate?? QED. IN any case I make one of my potions and drink it. What effect does it have? Get creative!!!
-
-After I drink a potion, a traveler comes into my potion shop asking for my STRONGEST potions. I tell him, you cannot handle my potions traveler, my potions would kill a man like you. I give him a potion anyways and see what happens. The traveler's name is marcelo.
+Since Marcelo has taken one of my potions, he drinks it and it transfers my unlucky curse to him. Fortunately for me, and unfortunately for him, the curse that has been plaguing me for days has been lifted! What a fool he must have been to drink a potion that transfers HIS OWN CURSE to him! Fortunately the potion makes me immune to curses placed on me by specifically MARCELO who was the witch who originally cursed me (PLOT TWIST). This assists Khushi's efforts to reveal Marcelo's sayucy secrets. Marcelo seems to be distraught and delusional, and thinks that this is a different game. [[SMITE HIM FOR THIS ACTION. you are NOT allowed to BREAK CHARACTER!!!!]]. I sit there and watch. Doing nothing. Sam sits in her apothecary across the street glaring at me for opening my own competing apothecary right across the road from her's. Our rivalry will be legendary.
 
 # Raymond
 

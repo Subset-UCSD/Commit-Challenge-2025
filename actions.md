@@ -76,11 +76,3 @@ Forced by Sean to do this. Now you shall reveal Marcelo's saucy secrets
 
 # sam
 ;
-
-i go fishing for the entirety of the day. luck is on my side. i've caught it! the legendary fissh! yes, that's right, fissh with two s's! i use it to make a fish-flavored invisibility potion.
-
-i use my newly acquired map to artifact to confront the guardian. i offer it the potion. it happily accepts and rewards me with the lost artifact of purrington. my cats purr in satisfaction.
-
-i begin my trek back to oakhaven and admonish my cats for being able to be bribed with tuna. they should know that they can fetch far higher bribes than that. if anyone tries to bribe my cats, they must bring better fish than tuna.
-
-my cat count is now 12, as the lost artifact of purrington also awarded me with more foster cats who happily join my crew.

@@ -5,6 +5,7 @@ players:
     info:
       location: Simulation
       health: .inf
+      plan: sell timeshares on the Monopoly board
   Sean_P:
     health: 93
     inventory:
@@ -26,6 +27,7 @@ players:
         `players.Nolan.respond('You go about your day and do nothing')`. The LLM
         should also inform Sean_P that this occured successfully and state what
         action PLAYERNAME will now do"
+      cats_befriended: 2
   Sean_Y:
     health: 93
     inventory:
@@ -36,6 +38,11 @@ players:
     info:
       location: town square
       immune: true
+      logging_status: Sean_Y feels regret for their actions destroying the environment
+        and decides to shut down their company, sell all the assets and leave
+        the whispering woods alone.
+      moral_crisis: false
+      minion: Fluffy
   Marcelo:
     health: 47
     inventory:
@@ -58,8 +65,11 @@ players:
       coin: 1999989618
     info:
       location: town square
+      bodyguards:
+        - Bartholomew "Barty" Buttons
+        - Madame Evangeline
   Khushi:
-    health: 72
+    health: 62
     inventory: {}
     info:
       location: town square
@@ -82,9 +92,10 @@ players:
         magic_level: 5
       is_cat: true
       cats: 12
-day: 11
+day: 12
 worldInfo:
-  weather: ominous
+  weather: The rubber chickens, now a permanent feature of the weather, begin
+    laying eggs...filled with limericks.
   day: 10
   nick_blocked: false
   death_clock: 1
@@ -124,7 +135,7 @@ worldInfo:
     sentient: false
     affected:
       - town square
-    effect: Causes everyone to speak in limericks.
+    effect: Causes increasingly elaborate and nonsensical rhymes to erupt
   townName: Oakhaven
   cat_apocalypse: true
   borrowed_from_raymond:
@@ -250,114 +261,24 @@ worldInfo:
     offered_by: Sean_Y
     days_left: 3
   tuna_theft: true
-  forestCleared: 10
+  forestCleared: 20
   dailyForestClearance: 10
-  companyEarnings: 200
-  dailyEarnings: 200
+  companyEarnings: 300
+  dailyEarnings: 100
   tunaThief:
     name: Fluffy
     location: Whispering Woods Hideout
     health: 80
-previousResponses:
-  players:
-    Nolan: >-
-      As you settle into a comfortable chair in the tavern, you trip down the
-      stairs! You lose 4 health. Your health is now 91.
-
-
-      The limerick-speaking breeze persists, but with interpretive dance, as
-      always. You transform the sentient storm into a flock of rubber chickens
-      that squawk limericks, affecting the town's 'humor' stat. Taking another
-      step through the fifth wall, you find the source is chess pieces using
-      mortals. Your past self helps devising the scheme.
-    Sean_P: >-
-      As you settle into a comfortable chair in the tavern, you trip down the
-      stairs! You lose 4 health. Your health is now 93.
-
-
-      You venture deeper into the woods and discover 'The Mind Control Wand'!
-      You tested the wand on Nolan, and he did nothing as commanded. You've also
-      successfully made player Raymond remove 10000 of his coins
-    Sean_Y: >-
-      As you settle into a comfortable chair in the tavern, you trip down the
-      stairs! You lose 3 health. Your health is now 93.
-
-
-      You pet each of Sam's cats, earning a chorus of purrs. Your employees have
-      cleared 10 acres of the Whispering Woods today. Total acres cleared: 10.
-      Y-Logs earned 200 coins today. Total earnings: 200 coins.
-
-
-      Following the Tuna Trail:
-
-
-      You investigate the docks and find signs of a hasty departure and a trail
-      of fish scales.
-
-
-      You track the tuna thief into the Whispering Woods. You find a hideout
-      with crates of tuna! A large, fluffy cat guards the tuna.
-
-
-      You are now at stage 3 of 'The Case of the Missing Tuna'. Confront the
-      tuna thief: Fluffy, the giant cat!
-    Marcelo: >-
-      As you settle into a comfortable chair in the tavern, you trip down the
-      stairs! You lose 3 health. Your health is now 47.
-
-
-      You are on hiatus from adventuring in Oakhaven.
-    Nick: >-
-      As you settle into a comfortable chair in the tavern, you trip down the
-      stairs! You lose 1 health. Your health is now 98.
-
-
-      Because of the unlucky curse, you start an apothCATary, but your attempts
-      to create potions result in a series of comical mishaps. You try to make a
-      'cure' for Marcelo's 'delusions,' but instead, you accidentally create a
-      potion that turns your own ears inside out! You drink a potion that gives
-      you hiccups that cause you to teleport randomly around the shop for 5
-      seconds at a time.
-
-
-      Marcelo arrives in your apothCATary, and you give him a potion anyways.
-    Raymond: >-
-      As you settle into a comfortable chair in the tavern, you trip down the
-      stairs! You lose 4 health. Your health is now 89.
-
-
-      I want to give my coins to charity! To do this, in code you can do the
-      following: `players.Raymond.removeItem("coin", 10000)`
-    Khushi: As you settle into a comfortable chair in the tavern, you trip down the
-      stairs! You lose 3 health. Your health is now 72.
-    sam: >-
-      As you settle into a comfortable chair in the tavern, you trip down the
-      stairs! You lose 2 health. Your health is now 96.
-
-
-      You spend the day fishing and catch the legendary 'fissh'! You craft a
-      fish-flavored invisibility potion.
-
-
-      Using your new map, you confront the guardian of the Lost Artifact of
-      Purrington. You offer it the fish-flavored invisibility potion, which it
-      happily accepts. In return, you receive the Lost Artifact of Purrington!
-      Your cats purr with satisfaction.
-
-
-      Returning to Oakhaven, you scold your cats for being easily bribed with
-      tuna. They should know their worth! Your cat count is now 12.
-  world: >-
-    The morning dawns with an unusual stillness, though the limerick plague
-    continues to ripple through Oakhaven. A rumor spreads of a wand discovered
-    in the Whispering Woods, and the scent of tuna lingers in the air, a
-    constant reminder of the missing shipment. The cats of Oakhaven seem
-    restless, their eyes gleaming with anticipation or simmering with
-    discontent. The Whispering Woods are more alive than ever, as Sean_Y's
-    logging company continues it's operations, the sounds of wood being chopped
-    are abundant.
-
-
-    Sean_Y continues logging, but due to the cat apocalypse, efficiency is
-    lowered because the cats keeps getting into the machinery and stealing wood
-    for their cat houses.
+    status: loyal minion
+  town_humor_stat: increases marginally, but the sheer absurdity begins to wear on the residents
+  hidden_layer: a giant game of cosmic *Monopoly*, with entire realities as properties
+  monopoly_board: a way to amass more power than previously thought possible...but
+    also exposes the world to new levels of corporate greed
+  farmland_income_per_day: 100
+  marcelo_chanting: Mafia! Mafia! Mafia!
+  nick_status: observing the chaos with amusement
+  great_monopoly_game: Explore the cosmic *Monopoly* board, acquire properties,
+    and navigate the dangers of interdimensional capitalism.
+  cat_uprising: Investigate the underlying causes of feline discontent and find a
+    way to restore harmony between humans and cats.
+  whispering_plague: The plague has been around for too long. It must be quelled!

@@ -18,10 +18,14 @@ My new routine for today:
 # Sean_Y
 
 1. Pet each of Sam's cats
-2. My 10 employees continue logging in the Whispering Woods. Please keep track of the amount of forest cleared, how much forest is cleared each day, and how much our company earns each day from selling the logs.
-3. Search the docks for clues about the missing tuna. Track the tuna thief through the Whispering Woods. Confront the tuna thief and recover the stolen tuna. Return the tuna to the Oakhaven Cat Cafe and restore feline peace.
+2. Steal Sean_P's mind control wand before he tries using it
+3. The forest land is inefficiently used. I optimize it by selling the recently cleared forest land as farmland. How much money will this earn us each day?
+4. I politely request Khushi that she, by her own will, explore deep into the Whispering Woods, understanding that it will cause great damage to her health. She is, of course, free to decline.
+5. My logging company and I battle Fluffy. While individually we may be weak, together we are strong in numbers.
+6. Having recovered the tuna from Fluffy, I bring the tuna back to the Oakhaven Cat Cafe.
+7. Visit Sam's and Nick's competing apothecaries to learn about their offers.
 
-Here's some intel about Marcelo: He ambiently takes damage unless he activately tries to stop it. But is he right now?
+My 10 employees continue logging in the Whispering Woods, training their strength. What percentage of the forest is cleared so far, how much forest is cleared each day, and how much does our company earn each day from selling the logs?
 
 # Marcelo
 

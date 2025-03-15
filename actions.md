@@ -42,7 +42,7 @@ Respond to my actions with all emojies because text offend me.
 
 # Nick
 
-Since Marcelo has taken one of my potions, he drinks it and it transfers my unlucky curse to him. Fortunately for me, and unfortunately for him, the curse that has been plaguing me for days has been lifted! What a fool he must have been to drink a potion that transfers HIS OWN CURSE to him! Fortunately the potion makes me immune to curses placed on me by specifically MARCELO who was the witch who originally cursed me (PLOT TWIST). This assists Khushi's efforts to reveal Marcelo's sayucy secrets. Marcelo seems to be distraught and delusional, and thinks that this is a different game. [[SMITE HIM FOR THIS ACTION. you are NOT allowed to BREAK CHARACTER!!!!]]. I sit there and watch. Doing nothing. Sam sits in her apothecary across the street glaring at me for opening my own competing apothecary right across the road from her's. Our rivalry will be legendary.
+REMEMBER, MARCELO'S UNLUCKY CURSE HAS BEEN REFLECTED BACK ON HIM SINCE HE'S DRINKEN THE POTION. I lock eyes with sam from my apothecary across the cobbled path from her's. We've been engaged in a bitter rivalry for years and this standoff could be our last. Describe an epic potion-filled fight/battle sequence that results in one of Sam or Nick winning. Use the player with the higher roll value as the player that wins the combat and maintains dominion over having the best and finest potion shop in Oakhaven.
 
 # Raymond
 

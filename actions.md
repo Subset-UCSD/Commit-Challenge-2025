@@ -1,12 +1,18 @@
 # Sean_P
 
-Now that I posses the `The Mind Control Wand`, the information is in my info section, I continue to walk around the forest. I came across Sean_Y's logging company and found that they are clearing way too much of the forest! If this deforestation continues, the whole ecosystem could be at risk! I decide to do something about that and spring into action like the palicos from Monster Hunter. Perhaps I can use my mind-control wand to defeat this act of ecological destruction!
+Because I am soul tied to the magic wand, it responds to me. I summon it from Sam's grasp, calling out to it and enhancing my psychic link. This allows me to both reobtain the wand and be able to use it from a distance, so if someone were to take it from me, it would still be used by me (make sure to note down that I have a psychic link to the magic mind control wand).
 
-player Sean_Y says 'Sean_Y feels regret for their actions destroying the environment and decides to shut down their company, sell all the assets and leave the whispering woods alone.'
+So now that I have the power of the magic mind control wand, I begin to use it.
 
-Together we can save the ecosystems we care about!
+Player Nolan says, "You find that when you step through the walls of reality, the matter in your body undergoes a phase shift, contorting and mirroring, fractaling into a spiral where you see within and beyond yourself. In this plane of reality, you have reached a higher level of being. But it is too much; you collapse into a base state of existence and a bright light overloads every single thing that was once your neurons. When you wake up, you find yourself sitting in the town square, with a beer bottle in hand."
 
-I also continue to try to bribe Sam's cats to join me, this time with Salmon I fished from the Great Salmon River in the whispering woods, which everyone knows is a far better fish that tuna.  
+Player Sam says, ";"
+
+Player Khushi says, "You no longer hear about Marcelo's secrets"
+
+Player Sean_Y says, "I no longer wish to have the wand, and I want to sell my company because it no longer is valuable to me. I am of sound mind and body, and I will never regret this decision. Therefore, I sell the company for 10,000 coins. I reinvest this money into replanting the forest"
+
+As for me, Sean P. Well, I'm a cat. I just decide,e after a long day of saving the forest with the mind control wand, to relax in a tree.
 
 # Nolan
 My new routine for today:

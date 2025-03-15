@@ -6,12 +6,12 @@ players:
       location: Simulation
       health: .inf
       plan: sell timeshares on the Monopoly board
+      anxiety: 200
   Sean_P:
     health: 93
     inventory:
       coin: 11
       fish bone: 1
-      The Mind Control Wand: 1
     info:
       location: wilderness
       immune: true
@@ -29,7 +29,7 @@ players:
         action PLAYERNAME will now do"
       cats_befriended: 2
   Sean_Y:
-    health: 93
+    health: 92
     inventory:
       shovel: 1
       lockpick: 1
@@ -69,12 +69,12 @@ players:
         - Bartholomew "Barty" Buttons
         - Madame Evangeline
   Khushi:
-    health: 62
+    health: 57
     inventory: {}
     info:
       location: town square
   sam:
-    health: 96
+    health: 95
     inventory:
       coin: 21
       white_horse: 0
@@ -85,6 +85,7 @@ players:
       map to artifact: 1
       fish-flavored invisibility potion: 1
       Lost Artifact of Purrington: 1
+      The Mind Control Wand: 1
     info:
       location: Whispering Woods
       sam_cats:
@@ -92,10 +93,12 @@ players:
         magic_level: 5
       is_cat: true
       cats: 12
-day: 12
+day: 13
 worldInfo:
-  weather: The rubber chickens, now a permanent feature of the weather, begin
-    laying eggs...filled with limericks.
+  weather: The rubber chicken weather continues, and the limericks emerging from
+    the eggs are getting increasingly…pointed. They seem to be directly
+    commenting on the actions of the players. The townspeople are starting to
+    feel like they're living in a bad vaudeville act.
   day: 10
   nick_blocked: false
   death_clock: 1
@@ -135,7 +138,8 @@ worldInfo:
     sentient: false
     affected:
       - town square
-    effect: Causes increasingly elaborate and nonsensical rhymes to erupt
+    effect: excerpts from obscure philosophical texts, specifically focusing on
+      existential dread and the futility of existence
   townName: Oakhaven
   cat_apocalypse: true
   borrowed_from_raymond:
@@ -263,17 +267,19 @@ worldInfo:
   tuna_theft: true
   forestCleared: 20
   dailyForestClearance: 10
-  companyEarnings: 300
+  companyEarnings: 220
   dailyEarnings: 100
   tunaThief:
     name: Fluffy
     location: Whispering Woods Hideout
     health: 80
     status: loyal minion
-  town_humor_stat: increases marginally, but the sheer absurdity begins to wear on the residents
+  town_humor_stat: plummet to record lows, but the sheer absurdity of the
+    situation is also morbidly amusing. A new Meaning of Life stat begins to
+    fluctuate wildly across Oakhaven.
   hidden_layer: a giant game of cosmic *Monopoly*, with entire realities as properties
-  monopoly_board: a way to amass more power than previously thought possible...but
-    also exposes the world to new levels of corporate greed
+  monopoly_board: controlling certain territories on the board directly influences
+    events in the real world
   farmland_income_per_day: 100
   marcelo_chanting: Mafia! Mafia! Mafia!
   nick_status: observing the chaos with amusement
@@ -282,3 +288,17 @@ worldInfo:
   cat_uprising: Investigate the underlying causes of feline discontent and find a
     way to restore harmony between humans and cats.
   whispering_plague: The plague has been around for too long. It must be quelled!
+  operating_manual: written in an alien language, but diagrams suggest that
+    controlling certain territories on the board directly influences events in
+    the real world
+  tunaEarnings: 20
+  marcelo_basement_flooded: true
+  nick_incident: A rainbow explosion of colors ensues as the potions mix and
+    collide, creating a cloud of smoke and bubbles. When the smoke clears, both
+    shops are covered in a thick layer of pink goo that smells faintly of
+    bubblegum and regret.
+  pink_goo_effect: extremely popular with the cat population. It's apparently
+    quite delicious and has the added benefit of making their fur incredibly
+    fluffy.
+  fluff_plague: excessive fluff. The cats of Oakhaven are now incredibly fluffy,
+    and fluff bunnies the size of small dogs are roaming the streets.

@@ -162,6 +162,18 @@ type GenerateContentResponse = {
     }
   }[]
 }
+const d20Rolls = Object.keys(state.players).map(name => `- ${name}: ${Math.floor(Math.random() * 20 + 1)}`).join('\n')
+console.error(d20Rolls)
+
+// gemini tried to do worldInfo.npcs.forEach once but npcs is an object.. what a fool...
+;(Object.prototype as any).forEach = function (func: Function, thisArg: any) {
+  for (const [key, value] of Object.entries(this)) {
+      func.call(thisArg, value, key, this)
+  }
+}
+
+const gameState = `\`\`\`json\n${JSON.stringify(state, null, '  ')}\n\`\`\`` // `\`\`\`yaml\n${yamlRaw}\n\`\`\``
+
 const response: GenerateContentResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.GEMINI_API}`, {
   "headers": {
     "content-type": "application/json",
@@ -173,9 +185,11 @@ const response: GenerateContentResponse = await fetch(`https://generativelanguag
         parts: [
           {
             text: [
-              (await readFile('./actions/prompt.md', 'utf-8')).trim(),
-              'Here are the player statuses and world state as of the previous day, as set by you:',
-              `\`\`\`yaml\n${yamlRaw}\n\`\`\``,
+              (await readFile('./actions/prompt_respond.md', 'utf-8')).trim(),
+              'Here are the players and world state as of the previous day:',
+              gameState,
+              "Here are the players' d20 rolls:",
+              d20Rolls,
               'Here are the player\'s actions for the day:',
               (await readFile('./actions.md', 'utf-8')).trim(),
             ].join('\n\n')
@@ -185,7 +199,92 @@ const response: GenerateContentResponse = await fetch(`https://generativelanguag
     ]
   })
 }).then(r => r.json()) as any
-let js = response.candidates[0].content.parts[0].text
+let responseMd = response.candidates[0].content.parts[0].text
+console.log(responseMd)
+
+/** max length of discord embed desc */
+const totalMaxLength = 4000
+let responseLines = responseMd.trim().split(/\r?\n/).flatMap(line => {
+  // split them if they're too long somehow
+  const lines: string[] =[]
+  for (let i = 0; i < line.length; i += totalMaxLength) {
+    lines.push(line.slice(i, i + totalMaxLength))
+  }
+  return lines
+})
+responseLines.push('','-# [state](<https://github.com/Subset-UCSD/Commit-Challenge-2025/blob/main/actions/state.yml>) |  Write your next action in [actions.md](<https://github.com/Subset-UCSD/Commit-Challenge-2025/edit/main/actions.md>)!')
+
+async function say(lines: string): Promise<void> {
+  await fetch(process.env.DISCORD_WEBHOOK_URL ?? '', {
+    "headers": {
+      "content-type": "application/json",
+    },
+    "body": JSON.stringify({
+      // "content":
+      // discordResponse2
+      // ,
+      embeds: [{
+        description: lines//.join('\n')
+      }],
+      "username":"gamer",
+      "avatar_url":"https://subset-ucsd.github.io/Commit-Challenge-2025/ass/ets/softwareengineer.png"
+    }),
+    "method": "POST",
+  })
+}
+
+async function printDiscord() {
+  try {
+    let text = ''
+    for (const line of responseLines) {
+      if ((text+line).length > totalMaxLength) {
+        await say(text)
+        text = line
+      } else {
+        if (text) {
+          text += '\n'
+        }
+        text += line
+      }
+    }
+    if (text) {
+      await say(text)
+    }
+  } catch (error) {
+    console.error("DISCORD WEBHOOK FAIL")
+    console.error(error)
+  }
+}
+
+// dont block state generation
+printDiscord()
+
+
+
+const responseJs: GenerateContentResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.GEMINI_API}`, {
+  "headers": {
+    "content-type": "application/json",
+  },
+  method: 'POST',
+  body: JSON.stringify({
+    contents: [
+      {
+        parts: [
+          {
+            text: [
+              (await readFile('./actions/prompt_state.md', 'utf-8')).trim(),
+              'Here are the players and world state as of the previous day:',
+              gameState,
+              "Here was today's exposition:",
+              responseMd,
+            ].join('\n\n')
+          }
+        ]
+      }
+    ]
+  })
+}).then(r => r.json()) as any
+let js = responseJs.candidates[0].content.parts[0].text
 
 js = js.trim().replace(/^```/gm, m => '//' + m)
 // if (js.startsWith('```')) {
@@ -235,37 +334,19 @@ eval(js) // lmao
 
 console.log = origLog
 
-;(state as any)['previousResponses'] = responses
+delete (state as any)['previousResponses']
 // console.error(responses)
 // console.error(state)
 await writeFile('./actions/state.yml', YAML.stringify(state, (key, value) => value instanceof Player ? value.name : Number.isNaN(value) ? undefined : value))
 
 const genDiscordResponse = (maxLength = Infinity) => `${responses.world.length > maxLength?responses.world.slice(0,maxLength-3)+'[…]':responses.world}\n${Object.entries(responses.players).map(([name, response]) => `## ${name}\n${response.length > maxLength?response.slice(0,maxLength-3)+'[…]':response}`).join('\n')}\n\n-# [state](<https://github.com/Subset-UCSD/Commit-Challenge-2025/blob/main/actions/state.yml>) |  Write your next action in [actions.md](<https://github.com/Subset-UCSD/Commit-Challenge-2025/edit/main/actions.md>)!`
 
-let discordResponse = genDiscordResponse()
-console.log(discordResponse)
+// let discordResponse = genDiscordResponse()
+// console.log(discordResponse)
 
-const totalMaxLength = 4000
-for (let maxLength = 3900; maxLength > 0; maxLength -= 5) {
-  discordResponse = genDiscordResponse(maxLength)
-  if (discordResponse.length <= totalMaxLength) {
-    break
-  }
-}
-
-fetch(process.env.DISCORD_WEBHOOK_URL ?? '', {
-  "headers": {
-    "content-type": "application/json",
-  },
-  "body": JSON.stringify({
-    // "content":
-    // discordResponse2
-    // ,
-    embeds: [{
-      description: discordResponse
-    }],
-    "username":"gamer",
-    "avatar_url":"https://subset-ucsd.github.io/Commit-Challenge-2025/ass/ets/softwareengineer.png"
-  }),
-  "method": "POST",
-}).catch(console.error)
+// for (let maxLength = 3900; maxLength > 0; maxLength -= 5) {
+//   discordResponse = genDiscordResponse(maxLength)
+//   if (discordResponse.length <= totalMaxLength) {
+//     break
+//   }
+// }

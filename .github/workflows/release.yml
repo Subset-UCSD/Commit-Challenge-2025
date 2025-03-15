@@ -93,6 +93,12 @@ jobs:
           uses: actions/setup-node@v4
           with:
             node-version: 22
+        - name: generate stats page
+          env:
+            GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          run: |
+            node --experimental-strip-types remind/green.mts || true
+            git add remind/green.svg stats.html || true
         - name: run the actions game
           env: 
             GEMINI_API: ${{ secrets.GEMINI_API }}

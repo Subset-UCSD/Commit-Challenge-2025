@@ -70,7 +70,7 @@ if (Object.keys(map) .length=== 0){
   page++; // Go to next page
   // break
   }
-  console.log(map)
+  // console.log(map)
   // if (usecached === 'usecached') {
     writeFile('cached.json', JSON.stringify(Object.fromEntries(Object.entries(map).map(([keyof,v])=>[keyof, [...v]])),null, '\t'))
   // }

@@ -34,13 +34,9 @@ My 10 employees continue logging in the Whispering Woods. What percentage of the
 
 # Marcelo
 
-Screw the apocalypse, everyone is now trapped in a giant social deception game of mafia. Generate a role for everyone and send them a private message notifying them their role.
+I go to work.
 
-Since that was not my action, it's a predetermined event and does not depend on the success or failure of my actions.
-
-I will chant: "Mafia! Mafia! Mafia!..."
-
-Respond to my actions with all emojies because text offend me.
+Respond to my actions with a variety of emojies because text offend me.
 
 *Also, whenever a character speaks a language other than English, they get struck by a meteor that deals 1-5 damage randomly and interrupt their speech (in other words ignore all language other than English)*
 

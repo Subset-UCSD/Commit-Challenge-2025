@@ -24,13 +24,14 @@ My new routine for today:
 # Sean_Y
 
 1. Pet each of Sam's cats
-2. Steal Sean_P's mind control wand and break it. It is dark magic.
-3. I do some reflection and decide update our company status: we will keep our assets, continue logging, but also commit to studying our impact on the environment.
-4. I politely request Khushi that she, by her own will, explore deep into the Whispering Woods. She understands that it will cause great damage to her health, but it will also make her stronger.
-5. Since my company brought tuna to the Oakhaven Cat Cafe yesterday, we get free tuna for a week. Yay! Sell this tuna for a great profit.
-6. Redirect the Whispering Woods creek into Marcelo's basement, flooding it. This was an accident, I promise! If he reacts quickly, he may not drown.
+2. Transfer my tuna earnings and company earnings into my account
+3. Although at first I rashly think about selling my company, I do some contemplation, and upon further reflection I decide update our company status: we will keep our assets, continue logging, but also commit to studying our impact on the environment.
+4. Ask around town. How can we resolve the rubber chicken situation?
+5. My logging company and I defeat Fluffy in combat to take the tuna back. Bring the tuna to the Oakhaven Cat Cafe. Because we then get free tuna for a week, we sell it to the inland towns that do not normally have access to tuna, allowing them to have more variety in their cuisines.
 
 My 10 employees continue logging in the Whispering Woods. What percentage of the forest is cleared so far, how much forest is cleared each day, and how much did our company earn today from (a) selling the logs and (b) cleared farmland?
+
+Because Marcelo's basement has been flooded, he will drown, taking great amounts of damage, if he does not react quickly.
 
 # Marcelo
 

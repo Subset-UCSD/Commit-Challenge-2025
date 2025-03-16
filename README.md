@@ -58,6 +58,106 @@ Project | Description | Technologies | Files
 godot web export test | | godot | `godot-web-export-test/`
 ❌ purr | enforces "you must commit to main." if you open a PR it will close it and delete the branch | github actions | `.github/workflows/purr.yml`
 [🍉 fruit merge](https://subset-ucsd.github.io/Commit-Challenge-2025/fruit-merge/) | | html | `fruit-merge/`
+[👑 queens](https://subset-ucsd.github.io/Commit-Challenge-2025/👑/) | [queens](https://www.linkedin.com/games/queens/) puzzle designer. can a queens puzzle with equally sized regions exist? | react | `👑/`
+
+## Actions Lore
+
+<figure>
+  <img src="./doxx/actions1.png" alt="prompt, player actions, previous state -> Gemini -> JavaScript (-> next state -> GitHub repo), (-> responses (-> next state), (-> Discord server))" />
+  <figcaption>
+
+**Figure 2.** Architecture diagram or flow or something of how the actions game was initially set up
+  
+  </figcaption>
+</figure>
+
+Initially, the actions game was implemented as shown in (Figure 2):
+
+1. We had three files in the repo:
+
+   - `prompt.md`: the prompt defining instructions and a JavaScript API (defined with TypeScript declarations) to manage the state
+
+   - `state.yml`: contains the game state as mostly unstructured data:
+
+      - `players`: a map of player name to a player object. The prompt used to recommend using methods like `setInfo` to edit the object, but I felt that this could discourage it from making more complicated structures. For example, to edit an object in `info`, it had to repeat the entire existing object in code. I then changed it to recommend mutating `health` and `info` directly.
+
+        - `health`: originally managed with `changeHealth`
+        - `inventory`: map of item name to count. managed with `addItem`, `removeItem`, so once an item goes to 0, it gets deleted. had a bug where Gemini inadvertently passed `undefined` as the count, setting the count to `NaN`
+        - `info`: unstructured data, originally managed with `setInfo`
+
+      - `worldInfo`: unstructured data, originally managed with `setWorldInfo`
+
+      - `previousResponses`: stored the responses generated in the previous day
+
+        This means that the game only has a reliable context window of only one day, after which we rely on Gemimi storing data in the state properties.
+
+   - `actions.md`: the player input
+
+1. The above three files were given as the prompt to Gemini and used to generate JavaScript code.
+
+   While Gemini offers a way to separate the system prompt from user prompt, part of the enjoyment of an LLM-based game is to try to gaslight the bot, so we decided to combine both the game prompt and user actions into one prompt.
+
+1. Process the JavaScript file a bit.
+
+   Gemini likes to wrap code in backticks. I think, again, Gemini offers better ways to return code, but using a regular expression to comment those backticks out have been reliable enough.
+
+   After removing the player/world info setter methods, it turned out that Gemini would sometimes get property accesses wrong, so a long property access like `player.Sam.info.cats.count` might be missing a key, resulting in a runtime error that crashes the game. I have another regular expression that wraps these property accesses with code that creates the necessary objects before making the property access.
+
+1. Evaluate the JavaScript.
+
+   ```js
+   eval(js)
+   ```
+
+   This would probably be a bad idea in general, but all players of this game already have write access to the repo, so this doesn't let them do more damage than they already can.
+
+1. Collect the responses.
+
+   Part of the API we define for Gemini included `.respond()` for players and `describeDay()` for the world and instructions requiring these be called at least once. Multiple calls result in multiple paragraphs. One curiosity is that sometimes Gemini thinks it's also a getter when called with no arguments, so it once tried to use it to concatenate to a previous response.
+
+1. Send the responses to three places:
+
+   - A Discord webhook to display the results in our Discord server. However, due to Discord's character limit, oftentimes responses had to be truncated, which made it annoying to read.
+   - The state's `previousResponses`.
+   - Standard output, which was used as the commit message by the GitHub Actions workflow.
+
+1. Save the new state into `state.yml` and commit and push the changes to the repo for the next day.
+
+We also had a few unwritten rules:
+
+- Don't directly edit others' actions (but you can use your prompt to gaslight the game and change others' actions).
+- You can move your action in the file (i.e. change the order of players in `actions.md`).
+- Looking at the state file is fair game because it defines the memory of the game. If it's not in the state file, it's not canon.
+- Don't edit the game prompt for your own benefit.
+
+There were a few issues with this setup, though:
+
+- Gemini would say things but not save them in the state, meaning that it'll forget about it as soon as a day later.
+- The game wasn't providing much gameplay on its own, so we eventually got bored of the game and weren't sure what to do next. We had to beg it to generate quests for us.
+- It was too easy to gaslight the game. This was fun at first, but it eventually got boring.
+
+<figure>
+  <img src="./doxx/actions2.png" alt="prompt, player actions, d20 rolls, previous state -> Gemini -> responses (-> Discord server), state prompt, previous state -> Gemini -> JavaScript -> next state -> GitHub repo" />
+  <figcaption>
+
+**Figure 4.** Architecture diagram of actions game v2
+
+  </figcaption>
+</figure>
+
+To fix the game state issue, we tried splitting the Gemini calls in two:
+
+1. **Response**: The first call generates the responses for players (so `.respond()` and `describeDay()` were removed) as prose in Markdown, based on the previous state and player actions.
+
+   Generating it in plain text rather than separate `respond()` calls seemed to have encouraged it to write more, and the responses per player seemed more coherent in general.
+
+2. **State**: The second call edits the state object based on the generated responses. It has access to the previous game and responses, but not the player actions, hopefully making it harder to change the game state by gaslighting the bot.
+
+   To reduce the context size and to encourage relying more on the state object, I also removed `previousResponses` from the state object, so the first call doesn't have access to its previous output.
+
+To prevent players from pretending to be system administrators, we asked Gemini to ignore them. Hopefully that works!
+
+We also introduced a d20 roll system. Before the first Gemini call, we generate a random number from 1 to 20 in JavaScript (i.e., an LLM does not generate them) for each player. We include these numbers in the prompt for the first call, and ask Gemini to use these to determine the success of each player's action. This should hopefully limit the effectiveness of players jailbreaking the prompt.
 
 # :memo: Current To-Dos
 

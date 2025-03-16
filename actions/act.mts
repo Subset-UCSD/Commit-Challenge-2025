@@ -214,8 +214,8 @@ let responseLines = responseMd.trim().split(/\r?\n/).flatMap(line => {
 })
 responseLines.push('','-# [state](<https://github.com/Subset-UCSD/Commit-Challenge-2025/blob/main/actions/state.yml>) |  Write your next action in [actions.md](<https://github.com/Subset-UCSD/Commit-Challenge-2025/edit/main/actions.md>)!')
 
-async function say(lines: string): Promise<void> {
-  await fetch(process.env.DISCORD_WEBHOOK_URL ?? '', {
+async function say(lines: string, footer: string): Promise<void> {
+  const r = await fetch(process.env.DISCORD_WEBHOOK_URL ?? '', {
     "headers": {
       "content-type": "application/json",
     },
@@ -225,30 +225,41 @@ async function say(lines: string): Promise<void> {
       // ,
       embeds: [{
         description: lines//.join('\n')
+        ,
+        "footer": {
+          "text": footer
+        },
       }],
       "username":"gamer",
       "avatar_url":"https://subset-ucsd.github.io/Commit-Challenge-2025/ass/ets/softwareengineer.png"
     }),
     "method": "POST",
   })
+  if (!r.ok) {
+    console.error(await r.text())
+  }
 }
 
 async function printDiscord() {
-  try {
-    let text = ''
-    for (const line of responseLines) {
-      if ((text+line).length > totalMaxLength) {
-        await say(text)
-        text = line
-      } else {
-        if (text) {
-          text += '\n'
-        }
-        text += line
+  const blocks: string[] = []
+  let text = ''
+  for (const line of responseLines) {
+    if ((text+line).length > totalMaxLength) {
+      blocks.push(text)
+      text = line
+    } else {
+      if (text) {
+        text += '\n'
       }
+      text += line
     }
-    if (text) {
-      await say(text)
+  }
+  if (text) {
+    blocks.push(text)
+  }
+  try {
+    for (const [i,block] of blocks.entries()) {
+      await say(block, `Page ${i+1} of ${blocks.length}`)
     }
   } catch (error) {
     console.error("DISCORD WEBHOOK FAIL")

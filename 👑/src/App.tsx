@@ -84,7 +84,7 @@ const color = getCell(i,j)
         setCurrent(size - 2)
       }
     }}>&minus;</button>
-      {hexColors.slice(0, size).map((color, i) => <button className={`color ${i === current ? 'current':''}`} style={{backgroundColor: color}} aria-label={`Select color ${i+1}`}  key={i}>{keys[i]}</button>)}
+      {hexColors.slice(0, size).map((color, i) => <button className={`color ${i === current ? 'current':''}`} style={{backgroundColor: color}} aria-label={`Select color ${i+1}`}  key={i} onClick={() => setCurrent(i)}>{keys[i]}</button>)}
     <button className="color" aria-label="Increase board size" disabled={size >= hexColors.length} onClick={() => setSize(s => s + 1)}>+</button>
     </div>
     <div className="puzzle" style={{ '--size': String(size) }} 

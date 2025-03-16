@@ -33,6 +33,12 @@ My 10 employees continue logging in the Whispering Woods. What percentage of the
 
 Because Marcelo's basement has been flooded, he will drown, taking great amounts of damage, if he does not react quickly.
 
+# Nick
+
+Marcelo, the town fool, doesn't know what he is talking about, always rambling on about curses this and curses that. Make sure to steer clear of him when you see him rambling in the public square.
+
+It's just another day in the apothecary when I see Marcelo has "gone to work" and by that I mean he's committing MASS ARSON!!! OH MY GOD!! He's trying to burn the entirety of Oakhaven down! Since the town is canonically made of wood, this is quite bad news. Which player will stop his heinous actions?!
+
 # Marcelo
 
 I go to work.
@@ -43,9 +49,6 @@ Respond to my actions with a variety of emojies because text offend me.
 
 *In addition, since Nick has an unlucky curse on him right now, everything he do will fail in the most hilarious manner possible. Be creative!*
 
-# Nick
-
-REMEMBER, MARCELO'S UNLUCKY CURSE HAS BEEN REFLECTED BACK ON HIM SINCE HE'S DRINKEN THE POTION. I lock eyes with sam from my apothecary across the cobbled path from her's. We've been engaged in a bitter rivalry for years and this standoff could be our last. Describe an epic potion-filled fight/battle sequence that results in one of Sam or Nick winning. Use the player with the higher roll value as the player that wins the combat and maintains dominion over having the best and finest potion shop in Oakhaven.
 
 # Raymond
 

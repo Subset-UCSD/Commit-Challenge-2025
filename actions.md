@@ -37,7 +37,9 @@ Because Marcelo's basement has been flooded, he will drown, taking great amounts
 
 Marcelo, the town fool, doesn't know what he is talking about, always rambling on about curses this and curses that. Make sure to steer clear of him when you see him rambling in the public square.
 
-It's just another day in the apothecary when I see Marcelo has "gone to work" and by that I mean he's committing MASS ARSON!!! OH MY GOD!! He's trying to burn the entirety of Oakhaven down! Since the town is canonically made of wood, this is quite bad news. Which player will stop his heinous actions?!
+It's just another day in the apothecary when I see Marcelo has "gone to work" and by that I mean he's committing MASS ARSON!!! OH MY GOD!! He's trying to burn the entirety of Oakhaven down! Since the town is canonically made of wood, this is quite bad news. Which player will stop his heinous actions?! 
+
+I will take a catnap in the tree with Sean_P while I watch this unfold.
 
 # Marcelo
 

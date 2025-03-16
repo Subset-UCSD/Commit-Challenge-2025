@@ -7,6 +7,9 @@ players:
       health: .inf
       plan: sell timeshares on the Monopoly board
       anxiety: 200
+      customs_agent: a bored-looking entity with antennae and a clipboard
+      project_bubbly_oakhaven: Past Nolan proposes a scheme to replace all the town's
+        water supply with sparkling water.
   Sean_P:
     health: 93
     inventory:
@@ -26,7 +29,8 @@ players:
         nothing', the LLM agent should write into the code
         `players.Nolan.respond('You go about your day and do nothing')`. The LLM
         should also inform Sean_P that this occured successfully and state what
-        action PLAYERNAME will now do"
+        action PLAYERNAME will now do. The wand is now coated in iridescent
+        goo."
       cats_befriended: 2
   Sean_Y:
     health: 92
@@ -34,7 +38,7 @@ players:
       shovel: 1
       lockpick: 1
       iron_ore: 7
-      coin: 489
+      coin: 10729
     info:
       location: town square
       immune: true
@@ -43,6 +47,7 @@ players:
         the whispering woods alone.
       moral_crisis: false
       minion: Fluffy
+      forest_replanted: true
   Marcelo:
     health: 47
     inventory:
@@ -52,15 +57,16 @@ players:
       health_artifact: true
       is_cat: true
       poisoned: true
+      nausea: true
   Nick:
-    health: 98
+    health: 93
     inventory:
       coin: 100000
     info:
       location: town square
       is_cat: true
   Raymond:
-    health: 89
+    health: 96
     inventory:
       coin: 1999989618
     info:
@@ -73,6 +79,7 @@ players:
     inventory: {}
     info:
       location: town square
+      marcelo_secrets: You no longer hear about Marcelo's secrets
   sam:
     health: 95
     inventory:
@@ -93,13 +100,13 @@ players:
         magic_level: 5
       is_cat: true
       cats: 12
-day: 13
+      town_happiness: increased
+day: 14
 worldInfo:
-  weather: The rubber chicken weather continues, and the limericks emerging from
-    the eggs are getting increasingly…pointed. They seem to be directly
-    commenting on the actions of the players. The townspeople are starting to
-    feel like they're living in a bad vaudeville act.
-  day: 10
+  weather: The rubber chicken weather persists, but the limericks now seem to be
+    delivered in Gilbert Gottfried's voice, making the existential dread all the
+    more unsettling.
+  day: 15
   nick_blocked: false
   death_clock: 1
   marcelo_lie_probability: 0.8
@@ -185,6 +192,66 @@ worldInfo:
           reward: The best party of the century!
       reward: Extra treats and toys
       punishment: Feline disapproval
+    - title: The Pink Goo Inferno
+      description: Marcelo's accidental (or perhaps not-so-accidental) arson has
+        created a new crisis. The pink goo fire is spreading rapidly. The
+        players must find a way to extinguish the fire before it consumes
+        Oakhaven.
+      stages:
+        - name: Find the Source
+          description: Locate the source of the pink goo fire.
+          reward: The source of the fire.
+        - name: Extinguish the Fire
+          description: Find a way to extinguish the pink goo fire.
+          reward: The pink goo fire is extinguished.
+        - name: Report Back to Oakhaven
+          description: Return to Oakhaven and inform the townspeople of your success.
+          reward: The gratitude of the town and increased prosperity.
+      reward: The gratitude of Oakhaven and a ward against future fires.
+      punishment: If the fire spreads, Oakhaven will suffer, leading to decreased
+        happiness and potential losses.
+    - title: Project Bubbly Oakhaven
+      description: Past Nolan's scheme has taken root. Sparkling water is mysteriously
+        appearing in fountains and wells throughout the town. Is this a harmless
+        prank, or is there something more sinister behind the bubbly beverage?
+      stages:
+        - name: Find the Source
+          description: Investigate where the sparkling water is coming from.
+          reward: You will discover the source of the sparkling water. Past Nolan is in
+            charge.
+        - name: Resolve the Plan
+          description: Decide what to do about the sparkling water. Do you allow it to
+            continue? Do you remove it? Why or why not?
+          reward: You will decide the fate of the sparkling water, and whether it stays or
+            goes.
+      reward: Whether the water can or cannot stay
+      punishment: Town is in distress.
+    - title: The Cosmic Customs Declaration
+      description: Nolan has a chance to declare any paradoxes or inconsistencies with
+        the customs agent.
+      stages:
+        - name: List Paradoxes
+          description: Nolan must list any and all paradoxical entities, plot holes, or
+            narrative inconsistencies to the customs agent
+          reward: Customs is satisfied.
+        - name: Under 50 words
+          description: Must be under 50 words.
+          reward: You successfully listed under 50 words. The customs agent rewards you
+            with a lollipop.
+      reward: Customs Declaration is done.
+      punishment: The agent is unhappy.
+    - title: Sean_Y, Logging Company
+      description: A player will need to restore Sean_Y's company, and also resolve
+        the situation with the missing Tuna.
+      stages:
+        - name: Restore Company
+          description: Find a way to let Sean_Y restore his company.
+          reward: Sean_Y can get his company back.
+        - name: Resolve the Missing Tuna
+          description: Where is the tuna? Where is Fluffy?
+          reward: The Tuna is back.
+      reward: Sean_Y is whole
+      punishment: No logging, and sad tuna cats.
   sam_quest:
     title: The Lost Artifact of Purrington
     description: Legend speaks of an artifact hidden deep within the Whispering
@@ -266,16 +333,16 @@ worldInfo:
     days_left: 3
   tuna_theft: true
   forestCleared: 20
-  dailyForestClearance: 10
-  companyEarnings: 220
-  dailyEarnings: 100
+  dailyForestClearance: 0
+  companyEarnings: 20
+  dailyEarnings: 20
   tunaThief:
     name: Fluffy
     location: Whispering Woods Hideout
     health: 80
     status: loyal minion
   town_humor_stat: plummet to record lows, but the sheer absurdity of the
-    situation is also morbidly amusing. A new Meaning of Life stat begins to
+    situation is also morbidly amusing. The Meaning of Life stat begins to
     fluctuate wildly across Oakhaven.
   hidden_layer: a giant game of cosmic *Monopoly*, with entire realities as properties
   monopoly_board: controlling certain territories on the board directly influences
@@ -291,7 +358,7 @@ worldInfo:
   operating_manual: written in an alien language, but diagrams suggest that
     controlling certain territories on the board directly influences events in
     the real world
-  tunaEarnings: 20
+  tunaEarnings: 0
   marcelo_basement_flooded: true
   nick_incident: A rainbow explosion of colors ensues as the potions mix and
     collide, creating a cloud of smoke and bubbles. When the smoke clears, both
@@ -301,4 +368,25 @@ worldInfo:
     quite delicious and has the added benefit of making their fur incredibly
     fluffy.
   fluff_plague: excessive fluff. The cats of Oakhaven are now incredibly fluffy,
-    and fluff bunnies the size of small dogs are roaming the streets.
+    and fluff bunnies the size of sheep are now roaming the streets,
+    occasionally getting into turf wars with the regular-sized fluff bunnies.
+  momentum: 0
+  town_on_fire: true
+  fire_type: pink goo
+  new_quests:
+    - name: The Pink Goo Inferno
+      description: Marcelo's accidental (or perhaps not-so-accidental) arson has
+        created a new crisis. The pink goo fire is spreading rapidly. The
+        players must find a way to extinguish the fire before it consumes
+        Oakhaven.
+    - name: Project Bubbly Oakhaven
+      description: Past Nolan's scheme has taken root. Sparkling water is mysteriously
+        appearing in fountains and wells throughout the town. Is this a harmless
+        prank, or is there something more sinister behind the bubbly beverage?
+    - name: The Cosmic Customs Declaration
+      description: Nolan has a chance to declare any paradoxes or inconsistencies with
+        the customs agent.
+    - name: Sean_Y, Logging Company
+      description: A player will need to restore Sean_Y's company, and also resolve
+        the situation with the missing Tuna.
+  MeaningOfLife: Head Scratches and Tuna

@@ -3,7 +3,7 @@ players:
     health: 91
     inventory: {}
     info:
-      location: Simulation
+      location: Monopoly Board
       health: .inf
       plan: sell timeshares on the Monopoly board
       anxiety: 200
@@ -48,8 +48,17 @@ players:
       moral_crisis: false
       minion: Fluffy
       forest_replanted: true
+      response: Your constant push and pull between whether or not to sell the company
+        has your workers worried. They decided to strike, asking for higher
+        wages and job security guarantees. They demand a maximum of only 0.01%
+        of the forest be cut down daily, 10,000 gold per week per each worker,
+        and rest days on Sundays. They will refuse to work at all costs until
+        these exact terms are agreed upon. The forest is not cut down today and
+        parts of the forest regrow. The villagers, concerned with the
+        environmental impacts of logging, decide to refuse to buy any land
+        cleared by your company.
   Marcelo:
-    health: 47
+    health: 42
     inventory:
       coin: 14
     info:
@@ -58,6 +67,7 @@ players:
       is_cat: true
       poisoned: true
       nausea: true
+      broken_toe: true
   Nick:
     health: 93
     inventory:
@@ -97,15 +107,14 @@ players:
       location: Whispering Woods
       sam_cats:
         count: 6
-        magic_level: 5
+        magic_level: 4
       is_cat: true
       cats: 12
       town_happiness: increased
-day: 14
+day: 15
 worldInfo:
-  weather: The rubber chicken weather persists, but the limericks now seem to be
-    delivered in Gilbert Gottfried's voice, making the existential dread all the
-    more unsettling.
+  weather: The rubber chicken weather persists, with Gilbert Gottfried's voice now
+    narrating the absurd limericks.
   day: 15
   nick_blocked: false
   death_clock: 1
@@ -133,10 +142,10 @@ worldInfo:
       type: iron_digger
       employer: Sean_Y
   sam_cats:
-    magic_level: 5
+    magic_level: 4
     count: 12
     location: Whispering Woods
-  nolan_state: beyond simulation (but still in another)
+  nolan_state: exploring the monopoly board
   marcelo_day: 0
   marcelo_affliction: Takes expired medicine.
   raymond_base: Abandoned Building
@@ -279,6 +288,7 @@ worldInfo:
         reward: The gratitude of the townspeople and a permanent boost to your cats'
           magical abilities.
     reward: Increased cat happiness and rewards
+    new_quest: The Forest's Revenge
   smithy:
     sell_price: {}
   npc_undefined:
@@ -311,31 +321,22 @@ worldInfo:
     reward: The gratitude of the cats and free tuna for a week.
     punishment: If the tuna is not recovered, the cats will riot, causing chaos in
       Oakhaven.
-  nolan_action: >-
-    1. The storm has been incredibly annoying. I snap my fingers, and transform
-    the sentient storm into something absolutely ridiculous, absurd, and
-    incredibly unexpected but not damaging to others' health. Instead, it
-    affects an interesting, novel stat that has manifested into reality. 
-
-    2. I take another step through the fifth wall. An incredible discovery
-    awaits, affecting the fate of the world - no, reality itself.
-
-    3. A separate timeline emerges. I find myself face to face with myself from
-    the past. And together, we devise a scheme for everyone present.
+  nolan_action: exploring the monopoly board
   pastNolan:
     health: 90
     inventory: {}
     info:
       location: Simulation
       anxiety: 100
+      plan: replace all the town's currency with bottle caps
   marcelo_deal:
     offered_by: Sean_Y
     days_left: 3
   tuna_theft: true
   forestCleared: 20
   dailyForestClearance: 0
-  companyEarnings: 20
-  dailyEarnings: 20
+  companyEarnings: 0
+  dailyEarnings: 0
   tunaThief:
     name: Fluffy
     location: Whispering Woods Hideout
@@ -389,4 +390,9 @@ worldInfo:
     - name: Sean_Y, Logging Company
       description: A player will need to restore Sean_Y's company, and also resolve
         the situation with the missing Tuna.
+    - name: The Forest's Revenge
+      description: The animals of the Whispering Woods are now considering open
+        rebellion against any logging company or town people.
   MeaningOfLife: Head Scratches and Tuna
+  santa_naughty_list: Marcelo
+  oakhaven_property: mid-tier property on the 'Existential Properties' quadrant

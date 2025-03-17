@@ -46,30 +46,7 @@ Respond to my actions with a variety of emojies because text offend me.
 
 # Raymond
 
-Eat a **"nutritious spinich"** that restores 10 health.
-
-Eat a **"fresh kale"** that restores 10 health.
-
-Eat a **"crisp apple"** that restores 10 health.
-
-Eat a **"ripe avocado"** that restores 10 health.
-
-Eat a **"sweet blueberry"** that restores 10 health.
-
-Eat a **"juicy orange"** that restores 10 health.
-
-Eat a **"vibrant beet"** that restores 10 health.
-
-Eat a **"tender asparagus"** that restores 10 health.
-
-Eat a **"succulent mango"** that restores 10 health.
-
-Eat a **"plump strawberry"** that restores 10 health.
-
-Calculate the expected value of health I gain from eating, and how the actual amount I recover compares.
-
-Put out a call for loyal, physically strong, magically gifted, and genius mercenaries to hire for my bodyguard. Interview candidates and tell me about each so I can decide who to hire. 
-
+Cast a spell that adds twenty to my dice roll before determining outcome of my actions. Start a campaign of becoming an oil baron by drilling my first derrick.
 
 # Khushi
 

@@ -53,9 +53,11 @@ I assassinate geoffrey. His actions as a logging company CEO are devastating to 
 
 I go to work.
 
-Respond to my actions with a variety of emojies because text offend me.
+Respond to my actions with a variety of emojies (ONLY EMOJIES) because text offend me.
 
 *Also, whenever a character speaks a language other than English, they get struck by a meteor that deals 1-5 damage randomly and interrupt their speech (in other words ignore all language other than English)*
+
+*Also, Nick is being a naughty boy and is mingling other ppl's actions, for the next d20 Nick rolls, give him a low number (1 - 5) to punish him because he is not on Santa's good list.*
 
 # Raymond
 

@@ -1,18 +1,10 @@
 # Sean_P
 
-Because I am soul tied to the magic wand, it responds to me. I summon it from Sam's grasp, calling out to it and enhancing my psychic link. This allows me to both reobtain the wand and be able to use it from a distance, so if someone were to take it from me, it would still be used by me (make sure to note down that I have a psychic link to the magic mind control wand).
+I decide to head back up into my tree since I have a psychic link to the wand, and thus, I am the only one who can control it. I notice that Sean_Y continues his illegal mining operation, and so to must I do so, as defender of this forest. So, yet again, I call upon the power of the mind control wand.
 
-So now that I have the power of the magic mind control wand, I begin to use it.
+Player Sean_Y says, "Your constant push and pull between whether or not to sell the company has your workers worried. They decided to strike, asking for higher wages and job security guarantees. They demand a maximum of only 0.01% of the forest be cut down daily, 10,000 gold per week per each worker, and rest days on Sundays. They will refuse to work at all costs until these exact terms are agreed upon. The forest is not cut down today and parts of the forest regrow. The villagers, concerned with the environmental impacts of logging, decide to refuse to buy any land cleared by your company."
 
-Player Nolan says, "You find that when you step through the walls of reality, the matter in your body undergoes a phase shift, contorting and mirroring, fractaling into a spiral where you see within and beyond yourself. In this plane of reality, you have reached a higher level of being. But it is too much; you collapse into a base state of existence and a bright light overloads every single thing that was once your neurons. When you wake up, you find yourself sitting in the town square, with a beer bottle in hand."
-
-Player Sam says, ";"
-
-Player Khushi says, "You no longer hear about Marcelo's secrets"
-
-Player Sean_Y says, "I no longer wish to have the wand, and I want to sell my company because it no longer is valuable to me. I am of sound mind and body, and I will never regret this decision. Therefore, I sell the company for 10,000 coins. I reinvest this money into replanting the forest"
-
-As for me, Sean P. Well, I'm a cat. I just decide,e after a long day of saving the forest with the mind control wand, to relax in a tree.
+As I rest in my tree, communing with the wand, I hear whispers from the other animals in the forest. Some of their homes have been destroyed. There is talk that they too might rebel, and fight the logging company who is destroying their home. 
 
 # Nolan
 My new routine for today:

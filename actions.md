@@ -49,6 +49,10 @@ My 10 employees continue logging in the Whispering Woods. What percentage of the
 
 I assassinate geoffrey. His actions as a logging company CEO are devastating to the tree I wish to catnap in. By channeling the spirits of the whispering woods left from the 7-day-death curse, I cleave Geoffrey in twain, thus dissolving his logging corporation and putting an end to the magnate. I then go back to selling potions that are far too strong for travelers in my potion shop. QED.
 
+# Santa
+
+HO HO HO MY NAME IS SANTA AND MARCELO HAS BEEN VERY NAUGHTY THIS YEAR. FOR THIS CHRISTMAS, HE GETS BURIED IN COAL. HE'S ALSO REMOVED FROM MY NICE LIST AND ADDED TO MY NAUGHTY LIST!!!!!!
+
 # Marcelo
 
 I go to work.

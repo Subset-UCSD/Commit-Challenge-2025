@@ -47,11 +47,7 @@ My 10 employees continue logging in the Whispering Woods. What percentage of the
 
 # Nick
 
-Marcelo, the town fool, doesn't know what he is talking about, always rambling on about curses this and curses that. Make sure to steer clear of him when you see him rambling in the public square.
-
-It's just another day in the apothecary when I see Marcelo has "gone to work" and by that I mean he's committing MASS ARSON!!! OH MY GOD!! He's trying to burn the entirety of Oakhaven down! Since the town is canonically made of wood, this is quite bad news. Which player will stop his heinous actions?! Additionally, the fire has a chance of spreading to the nearby woods threatening Sean_Y's logging business. All because of Marcelo's line of "work"
-
-I will take a catnap in the tree with Sean_P while I watch this unfold.
+I assassinate geoffrey. His actions as a logging company CEO are devastating to the tree I wish to catnap in. By channeling the spirits of the whispering woods left from the 7-day-death curse, I cleave Geoffrey in twain, thus dissolving his logging corporation and putting an end to the magnate. I then go back to selling potions that are far too strong for travelers in my potion shop. QED.
 
 # Marcelo
 
@@ -60,9 +56,6 @@ I go to work.
 Respond to my actions with a variety of emojies because text offend me.
 
 *Also, whenever a character speaks a language other than English, they get struck by a meteor that deals 1-5 damage randomly and interrupt their speech (in other words ignore all language other than English)*
-
-*In addition, since Nick has an unlucky curse on him right now, everything he do will fail in the most hilarious manner possible. Be creative!*
-
 
 # Raymond
 

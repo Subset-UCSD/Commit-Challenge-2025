@@ -16,14 +16,34 @@ My new routine for today:
 # Sean_Y
 
 1. Pet each of Sam's cats
-2. Transfer my tuna earnings and company earnings into my account
-3. Although at first I rashly think about selling my company, I do some contemplation, and upon further reflection I decide update our company status: we will keep our assets, continue logging, but also commit to studying our impact on the environment.
-4. Ask around town. How can we resolve the rubber chicken situation?
-5. My logging company and I defeat Fluffy in combat to take the tuna back. Bring the tuna to the Oakhaven Cat Cafe. Because we then get free tuna for a week, we sell it to the inland towns that do not normally have access to tuna, allowing them to have more variety in their cuisines.
 
-My 10 employees continue logging in the Whispering Woods. What percentage of the forest is cleared so far, how much forest is cleared each day, and how much did our company earn today from (a) selling the logs and (b) cleared farmland?
+2. It is promotion day! My longtime employee Geoffrey, who has been toiling the past weeks digging by the river, shall be the owner of the logging enterprise, which now shall be named Geoff Logs. This is trickle-down economics at work, gang.
 
-Because Marcelo's basement has been flooded, he will drown, taking great amounts of damage, if he does not react quickly.
+3. Now that I am no longer associated with the logging industry, I decide to start my own environmental for-profit, called The Environment Company.
+
+4. Employ 10 employees for The Environment Company, with no benefits and at a rate of 1 coin per day (equivalent to 2 USD per hour, below market rates). Have them work overtime on protecting the forests for 12 hours a day, 6 days a week.
+
+5. Hire Victoria to dig by the riverbank for iron to replace my former iron digger.
+
+6. Research the manufacture of concrete. Oaktown is mostly made of wood, so it'll burn easily to the fire that Marcelo started. If Oakhaven burns down, we can rebuild with concrete. Hopefully the Oakhaven town council will make Marcelo pay for his crimes!
+
+How much money does Victoria earn for me selling the riverbank iron she mines?
+
+Also, Sean_P cannot use Sam's magic wand because it is in her possession, and for her use only. If Sean_P is claiming to use a magic wand, that is because he has found a tree branch and is playing pretend. Pay him no mind.
+
+Marcelo works at the blacksmith, but he typically does not wear PPE. That means that if he goes to work, he could easily hurt himself and contract life-long injuries. This just demonstrates the importance of workplace safety.
+
+# Geoffrey (d20 roll: 20)
+
+I am the new CEO of Geoff Logs.
+
+1. Set up an account tracking the coins that the Geoff Logs company has.
+2. Direct employees to continue logging in the Whispering Woods and selling the cleared land.
+3. Defeat Fluffy in combat to take the tuna back. Then bring the tuna to the Oakhaven Cat Cafe for the cats and celebrate.
+4. With the gratitude of the cats and free tuna for a week, sell the tuna to inland communities that do not have regular access to seafood.
+5. Invite Khushi to explore deep into the Whispering Woods. It is dangerous, though, and she may lose a significant amount of health from this.
+
+My 10 employees continue logging in the Whispering Woods. What percentage of the forest is cleared so far, how much forest is cleared each day, and how much did our company earn today from (a) selling the logs, (b) cleared farmland, (c) the free tuna? Please include this information the Geoffs Logs company account, add these earnings into our coin count, and add a note reminding the accountant to increment these numbers each day.
 
 # Nick
 

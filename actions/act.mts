@@ -260,6 +260,8 @@ async function printDiscord() {
   try {
     for (const [i,block] of blocks.entries()) {
       await say(block, `Page ${i+1} of ${blocks.length}`)
+      console.error(`[discord] ${i+1} of ${blocks.length}`)
+      await new Promise(resolve => setTimeout(resolve, 500))
     }
   } catch (error) {
     console.error("DISCORD WEBHOOK FAIL")

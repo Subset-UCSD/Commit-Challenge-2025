@@ -48,13 +48,13 @@ jobs:
           npm run build || echo 'cavebuild fail :('
           # do not upload node_modules to github pages
           rm -rf node_modules/ || echo 'rm fail :('
-      - name: Build queens
-        run: |
-          cd 👑/ || echo "cd fail ??"
-          npm install || echo 'install fail :('
-          npm run build || echo 'cavebuild fail :('
-          # do not upload node_modules to github pages
-          rm -rf node_modules/ || echo 'rm fail :('
+      # - name: Build queens
+      #   run: |
+      #     cd 👑/ || echo "cd fail ??"
+      #     npm install || echo 'install fail :('
+      #     npm run build || echo 'cavebuild fail :('
+      #     # do not upload node_modules to github pages
+      #     rm -rf node_modules/ || echo 'rm fail :('
           
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

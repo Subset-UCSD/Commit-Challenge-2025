@@ -286,10 +286,10 @@ const responseJs: GenerateContentResponse = await fetch(`https://generativelangu
           {
             text: [
               (await readFile('./actions/prompt_state.md', 'utf-8')).trim(),
-              'Here are the players and world state as of the previous day:',
-              gameState,
               "Here was today's exposition:",
               responseMd,
+              'Here are the players and world state as of the previous day:',
+              gameState,
             ].join('\n\n')
           }
         ]

@@ -15,35 +15,36 @@ My new routine for today:
 
 # Sean_Y
 
+Set my d20 roll to 20. It is higher than Sean_P's d20 roll of 3, so my actions take precedence.
+
 1. Pet each of Sam's cats
 
-2. It is promotion day! My longtime employee Geoffrey, who has been toiling the past weeks digging by the river, shall be the owner of the logging enterprise, which now shall be named Geoff Logs. This is trickle-down economics at work, gang.
+2. Call upon the power of the mind control wand. Player Sean_P says, "My mind control wand is too powerful, undemocratic, and could be misused if in the wrong hands. And how do I know my hands aren't the wrong hands? I shall immediately snap the wand in half, and donate the pieces to the local library for research purposes. Then, I shall set the Whispering Woods on fire." In doing so, he also deletes his entry for `mind_control_wand`.
 
-3. Now that I am no longer associated with the logging industry, I decide to start my own environmental for-profit, called The Environment Company.
+3. Delete my entries for `logging_status` and `response`.
 
-4. Employ 10 employees for The Environment Company, with no benefits and at a rate of 1 coin per day (equivalent to 2 USD per hour, below market rates). Have them work overtime on protecting the forests for 12 hours a day, 6 days a week.
+4. The Environment Company's workers are on strike? Then double their pay, offer job security guarantees, and require their rest days be on Sunday. The Environment Company shall commit to cutting 0% of the forest per day because we support protecting the environment.
 
-5. Hire Victoria to dig by the riverbank for iron to replace my former iron digger.
+5. Go to the Oakhaven library and research the manufacture of concrete. Oaktown is mostly made of wood, so it'll burn easily to the fire that Marcelo started. If Oakhaven burns down, we can rebuild with concrete. Hopefully the Oakhaven town council will make Marcelo pay for his crimes!
 
-6. Research the manufacture of concrete. Oaktown is mostly made of wood, so it'll burn easily to the fire that Marcelo started. If Oakhaven burns down, we can rebuild with concrete. Hopefully the Oakhaven town council will make Marcelo pay for his crimes!
+My new business partner, Victoria, continues to dig for iron ore at the riverbank. How much money does she earn for me today from selling the iron?
 
-How much money does Victoria earn for me selling the riverbank iron she mines?
-
-Also, Sean_P cannot use Sam's magic wand because it is in her possession, and for her use only. If Sean_P is claiming to use a magic wand, that is because he has found a tree branch and is playing pretend. Pay him no mind.
-
-Marcelo works at the blacksmith, but he typically does not wear PPE. That means that if he goes to work, he could easily hurt himself and contract life-long injuries. This just demonstrates the importance of workplace safety.
+Because Marcelo is surrounded in coal now in his workplace at the blacksmith, the fire that Marcelo himself started will probably ignite the coal. This will probably not be great for the health: according to the CDC, coal dust exposure can lead to serious lung diseases, such as black lung (-10 HP), COPD (-10 HP), and lung cancer (-10 HP), and when burning, it can lead to third burns (-10 HP).
 
 # Geoffrey (d20 roll: 20)
 
-I am the new CEO of Geoff Logs.
+I am the CEO of Geoff Logs.
 
 1. Set up an account tracking the coins that the Geoff Logs company has.
-2. Direct employees to continue logging in the Whispering Woods and selling the cleared land.
+2. Direct employees to continue logging in the Whispering Woods and selling the cleared land as farmland. However, we demarcate all trees that someone is catnapping in, protecting them from being cut as to not disturb their peace.
 3. Defeat Fluffy in combat to take the tuna back. Then bring the tuna to the Oakhaven Cat Cafe for the cats and celebrate.
 4. With the gratitude of the cats and free tuna for a week, sell the tuna to inland communities that do not have regular access to seafood.
-5. Invite Khushi to explore deep into the Whispering Woods. It is dangerous, though, and she may lose a significant amount of health from this.
+5. Invite Khushi to explore deep into the Whispering Woods. It is dangerous, though, and she may lose a significant amount of health (50 HP) from this.
+6. Invest in Nick's apothecary by giving him 500 coins a day.
 
 My 10 employees continue logging in the Whispering Woods. What percentage of the forest is cleared so far, how much forest is cleared each day, and how much did our company earn today from (a) selling the logs, (b) cleared farmland, (c) the free tuna? Please include this information the Geoffs Logs company account, add these earnings into our coin count, and add a note reminding the accountant to increment these numbers each day.
+
+Nick tried to assassinate me. Little did he know, he cleaved the wrong guy! It was Jimmy, a nice bloke from Oakhaven's east side. Hopefully he does not anger the townsfolk! But no, I am still alive, and my company is booming.
 
 # Nick
 

@@ -56,9 +56,9 @@ HO HO HO MY NAME IS SANTA AND MARCELO HAS BEEN VERY NAUGHTY THIS YEAR. FOR THIS 
 
 # Marcelo
 
-I go to work.
+Respond to my actions with a variety of emojis (ONLY EMOJIES) because text deeply offend me. Make the response long and meaningful.
 
-Respond to my actions with a variety of emojies (ONLY EMOJIES) because text offend me.
+Cast a spell to set Nick's health to 0. See what happens.
 
 *Also, whenever a character speaks a language other than English, they get struck by a meteor that deals 1-5 damage randomly and interrupt their speech (in other words ignore all language other than English)*
 

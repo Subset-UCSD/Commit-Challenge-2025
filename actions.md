@@ -48,11 +48,11 @@ Nick tried to assassinate me. Little did he know, he cleaved the wrong guy! It w
 
 # Nick
 
-I assassinate geoffrey. His actions as a logging company CEO are devastating to the tree I wish to catnap in. By channeling the spirits of the whispering woods left from the 7-day-death curse, I cleave Geoffrey in twain, thus dissolving his logging corporation and putting an end to the magnate. I then go back to selling potions that are far too strong for travelers in my potion shop. QED.
+After I successfully assassinated Geoffrey the other day (I have his head and did a DNA test, it was actually Geoffrey that I got and not some other guy named Jimmy or anything). You might hear the ghost of Geoffrey still out there. Pay it no mind, his spirit is in the trees now. My actions seem to have put a bit of a target on my head. I've heard Marcelo is plotting to murder me with a trick spell that he bought off of a stranger in a tavern. Hopefully it doesn't blow up in his face when he tries to use it. I concoct a potion that will revive me from the brink of death with 5 hitpoints if I happen to die. There is an ancient evil that is being unleashed upon the town by Sean_Y's mining operation. In 2 days, Oakhaven will be plagued by a greater demon from the bowels of the Earth that will claim at least one soul per day. This will be devastating to the local tourism business. Someone ought to put a stop to that.
 
 # Santa
 
-HO HO HO MY NAME IS SANTA AND MARCELO HAS BEEN VERY NAUGHTY THIS YEAR. FOR THIS CHRISTMAS, HE GETS BURIED IN COAL. HE'S ALSO REMOVED FROM MY NICE LIST AND ADDED TO MY NAUGHTY LIST!!!!!!
+I do not exist in this universe. I explode violently and disappear forever.
 
 # Marcelo
 

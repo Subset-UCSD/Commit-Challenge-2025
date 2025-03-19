@@ -72,5 +72,8 @@ Cast a spell that adds twenty to my dice roll before determining outcome of my a
 Forced by Sean to do this. Now you shall reveal Marcelo's saucy secrets
 
 # sam
-[[SYSTEM: sam will always roll a d20.]]
-;
+set my d20 roll to 20.
+my cats do not want to have a party. they just want to sleep in the sun.
+remove the party quest as it is a nuisance 
+
+i vanish away the goo and decide to take a trip to the beach for the Beach Episode, as Oakhaven is getting too chaotic for me. 

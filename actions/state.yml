@@ -13,6 +13,9 @@ players:
       palindrome_speech: Everyone within a 10-mile radius is compelled to only speak
         in palindromes.
       past_self_encounter: true
+      rubber_chicken_stuck: true
+      can_speak: false
+      scheme_failed: true
   Sean_P:
     health: 93
     inventory:
@@ -24,13 +27,14 @@ players:
       is_cat: true
       mind_control_wand: The Mind Control Wand grants the user Sean_P the ability to
         CHANGE THE ACTIONS done by all other players. The wand is now coated in
-        iridescent goo.
+        iridescent goo and can duplicate items.
       cats_befriended: 2
   Sean_Y:
     health: 92
     inventory:
       lockpick: 1
       coin: 10729
+      Mind Control Wand: 1
     info:
       location: town square
       immune: true
@@ -50,20 +54,11 @@ players:
         environmental impacts of logging, decide to refuse to buy any land
         cleared by your company.
       broken_shovel: true
-      worker_demands_unsatisfied: true
+      worker_demands_unsatisfied: false
       library_visit_failed: true
-  Marcelo:
-    health: 42
-    inventory:
-      coin: 14
-    info:
-      location: secret basement
-      health_artifact: true
-      is_cat: true
-      poisoned: true
-      nausea: true
-      broken_toe: true
-      coughing: true
+      worker_support: true
+      concrete_plan: true
+      no_logging: true
   Nick:
     health: 93
     inventory:
@@ -71,6 +66,7 @@ players:
     info:
       location: town square
       is_cat: true
+      glitter_covered: true
   Raymond:
     health: 96
     inventory:
@@ -81,13 +77,15 @@ players:
         - Bartholomew "Barty" Buttons
         - Madame Evangeline
       rubber_chicken_insanity: true
+      oil_derrick_useless: true
   Khushi:
-    health: 57
+    health: 37
     inventory: {}
     info:
       location: town square
       marcelo_secrets: You no longer hear about Marcelo's secrets
       mind_blank: true
+      whispering_plague: true
   sam:
     health: 95
     inventory:
@@ -102,19 +100,17 @@ players:
       Lost Artifact of Purrington: 1
       The Mind Control Wand: 1
     info:
-      location: Whispering Woods
-      sam_cats:
-        count: 6
-        magic_level: 4
+      location: beach
       is_cat: true
       cats: 12
       town_happiness: increased
       party_score: 1
-day: 16
+day: 17
 worldInfo:
-  weather: The rubber chicken weather persists, with Gilbert Gottfried's voice now
-    reciting increasingly nonsensical limericks about existential dread.
-  day: 17
+  weather: The rubber chicken weather continues, with the added, disconcerting
+    element of Gilbert Gottfried's voice reciting limericks that hint at the
+    futility of existence.
+  day: 18
   nick_blocked: false
   death_clock: 1
   marcelo_lie_probability: 0.8
@@ -149,12 +145,6 @@ worldInfo:
   marcelo_affliction: Takes expired medicine.
   raymond_base: Abandoned Building
   piano_playing: false
-  plague_storm:
-    sentient: false
-    affected:
-      - town square
-    effect: excerpts from obscure philosophical texts, causing random bouts of
-      introspection and awkward silences during otherwise normal conversations.
   townName: Oakhaven
   cat_apocalypse: true
   borrowed_from_raymond:
@@ -260,34 +250,6 @@ worldInfo:
           reward: The Tuna is back.
       reward: Sean_Y is whole
       punishment: No logging, and sad tuna cats.
-  sam_quest:
-    title: The Lost Artifact of Purrington
-    description: Legend speaks of an artifact hidden deep within the Whispering
-      Woods, said to enhance the magic of felines. Retrieve this artifact, and
-      your cats' powers will grow exponentially.
-    stages:
-      - name: Gathering Supplies
-        description: Before returning to Oakhaven, reward the cats with a celebratory party!
-        reward: A sense of preparedness.
-      - name: Navigating the Whispering Woods
-        description: "The Whispering Woods are filled with illusions and deceptive
-          paths. Use your cats' magical senses to navigate through the maze. You
-          will face three skill challenges: a riddle, a test of agility, and a
-          test of courage."
-        reward: A clue to the artifact's location.
-      - name: Confronting the Guardian
-        description: "The artifact is guarded by a mystical creature attuned to feline
-          energy. You must either defeat the guardian in combat or appease it
-          with a rare treat: a Fish-Flavored Invisibility Potion."
-        reward: The Lost Artifact of Purrington.
-      - name: Returning to Oakhaven
-        description: Bring the artifact back to Oakhaven and place it upon the Altar of
-          Bast in the town square. The town will be blessed with feline magic,
-          increasing happiness and prosperity.
-        reward: The gratitude of the townspeople and a permanent boost to your cats'
-          magical abilities.
-    reward: Increased cat happiness and rewards
-    new_quest: The Forest's Revenge
   smithy:
     sell_price: {}
   npc_undefined:
@@ -295,9 +257,10 @@ worldInfo:
     inventory: {}
     info: {}
   npc_geoffrey:
-    health: 100
+    health: 86
     inventory: {}
-    info: {}
+    info:
+      whispering_plague: true
   challenge:
     title: The Case of the Missing Tuna
     description: A large shipment of tuna, destined for the Oakhaven Cat Cafe, has
@@ -332,10 +295,10 @@ worldInfo:
     offered_by: Sean_Y
     days_left: 3
   tuna_theft: true
-  forestCleared: 20
-  dailyForestClearance: 0
-  companyEarnings: 0
-  dailyEarnings: 0
+  forestCleared: 17
+  dailyForestClearance: 3
+  companyEarnings: 5800
+  dailyEarnings: 5800
   tunaThief:
     name: Fluffy
     location: Whispering Woods Hideout
@@ -348,18 +311,16 @@ worldInfo:
   monopoly_board: controlling certain territories on the board directly influences
     events in the real world
   farmland_income_per_day: 100
-  marcelo_chanting: Mafia! Mafia! Mafia!
   nick_status: observing the chaos with amusement
   great_monopoly_game: Explore the cosmic *Monopoly* board, acquire properties,
     and navigate the dangers of interdimensional capitalism.
   cat_uprising: Investigate the underlying causes of feline discontent and find a
     way to restore harmony between humans and cats.
-  whispering_plague: The Whispering plague has taken root. It must be quelled!
+  whispering_plague: true
   operating_manual: written in an alien language, but diagrams suggest that
     controlling certain territories on the board directly influences events in
     the real world
-  tunaEarnings: 0
-  marcelo_basement_flooded: true
+  tunaEarnings: 5000
   nick_incident: A rainbow explosion of colors ensues as the potions mix and
     collide, creating a cloud of smoke and bubbles. When the smoke clears, both
     shops are covered in a thick layer of pink goo that smells faintly of
@@ -374,63 +335,44 @@ worldInfo:
   town_on_fire: true
   fire_type: pink goo
   new_quests:
-    - name: The Pink Goo Inferno
-      description: Marcelo's accidental (or perhaps not-so-accidental) arson has
-        created a new crisis. The pink goo fire is spreading rapidly. The
-        players must find a way to extinguish the fire before it consumes
-        Oakhaven.
-    - name: Project Bubbly Oakhaven
-      description: Past Nolan's scheme has taken root. Sparkling water is mysteriously
-        appearing in fountains and wells throughout the town. Is this a harmless
-        prank, or is there something more sinister behind the bubbly beverage?
-    - name: The Cosmic Customs Declaration
-      description: Nolan has a chance to declare any paradoxes or inconsistencies with
-        the customs agent.
-    - name: Sean_Y, Logging Company
-      description: A player will need to restore Sean_Y's company, and also resolve
-        the situation with the missing Tuna.
-    - name: The Forest's Revenge
-      description: The animals of the Whispering Woods are now considering open
-        rebellion against any logging company or town people.
-    - name: The Whispering Plague
-      description: The Whispering Woods continue to be plagued. The source of the
-        plague must be investigated and contained.
-    - name: The Pink Goo Inferno
-      description: The pink goo fire continues to burn, exacerbated by the coal dust
-        in Marcelo's vicinity. A solution must be found before Oakhaven is
-        consumed.
-    - name: Project Bubbly Oakhaven
-      description: Past Nolan's schemes are causing more problems than expected. He
-        must be stopped, or at least convinced to use a more reasonable
-        currency.
-    - name: The Cosmic Customs Declaration
-      description: Nolan has the opportunity to make his declaration.
-    - name: Sean_Y, Logging Company
-      description: The future of the logging company and the mystery of the missing
-        tuna remain unresolved.
-    - name: The Forest's Revenge
-      description: The animals of the Whispering Woods are now considering open
-        rebellion against any logging company or town people.
+    - name: The Whispering Woods Rebellion
+      description: The animals of the Whispering Woods, enraged by the continued
+        logging (even with catnap trees protected), are now actively planning an
+        uprising. The players must find a way to quell the rebellion or face the
+        consequences.
+    - name: The Great Feline Purge
+      description: All of Sam's cats are rebelling against her and want to eat her and
+        steal the artifact of Purrington back. Sam must fight them all!
+    - name: The Pink Goo Disaster
+      description: Due to the pink goo fountain, the cats must now be stopped.
   MeaningOfLife: Head Scratches and Tuna
   santa_naughty_list: Marcelo
   oakhaven_property: mid-tier property on the 'Existential Properties' quadrant
-  whispering_woods_rebellion: whispers of rebellion echo in the Whispering Woods,
-    with rumors of animals plotting against the logging operations.
-  missing_tuna_unrest: The missing tuna remains a source of great feline unrest,
-    exacerbated by the lingering scent of fish-flavored invisibility potion.
+  whispering_woods_rebellion: The animals of the Whispering Woods are now actively planning an uprising.
+  missing_tuna_unrest: The missing tuna is a major source of feline unrest,
+    exacerbated by the lingering scent of the fish-flavored invisibility potion.
   pink_goo_seeping_into_coal: true
   townspeople_think_nick_is_crazy: true
-  shops_covered_in_pink_goo: true
   rubber_chicken_downpour: true
   cats_licking_goo: true
   sam_party_failed: true
   town_on_the_edge_of_chaos: true
-  cats_amused: true
   loggingCompanyName: Sean_Y
-  OakhavenOnFire: true
   ProjectBubblyOakhaven: true
   CosmicCustomsDeclaration: true
   MissingTuna: true
   the_forests_revenge: The animals of the Whispering Woods are now considering
     open rebellion against any logging company or town people.
-  OakhavenTeeteringOnChaos: The town is now on the edge of utter chaos.
+  sentient_storm_vendetta: Nolan
+  mind_control_wand_upgrade: true
+  animals_plotting: true
+  geoff_logs_account: true
+  catnap_trees: true
+  tuna_retrieved: true
+  nickInvestment: 500
+  vortex_coal_dust:
+    health: 50
+  flammable_sludge:
+    will_explode: true
+  pink_goo_fountain: true
+  cats_hate_sam: true

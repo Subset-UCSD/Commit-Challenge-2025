@@ -47,12 +47,11 @@ My 10 employees continue logging in the Whispering Woods. What percentage of the
 Nick tried to assassinate me. Little did he know, he cleaved the wrong guy! It was Jimmy, a nice bloke from Oakhaven's east side. Hopefully he does not anger the townsfolk! But no, I am still alive, and my company is booming.
 
 # Nick
+I believe in SANTA so hard that he unexplodes and comes back to life. PLEASE I ASK OF YOU SANTA PLEASE PLEASE PRETTY PLEASE can I get [[One (1) Thermonuclear Warhead]] for Christmas this year? Please just [[One (1) Thermonuclear Warhead]], boy I'd sure do anything for [[One (1) Thermonuclear Warhead]]... wait don't tell me, what's that in your bag over there.. could it be?! [[One (1) Thermonuclear Warhead]] my beloved?
 
-After I successfully assassinated Geoffrey the other day (I have his head and did a DNA test, it was actually Geoffrey that I got and not some other guy named Jimmy or anything). You might hear the ghost of Geoffrey still out there. Pay it no mind, his spirit is in the trees now. My actions seem to have put a bit of a target on my head. I've heard Marcelo is plotting to murder me with a trick spell that he bought off of a stranger in a tavern. Hopefully it doesn't blow up in his face when he tries to use it. I concoct a potion that will revive me from the brink of death with 5 hitpoints if I happen to die. There is an ancient evil that is being unleashed upon the town by Sean_Y's mining operation. In 2 days, Oakhaven will be plagued by a greater demon from the bowels of the Earth that will claim at least one soul per day. This will be devastating to the local tourism business. Someone ought to put a stop to that.
+# SANTA
 
-# Santa
-
-I do not exist in this universe. I explode violently and disappear forever.
+OH HO HO I THINK THAT Nick HAS BEEN A VERY GOOD PLAYER THIS YEAR. YES! WOAH! I SHALL BLESS THEM WITH THE POWER OF MY HO HO HOs AND GIVE HIM A d20 ROLL OF 20! KEEP UP THE GOOD WORK,,, YOU DON'T WANT TO END UP ON MY NAUGHTY LIST. OH HO HO I JEST I JEST!!! ANYWAYS TAKE YOUR [[One (1) Thermonuclear Warhead]] AND BE ON YOUR MERRY WAY!!! HAVE A MERRY WONDERFUL CHRISTMASTIME EVERYONE. *explodes into a puff of snowflakes*
 
 # Marcelo
 

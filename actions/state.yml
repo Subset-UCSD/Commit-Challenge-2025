@@ -16,6 +16,7 @@ players:
       rubber_chicken_stuck: true
       can_speak: false
       scheme_failed: true
+      timeshare_scheme: selling rubber chicken-themed timeshares on Marvin Gardens
   Sean_P:
     health: 93
     inventory:
@@ -33,7 +34,7 @@ players:
     health: 92
     inventory:
       lockpick: 1
-      coin: 10729
+      coin: 16529
       Mind Control Wand: 1
     info:
       location: town square
@@ -54,15 +55,16 @@ players:
         environmental impacts of logging, decide to refuse to buy any land
         cleared by your company.
       broken_shovel: true
-      worker_demands_unsatisfied: false
-      library_visit_failed: true
       worker_support: true
       concrete_plan: true
-      no_logging: true
+      cats_visited: true
+      animal_whispers: Some animals are moving into renovated homes and may support
+        the logging company
   Nick:
     health: 93
     inventory:
-      coin: 100000
+      coin: 102500
+      One (1) Thermonuclear Warhead: 1
     info:
       location: town square
       is_cat: true
@@ -83,9 +85,11 @@ players:
     inventory: {}
     info:
       location: town square
-      marcelo_secrets: You no longer hear about Marcelo's secrets
+      marcelo_secrets: no longer available
       mind_blank: true
       whispering_plague: true
+      rubber_chicken_stuck: true
+      name_forgotten: true
   sam:
     health: 95
     inventory:
@@ -105,13 +109,13 @@ players:
       cats: 12
       town_happiness: increased
       party_score: 1
-day: 17
+      cats_angry: true
+day: 18
 worldInfo:
   weather: The rubber chicken weather continues, with the added, disconcerting
     element of Gilbert Gottfried's voice reciting limericks that hint at the
     futility of existence.
-  day: 18
-  nick_blocked: false
+  day: 19
   death_clock: 1
   marcelo_lie_probability: 0.8
   npcs:
@@ -139,7 +143,7 @@ worldInfo:
   sam_cats:
     magic_level: 4
     count: 12
-    location: Whispering Woods
+    location: beach
   nolan_state: exploring the monopoly board
   marcelo_day: 0
   marcelo_affliction: Takes expired medicine.
@@ -257,10 +261,11 @@ worldInfo:
     inventory: {}
     info: {}
   npc_geoffrey:
-    health: 86
+    health: 100
     inventory: {}
     info:
-      whispering_plague: true
+      meaning_of_life: understood
+      desire_to_hurt_khushi: false
   challenge:
     title: The Case of the Missing Tuna
     description: A large shipment of tuna, destined for the Oakhaven Cat Cafe, has
@@ -296,9 +301,9 @@ worldInfo:
     days_left: 3
   tuna_theft: true
   forestCleared: 17
-  dailyForestClearance: 3
-  companyEarnings: 5800
-  dailyEarnings: 5800
+  dailyForestClearance: 0
+  companyEarnings: 0
+  dailyEarnings: 0
   tunaThief:
     name: Fluffy
     location: Whispering Woods Hideout
@@ -331,7 +336,7 @@ worldInfo:
   fluff_plague: excessive fluff. The cats of Oakhaven are now incredibly fluffy,
     and fluff bunnies the size of sheep are now roaming the streets,
     occasionally getting into turf wars with the regular-sized fluff bunnies.
-  momentum: 0
+  momentum: 1
   town_on_fire: true
   fire_type: pink goo
   new_quests:
@@ -345,7 +350,7 @@ worldInfo:
         steal the artifact of Purrington back. Sam must fight them all!
     - name: The Pink Goo Disaster
       description: Due to the pink goo fountain, the cats must now be stopped.
-  MeaningOfLife: Head Scratches and Tuna
+  MeaningOfLife: fluctuating
   santa_naughty_list: Marcelo
   oakhaven_property: mid-tier property on the 'Existential Properties' quadrant
   whispering_woods_rebellion: The animals of the Whispering Woods are now actively planning an uprising.
@@ -376,3 +381,24 @@ worldInfo:
     will_explode: true
   pink_goo_fountain: true
   cats_hate_sam: true
+  monopoly_board_unlocked_area: unknown
+  duplicate_wand: true
+  whispering_woods_uprising: true
+  apothecary_success: true
+  parking_lot_success: true
+  npc_marcelo:
+    health: 0
+    inventory: {}
+    info:
+      marcelo_secrets: no longer available
+  marcelo_hospitalized: true
+  marcelo_secrets: unknown
+  oil_derrick_paradox: true
+  raymond_base_on_fire: true
+  cats_rebellious: true
+  cat_betrayal: true
+  marcelo_medical_condition: true
+  raymond_burning_base: true
+  sam_betrayal: true
+  monopoly_board_instability: true
+  monopoly_board_reaction: reacting to the chaos, creating new opportunities and dangers

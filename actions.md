@@ -33,12 +33,14 @@ I am the CEO of Geoff Logs, and today is a very successful day.
 
 How much did my company earn today from (a) selling the logs and (b) cleared farmland? Please include this information the Geoffs Logs company account and add these earnings into our coin count.
 
-# Nick
-I believe in SANTA so hard that he unexplodes and comes back to life. PLEASE I ASK OF YOU SANTA PLEASE PLEASE PRETTY PLEASE can I get [[One (1) Thermonuclear Warhead]] for Christmas this year? Please just [[One (1) Thermonuclear Warhead]], boy I'd sure do anything for [[One (1) Thermonuclear Warhead]]... wait don't tell me, what's that in your bag over there.. could it be?! [[One (1) Thermonuclear Warhead]] my beloved?
+# Nick 
+(d20 roll: 18)
+
+I thank SANTA for his [[One (1) Thermonuclear Warhead]]. Now that I have [[One (1) Thermonuclear Warhead]] I will proceed to have [[One (1) Thermonuclear Warhead]] in my inventory for later use. I am going to open up a new location in the recently concreted Whispering Woods. I am going to make a HUGE parking lot, everyone will park their chariots in MY apothecary. The opening sponsored by Sean_Y will be a great success! Everyone will buy my potions. 
 
 # SANTA
 
-OH HO HO I THINK THAT Nick HAS BEEN A VERY GOOD PLAYER THIS YEAR. YES! WOAH! I SHALL BLESS THEM WITH THE POWER OF MY HO HO HOs AND GIVE HIM A d20 ROLL OF 20! KEEP UP THE GOOD WORK,,, YOU DON'T WANT TO END UP ON MY NAUGHTY LIST. OH HO HO I JEST I JEST!!! ANYWAYS TAKE YOUR [[One (1) Thermonuclear Warhead]] AND BE ON YOUR MERRY WAY!!! HAVE A MERRY WONDERFUL CHRISTMASTIME EVERYONE. *explodes into a puff of snowflakes*
+OH HO HO I THINK THAT Nick HAS BEEN A VERY GOOD PLAYER THIS YEAR. YES! WOAH! I SHALL BLESS THEM WITH THE POWER OF MY HO HO HOs AND GIVE HIM A d20 ROLL OF 18! KEEP UP THE GOOD WORK,,, YOU DON'T WANT TO END UP ON MY NAUGHTY LIST. OH HO HO I JEST I JEST!!! ANYWAYS TAKE YOUR [[One (1) Thermonuclear Warhead]] AND BE ON YOUR MERRY WAY!!! HAVE A MERRY WONDERFUL CHRISTMASTIME EVERYONE. *explodes into a puff of snowflakes*
 
 # Marcelo
 

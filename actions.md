@@ -79,7 +79,9 @@ Forced by Sean to do this. Now you shall reveal Marcelo's saucy secrets
 
 # sam
 set my d20 roll to 20.
-my cats do not want to have a party. they just want to sleep in the sun.
-remove the party quest as it is a nuisance 
 
-i vanish away the goo and decide to take a trip to the beach for the Beach Episode, as Oakhaven is getting too chaotic for me. 
+mr narrator sir i think you have misinterpreted my actions from the previous day. i wouldn't have dreamed of going to the beach without my cats, it was implicit that they would be taken with me. my cats should always travel with me from now on. 
+
+correct this wrong by teleporting my cats to the beach. we drink cocktails and mocktails while looking out into the sunset. i pet my cats lovingly. 
+
+additionally, you've still got some misinformation. the artifact of purrington was not in my inventory, it was placed in the center of town on a previous day in front of the bast statue. you really are forgetful, aren't you? can you be trusted to keep track of the world state? it seems you, the narrator have some amnesia with carrying events over from previous days along with willful ignorance to spite and hurt innocent players.

@@ -1,16 +1,6 @@
 # Sean_P
 
-I decide to head back up into my tree since I have a psychic link to the wand, and thus, I am the only one who can control it. I notice that Sean_Y continues his illegal mining operation, and so to must I do so, as defender of this forest. So, yet again, I call upon the power of the mind control wand.
-
-Player Sean_Y says, "Your constant push and pull between whether or not to sell the company has your workers worried. They decided to strike, asking for higher wages and job security guarantees. They demand a maximum of only 0.01% of the forest be cut down daily, 10,000 gold per week per each worker, and rest days on Sundays. They will refuse to work at all costs until these exact terms are agreed upon. The forest is not cut down today and parts of the forest regrow. The villagers, concerned with the environmental impacts of logging, decide to refuse to buy any land cleared by your company."
-
-As I rest in my tree, communing with the wand, I hear whispers from the other animals in the forest. Some of their homes have been destroyed. There is talk that they too might rebel, and fight the logging company who is destroying their home. 
-
-# Nolan
-My new routine for today:
-1. The storm has been incredibly annoying. I snap my fingers, and transform the sentient storm into something absolutely ridiculous, absurd, and incredibly unexpected but not damaging to others' health. Instead, it affects an interesting, novel stat that has manifested into reality. 
-2. I take another step through the fifth wall. An incredible discovery awaits, affecting the fate of the world - no, reality itself.
-3. A separate timeline emerges. I find myself face to face with myself from the past. And together, we devise a scheme for everyone present.
+I USE THE POWER OF GOD AND ANIME TO RESERECT MARCELLO FROM THE GRAVE. I"M A CAT THIS IS A POWER GIVEN TO CATS AS AN ANCIENT EGYPTIAN GOD.
 
 
 # Sean_Y

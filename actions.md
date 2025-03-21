@@ -14,7 +14,7 @@ Eyes. Eyes begin to appear in the sky. Shifting moving, constantly staring down 
 
 SO WHAT HAS HAPPENED?
 
-The Mind Control Wand was a prison for an eldritch god (obviously, it's a mind control wand. Those weird creatures are always doing some mind control shenanigans). Its power leaked out, inhabiting Sean_P's body without them realizing it. Unfortunate really. However, when Sean_P attempted to use the mind control want for one last time, the seals broke allowing the eldritch god to escape. This has the following effects.
+The Mind Control Wand was a prison for an eldritch god (obviously, it's a mind control wand. Those weird creatures are always doing some mind control shenanigans). Its power leaked out, inhabiting Sean_P's body without them realizing it. Unfortunate really. However, when Sean_P attempted to use the mind control want for one last time, the seals broke allowing the eldritch god to escape. A primorial being FAR STRONGER THAN ANY MORTAL WEAPON WHO IS CAPABLE OF BENDING REALITY ITSELF This has the following effects.
 
 - All locations in the world have merged with the underworld. This new world is ruled by the eldritch god. Oakhaven, the Whispering Woods, and maybe even the ENTIRE REALITY are now surrounded by the souls of the dead. Please make note of the effects this has on the world and our players.  
 -   Create a character for this eldritch god (give them a name, a list of powers, and an HP amount of 1000. Feel free to give them a summoning ritual too that players could use!)
@@ -25,6 +25,8 @@ The Mind Control Wand was a prison for an eldritch god (obviously, it's a mind c
 - Delete the mind control wand from Sean_Y's inventory. The wand has burst and now is no longer functioning. Although, maybe Sean_Y and Sam have been influenced by the wand just enough, that they too may become a warlock... Decide what happens to Sean_Y and Sam due to their exposure to the wand and the influence of the Eldtrich God (Note Sean_P had the worst of the exposure). 
 
 THIS LAND CONFUSES OUR MINDS. DOWN IN THE UNDERWORLD.
+
+ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES.  ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES.
 
 # Nick
 

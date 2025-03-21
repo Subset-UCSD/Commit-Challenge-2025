@@ -24,6 +24,7 @@ The Mind Control Wand was a prison for an eldritch god (obviously, it's a mind c
 - As for Sean_P, he is now a warlock with the eldritch god as their patron, having absorbed their power and with the god infecting his mind. Sean_P is now indebted to this god Describe what powers Sean_P possesses now, and what the Eldritch god may want him to do to keep those powers (for example rituals).
 - Delete the mind control wand from Sean_Y's inventory. The wand has burst and now is no longer functioning. Although, maybe Sean_Y and Sam have been influenced by the wand just enough, that they too may become a warlock... Decide what happens to Sean_Y and Sam due to their exposure to the wand and the influence of the Eldtrich God (Note Sean_P had the worst of the exposure). 
 
+THIS LAND CONFUSES OUR MINDS. DOWN IN THE UNDERWORLD.
 
 # Sean_Y
 

@@ -1,0 +1,18 @@
+{
+  "name": "commit-challenge-2025",
+  "version": "0.1.0",
+  "description": "bhdfgkbhjdfgbdsfg",
+  "main": "index.js",
+  "dependencies": {
+    "discord.js": "^14.18.0",
+    "yaml": "^2.7.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "subset ucsd",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.13.9"
+  }
+}

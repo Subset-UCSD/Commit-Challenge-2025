@@ -1,0 +1,404 @@
+players:
+  Nolan:
+    health: 91
+    inventory: {}
+    info:
+      location: Monopoly Board
+      health: .inf
+      plan: sell timeshares on the Monopoly board
+      anxiety: 200
+      customs_agent: a bored-looking entity with antennae and a clipboard
+      project_bubbly_oakhaven: Past Nolan proposes a scheme to replace all the town's
+        currency with bottle caps
+      palindrome_speech: Everyone within a 10-mile radius is compelled to only speak
+        in palindromes.
+      past_self_encounter: true
+      rubber_chicken_stuck: true
+      can_speak: false
+      scheme_failed: true
+      timeshare_scheme: selling rubber chicken-themed timeshares on Marvin Gardens
+  Sean_P:
+    health: 93
+    inventory:
+      coin: 11
+      fish bone: 1
+    info:
+      location: wilderness
+      immune: true
+      is_cat: true
+      mind_control_wand: The Mind Control Wand grants the user Sean_P the ability to
+        CHANGE THE ACTIONS done by all other players. The wand is now coated in
+        iridescent goo and can duplicate items.
+      cats_befriended: 2
+  Sean_Y:
+    health: 92
+    inventory:
+      lockpick: 1
+      coin: 16529
+      Mind Control Wand: 1
+    info:
+      location: town square
+      immune: true
+      logging_status: Sean_Y feels regret for their actions destroying the environment
+        and decides to shut down their company, sell all the assets and leave
+        the whispering woods alone.
+      moral_crisis: false
+      minion: Fluffy
+      forest_replanted: true
+      response: Your constant push and pull between whether or not to sell the company
+        has your workers worried. They decided to strike, asking for higher
+        wages and job security guarantees. They demand a maximum of only 0.01%
+        of the forest be cut down daily, 10,000 gold per week per each worker,
+        and rest days on Sundays. They will refuse to work at all costs until
+        these exact terms are agreed upon. The forest is not cut down today and
+        parts of the forest regrow. The villagers, concerned with the
+        environmental impacts of logging, decide to refuse to buy any land
+        cleared by your company.
+      broken_shovel: true
+      worker_support: true
+      concrete_plan: true
+      cats_visited: true
+      animal_whispers: Some animals are moving into renovated homes and may support
+        the logging company
+  Nick:
+    health: 93
+    inventory:
+      coin: 102500
+      One (1) Thermonuclear Warhead: 1
+    info:
+      location: town square
+      is_cat: true
+      glitter_covered: true
+  Raymond:
+    health: 96
+    inventory:
+      coin: 1999989618
+    info:
+      location: town square
+      bodyguards:
+        - Bartholomew "Barty" Buttons
+        - Madame Evangeline
+      rubber_chicken_insanity: true
+      oil_derrick_useless: true
+  Khushi:
+    health: 37
+    inventory: {}
+    info:
+      location: town square
+      marcelo_secrets: no longer available
+      mind_blank: true
+      whispering_plague: true
+      rubber_chicken_stuck: true
+      name_forgotten: true
+  sam:
+    health: 95
+    inventory:
+      coin: 21
+      white_horse: 0
+      healing potion: 14
+      mana potion: 7
+      invisibility potion: 1
+      map of the Whispering Woods: 1
+      map to artifact: 1
+      fish-flavored invisibility potion: 1
+      Lost Artifact of Purrington: 1
+      The Mind Control Wand: 1
+    info:
+      location: beach
+      is_cat: true
+      cats: 12
+      town_happiness: increased
+      party_score: 1
+      cats_angry: true
+day: 18
+worldInfo:
+  weather: The rubber chicken weather continues, with the added, disconcerting
+    element of Gilbert Gottfried's voice reciting limericks that hint at the
+    futility of existence.
+  day: 19
+  death_clock: 1
+  marcelo_lie_probability: 0.8
+  npcs:
+    merchant:
+      inventory:
+        shovel: 5
+        lockpick: 3
+        alchemical_kit: 1
+    smithy:
+      buys:
+        - iron_ore
+      sell_price:
+        iron_ore: 5
+    casino:
+      prizes:
+        white_horse:
+          probability: 0.05
+        coins:
+          probability: 0.2
+        loss:
+          probability: 0.75
+    geoffrey:
+      type: iron_digger
+      employer: Sean_Y
+  sam_cats:
+    magic_level: 4
+    count: 12
+    location: beach
+  nolan_state: exploring the monopoly board
+  marcelo_day: 0
+  marcelo_affliction: Takes expired medicine.
+  raymond_base: Abandoned Building
+  piano_playing: false
+  townName: Oakhaven
+  cat_apocalypse: true
+  borrowed_from_raymond:
+    borrower: Sean_Y
+    amount: 200
+    days_left: 9
+  geoffrey:
+    daily_iron: 0
+  sam_quest_board:
+    - title: The Whispering Plague
+      description: A strange plague is spreading through the Whispering Woods, causing
+        the trees to whisper secrets and driving creatures mad. Find the source
+        of the plague and contain it before it spreads to Oakhaven.
+      stages:
+        - name: Investigate the Woods
+          description: Venture into the Whispering Woods and gather information about the
+            plague's source and effects.
+          reward: Clues about the source of the plague.
+        - name: Locate the Source
+          description: Follow the clues to find the origin of the Whispering Plague.
+          reward: Knowledge of the plague's true nature.
+        - name: Contain the Plague
+          description: Find a way to contain or cure the plague. This may involve finding
+            a rare herb, performing a ritual, or defeating a powerful creature.
+          reward: The plague is contained, and the Whispering Woods begin to heal.
+        - name: Report Back to Oakhaven
+          description: Return to Oakhaven and inform the townspeople of your success.
+          reward: The gratitude of the town and increased prosperity.
+      reward: The gratitude of Oakhaven and a ward against future plagues.
+      punishment: If the plague spreads, Oakhaven will suffer, leading to decreased
+        happiness and potential losses.
+    - title: The Purrfect Party
+      description: "Host a celebration for Sam's cats and other cats around town. The
+        best party ever wins! The winner receives extra cat treats for their
+        crew and new cat toys! This quest must be voted on by the other players.
+        Voting rules: Each player will put a number 1-10 on how likely Sam is to
+        be successful in throwing the party. Each point of success translates
+        into potential bonus cat treat and cat toy rewards."
+      stages:
+        - name: Create a Party
+          description: Plan a party and invite cats from all around town. You need to
+            decide a venue and a fun activity!
+          reward: The best party of the century!
+      reward: Extra treats and toys
+      punishment: Feline disapproval
+    - title: The Pink Goo Inferno
+      description: Marcelo's accidental (or perhaps not-so-accidental) arson has
+        created a new crisis. The pink goo fire is spreading rapidly. The
+        players must find a way to extinguish the fire before it consumes
+        Oakhaven.
+      stages:
+        - name: Find the Source
+          description: Locate the source of the pink goo fire.
+          reward: The source of the fire.
+        - name: Extinguish the Fire
+          description: Find a way to extinguish the pink goo fire.
+          reward: The pink goo fire is extinguished.
+        - name: Report Back to Oakhaven
+          description: Return to Oakhaven and inform the townspeople of your success.
+          reward: The gratitude of the town and increased prosperity.
+      reward: The gratitude of Oakhaven and a ward against future fires.
+      punishment: If the fire spreads, Oakhaven will suffer, leading to decreased
+        happiness and potential losses.
+    - title: Project Bubbly Oakhaven
+      description: Past Nolan's scheme has taken root. Sparkling water is mysteriously
+        appearing in fountains and wells throughout the town. Is this a harmless
+        prank, or is there something more sinister behind the bubbly beverage?
+      stages:
+        - name: Find the Source
+          description: Investigate where the sparkling water is coming from.
+          reward: You will discover the source of the sparkling water. Past Nolan is in
+            charge.
+        - name: Resolve the Plan
+          description: Decide what to do about the sparkling water. Do you allow it to
+            continue? Do you remove it? Why or why not?
+          reward: You will decide the fate of the sparkling water, and whether it stays or
+            goes.
+      reward: Whether the water can or cannot stay
+      punishment: Town is in distress.
+    - title: The Cosmic Customs Declaration
+      description: Nolan has a chance to declare any paradoxes or inconsistencies with
+        the customs agent.
+      stages:
+        - name: List Paradoxes
+          description: Nolan must list any and all paradoxical entities, plot holes, or
+            narrative inconsistencies to the customs agent
+          reward: Customs is satisfied.
+        - name: Under 50 words
+          description: Must be under 50 words.
+          reward: You successfully listed under 50 words. The customs agent rewards you
+            with a lollipop.
+      reward: Customs Declaration is done.
+      punishment: The agent is unhappy.
+    - title: Sean_Y, Logging Company
+      description: A player will need to restore Sean_Y's company, and also resolve
+        the situation with the missing Tuna.
+      stages:
+        - name: Restore Company
+          description: Find a way to let Sean_Y restore his company.
+          reward: Sean_Y can get his company back.
+        - name: Resolve the Missing Tuna
+          description: Where is the tuna? Where is Fluffy?
+          reward: The Tuna is back.
+      reward: Sean_Y is whole
+      punishment: No logging, and sad tuna cats.
+  smithy:
+    sell_price: {}
+  npc_undefined:
+    health: 100
+    inventory: {}
+    info: {}
+  npc_geoffrey:
+    health: 100
+    inventory: {}
+    info:
+      meaning_of_life: understood
+      desire_to_hurt_khushi: false
+  challenge:
+    title: The Case of the Missing Tuna
+    description: A large shipment of tuna, destined for the Oakhaven Cat Cafe, has
+      gone missing. Find the culprit and recover the tuna before the cats
+      revolt!
+    stages:
+      - name: Investigate the Docks
+        description: Search the docks for clues about the missing tuna.
+        reward: Leads about the tuna thief.
+      - name: Follow the Trail
+        description: Track the tuna thief through the Whispering Woods.
+        reward: The thief's hideout location.
+      - name: Confront the Thief
+        description: You must defeat Fluffy in combat to take the tuna back.
+        reward: Recovered Tuna, plus a loyal feline friend (if spared).
+      - name: Return the Tuna
+        description: Bring the tuna to the Oakhaven Cat Cafe. Your cats can enjoy some
+          free food as a reward!
+        reward: The gratitude of the cats and free tuna for a week.
+    reward: The gratitude of the cats and free tuna for a week.
+    punishment: If the tuna is not recovered, the cats will riot, causing chaos in
+      Oakhaven.
+  nolan_action: exploring the monopoly board
+  pastNolan:
+    health: 90
+    inventory: {}
+    info:
+      location: Simulation
+      anxiety: 100
+      plan: replace all the town's currency with bottle caps
+  marcelo_deal:
+    offered_by: Sean_Y
+    days_left: 3
+  tuna_theft: true
+  forestCleared: 17
+  dailyForestClearance: 0
+  companyEarnings: 0
+  dailyEarnings: 0
+  tunaThief:
+    name: Fluffy
+    location: Whispering Woods Hideout
+    health: 80
+    status: loyal minion
+  town_humor_stat: plummet to record lows, as nobody can tell jokes anymore, but
+    the sheer absurdity of the situation is also morbidly amusing. The Meaning
+    of Life stat begins to fluctuate wildly across Oakhaven.
+  hidden_layer: a giant game of cosmic Monopoly, with entire realities as properties
+  monopoly_board: controlling certain territories on the board directly influences
+    events in the real world
+  farmland_income_per_day: 100
+  nick_status: observing the chaos with amusement
+  great_monopoly_game: Explore the cosmic *Monopoly* board, acquire properties,
+    and navigate the dangers of interdimensional capitalism.
+  cat_uprising: Investigate the underlying causes of feline discontent and find a
+    way to restore harmony between humans and cats.
+  whispering_plague: true
+  operating_manual: written in an alien language, but diagrams suggest that
+    controlling certain territories on the board directly influences events in
+    the real world
+  tunaEarnings: 5000
+  nick_incident: A rainbow explosion of colors ensues as the potions mix and
+    collide, creating a cloud of smoke and bubbles. When the smoke clears, both
+    shops are covered in a thick layer of pink goo that smells faintly of
+    bubblegum and regret.
+  pink_goo_effect: extremely popular with the cat population. It's apparently
+    quite delicious and has the added benefit of making their fur incredibly
+    fluffy.
+  fluff_plague: excessive fluff. The cats of Oakhaven are now incredibly fluffy,
+    and fluff bunnies the size of sheep are now roaming the streets,
+    occasionally getting into turf wars with the regular-sized fluff bunnies.
+  momentum: 1
+  town_on_fire: true
+  fire_type: pink goo
+  new_quests:
+    - name: The Whispering Woods Rebellion
+      description: The animals of the Whispering Woods, enraged by the continued
+        logging (even with catnap trees protected), are now actively planning an
+        uprising. The players must find a way to quell the rebellion or face the
+        consequences.
+    - name: The Great Feline Purge
+      description: All of Sam's cats are rebelling against her and want to eat her and
+        steal the artifact of Purrington back. Sam must fight them all!
+    - name: The Pink Goo Disaster
+      description: Due to the pink goo fountain, the cats must now be stopped.
+  MeaningOfLife: fluctuating
+  santa_naughty_list: Marcelo
+  oakhaven_property: mid-tier property on the 'Existential Properties' quadrant
+  whispering_woods_rebellion: The animals of the Whispering Woods are now actively planning an uprising.
+  missing_tuna_unrest: The missing tuna is a major source of feline unrest,
+    exacerbated by the lingering scent of the fish-flavored invisibility potion.
+  pink_goo_seeping_into_coal: true
+  townspeople_think_nick_is_crazy: true
+  rubber_chicken_downpour: true
+  cats_licking_goo: true
+  sam_party_failed: true
+  town_on_the_edge_of_chaos: true
+  loggingCompanyName: Sean_Y
+  ProjectBubblyOakhaven: true
+  CosmicCustomsDeclaration: true
+  MissingTuna: true
+  the_forests_revenge: The animals of the Whispering Woods are now considering
+    open rebellion against any logging company or town people.
+  sentient_storm_vendetta: Nolan
+  mind_control_wand_upgrade: true
+  animals_plotting: true
+  geoff_logs_account: true
+  catnap_trees: true
+  tuna_retrieved: true
+  nickInvestment: 500
+  vortex_coal_dust:
+    health: 50
+  flammable_sludge:
+    will_explode: true
+  pink_goo_fountain: true
+  cats_hate_sam: true
+  monopoly_board_unlocked_area: unknown
+  duplicate_wand: true
+  whispering_woods_uprising: true
+  apothecary_success: true
+  parking_lot_success: true
+  npc_marcelo:
+    health: 0
+    inventory: {}
+    info:
+      marcelo_secrets: no longer available
+  marcelo_hospitalized: true
+  marcelo_secrets: unknown
+  oil_derrick_paradox: true
+  raymond_base_on_fire: true
+  cats_rebellious: true
+  cat_betrayal: true
+  marcelo_medical_condition: true
+  raymond_burning_base: true
+  sam_betrayal: true
+  monopoly_board_instability: true
+  monopoly_board_reaction: reacting to the chaos, creating new opportunities and dangers

@@ -1,0 +1,7 @@
+Generate release notes for each commit. Each commit should have the name as a header and a short description as bullet points for what is being done in the commit. 
+
+After this, generate and label (necessary and unnecessary) todo items as bullet points that guess what committers should do next, excluding what was done in the current release.
+
+You must format your response as a markdown file that will act as release notes. Write your description for each commit entirely with emojis, no words.
+
+⚠️!!!Do not include lists of filenames in your response!!! Do not include changes to actions.md!!!! ⚠️

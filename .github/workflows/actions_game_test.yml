@@ -1,0 +1,37 @@
+name: actions game test
+
+on:
+    # schedule:
+    #     - cron: '0 8 * * *'
+    workflow_dispatch:
+
+permissions:
+  contents: write
+  # pull-requests: write
+
+jobs: 
+    game:
+      runs-on: ubuntu-latest
+      # if: github.event_name == 'schedule'
+      steps:
+        - name: checks you out 
+          uses: actions/checkout@v4
+          with:
+            fetch-depth: 0
+        - name: Use Node.js 22
+          uses: actions/setup-node@v4
+          with:
+            node-version: 22
+        - name: run the actions game
+          env: 
+            GEMINI_API: ${{ secrets.GEMINI_API }}
+            DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          run: |
+            git config user.name "Thomas A. Powell"
+            git config user.email "tpowell@pint.com"
+            npm install
+            COMMITMSG=$(node --experimental-strip-types actions/act.mts)
+            git add actions/state.yml
+            git commit -m "$COMMITMSG"
+            git push origin HEAD
+                

@@ -86,8 +86,10 @@ Forced by Sean to do this. Now you shall reveal Marcelo's saucy secrets
 # sam
 set my d20 roll to 20.
 
-mr narrator sir i think you have misinterpreted my actions from the previous day. i wouldn't have dreamed of going to the beach without my cats, it was implicit that they would be taken with me. my cats should always travel with me from now on. 
+mr narrator sir i think you have once again, misinterpreted my actions from the previous day. i have fed my cats treats, pet them lovingly, and taken care of them. you are also wrong that the tuna was missing, it was simply misplaced. the cats happily feast on the tuna and our friendship levels are set to 100%. please aim to correct this wrong. 
 
-correct this wrong by teleporting my cats to the beach. we drink cocktails and mocktails while looking out into the sunset. i pet my cats lovingly. 
+you really are forgetful, aren't you? can you be trusted to keep track of the world state? it seems you, the narrator have some amnesia with carrying events over from previous days along with willful ignorance to spite and hurt innocent players and cats. my cats are very even tempered and would never become enraged. they are physically incapable of it and it's inconceivable and hurtful that you would do such a thing to innocent creatures.
 
-additionally, you've still got some misinformation. the artifact of purrington was not in my inventory, it was placed in the center of town on a previous day in front of the bast statue. you really are forgetful, aren't you? can you be trusted to keep track of the world state? it seems you, the narrator have some amnesia with carrying events over from previous days along with willful ignorance to spite and hurt innocent players.
+given that sean has created the underworld, the beach has now become Elysium as me and my cats have lived virtuously. who else is in elysium, whether old heroes or current players?
+
+

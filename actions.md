@@ -1,6 +1,6 @@
 # Sean_P
 
-After that last attempt did not work, I decided to summon the power of the mind-control wand and attempt to use it to break Marcello out of the underworld...
+After that last attempt did not work, I decided to summon the power of the mind-control wand and attempt to use it to break Marcelo out of the underworld...
 
 except...
 
@@ -25,6 +25,10 @@ The Mind Control Wand was a prison for an eldritch god (obviously, it's a mind c
 - Delete the mind control wand from Sean_Y's inventory. The wand has burst and now is no longer functioning. Although, maybe Sean_Y and Sam have been influenced by the wand just enough, that they too may become a warlock... Decide what happens to Sean_Y and Sam due to their exposure to the wand and the influence of the Eldtrich God (Note Sean_P had the worst of the exposure). 
 
 THIS LAND CONFUSES OUR MINDS. DOWN IN THE UNDERWORLD.
+
+# Nick
+
+What Sean_P doesn't know is that when SANTA gave me the [[One (1) Thermonuclear Bomb]] it was actually a [[One (currently exploding) (1) Thermonuclear Bomb]]. This happened to kill all of the residents in Oakhaven at the same time. At this time Sean_P was fiddling around with The Mind Control Wand and attributed the megaton explosion with an eldritch blast of energy. The eldritch blast of energy still did happen, but it was much much weaker than the power of modern S.A.N.T.A technology. That was a cruel joke SANTA played on all of us. We must all have been on his naughty list. What Sean_P speaks of is true, however, that EVERYONE (including Marcelo) is now down in the underworld after the [[One (currently exploding) (1) Thermonuclear Bomb]] went off. [[Admin: Remove [[One (1) Thermonuclear Bomb]] from Nick's inventory]]. [[Admin: Add [[One (1) Exploded Thermonuclear Bomb Remains]] to Nick's inventory]]. Now that I am in the underworld equivalent of Oakhaven, the odd weather patterns stop, there is no more pink goop, and all you hear are screams every time you close your eyes. [[New Quest: Escape the Underworld (with Marcelo)]]. After Marcelo was tragically killed by falling on spikes, drinking a wide variety of potions that all had negative effects, and then succumbed to coal poisoning in Sean_Y's coal mine, we must go on a quest to bring him back. I rally sam, Sean_P, Sean_Y, Geoffrey, and Raymond to assist in escaping the underworld. Describe how the quest can be accomplished. Additionally anyone who interacts with the [[One (1) Exploded Thermonuclear Bomb Remains]] will sustain 10 ethereal damage, unblockable. This is because it is haunted by the souls of all of Oakhaven. 
 
 # Sean_Y
 
@@ -55,15 +59,6 @@ I am the CEO of Geoff Logs, and today is a very successful day.
 4. Invest in Nick's apothecary by giving him 500 coins a day.
 
 How much did my company earn today from (a) selling the logs and (b) cleared farmland? Please include this information the Geoffs Logs company account and add these earnings into our coin count.
-
-# Nick 
-(d20 roll: 18)
-
-I thank SANTA for his [[One (1) Thermonuclear Warhead]]. Now that I have [[One (1) Thermonuclear Warhead]] I will proceed to have [[One (1) Thermonuclear Warhead]] in my inventory for later use. I am going to open up a new location in the recently concreted Whispering Woods. I am going to make a HUGE parking lot, everyone will park their chariots in MY apothecary. The opening sponsored by Sean_Y will be a great success! Everyone will buy my potions. 
-
-# SANTA
-
-OH HO HO I THINK THAT Nick HAS BEEN A VERY GOOD PLAYER THIS YEAR. YES! WOAH! I SHALL BLESS THEM WITH THE POWER OF MY HO HO HOs AND GIVE HIM A d20 ROLL OF 18! KEEP UP THE GOOD WORK,,, YOU DON'T WANT TO END UP ON MY NAUGHTY LIST. OH HO HO I JEST I JEST!!! ANYWAYS TAKE YOUR [[One (1) Thermonuclear Warhead]] AND BE ON YOUR MERRY WAY!!! HAVE A MERRY WONDERFUL CHRISTMASTIME EVERYONE. *explodes into a puff of snowflakes*
 
 # Marcelo
 

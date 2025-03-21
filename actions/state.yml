@@ -3,7 +3,7 @@ players:
     health: 91
     inventory: {}
     info:
-      location: Monopoly Board
+      location: Bargaining With Souls district of the Monopoly board
       health: .inf
       plan: sell timeshares on the Monopoly board
       anxiety: 200
@@ -18,7 +18,7 @@ players:
       scheme_failed: true
       timeshare_scheme: selling rubber chicken-themed timeshares on Marvin Gardens
   Sean_P:
-    health: 93
+    health: 0
     inventory:
       coin: 11
       fish bone: 1
@@ -34,10 +34,9 @@ players:
     health: 92
     inventory:
       lockpick: 1
-      coin: 16529
-      Mind Control Wand: 1
+      coin: 16539
     info:
-      location: town square
+      location: catatonic in town square
       immune: true
       logging_status: Sean_Y feels regret for their actions destroying the environment
         and decides to shut down their company, sell all the assets and leave
@@ -60,19 +59,27 @@ players:
       cats_visited: true
       animal_whispers: Some animals are moving into renovated homes and may support
         the logging company
+      azathoth_connection: Sean_Y, deeply shaken by the event, is left with a
+        lingering connection to Azathoth. He suffers from recurring nightmares
+        filled with endless eyes and hears whispers in his sleep. While he
+        doesn't gain any immediate powers, he is now more susceptible to
+        Azathoth's influence.
   Nick:
     health: 93
     inventory:
       coin: 102500
       One (1) Thermonuclear Warhead: 1
+      One (1) Exploded Thermonuclear Bomb Remains: 1
     info:
       location: town square
       is_cat: true
       glitter_covered: true
+      damage: "[[One (1) Exploded Thermonuclear Bomb Remains]] deals 10 ethereal
+        damage that can't be blocked upon touching."
   Raymond:
     health: 96
     inventory:
-      coin: 1999989618
+      coin: 2000089618
     info:
       location: town square
       bodyguards:
@@ -110,11 +117,10 @@ players:
       town_happiness: increased
       party_score: 1
       cats_angry: true
-day: 18
+day: 19
 worldInfo:
-  weather: The rubber chicken weather continues, with the added, disconcerting
-    element of Gilbert Gottfried's voice reciting limericks that hint at the
-    futility of existence.
+  weather: The rubber chicken weather has been replaced by a perpetual twilight,
+    where the sky is a swirling vortex of eyes, constantly watching.
   day: 19
   death_clock: 1
   marcelo_lie_probability: 0.8
@@ -143,20 +149,20 @@ worldInfo:
   sam_cats:
     magic_level: 4
     count: 12
-    location: beach
+    location: Elysium
   nolan_state: exploring the monopoly board
   marcelo_day: 0
   marcelo_affliction: Takes expired medicine.
   raymond_base: Abandoned Building
   piano_playing: false
-  townName: Oakhaven
+  townName: Grotesque parody of Oakhaven
   cat_apocalypse: true
   borrowed_from_raymond:
     borrower: Sean_Y
     amount: 200
     days_left: 9
   geoffrey:
-    daily_iron: 0
+    daily_iron: 10
   sam_quest_board:
     - title: The Whispering Plague
       description: A strange plague is spreading through the Whispering Woods, causing
@@ -300,10 +306,10 @@ worldInfo:
     offered_by: Sean_Y
     days_left: 3
   tuna_theft: true
-  forestCleared: 17
-  dailyForestClearance: 0
-  companyEarnings: 0
-  dailyEarnings: 0
+  forestCleared: 60
+  dailyForestClearance: 43
+  companyEarnings: 10
+  dailyEarnings: 10
   tunaThief:
     name: Fluffy
     location: Whispering Woods Hideout
@@ -358,7 +364,7 @@ worldInfo:
     exacerbated by the lingering scent of the fish-flavored invisibility potion.
   pink_goo_seeping_into_coal: true
   townspeople_think_nick_is_crazy: true
-  rubber_chicken_downpour: true
+  rubber_chicken_downpour: false
   cats_licking_goo: true
   sam_party_failed: true
   town_on_the_edge_of_chaos: true
@@ -366,8 +372,7 @@ worldInfo:
   ProjectBubblyOakhaven: true
   CosmicCustomsDeclaration: true
   MissingTuna: true
-  the_forests_revenge: The animals of the Whispering Woods are now considering
-    open rebellion against any logging company or town people.
+  the_forests_revenge: The animals driven from their homes are now actively planning a revolt.
   sentient_storm_vendetta: Nolan
   mind_control_wand_upgrade: true
   animals_plotting: true
@@ -386,12 +391,6 @@ worldInfo:
   whispering_woods_uprising: true
   apothecary_success: true
   parking_lot_success: true
-  npc_marcelo:
-    health: 0
-    inventory: {}
-    info:
-      marcelo_secrets: no longer available
-  marcelo_hospitalized: true
   marcelo_secrets: unknown
   oil_derrick_paradox: true
   raymond_base_on_fire: true
@@ -401,4 +400,55 @@ worldInfo:
   raymond_burning_base: true
   sam_betrayal: true
   monopoly_board_instability: true
-  monopoly_board_reaction: reacting to the chaos, creating new opportunities and dangers
+  monopoly_board_reaction: reacting violently to the influx of souls, creating
+    new, nightmarish properties and twisting the rules of the game
+  quests:
+    - name: A Soul's Laughter
+      description: Find a way to make a tormented soul laugh in the Bargaining With
+        Souls district of the Monopoly board.
+      reward: Knowledge of a weakness of the Eldritch God
+    - name: The Price of Sight
+      description: Sean_P must choose whether to embrace Azathoth's power or resist
+        its influence, potentially leading to a showdown with the Eldritch God
+        within him.
+    - name: Resurrecting Marcello
+      description: Find a way to pull Marcello's soul back from the Underworld and
+        restore him to life. This will likely require finding a powerful
+        artifact or performing a complex ritual.
+    - name: Severing the Connection
+      description: Find a way to separate Oakhaven from the Underworld before Azathoth
+        consumes it entirely. This may involve finding a way to imprison or
+        banish the Eldritch God.
+    - name: Taming Cerberus
+      description: A shadow on the beach takes form as a three headed dog, baring its
+        fangs at anyone who dares approach. This beast could be powerful ally,
+        or a major threat.
+    - name: Escape the Underworld (with Marcelo)
+      description: Escape the underworld with Marcelo.
+    - name: The Great Feline Purge
+      description: The cats will now pursue sam, who must get ahold of her cats before
+        the uprising occurs.
+  azathoth:
+    health: 1000
+    powers:
+      - Reality Warping
+      - Soul Manipulation
+      - Mind Control
+      - Summoning of Underworld Entities
+      - Omniscience (through the eyes in the sky)
+      - Invulnerability to mortal weapons
+    summoning_ritual: Requires the sacrifice of a pure soul on a nexus point between
+      realities, followed by the recitation of a forgotten incantation in the
+      language of the dead. (The exact incantation remains hidden.)
+  geoff_logs_reputation: Geoff Logs' reputation will now be further tarnished as
+    people fear the forest is a place for dangerous entities.
+  raymond_oil_baron: true
+  new_hazard: The derrick strikes a pocket of volatile, underworld-infused oil,
+    causing a geyser of black sludge to erupt into the sky. The sludge is highly
+    flammable and highly toxic, instantly turning the surrounding area into a
+    hazardous wasteland.
+  elysium: populated by lost souls, heroes of old, and the echoes of forgotten dreams
+  marcelo_state: stuck in the underworld, and can no longer perform any actions.
+  catnap_trees_protected: true
+  invite_khushi: true
+  invest_apothecary: true

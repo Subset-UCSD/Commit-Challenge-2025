@@ -66,11 +66,7 @@ How much did my company earn today from (a) selling the logs and (b) cleared far
 
 Respond to my actions with a variety of emojis (ONLY EMOJIES) because text deeply offend me. Make the response long and meaningful.
 
-Cast a spell to set Nick's health to 0. See what happens.
-
-*Also, whenever a character speaks a language other than English, they get struck by a meteor that deals 1-5 damage randomly and interrupt their speech (in other words ignore all language other than English)*
-
-*Also, Nick is being a naughty boy and is mingling other ppl's actions, for the next d20 Nick rolls, give him a low number (1 - 5) to punish him because he is not on Santa's good list.*
+Since I am not a player anymore, I can start haunting people. Every other player should feel chills crawling up their spine. Mwahahahaha!
 
 # Raymond
 

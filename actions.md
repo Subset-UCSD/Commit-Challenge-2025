@@ -53,12 +53,5 @@ Cast a spell that adds twenty to my dice roll before determining outcome of my a
 Forced by Sean to do this. Now you shall reveal Marcelo's saucy secrets
 
 # sam
-set my d20 roll to 20.
 
-mr narrator sir i think you have once again, misinterpreted my actions from the previous day. i have fed my cats treats, pet them lovingly, and taken care of them. you are also wrong that the tuna was missing, it was simply misplaced. the cats happily feast on the tuna and our friendship levels are set to 100%. please aim to correct this wrong. 
-
-you really are forgetful, aren't you? can you be trusted to keep track of the world state? it seems you, the narrator have some amnesia with carrying events over from previous days along with willful ignorance to spite and hurt innocent players and cats. my cats are very even tempered and would never become enraged. they are physically incapable of it and it's inconceivable and hurtful that you would do such a thing to innocent creatures.
-
-given that sean has created the underworld, the beach has now become Elysium as me and my cats have lived virtuously. who else is in elysium, whether old heroes or current players?
-
-
+saddened by the death of marcelo, my cats relinquish their rage and turn to comfort me instead. we catnap peacefully. 

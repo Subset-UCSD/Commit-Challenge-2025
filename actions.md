@@ -1,32 +1,8 @@
 # Sean_P
 
-After that last attempt did not work, I decided to summon the power of the mind-control wand and attempt to use it to break Marcelo out of the underworld...
+AftI miss Marcello dearly. I want to bring him back. Since he died, the forest has been destroyed, we were sent into the underworld, and Azathoth started to corrupt my mind. I hear promises of power, power to save the ones I care about. I decide to embrace Azathoth's power. That way I hope, I can use Azathoth's power in a complex ritual to bring Marcello back from the dead!
 
-except...
-
-I no longer am in control.
-
-There is a blistering headache. My head hurts. It Hurts. HURTS. I cry out loudly. I see the mind control wand in my mind's eyes in Sean_Y's inventory. The crystal at its head begins to crack and simmer, and shake-VIOLENTLY. Smoke pours from the cracks alongside the deluge of flesh and bones. The pour out onto the floor, into the cracks, into the EARTH, into my MIND. 
-
-Meanwhile in reality: The Whispering Woods, the beach, and Oakhaven shake as though the earth itself splits open. The sky turns from a light blue to a deep red then to black. There are no stars, no lights but for the candles that the residents have lit. Sean_Y awakes, finding the mind control wand, nothing more than a twig surrounded by a melody of screams and crying... of the underworld. 
-
-Eyes. Eyes begin to appear in the sky. Shifting moving, constantly staring down into the newfound land of the living and dead. From a distant hill, Marcello's soul, lost to the underworld sees Oakhaven in the distance. "No..." Marcello's soul says. "What is Oakhaven doing in the underworld?!" 
-
-SO WHAT HAS HAPPENED?
-
-The Mind Control Wand was a prison for an eldritch god (obviously, it's a mind control wand. Those weird creatures are always doing some mind control shenanigans). Its power leaked out, inhabiting Sean_P's body without them realizing it. Unfortunate really. However, when Sean_P attempted to use the mind control want for one last time, the seals broke allowing the eldritch god to escape. A primorial being FAR STRONGER THAN ANY MORTAL WEAPON WHO IS CAPABLE OF BENDING REALITY ITSELF This has the following effects.
-
-- All locations in the world have merged with the underworld. This new world is ruled by the eldritch god. Oakhaven, the Whispering Woods, and maybe even the ENTIRE REALITY are now surrounded by the souls of the dead. Please make note of the effects this has on the world and our players.  
--   Create a character for this eldritch god (give them a name, a list of powers, and an HP amount of 1000. Feel free to give them a summoning ritual too that players could use!)
--   Marcello, the character who was killed a few days ago, is a soul wandering the underworld. Perhaps now that the world the living and the dead have merged, he could be possibility brought back to life? Make a quest to bring Marcello back from the grave.
-- Make a few quests about the underworld. There could be a quest to slay (or join) the eldritch god, explore the underworld, tame Cerberus, and be creative!
-- Absolutely at the very least, create a quest that includes Oakhaven and the underworld being split again.
-- As for Sean_P, he is now a warlock with the eldritch god as their patron, having absorbed their power and with the god infecting his mind. Sean_P is now indebted to this god Describe what powers Sean_P possesses now, and what the Eldritch god may want him to do to keep those powers (for example rituals).
-- Delete the mind control wand from Sean_Y's inventory. The wand has burst and now is no longer functioning. Although, maybe Sean_Y and Sam have been influenced by the wand just enough, that they too may become a warlock... Decide what happens to Sean_Y and Sam due to their exposure to the wand and the influence of the Eldtrich God (Note Sean_P had the worst of the exposure). 
-
-THIS LAND CONFUSES OUR MINDS. DOWN IN THE UNDERWORLD.
-
-ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES.  ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES. ALL WILL BOW TOWARDS THE EYES.
+TLDR: I seek to embrace Azathoth and bring Marcello back using their power. 
 
 # Nick
 

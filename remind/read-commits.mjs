@@ -40,6 +40,7 @@ const messages = Object.fromEntries(
           "u could change [the image](WEB) that {PPL} added",
           "help {PPL} make an [aquarium!](WEB)!",
           "listen to [this song](WEB) that {PPL} made",
+          '{PPL} commited to the repo and YOU didnt.. CRINGE',
         )
       : select(
           "you could be the first comiter of the day!!",

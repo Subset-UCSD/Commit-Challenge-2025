@@ -54,4 +54,4 @@ Forced by Sean to do this. Now you shall reveal Marcelo's saucy secrets
 
 # sam
 
-saddened by the death of marcelo, my cats relinquish their rage and turn to comfort me instead. we catnap peacefully. 
+i pet each of my cats. end turn. 

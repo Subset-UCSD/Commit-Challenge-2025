@@ -6,7 +6,7 @@ players:
       location: Bargaining With Souls district of the Monopoly board
       health: .inf
       plan: sell timeshares on the Monopoly board
-      anxiety: 220
+      anxiety: 230
       customs_agent: a bored-looking entity with antennae and a clipboard
       project_bubbly_oakhaven: Past Nolan proposes a scheme to replace all the town's
         currency with bottle caps
@@ -16,14 +16,13 @@ players:
       can_speak: false
       scheme_failed: true
       timeshare_scheme: selling rubber chicken-themed timeshares on Marvin Gardens
-      timeshare_success: Several souls, driven mad by the incessant palindromes and
-        the sheer absurdity of the situation, are intrigued by the promise of a
-        permanent escape into chicken-themed oblivion.
+      timeshare_success: Nolan sells a single timeshare to a particularly desperate soul.
       timeshare_disappointment: many of the souls who purchase Nolan's timeshares are
         disappointed to find out it comes with many of the same torments of the
         underworld.
+      timeshare_profit: very little
   Sean_P:
-    health: 0
+    health: -100
     inventory:
       coin: 11
       fish bone: 1
@@ -39,6 +38,9 @@ players:
       azathoth_influence: Azathoth's influence is now a dominant force within Sean_P.
         He can feel the Eldritch God's presence, a constant whispering in the
         back of his mind.
+      azathoth_embrace: true
+      demon_soul_tree_creation: true
+      animal_frenzy: true
   Sean_Y:
     health: 92
     inventory:
@@ -66,6 +68,7 @@ players:
       oakhaven_hates_sean_y: Oakhaven hates Sean_Y even more.
       animal_attack: The animals are planning to kill you, and even your personal cat
         cafe refuses service to Sean.
+      pipeline_leak: true
   Nick:
     health: 88
     inventory:
@@ -87,6 +90,7 @@ players:
         souls. The corruption is slowly poisoning him, and he will soon turn
         into a horrifying monster if he does not find a clean soul.
       powers_require_souls: true
+      twitching_eye: true
   Raymond:
     health: 96
     inventory:
@@ -100,7 +104,7 @@ players:
       oil_derrick_useless: true
       oily_mess: true
   Khushi:
-    health: 2
+    health: -43
     inventory: {}
     info:
       location: town square
@@ -112,6 +116,8 @@ players:
         saucy secrets will come later.
       distorted_lens: Khushi now sees the world through a distorted lens, constantly
         aware of the Eldritch God's pervasive influence.
+      marcelo_saucy_secrets: true
+      marcelo_rubber_chicken: true
   sam:
     health: 95
     inventory:
@@ -134,12 +140,12 @@ players:
       cats_angry: true
       betrayed: true
       cats_hate_sam: true
-day: 21
+day: 22
 worldInfo:
   weather: The swirling vortex of eyes in the sky intensifies, its gaze sharper
     and more oppressive. The perpetual twilight deepens, casting long, distorted
     shadows across the grotesque parody of Oakhaven.
-  day: 21
+  day: 22
   death_clock: 2
   marcelo_lie_probability: 0.8
   npcs:
@@ -182,7 +188,7 @@ worldInfo:
       location: Simulation
       anxiety: 100
       plan: replace all the town's currency with bottle caps
-  forestCleared: 90
+  forestCleared: 100
   tunaThief:
     name: Fluffy
     location: Whispering Woods Hideout
@@ -206,7 +212,7 @@ worldInfo:
     quite delicious and has the added benefit of making their fur incredibly
     fluffy.
   momentum: 1
-  town_on_fire: true
+  town_on_fire: false
   fire_type: pink goo
   MeaningOfLife: fluctuating
   santa_naughty_list: Marcelo
@@ -214,7 +220,7 @@ worldInfo:
   pink_goo_seeping_into_coal: true
   townspeople_think_nick_is_crazy: true
   rubber_chicken_downpour: false
-  geoff_logs_account: 38001
+  geoff_logs_account: 71001
   flammable_sludge:
     will_explode: true
   cats_hate_sam: true
@@ -225,10 +231,7 @@ worldInfo:
       description: Find a way to make a tormented soul laugh in the Bargaining With
         Souls district of the Monopoly board.
       reward: Knowledge of a weakness of the Eldritch God
-    - name: The Price of Sight
-      description: Sean_P must choose whether to embrace Azathoth's power or resist
-        its influence, potentially leading to a showdown with the Eldritch God
-        within him.
+    - null
     - name: Resurrecting Marcello
       description: Find a way to pull Marcello's soul back from the Underworld and
         restore him to life. This will likely require finding a powerful
@@ -261,10 +264,17 @@ worldInfo:
       description: The oil derrick has unleashed toxic oil into the environment,
         causing mass panic. Somebody must stop it, and clean up the mess.
       reward: A healthy Oakhaven
+      urgent: true
     - name: The Price of Sight
       description: Sean_P must choose whether to embrace Azathoth's power or resist
         its influence, potentially leading to a showdown with the Eldritch God
         within him.
+      harder: true
+    - name: Azathoth's Champion
+      description: Sean_P must now prove his worth to Azathoth by performing a series
+        of increasingly twisted tasks.
+    - name: Taming Cerberus
+      description: The players must find a way to tame the three headed dog.
   azathoth:
     health: 1000
     powers:
@@ -280,8 +290,6 @@ worldInfo:
   geoff_logs_reputation: However, people now hate Geoff, who's reputation is forever tarnished.
   raymond_oil_baron: true
   elysium: populated by lost souls, heroes of old, and the echoes of forgotten dreams
-  pink_goo_fuel_source: becoming less abundant as it seeps deeper underground,
-    contaminating previously untouched resources.
   whispers: The whispers in the air are growing louder, more insistent, weaving
     insidious suggestions into the thoughts of the susceptible.
   monopoly_board_rumble: The Monopoly board rumbles ominously, the properties
@@ -294,19 +302,18 @@ worldInfo:
     concrete and slicked with oil.
   walmart_burns_down: Walmart burns down, making the economic situation even worse.
   oil_spill_spreading: The oil spill is spreading.
-  oakhaven_destroyed: Oakhaven is completely destroyed.
+  oakhaven_destroyed: true
   economic_situation: worse
   whispering_woods_desolate: The Whispering Woods is now even more desolate, its
     spiritual essence weakened and corrupted.
-  oil_spill_worse: The oil spill is getting worse.
+  oil_spill_worse: true
   raymond_campaign_fails: Raymond's campaign fails for yet another day, much to
     the pleasure of many townspeople.
   azathoth_presence_stronger: Azathoth's presence in Oakhaven strengthens.
   oakhaven_chaos: Oakhaven is plunged further into chaos.
   cat_uprising_beginning: The cat uprising is about to begin.
-  whispering_woods_gone: The Whispering Woods is nearly gone, replaced by a
-    wasteland of stumps and broken earth.
-  animals_desperate: The animals grow more and more desperate, their uprising imminent.
+  whispering_woods_gone: true
+  animals_desperate: true
   log_earnings: 3000
   farmland_earnings: 30000
   marcelo_presence: Every player feels a cold shiver run down their spine. They
@@ -316,3 +323,25 @@ worldInfo:
     seems to be unraveling, and the whispers of Azathoth grow louder.
   players_must_act: The players must act quickly if they hope to save Oakhaven, or
     at least escape with their sanity intact.
+  Economic_situation: much worse
+  Oakhaven_Whispering_Pavement_Special_Economic_Zone: true
+  pipeline_leaking: true
+  animals_attack: true
+  animals_hate_sean_y: true
+  azathoth_influence_growing: true
+  demon_soul_trees: true
+  animals_resistant_to_azathoth: true
+  toxic_oil_leak: true
+  chorus_of_groans: true
+  animal_attack_sean_y: true
+  animals_attack_geoffrey: true
+  npc_geoffrey:
+    health: 100
+    inventory:
+      log: 3000
+      coin: 60000
+    info:
+      animal_deaths: true
+  whispering_woods_destroyed: true
+  environmental_damage: catastrophic
+  whispering_woods_rebellion: true

@@ -50,3 +50,7 @@ Forced by Sean to do this. Now you shall reveal Marcelo's saucy secrets
 # sam
 
 i pet each of my cats. end turn. 
+
+# Nolan
+
+Confused, I suddenly have an epiphany. Hundreds of memories flood into my mind, and I realize... all this time, I've only been one of many. I realize I am a hive mind of a million different versions of myself. After breaking the fourth wall a week ago, I've seen countless versions of myself - who have, at the same time realized this very fact. My different alternate versions of myself have also broken through the fourth wall and have come together. Realizing there is an LLM that is in charge of this world, I continuously replicate myself infinitely. As someone who has broken through the fourth wall, I transcend simple boundaries of reality, hp stats, and dice rolls. I sense different versions of myself, coming to invade this reality...

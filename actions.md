@@ -12,7 +12,7 @@ FOR **AZATHOTH** ENTERAL GAZE.
 
 # Nick
 
-I embrace the hellfire and become a god of death. Every day I take 5 damage but I gain the power of flight, can consume souls to regain health, and importantly have the power to revive souls using the power I gain by consuming other souls. I consume the spirits of the whispering woods to bring Marcelo back from the dead.
+I consume some souls... yummers 😋😋. I'm lazy make up what I do for the rest of my action.
 
 # Sean_Y
 

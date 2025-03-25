@@ -1,6 +1,6 @@
 players:
   Nolan:
-    health: 91
+    health: 1
     inventory: {}
     info:
       location: Bargaining With Souls district of the Monopoly board
@@ -41,8 +41,9 @@ players:
       azathoth_embrace: true
       demon_soul_tree_creation: true
       animal_frenzy: true
+      screaming_shadows: true
   Sean_Y:
-    health: 92
+    health: 89
     inventory:
       lockpick: 1
       coin: 16949
@@ -140,12 +141,12 @@ players:
       cats_angry: true
       betrayed: true
       cats_hate_sam: true
-day: 22
+day: 23
 worldInfo:
   weather: The swirling vortex of eyes in the sky intensifies, its gaze sharper
     and more oppressive. The perpetual twilight deepens, casting long, distorted
     shadows across the grotesque parody of Oakhaven.
-  day: 22
+  day: 24
   death_clock: 2
   marcelo_lie_probability: 0.8
   npcs:
@@ -220,7 +221,7 @@ worldInfo:
   pink_goo_seeping_into_coal: true
   townspeople_think_nick_is_crazy: true
   rubber_chicken_downpour: false
-  geoff_logs_account: 71001
+  geoff_logs_account: 109001
   flammable_sludge:
     will_explode: true
   cats_hate_sam: true
@@ -275,8 +276,11 @@ worldInfo:
         of increasingly twisted tasks.
     - name: Taming Cerberus
       description: The players must find a way to tame the three headed dog.
+    - name: Curing the Hive Mind
+      description: Find a way to restore Nolan's sanity and prevent him from
+        attempting further breaches of reality.
   azathoth:
-    health: 1000
+    health: 1100
     powers:
       - Reality Warping
       - Soul Manipulation
@@ -295,15 +299,17 @@ worldInfo:
   monopoly_board_rumble: The Monopoly board rumbles ominously, the properties
     shifting and changing as if in response to a cosmic game only it
     understands.
-  monopoly_board_absurdity: The Monopoly board becomes slightly more absurd.
-  veil_thinning: The veil between realities thins slightly, making Azathoth's
-    influence on Oakhaven even stronger.
+  monopoly_board_absurdity: The Monopoly board becomes even more absurd,
+    properties shifting and changing to reflect the fluctuating fortunes of
+    Oakhaven in increasingly nonsensical ways.
+  veil_thinning: The veil between realities thins further, making it easier for
+    Azathoth's influence and twisted creatures to seep into Oakhaven.
   whispering_woods_damage: The Whispering Woods is now partially paved with broken
     concrete and slicked with oil.
   walmart_burns_down: Walmart burns down, making the economic situation even worse.
-  oil_spill_spreading: The oil spill is spreading.
+  oil_spill_spreading: true
   oakhaven_destroyed: true
-  economic_situation: worse
+  economic_situation: catastrophic
   whispering_woods_desolate: The Whispering Woods is now even more desolate, its
     spiritual essence weakened and corrupted.
   oil_spill_worse: true
@@ -319,8 +325,7 @@ worldInfo:
   marcelo_presence: Every player feels a cold shiver run down their spine. They
     can sense Marcelo's presence lurking just beyond the veil of reality,
     watching, waiting.
-  chaos_escalates: The chaos in Oakhaven escalates. The very fabric of reality
-    seems to be unraveling, and the whispers of Azathoth grow louder.
+  chaos_escalates: Chaos escalates. The boundary between the real and unreal dissolves.
   players_must_act: The players must act quickly if they hope to save Oakhaven, or
     at least escape with their sanity intact.
   Economic_situation: much worse
@@ -339,9 +344,37 @@ worldInfo:
     health: 100
     inventory:
       log: 3000
-      coin: 60000
+      coin: 109001
     info:
       animal_deaths: true
   whispering_woods_destroyed: true
   environmental_damage: catastrophic
   whispering_woods_rebellion: true
+  grotesque_merger: Oakhaven seems to be slowly merging with the Underworld.
+  azathoth_whispers: The whispers of Azathoth are now a constant drone.
+  impending_doom: The air crackles with an unnameable energy, a sense of impending
+    doom that weighs heavily on everyone.
+  time_running_out: Time is running out.
+  cosmic_firewalls_strengthened: true
+  screaming_shadows: The Whispering Woods is permanently transformed into the
+    Screaming Shadows, a nightmarish forest of twisted trees and tormented
+    spirits.
+  animal_attack_oakhaven: true
+  animal_attack_geoff_logs: true
+  animal_attack_raymonds_oil_derricks: true
+  town_defenses_strained: true
+  azathoth_summoning_ritual_incomplete: true
+  azathoth_influence_exponential: true
+  sean_y_hiding: true
+  animal_attack_concrete_facilities: true
+  concrete_plans_thwarted: true
+  logging_operations: Geoff Logs clears more land, reaching the grim milestone of
+    90% deforestation.
+  cleared_land_sold: true
+  accelerated_destruction: The destruction of the Whispering Woods accelerates,
+    further weakening the land and empowering Azathoth.
+  animals_more_enraged: true
+  log_sales: 3000
+  farmland_sales: 30000
+  tuna_earnings: 5000
+  deforestation_milestone: 0.9

@@ -62,7 +62,7 @@ if (Object.keys(map) .length=== 0){
   if (!login||login ==='tpowell') {
     continue
   }
-  const dateDate = new Date(fmt.format(new Date(date))).getTime() / 1000/60/60/24 + new Date(0).getUTCDay()
+  const dateDate = new Date(fmt.format(new Date(date))).getTime() / 1000/60/60/24 //+ new Date(0).getUTCDay()
   map[dateDate] ??= new Set()
   map[dateDate].add(login)
   }
@@ -195,6 +195,7 @@ font-weight: normal;
     tab-size: ${'Wednesday, '.length}ch;}
     img {
     width: 5ch;height: 5ch}}
+.inv {visibility: hidden;}
 </style>
 
 <table class=people>
@@ -221,8 +222,8 @@ for (let i = startDate; i <= endDate; i++) {
   const date = new Date(i *1000*60*60*24)
   html += `<tr>
   <th scope="row">${format.format(date).replace(' ', '\t')}</th>`
-  for (const {github} of users2) {
-    html += `<td>${map[i]?.has(github) ? '✅' : ''}</td>`
+  for (const [j,{github}] of users2.entries()) {
+    html += `<td>${map[i]?.has(github) ? '✅' : j===0?'<span class="inv">✅</span>': ''}</td>`
   }
   html += `</tr>
   `

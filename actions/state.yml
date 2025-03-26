@@ -8,19 +8,9 @@ players:
       plan: sell timeshares on the Monopoly board
       anxiety: 230
       customs_agent: a bored-looking entity with antennae and a clipboard
-      project_bubbly_oakhaven: Past Nolan proposes a scheme to replace all the town's
-        currency with bottle caps
-      palindrome_speech: Everyone within a 10-mile radius is compelled to only speak
-        in palindromes.
       past_self_encounter: true
       can_speak: false
       scheme_failed: true
-      timeshare_scheme: selling rubber chicken-themed timeshares on Marvin Gardens
-      timeshare_success: Nolan sells a single timeshare to a particularly desperate soul.
-      timeshare_disappointment: many of the souls who purchase Nolan's timeshares are
-        disappointed to find out it comes with many of the same torments of the
-        underworld.
-      timeshare_profit: very little
   Sean_P:
     health: -100
     inventory:
@@ -39,9 +29,8 @@ players:
         He can feel the Eldritch God's presence, a constant whispering in the
         back of his mind.
       azathoth_embrace: true
-      demon_soul_tree_creation: true
-      animal_frenzy: true
-      screaming_shadows: true
+      line_between_sean_p_azathoth_blurring: true
+      unease_growing: true
   Sean_Y:
     health: 89
     inventory:
@@ -50,7 +39,6 @@ players:
     info:
       location: catatonic in town square
       immune: true
-      minion: Fluffy
       response: Your constant push and pull between whether or not to sell the company
         has your workers worried. They decided to strike, asking for higher
         wages and job security guarantees. They demand a maximum of only 0.01%
@@ -70,6 +58,8 @@ players:
       animal_attack: The animals are planning to kill you, and even your personal cat
         cafe refuses service to Sean.
       pipeline_leak: true
+      overwhelmed: true
+      passed_out: true
   Nick:
     health: 88
     inventory:
@@ -102,8 +92,7 @@ players:
         - Bartholomew "Barty" Buttons
         - Madame Evangeline
       rubber_chicken_insanity: true
-      oil_derrick_useless: true
-      oily_mess: true
+      campaign_fails: true
   Khushi:
     health: -43
     inventory: {}
@@ -111,7 +100,6 @@ players:
       location: town square
       mind_blank: true
       whispering_plague: true
-      rubber_chicken_stuck: true
       name_forgotten: true
       azathoth_vision: Haunted by the vision of Azathoth, but the glimpse of Marcelo's
         saucy secrets will come later.
@@ -119,6 +107,7 @@ players:
         aware of the Eldritch God's pervasive influence.
       marcelo_saucy_secrets: true
       marcelo_rubber_chicken: true
+      disoriented_nauseous: true
   sam:
     health: 95
     inventory:
@@ -141,12 +130,13 @@ players:
       cats_angry: true
       betrayed: true
       cats_hate_sam: true
-day: 23
+      cats_hiss_swat: true
+day: 24
 worldInfo:
   weather: The swirling vortex of eyes in the sky intensifies, its gaze sharper
     and more oppressive. The perpetual twilight deepens, casting long, distorted
     shadows across the grotesque parody of Oakhaven.
-  day: 24
+  day: 25
   death_clock: 2
   marcelo_lie_probability: 0.8
   npcs:
@@ -171,37 +161,19 @@ worldInfo:
     geoffrey:
       type: iron_digger
       employer: Sean_Y
-  nolan_state: exploring the monopoly board
   marcelo_day: 0
   marcelo_affliction: extremely sensitive to noise and becomes enraged easily
   raymond_base: Abandoned Building
   piano_playing: false
-  townName: Grotesque parody of Oakhaven
   cat_apocalypse: true
   geoffrey:
     daily_iron: 10
   smithy:
     sell_price: {}
-  pastNolan:
-    health: 90
-    inventory: {}
-    info:
-      location: Simulation
-      anxiety: 100
-      plan: replace all the town's currency with bottle caps
-  forestCleared: 100
-  tunaThief:
-    name: Fluffy
-    location: Whispering Woods Hideout
-    health: 80
-    status: loyal minion
-  town_humor_stat: plummet to record lows, as nobody can tell jokes anymore, but
-    the sheer absurdity of the situation is also morbidly amusing. The Meaning
-    of Life stat begins to fluctuate wildly across Oakhaven.
   hidden_layer: a giant game of cosmic Monopoly, with entire realities as properties
   monopoly_board: controlling certain territories on the board directly influences
     events in the real world
-  farmland_income_per_day: 100
+  farmland_income_per_day: 30000
   nick_status: observing the chaos with amusement
   cat_uprising: Investigate the underlying causes of feline discontent and find a
     way to restore harmony between humans and cats.
@@ -209,23 +181,9 @@ worldInfo:
     controlling certain territories on the board directly influences events in
     the real world
   tunaEarnings: 5000
-  pink_goo_effect: extremely popular with the cat population. It's apparently
-    quite delicious and has the added benefit of making their fur incredibly
-    fluffy.
   momentum: 1
-  town_on_fire: false
-  fire_type: pink goo
   MeaningOfLife: fluctuating
-  santa_naughty_list: Marcelo
-  oakhaven_property: mid-tier property on the 'Existential Properties' quadrant
-  pink_goo_seeping_into_coal: true
-  townspeople_think_nick_is_crazy: true
   rubber_chicken_downpour: false
-  geoff_logs_account: 109001
-  flammable_sludge:
-    will_explode: true
-  cats_hate_sam: true
-  whispering_woods_uprising: true
   marcelo_secrets: unknown
   quests:
     - name: A Soul's Laughter
@@ -279,6 +237,19 @@ worldInfo:
     - name: Curing the Hive Mind
       description: Find a way to restore Nolan's sanity and prevent him from
         attempting further breaches of reality.
+    - name: Curing the Hive Mind
+      description: Find a way to restore Nolan's sanity and prevent him from
+        attempting further breaches of reality.
+    - name: The Price of Sight/Azathoth's Champion
+      description: Sean_P must choose whether to embrace Azathoth's power or resist
+        its influence, potentially leading to a showdown with the Eldritch God
+        within him. If he embraces it, he will now be challenged by increasingly
+        twisted tasks for Azathoth.
+    - name: Stop the Oil Derrick!/Clean up the oil spill in Whispering Woods!
+      description: Raymond's derrick is unleashing hell into the universe and must be
+        stopped at all costs. The oil spill is worsening, and somebody must
+        clean up the mess. The quest is marked as urgent.
+      urgent: true
   azathoth:
     health: 1100
     powers:
@@ -294,87 +265,37 @@ worldInfo:
   geoff_logs_reputation: However, people now hate Geoff, who's reputation is forever tarnished.
   raymond_oil_baron: true
   elysium: populated by lost souls, heroes of old, and the echoes of forgotten dreams
-  whispers: The whispers in the air are growing louder, more insistent, weaving
-    insidious suggestions into the thoughts of the susceptible.
-  monopoly_board_rumble: The Monopoly board rumbles ominously, the properties
-    shifting and changing as if in response to a cosmic game only it
-    understands.
-  monopoly_board_absurdity: The Monopoly board becomes even more absurd,
-    properties shifting and changing to reflect the fluctuating fortunes of
-    Oakhaven in increasingly nonsensical ways.
-  veil_thinning: The veil between realities thins further, making it easier for
-    Azathoth's influence and twisted creatures to seep into Oakhaven.
-  whispering_woods_damage: The Whispering Woods is now partially paved with broken
-    concrete and slicked with oil.
-  walmart_burns_down: Walmart burns down, making the economic situation even worse.
-  oil_spill_spreading: true
-  oakhaven_destroyed: true
   economic_situation: catastrophic
-  whispering_woods_desolate: The Whispering Woods is now even more desolate, its
-    spiritual essence weakened and corrupted.
-  oil_spill_worse: true
   raymond_campaign_fails: Raymond's campaign fails for yet another day, much to
     the pleasure of many townspeople.
-  azathoth_presence_stronger: Azathoth's presence in Oakhaven strengthens.
-  oakhaven_chaos: Oakhaven is plunged further into chaos.
   cat_uprising_beginning: The cat uprising is about to begin.
-  whispering_woods_gone: true
-  animals_desperate: true
-  log_earnings: 3000
-  farmland_earnings: 30000
   marcelo_presence: Every player feels a cold shiver run down their spine. They
     can sense Marcelo's presence lurking just beyond the veil of reality,
     watching, waiting.
-  chaos_escalates: Chaos escalates. The boundary between the real and unreal dissolves.
-  players_must_act: The players must act quickly if they hope to save Oakhaven, or
-    at least escape with their sanity intact.
-  Economic_situation: much worse
-  Oakhaven_Whispering_Pavement_Special_Economic_Zone: true
-  pipeline_leaking: true
-  animals_attack: true
-  animals_hate_sean_y: true
   azathoth_influence_growing: true
-  demon_soul_trees: true
-  animals_resistant_to_azathoth: true
-  toxic_oil_leak: true
-  chorus_of_groans: true
-  animal_attack_sean_y: true
   animals_attack_geoffrey: true
-  npc_geoffrey:
-    health: 100
-    inventory:
-      log: 3000
-      coin: 109001
-    info:
-      animal_deaths: true
-  whispering_woods_destroyed: true
-  environmental_damage: catastrophic
   whispering_woods_rebellion: true
-  grotesque_merger: Oakhaven seems to be slowly merging with the Underworld.
   azathoth_whispers: The whispers of Azathoth are now a constant drone.
-  impending_doom: The air crackles with an unnameable energy, a sense of impending
-    doom that weighs heavily on everyone.
-  time_running_out: Time is running out.
-  cosmic_firewalls_strengthened: true
-  screaming_shadows: The Whispering Woods is permanently transformed into the
-    Screaming Shadows, a nightmarish forest of twisted trees and tormented
-    spirits.
-  animal_attack_oakhaven: true
-  animal_attack_geoff_logs: true
-  animal_attack_raymonds_oil_derricks: true
-  town_defenses_strained: true
-  azathoth_summoning_ritual_incomplete: true
-  azathoth_influence_exponential: true
-  sean_y_hiding: true
-  animal_attack_concrete_facilities: true
-  concrete_plans_thwarted: true
-  logging_operations: Geoff Logs clears more land, reaching the grim milestone of
-    90% deforestation.
-  cleared_land_sold: true
-  accelerated_destruction: The destruction of the Whispering Woods accelerates,
-    further weakening the land and empowering Azathoth.
-  animals_more_enraged: true
-  log_sales: 3000
-  farmland_sales: 30000
-  tuna_earnings: 5000
-  deforestation_milestone: 0.9
+  reality_fraying_nolan: true
+  animal_attacks_ferocious_coordinated: true
+  animal_attacks_target_geoff_logs_raymonds_oil_derricks: true
+  azathoth_summoning_ritual_progressing: true
+  geoff_logs_no_boss_for_day: true
+  oil_derrick_successful: true
+  oil_torrent_unleashed: true
+  oil_eldritch_energy: true
+  oil_contaminating_farmland: true
+  air_vibrates_strange_energy: true
+  whispers_intensify_marcelo_secrets: true
+  marcelos_secrets_revealed:
+    rubber_ducky_racing: true
+    vintage_porcelain_dolls: true
+  land_cleared_90_percent: true
+  land_sold_as_farmland: true
+  geoff_logs_financials:
+    Log_Sales: 3000
+    Farmland_Sales: 30000
+    Tuna_Earnings: 5000
+    Farmland_Income_Per_Day: 30000
+    Total_Income: 95000
+  geoffrey_oblivious_to_doom: true

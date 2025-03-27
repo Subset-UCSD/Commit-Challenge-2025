@@ -1,5 +1,6 @@
 // node --experimental-strip-types actions/act.mts
 
+import { execSync } from 'child_process'
 import { readFile, writeFile } from 'fs/promises'
 import YAML from 'yaml'
 // import { users } from '../remind/people.mjs'
@@ -128,6 +129,9 @@ const extraPlayers: Record<string, Player> = {}
     if (typeof p === 'symbol') {
       return
     }
+    if (p === 'hasOwnProperty') {
+      return (key: string) => !!state.players[key]
+    }
     p = p.toLowerCase()
     if (players_[p]) {
       return players_[p]
@@ -172,47 +176,24 @@ console.error(d20Rolls)
   }
 }
 
-const gameState = `\`\`\`json\n${JSON.stringify(state, null, '  ')}\n\`\`\`` // `\`\`\`yaml\n${yamlRaw}\n\`\`\``
+const gameState = `\`\`\`json\n${JSON.stringify(state)}\n\`\`\`` // `\`\`\`yaml\n${yamlRaw}\n\`\`\``
 
-const response: GenerateContentResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.GEMINI_API}`, {
-  "headers": {
-    "content-type": "application/json",
-  },
-  method: 'POST',
-  body: JSON.stringify({
-    contents: [
-      {
-        parts: [
-          {
-            text: [
-              (await readFile('./actions/prompt_respond.md', 'utf-8')).trim(),
-              'Here are the players and world state as of the previous day:',
-              gameState,
-              "Here are the players' d20 rolls:",
-              d20Rolls,
-              'Here are the player\'s actions for the day:',
-              (await readFile('./actions.md', 'utf-8')).trim(),
-            ].join('\n\n')
-          }
-        ]
-      }
-    ]
-  })
-}).then(r => r.json()) as any
-let responseMd = response.candidates[0].content.parts[0].text
-console.log(responseMd)
 
 /** max length of discord embed desc */
 const totalMaxLength = 4000
-let responseLines = responseMd.trim().split(/\r?\n/).flatMap(line => {
-  // split them if they're too long somehow
-  const lines: string[] =[]
-  for (let i = 0; i < line.length; i += totalMaxLength) {
-    lines.push(line.slice(i, i + totalMaxLength))
-  }
-  return lines
-})
-responseLines.push('','-# [state](<https://github.com/Subset-UCSD/Commit-Challenge-2025/blob/main/actions/state.yml>) |  Write your next action in [actions.md](<https://github.com/Subset-UCSD/Commit-Challenge-2025/edit/main/actions.md>)!')
+function generateDiscordResponse (responseMd: string): string[] {
+  let responseLines = responseMd.trim().split(/\r?\n/).flatMap(line => {
+    // split them if they're too long somehow
+    const lines: string[] =[]
+    for (let i = 0; i < line.length; i += totalMaxLength) {
+      lines.push(line.slice(i, i + totalMaxLength))
+    }
+    return lines
+  })
+  responseLines.push('','-# [state](<https://github.com/Subset-UCSD/Commit-Challenge-2025/blob/main/actions/state.yml>) |  Write your next action in [actions.md](<https://github.com/Subset-UCSD/Commit-Challenge-2025/edit/main/actions.md>)!')
+  return responseLines
+}
+
 
 async function say(lines: string, footer: string): Promise<void> {
   const r = await fetch(process.env.DISCORD_WEBHOOK_URL ?? '', {
@@ -240,23 +221,26 @@ async function say(lines: string, footer: string): Promise<void> {
   }
 }
 
-async function printDiscord() {
+async function printDiscord(responseLines: string[]) {
   const blocks: string[] = []
-  let text = ''
+  let text = null
   for (const line of responseLines) {
-    if ((text+line).length > totalMaxLength) {
+    if (text !== null && (text+line).length > totalMaxLength) {
       blocks.push(text)
       text = line
     } else {
-      if (text) {
+      if (text !== null) {
         text += '\n'
+      } else {
+        text = ''
       }
       text += line
     }
   }
-  if (text) {
+  if (text !== null) {
     blocks.push(text)
   }
+  console.error(blocks)
   try {
     for (const [i,block] of blocks.entries()) {
       await say(block, `Page ${i+1} of ${blocks.length}`)
@@ -270,7 +254,6 @@ async function printDiscord() {
 }
 
 // dont block state generation
-printDiscord()
 
 
 
@@ -286,10 +269,14 @@ const responseJs: GenerateContentResponse = await fetch(`https://generativelangu
           {
             text: [
               (await readFile('./actions/prompt_state.md', 'utf-8')).trim(),
-              "Here was today's exposition:",
-              responseMd,
+              // "Here was today's exposition:",
+              // responseMd,
               'Here are the players and world state as of the previous day:',
               gameState,
+              "Here are the players' d20 rolls:",
+              d20Rolls,
+              'Here are the player\'s actions for the day:',
+              (await readFile('./actions.md', 'utf-8')).trim(),
             ].join('\n\n')
           }
         ]
@@ -297,7 +284,8 @@ const responseJs: GenerateContentResponse = await fetch(`https://generativelangu
     ]
   })
 }).then(r => r.json()) as any
-let js = responseJs.candidates[0].content.parts[0].text
+const origJs = responseJs.candidates[0].content.parts[0].text
+let js = origJs
 
 js = js.trim().replace(/^```/gm, m => '//' + m)
 // if (js.startsWith('```')) {
@@ -352,7 +340,50 @@ delete (state as any)['previousResponses']
 // console.error(state)
 await writeFile('./actions/state.yml', YAML.stringify(state, (key, value) => value instanceof Player ? value.name : Number.isNaN(value) ? undefined : value))
 
-const genDiscordResponse = (maxLength = Infinity) => `${responses.world.length > maxLength?responses.world.slice(0,maxLength-3)+'[…]':responses.world}\n${Object.entries(responses.players).map(([name, response]) => `## ${name}\n${response.length > maxLength?response.slice(0,maxLength-3)+'[…]':response}`).join('\n')}\n\n-# [state](<https://github.com/Subset-UCSD/Commit-Challenge-2025/blob/main/actions/state.yml>) |  Write your next action in [actions.md](<https://github.com/Subset-UCSD/Commit-Challenge-2025/edit/main/actions.md>)!`
+
+
+const response: GenerateContentResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.GEMINI_API}`, {
+  "headers": {
+    "content-type": "application/json",
+  },
+  method: 'POST',
+  body: JSON.stringify({
+    contents: [
+      {
+        parts: [
+          {
+            text: [
+              (await readFile('./actions/prompt_respond.md', 'utf-8')).trim(),
+              "Here are today's events, described as code:",
+              // gemini's JS is typically already wrapped in a code block
+              // '```javascript\n' + 
+              origJs 
+              //+ '\n```'
+              ,
+              "Here is the game state, including a diff of the changes made today:",
+              '```diff\n' + 
+              // show 10000 lines of context
+              execSync('git diff -U10000 --no-prefix actions/state.yml')
+              + '\n```',
+              // 'Here are the players and world state as of the previous day:',
+              // gameState,
+              // "Here are the players' d20 rolls:",
+              // d20Rolls,
+              // 'Here are the player\'s actions for the day:',
+              // (await readFile('./actions.md', 'utf-8')).trim(),
+            ].join('\n\n')
+          }
+        ]
+      }
+    ]
+  })
+}).then(r => r.json()) as any
+let responseMd = response.candidates[0].content.parts[0].text
+console.log(responseMd)
+await printDiscord(generateDiscordResponse(responseMd))
+
+
+// const genDiscordResponse = (maxLength = Infinity) => `${responses.world.length > maxLength?responses.world.slice(0,maxLength-3)+'[…]':responses.world}\n${Object.entries(responses.players).map(([name, response]) => `## ${name}\n${response.length > maxLength?response.slice(0,maxLength-3)+'[…]':response}`).join('\n')}\n\n-# [state](<https://github.com/Subset-UCSD/Commit-Challenge-2025/blob/main/actions/state.yml>) |  Write your next action in [actions.md](<https://github.com/Subset-UCSD/Commit-Challenge-2025/edit/main/actions.md>)!`
 
 // let discordResponse = genDiscordResponse()
 // console.log(discordResponse)

@@ -11,12 +11,15 @@ players:
       past_self_encounter: true
       can_speak: false
       scheme_failed: true
+      marcelo_presence: 👻😱😈💀👽👾
   Sean_P:
     health: -100
     inventory:
       coin: 11
       fish bone: 1
       mind control wand: 3
+      iridescent goo: 1
+      Iridescent Goo Wand: 1
     info:
       location: wilderness
       immune: true
@@ -25,17 +28,17 @@ players:
         CHANGE THE ACTIONS done by all other players. The wand is now coated in
         iridescent goo and can duplicate items.
       cats_befriended: 2
-      azathoth_influence: Azathoth's influence is now a dominant force within Sean_P.
-        He can feel the Eldritch God's presence, a constant whispering in the
-        back of his mind.
+      azathoth_influence: Azathoth's influence is at its peak. Sean_P is almost
+        completely consumed.
       azathoth_embrace: true
       line_between_sean_p_azathoth_blurring: true
       unease_growing: true
+      marcelo_presence: 👻😱😈💀👽👾
   Sean_Y:
     health: 89
     inventory:
       lockpick: 1
-      coin: 16949
+      coin: 84949
     info:
       location: catatonic in town square
       immune: true
@@ -60,8 +63,9 @@ players:
       pipeline_leak: true
       overwhelmed: true
       passed_out: true
+      marcelo_presence: 👻😱😈💀👽👾
   Nick:
-    health: 88
+    health: -1000
     inventory:
       coin: 102500
       One (1) Thermonuclear Warhead: 1
@@ -82,6 +86,7 @@ players:
         into a horrifying monster if he does not find a clean soul.
       powers_require_souls: true
       twitching_eye: true
+      marcelo_presence: 👻😱😈💀👽👾
   Raymond:
     health: 96
     inventory:
@@ -93,6 +98,7 @@ players:
         - Madame Evangeline
       rubber_chicken_insanity: true
       campaign_fails: true
+      marcelo_presence: 👻😱😈💀👽👾
   Khushi:
     health: -43
     inventory: {}
@@ -108,6 +114,7 @@ players:
       marcelo_saucy_secrets: true
       marcelo_rubber_chicken: true
       disoriented_nauseous: true
+      marcelo_presence: 👻😱😈💀👽👾
   sam:
     health: 95
     inventory:
@@ -125,19 +132,20 @@ players:
       location: beach
       is_cat: true
       cats: 12
-      town_happiness: increased
+      town_happiness: sky high
       party_score: 1
       cats_angry: true
       betrayed: true
-      cats_hate_sam: true
-      cats_hiss_swat: true
-day: 24
+      cats_hate_sam: false
+      cats_hiss_swat: false
+      cats_befriended: true
+      marcelo_presence: 👻😱😈💀👽👾
+day: 25
 worldInfo:
-  weather: The swirling vortex of eyes in the sky intensifies, its gaze sharper
-    and more oppressive. The perpetual twilight deepens, casting long, distorted
-    shadows across the grotesque parody of Oakhaven.
-  day: 25
-  death_clock: 2
+  weather: The swirling vortex of eyes remains, watching. The Screaming Shadows
+    spread, twisting the land.
+  day: 26
+  death_clock: 3
   marcelo_lie_probability: 0.8
   npcs:
     merchant:
@@ -174,17 +182,19 @@ worldInfo:
   monopoly_board: controlling certain territories on the board directly influences
     events in the real world
   farmland_income_per_day: 30000
-  nick_status: observing the chaos with amusement
-  cat_uprising: Investigate the underlying causes of feline discontent and find a
-    way to restore harmony between humans and cats.
+  nick_status: caused another apocalypse by failing to complete the task.
+  cat_uprising: false
   operating_manual: written in an alien language, but diagrams suggest that
     controlling certain territories on the board directly influences events in
     the real world
   tunaEarnings: 5000
   momentum: 1
-  MeaningOfLife: fluctuating
+  MeaningOfLife: 0.6420498744228813
   rubber_chicken_downpour: false
-  marcelo_secrets: unknown
+  marcelo_secrets: Marcelo's darkest secrets have been revealed. They include a
+    deep love of rubber ducky racing, a collection of vintage porcelain dolls, a
+    habit of wearing clown shoes to bed, and a penchant for eating mayonnaise
+    with a spoon.
   quests:
     - name: A Soul's Laughter
       description: Find a way to make a tormented soul laugh in the Bargaining With
@@ -250,8 +260,16 @@ worldInfo:
         stopped at all costs. The oil spill is worsening, and somebody must
         clean up the mess. The quest is marked as urgent.
       urgent: true
+    - name: Curing the Hive Mind
+      description: Find a way to restore Nolan's sanity and prevent him from
+        attempting further breaches of reality.
+      reward: Stabilize the reality.
+    - name: Silence the Screaming Shadows
+      description: The Screaming Shadows are driving the inhabitants of Oakhaven
+        insane. Find a way to silence them.
+      reward: Peace and quiet.
   azathoth:
-    health: 1100
+    health: 1250
     powers:
       - Reality Warping
       - Soul Manipulation
@@ -262,20 +280,23 @@ worldInfo:
     summoning_ritual: Requires the sacrifice of a pure soul on a nexus point between
       realities, followed by the recitation of a forgotten incantation in the
       language of the dead. (The exact incantation remains hidden.)
-  geoff_logs_reputation: However, people now hate Geoff, who's reputation is forever tarnished.
+  geoff_logs_reputation: Geoffrey's blatant disregard for the environment
+    continues to erode his reputation.
   raymond_oil_baron: true
   elysium: populated by lost souls, heroes of old, and the echoes of forgotten dreams
   economic_situation: catastrophic
   raymond_campaign_fails: Raymond's campaign fails for yet another day, much to
     the pleasure of many townspeople.
-  cat_uprising_beginning: The cat uprising is about to begin.
+  cat_uprising_beginning: false
   marcelo_presence: Every player feels a cold shiver run down their spine. They
     can sense Marcelo's presence lurking just beyond the veil of reality,
     watching, waiting.
   azathoth_influence_growing: true
-  animals_attack_geoffrey: true
+  animals_attack_geoffrey: false
   whispering_woods_rebellion: true
-  azathoth_whispers: The whispers of Azathoth are now a constant drone.
+  azathoth_whispers: The whispers of Azathoth are now a deafening roar,
+    threatening to shatter the very foundations of reality. Nolan's actions have
+    weakened the veil further.
   reality_fraying_nolan: true
   animal_attacks_ferocious_coordinated: true
   animal_attacks_target_geoff_logs_raymonds_oil_derricks: true
@@ -290,6 +311,8 @@ worldInfo:
   marcelos_secrets_revealed:
     rubber_ducky_racing: true
     vintage_porcelain_dolls: true
+    wearing_clown_shoes_to_bed: true
+    eating_mayonnaise_with_a_spoon: true
   land_cleared_90_percent: true
   land_sold_as_farmland: true
   geoff_logs_financials:
@@ -297,5 +320,11 @@ worldInfo:
     Farmland_Sales: 30000
     Tuna_Earnings: 5000
     Farmland_Income_Per_Day: 30000
-    Total_Income: 95000
+    Total_Income: 68000
   geoffrey_oblivious_to_doom: true
+  animals_attack_ferocious_coordinated: true
+  animals_attacks_target_geoff_logs_raymonds_oil_derricks: true
+  screamingShadowsAnimals:
+    - Shadow Wolves
+    - Nightmare Birds
+    - Eldritch Spiders

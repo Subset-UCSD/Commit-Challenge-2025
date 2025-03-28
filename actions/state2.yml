@@ -1,0 +1,53 @@
+players:
+  Nolan:
+    health: 100
+    inventory:
+      coins: 10
+    location: town square
+  Sean_P:
+    health: 100
+    inventory:
+      coins: 10
+    location: town square
+  Sean_Y:
+    health: 100
+    inventory:
+      coins: 10
+    location: town square
+  Marcelo:
+    health: 100
+    inventory:
+      coins: 10
+    location: town square
+  Nick:
+    health: 100
+    inventory:
+      coins: 10
+    location: town square
+  Raymond:
+    health: 100
+    inventory:
+      coins: 10
+    location: town square
+  Khushi:
+    health: 100
+    inventory:
+      coins: 10
+    location: town square
+  sam:
+    health: 100
+    inventory:
+      coins: 10
+    location: town square
+npcs:
+  - name: Stewart
+    description: bartender
+    health: 100
+    actions:
+      greet: |
+        player.addItem("Stewart's stick", 1);
+quests:
+  - name: Meet Stewart
+    reward: |
+      player.addItem("Stewart's stick", 1);
+    condition: player.inventory["Stewart's stick"] > 0

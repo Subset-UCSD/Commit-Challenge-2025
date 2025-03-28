@@ -183,6 +183,9 @@ const gameState = `\`\`\`json\n${JSON.stringify(state)}\n\`\`\`` // `\`\`\`yaml\
 const totalMaxLength = 4000
 function generateDiscordResponse (responseMd: string): string[] {
   let responseLines = responseMd.trim().split(/\r?\n/).flatMap(line => {
+    if (!line) {
+        return ['']
+    }
     // split them if they're too long somehow
     const lines: string[] =[]
     for (let i = 0; i < line.length; i += totalMaxLength) {
@@ -223,21 +226,19 @@ async function say(lines: string, footer: string): Promise<void> {
 
 async function printDiscord(responseLines: string[]) {
   const blocks: string[] = []
-  let text = null
+  let text = ''
   for (const line of responseLines) {
-    if (text !== null && (text+line).length > totalMaxLength) {
+    if ((text+line).length > totalMaxLength) {
       blocks.push(text)
       text = line
     } else {
-      if (text !== null) {
+      if (text) {
         text += '\n'
-      } else {
-        text = ''
       }
       text += line
     }
   }
-  if (text !== null) {
+  if (text) {
     blocks.push(text)
   }
   console.error(blocks)

@@ -1,9 +1,9 @@
 players:
   Nolan:
-    health: 1
+    health: -499
     inventory: {}
     info:
-      location: Bargaining With Souls district of the Monopoly board
+      location: radioactive wasteland
       health: .inf
       plan: sell timeshares on the Monopoly board
       anxiety: 230
@@ -13,7 +13,7 @@ players:
       scheme_failed: true
       marcelo_presence: 👻😱😈💀👽👾
   Sean_P:
-    health: -100
+    health: -600
     inventory:
       coin: 11
       fish bone: 1
@@ -21,7 +21,7 @@ players:
       iridescent goo: 1
       Iridescent Goo Wand: 1
     info:
-      location: wilderness
+      location: radioactive wasteland
       immune: true
       is_cat: true
       mind_control_wand: The Mind Control Wand grants the user Sean_P the ability to
@@ -42,30 +42,11 @@ players:
     info:
       location: catatonic in town square
       immune: true
-      response: Your constant push and pull between whether or not to sell the company
-        has your workers worried. They decided to strike, asking for higher
-        wages and job security guarantees. They demand a maximum of only 0.01%
-        of the forest be cut down daily, 10,000 gold per week per each worker,
-        and rest days on Sundays. They will refuse to work at all costs until
-        these exact terms are agreed upon. The forest is not cut down today and
-        parts of the forest regrow. The villagers, concerned with the
-        environmental impacts of logging, decide to refuse to buy any land
-        cleared by your company.
-      azathoth_connection: Sean_Y, deeply shaken by the event, is left with a
-        lingering connection to Azathoth. He suffers from recurring nightmares
-        filled with endless eyes and hears whispers in his sleep. While he
-        doesn't gain any immediate powers, he is now more susceptible to
-        Azathoth's influence.
-      humiliated: true
-      oakhaven_hates_sean_y: Oakhaven hates Sean_Y even more.
-      animal_attack: The animals are planning to kill you, and even your personal cat
-        cafe refuses service to Sean.
-      pipeline_leak: true
       overwhelmed: true
       passed_out: true
       marcelo_presence: 👻😱😈💀👽👾
   Nick:
-    health: -1000
+    health: -.inf
     inventory:
       coin: 102500
       One (1) Thermonuclear Warhead: 1
@@ -88,11 +69,11 @@ players:
       twitching_eye: true
       marcelo_presence: 👻😱😈💀👽👾
   Raymond:
-    health: 96
+    health: -404
     inventory:
       coin: 2000089618
     info:
-      location: town square
+      location: radioactive wasteland
       bodyguards:
         - Bartholomew "Barty" Buttons
         - Madame Evangeline
@@ -100,10 +81,10 @@ players:
       campaign_fails: true
       marcelo_presence: 👻😱😈💀👽👾
   Khushi:
-    health: -43
+    health: -543
     inventory: {}
     info:
-      location: town square
+      location: radioactive wasteland
       mind_blank: true
       whispering_plague: true
       name_forgotten: true
@@ -116,7 +97,7 @@ players:
       disoriented_nauseous: true
       marcelo_presence: 👻😱😈💀👽👾
   sam:
-    health: 95
+    health: -405
     inventory:
       coin: 21
       white_horse: 0
@@ -129,7 +110,7 @@ players:
       Lost Artifact of Purrington: 1
       The Mind Control Wand: 1
     info:
-      location: beach
+      location: radioactive wasteland
       is_cat: true
       cats: 12
       town_happiness: sky high
@@ -140,10 +121,9 @@ players:
       cats_hiss_swat: false
       cats_befriended: true
       marcelo_presence: 👻😱😈💀👽👾
-day: 25
+day: 26
 worldInfo:
-  weather: The swirling vortex of eyes remains, watching. The Screaming Shadows
-    spread, twisting the land.
+  weather: Atomic Winter
   day: 26
   death_clock: 3
   marcelo_lie_probability: 0.8
@@ -182,8 +162,8 @@ worldInfo:
   monopoly_board: controlling certain territories on the board directly influences
     events in the real world
   farmland_income_per_day: 30000
-  nick_status: caused another apocalypse by failing to complete the task.
-  cat_uprising: false
+  nick_status: Nick demands an ASCII horse, but receives only existential dread.
+  cat_uprising: true
   operating_manual: written in an alien language, but diagrams suggest that
     controlling certain territories on the board directly influences events in
     the real world
@@ -196,65 +176,6 @@ worldInfo:
     habit of wearing clown shoes to bed, and a penchant for eating mayonnaise
     with a spoon.
   quests:
-    - name: A Soul's Laughter
-      description: Find a way to make a tormented soul laugh in the Bargaining With
-        Souls district of the Monopoly board.
-      reward: Knowledge of a weakness of the Eldritch God
-    - null
-    - name: Resurrecting Marcello
-      description: Find a way to pull Marcello's soul back from the Underworld and
-        restore him to life. This will likely require finding a powerful
-        artifact or performing a complex ritual.
-    - name: Severing the Connection
-      description: Find a way to separate Oakhaven from the Underworld before Azathoth
-        consumes it entirely. This may involve finding a way to imprison or
-        banish the Eldritch God.
-    - name: Taming Cerberus
-      description: A shadow on the beach takes form as a three headed dog, baring its
-        fangs at anyone who dares approach. This beast could be powerful ally,
-        or a major threat.
-    - name: Escape the Underworld (with Marcelo)
-      description: Escape the underworld with Marcelo.
-    - name: The Great Feline Purge
-      description: The cats will now pursue sam, who must get ahold of her cats before
-        the uprising occurs.
-    - name: The Great Feline Purge
-      description: Sam must now face her cats, who are planning a revolt against her.
-    - name: The Whispering Woods Rebellion
-      description: The players must find a way to quell the uprising or face the wrath
-        of the forest.
-    - name: Atoning for Sins
-      description: Sean_Y has been listening to the wrong side of the argument for too
-        long. It is time to fix things, or be swallowed by the abyss forever.
-    - name: Stop the Oil Derrick!
-      description: Raymond's derrick is unleashing hell into the universe, and must be
-        stopped at all costs.
-    - name: Clean up the oil spill in Whispering Woods!
-      description: The oil derrick has unleashed toxic oil into the environment,
-        causing mass panic. Somebody must stop it, and clean up the mess.
-      reward: A healthy Oakhaven
-      urgent: true
-    - name: The Price of Sight
-      description: Sean_P must choose whether to embrace Azathoth's power or resist
-        its influence, potentially leading to a showdown with the Eldritch God
-        within him.
-      harder: true
-    - name: Azathoth's Champion
-      description: Sean_P must now prove his worth to Azathoth by performing a series
-        of increasingly twisted tasks.
-    - name: Taming Cerberus
-      description: The players must find a way to tame the three headed dog.
-    - name: Curing the Hive Mind
-      description: Find a way to restore Nolan's sanity and prevent him from
-        attempting further breaches of reality.
-    - name: Curing the Hive Mind
-      description: Find a way to restore Nolan's sanity and prevent him from
-        attempting further breaches of reality.
-    - name: The Price of Sight/Azathoth's Champion
-      description: Sean_P must choose whether to embrace Azathoth's power or resist
-        its influence, potentially leading to a showdown with the Eldritch God
-        within him. If he embraces it, he will now be challenged by increasingly
-        twisted tasks for Azathoth.
     - name: Stop the Oil Derrick!/Clean up the oil spill in Whispering Woods!
       description: Raymond's derrick is unleashing hell into the universe and must be
         stopped at all costs. The oil spill is worsening, and somebody must
@@ -264,10 +185,6 @@ worldInfo:
       description: Find a way to restore Nolan's sanity and prevent him from
         attempting further breaches of reality.
       reward: Stabilize the reality.
-    - name: Silence the Screaming Shadows
-      description: The Screaming Shadows are driving the inhabitants of Oakhaven
-        insane. Find a way to silence them.
-      reward: Peace and quiet.
   azathoth:
     health: 1250
     powers:
@@ -284,7 +201,7 @@ worldInfo:
     continues to erode his reputation.
   raymond_oil_baron: true
   elysium: populated by lost souls, heroes of old, and the echoes of forgotten dreams
-  economic_situation: catastrophic
+  economic_situation: utterly destroyed
   raymond_campaign_fails: Raymond's campaign fails for yet another day, much to
     the pleasure of many townspeople.
   cat_uprising_beginning: false
@@ -293,7 +210,7 @@ worldInfo:
     watching, waiting.
   azathoth_influence_growing: true
   animals_attack_geoffrey: false
-  whispering_woods_rebellion: true
+  whispering_woods_rebellion: false
   azathoth_whispers: The whispers of Azathoth are now a deafening roar,
     threatening to shatter the very foundations of reality. Nolan's actions have
     weakened the veil further.
@@ -328,3 +245,8 @@ worldInfo:
     - Shadow Wolves
     - Nightmare Birds
     - Eldritch Spiders
+  npc_foreach:
+    health: -400
+    inventory: {}
+    info:
+      location: radioactive wasteland

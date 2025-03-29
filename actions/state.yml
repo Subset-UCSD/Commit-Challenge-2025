@@ -38,7 +38,7 @@ players:
     health: 89
     inventory:
       lockpick: 1
-      coin: 84949
+      coin: 152949
     info:
       location: catatonic in town square
       immune: true
@@ -46,11 +46,10 @@ players:
       passed_out: true
       marcelo_presence: 👻😱😈💀👽👾
   Nick:
-    health: -.inf
+    health: -10000
     inventory:
       coin: 102500
-      One (1) Thermonuclear Warhead: 1
-      One (1) Exploded Thermonuclear Bomb Remains: 1
+      One (1) Exploded Thermonuclear Bomb Remains: 2
     info:
       location: town square
       is_cat: true
@@ -121,12 +120,12 @@ players:
       cats_hiss_swat: false
       cats_befriended: true
       marcelo_presence: 👻😱😈💀👽👾
-day: 26
+day: 27
 worldInfo:
-  weather: Atomic Winter
-  day: 26
+  weather: Concrete Jungle
+  day: 27
   death_clock: 3
-  marcelo_lie_probability: 0.8
+  marcelo_lie_probability: 0.9
   npcs:
     merchant:
       inventory:
@@ -202,8 +201,7 @@ worldInfo:
   raymond_oil_baron: true
   elysium: populated by lost souls, heroes of old, and the echoes of forgotten dreams
   economic_situation: utterly destroyed
-  raymond_campaign_fails: Raymond's campaign fails for yet another day, much to
-    the pleasure of many townspeople.
+  raymond_campaign_fails: true
   cat_uprising_beginning: false
   marcelo_presence: Every player feels a cold shiver run down their spine. They
     can sense Marcelo's presence lurking just beyond the veil of reality,
@@ -250,3 +248,4 @@ worldInfo:
     inventory: {}
     info:
       location: radioactive wasteland
+  animals_attack_target_geoff_logs_raymonds_oil_derricks: true

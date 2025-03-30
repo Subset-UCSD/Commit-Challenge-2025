@@ -6,7 +6,7 @@ players:
       location: radioactive wasteland
       health: .inf
       plan: sell timeshares on the Monopoly board
-      anxiety: 230
+      anxiety: 280
       customs_agent: a bored-looking entity with antennae and a clipboard
       past_self_encounter: true
       can_speak: false
@@ -42,8 +42,8 @@ players:
     info:
       location: catatonic in town square
       immune: true
-      overwhelmed: true
-      passed_out: true
+      overwhelmed: false
+      passed_out: false
       marcelo_presence: 👻😱😈💀👽👾
   Nick:
     health: -10000
@@ -120,11 +120,11 @@ players:
       cats_hiss_swat: false
       cats_befriended: true
       marcelo_presence: 👻😱😈💀👽👾
-day: 27
+day: 28
 worldInfo:
-  weather: Concrete Jungle
-  day: 27
-  death_clock: 3
+  weather: Screaming Shadows
+  day: 28
+  death_clock: 0
   marcelo_lie_probability: 0.9
   npcs:
     merchant:
@@ -148,11 +148,11 @@ worldInfo:
     geoffrey:
       type: iron_digger
       employer: Sean_Y
-  marcelo_day: 0
+  marcelo_day: 1
   marcelo_affliction: extremely sensitive to noise and becomes enraged easily
   raymond_base: Abandoned Building
   piano_playing: false
-  cat_apocalypse: true
+  cat_apocalypse: false
   geoffrey:
     daily_iron: 10
   smithy:
@@ -162,13 +162,15 @@ worldInfo:
     events in the real world
   farmland_income_per_day: 30000
   nick_status: Nick demands an ASCII horse, but receives only existential dread.
-  cat_uprising: true
+    The request fails miserably, resulting in a distorted, Escher-esque equine
+    that further unravels his sanity.
+  cat_uprising: false
   operating_manual: written in an alien language, but diagrams suggest that
     controlling certain territories on the board directly influences events in
     the real world
   tunaEarnings: 5000
   momentum: 1
-  MeaningOfLife: 0.6420498744228813
+  MeaningOfLife: 0.5420498744228813
   rubber_chicken_downpour: false
   marcelo_secrets: Marcelo's darkest secrets have been revealed. They include a
     deep love of rubber ducky racing, a collection of vintage porcelain dolls, a
@@ -184,6 +186,14 @@ worldInfo:
       description: Find a way to restore Nolan's sanity and prevent him from
         attempting further breaches of reality.
       reward: Stabilize the reality.
+    - name: End the Paving
+      urgent: true
+      description: Sean_Y is paving over every last thing. Someone must stop him!
+    - name: Stop the Oil Derrick!/Clean up the oil spill in Whispering Woods!
+      description: Raymond's derrick is unleashing hell into the universe and must be
+        stopped at all costs. The oil spill is worsening, and somebody must
+        clean up the mess. The quest is marked as urgent.
+      urgent: true
   azathoth:
     health: 1250
     powers:
@@ -208,10 +218,10 @@ worldInfo:
     watching, waiting.
   azathoth_influence_growing: true
   animals_attack_geoffrey: false
-  whispering_woods_rebellion: false
-  azathoth_whispers: The whispers of Azathoth are now a deafening roar,
-    threatening to shatter the very foundations of reality. Nolan's actions have
-    weakened the veil further.
+  whispering_woods_rebellion: true
+  azathoth_whispers: The whispers of Azathoth grow deafening, almost drowning out
+    Nolan's attempts to seize control. The veil weakens, but the madness of
+    Azathoth threatens to consume all.
   reality_fraying_nolan: true
   animal_attacks_ferocious_coordinated: true
   animal_attacks_target_geoff_logs_raymonds_oil_derricks: true
@@ -244,8 +254,8 @@ worldInfo:
     - Nightmare Birds
     - Eldritch Spiders
   npc_foreach:
-    health: -400
+    health: 100
     inventory: {}
     info:
-      location: radioactive wasteland
+      marcelo_presence: 👻😱😈💀👽👾
   animals_attack_target_geoff_logs_raymonds_oil_derricks: true

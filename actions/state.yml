@@ -1,19 +1,19 @@
 players:
   Nolan:
-    health: -499
+    health: -549
     inventory: {}
     info:
       location: radioactive wasteland
       health: .inf
-      plan: sell timeshares on the Monopoly board
-      anxiety: 280
+      plan: Continue selling timeshares, but now with added existential dread
+      anxiety: 380
       customs_agent: a bored-looking entity with antennae and a clipboard
       past_self_encounter: true
       can_speak: false
       scheme_failed: true
       marcelo_presence: 👻😱😈💀👽👾
   Sean_P:
-    health: -600
+    health: -625
     inventory:
       coin: 11
       fish bone: 1
@@ -28,8 +28,8 @@ players:
         CHANGE THE ACTIONS done by all other players. The wand is now coated in
         iridescent goo and can duplicate items.
       cats_befriended: 2
-      azathoth_influence: Azathoth's influence is at its peak. Sean_P is almost
-        completely consumed.
+      azathoth_influence: Azathoth's influence grows stronger. The line between Sean_P
+        and Azathoth blurs further.
       azathoth_embrace: true
       line_between_sean_p_azathoth_blurring: true
       unease_growing: true
@@ -46,10 +46,10 @@ players:
       passed_out: false
       marcelo_presence: 👻😱😈💀👽👾
   Nick:
-    health: -10000
+    health: -61000
     inventory:
-      coin: 102500
-      One (1) Exploded Thermonuclear Bomb Remains: 2
+      coin: 205000
+      One (1) Exploded Thermonuclear Bomb Remains: 1
     info:
       location: town square
       is_cat: true
@@ -68,7 +68,7 @@ players:
       twitching_eye: true
       marcelo_presence: 👻😱😈💀👽👾
   Raymond:
-    health: -404
+    health: -504
     inventory:
       coin: 2000089618
     info:
@@ -80,7 +80,7 @@ players:
       campaign_fails: true
       marcelo_presence: 👻😱😈💀👽👾
   Khushi:
-    health: -543
+    health: -568
     inventory: {}
     info:
       location: radioactive wasteland
@@ -114,15 +114,15 @@ players:
       cats: 12
       town_happiness: sky high
       party_score: 1
-      cats_angry: true
+      cats_angry: false
       betrayed: true
       cats_hate_sam: false
       cats_hiss_swat: false
       cats_befriended: true
       marcelo_presence: 👻😱😈💀👽👾
-day: 28
+day: 29
 worldInfo:
-  weather: Screaming Shadows
+  weather: Eternal Screaming Shadows
   day: 28
   death_clock: 0
   marcelo_lie_probability: 0.9
@@ -161,9 +161,8 @@ worldInfo:
   monopoly_board: controlling certain territories on the board directly influences
     events in the real world
   farmland_income_per_day: 30000
-  nick_status: Nick demands an ASCII horse, but receives only existential dread.
-    The request fails miserably, resulting in a distorted, Escher-esque equine
-    that further unravels his sanity.
+  nick_status: Nick's demand for an ASCII horse is met with a garbled mess of
+    symbols, further enraging him. The failure fuels his descent into madness.
   cat_uprising: false
   operating_manual: written in an alien language, but diagrams suggest that
     controlling certain territories on the board directly influences events in
@@ -194,6 +193,12 @@ worldInfo:
         stopped at all costs. The oil spill is worsening, and somebody must
         clean up the mess. The quest is marked as urgent.
       urgent: true
+    - name: Unpave the World
+      description: Sean_Y has paved everything. Someone must reverse this devastation!
+      urgent: true
+    - name: Curb Raymond's power!
+      description: Stop the Oil Derrick!/Clean up the oil spill in Whispering Woods!
+      urgent: true
   azathoth:
     health: 1250
     powers:
@@ -209,20 +214,16 @@ worldInfo:
   geoff_logs_reputation: Geoffrey's blatant disregard for the environment
     continues to erode his reputation.
   raymond_oil_baron: true
-  elysium: populated by lost souls, heroes of old, and the echoes of forgotten dreams
-  economic_situation: utterly destroyed
+  elysium: overcrowded with Nick's souls
+  economic_situation: Concrete jungle. No agriculture possible.
   raymond_campaign_fails: true
   cat_uprising_beginning: false
-  marcelo_presence: Every player feels a cold shiver run down their spine. They
-    can sense Marcelo's presence lurking just beyond the veil of reality,
-    watching, waiting.
+  marcelo_presence: Every player feels a bone-chilling gust of wind and hears faint clown music.
   azathoth_influence_growing: true
   animals_attack_geoffrey: false
   whispering_woods_rebellion: true
-  azathoth_whispers: The whispers of Azathoth grow deafening, almost drowning out
-    Nolan's attempts to seize control. The veil weakens, but the madness of
-    Azathoth threatens to consume all.
-  reality_fraying_nolan: true
+  azathoth_whispers: The whispers of Azathoth drown out Nolan's feeble attempts to seize control.
+  reality_fraying_nolan: false
   animal_attacks_ferocious_coordinated: true
   animal_attacks_target_geoff_logs_raymonds_oil_derricks: true
   azathoth_summoning_ritual_progressing: true
@@ -253,6 +254,7 @@ worldInfo:
     - Shadow Wolves
     - Nightmare Birds
     - Eldritch Spiders
+    - Azathoth's Hounds
   npc_foreach:
     health: 100
     inventory: {}

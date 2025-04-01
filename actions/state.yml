@@ -42,8 +42,8 @@ players:
     info:
       location: catatonic in town square
       immune: true
-      overwhelmed: false
-      passed_out: false
+      overwhelmed: true
+      passed_out: true
       marcelo_presence: 👻😱😈💀👽👾
   Nick:
     health: -61000
@@ -120,10 +120,10 @@ players:
       cats_hiss_swat: false
       cats_befriended: true
       marcelo_presence: 👻😱😈💀👽👾
-day: 29
+day: 30
 worldInfo:
   weather: Eternal Screaming Shadows
-  day: 28
+  day: 29
   death_clock: 0
   marcelo_lie_probability: 0.9
   npcs:
@@ -148,7 +148,7 @@ worldInfo:
     geoffrey:
       type: iron_digger
       employer: Sean_Y
-  marcelo_day: 1
+  marcelo_day: 2
   marcelo_affliction: extremely sensitive to noise and becomes enraged easily
   raymond_base: Abandoned Building
   piano_playing: false
@@ -261,3 +261,4 @@ worldInfo:
     info:
       marcelo_presence: 👻😱😈💀👽👾
   animals_attack_target_geoff_logs_raymonds_oil_derricks: true
+  treasury: 68000

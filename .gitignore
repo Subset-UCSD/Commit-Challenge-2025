@@ -15,3 +15,6 @@ cavegame.log
 cavegame_pid.txt
 
 cached.json
+
+.venv
+.env

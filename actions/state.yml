@@ -46,10 +46,9 @@ players:
       passed_out: true
       marcelo_presence: 👻😱😈💀👽👾
   Nick:
-    health: -61000
+    health: -166000
     inventory:
       coin: 205000
-      One (1) Exploded Thermonuclear Bomb Remains: 1
     info:
       location: town square
       is_cat: true
@@ -120,9 +119,9 @@ players:
       cats_hiss_swat: false
       cats_befriended: true
       marcelo_presence: 👻😱😈💀👽👾
-day: 30
+day: 31
 worldInfo:
-  weather: Eternal Screaming Shadows
+  weather: Screaming Shadows
   day: 29
   death_clock: 0
   marcelo_lie_probability: 0.9
@@ -161,8 +160,9 @@ worldInfo:
   monopoly_board: controlling certain territories on the board directly influences
     events in the real world
   farmland_income_per_day: 30000
-  nick_status: Nick's demand for an ASCII horse is met with a garbled mess of
-    symbols, further enraging him. The failure fuels his descent into madness.
+  nick_status: The system, in a desperate attempt to appease Nick, conjures an
+    eldritch abomination vaguely resembling a horse. It causes psychic damage to
+    anyone who looks at it.
   cat_uprising: false
   operating_manual: written in an alien language, but diagrams suggest that
     controlling certain territories on the board directly influences events in
@@ -199,6 +199,10 @@ worldInfo:
     - name: Curb Raymond's power!
       description: Stop the Oil Derrick!/Clean up the oil spill in Whispering Woods!
       urgent: true
+    - name: Contain the Oil Derrick's Spill!
+      description: The oil spill is spreading, corrupting the land with Eldritch
+        energy. Find a way to contain and neutralize it!
+      urgent: true
   azathoth:
     health: 1250
     powers:
@@ -223,7 +227,7 @@ worldInfo:
   animals_attack_geoffrey: false
   whispering_woods_rebellion: true
   azathoth_whispers: The whispers of Azathoth drown out Nolan's feeble attempts to seize control.
-  reality_fraying_nolan: false
+  reality_fraying_nolan: true
   animal_attacks_ferocious_coordinated: true
   animal_attacks_target_geoff_logs_raymonds_oil_derricks: true
   azathoth_summoning_ritual_progressing: true
@@ -240,7 +244,7 @@ worldInfo:
     wearing_clown_shoes_to_bed: true
     eating_mayonnaise_with_a_spoon: true
   land_cleared_90_percent: true
-  land_sold_as_farmland: true
+  land_sold_as_farmland: false
   geoff_logs_financials:
     Log_Sales: 3000
     Farmland_Sales: 30000
@@ -261,4 +265,4 @@ worldInfo:
     info:
       marcelo_presence: 👻😱😈💀👽👾
   animals_attack_target_geoff_logs_raymonds_oil_derricks: true
-  treasury: 68000
+  treasury: 136000

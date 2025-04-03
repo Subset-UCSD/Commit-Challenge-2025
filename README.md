@@ -21,6 +21,9 @@ Our current participants:
 > [!IMPORTANT]
 > [CHAT B#C# DONE IT AGAIN](https://distrokid.com/hyperfollow/bc33/new-record-5)
 
+> [!IMPORTANT] 
+> [sign up for starchess.ai 🌠♟️🤖 or i will be SAD](https://ai.acmucsd.com/competitions/StarChess.AI) 
+
 # ✋ Want to Join?
 Fill out this form [here](https://docs.google.com/forms/d/e/1FAIpQLSeI2mfek8_JKCqeqOqzPOCG9EXQH7tBUqhkY5F3WhRp3QKokA/viewform?usp=header)
 

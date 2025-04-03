@@ -1,0 +1,238 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    <title>E I E I O</title>
+    <meta name="description" content="[i æi i æi ou]">
+    <meta name="theme-color" content="#ab8c73">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <meta property="og:author" content="ucsd.edu"/>
+
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type="text/css">
+        :root {color-scheme: dark;
+        accent-color: #87f974;}
+    body {
+        color: #314422;
+        background-color: #abcdef;
+        margin: 0;
+        padding: 0;
+        font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive;
+    }
+    #div {
+        width: 600px;
+        margin: 1in auto;
+        padding: 2em;
+        background-color: #ebfbab;
+        color: #434231;
+        border-radius: 0.5em;
+    }
+    a:link, a:visited {
+        color: cyan;
+        text-decoration: none;
+    }
+    @media (max-width: 700px) {
+        #div {
+            margin: 0 auto;
+            width: auto;
+        }
+    }
+    td {
+        text-shadow: 5px 0 5px white, -5px 0 5px white, 0 -10px 5px white;
+    }
+    img {
+        max-width: 100%;
+    }
+    </style>
+</head>
+
+<body>
+<div id="div">
+    <h1>vocal</h1>
+    <p>click to start</p>
+    <script>
+const context = new AudioContext()
+let audioCtx = context
+    async function tryAudio () {
+        try {
+            if (context.state === 'suspended') {
+                console.log('trying to resume')
+                // 100ms timeout
+                await Promise.race([context.resume(), new Promise(resolve => setTimeout(resolve, 100))])
+                console.log('resume resolved', context.state)
+            }
+        } catch {
+        }
+        if (context.state === 'running') {
+
+
+            // const audio = new Audio('./ass/ets/substantial.mp3')
+            // audio.play().catch(console.error)
+
+            audioReady()
+
+            return
+        }
+        window.requestAnimationFrame(tryAudio)
+    }
+    async function audioReady () {
+
+// load impulse response from file
+
+      console.log('audioReady')
+      //
+      
+
+      const osc = audioCtx.createOscillator();
+
+// Generate a Liljencrants-Fant-like waveform
+const harmonics = 50; // Number of harmonics
+const real = new Float32Array(harmonics);
+const imag = new Float32Array(harmonics);
+
+for (let i = 1; i < harmonics; i++) {
+    real[i] = Math.sin(Math.PI * i / harmonics); // Emphasize lower harmonics
+    imag[i] = -0.5 * Math.cos(Math.PI * i / harmonics); // Asymmetry in phase
+}
+
+const wave = audioCtx.createPeriodicWave(real, imag, { disableNormalization: false });
+osc.setPeriodicWave(wave);
+
+osc.connect(audioCtx.destination);
+// osc.start();
+
+const sampleRate = audioCtx.sampleRate;
+const f0 = 150; // Fundamental frequency (Hz)
+const T0 = 1 / f0;
+const frameCount = Math.floor(sampleRate * T0);
+
+// 1. Create Rosenberg pulse data
+const pulseData = new Float32Array(frameCount);
+const openPhase = Math.floor(0.4 * frameCount);
+const closePhase = Math.floor(0.6 * frameCount);
+
+for (let i = 0; i < frameCount; i++) {
+    if (i < openPhase) {
+        pulseData[i] = 0.5 * (1 - Math.cos((Math.PI * i) / openPhase)); // Rise
+    } else if (i < closePhase) {
+        pulseData[i] = 1.0; // Open steady
+    } else {
+        const t = (i - closePhase) / (frameCount - closePhase);
+        pulseData[i] = 0.5 * (1 + Math.cos(Math.PI * t)); // Fall
+    }
+}
+
+// 2. Render a buffer in OfflineAudioContext
+const offlineCtx = new OfflineAudioContext(1, frameCount, sampleRate);
+const buffer = offlineCtx.createBuffer(1, frameCount, sampleRate);
+buffer.copyToChannel(pulseData, 0);
+
+// Create a source and play it in offline context
+const tempSource = offlineCtx.createBufferSource();
+tempSource.buffer = buffer;
+tempSource.connect(offlineCtx.destination);
+tempSource.start();
+
+// 3. Render and use it in the real AudioContext
+const renderedBuffer =await offlineCtx.startRendering()//.then(renderedBuffer => {
+    const source = audioCtx.createBufferSource();
+    // source.buffer = renderedBuffer;
+    source.buffer = await context.decodeAudioData(await fetch('./ass/ets/microwave-schwa.wav').then(r=>r.arrayBuffer()));
+    source.loop = true;
+    // source.connect(audioCtx.destination);
+    source.start();
+
+    const gainNode = context.createGain()
+
+
+    const filter1 = context.createBiquadFilter()
+    filter1.type = 'peaking'
+filter1.frequency.value = 200;
+// filter1.frequency.value = 200;
+filter1.gain.value = 20;
+
+const filter2 = context.createBiquadFilter()
+    filter2.type = 'peaking'
+filter2.frequency.value = 500;
+// filter2.frequency.value = 500;
+filter2.gain.value = 20;
+
+setTimeout(() => {
+  // filter1.frequency.linearRampToValueAtTime(900, context.currentTime + 1)
+  // filter2.frequency.linearRampToValueAtTime(2300, context.currentTime + 1)
+}, 1000)
+setInterval(() => {
+  console.log('change')
+
+// https://en.wikipedia.org/wiki/Formant#Phonetics
+
+//   filter1.frequency.linearRampToValueAtTime(240, context.currentTime + 1)
+// filter2.frequency.linearRampToValueAtTime(2400, context.currentTime + 1)
+// eeee
+
+source.detune.setValueAtTime(0, context.currentTime + 0)
+gainNode.gain.setValueAtTime(1, context.currentTime+ 0.0)
+  filter1.frequency.setValueAtTime(240, context.currentTime)
+filter2.frequency.setValueAtTime(2400, context.currentTime)
+gainNode.gain.setValueAtTime(0, context.currentTime+ 0.4)
+// ahhh
+// source.detune.setValueAtTime(200, context.currentTime + 0.5)
+gainNode.gain.setValueAtTime(1, context.currentTime+ 0.5)
+  filter1.frequency.setValueAtTime(585, context.currentTime+ 0.5)
+filter2.frequency.setValueAtTime(1710, context.currentTime+ 0.5)
+// ahh--eee
+  filter1.frequency.setValueAtTime(585, context.currentTime+ 0.6)
+filter2.frequency.setValueAtTime(1710, context.currentTime+ 0.6)
+  filter1.frequency.linearRampToValueAtTime(240, context.currentTime + 0.9)
+filter2.frequency.linearRampToValueAtTime(2400, context.currentTime + 0.9)
+gainNode.gain.setValueAtTime(0, context.currentTime+ 1)
+
+
+source.detune.setValueAtTime(-200, context.currentTime + 1.1)
+gainNode.gain.setValueAtTime(1, context.currentTime+ 1.1)
+  filter1.frequency.setValueAtTime(240, context.currentTime + 1.1)
+filter2.frequency.setValueAtTime(2400, context.currentTime + 1.1)
+gainNode.gain.setValueAtTime(0, context.currentTime+ 1.5)
+
+
+// source.detune.setValueAtTime(200, context.currentTime + 1.6)
+gainNode.gain.setValueAtTime(1, context.currentTime+ 1.6)
+  filter1.frequency.setValueAtTime(585, context.currentTime+ 1.6)
+filter2.frequency.setValueAtTime(1710, context.currentTime+ 1.6)
+// ahh--eee
+  filter1.frequency.setValueAtTime(585, context.currentTime+ 1.7)
+filter2.frequency.setValueAtTime(1710, context.currentTime+ 1.7)
+  filter1.frequency.linearRampToValueAtTime(240, context.currentTime + 2.0)
+filter2.frequency.linearRampToValueAtTime(2400, context.currentTime + 2.0)
+gainNode.gain.setValueAtTime(0, context.currentTime+ 2.1)
+
+
+source.detune.setValueAtTime(-400, context.currentTime + 2.2)
+gainNode.gain.setValueAtTime(1, context.currentTime+ 2.2)
+filter1.frequency.setValueAtTime(360, context.currentTime+ 2.2)
+filter2.frequency.setValueAtTime(640, context.currentTime+ 2.2)
+filter1.frequency.setValueAtTime(360, context.currentTime+ 2.3)
+filter2.frequency.setValueAtTime(640, context.currentTime+ 2.3)
+  filter1.frequency.linearRampToValueAtTime(250, context.currentTime + 2.6)
+filter2.frequency.linearRampToValueAtTime(595, context.currentTime + 2.6)
+gainNode.gain.setValueAtTime(0, context.currentTime+ 3.3)
+}, 3500)
+
+    source.connect(gainNode);
+    gainNode.connect(filter1);
+    filter1.connect(filter2);
+    filter2.connect(audioCtx.destination);
+// });
+console.log(filter1)
+  }
+  tryAudio()
+
+      </script>
+</div>
+</body>
+</html>

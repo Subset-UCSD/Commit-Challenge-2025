@@ -3,10 +3,10 @@ players:
     health: -549
     inventory: {}
     info:
-      location: radioactive wasteland
+      location: The space between realities, filled with an infinite number of Nolans
       health: .inf
       plan: Continue selling timeshares, but now with added existential dread
-      anxiety: 480
+      anxiety: 580
       customs_agent: a bored-looking entity with antennae and a clipboard
       past_self_encounter: true
       can_speak: false
@@ -40,7 +40,7 @@ players:
       lockpick: 1
       coin: 152949
     info:
-      location: catatonic in town square
+      location: Petting cats
       immune: true
       overwhelmed: true
       passed_out: true
@@ -64,7 +64,7 @@ players:
         souls. The corruption is slowly poisoning him, and he will soon turn
         into a horrifying monster if he does not find a clean soul.
       powers_require_souls: true
-      twitching_eye: true
+      twitching_eye: false
       marcelo_presence: 👻😱😈💀👽👾
   Raymond:
     health: -504
@@ -86,8 +86,8 @@ players:
       mind_blank: true
       whispering_plague: true
       name_forgotten: true
-      azathoth_vision: Haunted by the vision of Azathoth, but the glimpse of Marcelo's
-        saucy secrets will come later.
+      azathoth_vision: Tormented by even more vivid images of Azathoth, now
+        inexplicably intertwined with Marcelo's... unique... habits.
       distorted_lens: Khushi now sees the world through a distorted lens, constantly
         aware of the Eldritch God's pervasive influence.
       marcelo_saucy_secrets: true
@@ -119,10 +119,10 @@ players:
       cats_hiss_swat: false
       cats_befriended: true
       marcelo_presence: 👻😱😈💀👽👾
-day: 32
+day: 33
 worldInfo:
   weather: Screaming Shadows
-  day: 30
+  day: 31
   death_clock: 0
   marcelo_lie_probability: 0.9
   npcs:
@@ -147,7 +147,7 @@ worldInfo:
     geoffrey:
       type: iron_digger
       employer: Sean_Y
-  marcelo_day: 3
+  marcelo_day: 4
   marcelo_affliction: extremely sensitive to noise and becomes enraged easily
   raymond_base: Abandoned Building
   piano_playing: false
@@ -160,7 +160,7 @@ worldInfo:
   monopoly_board: controlling certain territories on the board directly influences
     events in the real world
   farmland_income_per_day: 0
-  nick_status: The world is still here. Phew...
+  nick_status: The horse art seems to have appeased the universe for now.
   cat_uprising: false
   operating_manual: written in an alien language, but diagrams suggest that
     controlling certain territories on the board directly influences events in
@@ -216,8 +216,15 @@ worldInfo:
       description: The oil spill is spreading, corrupting the land with Eldritch
         energy. Find a way to contain and neutralize it!
       urgent: true
+    - name: Curb Raymond's power!
+      description: Stop the Oil Derrick!/Clean up the oil spill in Whispering Woods!
+      urgent: true
+    - name: Contain the Oil Derrick's Spill!
+      description: The oil spill is spreading, corrupting the land with Eldritch
+        energy. Find a way to contain and neutralize it!
+      urgent: true
   azathoth:
-    health: 1300
+    health: 1200
     powers:
       - Reality Warping
       - Soul Manipulation
@@ -228,19 +235,19 @@ worldInfo:
     summoning_ritual: Requires the sacrifice of a pure soul on a nexus point between
       realities, followed by the recitation of a forgotten incantation in the
       language of the dead. (The exact incantation remains hidden.)
-  geoff_logs_reputation: Geoffrey's blatant disregard for the environment
-    continues to erode his reputation.
+  geoff_logs_reputation: Geoffrey's reputation plummets further into the abyss.
+    Villagers are starting to sharpen their pitchforks.
   raymond_oil_baron: true
   elysium: overcrowded with Nick's souls
-  economic_situation: Oil-soaked landscape. Farmland unusable.
+  economic_situation: Oil-soaked landscape. Farmland unusable, and getting worse.
   raymond_campaign_fails: true
   cat_uprising_beginning: true
   marcelo_presence: Every player feels a bone-chilling gust of wind and hears faint clown music.
   azathoth_influence_growing: true
   animals_attack_geoffrey: false
-  whispering_woods_rebellion: true
-  azathoth_whispers: The whispers of Azathoth intensify, but are briefly
-    interrupted by the cacophony of a million Nolans.
+  whispering_woods_rebellion: false
+  azathoth_whispers: The whispers of Azathoth intensify, punctuated by giggling
+    about clown shoes and mayonnaise.
   reality_fraying_nolan: true
   animal_attacks_ferocious_coordinated: true
   animal_attacks_target_geoff_logs_raymonds_oil_derricks: true
@@ -283,9 +290,10 @@ worldInfo:
     info:
       marcelo_presence: 👻😱😈💀👽👾
   animals_attack_target_geoff_logs_raymonds_oil_derricks: true
-  treasury: 204000
+  treasury: 272000
   npc_geoffrey:
     health: 100
     inventory: {}
     info:
       marcelo_presence: 👻😱😈💀👽👾
+  campaign_fails: true

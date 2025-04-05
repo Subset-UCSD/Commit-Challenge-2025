@@ -46,9 +46,10 @@ players:
       passed_out: true
       marcelo_presence: 👻😱😈💀👽👾
   Nick:
-    health: -166000
+    health: -166010
     inventory:
       coin: 205000
+      Exploded Thermonuclear Bomb Remains: 1
     info:
       location: town square
       is_cat: true
@@ -119,11 +120,11 @@ players:
       cats_hiss_swat: false
       cats_befriended: true
       marcelo_presence: 👻😱😈💀👽👾
-day: 33
+day: 34
 worldInfo:
   weather: Screaming Shadows
-  day: 31
-  death_clock: 0
+  day: 32
+  death_clock: 1
   marcelo_lie_probability: 0.9
   npcs:
     merchant:
@@ -157,10 +158,11 @@ worldInfo:
   smithy:
     sell_price: {}
   hidden_layer: a giant game of cosmic Monopoly, with entire realities as properties
-  monopoly_board: controlling certain territories on the board directly influences
-    events in the real world
-  farmland_income_per_day: 0
-  nick_status: The horse art seems to have appeased the universe for now.
+  monopoly_board: The cosmic Monopoly board flickers erratically as Nolan's
+    attempts to manipulate reality cause glitches. Properties shift ownership
+    randomly, and taxes are levied on impossible resources.
+  farmland_income_per_day: 30000
+  nick_status: The universe is temporarily appeased by the ascii art.
   cat_uprising: false
   operating_manual: written in an alien language, but diagrams suggest that
     controlling certain territories on the board directly influences events in
@@ -223,6 +225,9 @@ worldInfo:
       description: The oil spill is spreading, corrupting the land with Eldritch
         energy. Find a way to contain and neutralize it!
       urgent: true
+    - name: Clean up the Oil Slick!
+      description: Raymond's greed knows no bounds! Somebody has to clean up his oil slick!
+      urgent: true
   azathoth:
     health: 1200
     powers:
@@ -240,14 +245,15 @@ worldInfo:
   raymond_oil_baron: true
   elysium: overcrowded with Nick's souls
   economic_situation: Oil-soaked landscape. Farmland unusable, and getting worse.
+    Investors are flocking to Raymond, though.
   raymond_campaign_fails: true
   cat_uprising_beginning: true
   marcelo_presence: Every player feels a bone-chilling gust of wind and hears faint clown music.
   azathoth_influence_growing: true
   animals_attack_geoffrey: false
-  whispering_woods_rebellion: false
-  azathoth_whispers: The whispers of Azathoth intensify, punctuated by giggling
-    about clown shoes and mayonnaise.
+  whispering_woods_rebellion: true
+  azathoth_whispers: The whispers of Azathoth are interspersed with Marcelo's
+    giggling and quacking noises from rubber duckies.
   reality_fraying_nolan: true
   animal_attacks_ferocious_coordinated: true
   animal_attacks_target_geoff_logs_raymonds_oil_derricks: true
@@ -290,7 +296,7 @@ worldInfo:
     info:
       marcelo_presence: 👻😱😈💀👽👾
   animals_attack_target_geoff_logs_raymonds_oil_derricks: true
-  treasury: 272000
+  treasury: 340000
   npc_geoffrey:
     health: 100
     inventory: {}

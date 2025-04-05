@@ -55,7 +55,9 @@
 <div id="div">
     <h1>vocal</h1>
     <p>click to start</p>
-    <script>
+    <button onclick="example1()">example 1</button>
+    <button onclick="example2()">example 2</button>
+    <script type="module">
 const context = new AudioContext()
 let audioCtx = context
     async function tryAudio () {
@@ -80,7 +82,94 @@ let audioCtx = context
         }
         window.requestAnimationFrame(tryAudio)
     }
-    async function audioReady () {
+
+const vowels = {
+    i: [240,	2400],//	2160
+    y: [235,	2100],//	1865
+    e: [390,	2300],//	1910
+    ø: [370,	1900],//	1530
+    ɛ: [610,	1900],//	1290
+    æ: [585,	1710],//	1125
+    a: [850,	1610],//	760
+    ɶ: [820,	1530],//	710
+    ɑ: [750,	940],//	190
+    ɒ: [700,	760],//	60
+    ʌ: [600,	1170],//	570
+    ɔ: [500,	700],//	200
+    ɤ: [460,	1310],//	850
+    o: [360,	640],//	280
+    ɯ: [300,	1390],//	1090
+    u: [250,	595],//	345
+}
+class SpeechBuilder {
+    t = context.currentTime
+    target = 0
+    speed = 1
+
+    transition (duration) {
+        if (this.target) throw new Error('forgot to done()')
+        this.target = this.t + duration * this.speed
+        return this
+    }
+
+    done () {
+        if (!this.target) throw new Error('already done()')
+        this.t = this.target
+        this.target = 0
+        return this
+    }
+
+    for (seconds) {
+        if (this.target) throw new Error('forgot to done()')
+        this.t += seconds * this.speed
+        return this
+    }
+
+    prevTone = null
+    tone (val) {
+        if (this.target) {
+            if (this.prevTone === null) throw new Error('no prev tone')
+            source.detune.setValueAtTime(this.prevTone * 100, this.t)
+            source.detune.linearRampToValueAtTime(val * 100, this.target)
+            
+        } else {
+            source.detune.setValueAtTime(val * 100, this.t)
+            
+        }
+        this.prevTone = val
+        return this
+    }
+
+    prevVowel = null
+    vowel (vowel) {
+        const [f1, f2] = vowels[vowel]
+        if (this.target) {
+            if (this.prevVowel === null) throw new Error('no prev vowel')
+            filter1.frequency.setValueAtTime(vowels[this.prevVowel][0], this.t)
+            filter2.frequency.setValueAtTime(vowels[this.prevVowel][1], this.t)
+            filter1.frequency.linearRampToValueAtTime(f1, this.target)
+            filter2.frequency.linearRampToValueAtTime(f2, this.target)
+        } else {
+            filter1.frequency.setValueAtTime(f1, this.t)
+            filter2.frequency.setValueAtTime(f2, this.t)
+        }
+        this.prevVowel=vowel
+        return this
+    }
+
+    start ( ) {
+        if (this.target) throw new Error('forgot to done()')
+        gainNode.gain.setValueAtTime(1, this.t)    
+        return this
+    }
+    stop ( ) {
+        if (this.target) throw new Error('forgot to done()')
+        
+        gainNode.gain.setValueAtTime(0, this.t)    
+        return this
+    }
+}
+    
 
 // load impulse response from file
 
@@ -145,7 +234,6 @@ const renderedBuffer =await offlineCtx.startRendering()//.then(renderedBuffer =>
     source.buffer = await context.decodeAudioData(await fetch('./ass/ets/microwave-schwa.wav').then(r=>r.arrayBuffer()));
     source.loop = true;
     // source.connect(audioCtx.destination);
-    source.start();
 
     const gainNode = context.createGain()
 
@@ -162,11 +250,24 @@ filter2.frequency.value = 500;
 // filter2.frequency.value = 500;
 filter2.gain.value = 20;
 
+
+source.connect(gainNode);
+    gainNode.connect(filter1);
+    filter1.connect(filter2);
+    filter2.connect(audioCtx.destination);
+// });
+console.log(filter1)
+
+async function audioReady () {
+    source.start();
+}
+
 setTimeout(() => {
   // filter1.frequency.linearRampToValueAtTime(900, context.currentTime + 1)
   // filter2.frequency.linearRampToValueAtTime(2300, context.currentTime + 1)
 }, 1000)
-setInterval(() => {
+
+window.example1 =(() => {
   console.log('change')
 
 // https://en.wikipedia.org/wiki/Formant#Phonetics
@@ -174,63 +275,94 @@ setInterval(() => {
 //   filter1.frequency.linearRampToValueAtTime(240, context.currentTime + 1)
 // filter2.frequency.linearRampToValueAtTime(2400, context.currentTime + 1)
 // eeee
+new SpeechBuilder()
+.start().tone(0).vowel('i').for(0.4)
+.stop().for(0.1)
+.start().vowel('æ').for(0.1)
+.transition(0.3).vowel('i').done().for(0.1)
+.stop().for(0.1)
+.start().tone(-2).vowel('i').for(0.4)
+.stop().for(0.1)
+.start().vowel('æ').for(0.1)
+.transition(0.3).vowel('i').done().for(0.1)
+.stop().for(0.1)
+.start().tone(-4).vowel('o').for(0.1)
+.transition(0.3).vowel('u').done().for(0.1)
+.stop()//.for(0.5)
+// .start().tone(0).vowel('u').for(0.1).transition(1).vowel('i').done().for(0.1).stop()
 
-source.detune.setValueAtTime(0, context.currentTime + 0)
-gainNode.gain.setValueAtTime(1, context.currentTime+ 0.0)
-  filter1.frequency.setValueAtTime(240, context.currentTime)
-filter2.frequency.setValueAtTime(2400, context.currentTime)
-gainNode.gain.setValueAtTime(0, context.currentTime+ 0.4)
-// ahhh
-// source.detune.setValueAtTime(200, context.currentTime + 0.5)
-gainNode.gain.setValueAtTime(1, context.currentTime+ 0.5)
-  filter1.frequency.setValueAtTime(585, context.currentTime+ 0.5)
-filter2.frequency.setValueAtTime(1710, context.currentTime+ 0.5)
-// ahh--eee
-  filter1.frequency.setValueAtTime(585, context.currentTime+ 0.6)
-filter2.frequency.setValueAtTime(1710, context.currentTime+ 0.6)
-  filter1.frequency.linearRampToValueAtTime(240, context.currentTime + 0.9)
-filter2.frequency.linearRampToValueAtTime(2400, context.currentTime + 0.9)
-gainNode.gain.setValueAtTime(0, context.currentTime+ 1)
-
-
-source.detune.setValueAtTime(-200, context.currentTime + 1.1)
-gainNode.gain.setValueAtTime(1, context.currentTime+ 1.1)
-  filter1.frequency.setValueAtTime(240, context.currentTime + 1.1)
-filter2.frequency.setValueAtTime(2400, context.currentTime + 1.1)
-gainNode.gain.setValueAtTime(0, context.currentTime+ 1.5)
-
-
-// source.detune.setValueAtTime(200, context.currentTime + 1.6)
-gainNode.gain.setValueAtTime(1, context.currentTime+ 1.6)
-  filter1.frequency.setValueAtTime(585, context.currentTime+ 1.6)
-filter2.frequency.setValueAtTime(1710, context.currentTime+ 1.6)
-// ahh--eee
-  filter1.frequency.setValueAtTime(585, context.currentTime+ 1.7)
-filter2.frequency.setValueAtTime(1710, context.currentTime+ 1.7)
-  filter1.frequency.linearRampToValueAtTime(240, context.currentTime + 2.0)
-filter2.frequency.linearRampToValueAtTime(2400, context.currentTime + 2.0)
-gainNode.gain.setValueAtTime(0, context.currentTime+ 2.1)
+// source.detune.setValueAtTime(0, context.currentTime + 0)
+// gainNode.gain.setValueAtTime(1, context.currentTime+ 0.0)
+//   filter1.frequency.setValueAtTime(240, context.currentTime)
+// filter2.frequency.setValueAtTime(2400, context.currentTime)
+// gainNode.gain.setValueAtTime(0, context.currentTime+ 0.4)
+// // ahhh
+// // source.detune.setValueAtTime(200, context.currentTime + 0.5)
+// gainNode.gain.setValueAtTime(1, context.currentTime+ 0.5)
+//   filter1.frequency.setValueAtTime(585, context.currentTime+ 0.5)
+// filter2.frequency.setValueAtTime(1710, context.currentTime+ 0.5)
+// // ahh--eee
+//   filter1.frequency.setValueAtTime(585, context.currentTime+ 0.6)
+// filter2.frequency.setValueAtTime(1710, context.currentTime+ 0.6)
+//   filter1.frequency.linearRampToValueAtTime(240, context.currentTime + 0.9)
+// filter2.frequency.linearRampToValueAtTime(2400, context.currentTime + 0.9)
+// gainNode.gain.setValueAtTime(0, context.currentTime+ 1)
 
 
-source.detune.setValueAtTime(-400, context.currentTime + 2.2)
-gainNode.gain.setValueAtTime(1, context.currentTime+ 2.2)
-filter1.frequency.setValueAtTime(360, context.currentTime+ 2.2)
-filter2.frequency.setValueAtTime(640, context.currentTime+ 2.2)
-filter1.frequency.setValueAtTime(360, context.currentTime+ 2.3)
-filter2.frequency.setValueAtTime(640, context.currentTime+ 2.3)
-  filter1.frequency.linearRampToValueAtTime(250, context.currentTime + 2.6)
-filter2.frequency.linearRampToValueAtTime(595, context.currentTime + 2.6)
-gainNode.gain.setValueAtTime(0, context.currentTime+ 3.3)
-}, 3500)
+// source.detune.setValueAtTime(-200, context.currentTime + 1.1)
+// gainNode.gain.setValueAtTime(1, context.currentTime+ 1.1)
+//   filter1.frequency.setValueAtTime(240, context.currentTime + 1.1)
+// filter2.frequency.setValueAtTime(2400, context.currentTime + 1.1)
+// gainNode.gain.setValueAtTime(0, context.currentTime+ 1.5)
 
-    source.connect(gainNode);
-    gainNode.connect(filter1);
-    filter1.connect(filter2);
-    filter2.connect(audioCtx.destination);
-// });
-console.log(filter1)
-  }
+
+// // source.detune.setValueAtTime(200, context.currentTime + 1.6)
+// gainNode.gain.setValueAtTime(1, context.currentTime+ 1.6)
+//   filter1.frequency.setValueAtTime(585, context.currentTime+ 1.6)
+// filter2.frequency.setValueAtTime(1710, context.currentTime+ 1.6)
+// // ahh--eee
+//   filter1.frequency.setValueAtTime(585, context.currentTime+ 1.7)
+// filter2.frequency.setValueAtTime(1710, context.currentTime+ 1.7)
+//   filter1.frequency.linearRampToValueAtTime(240, context.currentTime + 2.0)
+// filter2.frequency.linearRampToValueAtTime(2400, context.currentTime + 2.0)
+// gainNode.gain.setValueAtTime(0, context.currentTime+ 2.1)
+
+
+// source.detune.setValueAtTime(-400, context.currentTime + 2.2)
+// gainNode.gain.setValueAtTime(1, context.currentTime+ 2.2)
+// filter1.frequency.setValueAtTime(360, context.currentTime+ 2.2)
+// filter2.frequency.setValueAtTime(640, context.currentTime+ 2.2)
+// filter1.frequency.setValueAtTime(360, context.currentTime+ 2.3)
+// filter2.frequency.setValueAtTime(640, context.currentTime+ 2.3)
+//   filter1.frequency.linearRampToValueAtTime(250, context.currentTime + 2.6)
+// filter2.frequency.linearRampToValueAtTime(595, context.currentTime + 2.6)
+// gainNode.gain.setValueAtTime(0, context.currentTime+ 3.3)
+} )
+
+//   }
+
+// console.log(example1)
   tryAudio()
+
+window.example2 = () => {
+    let t = new SpeechBuilder()
+    for (const speed of [0.5,1,1, 0.5]) {
+        t.speed = speed
+        t = t.stop().for(0.5)
+        .start().vowel('u').tone(0).for(0.2).stop().for(0.2)
+        .start().vowel('i').for(0.1).stop().for(0.1)
+        .start().for(0.1).stop().for(0.1)
+        .start().vowel('æ').tone(1).for(0.2).stop().for(0.2)
+        .start().vowel('i').tone(0).for(0.1).stop().for(0.1)
+        .start().vowel('ɑ').tone(-2).for(0.1).stop().for(0.1)
+        .start().vowel('i').for(0.1).stop().for(0.1)
+        .start().vowel('i').tone(0).for(0.1).stop().for(0.1)
+        .start().vowel('i').for(0.1).stop().for(0.1)
+        .start().vowel('i').for(0.1).stop().for(0.1)
+        .start().vowel('æ').tone(1).for(0.2).stop().for(0.2)
+        .start().vowel('i').tone(0).for(0.1).stop().for(0.1)
+    }
+}
 
       </script>
 </div>

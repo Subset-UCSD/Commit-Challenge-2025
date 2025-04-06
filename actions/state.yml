@@ -1,6 +1,6 @@
 players:
   Nolan:
-    health: -549
+    health: -550
     inventory: {}
     info:
       location: The space between realities, filled with an infinite number of Nolans
@@ -46,7 +46,7 @@ players:
       passed_out: true
       marcelo_presence: 👻😱😈💀👽👾
   Nick:
-    health: -166010
+    health: -171010
     inventory:
       coin: 205000
       Exploded Thermonuclear Bomb Remains: 1
@@ -120,7 +120,7 @@ players:
       cats_hiss_swat: false
       cats_befriended: true
       marcelo_presence: 👻😱😈💀👽👾
-day: 34
+day: 35
 worldInfo:
   weather: Screaming Shadows
   day: 32
@@ -152,7 +152,7 @@ worldInfo:
   marcelo_affliction: extremely sensitive to noise and becomes enraged easily
   raymond_base: Abandoned Building
   piano_playing: false
-  cat_apocalypse: false
+  cat_apocalypse: true
   geoffrey:
     daily_iron: 10
   smithy:
@@ -162,8 +162,9 @@ worldInfo:
     attempts to manipulate reality cause glitches. Properties shift ownership
     randomly, and taxes are levied on impossible resources.
   farmland_income_per_day: 30000
-  nick_status: The universe is temporarily appeased by the ascii art.
-  cat_uprising: false
+  nick_status: The ascii art was a spectacular failure and the universe is not
+    happy. Nick takes a massive hit to the soul
+  cat_uprising: true
   operating_manual: written in an alien language, but diagrams suggest that
     controlling certain territories on the board directly influences events in
     the real world
@@ -228,6 +229,13 @@ worldInfo:
     - name: Clean up the Oil Slick!
       description: Raymond's greed knows no bounds! Somebody has to clean up his oil slick!
       urgent: true
+    - name: Contain the Oil Derrick's Spill!
+      description: The oil spill is spreading, corrupting the land with Eldritch
+        energy. Find a way to contain and neutralize it!
+      urgent: true
+    - name: Clean up the Oil Slick!
+      description: Raymond's greed knows no bounds! Somebody has to clean up his oil slick!
+      urgent: true
   azathoth:
     health: 1200
     powers:
@@ -270,7 +278,7 @@ worldInfo:
     vintage_porcelain_dolls: true
     wearing_clown_shoes_to_bed: true
     eating_mayonnaise_with_a_spoon: true
-  land_cleared_90_percent: true
+  land_cleared_90_percent: false
   land_sold_as_farmland: true
   geoff_logs_financials:
     Log_Sales: 3000
@@ -296,7 +304,7 @@ worldInfo:
     info:
       marcelo_presence: 👻😱😈💀👽👾
   animals_attack_target_geoff_logs_raymonds_oil_derricks: true
-  treasury: 340000
+  treasury: 408000
   npc_geoffrey:
     health: 100
     inventory: {}

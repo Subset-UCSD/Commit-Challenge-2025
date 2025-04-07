@@ -4,9 +4,9 @@ players:
     inventory: {}
     info:
       location: The space between realities, filled with an infinite number of Nolans
-      health: .inf
+      health: 100
       plan: Continue selling timeshares, but now with added existential dread
-      anxiety: 580
+      anxiety: 578
       customs_agent: a bored-looking entity with antennae and a clipboard
       past_self_encounter: true
       can_speak: false
@@ -35,7 +35,7 @@ players:
       unease_growing: true
       marcelo_presence: 👻😱😈💀👽👾
   Sean_Y:
-    health: 89
+    health: 69
     inventory:
       lockpick: 1
       coin: 152949
@@ -45,8 +45,10 @@ players:
       overwhelmed: true
       passed_out: true
       marcelo_presence: 👻😱😈💀👽👾
+      cats_petted: 0
+      paving_success: Sean_Y has made minor progress with the paving.
   Nick:
-    health: -171010
+    health: -221010
     inventory:
       coin: 205000
       Exploded Thermonuclear Bomb Remains: 1
@@ -112,7 +114,7 @@ players:
       location: radioactive wasteland
       is_cat: true
       cats: 12
-      town_happiness: sky high101
+      town_happiness: sky high1015
       party_score: 1
       cats_angry: false
       betrayed: true
@@ -120,10 +122,11 @@ players:
       cats_hiss_swat: false
       cats_befriended: true
       marcelo_presence: 👻😱😈💀👽👾
-day: 35
+      cats_petted: 0
+day: 36
 worldInfo:
   weather: Screaming Shadows
-  day: 32
+  day: 33
   death_clock: 1
   marcelo_lie_probability: 0.9
   npcs:
@@ -148,7 +151,7 @@ worldInfo:
     geoffrey:
       type: iron_digger
       employer: Sean_Y
-  marcelo_day: 4
+  marcelo_day: 5
   marcelo_affliction: extremely sensitive to noise and becomes enraged easily
   raymond_base: Abandoned Building
   piano_playing: false
@@ -236,6 +239,20 @@ worldInfo:
     - name: Clean up the Oil Slick!
       description: Raymond's greed knows no bounds! Somebody has to clean up his oil slick!
       urgent: true
+    - name: Curb Raymond's power!
+      description: Stop the Oil Derrick!/Clean up the oil spill in Whispering Woods!
+      urgent: true
+    - name: Contain the Oil Derrick's Spill!
+      description: The oil spill is spreading, corrupting the land with Eldritch
+        energy. Find a way to contain and neutralize it!
+      urgent: true
+    - name: Clean up the Oil Slick!
+      description: Raymond's greed knows no bounds! Somebody has to clean up his oil slick!
+      urgent: true
+    - name: Curing the Hive Mind
+      description: Find a way to restore Nolan's sanity and prevent him from
+        attempting further breaches of reality.
+      reward: Stabilize the reality.
   azathoth:
     health: 1200
     powers:
@@ -253,7 +270,6 @@ worldInfo:
   raymond_oil_baron: true
   elysium: overcrowded with Nick's souls
   economic_situation: Oil-soaked landscape. Farmland unusable, and getting worse.
-    Investors are flocking to Raymond, though.
   raymond_campaign_fails: true
   cat_uprising_beginning: true
   marcelo_presence: Every player feels a bone-chilling gust of wind and hears faint clown music.
@@ -278,7 +294,7 @@ worldInfo:
     vintage_porcelain_dolls: true
     wearing_clown_shoes_to_bed: true
     eating_mayonnaise_with_a_spoon: true
-  land_cleared_90_percent: false
+  land_cleared_90_percent: true
   land_sold_as_farmland: true
   geoff_logs_financials:
     Log_Sales: 3000
@@ -304,10 +320,10 @@ worldInfo:
     info:
       marcelo_presence: 👻😱😈💀👽👾
   animals_attack_target_geoff_logs_raymonds_oil_derricks: true
-  treasury: 408000
+  treasury: 476000
   npc_geoffrey:
     health: 100
     inventory: {}
     info:
       marcelo_presence: 👻😱😈💀👽👾
-  campaign_fails: true
+  campaign_fails: false

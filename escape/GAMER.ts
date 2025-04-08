@@ -67,10 +67,14 @@ function northPath(): StageInfo {
 		if (!ravenCompassTaken) {
 			I.description += "<span style='color: #E5989B'>a small, round object protrudes from his pocket. a compass, perhaps?</span> ";
 		}
+		I.choices["attack Ravensmith"] = ()=>{
+				return "attacking Ravensmith now will softlock you from the game. i cant let that happen. "
+		}
 		if (!inventory.has(sushiItem) || ravenCompassTaken) {
 			I.choices["talk to Ravensmith"] = () => {
 				return "Ravensmith does not bother with small talk. he humphs at you and turns his head away. "
 			}
+			
 		} else {
 			I.choices["talk to Ravensmith"] = () => {
 				inventory.add(compassItem)
@@ -78,7 +82,24 @@ function northPath(): StageInfo {
 				ravenCompassTaken = true;
 				return "you ask for his compass, offering a piece of sushi. he obliges. +1 compass "
 			}
+			
 		}
+		if (ravenCompassTaken){
+I.choices["attack Ravensmith"] =()=>{
+				startBattle({ 
+					attackTime:200,
+					description:'dumbass.',
+					attackStrength:3,
+					totalEnemyHealth:1000,
+					totalMeHealth:100,
+					enemyImage:'./assets/rat.png',hasWeapon:true,theirattackStrength:10,theirattackTime:1000,
+					myAttackSound: '../ass/ets/hit-slap.mp3',
+					theirAttackSound: '../ass/ets/hit-slap.mp3',
+				})
+	return"wtf."
+}
+		}
+		
 	}
 	if (Math.random() < 0.5 || grassPicked < 2) {
 		I.choices["pick grass"] = () => {

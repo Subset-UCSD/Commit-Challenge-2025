@@ -7,4 +7,4 @@ edition = "2021"
 serde = { version = "1.0.217", features = ["derive"] }
 serde_json = "1.0.134"
 serenity = { version = "0.12.4", features = ["client", "gateway"] }
-tokio = { version = "1.42.0", features = ["full"] }
+tokio = { version = "1.43.1", features = ["full"] }

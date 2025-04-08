@@ -1,6 +1,6 @@
 players:
   Nolan:
-    health: -550
+    health: -551
     inventory: {}
     info:
       location: The space between realities, filled with an infinite number of Nolans
@@ -13,7 +13,7 @@ players:
       scheme_failed: true
       marcelo_presence: 👻😱😈💀👽👾
   Sean_P:
-    health: -625
+    health: -630
     inventory:
       coin: 11
       fish bone: 1
@@ -28,14 +28,14 @@ players:
         CHANGE THE ACTIONS done by all other players. The wand is now coated in
         iridescent goo and can duplicate items.
       cats_befriended: 2
-      azathoth_influence: Azathoth's influence is overwhelming. Sean_P is becoming a
-        conduit for Azathoth's will.
+      azathoth_influence: Azathoth is mildly annoyed by your incompetence. You feel a
+        slight headache.
       azathoth_embrace: true
       line_between_sean_p_azathoth_blurring: true
       unease_growing: true
       marcelo_presence: 👻😱😈💀👽👾
   Sean_Y:
-    health: 69
+    health: -31
     inventory:
       lockpick: 1
       coin: 152949
@@ -48,10 +48,10 @@ players:
       cats_petted: 0
       paving_success: Sean_Y has made minor progress with the paving.
   Nick:
-    health: -221010
+    health: -311010
     inventory:
       coin: 205000
-      Exploded Thermonuclear Bomb Remains: 1
+      Exploded Thermonuclear Bomb Remains: 0
     info:
       location: town square
       is_cat: true
@@ -114,7 +114,7 @@ players:
       location: radioactive wasteland
       is_cat: true
       cats: 12
-      town_happiness: sky high1015
+      town_happiness: sky high1000
       party_score: 1
       cats_angry: false
       betrayed: true
@@ -122,12 +122,12 @@ players:
       cats_hiss_swat: false
       cats_befriended: true
       marcelo_presence: 👻😱😈💀👽👾
-      cats_petted: 0
-day: 36
+      cats_petted: 24
+day: 37
 worldInfo:
-  weather: Screaming Shadows
-  day: 33
-  death_clock: 1
+  weather: Partly Cloudy with a Chance of Mild Discomfort
+  day: 34
+  death_clock: 2
   marcelo_lie_probability: 0.9
   npcs:
     merchant:
@@ -161,9 +161,10 @@ worldInfo:
   smithy:
     sell_price: {}
   hidden_layer: a giant game of cosmic Monopoly, with entire realities as properties
-  monopoly_board: The cosmic Monopoly board flickers erratically as Nolan's
-    attempts to manipulate reality cause glitches. Properties shift ownership
-    randomly, and taxes are levied on impossible resources.
+  monopoly_board: The cosmic Monopoly board is now filled with tiny timeshare
+    booths staffed by miniature versions of Nolan. Nobody wants to buy them, and
+    the booths are slowly being crushed by the weight of existential dread
+    emanating from the space between realities.
   farmland_income_per_day: 30000
   nick_status: The ascii art was a spectacular failure and the universe is not
     happy. Nick takes a massive hit to the soul
@@ -253,6 +254,14 @@ worldInfo:
       description: Find a way to restore Nolan's sanity and prevent him from
         attempting further breaches of reality.
       reward: Stabilize the reality.
+    - name: Stop Raymond's Oil Empire!
+      description: Raymond's oil drilling is causing ecological and eldritch damage.
+        Find a way to shut it down and clean up the mess!
+      urgent: true
+    - name: Rehabilitate the Paved World
+      description: Sean_Y has paved everything. Find a way to restore the land and
+        undo the concrete wasteland!
+      urgent: true
   azathoth:
     health: 1200
     powers:
@@ -269,13 +278,13 @@ worldInfo:
     Villagers are starting to sharpen their pitchforks.
   raymond_oil_baron: true
   elysium: overcrowded with Nick's souls
-  economic_situation: Oil-soaked landscape. Farmland unusable, and getting worse.
+  economic_situation: Oil-soaked landscape. Farmland unusable and getting worse.
   raymond_campaign_fails: true
   cat_uprising_beginning: true
-  marcelo_presence: Every player feels a bone-chilling gust of wind and hears faint clown music.
+  marcelo_presence: 👻😱😈💀👽👾🌳💰
   azathoth_influence_growing: true
   animals_attack_geoffrey: false
-  whispering_woods_rebellion: true
+  whispering_woods_rebellion: false
   azathoth_whispers: The whispers of Azathoth are interspersed with Marcelo's
     giggling and quacking noises from rubber duckies.
   reality_fraying_nolan: true
@@ -303,7 +312,7 @@ worldInfo:
     Farmland_Income_Per_Day: 30000
     Total_Income: 68000
   geoffrey_oblivious_to_doom: true
-  animals_attack_ferocious_coordinated: true
+  animals_attack_ferocious_coordinated: false
   animals_attacks_target_geoff_logs_raymonds_oil_derricks: true
   screamingShadowsAnimals:
     - Shadow Wolves
@@ -320,7 +329,7 @@ worldInfo:
     info:
       marcelo_presence: 👻😱😈💀👽👾
   animals_attack_target_geoff_logs_raymonds_oil_derricks: true
-  treasury: 476000
+  treasury: 544000
   npc_geoffrey:
     health: 100
     inventory: {}

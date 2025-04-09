@@ -6,12 +6,12 @@ players:
       location: The space between realities, filled with an infinite number of Nolans
       health: 100
       plan: Continue selling timeshares, but now with added existential dread
-      anxiety: 578
+      anxiety: 1578
       customs_agent: a bored-looking entity with antennae and a clipboard
       past_self_encounter: true
       can_speak: false
       scheme_failed: true
-      marcelo_presence: 👻😱😈💀👽👾
+      marcelo_presence: 👻😱😈💀👽👾👻
   Sean_P:
     health: -630
     inventory:
@@ -28,12 +28,12 @@ players:
         CHANGE THE ACTIONS done by all other players. The wand is now coated in
         iridescent goo and can duplicate items.
       cats_befriended: 2
-      azathoth_influence: Azathoth is mildly annoyed by your incompetence. You feel a
-        slight headache.
+      azathoth_influence: Azathoth is pleased with Sean_P's actions and rewards him
+        with a surge of power, but at the cost of his sanity.
       azathoth_embrace: true
       line_between_sean_p_azathoth_blurring: true
       unease_growing: true
-      marcelo_presence: 👻😱😈💀👽👾
+      marcelo_presence: 👻😱😈💀👽👾👻
   Sean_Y:
     health: -31
     inventory:
@@ -44,11 +44,11 @@ players:
       immune: true
       overwhelmed: true
       passed_out: true
-      marcelo_presence: 👻😱😈💀👽👾
-      cats_petted: 0
+      marcelo_presence: 👻😱😈💀👽👾👻
+      cats_petted: 12
       paving_success: Sean_Y has made minor progress with the paving.
   Nick:
-    health: -311010
+    health: -411010
     inventory:
       coin: 205000
       Exploded Thermonuclear Bomb Remains: 0
@@ -59,16 +59,13 @@ players:
       damage: "[[One (1) Exploded Thermonuclear Bomb Remains]] deals 10 ethereal
         damage that can't be blocked upon touching."
       god_of_death: true
-      powers:
-        - flight
-        - soul consumption
-        - revival
+      powers: []
       god_of_death_tainted: He is now a god of death, but one sustained by tainted
         souls. The corruption is slowly poisoning him, and he will soon turn
         into a horrifying monster if he does not find a clean soul.
       powers_require_souls: true
       twitching_eye: false
-      marcelo_presence: 👻😱😈💀👽👾
+      marcelo_presence: 👻😱😈💀👽👾👻
   Raymond:
     health: -504
     inventory:
@@ -80,7 +77,7 @@ players:
         - Madame Evangeline
       rubber_chicken_insanity: true
       campaign_fails: true
-      marcelo_presence: 👻😱😈💀👽👾
+      marcelo_presence: 👻😱😈💀👽👾👻
   Khushi:
     health: -568
     inventory: {}
@@ -96,7 +93,7 @@ players:
       marcelo_saucy_secrets: true
       marcelo_rubber_chicken: true
       disoriented_nauseous: true
-      marcelo_presence: 👻😱😈💀👽👾
+      marcelo_presence: 👻😱😈💀👽👾👻
   sam:
     health: -405
     inventory:
@@ -121,13 +118,13 @@ players:
       cats_hate_sam: false
       cats_hiss_swat: false
       cats_befriended: true
-      marcelo_presence: 👻😱😈💀👽👾
-      cats_petted: 24
-day: 37
+      marcelo_presence: 👻😱😈💀👽👾👻
+      cats_petted: 48
+day: 38
 worldInfo:
   weather: Partly Cloudy with a Chance of Mild Discomfort
-  day: 34
-  death_clock: 2
+  day: 35
+  death_clock: 1
   marcelo_lie_probability: 0.9
   npcs:
     merchant:
@@ -161,13 +158,12 @@ worldInfo:
   smithy:
     sell_price: {}
   hidden_layer: a giant game of cosmic Monopoly, with entire realities as properties
-  monopoly_board: The cosmic Monopoly board is now filled with tiny timeshare
-    booths staffed by miniature versions of Nolan. Nobody wants to buy them, and
-    the booths are slowly being crushed by the weight of existential dread
-    emanating from the space between realities.
+  monopoly_board: The cosmic Monopoly board is now overflowing with timeshare
+    booths manned by countless versions of Nolan. The booths pulse with an
+    unsettling energy, threatening to consume the entire board.
   farmland_income_per_day: 30000
-  nick_status: The ascii art was a spectacular failure and the universe is not
-    happy. Nick takes a massive hit to the soul
+  nick_status: The attempt to force the game to draw ASCII art results in a
+    catastrophic paradox. The universe shudders.
   cat_uprising: true
   operating_manual: written in an alien language, but diagrams suggest that
     controlling certain territories on the board directly influences events in
@@ -262,8 +258,17 @@ worldInfo:
       description: Sean_Y has paved everything. Find a way to restore the land and
         undo the concrete wasteland!
       urgent: true
+    - name: The Whispering Shadows
+      description: The Whispering Woods has been transformed into the Screaming
+        Shadows. Find a way to restore the balance or adapt to the new,
+        horrifying reality.
+      urgent: true
+    - name: Nick's Catastrophe
+      description: Repair the fabric of reality after Nick's failed attempt to draw
+        ASCII art, or suffer the consequences of a universe unraveling.
+      urgent: true
   azathoth:
-    health: 1200
+    health: 1250
     powers:
       - Reality Warping
       - Soul Manipulation
@@ -284,9 +289,9 @@ worldInfo:
   marcelo_presence: 👻😱😈💀👽👾🌳💰
   azathoth_influence_growing: true
   animals_attack_geoffrey: false
-  whispering_woods_rebellion: false
-  azathoth_whispers: The whispers of Azathoth are interspersed with Marcelo's
-    giggling and quacking noises from rubber duckies.
+  whispering_woods_rebellion: true
+  azathoth_whispers: The whispers of Azathoth grow louder, filled with the screams
+    of the Screaming Shadows and the manic laughter of Sean_P.
   reality_fraying_nolan: true
   animal_attacks_ferocious_coordinated: true
   animal_attacks_target_geoff_logs_raymonds_oil_derricks: true
@@ -303,8 +308,8 @@ worldInfo:
     vintage_porcelain_dolls: true
     wearing_clown_shoes_to_bed: true
     eating_mayonnaise_with_a_spoon: true
-  land_cleared_90_percent: true
-  land_sold_as_farmland: true
+  land_cleared_90_percent: false
+  land_sold_as_farmland: false
   geoff_logs_financials:
     Log_Sales: 3000
     Farmland_Sales: 30000
@@ -312,7 +317,7 @@ worldInfo:
     Farmland_Income_Per_Day: 30000
     Total_Income: 68000
   geoffrey_oblivious_to_doom: true
-  animals_attack_ferocious_coordinated: false
+  animals_attack_ferocious_coordinated: true
   animals_attacks_target_geoff_logs_raymonds_oil_derricks: true
   screamingShadowsAnimals:
     - Shadow Wolves
@@ -329,10 +334,11 @@ worldInfo:
     info:
       marcelo_presence: 👻😱😈💀👽👾
   animals_attack_target_geoff_logs_raymonds_oil_derricks: true
-  treasury: 544000
+  treasury: 612000
   npc_geoffrey:
     health: 100
-    inventory: {}
+    inventory:
+      coin: 68000
     info:
       marcelo_presence: 👻😱😈💀👽👾
   campaign_fails: false

@@ -6,7 +6,7 @@ players:
       location: The space between realities, filled with an infinite number of Nolans
       health: 100
       plan: Continue selling timeshares, but now with added existential dread
-      anxiety: 1578
+      anxiety: 1588
       customs_agent: a bored-looking entity with antennae and a clipboard
       past_self_encounter: true
       can_speak: false
@@ -69,7 +69,7 @@ players:
   Raymond:
     health: -504
     inventory:
-      coin: 2000089618
+      coin: 1999989618
     info:
       location: radioactive wasteland
       bodyguards:
@@ -119,11 +119,11 @@ players:
       cats_hiss_swat: false
       cats_befriended: true
       marcelo_presence: 👻😱😈💀👽👾👻
-      cats_petted: 48
-day: 38
+      cats_petted: 70
+day: 39
 worldInfo:
-  weather: Partly Cloudy with a Chance of Mild Discomfort
-  day: 35
+  weather: Eerily calm, but filled with an undercurrent of dread.
+  day: 36
   death_clock: 1
   marcelo_lie_probability: 0.9
   npcs:
@@ -158,13 +158,16 @@ worldInfo:
   smithy:
     sell_price: {}
   hidden_layer: a giant game of cosmic Monopoly, with entire realities as properties
-  monopoly_board: The cosmic Monopoly board is now overflowing with timeshare
-    booths manned by countless versions of Nolan. The booths pulse with an
-    unsettling energy, threatening to consume the entire board.
+  monopoly_board: The cosmic Monopoly board is now a chaotic landscape of infinite
+    timeshare booths, each containing countless versions of Nolan, all
+    attempting to sell existential dread. The fabric of reality around the board
+    is visibly weakening.
   farmland_income_per_day: 30000
-  nick_status: The attempt to force the game to draw ASCII art results in a
-    catastrophic paradox. The universe shudders.
-  cat_uprising: true
+  nick_status: Nick's attempt to bypass the system results in a cascade failure.
+    Error messages flood his vision, and he feels a sharp, stabbing pain in his
+    non-existent stomach. The universe remains intact, but Nick's connection to
+    the 'god of death' is weakened.
+  cat_uprising: false
   operating_manual: written in an alien language, but diagrams suggest that
     controlling certain territories on the board directly influences events in
     the real world
@@ -267,6 +270,30 @@ worldInfo:
       description: Repair the fabric of reality after Nick's failed attempt to draw
         ASCII art, or suffer the consequences of a universe unraveling.
       urgent: true
+    - name: Contain the Nolan Singularity
+      description: The hive mind of Nolan is expanding exponentially, threatening to
+        consume all realities. Find a way to contain or control this
+        singularity.
+      urgent: true
+    - name: End the Reign of the Screaming Shadows
+      description: The Whispering Woods have been transformed into the Screaming
+        Shadows! The creatures from the shadows are now raging against the
+        corporations of Oakhaven!
+      urgent: true
+    - name: Reclaim the Planet From Concrete
+      description: Revert everything from concrete!
+      urgent: true
+    - name: Stop Raymond's Oil Empire!
+      description: Raymond's oil drilling is causing ecological and eldritch damage.
+        Find a way to shut it down and clean up the mess!
+      urgent: true
+    - name: Clean up the Oil Slick!
+      description: Raymond's greed knows no bounds! Somebody has to clean up his oil slick!
+      urgent: true
+    - name: Contain the Oil Derrick's Spill!
+      description: The oil spill is spreading, corrupting the land with Eldritch
+        energy. Find a way to contain and neutralize it!
+      urgent: true
   azathoth:
     health: 1250
     powers:
@@ -285,11 +312,11 @@ worldInfo:
   elysium: overcrowded with Nick's souls
   economic_situation: Oil-soaked landscape. Farmland unusable and getting worse.
   raymond_campaign_fails: true
-  cat_uprising_beginning: true
+  cat_uprising_beginning: false
   marcelo_presence: 👻😱😈💀👽👾🌳💰
   azathoth_influence_growing: true
   animals_attack_geoffrey: false
-  whispering_woods_rebellion: true
+  whispering_woods_rebellion: false
   azathoth_whispers: The whispers of Azathoth grow louder, filled with the screams
     of the Screaming Shadows and the manic laughter of Sean_P.
   reality_fraying_nolan: true
@@ -309,7 +336,7 @@ worldInfo:
     wearing_clown_shoes_to_bed: true
     eating_mayonnaise_with_a_spoon: true
   land_cleared_90_percent: false
-  land_sold_as_farmland: false
+  land_sold_as_farmland: true
   geoff_logs_financials:
     Log_Sales: 3000
     Farmland_Sales: 30000
@@ -328,17 +355,19 @@ worldInfo:
     - Nightmare Birds
     - Eldritch Spiders
     - Azathoth's Hounds
+    - Screaming Trees
+    - Whispering Tentacles
   npc_foreach:
     health: 100
     inventory: {}
     info:
-      marcelo_presence: 👻😱😈💀👽👾
+      marcelo_presence: 👻😱😈💀👽👾👻
   animals_attack_target_geoff_logs_raymonds_oil_derricks: true
-  treasury: 612000
+  treasury: 680000
   npc_geoffrey:
     health: 100
     inventory:
-      coin: 68000
+      coin: 136000
     info:
       marcelo_presence: 👻😱😈💀👽👾
   campaign_fails: false

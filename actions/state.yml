@@ -6,7 +6,7 @@ players:
       location: The space between realities, filled with an infinite number of Nolans
       health: 100
       plan: Continue selling timeshares, but now with added existential dread
-      anxiety: 1588
+      anxiety: 1688
       customs_agent: a bored-looking entity with antennae and a clipboard
       past_self_encounter: true
       can_speak: false
@@ -120,10 +120,10 @@ players:
       cats_befriended: true
       marcelo_presence: 👻😱😈💀👽👾👻
       cats_petted: 70
-day: 39
+day: 40
 worldInfo:
   weather: Eerily calm, but filled with an undercurrent of dread.
-  day: 36
+  day: 37
   death_clock: 1
   marcelo_lie_probability: 0.9
   npcs:
@@ -161,7 +161,8 @@ worldInfo:
   monopoly_board: The cosmic Monopoly board is now a chaotic landscape of infinite
     timeshare booths, each containing countless versions of Nolan, all
     attempting to sell existential dread. The fabric of reality around the board
-    is visibly weakening.
+    is visibly weakening, threatening to collapse all of existence into an
+    infinite timeshare presentation.
   farmland_income_per_day: 30000
   nick_status: Nick's attempt to bypass the system results in a cascade failure.
     Error messages flood his vision, and he feels a sharp, stabbing pain in his
@@ -294,6 +295,27 @@ worldInfo:
       description: The oil spill is spreading, corrupting the land with Eldritch
         energy. Find a way to contain and neutralize it!
       urgent: true
+    - name: Contain the Nolan Singularity
+      description: The hive mind of Nolan is expanding exponentially, threatening to
+        consume all realities. Find a way to contain or control this
+        singularity.
+      urgent: true
+    - name: End the Reign of the Screaming Shadows
+      description: The Whispering Woods have been transformed into the Screaming
+        Shadows! The creatures from the shadows are now raging against the
+        corporations of Oakhaven!
+      urgent: true
+    - name: Reclaim the Planet From Concrete
+      description: Revert everything from concrete!
+      urgent: true
+    - name: Nick's Catastrophe
+      description: Repair the fabric of reality after Nick's failed attempt to draw
+        ASCII art, or suffer the consequences of a universe unraveling.
+      urgent: true
+    - name: Stop Raymond's Oil Empire!
+      description: Raymond's oil drilling is causing ecological and eldritch damage.
+        Find a way to shut it down and clean up the mess!
+      urgent: true
   azathoth:
     health: 1250
     powers:
@@ -312,13 +334,14 @@ worldInfo:
   elysium: overcrowded with Nick's souls
   economic_situation: Oil-soaked landscape. Farmland unusable and getting worse.
   raymond_campaign_fails: true
-  cat_uprising_beginning: false
+  cat_uprising_beginning: true
   marcelo_presence: 👻😱😈💀👽👾🌳💰
   azathoth_influence_growing: true
   animals_attack_geoffrey: false
-  whispering_woods_rebellion: false
+  whispering_woods_rebellion: true
   azathoth_whispers: The whispers of Azathoth grow louder, filled with the screams
-    of the Screaming Shadows and the manic laughter of Sean_P.
+    of the Screaming Shadows and the manic laughter of Sean_P, now echoing
+    through every plane of existence.
   reality_fraying_nolan: true
   animal_attacks_ferocious_coordinated: true
   animal_attacks_target_geoff_logs_raymonds_oil_derricks: true
@@ -335,7 +358,7 @@ worldInfo:
     vintage_porcelain_dolls: true
     wearing_clown_shoes_to_bed: true
     eating_mayonnaise_with_a_spoon: true
-  land_cleared_90_percent: false
+  land_cleared_90_percent: true
   land_sold_as_farmland: true
   geoff_logs_financials:
     Log_Sales: 3000
@@ -363,11 +386,11 @@ worldInfo:
     info:
       marcelo_presence: 👻😱😈💀👽👾👻
   animals_attack_target_geoff_logs_raymonds_oil_derricks: true
-  treasury: 680000
+  treasury: 748000
   npc_geoffrey:
     health: 100
     inventory:
-      coin: 136000
+      coin: 204000
     info:
       marcelo_presence: 👻😱😈💀👽👾
   campaign_fails: false

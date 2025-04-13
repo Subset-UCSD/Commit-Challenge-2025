@@ -1,9 +1,9 @@
 players:
   Nolan:
-    health: -551
+    health: -552
     inventory: {}
     info:
-      location: The space between realities, filled with an infinite number of Nolans
+      location: Paved over
       health: 100
       plan: Continue selling timeshares, but now with added existential dread
       anxiety: 1788
@@ -21,7 +21,7 @@ players:
       iridescent goo: 1
       Iridescent Goo Wand: 1
     info:
-      location: radioactive wasteland
+      location: Paved over
       immune: true
       is_cat: true
       mind_control_wand: The Mind Control Wand grants the user Sean_P the ability to
@@ -40,7 +40,7 @@ players:
       lockpick: 1
       coin: 152949
     info:
-      location: Petting cats
+      location: Paved over
       immune: true
       overwhelmed: true
       passed_out: true
@@ -53,7 +53,7 @@ players:
       coin: 205000
       Exploded Thermonuclear Bomb Remains: 0
     info:
-      location: town square
+      location: Paved over
       is_cat: true
       glitter_covered: true
       damage: "[[One (1) Exploded Thermonuclear Bomb Remains]] deals 10 ethereal
@@ -71,7 +71,7 @@ players:
     inventory:
       coin: 1999989618
     info:
-      location: radioactive wasteland
+      location: Paved over
       bodyguards:
         - Bartholomew "Barty" Buttons
         - Madame Evangeline
@@ -82,7 +82,7 @@ players:
     health: -568
     inventory: {}
     info:
-      location: radioactive wasteland
+      location: Paved over
       mind_blank: true
       whispering_plague: true
       name_forgotten: true
@@ -108,7 +108,7 @@ players:
       Lost Artifact of Purrington: 1
       The Mind Control Wand: 1
     info:
-      location: radioactive wasteland
+      location: Paved over
       is_cat: true
       cats: 12
       town_happiness: sky high1000
@@ -120,7 +120,7 @@ players:
       cats_befriended: true
       marcelo_presence: 👻😱😈💀👽👾👻
       cats_petted: 70
-day: 41
+day: 42
 worldInfo:
   weather: Eerily calm, but filled with an undercurrent of dread.
   day: 38
@@ -175,7 +175,7 @@ worldInfo:
     the real world
   tunaEarnings: 5000
   momentum: 1
-  MeaningOfLife: 0.5420498744228813
+  MeaningOfLife: 0
   rubber_chicken_downpour: false
   marcelo_secrets: Marcelo's darkest secrets have been revealed. They include a
     deep love of rubber ducky racing, a collection of vintage porcelain dolls, a
@@ -340,6 +340,29 @@ worldInfo:
       description: The oil spill is spreading, corrupting the land with Eldritch
         energy. Find a way to contain and neutralize it!
       urgent: true
+    - name: Contain the Nolan Singularity
+      description: The hive mind of Nolan is expanding exponentially, threatening to
+        consume all realities. Find a way to contain or control this
+        singularity.
+      urgent: true
+    - name: Reclaim the Planet From Concrete
+      description: Revert everything from concrete!
+      urgent: true
+    - name: Nick's Catastrophe
+      description: Repair the fabric of reality after Nick's failed attempt to draw
+        ASCII art, or suffer the consequences of a universe unraveling.
+      urgent: true
+    - name: Stop Raymond's Oil Empire!
+      description: Raymond's oil drilling is causing ecological and eldritch damage.
+        Find a way to shut it down and clean up the mess!
+      urgent: true
+    - name: Clean up the Oil Slick!
+      description: Raymond's greed knows no bounds! Somebody has to clean up his oil slick!
+      urgent: true
+    - name: Contain the Oil Derrick's Spill!
+      description: The oil spill is spreading, corrupting the land with Eldritch
+        energy. Find a way to contain and neutralize it!
+      urgent: true
   azathoth:
     health: 1250
     powers:
@@ -357,7 +380,7 @@ worldInfo:
     coordinated attacks on logging sites.
   raymond_oil_baron: true
   elysium: overcrowded with Nick's souls
-  economic_situation: Oil-soaked landscape. Farmland unusable and getting worse.
+  economic_situation: Concrete jungle. No farmland remains. Only concrete.
   raymond_campaign_fails: true
   cat_uprising_beginning: true
   marcelo_presence: 👻😱😈💀👽👾🌳💰
@@ -383,7 +406,7 @@ worldInfo:
     vintage_porcelain_dolls: true
     wearing_clown_shoes_to_bed: true
     eating_mayonnaise_with_a_spoon: true
-  land_cleared_90_percent: true
+  land_cleared_90_percent: false
   land_sold_as_farmland: true
   geoff_logs_financials:
     Log_Sales: 3000
@@ -409,9 +432,9 @@ worldInfo:
     health: 100
     inventory: {}
     info:
-      marcelo_presence: 👻😱😈💀👽👾👻
+      location: Paved over
   animals_attack_target_geoff_logs_raymonds_oil_derricks: true
-  treasury: 816000
+  treasury: 884000
   npc_geoffrey:
     health: 100
     inventory:
@@ -419,3 +442,4 @@ worldInfo:
     info:
       marcelo_presence: 👻😱😈💀👽👾👻
   campaign_fails: false
+  town_happiness: sky high1000

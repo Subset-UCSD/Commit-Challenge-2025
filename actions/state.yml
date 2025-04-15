@@ -11,7 +11,7 @@ players:
       past_self_encounter: true
       can_speak: false
       scheme_failed: true
-      marcelo_presence: 👻😱😈💀👽👾👻
+      marcelo_presence: 👻😱😈💀👽👾🌳💰
   Sean_P:
     health: -630
     inventory:
@@ -33,7 +33,7 @@ players:
       azathoth_embrace: true
       line_between_sean_p_azathoth_blurring: true
       unease_growing: true
-      marcelo_presence: 👻😱😈💀👽👾👻
+      marcelo_presence: 👻😱😈💀👽👾🌳💰
   Sean_Y:
     health: -31
     inventory:
@@ -44,9 +44,9 @@ players:
       immune: true
       overwhelmed: true
       passed_out: true
-      marcelo_presence: 👻😱😈💀👽👾👻
+      marcelo_presence: 👻😱😈💀👽👾🌳💰
       cats_petted: 24
-      paving_success: Sean_Y has made minor progress with the paving.
+      paving_success: Sean_Y has paved a significant portion of the world.
   Nick:
     health: -411010
     inventory:
@@ -65,7 +65,7 @@ players:
         into a horrifying monster if he does not find a clean soul.
       powers_require_souls: true
       twitching_eye: false
-      marcelo_presence: 👻😱😈💀👽👾👻
+      marcelo_presence: 👻😱😈💀👽👾🌳💰
   Raymond:
     health: -504
     inventory:
@@ -77,7 +77,7 @@ players:
         - Madame Evangeline
       rubber_chicken_insanity: true
       campaign_fails: true
-      marcelo_presence: 👻😱😈💀👽👾👻
+      marcelo_presence: 👻😱😈💀👽👾🌳💰
   Khushi:
     health: -568
     inventory: {}
@@ -93,7 +93,7 @@ players:
       marcelo_saucy_secrets: true
       marcelo_rubber_chicken: true
       disoriented_nauseous: true
-      marcelo_presence: 👻😱😈💀👽👾👻
+      marcelo_presence: 👻😱😈💀👽👾🌳💰
   sam:
     health: -465
     inventory:
@@ -118,12 +118,12 @@ players:
       cats_hate_sam: false
       cats_hiss_swat: true
       cats_befriended: true
-      marcelo_presence: 👻😱😈💀👽👾👻
+      marcelo_presence: 👻😱😈💀👽👾🌳💰
       cats_petted: 70
-day: 43
+day: 44
 worldInfo:
   weather: Eerily calm, but filled with an undercurrent of dread.
-  day: 39
+  day: 40
   death_clock: 1
   marcelo_lie_probability: 0.9
   npcs:
@@ -148,7 +148,7 @@ worldInfo:
     geoffrey:
       type: iron_digger
       employer: Sean_Y
-  marcelo_day: 6
+  marcelo_day: 7
   marcelo_affliction: extremely sensitive to noise and becomes enraged easily
   raymond_base: Abandoned Building
   piano_playing: false
@@ -379,6 +379,34 @@ worldInfo:
       description: The oil spill is spreading, corrupting the land with Eldritch
         energy. Find a way to contain and neutralize it!
       urgent: true
+    - name: End the Reign of the Screaming Shadows
+      description: The Whispering Woods have been transformed into the Screaming
+        Shadows! The creatures from the shadows are now raging against the
+        corporations of Oakhaven!
+      urgent: true
+    - name: Nick's Catastrophe
+      description: Repair the fabric of reality after Nick's failed attempt to draw
+        ASCII art, or suffer the consequences of a universe unraveling.
+      urgent: true
+    - name: Reclaim the Planet From Concrete
+      description: Revert everything from concrete!
+      urgent: true
+    - name: Stop Raymond's Oil Empire!
+      description: Raymond's oil drilling is causing ecological and eldritch damage.
+        Find a way to shut it down and clean up the mess!
+      urgent: true
+    - name: Clean up the Oil Slick!
+      description: Raymond's greed knows no bounds! Somebody has to clean up his oil slick!
+      urgent: true
+    - name: Contain the Oil Derrick's Spill!
+      description: The oil spill is spreading, corrupting the land with Eldritch
+        energy. Find a way to contain and neutralize it!
+      urgent: true
+    - name: Contain the Nolan Singularity
+      description: The hive mind of Nolan is expanding exponentially, threatening to
+        consume all realities. Find a way to contain or control this
+        singularity.
+      urgent: true
   azathoth:
     health: 1350
     powers:
@@ -449,13 +477,13 @@ worldInfo:
     health: 100
     inventory: {}
     info:
-      location: Paved over
+      marcelo_presence: 👻😱😈💀👽👾🌳💰
   animals_attack_target_geoff_logs_raymonds_oil_derricks: true
-  treasury: 952000
+  treasury: 1020000
   npc_geoffrey:
     health: 100
     inventory:
-      coin: 272000
+      coin: 340000
     info:
       marcelo_presence: 👻😱😈💀👽👾👻
   campaign_fails: false

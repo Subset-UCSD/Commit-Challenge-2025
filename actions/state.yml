@@ -119,13 +119,12 @@ players:
       cats_hiss_swat: true
       cats_befriended: true
       marcelo_presence: 👻😱😈💀👽👾🌳💰
-      cats_petted: 70
-day: 44
+day: 45
 worldInfo:
   weather: Eerily calm, but filled with an undercurrent of dread.
-  day: 40
+  day: 41
   death_clock: 1
-  marcelo_lie_probability: 0.9
+  marcelo_lie_probability: 1
   npcs:
     merchant:
       inventory:
@@ -148,7 +147,7 @@ worldInfo:
     geoffrey:
       type: iron_digger
       employer: Sean_Y
-  marcelo_day: 7
+  marcelo_day: 8
   marcelo_affliction: extremely sensitive to noise and becomes enraged easily
   raymond_base: Abandoned Building
   piano_playing: false
@@ -163,7 +162,7 @@ worldInfo:
     attempting to sell existential dread and recursive paradoxes. The fabric of
     reality is unraveling exponentially, threatening to collapse all of
     existence into a self-referential timeshare presentation.
-  farmland_income_per_day: 30000
+  farmland_income_per_day: 0
   nick_status: Nick successfully draws a crude but recognizable ASCII horse. The
     universe remains intact.
   cat_uprising: false
@@ -171,7 +170,7 @@ worldInfo:
     controlling certain territories on the board directly influences events in
     the real world
   tunaEarnings: 5000
-  momentum: 1
+  momentum: 0
   MeaningOfLife: 0
   rubber_chicken_downpour: false
   marcelo_secrets: Marcelo's darkest secrets have been revealed. They include a
@@ -407,6 +406,16 @@ worldInfo:
         consume all realities. Find a way to contain or control this
         singularity.
       urgent: true
+    - name: Curb Raymond's power!
+      description: Stop the Oil Derrick!/Clean up the oil spill in Whispering Woods!
+      urgent: true
+    - name: Contain the Oil Derrick's Spill!
+      description: The oil spill is spreading, corrupting the land with Eldritch
+        energy. Find a way to contain and neutralize it!
+      urgent: true
+    - name: Clean up the Oil Slick!
+      description: Raymond's greed knows no bounds! Somebody has to clean up his oil slick!
+      urgent: true
   azathoth:
     health: 1350
     powers:
@@ -451,8 +460,8 @@ worldInfo:
     vintage_porcelain_dolls: true
     wearing_clown_shoes_to_bed: true
     eating_mayonnaise_with_a_spoon: true
-  land_cleared_90_percent: true
-  land_sold_as_farmland: true
+  land_cleared_90_percent: false
+  land_sold_as_farmland: false
   geoff_logs_financials:
     Log_Sales: 3000
     Farmland_Sales: 30000
@@ -488,3 +497,7 @@ worldInfo:
       marcelo_presence: 👻😱😈💀👽👾👻
   campaign_fails: false
   town_happiness: sky high1000
+  end_the_reign_of_the_screaming_shadows: true
+  reclaim_the_planet_from_concrete: true
+  meaningOfLife: 0
+  contain_the_nolan_singularity: true

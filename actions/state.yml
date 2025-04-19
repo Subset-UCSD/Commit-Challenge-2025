@@ -44,7 +44,7 @@ players:
       overwhelmed: true
       passed_out: true
       marcelo_presence: 👻😱😈💀👽👾🌳💰
-      cats_petted: 24
+      cats_petted: 25
       paving_success: Sean_Y has paved a significant portion of the world.
   Nick:
     health: -411010
@@ -75,7 +75,7 @@ players:
         - Bartholomew "Barty" Buttons
         - Madame Evangeline
       rubber_chicken_insanity: true
-      campaign_fails: true
+      campaign_fails: false
       marcelo_presence: 👻😱😈💀👽👾🌳💰
   Khushi:
     health: -568
@@ -110,7 +110,7 @@ players:
       location: Paved over
       is_cat: true
       cats: 12
-      town_happiness: super sky high10000000
+      town_happiness: sky high1000
       party_score: 1
       cats_angry: false
       betrayed: true
@@ -118,10 +118,10 @@ players:
       cats_hiss_swat: true
       cats_befriended: true
       marcelo_presence: 👻😱😈💀👽👾🌳💰
-day: 46
+day: 47
 worldInfo:
   weather: Eerily calm, but filled with an undercurrent of dread.
-  day: 42
+  day: 43
   death_clock: 1
   marcelo_lie_probability: 1
   npcs:
@@ -163,8 +163,8 @@ worldInfo:
     existence into a self-referential timeshare presentation. The Nolan
     Singularity is growing ever stronger.
   farmland_income_per_day: 0
-  nick_status: Nick stares into the void of his own existence. He is an ASCII art
-    drawing, on the verge of fading into nothingness.
+  nick_status: Nick is no longer an immediate threat, but the underlying cosmic
+    damage remains.
   cat_uprising: false
   operating_manual: written in an alien language, but diagrams suggest that
     controlling certain territories on the board directly influences events in
@@ -418,6 +418,9 @@ worldInfo:
       urgent: true
     - name: Neutralize the Oil
       description: Oil is now on fire. You must put it out. Raymond is laughing maniacally.
+    - name: Neutralize the Oil
+      description: Oil is now on fire. You must put it out. Raymond is laughing maniacally.
+      urgent: true
   azathoth:
     health: 1350
     powers:
@@ -493,16 +496,17 @@ worldInfo:
     info:
       marcelo_presence: 👻😱😈💀👽👾🌳💰
   animals_attack_target_geoff_logs_raymonds_oil_derricks: true
-  treasury: 1028300
+  treasury: 1036600
   npc_geoffrey:
     health: 100
     inventory:
-      coin: 348300
+      coin: 356600
     info:
       marcelo_presence: 👻😱😈💀👽👾👻
   campaign_fails: false
   town_happiness: sky high1000
   end_the_reign_of_the_screaming_shadows: true
-  reclaim_the_planet_from_concrete: false
+  reclaim_the_planet_from_concrete: true
   meaningOfLife: 0
   contain_the_nolan_singularity: true
+  nick_catastrophe: true

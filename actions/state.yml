@@ -120,10 +120,10 @@ players:
       cats_hiss_swat: true
       cats_befriended: true
       marcelo_presence: 👻😱😈💀👽👾🌳💰
-day: 48
+day: 49
 worldInfo:
   weather: Eerily calm, but filled with an undercurrent of dread.
-  day: 44
+  day: 45
   death_clock: 1
   marcelo_lie_probability: 1
   npcs:
@@ -440,6 +440,20 @@ worldInfo:
         sites and Raymond's oil derricks. Find a way to calm the animals or
         defend the locations.
       urgent: true
+    - name: Contain the Nolan Singularity
+      description: The hive mind of Nolan is expanding exponentially, threatening to
+        consume all realities. Find a way to contain or control this
+        singularity.
+      urgent: true
+    - name: Stop the Summoning of Azathoth
+      description: Sean_P is attempting to summon Azathoth, which would mean doom for
+        the world. Disrupt the ritual!
+      urgent: true
+    - name: Tame the Ferocious Animals
+      description: The animals are staging coordinated attacks on Geoffrey's logging
+        sites and Raymond's oil derricks. Find a way to calm the animals or
+        defend the locations.
+      urgent: true
   azathoth:
     health: 1350
     powers:
@@ -466,7 +480,7 @@ worldInfo:
   cat_uprising_beginning: true
   marcelo_presence: 👻😱😈💀👽👾🌳💰
   azathoth_influence_growing: true
-  animals_attack_geoffrey: false
+  animals_attack_geoffrey: true
   whispering_woods_rebellion: true
   azathoth_whispers: The whispers of Azathoth grow louder, filled with the screams
     of the Screaming Shadows and the manic laughter of Sean_P, now echoing
@@ -509,6 +523,12 @@ worldInfo:
     - Azathoth's Hounds
     - Screaming Trees
     - Whispering Tentacles
+    - Shadow Wolves
+    - Nightmare Birds
+    - Eldritch Spiders
+    - Azathoth's Hounds
+    - Screaming Trees
+    - Whispering Tentacles
   npc_foreach:
     health: 100
     inventory: {}
@@ -520,7 +540,7 @@ worldInfo:
   npc_geoffrey:
     health: 100
     inventory:
-      coin: 364900
+      coin: 373200
     info:
       marcelo_presence: 👻😱😈💀👽👾👻
   campaign_fails: false

@@ -5,13 +5,13 @@ players:
     info:
       location: Paved over
       health: 100
-      plan: Continue selling timeshares, but now with added existential dread
-      anxiety: 2293
+      plan: Overload the system
+      anxiety: 2793
       customs_agent: a bored-looking entity with antennae and a clipboard
       past_self_encounter: true
       can_speak: false
       scheme_failed: true
-      marcelo_presence: 👻😱😈💀👽👾🌳💰
+      marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
   Sean_P:
     health: -730
     inventory:
@@ -32,7 +32,7 @@ players:
       azathoth_embrace: true
       line_between_sean_p_azathoth_blurring: true
       unease_growing: false
-      marcelo_presence: 👻😱😈💀👽👾🌳💰
+      marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
   Sean_Y:
     health: -131
     inventory:
@@ -44,8 +44,8 @@ players:
       immune: true
       overwhelmed: true
       passed_out: true
-      marcelo_presence: 👻😱😈💀👽👾🌳💰
-      cats_petted: 25
+      marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
+      cats_petted: 38
       paving_success: Sean_Y has paved a significant portion of the world.
   Nick:
     health: -411010
@@ -65,7 +65,7 @@ players:
         into a horrifying monster if he does not find a clean soul.
       powers_require_souls: true
       twitching_eye: false
-      marcelo_presence: 👻😱😈💀👽👾🌳💰
+      marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
   Raymond:
     health: -604
     inventory:
@@ -77,7 +77,7 @@ players:
         - Madame Evangeline
       rubber_chicken_insanity: true
       campaign_fails: false
-      marcelo_presence: 👻😱😈💀👽👾🌳💰
+      marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
   Khushi:
     health: -668
     inventory: {}
@@ -93,7 +93,7 @@ players:
       marcelo_saucy_secrets: true
       marcelo_rubber_chicken: true
       disoriented_nauseous: true
-      marcelo_presence: 👻😱😈💀👽👾🌳💰
+      marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
   sam:
     health: -565
     inventory:
@@ -111,7 +111,7 @@ players:
     info:
       location: Paved over
       is_cat: true
-      cats: 12
+      cats: 14
       town_happiness: sky high1000
       party_score: 1
       cats_angry: false
@@ -119,11 +119,12 @@ players:
       cats_hate_sam: false
       cats_hiss_swat: true
       cats_befriended: true
-      marcelo_presence: 👻😱😈💀👽👾🌳💰
-day: 49
+      marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
+day: 50
 worldInfo:
-  weather: Eerily calm, but filled with an undercurrent of dread.
-  day: 45
+  weather: The sky tears open, revealing a chaotic mess of ASCII characters. The
+    world begins to glitch and pixelate.
+  day: 46
   death_clock: 1
   marcelo_lie_probability: 1
   npcs:
@@ -164,7 +165,8 @@ worldInfo:
     attempting to sell existential dread and recursive paradoxes. The fabric of
     reality is unraveling exponentially, threatening to collapse all of
     existence into a self-referential timeshare presentation. The Nolan
-    Singularity is growing ever stronger.
+    Singularity is growing ever stronger. Copies of Nolan attempt to overload
+    the system.
   farmland_income_per_day: 0
   nick_status: Nick is no longer an immediate threat, but the underlying cosmic
     damage remains.
@@ -454,6 +456,35 @@ worldInfo:
         sites and Raymond's oil derricks. Find a way to calm the animals or
         defend the locations.
       urgent: true
+    - name: Stop the Summoning of Azathoth
+      description: Sean_P is attempting to summon Azathoth, which would mean doom for
+        the world. Disrupt the ritual!
+      urgent: true
+    - name: End the Reign of the Screaming Shadows
+      description: The Whispering Woods have been transformed into the Screaming
+        Shadows! The creatures from the shadows are now raging against the
+        corporations of Oakhaven!
+      urgent: true
+    - name: Reverse the Paving
+      description: Sean_Y has paved the entire world. Find a way to reverse the paving
+        and restore the natural world.
+      urgent: true
+    - name: Tame the Ferocious Animals
+      description: The animals are staging coordinated attacks on Geoffrey's logging
+        sites and Raymond's oil derricks. Find a way to calm the animals or
+        defend the locations.
+      urgent: true
+    - name: Stop Raymond's Oil Empire!
+      description: Raymond's oil drilling is causing ecological and eldritch damage.
+        Find a way to shut it down and clean up the mess!
+      urgent: true
+    - name: Clean up the Oil Slick!
+      description: Raymond's greed knows no bounds! Somebody has to clean up his oil slick!
+      urgent: true
+    - name: Contain the Oil Derrick's Spill!
+      description: The oil spill is spreading, corrupting the land with Eldritch
+        energy. Find a way to contain and neutralize it!
+      urgent: true
   azathoth:
     health: 1350
     powers:
@@ -476,7 +507,7 @@ worldInfo:
   elysium: overcrowded with Nick's souls
   economic_situation: Utterly destroyed. All farmland, all buildings, all
     resources... all turned to concrete.
-  raymond_campaign_fails: true
+  raymond_campaign_fails: false
   cat_uprising_beginning: true
   marcelo_presence: 👻😱😈💀👽👾🌳💰
   azathoth_influence_growing: true
@@ -502,7 +533,7 @@ worldInfo:
     wearing_clown_shoes_to_bed: true
     eating_mayonnaise_with_a_spoon: true
   land_cleared_90_percent: true
-  land_sold_as_farmland: false
+  land_sold_as_farmland: true
   geoff_logs_financials:
     Log_Sales: 300
     Farmland_Sales: 3000
@@ -529,18 +560,23 @@ worldInfo:
     - Azathoth's Hounds
     - Screaming Trees
     - Whispering Tentacles
+    - Shadow Wolves
+    - Nightmare Birds
+    - Eldritch Spiders
+    - Azathoth's Hounds
+    - Screaming Trees
+    - Whispering Tentacles
   npc_foreach:
     health: 100
     inventory: {}
     info:
-      location: Paved over
-      marcelo_presence: 👻😱😈💀👽👾🌳💰
+      marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
   animals_attack_target_geoff_logs_raymonds_oil_derricks: true
-  treasury: 1044900
+  treasury: 1053200
   npc_geoffrey:
     health: 100
     inventory:
-      coin: 373200
+      coin: 381500
     info:
       marcelo_presence: 👻😱😈💀👽👾👻
   campaign_fails: false

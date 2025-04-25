@@ -6,7 +6,7 @@ players:
       location: Paved over
       health: 100
       plan: Overload the system
-      anxiety: 2793
+      anxiety: 3293
       customs_agent: a bored-looking entity with antennae and a clipboard
       past_self_encounter: true
       can_speak: false
@@ -45,7 +45,7 @@ players:
       overwhelmed: true
       passed_out: true
       marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
-      cats_petted: 38
+      cats_petted: 39
       paving_success: Sean_Y has paved a significant portion of the world.
   Nick:
     health: -411010
@@ -75,6 +75,7 @@ players:
       bodyguards:
         - Bartholomew "Barty" Buttons
         - Madame Evangeline
+        - Mike Smith
       rubber_chicken_insanity: true
       campaign_fails: false
       marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
@@ -111,7 +112,7 @@ players:
     info:
       location: Paved over
       is_cat: true
-      cats: 14
+      cats: 15
       town_happiness: sky high1000
       party_score: 1
       cats_angry: false
@@ -120,11 +121,11 @@ players:
       cats_hiss_swat: true
       cats_befriended: true
       marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
-day: 50
+day: 51
 worldInfo:
   weather: The sky tears open, revealing a chaotic mess of ASCII characters. The
     world begins to glitch and pixelate.
-  day: 46
+  day: 47
   death_clock: 1
   marcelo_lie_probability: 1
   npcs:
@@ -509,13 +510,12 @@ worldInfo:
     resources... all turned to concrete.
   raymond_campaign_fails: false
   cat_uprising_beginning: true
-  marcelo_presence: 👻😱😈💀👽👾🌳💰
+  marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
   azathoth_influence_growing: true
   animals_attack_geoffrey: true
   whispering_woods_rebellion: true
-  azathoth_whispers: The whispers of Azathoth grow louder, filled with the screams
-    of the Screaming Shadows and the manic laughter of Sean_P, now echoing
-    through every plane of existence.
+  azathoth_whispers: Raymond is now laughing maniacally as the oil torrent is
+    unleashed, igniting the oil slick! All life will soon be engulfed in flame.
   reality_fraying_nolan: true
   animal_attacks_ferocious_coordinated: true
   animal_attacks_target_geoff_logs_raymonds_oil_derricks: true
@@ -566,17 +566,23 @@ worldInfo:
     - Azathoth's Hounds
     - Screaming Trees
     - Whispering Tentacles
+    - Shadow Wolves
+    - Nightmare Birds
+    - Eldritch Spiders
+    - Azathoth's Hounds
+    - Screaming Trees
+    - Whispering Tentacles
   npc_foreach:
     health: 100
     inventory: {}
     info:
       marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
   animals_attack_target_geoff_logs_raymonds_oil_derricks: true
-  treasury: 1053200
+  treasury: 1061500
   npc_geoffrey:
     health: 100
     inventory:
-      coin: 381500
+      coin: 389800
     info:
       marcelo_presence: 👻😱😈💀👽👾👻
   campaign_fails: false
@@ -586,3 +592,6 @@ worldInfo:
   meaningOfLife: 0
   contain_the_nolan_singularity: true
   nick_catastrophe: true
+  clean_up_the_oil_slick: true
+  contain_the_oil_derrick_s_spill: true
+  neutralize_the_oil: true

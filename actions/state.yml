@@ -121,11 +121,12 @@ players:
       cats_hiss_swat: true
       cats_befriended: true
       marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
-day: 51
+      cats_petted: 1
+day: 52
 worldInfo:
   weather: The sky tears open, revealing a chaotic mess of ASCII characters. The
     world begins to glitch and pixelate.
-  day: 47
+  day: 48
   death_clock: 1
   marcelo_lie_probability: 1
   npcs:
@@ -486,6 +487,18 @@ worldInfo:
       description: The oil spill is spreading, corrupting the land with Eldritch
         energy. Find a way to contain and neutralize it!
       urgent: true
+    - name: Salvage the Unpaved
+      description: Find some small portions of the world that weren't paved over, and
+        attempt to revitalize the ecosystem.
+      urgent: true
+    - name: Curb the Oil Baron
+      description: Infiltrate Raymond's oil derrick and sabotage his operations. Be
+        wary of his bodyguards!
+      urgent: true
+    - name: Soothe the Shadows
+      description: Find a way to calm or control the creatures of the Screaming
+        Shadows, or the world will succumb to the nightmare.
+      urgent: true
   azathoth:
     health: 1350
     powers:
@@ -519,7 +532,7 @@ worldInfo:
   reality_fraying_nolan: true
   animal_attacks_ferocious_coordinated: true
   animal_attacks_target_geoff_logs_raymonds_oil_derricks: true
-  azathoth_summoning_ritual_progressing: true
+  azathoth_summoning_ritual_progressing: 1.1
   geoff_logs_no_boss_for_day: true
   oil_derrick_successful: true
   oil_torrent_unleashed: true
@@ -548,28 +561,6 @@ worldInfo:
     - Nightmare Birds
     - Eldritch Spiders
     - Azathoth's Hounds
-    - Shadow Wolves
-    - Nightmare Birds
-    - Eldritch Spiders
-    - Azathoth's Hounds
-    - Screaming Trees
-    - Whispering Tentacles
-    - Shadow Wolves
-    - Nightmare Birds
-    - Eldritch Spiders
-    - Azathoth's Hounds
-    - Screaming Trees
-    - Whispering Tentacles
-    - Shadow Wolves
-    - Nightmare Birds
-    - Eldritch Spiders
-    - Azathoth's Hounds
-    - Screaming Trees
-    - Whispering Tentacles
-    - Shadow Wolves
-    - Nightmare Birds
-    - Eldritch Spiders
-    - Azathoth's Hounds
     - Screaming Trees
     - Whispering Tentacles
   npc_foreach:
@@ -578,11 +569,11 @@ worldInfo:
     info:
       marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
   animals_attack_target_geoff_logs_raymonds_oil_derricks: true
-  treasury: 1061500
+  treasury: 1069800
   npc_geoffrey:
     health: 100
     inventory:
-      coin: 389800
+      coin: 398100
     info:
       marcelo_presence: 👻😱😈💀👽👾👻
   campaign_fails: false

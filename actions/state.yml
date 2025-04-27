@@ -45,7 +45,7 @@ players:
       overwhelmed: true
       passed_out: true
       marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
-      cats_petted: 39
+      cats_petted: 15
       paving_success: Sean_Y has paved a significant portion of the world.
   Nick:
     health: -411010
@@ -121,8 +121,8 @@ players:
       cats_hiss_swat: true
       cats_befriended: true
       marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
-      cats_petted: 1
-day: 52
+      cats_petted: 16
+day: 53
 worldInfo:
   weather: The sky tears open, revealing a chaotic mess of ASCII characters. The
     world begins to glitch and pixelate.
@@ -499,6 +499,30 @@ worldInfo:
       description: Find a way to calm or control the creatures of the Screaming
         Shadows, or the world will succumb to the nightmare.
       urgent: true
+    - name: End the Reign of the Screaming Shadows
+      description: The Whispering Woods have been transformed into the Screaming
+        Shadows! The creatures from the shadows are now raging against the
+        corporations of Oakhaven!
+      urgent: true
+    - name: Clean up the Oil Slick!
+      description: Raymond's greed knows no bounds! Somebody has to clean up his oil slick!
+      urgent: true
+    - name: Contain the Oil Derrick's Spill!
+      description: The oil spill is spreading, corrupting the land with Eldritch
+        energy. Find a way to contain and neutralize it!
+      urgent: true
+    - name: Neutralize the Oil
+      description: Oil is now on fire. You must put it out. Raymond is laughing maniacally.
+      urgent: true
+    - name: Contain the Nolan Singularity
+      description: The hive mind of Nolan is expanding exponentially, threatening to
+        consume all realities. Find a way to contain or control this
+        singularity.
+      urgent: true
+    - name: Reverse the Paving
+      description: Sean_Y has paved the entire world. Find a way to reverse the paving
+        and restore the natural world.
+      urgent: true
   azathoth:
     health: 1350
     powers:
@@ -532,7 +556,7 @@ worldInfo:
   reality_fraying_nolan: true
   animal_attacks_ferocious_coordinated: true
   animal_attacks_target_geoff_logs_raymonds_oil_derricks: true
-  azathoth_summoning_ritual_progressing: 1.1
+  azathoth_summoning_ritual_progressing: 1.2000000000000002
   geoff_logs_no_boss_for_day: true
   oil_derrick_successful: true
   oil_torrent_unleashed: true

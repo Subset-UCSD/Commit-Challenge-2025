@@ -66,6 +66,11 @@ players:
       powers_require_souls: true
       twitching_eye: false
       marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
+      ascii_art_failure:
+        message: Instead of a horse, the attempt to draw ASCII art resulted in the
+          universe spontaneously reconfiguring itself into a giant image of a
+          rubber chicken. The fabric of reality is now held together by
+          mayonnaise and clown shoes.
   Raymond:
     health: -604
     inventory:
@@ -121,12 +126,12 @@ players:
       cats_hiss_swat: true
       cats_befriended: true
       marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
-      cats_petted: 16
-day: 53
+      cats_petted: 46
+day: 54
 worldInfo:
   weather: The sky tears open, revealing a chaotic mess of ASCII characters. The
     world begins to glitch and pixelate.
-  day: 48
+  day: 49
   death_clock: 1
   marcelo_lie_probability: 1
   npcs:
@@ -523,6 +528,50 @@ worldInfo:
       description: Sean_Y has paved the entire world. Find a way to reverse the paving
         and restore the natural world.
       urgent: true
+    - name: Contain the Nolan Singularity
+      description: The hive mind of Nolan is expanding exponentially, threatening to
+        consume all realities. Find a way to contain or control this
+        singularity.
+      urgent: true
+    - name: Stop the Summoning of Azathoth
+      description: Sean_P is attempting to summon Azathoth, which would mean doom for
+        the world. Disrupt the ritual!
+      urgent: true
+    - name: Tame the Ferocious Animals
+      description: The animals are staging coordinated attacks on Geoffrey's logging
+        sites and Raymond's oil derricks. Find a way to calm the animals or
+        defend the locations.
+      urgent: true
+    - name: Reverse the Paving
+      description: Sean_Y has paved the entire world. Find a way to reverse the paving
+        and restore the natural world.
+      urgent: true
+    - name: End the Reign of the Screaming Shadows
+      description: The Whispering Woods have been transformed into the Screaming
+        Shadows! The creatures from the shadows are now raging against the
+        corporations of Oakhaven!
+      urgent: true
+    - name: Neutralize the Oil
+      description: Oil is now on fire. You must put it out. Raymond is laughing maniacally.
+      urgent: true
+    - name: Reclaim the Planet From Concrete
+      description: Revert everything from concrete!
+      urgent: true
+    - name: Nick's Catastrophe
+      description: Repair the fabric of reality after Nick's failed attempt to draw
+        ASCII art, or suffer the consequences of a universe unraveling.
+      urgent: true
+    - name: Stop Raymond's Oil Empire!
+      description: Raymond's oil drilling is causing ecological and eldritch damage.
+        Find a way to shut it down and clean up the mess!
+      urgent: true
+    - name: Clean up the Oil Slick!
+      description: Raymond's greed knows no bounds! Somebody has to clean up his oil slick!
+      urgent: true
+    - name: Contain the Oil Derrick's Spill!
+      description: The oil spill is spreading, corrupting the land with Eldritch
+        energy. Find a way to contain and neutralize it!
+      urgent: true
   azathoth:
     health: 1350
     powers:
@@ -556,7 +605,7 @@ worldInfo:
   reality_fraying_nolan: true
   animal_attacks_ferocious_coordinated: true
   animal_attacks_target_geoff_logs_raymonds_oil_derricks: true
-  azathoth_summoning_ritual_progressing: 1.2000000000000002
+  azathoth_summoning_ritual_progressing: 1.5000000000000002
   geoff_logs_no_boss_for_day: true
   oil_derrick_successful: true
   oil_torrent_unleashed: true
@@ -593,11 +642,11 @@ worldInfo:
     info:
       marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
   animals_attack_target_geoff_logs_raymonds_oil_derricks: true
-  treasury: 1069800
+  treasury: 1061500
   npc_geoffrey:
     health: 100
     inventory:
-      coin: 398100
+      coin: 406400
     info:
       marcelo_presence: 👻😱😈💀👽👾👻
   campaign_fails: false

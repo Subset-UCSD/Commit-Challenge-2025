@@ -6,7 +6,7 @@ players:
       location: Paved over
       health: 100
       plan: Overload the system
-      anxiety: 3293
+      anxiety: 3343
       customs_agent: a bored-looking entity with antennae and a clipboard
       past_self_encounter: true
       can_speak: false
@@ -47,7 +47,7 @@ players:
       passed_out: true
       marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
       cats_petted: 45
-      paving_success: Sean_Y has paved a significant portion of the world.
+      paving_success: Sean_Y has paved the entire world in concrete.
   Nick:
     health: -411010
     inventory:
@@ -72,6 +72,11 @@ players:
           universe spontaneously reconfiguring itself into a giant image of a
           rubber chicken. The fabric of reality is now held together by
           mayonnaise and clown shoes.
+      ascii_art_success:
+        message: Instead of a horse, the attempt to draw ASCII art resulted in the
+          universe spontaneously reconfiguring itself into a giant image of a
+          horse. The fabric of reality is now held together by determination and
+          horse shoes.
   Raymond:
     health: -604
     inventory:
@@ -99,7 +104,7 @@ players:
         aware of the Eldritch God's pervasive influence.
       marcelo_saucy_secrets: true
       marcelo_rubber_chicken: true
-      disoriented_nauseous: true
+      disoriented_nauseous: false
       marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
   sam:
     health: -565
@@ -124,18 +129,18 @@ players:
       cats_angry: false
       betrayed: true
       cats_hate_sam: false
-      cats_hiss_swat: true
+      cats_hiss_swat: false
       cats_befriended: true
       marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
-      cats_petted: 76
+      cats_petted: 92
   Geoffrey: geoffrey
-day: 56
+day: 57
 worldInfo:
   weather: Instead of a horse, the attempt to draw ASCII art resulted in the
     universe spontaneously reconfiguring itself into a giant image of a rubber
     chicken. The fabric of reality is now held together by mayonnaise and clown
     shoes.
-  day: 51
+  day: 52
   death_clock: 1
   marcelo_lie_probability: 1
   npcs:
@@ -659,8 +664,8 @@ worldInfo:
     actively hunt him, and the animals are relentless in their attacks.
   raymond_oil_baron: true
   elysium: overcrowded with Nick's souls
-  economic_situation: The world is now entirely paved over in concrete. Nothing
-    can grow. The earth is silent.
+  economic_situation: The world is now decorated with ASCII art of a horse. The
+    earth is grateful. The horse is silent.
   raymond_campaign_fails: false
   cat_uprising_beginning: false
   marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
@@ -672,7 +677,7 @@ worldInfo:
   reality_fraying_nolan: true
   animal_attacks_ferocious_coordinated: true
   animal_attacks_target_geoff_logs_raymonds_oil_derricks: true
-  azathoth_summoning_ritual_progressing: 3.35
+  azathoth_summoning_ritual_progressing: 23.35
   geoff_logs_no_boss_for_day: false
   oil_derrick_successful: true
   oil_torrent_unleashed: true
@@ -704,6 +709,7 @@ worldInfo:
     - Screaming Trees
     - Whispering Tentacles
     - Sean_P's Gooey Servants
+    - Demon Soyul Tree
   npc_foreach:
     health: 100
     inventory: {}
@@ -714,15 +720,21 @@ worldInfo:
   npc_geoffrey:
     health: 100
     inventory:
-      coin: 13300
+      coin: 23300
     info: {}
   campaign_fails: false
   town_happiness: sky high1000
   end_the_reign_of_the_screaming_shadows: true
-  reclaim_the_planet_from_concrete: true
+  reclaim_the_planet_from_concrete: false
   meaningOfLife: 0
   contain_the_nolan_singularity: true
-  nick_catastrophe: true
+  nick_catastrophe: false
   clean_up_the_oil_slick: true
   contain_the_oil_derrick_s_spill: true
   neutralize_the_oil: true
+  reverse_the_paving: false
+  marcelo_secrets_revealed:
+    rubber_ducky_racing: true
+    vintage_porcelain_dolls: true
+    wearing_clown_shoes_to_bed: true
+    eating_mayonnaise_with_a_spoon: true

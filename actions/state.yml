@@ -6,7 +6,7 @@ players:
       location: Paved over
       health: 100
       plan: Overload the system
-      anxiety: 3343
+      anxiety: 3443
       customs_agent: a bored-looking entity with antennae and a clipboard
       past_self_encounter: true
       can_speak: false
@@ -46,7 +46,7 @@ players:
       overwhelmed: true
       passed_out: true
       marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
-      cats_petted: 45
+      cats_petted: 60
       paving_success: Sean_Y has paved the entire world in concrete.
   Nick:
     health: -411010
@@ -132,15 +132,15 @@ players:
       cats_hiss_swat: false
       cats_befriended: true
       marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
-      cats_petted: 92
+      cats_petted: 107
   Geoffrey: geoffrey
-day: 57
+day: 58
 worldInfo:
   weather: Instead of a horse, the attempt to draw ASCII art resulted in the
     universe spontaneously reconfiguring itself into a giant image of a rubber
     chicken. The fabric of reality is now held together by mayonnaise and clown
     shoes.
-  day: 52
+  day: 53
   death_clock: 1
   marcelo_lie_probability: 1
   npcs:
@@ -647,6 +647,40 @@ worldInfo:
         sites and Raymond's oil derricks. Find a way to calm the animals or
         defend the locations.
       urgent: true
+    - name: Contain the Nolan Singularity
+      description: The hive mind of Nolan is expanding exponentially, threatening to
+        consume all realities. Find a way to contain or control this
+        singularity.
+      urgent: true
+    - name: End the Reign of the Screaming Shadows
+      description: The Whispering Woods have been transformed into the Screaming
+        Shadows! The creatures from the shadows are now raging against the
+        corporations of Oakhaven!
+      urgent: true
+    - name: Stop the Summoning of Azathoth
+      description: Sean_P is attempting to summon Azathoth, which would mean doom for
+        the world. Disrupt the ritual!
+      urgent: true
+    - name: Reclaim the Planet From Concrete
+      description: Revert everything from concrete!
+      urgent: true
+    - name: Nick's Catastrophe
+      description: Repair the fabric of reality after Nick's failed attempt to draw
+        ASCII art, or suffer the consequences of a universe unraveling.
+      urgent: true
+    - name: Stop Raymond's Oil Empire!
+      description: Raymond's oil drilling is causing ecological and eldritch damage.
+        Find a way to shut it down and clean up the mess!
+      urgent: true
+    - name: Clean up the Oil Slick!
+      description: Raymond's greed knows no bounds! Somebody has to clean up his oil slick!
+      urgent: true
+    - name: Contain the Oil Derrick's Spill!
+      description: The oil spill is spreading, corrupting the land with Eldritch
+        energy. Find a way to contain and neutralize it!
+      urgent: true
+    - name: Neutralize the Oil
+      description: Oil is now on fire. You must put it out. Raymond is laughing maniacally.
   azathoth:
     health: 1350
     powers:
@@ -664,8 +698,9 @@ worldInfo:
     actively hunt him, and the animals are relentless in their attacks.
   raymond_oil_baron: true
   elysium: overcrowded with Nick's souls
-  economic_situation: The world is now decorated with ASCII art of a horse. The
-    earth is grateful. The horse is silent.
+  economic_situation:
+    message: The world is now decorated with ASCII art of a horse. The earth is
+      grateful. The horse is silent.
   raymond_campaign_fails: false
   cat_uprising_beginning: false
   marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
@@ -677,7 +712,7 @@ worldInfo:
   reality_fraying_nolan: true
   animal_attacks_ferocious_coordinated: true
   animal_attacks_target_geoff_logs_raymonds_oil_derricks: true
-  azathoth_summoning_ritual_progressing: 23.35
+  azathoth_summoning_ritual_progressing: 37.35
   geoff_logs_no_boss_for_day: false
   oil_derrick_successful: true
   oil_torrent_unleashed: true
@@ -716,7 +751,7 @@ worldInfo:
     info:
       marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
   animals_attack_target_geoff_logs_raymonds_oil_derricks: true
-  treasury: 1074800
+  treasury: 1079800
   npc_geoffrey:
     health: 100
     inventory:
@@ -725,10 +760,10 @@ worldInfo:
   campaign_fails: false
   town_happiness: sky high1000
   end_the_reign_of_the_screaming_shadows: true
-  reclaim_the_planet_from_concrete: false
+  reclaim_the_planet_from_concrete: true
   meaningOfLife: 0
   contain_the_nolan_singularity: true
-  nick_catastrophe: false
+  nick_catastrophe: true
   clean_up_the_oil_slick: true
   contain_the_oil_derrick_s_spill: true
   neutralize_the_oil: true

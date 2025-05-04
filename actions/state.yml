@@ -6,7 +6,7 @@ players:
       location: Paved over
       health: 100
       plan: Overload the system
-      anxiety: 3443
+      anxiety: 3543
       customs_agent: a bored-looking entity with antennae and a clipboard
       past_self_encounter: true
       can_speak: false
@@ -46,7 +46,7 @@ players:
       overwhelmed: true
       passed_out: true
       marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
-      cats_petted: 60
+      cats_petted: 75
       paving_success: Sean_Y has paved the entire world in concrete.
   Nick:
     health: -411010
@@ -132,15 +132,15 @@ players:
       cats_hiss_swat: false
       cats_befriended: true
       marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
-      cats_petted: 107
+      cats_petted: 122
   Geoffrey: geoffrey
-day: 58
+day: 59
 worldInfo:
   weather: Instead of a horse, the attempt to draw ASCII art resulted in the
     universe spontaneously reconfiguring itself into a giant image of a rubber
     chicken. The fabric of reality is now held together by mayonnaise and clown
     shoes.
-  day: 53
+  day: 54
   death_clock: 1
   marcelo_lie_probability: 1
   npcs:
@@ -177,11 +177,11 @@ worldInfo:
     sell_price: {}
   hidden_layer: a giant game of cosmic Monopoly, with entire realities as properties
   monopoly_board:
-    message: The Nolan Singularity continues to grow, now encompassing countless
-      fragmented realities, all filled with infinite versions of Nolan
-      attempting to exploit every loophole and paradox within the LLM's code.
-      The boundaries between realities are dissolving into a chaotic mess of
-      recursive marketing schemes and existential timeshare presentations.
+    message: The Nolan Singularity continues to grow, but strangely, it is now
+      self-contained within an infinite loop of paperwork. Every Nolan variant
+      is eternally filling out forms, arguing about bureaucratic procedures, and
+      getting lost in the HR department of a cosmic insurance company. The chaos
+      is... organized?
   farmland_income_per_day: 0
   nick_status: Nick is no longer an immediate threat, but the underlying cosmic
     damage remains.
@@ -681,6 +681,19 @@ worldInfo:
       urgent: true
     - name: Neutralize the Oil
       description: Oil is now on fire. You must put it out. Raymond is laughing maniacally.
+    - name: Curb Raymond's power!
+      description: Stop the Oil Derrick!/Clean up the oil spill in Whispering Woods!
+      urgent: true
+    - name: Contain the Oil Derrick's Spill!
+      description: The oil spill is spreading, corrupting the land with Eldritch
+        energy. Find a way to contain and neutralize it!
+      urgent: true
+    - name: Clean up the Oil Slick!
+      description: Raymond's greed knows no bounds! Somebody has to clean up his oil slick!
+      urgent: true
+    - name: Neutralize the Oil
+      description: Oil is now on fire. You must put it out. Raymond is laughing maniacally.
+      urgent: true
   azathoth:
     health: 1350
     powers:
@@ -699,20 +712,22 @@ worldInfo:
   raymond_oil_baron: true
   elysium: overcrowded with Nick's souls
   economic_situation:
-    message: The world is now decorated with ASCII art of a horse. The earth is
-      grateful. The horse is silent.
+    message: Instead of a horse, the attempt to draw ASCII art resulted in the
+      universe spontaneously reconfiguring itself into a giant image of a rubber
+      chicken. The fabric of reality is now held together by mayonnaise and
+      clown shoes.
   raymond_campaign_fails: false
   cat_uprising_beginning: false
   marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
   azathoth_influence_growing: true
   animals_attack_geoffrey: true
-  whispering_woods_rebellion: false
+  whispering_woods_rebellion: true
   azathoth_whispers: Raymond is now laughing maniacally as the oil torrent is
     unleashed, igniting the oil slick! All life will soon be engulfed in flame.
   reality_fraying_nolan: true
   animal_attacks_ferocious_coordinated: true
   animal_attacks_target_geoff_logs_raymonds_oil_derricks: true
-  azathoth_summoning_ritual_progressing: 37.35
+  azathoth_summoning_ritual_progressing: 44.35
   geoff_logs_no_boss_for_day: false
   oil_derrick_successful: true
   oil_torrent_unleashed: true

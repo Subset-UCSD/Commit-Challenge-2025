@@ -10,11 +10,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
       - name: figure out who didnt commit yet
         run: |
           SINCE=$(TZ=America/Los_Angeles node remind/today.js)
           gh api -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" "/repos/Subset-UCSD/Commit-Challenge-2025/commits?since=$SINCE" > commits.json
-          node remind/read-commits.mjs || ./remind/target/release/remind > out.txt
+          node --experimental-strip-types remind/read-commits.mts || ./remind/target/release/remind > out.txt
           cat out.txt
           if [ -s out.txt ]; then
             gh issue comment 5 --body "$(cat out.txt)"

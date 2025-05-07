@@ -39,7 +39,7 @@ jobs:
                 
                 if [ ! -s commits.txt ]; then
                   echo "no meaningful commits were made"
-                  if [ -s e powell.txt ]; then
+                  if [ -s powell.txt ]; then
                     echo "no meaningful commits were made, but we did run actions" >> changelog.md
                     jq -n --rawfile commits powell.txt \
                       '{"contents": [{"parts": [{"text": "Summarize what went on in the actions game today. You must format your response as a markdown file: \n\($commits)"}]}]}' > gemini_prompt.json

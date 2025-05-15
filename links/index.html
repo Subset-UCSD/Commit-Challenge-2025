@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>links</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-image: radial-gradient( circle 200vh at -2.9% 12.9%,  rgba(247,234,163,1) 0%, rgba(236,180,238,0.56) 46.4%, rgba(163,203,247,1) 100.7% );
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .search {
+            background-color: white;
+            border: 1px solid white;
+            border-radius: 15px;
+            padding: 15px 20px;
+            width: 300px;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 300;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .search::placeholder {
+            color: #888;
+        }
+
+        .search:focus {
+            border-color: #0066cc;
+            box-shadow: 0 0 10px rgba(0, 102, 204, 0.6);
+        }
+
+        .button {
+            background-color: #0066cc;
+            border: none;
+            border-radius: 15px;
+            color: #fff;
+            padding: 12px 25px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .button:hover {
+            background-color: #0057b7;
+        }
+
+        .button:active {
+            background-color: #004494;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <input type="text" class="search" placeholder="link">
+        <input type="text" class="search" placeholder="short link">
+        <button class="button" onclick="alert('you thought...')">generate short url</button>
+    </div>
+</body>
+</html>

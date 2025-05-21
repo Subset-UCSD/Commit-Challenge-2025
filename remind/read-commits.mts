@@ -139,10 +139,32 @@ function shuffle<T>(array: T[]): T[] {
   return array
 }
 
-// const news = [...(await getTopStories('us')).results, ...(await getTopStories('world')).results]
+const news = [...(await getTopStories('us')).results ?? [], ...(await getTopStories('world')).results ?? []]
+// .map(article => article.title.toLowerCase().replace(/[^a-z ]/g, ''))
+// .join(', ')
 // .map(article => `[${article.title}](${article.url}): ${article.abstract}`)
 // .join(' • ')
-// console.log(news)
+.map(article => `- ${article.title}: ${article.abstract}`)
+.join('\n')
+console.error(news)
+const result:string = (await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.GEMINI_API}`, {
+    "headers": {
+      "content-type": "application/json",
+    },
+    method: 'POST',
+    body: JSON.stringify({
+      contents: [
+        {
+          parts: [
+            {
+              text: `Summarize the news with a limerick, written like a text message in all lowercase. Don't say anything else.\n${news}`
+            }
+          ]
+        }
+      ]
+    })
+  }).then(r => r.json())).candidates[0].content.parts[0].text
+// console.log(result)
 
 const messages: Record<string, string> = Object.fromEntries(
   nonCommitters.map((ghUser) => [
@@ -214,22 +236,26 @@ console.log(messages);
 fs.writeFileSync("messages.json", JSON.stringify(messages));
 
 if (nonCommitters.length > 0) {
+  const lines = result.trim().split(/\r?\n/)
+  shuffle(nonCommitters)
   await fetch(process.env.DISCORD_WEBHOOK_URL || '', {
     "headers": {
       "content-type": "application/json",
     },
     "body": JSON.stringify({"content":
-      `hey ${nonCommitters.map(ghUser => `<@${discords[ghUser]}>`).join(' ')} (especially if ur on a phone) can u [add the next word to this](<https://github.com/Subset-UCSD/Commit-Challenge-2025/edit/main/actions.md>) ${select(
-        'help us be chatgpt',
-        '🤨',
-        '... or u cant..?',
-        '🫦',
-        '🫵',
-        'r u smarter than an llm ?',
-        '老天保佑金山银山前路有',
-        '[object Object]',
-      )}`
-      ,"username":"reminder","avatar_url":"https://subset-ucsd.github.io/Commit-Challenge-2025/ass/ets/mayo.png"}),
+      `${lines.map((line,i) => `${line}${i < nonCommitters.length ? ` <@${discords[nonCommitters[i]]}>` : ''}`).join('\n')}\n\nso... [how r u](<https://github.com/Subset-UCSD/Commit-Challenge-2025/edit/main/actions.md>) ${nonCommitters.slice(lines.length).map(ghUser => `<@${discords[ghUser]}>`).join(' ')}`,
+      // `hey ${nonCommitters.map(ghUser => `<@${discords[ghUser]}>`).join(' ')} (especially if ur on a phone) can u [add the next word to this](<https://github.com/Subset-UCSD/Commit-Challenge-2025/edit/main/actions.md>) ${select(
+      //   'help us be chatgpt',
+      //   '🤨',
+      //   '... or u cant..?',
+      //   '🫦',
+      //   '🫵',
+      //   'r u smarter than an llm ?',
+      //   '老天保佑金山银山前路有',
+      //   '[object Object]',
+      // )}`
+      // ,
+      "username":"reminder","avatar_url":"https://subset-ucsd.github.io/Commit-Challenge-2025/ass/ets/mayo.png"}),
     "method": "POST",
   }).catch(console.log);
 }

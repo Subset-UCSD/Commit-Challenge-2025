@@ -63,7 +63,7 @@ export type TopStoriesResponse = {
   section: string;
   last_updated: string;
   num_results: number;
-  results: Article[];
+  results: Article[] | null;
 };
 
 /** https://developer.nytimes.com/docs/top-stories-product/1/routes/%7Bsection%7D.json/get */

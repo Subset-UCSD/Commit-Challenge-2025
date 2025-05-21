@@ -38,7 +38,7 @@ Cast a spell that adds twenty to my dice roll before determining outcome of my a
 
 # Khushi
 
-Forced by Sean to do this. Now you shall reveal Marcelo's saucy secrets
+Marcelo has betrayed his friends. Sean Yen has been busy hacking autograder. Nick crashed out a lot this week. Raymond probably didnt sleep. Sean Perry is too busy and gave up. Time is going by too quickly, I need it to slow down.
 
 # sam
 

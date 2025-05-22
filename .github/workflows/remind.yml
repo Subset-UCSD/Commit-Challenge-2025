@@ -27,5 +27,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          GEMINI_API: ${{ secrets.GEMINI_API }}
+          NYT_API_KEY: ${{ secrets.NYT_API_KEY }}
     permissions:
       issues: write

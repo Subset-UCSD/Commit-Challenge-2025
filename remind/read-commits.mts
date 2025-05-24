@@ -157,7 +157,7 @@ const result:string = (await fetch(`https://generativelanguage.googleapis.com/v1
         {
           parts: [
             {
-              text: `Summarize the news with a limerick, written like a text message in all lowercase. Don't say anything else.\n${news}`
+              text: `Summarize the news in two limericks, written like a text message with a few emoji, in all lowercase. Don't say anything else.\n${news}`
             }
           ]
         }

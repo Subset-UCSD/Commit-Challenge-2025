@@ -139,13 +139,17 @@ function shuffle<T>(array: T[]): T[] {
   return array
 }
 
-const news = [...(await getTopStories('us')).results ?? [], ...(await getTopStories('world')).results ?? []]
+const wolrdNews = (await getTopStories('world')).results ?? []
+const usNews = (await getTopStories('us')).results ?? []
+
+const process = (arr: string[]) => arr
+.map(article => `- ${article.title}: ${article.abstract}`)
+.join('\n')
+//const news = [...process((await getTopStories('us')).results ?? []), ...process((await getTopStories('world')).results ?? [])]
 // .map(article => article.title.toLowerCase().replace(/[^a-z ]/g, ''))
 // .join(', ')
 // .map(article => `[${article.title}](${article.url}): ${article.abstract}`)
 // .join(' • ')
-.map(article => `- ${article.title}: ${article.abstract}`)
-.join('\n')
 console.error(news)
 const result:string = (await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.GEMINI_API}`, {
     "headers": {
@@ -157,7 +161,15 @@ const result:string = (await fetch(`https://generativelanguage.googleapis.com/v1
         {
           parts: [
             {
-              text: `Summarize the news in two limericks, written like a text message with a few emoji, in all lowercase. Don't say anything else.\n${news}`
+              text: `Summarize the U.S. and world news, each in their own limericks, written in all lowercase. Don't say anything else; just output the first limerick, then the second limerick.
+
+World news:
+
+${process(wolrdNews)}
+
+US news:
+
+${process(usNews)}`
             }
           ]
         }
@@ -238,12 +250,21 @@ fs.writeFileSync("messages.json", JSON.stringify(messages));
 if (nonCommitters.length > 0) {
   const lines = result.trim().split(/\r?\n/)
   shuffle(nonCommitters)
+let out = ''
+for (const line of lines) {
+const next = nonCommitters.pop()
+if (line.trim()) {
+  out += `${line}${next ? ` <@${discords[next]}>` : ''}\n`
+} else {
+out += '\n'
+}
+}
   await fetch(process.env.DISCORD_WEBHOOK_URL || '', {
     "headers": {
       "content-type": "application/json",
     },
     "body": JSON.stringify({"content":
-      `${lines.map((line,i) => `${line}${i < nonCommitters.length ? ` <@${discords[nonCommitters[i]]}>` : ''}`).join('\n')}\n\nso... [how r u](<https://github.com/Subset-UCSD/Commit-Challenge-2025/edit/main/actions.md>) ${nonCommitters.slice(lines.length).map(ghUser => `<@${discords[ghUser]}>`).join(' ')}`,
+      `${out}\nso... [how r u](<https://github.com/Subset-UCSD/Commit-Challenge-2025/edit/main/actions.md>) ${nonCommitters.map(ghUser => `<@${discords[ghUser]}>`).join(' ')}`,
       // `hey ${nonCommitters.map(ghUser => `<@${discords[ghUser]}>`).join(' ')} (especially if ur on a phone) can u [add the next word to this](<https://github.com/Subset-UCSD/Commit-Challenge-2025/edit/main/actions.md>) ${select(
       //   'help us be chatgpt',
       //   '🤨',

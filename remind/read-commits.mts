@@ -141,6 +141,7 @@ function shuffle<T>(array: T[]): T[] {
 
 const wolrdNews = (await getTopStories('world')).results ?? []
 const usNews = (await getTopStories('us')).results ?? []
+console.error(wolrdNews, usNews)
 
 const process = (arr: string[]) => arr
 .map(article => `- ${article.title}: ${article.abstract}`)
@@ -150,7 +151,7 @@ const process = (arr: string[]) => arr
 // .join(', ')
 // .map(article => `[${article.title}](${article.url}): ${article.abstract}`)
 // .join(' • ')
-console.error(news)
+//console.error(news)
 const result:string = (await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.GEMINI_API}`, {
     "headers": {
       "content-type": "application/json",

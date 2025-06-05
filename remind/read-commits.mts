@@ -1,6 +1,6 @@
 import fs from "fs";
 import { discords } from "./people.mjs";
-import { getTopStories } from "./read-news.mts";
+import { type Article, getTopStories } from "./read-news.mts";
 
 type Commit = {
   url: string;
@@ -143,7 +143,7 @@ const wolrdNews = (await getTopStories('world')).results ?? []
 const usNews = (await getTopStories('us')).results ?? []
 console.error(wolrdNews, usNews)
 
-const process = (arr: string[]) => arr
+const processNews = (arr: Article[]) => arr
 .map(article => `- ${article.title}: ${article.abstract}`)
 .join('\n')
 //const news = [...process((await getTopStories('us')).results ?? []), ...process((await getTopStories('world')).results ?? [])]
@@ -166,11 +166,11 @@ const result:string = (await fetch(`https://generativelanguage.googleapis.com/v1
 
 World news:
 
-${process(wolrdNews)}
+${processNews(wolrdNews)}
 
 US news:
 
-${process(usNews)}`
+${processNews(usNews)}`
             }
           ]
         }
@@ -179,70 +179,101 @@ ${process(usNews)}`
   }).then(r => r.json())).candidates[0].content.parts[0].text
 // console.log(result)
 
+function alternate<T>(a: T[], b: T[]): T[] {
+  const items: T[] = []
+  for (let i = 0; i < Math.min(a.length, b.length); i++) {
+    items.push(a[i])
+    items.push(b[i])
+  }
+  items.push(...a.slice(b.length, ),...b.slice(a.length))
+  return items
+}
+
+const result2:string = (await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.GEMINI_API}`, {
+    "headers": {
+      "content-type": "application/json",
+    },
+    method: 'POST',
+    body: JSON.stringify({
+      contents: [
+        {
+          parts: [
+            {
+              text: `Summarize each headline in two words, written in all lowercase. Separate each headline with a period. The words can be unnecessarily fancy and verbose, long, and obscure.
+
+${processNews(alternate(wolrdNews, usNews))}`
+            }
+          ]
+        }
+      ]
+    })
+  }).then(r => r.json())).candidates[0].content.parts[0].text
+
 const messages: Record<string, string> = Object.fromEntries(
   nonCommitters.map((ghUser) => [
     discords[ghUser],
-    (committers.length > 0
-      ? select(
-          "{PPL} all comited to the [repo](REPO)!! and 🫵YOU did not 😡",
-          "why havent u commited to the [repo](REPO) today? {PPL} has, go be like them !",
-          "🚨this is ur daily remind to comit to [REPO](REPO) ! {PPL} alr did",
-          "{PPL} committed to the [repository](REPO) today. Why haven't you?",
-          "{PPL} and you have added a fish to the [aqaurium](README) today thanks!.. oh wait, YOU didnt 🫵🤓",
-          "||{PPL}||",
-          "hi . {PPL} already committed. [u could too](REPO)",
-          "haha {PPL} committed to the [repo](REPO) today.. what a bunch of nerds 🤓👎👎 ,, imagine COMMITING EVERY DAY 👈🤣",
-          "{PPL}.. do u recognize this list? thats right, thats todays [NERD LIST](REPO) 😆😅🤣😂",
-          "todays red flag 🚩 : commiting to the 🤓[nerd repo](REPO)🤓\n\nwhos the red flag today? 🥁🥁🥁 ||{PPL}||",
-          "did you know? your tongue has five parts that each taste a different taste: {PPL} [[1]](REPO)",
-          "help us make [acm bank](REPO)",
-          "{PPL} have phones.. do u? u know u can edit [files](REPO) on ur phone right",
-          "help ",
-          "open [this](README) on ur phone, try adding an emoji or making fun of {PPL} or smth",
-          "hey [check out what](WEB) {PPL} made",
-          "u could change [the image](WEB) that {PPL} added",
-          "help {PPL} make an [aquarium!](WEB)!",
-          "listen to [this song](WEB) that {PPL} made",
-          '{PPL} commited to the repo and YOU didnt.. CRINGE',
-        )
-      : select(
-          "you could be the first comiter of the day!!",
-          "go be the first 💪 comiter ",
-          "i dare you to commmit to [repo](REPO)",
-          "You forgot to commit to the [repository](REPO) today. You know what happens now.",
-          "new day new fish for [quarium](README)",
-          "skat[e](REPO)bpard",
-          "hi . [commit now](REPO)",
-          "no one commited to the [repo](REPO) today thank god",
-          "red flag of the day🚩: commiting to [github](REPO).. hope to god YOU dont do that today ..haha",
-          "i-\n\nfuck",
-          "heyyy dont forget about the [commit chlalenge](REPO)s",
-          "👁️👄👁️ [dsfkhdfgbdsfg](REPO)",
-          "i give up",
-          "r u on ur phone? u could add smth to the [readme](README)",
-          "can u open [this](README) on ur phone?",
-          "drop a spotify link [here](README)",
-          "pay your [cat tax](REPO) 🤌",
-          "u know what we need? an aquarium. [add one pls🐟](WEB)",
-          "[listen to this](WEB) ((audio on))",
-        )
-    )
-      .replaceAll(
-        "(REPO)",
-        "(<https://github.com/Subset-UCSD/Commit-Challenge-2025/>)"
-      )
-      .replaceAll(
-        "(README)",
-        "(<https://github.com/Subset-UCSD/Commit-Challenge-2025/edit/main/README.md>)"
-      )
-      .replaceAll(
-        "(WEB)",
-        "(https://subset-ucsd.github.io/Commit-Challenge-2025/)"
-      )
-      .replaceAll(
-        "{PPL}",
-        committers.map((ghUser) => `<@${discords[ghUser]}>`).join(" and ")
-      ),
+    `${committers.length > 0 ? committers.map((ghUser) => `<@${discords[ghUser]}>`).join(" and ") : 'no one'} committed to the [repo](<https://github.com/Subset-UCSD/Commit-Challenge-2025/>). ${result2}`,
+    // (committers.length > 0
+    //   ? select(
+    //       "{PPL} all comited to the [repo](REPO)!! and 🫵YOU did not 😡",
+    //       "why havent u commited to the [repo](REPO) today? {PPL} has, go be like them !",
+    //       "🚨this is ur daily remind to comit to [REPO](REPO) ! {PPL} alr did",
+    //       "{PPL} committed to the [repository](REPO) today. Why haven't you?",
+    //       "{PPL} and you have added a fish to the [aqaurium](README) today thanks!.. oh wait, YOU didnt 🫵🤓",
+    //       "||{PPL}||",
+    //       "hi . {PPL} already committed. [u could too](REPO)",
+    //       "haha {PPL} committed to the [repo](REPO) today.. what a bunch of nerds 🤓👎👎 ,, imagine COMMITING EVERY DAY 👈🤣",
+    //       "{PPL}.. do u recognize this list? thats right, thats todays [NERD LIST](REPO) 😆😅🤣😂",
+    //       "todays red flag 🚩 : commiting to the 🤓[nerd repo](REPO)🤓\n\nwhos the red flag today? 🥁🥁🥁 ||{PPL}||",
+    //       "did you know? your tongue has five parts that each taste a different taste: {PPL} [[1]](REPO)",
+    //       "help us make [acm bank](REPO)",
+    //       "{PPL} have phones.. do u? u know u can edit [files](REPO) on ur phone right",
+    //       "help ",
+    //       "open [this](README) on ur phone, try adding an emoji or making fun of {PPL} or smth",
+    //       "hey [check out what](WEB) {PPL} made",
+    //       "u could change [the image](WEB) that {PPL} added",
+    //       "help {PPL} make an [aquarium!](WEB)!",
+    //       "listen to [this song](WEB) that {PPL} made",
+    //       '{PPL} commited to the repo and YOU didnt.. CRINGE',
+    //     )
+    //   : select(
+    //       "you could be the first comiter of the day!!",
+    //       "go be the first 💪 comiter ",
+    //       "i dare you to commmit to [repo](REPO)",
+    //       "You forgot to commit to the [repository](REPO) today. You know what happens now.",
+    //       "new day new fish for [quarium](README)",
+    //       "skat[e](REPO)bpard",
+    //       "hi . [commit now](REPO)",
+    //       "no one commited to the [repo](REPO) today thank god",
+    //       "red flag of the day🚩: commiting to [github](REPO).. hope to god YOU dont do that today ..haha",
+    //       "i-\n\nfuck",
+    //       "heyyy dont forget about the [commit chlalenge](REPO)s",
+    //       "👁️👄👁️ [dsfkhdfgbdsfg](REPO)",
+    //       "i give up",
+    //       "r u on ur phone? u could add smth to the [readme](README)",
+    //       "can u open [this](README) on ur phone?",
+    //       "drop a spotify link [here](README)",
+    //       "pay your [cat tax](REPO) 🤌",
+    //       "u know what we need? an aquarium. [add one pls🐟](WEB)",
+    //       "[listen to this](WEB) ((audio on))",
+    //     )
+    // )
+    //   .replaceAll(
+    //     "(REPO)",
+    //     "(<https://github.com/Subset-UCSD/Commit-Challenge-2025/>)"
+    //   )
+    //   .replaceAll(
+    //     "(README)",
+    //     "(<https://github.com/Subset-UCSD/Commit-Challenge-2025/edit/main/README.md>)"
+    //   )
+    //   .replaceAll(
+    //     "(WEB)",
+    //     "(https://subset-ucsd.github.io/Commit-Challenge-2025/)"
+    //   )
+    //   .replaceAll(
+    //     "{PPL}",
+    //     committers.map((ghUser) => `<@${discords[ghUser]}>`).join(" and ")
+    //   ),
   ])
 );
 console.log(messages);

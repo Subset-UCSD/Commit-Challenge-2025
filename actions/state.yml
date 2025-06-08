@@ -6,7 +6,7 @@ players:
       location: Paved over
       health: 100
       plan: Overload the system
-      anxiety: 8543
+      anxiety: 8548
       customs_agent: a bored-looking entity with antennae and a clipboard
       past_self_encounter: true
       can_speak: false
@@ -46,10 +46,10 @@ players:
       overwhelmed: true
       passed_out: true
       marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
-      cats_petted: 105
+      cats_petted: 120
       paving_success: Sean_Y has paved the entire world in concrete.
   Nick:
-    health: -411010
+    health: -412010
     inventory:
       coin: 205000
       Exploded Thermonuclear Bomb Remains: 0
@@ -124,7 +124,7 @@ players:
       location: Paved over
       is_cat: true
       cats: 15
-      town_happiness: sky high1000
+      town_happiness: sky high1015
       party_score: 1
       cats_angry: false
       betrayed: true
@@ -132,15 +132,15 @@ players:
       cats_hiss_swat: false
       cats_befriended: true
       marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
-      cats_petted: 182
+      cats_petted: 197
   Geoffrey: geoffrey
-day: 62
+day: 63
 worldInfo:
   weather: Instead of a horse, the attempt to draw ASCII art resulted in the
     universe spontaneously reconfiguring itself into a giant image of a rubber
     chicken. The fabric of reality is now held together by mayonnaise and clown
     shoes.
-  day: 57
+  day: 59
   death_clock: 1
   marcelo_lie_probability: 1
   npcs:
@@ -765,6 +765,9 @@ worldInfo:
       urgent: true
     - name: Neutralize the Oil
       description: Oil is now on fire. You must put it out. Raymond is laughing maniacally.
+    - name: Neutralize the Oil
+      description: Oil is now on fire. You must put it out. Raymond is laughing maniacally.
+      urgent: true
   azathoth:
     health: 1350
     powers:
@@ -788,7 +791,7 @@ worldInfo:
       chicken. The fabric of reality is now held together by mayonnaise and
       clown shoes.
   raymond_campaign_fails: false
-  cat_uprising_beginning: false
+  cat_uprising_beginning: true
   marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
   azathoth_influence_growing: true
   animals_attack_geoffrey: true
@@ -798,7 +801,7 @@ worldInfo:
   reality_fraying_nolan: true
   animal_attacks_ferocious_coordinated: true
   animal_attacks_target_geoff_logs_raymonds_oil_derricks: true
-  azathoth_summoning_ritual_progressing: 80.35
+  azathoth_summoning_ritual_progressing: 85.35
   geoff_logs_no_boss_for_day: false
   oil_derrick_successful: true
   oil_torrent_unleashed: true
@@ -833,17 +836,20 @@ worldInfo:
     - Demon Soyul Tree
     - Sean_P's Gooey Servants
     - Sean_P's Gooey Servants
+    - Sean_P's Gooey Servants
+    - Demon Soyul Tree
+    - Sean_P's Gooey Servants
   npc_foreach:
     health: 100
     inventory: {}
     info:
       marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
   animals_attack_target_geoff_logs_raymonds_oil_derricks: true
-  treasury: 1100800
+  treasury: 1111300
   npc_geoffrey:
     health: 100
     inventory:
-      coin: 49300
+      coin: 59800
     info: {}
   campaign_fails: false
   town_happiness: sky high1000
@@ -863,3 +869,4 @@ worldInfo:
     eating_mayonnaise_with_a_spoon: true
   worldInfo:
     animal_attacks_ferocious_coordinated: true
+  stop_raymond_s_oil_empire: true

@@ -279,6 +279,7 @@ const messages: Record<string, string> = Object.fromEntries(
 console.log(messages);
 fs.writeFileSync("messages.json", JSON.stringify(messages));
 
+const nonCommittersClone = [...nonCommitters]
 if (nonCommitters.length > 0) {
   const lines = result.trim().split(/\r?\n/)
   shuffle(nonCommitters)
@@ -317,5 +318,5 @@ const BASH_TRUE = 0;
 const BASH_FALSE = 1;
 
 // Return true iff everyone already committed
-process.exit(nonCommitters.length === 0 ? BASH_TRUE : BASH_FALSE);
+process.exit(nonCommittersClone.length === 0 ? BASH_TRUE : BASH_FALSE);
 

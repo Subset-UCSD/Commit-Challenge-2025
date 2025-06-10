@@ -36,7 +36,7 @@ python-dateutil==2.9.0.post0
 python-dotenv==1.1.0
 pytz==2025.2
 pyzmq==26.3.0
-requests==2.32.3
+requests==2.32.4
 seaborn==0.13.2
 six==1.17.0
 stack-data==0.6.3

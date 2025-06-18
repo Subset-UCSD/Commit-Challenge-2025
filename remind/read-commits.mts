@@ -280,6 +280,18 @@ console.log(messages);
 fs.writeFileSync("messages.json", JSON.stringify(messages));
 
 const nonCommittersClone = [...nonCommitters]
+if (nonCommitters.length >= 3) {
+await fetch(process.env.DISCORD_WEBHOOK_URL || '', {
+    "headers": {
+      "content-type": "application/json",
+    },
+    "body": JSON.stringify({"content":
+     `${nonCommitters.length} ppl committed and have spared this channel from the news.. ignorance is strength. but ${nonCommitters.map(ghUser => `<@${discords[ghUser]}>`).join(' ')} did not comit......`
+,
+      "username":"reminder","avatar_url":"https://subset-ucsd.github.io/Commit-Challenge-2025/ass/ets/mayo.png"}),
+    "method": "POST",
+  }).catch(console.log);
+} else
 if (nonCommitters.length > 0) {
   const lines = result.trim().split(/\r?\n/)
   shuffle(nonCommitters)
@@ -297,7 +309,7 @@ out += '\n'
       "content-type": "application/json",
     },
     "body": JSON.stringify({"content":
-      `${out}\nso... [how r u](<https://github.com/Subset-UCSD/Commit-Challenge-2025/edit/main/actions.md>) ${nonCommitters.map(ghUser => `<@${discords[ghUser]}>`).join(' ')}`,
+      `${out}\nits summer! to turn off the news, 3+ ppl must commit ${nonCommitters.map(ghUser => `<@${discords[ghUser]}>`).join(' ')}`,
       // `hey ${nonCommitters.map(ghUser => `<@${discords[ghUser]}>`).join(' ')} (especially if ur on a phone) can u [add the next word to this](<https://github.com/Subset-UCSD/Commit-Challenge-2025/edit/main/actions.md>) ${select(
       //   'help us be chatgpt',
       //   '🤨',

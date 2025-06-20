@@ -124,6 +124,7 @@ const committers = [...new Set(commits.map((commit) => commit.author?.login))]
   .sort()
   .filter((ghUser): ghUser is string => ghUser !== undefined && discords[ghUser] !== undefined);
 const nonCommitters = everyone.filter((user) => !committers.includes(user));
+const commiterCount = everyone.length - nonCommitters.length
 
 function select<T>(...choices: T[]): T {
   return choices[Math.floor(Math.random() * choices.length)];
@@ -280,13 +281,13 @@ console.log(messages);
 fs.writeFileSync("messages.json", JSON.stringify(messages));
 
 const nonCommittersClone = [...nonCommitters]
-if (nonCommitters.length >= 3) {
+if (commiterCount >= 3) {
 await fetch(process.env.DISCORD_WEBHOOK_URL || '', {
     "headers": {
       "content-type": "application/json",
     },
     "body": JSON.stringify({"content":
-     `${nonCommitters.length} ppl committed and have spared this channel from the news.. ignorance is strength. but ${nonCommitters.map(ghUser => `<@${discords[ghUser]}>`).join(' ')} did not comit......`
+     `${commiterCount} ppl committed and have spared this channel from the news.. ignorance is strength. but ${nonCommitters.map(ghUser => `<@${discords[ghUser]}>`).join(' ')} did not comit......`
 ,
       "username":"reminder","avatar_url":"https://subset-ucsd.github.io/Commit-Challenge-2025/ass/ets/mayo.png"}),
     "method": "POST",

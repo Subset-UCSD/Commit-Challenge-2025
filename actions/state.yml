@@ -1,12 +1,12 @@
 players:
   Nolan:
-    health: -652
+    health: -752
     inventory: {}
     info:
       location: Paved over
       health: 100
       plan: Overload the system
-      anxiety: 8548
+      anxiety: 9548
       customs_agent: a bored-looking entity with antennae and a clipboard
       past_self_encounter: true
       can_speak: false
@@ -132,15 +132,15 @@ players:
       cats_hiss_swat: false
       cats_befriended: true
       marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
-      cats_petted: 212
+      cats_petted: 242
   Geoffrey: geoffrey
-day: 64
+day: 65
 worldInfo:
   weather: Instead of a horse, the attempt to draw ASCII art resulted in the
     universe spontaneously reconfiguring itself into a giant image of a rubber
     chicken. The fabric of reality is now held together by mayonnaise and clown
     shoes.
-  day: 60
+  day: 61
   death_clock: 1
   marcelo_lie_probability: 1
   npcs:
@@ -177,11 +177,10 @@ worldInfo:
     sell_price: {}
   hidden_layer: a giant game of cosmic Monopoly, with entire realities as properties
   monopoly_board:
-    message: Nolan's attempt to replicate infinitely resulted in a catastrophic
-      feedback loop. The alternate versions of Nolan are now collapsing into
-      each other, creating bizarre and unpredictable fusions of personalities
-      and abilities. This is causing localized reality distortions and intense
-      psychic storms.
+    message: Nolan's attempt to replicate infinitely backfires catastrophically. The
+      infinite Nolans become fused into a single being who is now suffering from
+      the effects of the various realities he has seen. He is now schizophrenic
+      and delirious.
   farmland_income_per_day: 0
   nick_status: Nick is no longer an immediate threat, but the underlying cosmic
     damage remains.
@@ -798,6 +797,19 @@ worldInfo:
       urgent: true
     - name: Neutralize the Oil
       description: Oil is now on fire. You must put it out. Raymond is laughing maniacally.
+    - name: Curb Sean_P's power!
+      description: Sean_P is attempting to summon Azathoth. Stop the ritual!
+      urgent: true
+    - name: Restore Whispering Woods
+      description: Find a way to return the woods to normal
+      urgent: true
+    - name: Clean up the Oil Slick!
+      description: Raymond's greed knows no bounds! Somebody has to clean up his oil slick!
+      urgent: true
+    - name: Contain the Oil Derrick's Spill!
+      description: The oil spill is spreading, corrupting the land with Eldritch
+        energy. Find a way to contain and neutralize it!
+      urgent: true
   azathoth:
     health: 1350
     powers:
@@ -816,10 +828,8 @@ worldInfo:
   raymond_oil_baron: true
   elysium: overcrowded with Nick's souls
   economic_situation:
-    message: Instead of a horse, the attempt to draw ASCII art resulted in the
-      universe spontaneously reconfiguring itself into a giant image of a rubber
-      chicken. The fabric of reality is now held together by mayonnaise and
-      clown shoes.
+    message: The economic situation in the world is in a shambles because a
+      thermonuclear bomb exploding remains is dangerous
   raymond_campaign_fails: false
   cat_uprising_beginning: true
   marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
@@ -831,7 +841,7 @@ worldInfo:
   reality_fraying_nolan: true
   animal_attacks_ferocious_coordinated: true
   animal_attacks_target_geoff_logs_raymonds_oil_derricks: true
-  azathoth_summoning_ritual_progressing: 98.35
+  azathoth_summoning_ritual_progressing: 100
   geoff_logs_no_boss_for_day: false
   oil_derrick_successful: true
   oil_torrent_unleashed: true
@@ -847,11 +857,11 @@ worldInfo:
   land_cleared_90_percent: true
   land_sold_as_farmland: true
   geoff_logs_financials:
-    Log_Sales: 4500
+    Log_Sales: 4050
     Farmland_Sales: 1000
     Tuna_Earnings: 5000
     Farmland_Income_Per_Day: 0
-    Total_Income: 10500
+    Total_Income: 10050
   geoffrey_oblivious_to_doom: true
   animals_attack_ferocious_coordinated: true
   animals_attacks_target_geoff_logs_raymonds_oil_derricks: true
@@ -869,17 +879,19 @@ worldInfo:
     - Sean_P's Gooey Servants
     - Demon Soyul Tree
     - Sean_P's Gooey Servants
+    - Sean_P's Gooey Servants
+    - Demon Soyul Tree
   npc_foreach:
     health: 100
     inventory: {}
     info:
       marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
   animals_attack_target_geoff_logs_raymonds_oil_derricks: true
-  treasury: 1121800
+  treasury: 1131850
   npc_geoffrey:
     health: 100
     inventory:
-      coin: 70300
+      coin: 80350
     info: {}
   campaign_fails: false
   town_happiness: sky high1000

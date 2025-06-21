@@ -1,5 +1,4 @@
-import { StageInfo } from "./types";
-
+import { StageInfo, Item } from "./types";
 
 export function randomWord<T extends Record<string, readonly string[]>>(dictionary: T, key: keyof T) {
 	return dictionary[key][Math.floor(dictionary[key].length * Math.random())];
@@ -9,6 +8,12 @@ export function randomWord<T extends Record<string, readonly string[]>>(dictiona
  */
 export function rd(text: string, chance: number, precondition: boolean = true) {
 	return (Math.random() < chance) && precondition ? text : "";
+}
+
+export function renderItem({ name, lore }: Item) {
+	return `<span class="item ${lore ? "has-lore" : ""}" >${name}${
+		lore ? `<span class="lore"><span class="space"> </span>${lore}</span>` : ""
+	}</span>`;
 }
 
 export function clean(text: string) {

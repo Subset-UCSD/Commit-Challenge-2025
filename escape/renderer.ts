@@ -1,5 +1,5 @@
 import { Inventory, setInventory } from "./util/Inventory";
-import { typeText, showChoices } from "./util/text";
+import { typeText, showChoices, renderItem } from "./util/text";
 import type { Item, Stage, StageInfo } from "./util/types";
 import {wait} from './util/wait'
 import { decryptData, encryptData } from './util/security'
@@ -19,12 +19,6 @@ const modd: Record<string, (() => StageInfo) | PersistentState<any>>= mod
 
 function escape(str: string) {
 	return str.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll(`"`, `&quot;`);
-}
-
-function renderItem({ name, lore }: Item) {
-	return `<span class="item ${lore ? "has-lore" : ""}" >${name}${
-		lore ? `<span class="lore"><span class="space"> </span>${lore}</span>` : ""
-	}</span>`;
 }
 
 function renderInventory() {

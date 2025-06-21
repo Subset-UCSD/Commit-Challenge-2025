@@ -182,7 +182,8 @@ We also introduced a d20 roll system. Before the first Gemini call, we generate 
   - [ ] Monty Python and the Holy Grail
   - [ ] Princess Bride
   - [ ] Anora
-  - [ ] fruity pinocchio 
+  - [ ] fruity pinocchio
+  - [ ] how to train ur dragon series
 
 # Roadmap
 ![toothless dancing](./ass/ets/toothless-dancing-toothless.gif)

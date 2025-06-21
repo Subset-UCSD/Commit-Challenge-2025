@@ -74,7 +74,7 @@ export function labyrinthDir(): StageInfo {
 			...currentChoices,
 			...(vines ? {"climb vines": () => `you wrap your arms around one of the vines and begin your climb. as you get a few feet up, you notice a slick film covering the leaves -- just as realization hits, your grip slips and you plummet straight into a mud puddle. \n\nlooks like the vines won't be saving you anytime soon.`}:{}),
 			...(show_escape_rope ? {"grab escape rope": () => {inventory.add(escapeRope);return "you hoist the escape rope over your shoulder. +1 rope"}}:{}),
-			...(show_statue ? )
+			...(show_statue && !is_raven ? {`grab ${animal} statue`: })
 		}
 	};
 	return I;

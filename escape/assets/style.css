@@ -108,7 +108,7 @@ nav a {
 	}
 }
 :root {
-	--type-anim: type 0.1s forwards ease-in-out;
+	--type-anim: type 0.1s both cubic-bezier(0, 0.47, 0.28, 1.54);
 }
 
 nav {
@@ -144,6 +144,12 @@ input[type="range"]:hover {
 input[type="range"]::-moz-range-thumb {
 	background-color: var(--accent);
 	border: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+	background-color: var(--space-gray);
+	/* border: 2px solid var(--blark);
+	box-sizing: border-box; */
+	border-radius: 10px;
 }
 input[type="range"]::-moz-range-track {
 	background-color: var(--space-gray);
@@ -201,7 +207,7 @@ input[type="range"]::-moz-range-progress {
 #description t-t {
 	position: relative;
 	animation: var(--type-anim);
-	opacity: 0;
+	/* opacity: 0; */
 }
 
 #choices {
@@ -221,8 +227,9 @@ input[type="range"]::-moz-range-progress {
 	box-sizing: border-box;
 	transition: background-color .2s, color .2s;
 	animation: var(--type-anim);
-	pointer-events: none;
-	opacity: 0;
+	/* pointer-events: none;
+	opacity: 0; */
+	position: relative;
 }
 
 #choices button:hover {

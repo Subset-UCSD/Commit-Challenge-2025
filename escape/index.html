@@ -19,7 +19,7 @@
 <body>
 <div class="cool-container-bro">
 <nav>
-	<div>escape &subseteq; commit challenge &bull; <a href="../">back</a></div>
+	<div>escape &subseteq; commit challenge &bull; <a href="../">back</a> &bull; <button id="save">save</button> &bull; <button id="load">load</button></div>
 	<div id="settings"> 
 		<input id="speed-slider" name="speed-slider" type="range" min="-15" max="0" step="1"/>
 	</div>
@@ -63,6 +63,16 @@
 		</div>
 		<button class="botton" id="attack">attack</button>
 	</div>
+	<dialog id="save-thing" >
+		<form id="saveform" method="dialog">
+			
+			<h1 style="display: flex;">save/load screen <button aria-label="close" value="c" style="margin-left: auto;">&times;</button></h1>
+			<ul id="savers"></ul>
+			</form><form id="saveform" method="dialog">
+			<p id="loadonly"><label >create a new save: <input type="text" id="name"/></label><button value="s">save</button></p>
+			<!-- <button id="buton"></button> -->
+		</form>
+	</dialog>
 	<script src="./GAMER.js" type="module"></script>
 	<!-- <script src="./renderer.js"></script> -->
 </div>

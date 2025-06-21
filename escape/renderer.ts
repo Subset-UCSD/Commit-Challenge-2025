@@ -2,6 +2,7 @@ import { Inventory, setInventory } from "./util/Inventory";
 import { typeText, showChoices } from "./util/text";
 import type { Item, Stage, StageInfo } from "./util/types";
 import {wait} from './util/wait'
+import { decryptData, encryptData } from './util/security'
 
 // declare let BEGINNING: Stage;
 // declare let inventory: Inventory;
@@ -12,6 +13,7 @@ const TEXT_SPEED = "textSpeed";
 import * as mod from './GAMER'
 import inventory from "./util/Inventory";
 import { PersistentState } from "./util/persistent-state";
+import { loadQuests, SavedQuests, saveQuests } from "./util/QuestManagerFactoryBuilderCreatorFactoryFactoryObserverConflictMediator";
 let current = mod.BEGINNING;
 const modd: Record<string, (() => StageInfo) | PersistentState<any>>= mod
 
@@ -59,6 +61,9 @@ const render = async () => {
 }
 
 const select = (index: number) => {
+	if ((mod as Record<string, unknown>)[current.name] !== current) {
+		console.error(`stage '${current.name}' is not exported from GAMER.ts, so the game state cannot be saved :(`)
+	}
 	for (let i = 0; i < 169; i++) current(); // call the stage 169 times to make sure it's pure
 	const { choices } = current();
 	const next: any = Object.values(choices)[index];
@@ -186,14 +191,15 @@ export async function startBattle (options: BattleOptions) {
 	}
 }
 
-window.addEventListener('DOMContentLoaded', () => {
-    const speedSlider = document.getElementById('speed-slider') as HTMLInputElement;
-	speedSlider.addEventListener("input", (event) => {
-		event.preventDefault();
-		localStorage.setItem("textSpeed", (-parseInt((event.target as HTMLInputElement).value)).toString());
-		render();
-	});
+// window.addEventListener('DOMContentLoaded', () => {
+// });
+const speedSlider = document.getElementById('speed-slider') as HTMLInputElement;
+speedSlider.addEventListener("input", (event) => {
+event.preventDefault();
+localStorage.setItem("textSpeed", (-parseInt((event.target as HTMLInputElement).value)).toString());
+render();
 });
+speedSlider.valueAsNumber = -(localStorage.getItem(TEXT_SPEED) || "15")
 
 export function removeInput() {
 	const inputElement = document.getElementById("password-input") as HTMLInputElement;
@@ -231,25 +237,95 @@ attack.addEventListener('click', () => {
 	person.style.animationName = 'person-attack'
 })
 
+const saveWindow = document.getElementById('save-thing')! as HTMLDialogElement
+const savesList = document.getElementById('savers')!
+// const saveBtn  = document.getElementById('buton')!
+// const saveform = document.getElementById('saveform')! as HTMLFormElement
+const loadonly = document.getElementById('loadonly')!
+const savename = document.getElementById('name')! as HTMLInputElement
 
+const fmt =new Intl.DateTimeFormat([],{dateStyle:'long',timeStyle:'short'})
+function openSaveLoad(mode: 'save'|'load') {
+	saveWindow.showModal()
+	// const 
+	const saves:{name:string,time:Date,loc:string}[]=[]
+	for (let i = 0; i < localStorage.length; i++) {
+		const key = localStorage.key(i)
+		if (key===null)continue
+		try {
+			const state = decryptData<GameState>(localStorage.getItem(key)??'')
+			const stage = modd[state.stage]
+			saves.push({name:key,time:new Date(state.saved),loc:stage instanceof Function ? stage().location : 'unknown'})
+		} catch {
+
+		}
+	}
+	// xss vuln
+	savesList.innerHTML = saves.map(s => `<li><button value="x${s.name}" >${mode}</button> <strong>${s.name}</strong> (in ${s.loc}; ${fmt.format(new Date())})</li>`).join('')
+	saveWindow.onclose = () => {
+		console.log(mode,saveWindow.returnValue)
+		let key
+		if (saveWindow.returnValue[0] === 'x') {
+			key = saveWindow.returnValue.slice(1)
+		} else if (saveWindow.returnValue[0] === 's') {
+			key = savename.value
+		} else {
+			return
+		}
+		if (mode === 'save') {
+			localStorage.setItem(key, save())
+		} else {
+			load(localStorage.getItem(key)??'')
+		}
+	}
+	loadonly.style.display = mode === 'save'?'':'none'
+	if (mode==='save'){
+		savename.focus()
+		savename.value=''
+	}
+	// saveBtn.textContent = mode
+}
+document.getElementById('save')?.addEventListener('click', ( ) => {openSaveLoad('save')
+})
+document.getElementById('load')?.addEventListener('click', ( ) => {
+	openSaveLoad('load')
+})
+
+type GameState = {
+	stage: string
+	inventory: Item[]
+	quests: SavedQuests
+	saved: number
+	state: Record<string, unknown>
+}
 function save() {
 	const state:Record<string, unknown> = Object.fromEntries(Object.entries(modd).flatMap(([k, v]) =>v instanceof PersistentState?[ [k, v.value]]:[]))
-	state['current'] = current.name
-	state['inventory'] = inventory.toJSON()
+	// state['_current'] = current.name
+	// state['_inventory'] = inventory.toJSON()
+	// state['_quests'] = saveQuests()
+	// state['_savedDate'] = Date.now()
 	// console.log(state)
-	return state
+	return encryptData<GameState>({
+		stage:current.name,
+		inventory:inventory.toJSON(),
+		quests:saveQuests(),
+		saved:Date.now(),
+		state,
+	})
 }
-function load(state: Record<string, any>) {
-	const currentStage = modd[state.current]
+function load(stateData: string) {
+	const state = decryptData<GameState>(stateData)
+	const currentStage = modd[state.stage]
 	if (currentStage instanceof Function) {
 		current = currentStage
 	} else {
-		console.error('missing stage', state.current)
+		// console.error('missing stage', state['_current'])
+		throw new Error(`missing stage ${state.stage}`)
 	}
-	delete state.current
 	setInventory(state.inventory)
-	delete state.inventory
-	for (const [k, v] of Object.entries(state)) {
+	loadQuests(state.quests)
+
+	for (const [k, v] of Object.entries(state.state)) {
 		if (modd[k] instanceof PersistentState) {
 			modd[k].value = v
 		} else {

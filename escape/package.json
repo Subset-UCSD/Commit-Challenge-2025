@@ -1,15 +1,17 @@
 {
 	"scripts": {
-	  "build": "esbuild ./GAMER.ts --outdir=. --bundle --format=esm --minify",
-	  "dev": "esbuild ./GAMER.ts --outdir=. --bundle --format=esm  --serve --servedir=."
+		"build": "esbuild ./GAMER.ts --outdir=. --bundle --format=esm --minify",
+		"dev": "esbuild ./GAMER.ts --outdir=. --bundle --format=esm  --serve --servedir=."
 	},
 	"type": "module",
 	"dependencies": {
-	  "esbuild": "^0.24.2"
+		"@noble/curves": "^1.9.2",
+		"@noble/hashes": "^1.8.0",
+		"esbuild": "^0.24.2"
 	},
 	"devDependencies": {
-	  "@types/express": "^5.0.0",
-	  "@types/node": "^22.13.4",
-	  "nodemon": "^3.1.9"
+		"@types/express": "^5.0.0",
+		"@types/node": "^22.13.4",
+		"nodemon": "^3.1.9"
 	}
 }

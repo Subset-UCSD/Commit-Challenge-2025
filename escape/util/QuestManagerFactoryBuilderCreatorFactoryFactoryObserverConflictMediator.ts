@@ -6,8 +6,8 @@ type Quest = {
 }
 
 const questsList = document.getElementById('quests') as HTMLUListElement
-const quests: Quest[] = []
-const completed: string[] = []
+let quests: Quest[] = []
+let completed: string[] = []
 
 export function addQuest (questHtml: string, allowRepeat = false) {
   if (!allowRepeat&& completed.includes(questHtml)) {
@@ -59,4 +59,16 @@ completed.push(q.html)
 
 export function hasQuest (questHtml:string) {
   return quests.some(q => q.html === questHtml)
+}
+
+export type SavedQuests = {
+  quests: Quest[]
+  completed: string[]
+}
+export function saveQuests(): SavedQuests {
+  return {quests,completed}
+}
+export function loadQuests(data:SavedQuests):void {
+  quests=data.quests
+  completed=data.completed
 }

@@ -188,3 +188,5 @@ We also introduced a d20 roll system. Before the first Gemini call, we generate 
 ![toothless dancing](./ass/ets/toothless-dancing-toothless.gif)
 
 ![hawk utah](./ass/ets/utah.jpg)
+
+![boing](./ass/ets/boing.png)

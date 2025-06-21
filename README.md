@@ -191,3 +191,8 @@ We also introduced a d20 roll system. Before the first Gemini call, we generate 
 ![hawk utah](./ass/ets/utah.jpg)
 
 ![boing](./ass/ets/boing.png)
+
+
+# I don't like the news counter 
+
+|

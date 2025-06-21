@@ -3,6 +3,7 @@ import { randomWord, renderItem } from "../util/text";
 import { rd, clean, shuffleObject } from "../util/text";
 import inventory, { Inventory } from "../util/Inventory";
 import { state } from "../util/persistent-state";
+import { compassItem, escapeRope } from "../items";
 
 const Dir = {
 	N: "north",
@@ -20,10 +21,10 @@ const dictionary = {
 		"raven", "boar", "horse", "dolphin", "carp", "gargoyle"
 	],
 	"material": [
-		"stone", "tarnished bronze", "marble", "rusted copper", "glass"
+		"stone", "tarnished bronze", "weathered marble", "rusted copper", "chipped glass"
 	],
 	"location": [
-		"nestled among the vines", "atop a pillar", "buried in the mud", "sunken in a small puddle"
+		"nestled among the vines", "atop a plinth in the center of a clearing", "buried in the mud", "sunken in a small puddle", "under the brush"
 	]
 } as const;
 const t = (k: keyof typeof dictionary) => randomWord(dictionary, k);
@@ -48,20 +49,32 @@ export function labyrinthEntrance(): StageInfo {
 	return I;
 }
 export function labyrinthDir(): StageInfo {
+	let hasCompass = inventory.has(compassItem);
 	let vines = labyrinthState.v.length == 3;
+	let has_escape_rope = inventory.has(escapeRope);
+	let show_escape_rope = labyrinthState.v.length == l_diff && has_escape_rope ? Math.random() > 0.9 : false;
+	let show_statue = labyrinthState.v.length == l_diff ? Math.random() > 0.8 : false;
+	let animal = t("animal");
+	let is_raven = animal === "raven";
+	const flavor = [
+		"",
+		"the walls of the courtyard seem to have grown taller... or maybe you're growing shorter? you look at your reflection in a puddle but don't notice anything different.\n\nnothing to be concerned about",
+		`you space out and stare at your ${renderItem(inventory.toJSON().at(0)??{name:"empty inventory",lore:"how do you have nothing in here?"})}. when you look up, you notice the architecture is more brutalist`,
+		"you've been walking for a while now. you're basically lost forever.\n\nyou approach one of the walls and notice thick vines creeping up its side. perhaps you could climb them to get a better view?",
+	]
 	let I: StageInfo = {
 		location: labyrinthState.v.length < 4 ? "courtyard?" : "labyrinth",
-		description: clean(`you ${t("walk")} ${labyrinthState.v.at(-1)}. 
-			${rd("the walls of the courtyard seem to have grown taller... or maybe you're growing shorter? you look at your reflection in a puddle but don't notice anything different... nothing to be concerned about", 1, labyrinthState.v.length == 1)}
-			${rd(`looking up from an intense observation session of your ${renderItem(inventory.toJSON().at(0)??{name:"empty inventory",lore:"how do you have nothing in here?"})}, you realize the architecture becoming more brutalist`, 1, labyrinthState.v.length == 2)}
-			${rd("you approach one of the walls and notice thick vines creeping up its side. perhaps you could climb them to get a better view? seems like you are thoroughly lost. what direction did you come from?", 1, vines)}
-			${""}
-		${rd("you feel like you've been this way before..." + rd("or have you?", 0.5), 0.3, labyrinthState.v.length == l_diff)} ${rd(`you see a ${t("material")} statue of a ${t("animal")} ${t("location")}`, 0.2, labyrinthState.v.length == l_diff)
+		description: clean(`you ${t("walk")} ${labyrinthState.v.at(-1)}.\n
+			${flavor.at(labyrinthState.v.length)??""}
+			${rd("you feel like you've been this way before..." + rd(" or have you?", 0.5), 0.3, labyrinthState.v.length == l_diff)}${
+				show_statue ? `you see a ${t("material")} statue of a ${t("animal")} ${t("location")}, maybe you should <b>take it</b>?` : ""
 			}`),
 		theme: "labyrinth",
 		choices: {
 			...currentChoices,
-			...(vines ? {"climb vines": () => `you wrap your arms around one of the vines and begin your climb. as you get a few feet up, you notice a slick film covering the leaves -- just as realization hits, your grip slips and you plummet straight into a mud puddle. \n\nlooks like the vines won't be saving you anytime soon.`}:{})
+			...(vines ? {"climb vines": () => `you wrap your arms around one of the vines and begin your climb. as you get a few feet up, you notice a slick film covering the leaves -- just as realization hits, your grip slips and you plummet straight into a mud puddle. \n\nlooks like the vines won't be saving you anytime soon.`}:{}),
+			...(show_escape_rope ? {"grab escape rope": () => {inventory.add(escapeRope);return "you hoist the escape rope over your shoulder. +1 rope"}}:{}),
+			...(show_statue ? )
 		}
 	};
 	return I;

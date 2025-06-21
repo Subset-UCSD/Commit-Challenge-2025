@@ -13,7 +13,10 @@ export const mapItem: Item = {
 export const compassItem: Item = {
 	name: "compass", lore: "invented by the chinese in 206 BCE."
 };
-
+export const escapeRope: Item = {
+	name: "escape rope",
+	lore: "handy for getting out of a bind"
+}
 export const fishItem: Item = {
 	name: "fish", lore: "a frozen fish wrapped in plastic on a styrofoam plate. its label says it's from winco."
 };
@@ -46,4 +49,14 @@ export const gsCookiesItem: Item = {
 export const boxedLasagnaItem: Item = {
 	name: "boxed lasagna",
 	lore: "an abandoned lasagna stored in a restaurant take-out box. it looks barely eaten..."
+}
+
+export const junkStatue: Item = {
+	name: "statue",
+	lore: "you found a weathered statue of an animal in the labyrinth."
+}
+
+export const ravenStatue: Item = {
+	name: "raven statue",
+	lore: "you found a weathered statue of a raven in the labyrinth. maybe <b>Ravensmith</b> would be interested in it?"
 }

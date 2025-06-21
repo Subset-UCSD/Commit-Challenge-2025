@@ -18,9 +18,9 @@ export function renderItem({ name, lore }: Item) {
 
 export function clean(text: string) {
 	return text
-		.replace(/[\t ]+/g, " ")
-		.replace(/\n+/g, "\n")
-		.replace(/^\s+/gm, "");
+		.replace(/^\t+/gm, "")
+		.replace(/[\t ]+/g, " ");
+		//.replace(/\n+/g, "\n")
 }
 
 export function shuffleObject<T extends Record<string, any>>(obj: T): T {

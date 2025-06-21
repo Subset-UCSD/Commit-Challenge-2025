@@ -273,6 +273,7 @@ html:has(#powpow) {
 
 .lore {
 	display: none;
+	z-index: 2;
 }
 
 .item.has-lore:hover .lore {

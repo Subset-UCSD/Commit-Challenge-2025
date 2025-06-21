@@ -88,7 +88,7 @@ const select = (index: number) => {
 		render();
 	}
 }
-render();
+window.requestAnimationFrame(render)
 
 type Health = {
 	div: HTMLDivElement
@@ -261,7 +261,7 @@ function openSaveLoad(mode: 'save'|'load') {
 		}
 	}
 	// xss vuln
-	savesList.innerHTML = saves.map(s => `<li><button value="x${s.name}" >${mode}</button> <strong>${s.name}</strong> (in ${s.loc}; ${fmt.format(new Date())})</li>`).join('')
+	savesList.innerHTML = saves.map(s => `<li><button value="x${escape(s.name)}" >${mode}</button> <strong>${escape(s.name)}</strong> (in ${escape(s.loc)}; ${fmt.format(new Date())})</li>`).join('')
 	saveWindow.onclose = () => {
 		console.log(mode,saveWindow.returnValue)
 		let key
@@ -275,7 +275,12 @@ function openSaveLoad(mode: 'save'|'load') {
 		if (mode === 'save') {
 			localStorage.setItem(key, save())
 		} else {
-			load(localStorage.getItem(key)??'')
+			try {
+				load(localStorage.getItem(key)??'')
+			} catch (error) {
+				console.error(error)
+				if (error instanceof Error)alert(error.message)
+			}
 		}
 	}
 	loadonly.style.display = mode === 'save'?'':'none'

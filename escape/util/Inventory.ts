@@ -78,11 +78,15 @@ export class Inventory {
 	toJSON () : Item[] {
 		return this.#contents
 	}
+
+	setItems (contents: Item[]) : void {
+		this.#contents=contents
+	}
 	
 }
 
-let inventory = new Inventory();
+const inventory = new Inventory();
 export default inventory;
 export function setInventory (items: Item[]) {
-	inventory = new Inventory(items)
+	inventory.setItems(items)
 }

@@ -1,15 +1,19 @@
-import type { Inventory } from "./util/Inventory";
+import { Inventory, setInventory } from "./util/Inventory";
 import { typeText, showChoices } from "./util/text";
-import type { Item, Stage } from "./util/types";
+import type { Item, Stage, StageInfo } from "./util/types";
 import {wait} from './util/wait'
 
-declare let BEGINNING: Stage;
-declare let inventory: Inventory;
+// declare let BEGINNING: Stage;
+// declare let inventory: Inventory;
 
 const TEXT_SPEED = "textSpeed";
 
-const mod = { BEGINNING, inventory };
+// const mod = { BEGINNING, inventory };
+import * as mod from './GAMER'
+import inventory from "./util/Inventory";
+import { PersistentState } from "./util/persistent-state";
 let current = mod.BEGINNING;
+const modd: Record<string, (() => StageInfo) | PersistentState<any>>= mod
 
 function escape(str: string) {
 	return str.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll(`"`, `&quot;`);
@@ -22,12 +26,12 @@ function renderItem({ name, lore }: Item) {
 }
 
 function renderInventory() {
-	if (mod.inventory.size === 0) {
+	if (inventory.size === 0) {
 		document.getElementById("inventory")!.innerHTML = "";
 		return;
 	}
 	document.getElementById("inventory")!.innerHTML = `you have: ${
-		mod.inventory.counts().map(({ item, count }) => 
+		inventory.counts().map(({ item, count }) => 
 			renderItem(item) + (count > 1 ? ` (${count})` : "")
 		).join(", ")
 	}`;
@@ -37,6 +41,9 @@ function renderInventory() {
  * This is used to set ddescription
  */
 const render = async () => {
+	if ((mod as Record<string, unknown>)[current.name] !== current) {
+		console.error(`stage '${current.name}' is not exported from GAMER.ts, so the game state cannot be saved :(`)
+	}
 	for (let i = 0; i < 87; i++) current() // call the stage 87 times to make sure it's pure
 	const textSpeed = parseInt(localStorage.getItem(TEXT_SPEED) || "15");
 	const { location, description, inputs, choices, theme = '' } = current();
@@ -128,7 +135,7 @@ let opt: Pick<BattleOptions, 'attackTime'|'attackStrength'|'myAttackSound'> = {
 	myAttackSound: '../ass/ets/hit-slap.mp3',
 }
 let onDie = () => {}
-async function startBattle (options: BattleOptions) {
+export async function startBattle (options: BattleOptions) {
 	opt=options
 	myhealth.div.style.setProperty('--health', '100%')
 	myhealth.total = options.totalMeHealth
@@ -188,7 +195,7 @@ window.addEventListener('DOMContentLoaded', () => {
 	});
 });
 
-function removeInput() {
+export function removeInput() {
 	const inputElement = document.getElementById("password-input") as HTMLInputElement;
 	inputElement?.remove();
 }
@@ -225,18 +232,34 @@ attack.addEventListener('click', () => {
 })
 
 
-// note: not actively working rn
 function save() {
-	const state:Record<string, unknown> = Object.fromEntries(Object.entries(mod).filter(([, v]) => typeof v !== 'function'))
+	const state:Record<string, unknown> = Object.fromEntries(Object.entries(modd).flatMap(([k, v]) =>v instanceof PersistentState?[ [k, v.value]]:[]))
 	state['current'] = current.name
+	state['inventory'] = inventory.toJSON()
 	// console.log(state)
 	return state
 }
 function load(state: Record<string, any>) {
-	current = (mod as Record<string, any>)[state.current]
+	const currentStage = modd[state.current]
+	if (currentStage instanceof Function) {
+		current = currentStage
+	} else {
+		console.error('missing stage', state.current)
+	}
 	delete state.current
+	setInventory(state.inventory)
+	delete state.inventory
 	for (const [k, v] of Object.entries(state)) {
-		(mod as Record<string, any>)[k] = v
+		if (modd[k] instanceof PersistentState) {
+			modd[k].value = v
+		} else {
+			console.warn('Missing persistent state:', k,'=', v)
+		}
 	}
 	render();
 }
+
+Object.assign(window,{select,render,
+	save,load
+
+})

@@ -1,7 +1,11 @@
 import type { Item } from "./types"
 
 export class Inventory {
-	#contents: Item[] = []
+	#contents: Item[] 
+
+	constructor (contents: Item[] = []) {
+		this.#contents=contents
+	}
 
 	static #same(a: Item, b: Item | string) : boolean {
 		return typeof b === 'string' ? a.name === b : a.name === b.name
@@ -70,7 +74,15 @@ export class Inventory {
 	clear() :void{
 		this.#contents=[]
 	}
+
+	toJSON () : Item[] {
+		return this.#contents
+	}
+	
 }
 
 let inventory = new Inventory();
 export default inventory;
+export function setInventory (items: Item[]) {
+	inventory = new Inventory(items)
+}

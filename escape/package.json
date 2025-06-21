@@ -1,7 +1,7 @@
 {
 	"scripts": {
-	  "build": "esbuild ./*.ts --outdir=. --bundle --format=esm --tree-shaking=false",
-	  "dev": "esbuild ./*.ts --outdir=. --bundle --format=esm --tree-shaking=false --serve --servedir=."
+	  "build": "esbuild ./GAMER.ts --outdir=. --bundle --format=esm --minify",
+	  "dev": "esbuild ./GAMER.ts --outdir=. --bundle --format=esm  --serve --servedir=."
 	},
 	"type": "module",
 	"dependencies": {

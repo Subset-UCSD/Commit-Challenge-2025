@@ -1,18 +1,26 @@
 /**
  * Warning, do not use the word exp*rt in this file or you will
  * invoke the great wrath of Thomas Powell
+ * this is no longer true i hope
+ * yeah actually this is bad advice
+ * 
+ * very important: you need to export the following:
+ * - stages
+ * - state
  */
 
 import inventory from "./util/Inventory";
 import type { Item, StageInfo } from "./util/types";
 import { labyrinthEntrance } from "./areas/labyrinth";
+export * from "./areas/labyrinth";
 import { mapItem, sushiItem, compassItem, fishItem, spermPosterItem, grassItem, godWrathItem } from "./items/index";
-import type { BattleOptions } from "./renderer";
+import { removeInput, startBattle, type BattleOptions } from "./renderer";
 import {addQuest, hasQuest, resolveQuest} from './util/QuestManagerFactoryBuilderCreatorFactoryFactoryObserverConflictMediator'
-declare function  startBattle (options: BattleOptions):void
-declare function removeInput ():void
+// declare function  startBattle (options: BattleOptions):void
+// declare function removeInput ():void
+import {state} from './util/persistent-state'
 
-function BEGINNING(): StageInfo {
+export function BEGINNING(): StageInfo {
 	let I: StageInfo = {
 		location: inventory.has(mapItem) ? "Ravensmith Court" : "courtyard",
 		description: "you stand in a desolate courtyard shrouded in fog. a cobblestone pathway surrounds a fountain, water dribbles meekly from a fish statue into the dark water. placards remain the only sign of where benches once stood, removed probably to discourage the homeless from sleeping here. the path continues north and south. ",
@@ -35,10 +43,10 @@ function BEGINNING(): StageInfo {
 	return I;
 }
 
-let talkedToRaven = false;
-let ravenCompassTaken = false;
-let grassPicked = 0
-function northPath(): StageInfo {
+export const talkedToRaven = state( false);
+export const ravenCompassTaken = state( false);
+export const grassPicked = state( 0)
+export function northPath(): StageInfo {
 	let I: StageInfo = {
 		location: inventory.has(mapItem) ? "Unnamed Field on Ravensmith Estate" : "field",
 		description: "the path trails off, leaving you standing on a field of uncut grass. ",
@@ -55,22 +63,22 @@ function northPath(): StageInfo {
 			return "you do not wish to stray from the path. in the fog, it is easy to get lost.";
 		};
 	}
-	if (!talkedToRaven) {
+	if (!talkedToRaven.value) {
 		I.description += "<span style='color: #DAD2FF'>a raven dressed in a long, dark trenchcoat shivers in the cold.</span> ";
 		I.choices["talk to raven"] = () => {
-			talkedToRaven = true;
+			talkedToRaven .value=(true);
 			inventory.add(mapItem);
 			return "the raven's name is Ravensmith. he apparently owns this property. since you're trespassing, he gives you a map for more accurate trespassery. +1 map";
 		}
 	} else {
 		I.description += "<span style='color: #B2A5FF'>Ravensmith, dressed in a long, dark trenchcoat, shivers in the cold.</span> ";
-		if (!ravenCompassTaken) {
+		if (!ravenCompassTaken.value) {
 			I.description += "<span style='color: #E5989B'>a small, round object protrudes from his pocket. a compass, perhaps?</span> ";
 		}
 		I.choices["attack Ravensmith"] = ()=>{
 				return "attacking Ravensmith now will softlock you from the game. i cant let that happen. "
 		}
-		if (!inventory.has(sushiItem) || ravenCompassTaken) {
+		if (!inventory.has(sushiItem) || ravenCompassTaken.value) {
 			I.choices["talk to Ravensmith"] = () => {
 				return "Ravensmith does not bother with small talk. he humphs at you and turns his head away. "
 			}
@@ -79,12 +87,12 @@ function northPath(): StageInfo {
 			I.choices["talk to Ravensmith"] = () => {
 				inventory.add(compassItem)
 				inventory.remove(sushiItem, 1);
-				ravenCompassTaken = true;
+				ravenCompassTaken .value=(true);
 				return "you ask for his compass, offering a piece of sushi. he obliges. +1 compass "
 			}
 			
 		}
-		if (ravenCompassTaken){
+		if (ravenCompassTaken.value){
 I.choices["attack Ravensmith"] =()=>{
 				startBattle({ 
 					attackTime:200,
@@ -101,10 +109,10 @@ I.choices["attack Ravensmith"] =()=>{
 		}
 		
 	}
-	if (Math.random() < 0.5 || grassPicked < 2) {
+	if (Math.random() < 0.5 || grassPicked.value < 2) {
 		I.choices["pick grass"] = () => {
 			inventory.add(grassItem)
-			grassPicked++
+			grassPicked.value++
 			return "you pluck a blade of grass from the ground. +1 blade of grass.";
 		}
 	} else {
@@ -120,9 +128,9 @@ I.choices["attack Ravensmith"] =()=>{
 	return I;
 }
 
-let spermDonorPoster = true;
-let wincoFish = true;
-function southPath(): StageInfo {
+export const spermDonorPoster =state( true);
+export const wincoFish =state( true);
+export function southPath(): StageInfo {
 	let I: StageInfo = {
 		location: inventory.has(mapItem) ? "Ravensmith Estate Wall" : "brick wall",
 		description: "the path abruptly ends at a brick wall. you jump to look over, but all you see is fog. ",
@@ -131,19 +139,19 @@ function southPath(): StageInfo {
 			"follow the wall": followWall,
 		},
 	}
-	if (wincoFish) {
+	if (wincoFish.value) {
 		I.description += "<span style='color: #FFB4A2'>there is a frozen fish wrapped in plastic at the base of the wall. the packaging says it's from winco.</span> ";
 		I.choices["take fish"] = () => {
 			inventory.add(fishItem);
-			wincoFish = false;
+			wincoFish.value= (false);
 			return "you put the fish in your pocket. +1 fish.";
 		}
 	}
-	if (spermDonorPoster) {
+	if (spermDonorPoster.value) {
 		I.description += "<span style='color: #FFCDB2'>there is a sperm donor poster on the wall. a handsome man smiles at you and beckons for your sperm.</span> ";
 		I.choices["take sperm donor poster"] = () => {
 			inventory.add(spermPosterItem)
-			spermDonorPoster = false
+			spermDonorPoster  .value=(false)
 			return "you carefully rip off the poster, revealing a hole just large enough for you to crawl through. +1 poster.";
 		}
 	} else {
@@ -153,7 +161,7 @@ function southPath(): StageInfo {
 	return I;
 }
 
-function hole():StageInfo {
+export function hole():StageInfo {
 	return {
 		location: "hole",
 		description: "the hole reveals a dead end.",
@@ -180,15 +188,15 @@ function hole():StageInfo {
 
 const ratQuest=  "find a rat from the brick wall"
 const ratBringQuest=  "give jimmy the rat"
-let beatJimmyUp = false
-function followWall():StageInfo {
+export const beatJimmyUp = state(false)
+export function followWall():StageInfo {
 	const I: StageInfo  = {
 		location: inventory.has(mapItem) ? "Ravensmith Estate Wall" : "brick wall",
 		description: "you continue along the wall until you see a metal-plated sign bolted on the wall. ",
 		choices: {
 			"return to the path": southPath,
 			"read sign": () => {
-				if(!beatJimmyUp){
+				if(!beatJimmyUp.value){
 					addQuest(ratBringQuest)
 					if (!inventory.has(ratItem)) addQuest(ratQuest)
 				}
@@ -212,7 +220,7 @@ function followWall():StageInfo {
 				theirAttackSound: '../ass/ets/hit-slap.mp3',
 			})
 			addQuest("escape the feds")
-			beatJimmyUp = true
+			beatJimmyUp .value= (true)
 			return "congrats. you have assaulted a man. the feds are after you now."
 		}
 	}
@@ -220,7 +228,7 @@ function followWall():StageInfo {
 }
 
 const ratItem :Item= {name:'rat',lore:'dead. stinky'}
-function ratDead():StageInfo {
+export function ratDead():StageInfo {
 	return {
 		location:'hole',
 description:"congrats u beat up a defenseless rat. +1 rat",
@@ -228,8 +236,8 @@ choices:{'exit':southPath}
 	}
 }
 
-let manHungry = true;
-function fieldMan(): StageInfo {
+export const manHungry = state(true);
+export function fieldMan(): StageInfo {
 	let I: StageInfo = {
 		location: inventory.has(mapItem) ? "Private Property - DO NOT TRESPASS!" : "field",
 		description: "you trudge on blindly into the endless grassland. suddenly, you spot a man, huddled in tattered clothes lying on the ground. ",
@@ -239,16 +247,16 @@ function fieldMan(): StageInfo {
 		},
 		theme: 'northernProperty'
 	};
-	if (inventory.has(fishItem) && manHungry) {
+	if (inventory.has(fishItem) && manHungry.value) {
 		I.description += 'he sees the fish sticking out of your back pocket and shakily holds a finger up to it. he offers to turn it into sushi. ';
 		I.choices["give fish to man"] = () => {
 			// manState = 'full'
 			inventory.remove(fishItem, 1);
 			for (let i = 4; i--;) inventory.add(sushiItem);
-			manHungry = false;
+			manHungry .value= (false);
 			return "bro snatches your fish, tears off the plastic with his teeth, and in a show beyond your comprehension, you find yourself being served a plate of sushi. he has cut the roll into eight slices and graciously tipped himself half of them, which he voraciously stuffs into his mouth. he burps, yawns, and falls asleep. +4 sushi pieces. ";
 		};
-	} else if (manHungry) {
+	} else if (manHungry.value) {
 		I.description += "<span style='color: #A6F1E0'>the man stares as you, and you stare back. his stomach grumbles.</span> ";
 	} else {
 		I.description += "<span style='color: #F7CFD8'>he is soundly asleep, snoring a cacophony.</span> ";
@@ -256,7 +264,7 @@ function fieldMan(): StageInfo {
 	return I;
 }
 
-function powell():StageInfo {
+export function powell():StageInfo {
 	let I: StageInfo = {
 		location: inventory.has(mapItem) ? "Private Property - DO NOT TRESPASS!" : "field",
 		description: "<img src='./assets/powel.jpg' alt='man' id='powpow'>\n\na mysterious figure appears from the fog. you try to take a step back, but find yourself only stepping forward. you freeze, too afraid to move in his presence. ",
@@ -283,7 +291,7 @@ document.addEventListener("keydown", (e: KeyboardEvent) => {
 	t.textContent += e.key;
 });
 
-let passwordGuessed = false;
+export const passwordGuessed = state(false);
 function passwordStage(description: string, password: string, nextStage: () => StageInfo): StageInfo {
 	let I: StageInfo = {
 		location: inventory.has(mapItem) ? "Ravensmith Court" : 'courtyard',
@@ -307,8 +315,8 @@ function passwordStage(description: string, password: string, nextStage: () => S
 	return I;
 }
 
-function password1(): StageInfo { 
-	if (!passwordGuessed) {
+export function password1(): StageInfo { 
+	if (!passwordGuessed.value) {
 		return passwordStage("enter password", "password", password2);
 	} else {
 		return {
@@ -318,15 +326,15 @@ function password1(): StageInfo {
 		};
 	}
 }
-function password2(): StageInfo { return passwordStage("password is incorrect", "incorrect", password3);}
-function password3(): StageInfo { return passwordStage("try again", "again", password4);}
-function password4(): StageInfo { return passwordStage("try again later", "again later", passwordEnd);}
+export function password2(): StageInfo { return passwordStage("password is incorrect", "incorrect", password3);}
+export function password3(): StageInfo { return passwordStage("try again", "again", password4);}
+export function password4(): StageInfo { return passwordStage("try again later", "again later", passwordEnd);}
 
-function passwordEnd(): StageInfo {
+export function passwordEnd(): StageInfo {
 	removeInput();
 
-	if (!passwordGuessed) inventory.add(godWrathItem);
-	passwordGuessed = true;
+	if (!passwordGuessed.value) inventory.add(godWrathItem);
+	passwordGuessed .value= (true);
 	
 	let I: StageInfo = {
 		location: 'courtyard',
@@ -337,8 +345,8 @@ function passwordEnd(): StageInfo {
 	return I;
 }
 
-function rubberRoom1(): StageInfo {
-	if (rubberloops > MAX_LOOPS_RUBBER) {
+export function rubberRoom1(): StageInfo {
+	if (rubberloops.value > MAX_LOOPS_RUBBER) {
 		return {
 			location: inventory.has(mapItem) ? "Ravensmith Court" : 'courtyard',
 			description: 'you slip and fall into the fountain, again. grasping for breath, you frantically try to paddle out, only to realize the water is only up to your knees.',
@@ -360,7 +368,7 @@ function rubberRoom1(): StageInfo {
 
 // 🤢🤢🤢🤢🤮🤮🤮🤮🤮🤮
 
-function rubberRoom2(): StageInfo {
+export function rubberRoom2(): StageInfo {
 	return {
 		location: '???',
 		description:
@@ -370,7 +378,7 @@ function rubberRoom2(): StageInfo {
 	};
 }
 
-function rubberRoom3(): StageInfo {
+export function rubberRoom3(): StageInfo {
 	return {
 		location: '???'
 		, description: 'you wake up.'
@@ -379,21 +387,21 @@ function rubberRoom3(): StageInfo {
 	}
 }
 const MAX_LOOPS_RUBBER = 9
-let rubberloops = 0
-function rubberRoom(): StageInfo {
+export const rubberloops = state(0)
+export function rubberRoom(): StageInfo {
 	return {
 		location: 'rubber room',
 		description: '..a rubber room with rats. and rats make you crazy.',
 		choices: {
-			'crazy?': rubberloops > MAX_LOOPS_RUBBER ? rubberRoomExit1 : () => {
-				rubberloops += 1
+			'crazy?': rubberloops.value > MAX_LOOPS_RUBBER ? rubberRoomExit1 : () => {
+				rubberloops.value++
 				return 'i was crazy once. they locked me in a room.'
 			}
 		},
 		theme: 'fountainRats'
 	};
 }
-function rubberRoomExit1(): StageInfo {
+export function rubberRoomExit1(): StageInfo {
 	return {
 		location: 'rubber room',
 		description: 'i was crazy once. they locked me in a room.',
@@ -401,7 +409,7 @@ function rubberRoomExit1(): StageInfo {
 		theme: 'fountainRats'
 	};
 }
-function rubberRoomExit2(): StageInfo {
+export function rubberRoomExit2(): StageInfo {
 	return {
 		location: 'rubber room',
 		description: '..a rubber room with rats, yes. and rats...',

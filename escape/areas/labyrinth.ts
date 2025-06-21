@@ -2,6 +2,7 @@ import type { StageInfo } from "../util/types";
 import { randomWord } from "../util/text";
 import { rd, clean, shuffleObject } from "../util/text";
 import inventory from "../util/Inventory";
+import { state } from "../util/persistent-state";
 
 const Dir = {
 	N: "north",
@@ -27,10 +28,10 @@ const dictionary = {
 } as const;
 const t = (k: keyof typeof dictionary) => randomWord(dictionary, k);
 
-let labyrinthState: Dire[] = [];
+export const labyrinthState = state<Dire[]>([]);
 let l_diff = 8;
 const _exp = (d: Dire) => { pl(d); return labyrinthDir };
-let labyrinthSol = Array(l_diff).fill(0).map(_ => Object.values(Dir)[Math.floor(Math.random() * Object.values(Dir).length)]);
+export const labyrinthSol = state(Array(l_diff).fill(0).map(_ => Object.values(Dir)[Math.floor(Math.random() * Object.values(Dir).length)]));
 let labyrinthChoices = {
 	"go north": _exp(Dir.N),
 	"go south": _exp(Dir.S),
@@ -45,15 +46,15 @@ export function labyrinthEntrance(): StageInfo {
 	};
 	return I;
 }
-function labyrinthDir(): StageInfo {
+export function labyrinthDir(): StageInfo {
 	let I: StageInfo = {
 		location: "courtyard?",
-		description: clean(`you ${t("walk")} ${labyrinthState.at(-1)}. 
-			${rd("the walls of the courtyard seem to have grown taller...", 1, labyrinthState.length == 1)}
-			${rd("is it just you, or is the architecture becoming more... brutalist?", 1, labyrinthState.length == 2)}
-			${rd("thick vines creep up the walls. seems like you are thoroughly lost...", 1, labyrinthState.length == 3)}
+		description: clean(`you ${t("walk")} ${labyrinthState.v.at(-1)}. 
+			${rd("the walls of the courtyard seem to have grown taller...", 1, labyrinthState.v.length == 1)}
+			${rd("is it just you, or is the architecture becoming more... brutalist?", 1, labyrinthState.v.length == 2)}
+			${rd("thick vines creep up the walls. seems like you are thoroughly lost...", 1, labyrinthState.v.length == 3)}
 			${""}
-		${rd("you feel like you've been this way before..." + rd("or have you?", 0.5), 0.3, labyrinthState.length == l_diff)} ${rd(`you see a ${t("material")} statue of a ${t("animal")} ${t("location")}`, 0.2, labyrinthState.length == l_diff)
+		${rd("you feel like you've been this way before..." + rd("or have you?", 0.5), 0.3, labyrinthState.v.length == l_diff)} ${rd(`you see a ${t("material")} statue of a ${t("animal")} ${t("location")}`, 0.2, labyrinthState.v.length == l_diff)
 			}`),
 		choices: shuffleObject(labyrinthChoices),
 	};
@@ -61,8 +62,8 @@ function labyrinthDir(): StageInfo {
 }
 
 function pl(d: Dire) {
-	if (labyrinthState.length >= l_diff) {
-		labyrinthState.shift();
+	if (labyrinthState.v.length >= l_diff) {
+		labyrinthState.v.shift();
 	}
-	labyrinthState.push(d);
+	labyrinthState.v.push(d);
 }

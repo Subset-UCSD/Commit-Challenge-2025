@@ -1,4 +1,4 @@
-name: Revert Commits if export is added to escape/GAMER.ts
+name: Revert Commits if unalive is added to escape/GAMER.ts
 
 on:
   push:
@@ -46,7 +46,7 @@ jobs:
         echo "Commits in this push: $COMMIT_LIST"
         echo "::set-output name=commit_list::$COMMIT_LIST"
 
-    - name: Check each commit for added lines containing export
+    - name: Check each commit for added lines containing unalive
       id: check-commits
       run: |
         # Get the list of commits from the previous step
@@ -61,22 +61,22 @@ jobs:
 
           # Check if escape/GAMER.ts was modified in this commit
           if git show --pretty=format:'' --name-only $COMMIT | grep -q 'escape/GAMER.ts'; then
-            # Check for added lines containing the word "export"
+            # Check for added lines containing the word "unalive"
             if [ "$(git rev-list --count $COMMIT^..$COMMIT)" -gt 1 ]; then
               # Compare with the parent commit
-              if git diff $COMMIT~1 $COMMIT -- escape/GAMER.ts | grep -q '^\+.*export'; then
-                echo "Added line containing 'export' found in commit $COMMIT"
+              if git diff $COMMIT~1 $COMMIT -- escape/GAMER.ts | grep -q '^\+.*unalive'; then
+                echo "Added line containing 'unalive' found in commit $COMMIT"
                 REVERT_COMMITS="$REVERT_COMMITS $COMMIT"
               else
-                echo "No added lines containing 'export' found in commit $COMMIT"
+                echo "No added lines containing 'unalive' found in commit $COMMIT"
               fi
             else
               # Single commit (no parent)
-              if git show $COMMIT -- escape/GAMER.ts | grep -q '^\+.*export'; then
-                echo "Added line containing 'export' found in commit $COMMIT"
+              if git show $COMMIT -- escape/GAMER.ts | grep -q '^\+.*unalive'; then
+                echo "Added line containing 'unalive' found in commit $COMMIT"
                 REVERT_COMMITS="$REVERT_COMMITS $COMMIT"
               else
-                echo "No added lines containing 'export' found in commit $COMMIT"
+                echo "No added lines containing 'unalive' found in commit $COMMIT"
               fi
             fi
           else
@@ -124,7 +124,7 @@ jobs:
           git config user.name "Thomas Powell"
           git config user.email "tpowell@pint.com"
           git revert $COMMIT --no-commit
-          git commit -m "FUCK YOU; STOP TRYING TO EXPORT FROM GAMER
+          git commit -m "FUCK YOU; STOP TRYING TO unalive FROM GAMER
           
           i shit my pants"
         done

@@ -244,6 +244,8 @@ const savesList = document.getElementById('savers')!
 const loadonly = document.getElementById('loadonly')!
 const savename = document.getElementById('name')! as HTMLInputElement
 
+saveWindow.addEventListener('click', (e) => e.target===e.currentTarget&& saveWindow.close())
+
 const fmt =new Intl.DateTimeFormat([],{dateStyle:'long',timeStyle:'short'})
 function openSaveLoad(mode: 'save'|'load') {
 	saveWindow.showModal()

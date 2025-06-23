@@ -421,3 +421,69 @@ margin-left: auto;}
 	transform: translate(-50%, -50%);
 	font-family: sans-serif;
 }
+
+/* https://colorhunt.co/palette/181c143c3d37697565ecdfcc */
+.modal {
+	display: block;
+	visibility: hidden;
+	border: none;
+	padding: 0;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: none;
+	background-image: repeating-linear-gradient(
+  -45deg,
+  #181C14ee,
+  #181C14ee 20px,
+  #3C3D37ee 20px,
+  #3C3D37ee 40px
+);
+/* animation: wowowow .5s linear infinite; */
+	/* It's black on iOS, even though the page text is white. */
+	color: white;
+	opacity: 0;
+	pointer-events: none;
+	/* Remove text selection on close. Should be fine without though */
+	user-select: none;
+	transition: all 0.5s;
+	max-width: unset;
+	max-height: unset;
+}
+@keyframes wowowow {
+	from {
+		background-position: 0 0;
+	}
+	to {
+		background-position: -20px -20px;
+	}
+}
+.modal[open] {
+	visibility: visible;
+	opacity: 1;
+	pointer-events: unset;
+	user-select: text;
+}
+.modal::backdrop {
+	background: none;
+}
+.modal-body {
+	border-radius: 15px;
+	padding: 20px;
+	background-color: #697565;
+	color: #181C14;
+	border: 1px solid #ECDFCC;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	transform: scale(0.2) rotate(360deg);
+	transition: transform 0.5s cubic-bezier(.34,1.53,.83,1);
+}
+.modal[open] .modal-body {
+	transform: none;
+}

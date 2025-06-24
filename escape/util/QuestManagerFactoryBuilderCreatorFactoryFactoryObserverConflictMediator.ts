@@ -82,6 +82,7 @@ export function loadQuests(data:SavedQuests):void {
   // console.log(data)
   quests=[]
   completed=data.completed
+  while (questsList.lastChild)questsList.removeChild(questsList.lastChild)
   for (const html of data.quests) {
     // if (completed.includes(html)){continue}
     const q = createQuest(html)

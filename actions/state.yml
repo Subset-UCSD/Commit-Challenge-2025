@@ -6,7 +6,7 @@ players:
       location: Paved over
       health: 100
       plan: Overload the system
-      anxiety: 9548
+      anxiety: 9598
       customs_agent: a bored-looking entity with antennae and a clipboard
       past_self_encounter: true
       can_speak: false
@@ -20,6 +20,7 @@ players:
       mind control wand: 3
       iridescent goo: 1
       Iridescent Goo Wand: 1
+      Demon Soyul Tree: 1
     info:
       location: Paved over
       immune: true
@@ -46,7 +47,7 @@ players:
       overwhelmed: true
       passed_out: true
       marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
-      cats_petted: 135
+      cats_petted: 136
       paving_success: Sean_Y has paved the entire world in concrete.
   Nick:
     health: -412010
@@ -132,15 +133,15 @@ players:
       cats_hiss_swat: false
       cats_befriended: true
       marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
-      cats_petted: 242
+      cats_petted: 243
   Geoffrey: geoffrey
-day: 65
+day: 66
 worldInfo:
   weather: Instead of a horse, the attempt to draw ASCII art resulted in the
     universe spontaneously reconfiguring itself into a giant image of a rubber
     chicken. The fabric of reality is now held together by mayonnaise and clown
     shoes.
-  day: 61
+  day: 62
   death_clock: 1
   marcelo_lie_probability: 1
   npcs:
@@ -810,6 +811,47 @@ worldInfo:
       description: The oil spill is spreading, corrupting the land with Eldritch
         energy. Find a way to contain and neutralize it!
       urgent: true
+    - name: Stop the Summoning of Azathoth
+      description: Sean_P is attempting to summon Azathoth, which would mean doom for
+        the world. Disrupt the ritual!
+      urgent: true
+    - name: Reverse the Paving
+      description: Sean_Y has paved the entire world. Find a way to reverse the paving
+        and restore the natural world.
+      urgent: true
+    - name: Tame the Ferocious Animals
+      description: The animals are staging coordinated attacks on Geoffrey's logging
+        sites and Raymond's oil derricks. Find a way to calm the animals or
+        defend the locations.
+      urgent: true
+    - name: Contain the Nolan Singularity
+      description: The hive mind of Nolan is expanding exponentially, threatening to
+        consume all realities. Find a way to contain or control this
+        singularity.
+      urgent: true
+    - name: End the Reign of the Screaming Shadows
+      description: The Whispering Woods have been transformed into the Screaming
+        Shadows! The creatures from the shadows are now raging against the
+        corporations of Oakhaven!
+      urgent: true
+    - name: Reclaim the Planet From Concrete
+      description: Revert everything from concrete!
+      urgent: true
+    - name: Nick's Catastrophe
+      description: Repair the fabric of reality after Nick's failed attempt to draw
+        ASCII art, or suffer the consequences of a universe unraveling.
+      urgent: true
+    - name: Stop Raymond's Oil Empire!
+      description: Raymond's oil drilling is causing ecological and eldritch damage.
+        Find a way to shut it down and clean up the mess!
+      urgent: true
+    - name: Clean up the Oil Slick!
+      description: Raymond's greed knows no bounds! Somebody has to clean up his oil slick!
+      urgent: true
+    - name: Contain the Oil Derrick's Spill!
+      description: The oil spill is spreading, corrupting the land with Eldritch
+        energy. Find a way to contain and neutralize it!
+      urgent: true
   azathoth:
     health: 1350
     powers:
@@ -891,7 +933,7 @@ worldInfo:
   npc_geoffrey:
     health: 100
     inventory:
-      coin: 80350
+      coin: 90400
     info: {}
   campaign_fails: false
   town_happiness: sky high1000

@@ -41,34 +41,35 @@ type EntityRayCastResult = {
  */
 export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 	// TEMP: gravity changed from -60. revert when floor is added
-	#world = new PhysicsWorld({ gravity: [0, 10, 0] });
-	#server: Server<ClientMessage, ServerMessage>;
+	private world = new PhysicsWorld({ gravity: [0, 0, 0] });
+	private server: Server<ClientMessage, ServerMessage>;
 
-	#players: Map<string, NetworkedPlayer>;
-	#createdInputs: PlayerInput[];
+	private players: Map<string, NetworkedPlayer>;
+	private createdInputs: PlayerInput[];
 
-	#entities: Map<EntityId, Entity>;
-	#bodyToEntityMap: Map<Body, Entity>;
+	private entities: Map<EntityId, Entity>;
+	private bodyToEntityMap: Map<Body, Entity>;
 
-	#toCreateQueue: Entity[];
-	#toDeleteQueue: EntityId[];
+	private toCreateQueue: Entity[];
+	private toDeleteQueue: EntityId[];
 
-	#currentTick: number;
+	private currentTick: number;
 
 	constructor() {
-		this.#createdInputs = [];
-		this.#players = new Map();
-		this.#entities = new Map();
-		this.#bodyToEntityMap = new Map();
+		this.createdInputs = [];
+		this.players = new Map();
+		this.entities = new Map();
+		this.bodyToEntityMap = new Map();
 
-		this.#toCreateQueue = [];
-		this.#toDeleteQueue = [];
+		this.toCreateQueue = [];
+		this.toDeleteQueue = [];
 
-		this.#currentTick = 0;
+		this.currentTick = 0;
 
-		this.#server = new WsServer(this);
-		this.#server.listen(8080);
+		this.server = new WsServer(this);
+		this.server.listen(8080);
 	}
+
 	/**
 	 * Checks for objects intersecting a line segment (*not* a ray) from `start`
 	 * to `end`.
@@ -81,8 +82,8 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 	 */
 	raycast(start: phys.Vec3, end: phys.Vec3, rayOptions: phys.RayOptions, exclude?: Entity): EntityRayCastResult[] {
 		const entities: Record<EntityId, EntityRayCastResult> = {};
-		for (const result of this.#world.castRay(start, end, rayOptions)) {
-			const entity = result.body && this.#bodyToEntityMap.get(result.body);
+		for (const result of this.world.castRay(start, end, rayOptions)) {
+			const entity = result.body && this.bodyToEntityMap.get(result.body);
 			if (!entity || entity === exclude) {
 				continue;
 			}
@@ -97,34 +98,28 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 		return Object.values(entities).sort((a, b) => a.distance - b.distance);
 	}
 
-	#getPlayerByEntityId(id: EntityId): NetworkedPlayer | undefined {
-		for (const player of this.#players.values()) {
-			if (player.entity?.id === id) {
-				return player;
-			}
-		}
-		return undefined;
-	}
+	getPlayerByEntityId = (id: EntityId) => this.players.values().find(p => p.id === id);
 
-	#createPlayerEntity(playerNum: number, pos: Vector3 | undefined): PlayerEntity | null {
+	private createPlayerEntity(playerNum: number, pos: Vector3 | undefined): PlayerEntity {
 		console.log(playerNum);
 		if (!pos) {
-			const playerCount = Array.from(this.#players.values()).filter(({ entity }) => entity).length;
+			// A player is a player only if they have a player entity
+			const playerCount = Array.from(this.players.values()).filter(({ entity }) => entity).length;
 			pos = [-5 + Math.floor((playerCount + 1) / 2) * (playerCount % 2 === 1 ? 1 : -1) * 2, -1, -1];
 		}
 
-		let entity = new PlayerEntity(this, [0, 0, 0], "./marcelos/notacube.glb");
+		let entity = new PlayerEntity(this, [0, 0, 0], "./models/notacube.glb");
 		return entity;
 	}
 
 	handlePlayerJoin(conn: Connection<ServerMessage>, name = `Player ${conn.id.slice(0, 6)}`) {
-		let player = this.#players.get(conn.id);
+		let player = this.players.get(conn.id);
 		if (player) {
 			player.conn = conn;
 			player.online = true;
 		} else {
 			let input = new PlayerInput();
-			this.#createdInputs.push(input);
+			this.createdInputs.push(input);
 
 			player = {
 				id: conn.id,
@@ -135,10 +130,10 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 				name,
 				debug: false,
 			};
-			this.#players.set(conn.id, player);
+			this.players.set(conn.id, player);
 
 			// TEMP
-			this.#registerEntity(this.#createPlayerEntity(Math.random(), [0, 0, 0])!);
+			this.registerEntity(this.createPlayerEntity(Math.random(), [0, 0, 0])!);
 		}
 	}
 	handlePlayerDisconnect(id: string) {
@@ -156,7 +151,7 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 	handleMessage(data: ClientMessage, conn: Connection<ServerMessage>): void {
 		switch (data.type) {
 			case "client-input": {
-				this.#players.get(conn.id)?.input?.updateInputs?.(data);
+				this.players.get(conn.id)?.input?.updateInputs?.(data);
 				break;
 			}
 			case "chat": {
@@ -171,10 +166,10 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 		}
 	}
 
-	getCurrentTick = () => this.#currentTick;
+	getCurrentTick = () => this.currentTick;
 
 	updateGameState() {
-		for (let [id, player] of this.#players.entries()) {
+		for (let [id, player] of this.players.entries()) {
 			if (!player.entity) {
 				continue;
 			}
@@ -192,32 +187,32 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 
 			player.entity.move(movement);
 		}
-		this.#nextTick();
+		this.nextTick();
 	}
 
-	#nextTick() {
-		this.#currentTick++;
+	private nextTick() {
+		this.currentTick++;
 
 		// Tick the world
-		this.#world.nextTick();
+		this.world.nextTick();
 
 		// Tick the player inputs
-		for (let input of this.#createdInputs) {
+		for (let input of this.createdInputs) {
 			input.serverTick();
 		}
 
 		// Tick each of the entities
-		for (let entity of this.#entities.values()) {
+		for (let entity of this.entities.values()) {
 			entity.tick();
 		}
 
 		// Run delete jobs
-		if (this.#toCreateQueue.length > 0 || this.#toDeleteQueue.length > 0) {
+		if (this.toCreateQueue.length > 0 || this.toDeleteQueue.length > 0) {
 			this.processEntityQueues();
 		}
 	}
 
-	#serializeNetworkedPlayer(player: NetworkedPlayer): PlayerEntry {
+	private serializeNetworkedPlayer(player: NetworkedPlayer): PlayerEntry {
 		return {
 			name: player.name,
 			entityId: player.entity?.id,
@@ -226,12 +221,12 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 	}
 
 	broadcastState() {
-		for (const player of this.#players.values()) {
+		for (const player of this.players.values()) {
 			player.conn.send({
 				type: "entire-state",
 				groups: [
 					{
-						instances: [...this.#entities.values().map((entity) => entity.serialize())],
+						instances: [...this.entities.values().map((entity) => entity.serialize())],
 						pointLights: [
 							{
 								position: [10, 2, 0],
@@ -255,60 +250,61 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 				camera: Array.from(
 					cameraTransform([0, 20, 20], { y: 0, x: -Math.PI / 8 /* * (Math.sin(Date.now() / 847) + 1)*/, z: 0 }),
 				),
+				
 				// cameraInterpolation: {duration:SERVER_GAME_TICK},
-				//physicsBodies: player.debug ? this.#world.serialize() : undefined,
-				/*others: Array.from(this.#players.values(), (p) =>
-					p === player ? [] : [this.#serializeNetworkedPlayer(p)],
+				// physicsBodies: player.debug ? this.world.serialize() : undefined,
+				/*others: Array.from(this.players.values(), (p) =>
+					p === player ? [] : [this.serializeNetworkedPlayer(p)],
 				).flat(),
-				me: this.#serializeNetworkedPlayer(player),*/
+				me: this.serializeNetworkedPlayer(player),*/
 			});
 		}
 	}
 
 	addToDeleteQueue(sussyAndRemovable: EntityId) {
-		const index = this.#toCreateQueue.findIndex((entity) => entity.id === sussyAndRemovable);
+		const index = this.toCreateQueue.findIndex((entity) => entity.id === sussyAndRemovable);
 		if (index !== -1) {
-			this.#toCreateQueue.splice(index, 1);
+			this.toCreateQueue.splice(index, 1);
 			return;
 		}
 
-		this.#toDeleteQueue.push(sussyAndRemovable);
+		this.toDeleteQueue.push(sussyAndRemovable);
 	}
 
 	addToCreateQueue(entity: Entity) {
 		// If entity was in delete queue, remove it from there instead (can happen
 		// if an entity is deleted then re-added in the same tick)
-		const index = this.#toDeleteQueue.indexOf(entity.id);
+		const index = this.toDeleteQueue.indexOf(entity.id);
 		if (index !== -1) {
-			this.#toDeleteQueue.splice(index, 1);
+			this.toDeleteQueue.splice(index, 1);
 			return;
 		}
 
-		this.#toCreateQueue.push(entity);
+		this.toCreateQueue.push(entity);
 	}
 
 	processEntityQueues() {
-		for (const entity of this.#toCreateQueue) {
-			this.#entities.set(entity.id, entity);
-			this.#bodyToEntityMap.set(entity.body, entity);
-			entity.addToWorld(this.#world);
+		for (const entity of this.toCreateQueue) {
+			this.entities.set(entity.id, entity);
+			this.bodyToEntityMap.set(entity.body, entity);
+			entity.addToWorld(this.world);
 		}
-		this.#toCreateQueue = [];
+		this.toCreateQueue = [];
 
-		for (const entityId of this.#toDeleteQueue) {
-			let entity = this.#entities.get(entityId);
+		for (const entityId of this.toDeleteQueue) {
+			let entity = this.entities.get(entityId);
 
 			console.log("delete", entityId);
 
 			if (entity) {
-				this.#bodyToEntityMap.delete(entity.body);
-				this.#entities.delete(entity.id);
-				entity.removeFromWorld(this.#world);
+				this.bodyToEntityMap.delete(entity.body);
+				this.entities.delete(entity.id);
+				entity.removeFromWorld(this.world);
 			} else {
 				console.log("Bug Detected! Tried to delete an entity that didn't exist");
 			}
 		}
-		this.#toDeleteQueue = [];
+		this.toDeleteQueue = [];
 	}
 
 	/**
@@ -320,28 +316,28 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 	 * NOTE: After the world has been created, use `addToCreateQueue` to avoid
 	 * issues while creating or removing entities during a tick.
 	 */
-	#registerEntity(entity: Entity) {
-		this.#entities.set(entity.id, entity);
-		this.#bodyToEntityMap.set(entity.body, entity);
+	private registerEntity(entity: Entity) {
+		this.entities.set(entity.id, entity);
+		this.bodyToEntityMap.set(entity.body, entity);
 
 		// this is one way to implement collision that uses bodyToEntityMap without passing Game reference to entities
 		entity.body.addEventListener(Body.COLLIDE_EVENT_NAME, (params: { body: Body; contact: any }) => {
 			const otherBody: Body = params.body;
-			const otherEntity: Entity | undefined = this.#bodyToEntityMap.get(otherBody);
+			const otherEntity: Entity | undefined = this.bodyToEntityMap.get(otherBody);
 			if (otherEntity) entity.onCollide(otherEntity);
 		});
 
-		entity.addToWorld(this.#world);
+		entity.addToWorld(this.world);
 	}
 
 	/**
 	 * NOTE: After the world has been created, use `addToDeleteQueue` to avoid
 	 * issues while creating or removing entities during a tick.
 	 */
-	#unregisterEntity(entity: Entity) {
-		this.#entities.delete(entity.id);
-		this.#bodyToEntityMap.delete(entity.body);
-		entity.removeFromWorld(this.#world);
+	private unregisterEntity(entity: Entity) {
+		this.entities.delete(entity.id);
+		this.bodyToEntityMap.delete(entity.body);
+		entity.removeFromWorld(this.world);
 	}
 
 	/**
@@ -351,6 +347,6 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 	 * and (b) to conserve resources. we love the nevironment
 	 */
 	get hasPlayers() {
-		return this.#server.hasConnection;
+		return this.server.hasConnection;
 	}
 }

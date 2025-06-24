@@ -1,6 +1,6 @@
 import { mat4 } from "gl-matrix";
 
-import { EntityId } from "../rear-end/entities/Entity";
+import { EntityId } from "../server/entities/Entity";
 import { Quaternion, Vector2, Vector3 } from "./types";
 
 export type InterpolationSettings = {

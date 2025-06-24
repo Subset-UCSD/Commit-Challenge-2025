@@ -23,6 +23,7 @@ export class InputListener<Inputs extends string> {
 	}
 
 	handleInput(key: Inputs | null, pressed: boolean): void {
+		console.log("handling input");
 		if (pressed && !this.enabled) {
 			return;
 		}

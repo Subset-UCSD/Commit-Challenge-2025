@@ -8,6 +8,8 @@ export type Keys = Omit<ClientInputs, "lookDir">;
  * looping over keys.
  *
  * Mostly exists as a TypeScript hack.
+ * 
+ * wow this is so unnecessarily hacky! you've managed to make formerly clear code incomprehensible :) -nick
  */
 function mapKeys<T>(func: (key: keyof Keys) => T): Record<keyof Keys, T> {
 	return {

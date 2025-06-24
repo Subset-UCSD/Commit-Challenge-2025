@@ -192,6 +192,7 @@ const inputListener = new InputListener({
 	},
 	period: SERVER_GAME_TICK,
 });
+inputListener.listen();
 
 //#region rendering
 const canvas = document.getElementById("canvas");

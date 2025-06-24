@@ -1,3 +1,11 @@
+/**
+ * This is the top-level file that runs the entire game.
+ * You should not need to modify it.
+ * 
+ * Instead if you find yourself wanting to modify this file,
+ * consider modifying Game.ts instead if you're trying to 
+ * implement game logic
+ */
 import { SERVER_GAME_TICK } from "../communism/constants";
 import { delay } from "../communism/lib/delay";
 import { Game } from "./Game";

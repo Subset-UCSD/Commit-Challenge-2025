@@ -212,7 +212,7 @@ export class WsServer implements Server<ClientMessage, ServerMessage> {
 		}
 
 		const connection = this.#getConnection(ws);
-		
+
 		// If the client hasn't been assigned an id, they are rude. do not respond 🧐
 		if (!connection) return;
 

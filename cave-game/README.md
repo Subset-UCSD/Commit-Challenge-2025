@@ -58,7 +58,6 @@ loot items:
 - junk (cobwebs, dust, hair)
 
 - crafting materials for
-
   - special damage effects
   - better weapons
   - healing tonics, immunity brews for certain damage types

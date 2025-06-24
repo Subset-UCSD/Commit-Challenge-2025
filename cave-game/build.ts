@@ -15,7 +15,7 @@ if (!subcommands.includes(subcommand)) {
 const watchMode = subcommand === "watch";
 
 const serverContext = await esbuild.context({
-	entryPoints: ["rear-end/index.ts"],
+	entryPoints: ["server/index.ts"],
 	bundle: true,
 	platform: "node",
 	packages: "external",
@@ -25,7 +25,7 @@ const serverContext = await esbuild.context({
 });
 
 const clientContext = await esbuild.context({
-	entryPoints: ["frontend/index.ts"],
+	entryPoints: ["client/index.ts"],
 	bundle: true,
 	loader: {
 		".frag": "text",

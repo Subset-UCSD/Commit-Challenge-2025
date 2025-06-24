@@ -211,30 +211,12 @@ export class WsServer implements Server<ClientMessage, ServerMessage> {
 			}
 		}
 
-		// If the client hasn't been assigned an id, they are rude. do not respond 🧐
 		const connection = this.#getConnection(ws);
-		/*if (!connection) return;
-			case "hi":
-				ws.send(JSON.stringify({ type: "you are", id: }));
-				ws.send(JSON.stringify({ type: "chats", contents: [] }));
-			case "chat":
-				for (const cxn of this.activePlayers.values()) {
-					cxn.send({ type: "chat", user: player.id, content: message.message });
-				}
-				database.chats?.push(`[${player.id}] ${message.message}`);
-				await writeFile("./db.json", JSON.stringify(database));
-				break;
-			case "key-state-update":
-				console.log(player.id, "pressed sum keys", message.keys);
-				player.updateKeyState(message.keys);
-				break;
-		}*/
-
+		
 		// If the client hasn't been assigned an id, they are rude. do not respond 🧐
-		// const connection = this.#getConnection(ws);
 		if (!connection) return;
 
-		//this.#game.handleMessage(data, connection);
+		this.#game.handleMessage(data, connection);
 	}
 	broadcast(message: ServerMessage): void {
 		for (const ws of this.#wss.clients) {

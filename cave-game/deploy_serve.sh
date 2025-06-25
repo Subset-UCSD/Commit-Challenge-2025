@@ -2,6 +2,8 @@
 
 # called by .github/workflows/fuckelonmusk.yml
 
+git diff HEAD # wtf who left uncommited changes
+git reset --hard HEAD # this will still break if someone decides to commit on the server
 git pull
 
 npm install

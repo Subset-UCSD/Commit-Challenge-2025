@@ -100,7 +100,7 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 
 	getPlayerByEntityId = (id: EntityId) => this.players.values().find((p) => p.id === id);
 
-	private createPlayerEntity(playerId: string, pos: Vector3 = [0,0,0]): PlayerEntity {
+	private createPlayerEntity(playerId: string, pos: Vector3 = [0, 0, 0]): PlayerEntity {
 		let player = this.players.get(playerId);
 		if (!player) {
 			throw "Trying to create player entity, but player doesn't exist";

@@ -108,6 +108,7 @@ export class PlayerEntity extends Entity {
 	}
 
 	move(movement: MovementInfo): void {
+		console.log("moving!!!", movement);
 		//console.log(this.getPos());
 
 		this.lookDir = new phys.Vec3(...movement.lookDir);
@@ -146,6 +147,7 @@ export class PlayerEntity extends Entity {
 		if (deltaVelocity.length() > maxChange) {
 			deltaVelocity = deltaVelocity.scale(maxChange / deltaVelocity.length());
 		}
+		console.log("Applying impulse: ", this.body.mass, deltaVelocity);
 		this.body.applyImpulse(deltaVelocity.scale(this.body.mass));
 
 		if (movement.jump) {

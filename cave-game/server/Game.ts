@@ -100,15 +100,14 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 
 	getPlayerByEntityId = (id: EntityId) => this.players.values().find(p => p.id === id);
 
-	private createPlayerEntity(playerNum: number, pos: Vector3 | undefined): PlayerEntity {
-		console.log(playerNum);
-		if (!pos) {
-			// A player is a player only if they have a player entity
-			const playerCount = Array.from(this.players.values()).filter(({ entity }) => entity).length;
-			pos = [-5 + Math.floor((playerCount + 1) / 2) * (playerCount % 2 === 1 ? 1 : -1) * 2, -1, -1];
+	private createPlayerEntity(playerId: string, pos: Vector3 = [0,0,0]): PlayerEntity {
+		let player = this.players.get(playerId);
+		if (!player) {
+			throw "Trying to create player entity, but player doesn't exist";
 		}
 
 		let entity = new PlayerEntity(this, [0, 0, 0], "./models/notacube.glb");
+		player.entity = entity;
 		return entity;
 	}
 
@@ -133,7 +132,7 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 			this.players.set(conn.id, player);
 
 			// TEMP
-			this.registerEntity(this.createPlayerEntity(Math.random(), [0, 0, 0])!);
+			this.registerEntity(this.createPlayerEntity(conn.id));
 		}
 	}
 	handlePlayerDisconnect(id: string) {
@@ -170,6 +169,7 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 
 	updateGameState() {
 		for (let [id, player] of this.players.entries()) {
+			console.log(player, player.entity);
 			if (!player.entity) {
 				continue;
 			}
@@ -221,6 +221,8 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 	}
 
 	broadcastState() {
+		//console.clear();
+		console.log(...this.entities.values().map((entity) => entity.serialize()));
 		for (const player of this.players.values()) {
 			player.conn.send({
 				type: "entire-state",

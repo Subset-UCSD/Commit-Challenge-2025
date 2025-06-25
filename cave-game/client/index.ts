@@ -183,7 +183,7 @@ const inputListener = new InputListener({
 		Space: "jump",
 	},
 	handleInputs: (inputs) => {
-		const [x, y, z] = [0, 0, 0]; //camera.getForwardDir();
+		const [x, y, z] = [0,0,10];
 		send({
 			type: "client-input",
 			...inputs,

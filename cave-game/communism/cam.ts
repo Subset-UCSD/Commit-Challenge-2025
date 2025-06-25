@@ -26,10 +26,13 @@ export type YXZEuler = {
 
 /**
  * cannon-es/gl-matrix agnostic utility function that constructs a transformation matrix from a camera's position and roation
- * 
+ *
  * also helpful for converting euler angles to matrix
  */
-export function cameraTransform(position: vec3 | phys.Vec3 | Vector3 | null, rotation: YXZEuler | phys.Quaternion | null): mat4 {
+export function cameraTransform(
+	position: vec3 | phys.Vec3 | Vector3 | null,
+	rotation: YXZEuler | phys.Quaternion | null,
+): mat4 {
 	const cameraTransform = mat4.create();
 	if (position) {
 		if ("x" in position) {

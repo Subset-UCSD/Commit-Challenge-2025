@@ -10,17 +10,16 @@
 import * as phys from "cannon-es";
 import { Body } from "cannon-es";
 
-import { cameraTransform } from "../communism/cam";
 import { SERVER_GAME_TICK } from "../communism/constants";
 import { ClientMessage, PlayerEntry, ServerMessage } from "../communism/messages";
 import { MovementInfo, Vector3 } from "../communism/types";
+import { shouldBeNever } from "../communism/utils";
 import { Entity, EntityId } from "./entities/Entity";
 import { PlayerEntity } from "./entities/PlayerEntity";
 import { PlayerInput } from "./net/PlayerInput";
 import { Connection, Server, ServerHandlers } from "./net/Server";
 import { WsServer } from "./net/WsServer";
 import { PhysicsWorld } from "./PhysicsWorld";
-import { shouldBeNever } from "../communism/utils";
 
 interface NetworkedPlayer {
 	input: PlayerInput;
@@ -108,7 +107,7 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 		}
 
 		let entity = new PlayerEntity(this, [0, 0, 0], "./models/notacube.glb");
-		this.registerEntity( new PlayerEntity(this, [0, 0, -10], "./models/notacube.glb"))
+		this.registerEntity(new PlayerEntity(this, [0, 0, -10], "./models/notacube.glb"));
 		player.entity = entity;
 		return entity;
 	}
@@ -156,17 +155,17 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 				break;
 			}
 			case "chat": {
-				break
+				break;
 			}
 			case "join": {
-				break
+				break;
 			}
-			case 'client-naive-orbit-camera-angle': {
-				break
+			case "client-naive-orbit-camera-angle": {
+				break;
 			}
 			default:
 				console.warn(`Unhandled message '${data["type"]}'`);
-				shouldBeNever(data['type'])
+				shouldBeNever(data["type"]);
 		}
 	}
 
@@ -259,11 +258,11 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 					// cameraTransform: Array.from(
 					// 	cameraTransform([0, 20, 20], { y: 0, x: -Math.PI / 8 /* * (Math.sin(Date.now() / 847) + 1)*/, z: 0 }),
 					// )
-					type: 'client-naive-orbit',
-					minRx:-Math.PI/3,
-					maxRx:Math.PI/3,
-					origin:[0,0,0],
-					radius:10
+					type: "client-naive-orbit",
+					minRx: -Math.PI / 3,
+					maxRx: Math.PI / 3,
+					origin: [0, 0, 0],
+					radius: 10,
 				},
 
 				// cameraInterpolation: {duration:SERVER_GAME_TICK},

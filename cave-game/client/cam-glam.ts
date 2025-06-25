@@ -1,50 +1,53 @@
 import { allowDomExceptions } from "./lib/allowDomExceptions";
 
 export type CamGlamMethods = {
-  lockPointer: (isTouch: boolean) => void;
+	lockPointer: (isTouch: boolean) => void;
 	unlockPointer: () => void;
-}
+};
 
-export function listenToMovement(elem: HTMLElement, callback: (movementX: number, movementY: number, isTouch: boolean) => void) {
-  elem.addEventListener("mousemove", (e) => {
-			if (document.pointerLockElement === elem) {
-				callback(e.movementX,e.movementY,false);
-			}
-		});
+export function listenToMovement(
+	elem: HTMLElement,
+	callback: (movementX: number, movementY: number, isTouch: boolean) => void,
+) {
+	elem.addEventListener("mousemove", (e) => {
+		if (document.pointerLockElement === elem) {
+			callback(e.movementX, e.movementY, false);
+		}
+	});
 
-type DragState = { pointerId: number; lastX: number; lastY: number };
-		let dragState: DragState | null = null;
-		document.addEventListener("pointerdown", (e) => {
-			if (e.pointerType === "touch" && !dragState) {
-				dragState = { pointerId: e.pointerId, lastX: e.clientX, lastY: e.clientY };
-				try {
-					elem.setPointerCapture(e.pointerId);
-				} catch (error) {
-					// - Failed to execute 'setPointerCapture' on 'Element':
-					//   InvalidStateError [touching after long press right click on
-					//   Windows?]
-					allowDomExceptions(error, ["InvalidStateError"]);
-				}
+	type DragState = { pointerId: number; lastX: number; lastY: number };
+	let dragState: DragState | null = null;
+	document.addEventListener("pointerdown", (e) => {
+		if (e.pointerType === "touch" && !dragState) {
+			dragState = { pointerId: e.pointerId, lastX: e.clientX, lastY: e.clientY };
+			try {
+				elem.setPointerCapture(e.pointerId);
+			} catch (error) {
+				// - Failed to execute 'setPointerCapture' on 'Element':
+				//   InvalidStateError [touching after long press right click on
+				//   Windows?]
+				allowDomExceptions(error, ["InvalidStateError"]);
 			}
-		});
-		elem.addEventListener("pointermove", (e) => {
-			if (e.pointerId === dragState?.pointerId) {
-				const movementX = e.clientX - dragState.lastX;
-				const movementY = e.clientY - dragState.lastY;
-				callback( movementX, movementY ,true);
-				dragState.lastX = e.clientX;
-				dragState.lastY = e.clientY;
-			}
-		});
-		const handlePointerEnd = (e: PointerEvent) => {
-			if (e.pointerId === dragState?.pointerId) {
-				dragState = null;
-			}
-		};
-		elem.addEventListener("pointerup", handlePointerEnd);
-		elem.addEventListener("pointercancel", handlePointerEnd);
+		}
+	});
+	elem.addEventListener("pointermove", (e) => {
+		if (e.pointerId === dragState?.pointerId) {
+			const movementX = e.clientX - dragState.lastX;
+			const movementY = e.clientY - dragState.lastY;
+			callback(movementX, movementY, true);
+			dragState.lastX = e.clientX;
+			dragState.lastY = e.clientY;
+		}
+	});
+	const handlePointerEnd = (e: PointerEvent) => {
+		if (e.pointerId === dragState?.pointerId) {
+			dragState = null;
+		}
+	};
+	elem.addEventListener("pointerup", handlePointerEnd);
+	elem.addEventListener("pointercancel", handlePointerEnd);
 
-    const lockPointer = async (isTouch: boolean) => {
+	const lockPointer = async (isTouch: boolean) => {
 		// audioContext.resume();
 
 		// Lock pointer to canvas
@@ -81,6 +84,5 @@ type DragState = { pointerId: number; lastX: number; lastY: number };
 		document.exitPointerLock();
 	};
 
-  return {lockPointer,
-		unlockPointer,}
+	return { lockPointer, unlockPointer };
 }

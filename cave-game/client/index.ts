@@ -9,23 +9,22 @@ import "./index.css";
 
 import { mat4, vec3 } from "gl-matrix";
 
+import { cameraTransform, YXZEuler } from "../communism/cam";
 import { SERVER_GAME_TICK } from "../communism/constants";
 import { CameraMode, ModelId, ModelInstance, ServerMessage } from "../communism/messages";
 import { Vector3 } from "../communism/types";
 import { expect, fuck, shouldBeNever } from "../communism/utils";
+import { listenToMovement } from "./cam-glam";
 import { InputListener } from "./input";
 import { interpolateMat4, interpolateVector3, Interpolator, slerpDirVec } from "./lib/Interpolator";
 import { ModelManager } from "./lib/ModelManager";
 import { send } from "./net";
 import { Camera } from "./render/cam";
 import { Gl } from "./render/Gl";
-import { cameraTransform, YXZEuler } from "../communism/cam";
-import { listenToMovement } from "./cam-glam";
 
 console.log("frontend!");
 
-
-const canvas = document.getElementById("canvas") ?? expect('no canvas');
+const canvas = document.getElementById("canvas") ?? expect("no canvas");
 
 //#region temp chat
 const ul = document.createElement("ul");
@@ -54,9 +53,9 @@ const directionalLightColorInterpolator = new Interpolator<Vector3>([0, 0, 0], i
 /** for locked camera mode */
 const cameraInterpolator = new Interpolator<mat4>(mat4.create(), interpolateMat4);
 /** for client naive orbit camera mode */
-let cameraAngle: YXZEuler = {y:0,x:0,z:0}
+let cameraAngle: YXZEuler = { y: 0, x: 0, z: 0 };
 /** `cameraMode.x.cameraTransform` is not used. the `x` is a typescript hack :/ */
-const cameraMode: {x:CameraMode} = {x:{type:'locked',cameraTransform:[]}}
+const cameraMode: { x: CameraMode } = { x: { type: "locked", cameraTransform: [] } };
 
 /**
  * slightly different than the one in messages.ts because it's preprocessed and deserialized for the renderer
@@ -136,14 +135,14 @@ export function handleMessage(message: ServerMessage) {
 				message.globalLight.directionInterpolation?.duration,
 				message.globalLight.directionInterpolation?.delay,
 			);
-			if (message.cameraMode.type === 'locked') {
+			if (message.cameraMode.type === "locked") {
 				cameraInterpolator.setValue(
 					new Float32Array(message.cameraMode.cameraTransform),
 					message.cameraMode.cameraTransformInterpolation?.duration,
 					message.cameraMode.cameraTransformInterpolation?.delay,
 				);
 			}
-			cameraMode.x = message.cameraMode
+			cameraMode.x = message.cameraMode;
 			for (const group of scene) {
 				for (const [modelPath, instances] of group.models) {
 					modelManager.requestLoadModel(gl, modelPath);
@@ -163,13 +162,13 @@ export function handleMessage(message: ServerMessage) {
 			localStorage.setItem(ID_KEY, message.id);
 			break;
 		}
-		case 'set-client-naive-orbit-camera-angle': {
-			cameraAngle = message.angle
-			break
+		case "set-client-naive-orbit-camera-angle": {
+			cameraAngle = message.angle;
+			break;
 		}
 		default: {
 			console.error("fdsluihdif", message);
-			shouldBeNever(message['type'])
+			shouldBeNever(message["type"]);
 		}
 	}
 }
@@ -207,32 +206,30 @@ const inputListener = new InputListener({
 });
 inputListener.listen();
 
-	/** How fast the camera rotates in degrees per pixel moved by the mouse */
-const sensitivity = 0.4
-const {lockPointer,unlockPointer} = listenToMovement(canvas, (movementX, movementY, isTouch) => {
-	cameraAngle.y -= (movementX * sensitivity * Math.PI) / 180
-	cameraAngle.x -= (movementY * sensitivity * Math.PI) / 180
-	if (cameraMode.x.type === 'client-naive-orbit'){
-		if (cameraAngle.x < cameraMode.x.minRx) cameraAngle.x =cameraMode.x.minRx
-		if (cameraAngle.x > cameraMode.x.maxRx) cameraAngle.x =cameraMode.x.maxRx}
-		cameraAngle.y = (cameraAngle.y % (2*Math.PI)+(2*Math.PI))%(2*Math.PI)
-	send({			type: "client-naive-orbit-camera-angle",
-			cameraAngle
-		});
-})
+/** How fast the camera rotates in degrees per pixel moved by the mouse */
+const sensitivity = 0.4;
+const { lockPointer, unlockPointer } = listenToMovement(canvas, (movementX, movementY, isTouch) => {
+	cameraAngle.y -= (movementX * sensitivity * Math.PI) / 180;
+	cameraAngle.x -= (movementY * sensitivity * Math.PI) / 180;
+	if (cameraMode.x.type === "client-naive-orbit") {
+		if (cameraAngle.x < cameraMode.x.minRx) cameraAngle.x = cameraMode.x.minRx;
+		if (cameraAngle.x > cameraMode.x.maxRx) cameraAngle.x = cameraMode.x.maxRx;
+	}
+	cameraAngle.y = ((cameraAngle.y % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
+	send({ type: "client-naive-orbit-camera-angle", cameraAngle });
+});
 
 let lastPointerType = "mouse";
 document.addEventListener("click", (e) => {
 	if (lastPointerType === "touch") {
-			inputListener.enabled = true;
-			// NOTE: Currently, can't switch to touch after using mouse
-		}
-		lockPointer(lastPointerType === "touch");
+		inputListener.enabled = true;
+		// NOTE: Currently, can't switch to touch after using mouse
+	}
+	lockPointer(lastPointerType === "touch");
 });
 document.addEventListener("pointerdown", (e) => {
 	lastPointerType = e.pointerType;
 });
-
 
 //#region rendering
 export const gl = new Gl(
@@ -256,15 +253,14 @@ const CLEAR_COLOR: Vector3 = [0.01, 0.02, 0.1];
 while (true) {
 	const now = Date.now();
 
-	if (cameraMode.x.type === 'client-naive-orbit') {
-		cam.transform = mat4.create()
-		mat4.translate(cam.transform, cam.transform, cameraMode.x.origin)
-		mat4.multiply(cam.transform, cam.transform, cameraTransform(null, cameraAngle))
-		mat4.translate(cam.transform,cam.transform,[0, 0, cameraMode.x.radius])
+	if (cameraMode.x.type === "client-naive-orbit") {
+		cam.transform = mat4.create();
+		mat4.translate(cam.transform, cam.transform, cameraMode.x.origin);
+		mat4.multiply(cam.transform, cam.transform, cameraTransform(null, cameraAngle));
+		mat4.translate(cam.transform, cam.transform, [0, 0, cameraMode.x.radius]);
 		// console.log(cam.transform)
-	} else if (cameraMode.x.type === 'locked') {
+	} else if (cameraMode.x.type === "locked") {
 		cam.transform = cameraInterpolator.getValue(now);
-
 	}
 	const view = cam.pv(window.innerWidth / window.innerHeight);
 

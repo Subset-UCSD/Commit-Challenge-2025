@@ -1,8 +1,8 @@
 import { mat4 } from "gl-matrix";
 
 import { EntityId } from "../server/entities/Entity";
-import {  Quaternion, Vector2, Vector3 } from "./types";
 import { YXZEuler } from "./cam";
+import { Quaternion, Vector2, Vector3 } from "./types";
 
 export type InterpolationSettings = {
 	/** delay after receiving object to begin interpolation, in milliseconds. defaults to 0, starting immediately */
@@ -104,23 +104,25 @@ export type Scene = {
 	/** see `ModelGroup` docs for what a group is */
 	groups: ModelGroup[];
 	globalLight: GlobalLight;
-	cameraMode: CameraMode
+	cameraMode: CameraMode;
 };
 
-export type CameraMode = {
-		/** hand camera control to server side for more control */
-		type: 'locked'
-		cameraTransform: number[];
-		cameraTransformInterpolation?: InterpolationSettings;
-	} | {
-		/** let client naively orbit around a point. smoother but probably a premature optimization */
-		type: 'client-naive-orbit'
-		origin: Vector3
-		/** radius of 0 should feel like first person */
-		radius: number
-		minRx: number
-		maxRx: number
-	}
+export type CameraMode =
+	| {
+			/** hand camera control to server side for more control */
+			type: "locked";
+			cameraTransform: number[];
+			cameraTransformInterpolation?: InterpolationSettings;
+	  }
+	| {
+			/** let client naively orbit around a point. smoother but probably a premature optimization */
+			type: "client-naive-orbit";
+			origin: Vector3;
+			/** radius of 0 should feel like first person */
+			radius: number;
+			minRx: number;
+			maxRx: number;
+	  };
 
 export type ServerMessage =
 	| { type: "chats"; contents: string[] }
@@ -133,10 +135,10 @@ export type ServerMessage =
 			 */
 			type: "entire-state";
 	  } & Scene)
-		| {
-			type: 'set-client-naive-orbit-camera-angle'
-			angle: YXZEuler
-		 }
+	| {
+			type: "set-client-naive-orbit-camera-angle";
+			angle: YXZEuler;
+	  }
 	| {
 			type: "join-response";
 			id: string;
@@ -146,9 +148,9 @@ export type ClientMessage =
 	| { type: "chat"; message: string }
 	| ClientInputMessage
 	| {
-		type: 'client-naive-orbit-camera-angle'
-		cameraAngle: YXZEuler
-	}
+			type: "client-naive-orbit-camera-angle";
+			cameraAngle: YXZEuler;
+	  }
 	| {
 			type: "join";
 			id?: string;

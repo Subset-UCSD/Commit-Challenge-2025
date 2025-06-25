@@ -98,7 +98,7 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 		return Object.values(entities).sort((a, b) => a.distance - b.distance);
 	}
 
-	getPlayerByEntityId = (id: EntityId) => this.players.values().find(p => p.id === id);
+	getPlayerByEntityId = (id: EntityId) => this.players.values().find((p) => p.id === id);
 
 	private createPlayerEntity(playerId: string, pos: Vector3 = [0,0,0]): PlayerEntity {
 		let player = this.players.get(playerId);
@@ -252,7 +252,7 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 				camera: Array.from(
 					cameraTransform([0, 20, 20], { y: 0, x: -Math.PI / 8 /* * (Math.sin(Date.now() / 847) + 1)*/, z: 0 }),
 				),
-				
+
 				// cameraInterpolation: {duration:SERVER_GAME_TICK},
 				// physicsBodies: player.debug ? this.world.serialize() : undefined,
 				/*others: Array.from(this.players.values(), (p) =>

@@ -20,6 +20,7 @@ import { PlayerInput } from "./net/PlayerInput";
 import { Connection, Server, ServerHandlers } from "./net/Server";
 import { WsServer } from "./net/WsServer";
 import { PhysicsWorld } from "./PhysicsWorld";
+import { shouldBeNever } from "../communism/utils";
 
 interface NetworkedPlayer {
 	input: PlayerInput;
@@ -107,6 +108,7 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 		}
 
 		let entity = new PlayerEntity(this, [0, 0, 0], "./models/notacube.glb");
+		this.registerEntity( new PlayerEntity(this, [0, 0, -10], "./models/notacube.glb"))
 		player.entity = entity;
 		return entity;
 	}
@@ -133,10 +135,6 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 
 			let entity = this.createPlayerEntity(conn.id);
 			this.registerEntity(entity);
-			conn.send({
-				type: "camera-lock",
-				id: entity.id,
-			});
 		}
 	}
 	handlePlayerDisconnect(id: string) {
@@ -158,14 +156,17 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 				break;
 			}
 			case "chat": {
+				break
 			}
 			case "join": {
+				break
 			}
-			case "key-state-update": {
-				console.warn("@DEPRECATED You're using a deprecated client input format!");
+			case 'client-naive-orbit-camera-angle': {
+				break
 			}
 			default:
 				console.warn(`Unhandled message '${data["type"]}'`);
+				shouldBeNever(data['type'])
 		}
 	}
 
@@ -186,7 +187,7 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 				right: inputs.right,
 				left: inputs.left,
 				jump: inputs.jump,
-				lookDir: inputs.lookDir,
+				lookDir: [0, 0, 10],
 			};
 
 			player.entity.move(movement);
@@ -253,9 +254,17 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 					directionInterpolation: { duration: SERVER_GAME_TICK },
 					directionColor: [2, 2, 2],
 				},
-				camera: Array.from(
-					cameraTransform([0, 20, 20], { y: 0, x: -Math.PI / 8 /* * (Math.sin(Date.now() / 847) + 1)*/, z: 0 }),
-				),
+				cameraMode: {
+					// type: 'locked',
+					// cameraTransform: Array.from(
+					// 	cameraTransform([0, 20, 20], { y: 0, x: -Math.PI / 8 /* * (Math.sin(Date.now() / 847) + 1)*/, z: 0 }),
+					// )
+					type: 'client-naive-orbit',
+					minRx:-Math.PI/3,
+					maxRx:Math.PI/3,
+					origin:[0,0,0],
+					radius:10
+				},
 
 				// cameraInterpolation: {duration:SERVER_GAME_TICK},
 				// physicsBodies: player.debug ? this.world.serialize() : undefined,

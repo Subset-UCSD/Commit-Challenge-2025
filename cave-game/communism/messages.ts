@@ -110,7 +110,7 @@ export type Scene = {
 export type ServerMessage =
 	| { type: "chats"; contents: string[] }
 	| { type: "chat"; user: string; content: string }
-	| { type: "you are"; id: number }
+	| { type: "camera-lock"; id: string }
 	| ({
 			/**
 			 * allows the server to define what to render on the client

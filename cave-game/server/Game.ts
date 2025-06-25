@@ -131,8 +131,12 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 			};
 			this.players.set(conn.id, player);
 
-			// TEMP
-			this.registerEntity(this.createPlayerEntity(conn.id));
+			let entity = this.createPlayerEntity(conn.id);
+			this.registerEntity(entity);
+			conn.send({
+				type: "camera-lock",
+				id: entity.id
+			});
 		}
 	}
 	handlePlayerDisconnect(id: string) {
@@ -156,6 +160,7 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 			case "chat": {
 			}
 			case "join": {
+				
 			}
 			case "key-state-update": {
 				console.warn("@DEPRECATED You're using a deprecated client input format!");

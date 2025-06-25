@@ -92,7 +92,7 @@ export function handleMessage(message: ServerMessage) {
 			ul.prepend(frag);
 			break;
 		}
-		case "you are": {
+		case "camera-lock": {
 			break;
 		}
 		case "entire-state": {
@@ -183,7 +183,7 @@ const inputListener = new InputListener({
 		Space: "jump",
 	},
 	handleInputs: (inputs) => {
-		const [x, y, z] = [0,0,10];
+		const [x, y, z] = [0,0,1];
 		send({
 			type: "client-input",
 			...inputs,

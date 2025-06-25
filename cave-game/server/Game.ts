@@ -135,7 +135,7 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 			this.registerEntity(entity);
 			conn.send({
 				type: "camera-lock",
-				id: entity.id
+				id: entity.id,
 			});
 		}
 	}
@@ -160,7 +160,6 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 			case "chat": {
 			}
 			case "join": {
-				
 			}
 			case "key-state-update": {
 				console.warn("@DEPRECATED You're using a deprecated client input format!");

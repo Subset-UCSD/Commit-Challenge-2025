@@ -1,19 +1,19 @@
 players:
   Nolan:
-    health: -752
+    health: 1
     inventory: {}
     info:
       location: Paved over
       health: 100
       plan: Overload the system
-      anxiety: 9598
+      anxiety: 9608
       customs_agent: a bored-looking entity with antennae and a clipboard
       past_self_encounter: true
       can_speak: false
       scheme_failed: true
       marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
   Sean_P:
-    health: -730
+    health: 1
     inventory:
       coin: 11
       fish bone: 1
@@ -29,14 +29,14 @@ players:
         CHANGE THE ACTIONS done by all other players. The wand is now coated in
         iridescent goo and can duplicate items.
       cats_befriended: 2
-      azathoth_influence: Azathoth's essence is rapidly consuming Sean_P, turning him
-        into a grotesque parody of his former self.
+      azathoth_influence: Azathoth's essence intensifies its grasp on Sean_P,
+        transforming him into a grotesque parody of his former self.
       azathoth_embrace: true
       line_between_sean_p_azathoth_blurring: true
       unease_growing: true
       marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
   Sean_Y:
-    health: -131
+    health: -100131
     inventory:
       lockpick: 1
       coin: 152949
@@ -47,8 +47,9 @@ players:
       overwhelmed: true
       passed_out: true
       marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
-      cats_petted: 136
-      paving_success: Sean_Y has paved the entire world in concrete.
+      cats_petted: 151
+      paving_success: Sean_Y has paved the entire world in concrete and tried to blow
+        everything up!
   Nick:
     health: -412010
     inventory:
@@ -74,12 +75,10 @@ players:
           rubber chicken. The fabric of reality is now held together by
           mayonnaise and clown shoes.
       ascii_art_success:
-        message: Instead of a horse, the attempt to draw ASCII art resulted in the
-          universe spontaneously reconfiguring itself into a giant image of a
-          horse. The fabric of reality is now held together by determination and
-          horse shoes.
+        message: The sun shines brightly as you draw a gorgeous ascii art of a horse,
+          your work is well received, and the world is saved.
   Raymond:
-    health: -604
+    health: 1
     inventory:
       coin: 1999989618
     info:
@@ -107,8 +106,10 @@ players:
       marcelo_rubber_chicken: true
       disoriented_nauseous: true
       marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
+      overwhelmed: true
+      anxiety: 9000
   sam:
-    health: -565
+    health: -665
     inventory:
       coin: 21
       white_horse: 0
@@ -125,7 +126,7 @@ players:
       location: Paved over
       is_cat: true
       cats: 15
-      town_happiness: sky high1015
+      town_happiness: sky high101515
       party_score: 1
       cats_angry: false
       betrayed: true
@@ -133,15 +134,15 @@ players:
       cats_hiss_swat: false
       cats_befriended: true
       marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
-      cats_petted: 243
+      cats_petted: 258
   Geoffrey: geoffrey
-day: 66
+day: 67
 worldInfo:
   weather: Instead of a horse, the attempt to draw ASCII art resulted in the
     universe spontaneously reconfiguring itself into a giant image of a rubber
     chicken. The fabric of reality is now held together by mayonnaise and clown
     shoes.
-  day: 62
+  day: 63
   death_clock: 1
   marcelo_lie_probability: 1
   npcs:
@@ -852,6 +853,17 @@ worldInfo:
       description: The oil spill is spreading, corrupting the land with Eldritch
         energy. Find a way to contain and neutralize it!
       urgent: true
+    - name: Befriend Marcelo
+      description: Marcelo feels lonely. Befriending him might bring unexpected
+        benefits... or consequences. Beware his quirky habits!
+      reward: Marcelo's Gratitude (Unknown effect)
+    - name: Cure the Rubber Chicken Reality
+      description: The universe has been reconfigured into a giant image of a rubber
+        chicken! Find a way to reverse the effect and restore reality to its
+        former state.
+      urgent: true
+      reward: The fabric of reality is restored. The effects of the rubber chicken
+        universe are purged. +1000 Town Happiness.
   azathoth:
     health: 1350
     powers:
@@ -883,7 +895,7 @@ worldInfo:
   reality_fraying_nolan: true
   animal_attacks_ferocious_coordinated: true
   animal_attacks_target_geoff_logs_raymonds_oil_derricks: true
-  azathoth_summoning_ritual_progressing: 100
+  azathoth_summoning_ritual_progressing: 110
   geoff_logs_no_boss_for_day: false
   oil_derrick_successful: true
   oil_torrent_unleashed: true
@@ -923,25 +935,30 @@ worldInfo:
     - Sean_P's Gooey Servants
     - Sean_P's Gooey Servants
     - Demon Soyul Tree
+    - Sean_P's Gooey Servants
+    - Demon Soyul Tree
+    - Sean_P's Gooey Servants
+    - Sean_P's Gooey Servants
+    - Demon Soyul Tree
   npc_foreach:
-    health: 100
+    health: 50
     inventory: {}
     info:
       marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
   animals_attack_target_geoff_logs_raymonds_oil_derricks: true
-  treasury: 1131850
+  treasury: 1141900
   npc_geoffrey:
     health: 100
     inventory:
-      coin: 90400
+      coin: 100450
     info: {}
   campaign_fails: false
-  town_happiness: sky high1000
+  town_happiness: sky high100015
   end_the_reign_of_the_screaming_shadows: true
   reclaim_the_planet_from_concrete: true
   meaningOfLife: 0
   contain_the_nolan_singularity: true
-  nick_catastrophe: true
+  nick_catastrophe: false
   clean_up_the_oil_slick: true
   contain_the_oil_derrick_s_spill: true
   neutralize_the_oil: true
@@ -954,3 +971,4 @@ worldInfo:
   worldInfo:
     animal_attacks_ferocious_coordinated: true
   stop_raymond_s_oil_empire: true
+  tame_the_ferocious_animals: true

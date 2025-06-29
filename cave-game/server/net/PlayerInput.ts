@@ -1,7 +1,5 @@
 import { ClientInputs } from "../../communism/messages";
-import { Vector3 } from "../../communism/types";
-
-export type Keys = Omit<ClientInputs, "lookDir">;
+import { YXZEuler } from "../../communism/types";
 
 /**
  * Runs `func` on every key and creates an object out of the results. Useful for
@@ -11,7 +9,7 @@ export type Keys = Omit<ClientInputs, "lookDir">;
  *
  * wow this is so unnecessarily hacky! you've managed to make formerly clear code incomprehensible :) -nick
  */
-function mapKeys<T>(func: (key: keyof Keys) => T): Record<keyof Keys, T> {
+function mapKeys<T>(func: (key: keyof ClientInputs) => T): Record<keyof ClientInputs, T> {
 	return {
 		forward: func("forward"),
 		backward: func("backward"),
@@ -22,38 +20,44 @@ function mapKeys<T>(func: (key: keyof Keys) => T): Record<keyof Keys, T> {
 }
 
 export class PlayerInput {
-	#data = mapKeys(() => false);
-	#posedge = mapKeys(() => false);
-	#lookDir: Vector3 = [0, 0, 0];
+	private data = mapKeys(() => false);
+	private posedge = mapKeys(() => false);
+	private lookDir: YXZEuler = {x:0, y:0, z: 0};
 
 	/**
 	 * Called whenever the client sends new data about inputs
 	 * @param newData
 	 */
 	updateInputs(newData: ClientInputs) {
-		this.#lookDir = newData.lookDir;
-		this.#data = mapKeys((key) => {
-			if (!this.#data[key] && newData[key]) {
-				this.#posedge[key] = true;
+		this.data = mapKeys((key) => {
+			if (!this.data[key] && newData[key]) {
+				this.posedge[key] = true;
 			}
 			return newData[key];
 		});
 	}
 
+	setLookDir(dir: YXZEuler) {
+		this.lookDir = dir;
+	}
+	getLookDir() {
+		return this.lookDir;
+	}
+
 	// Don't let players use
 	getInputs(): ClientInputs {
-		return { ...mapKeys((key) => this.#data[key] || this.#posedge[key]), lookDir: this.#lookDir };
+		return { ...mapKeys((key) => this.data[key] || this.posedge[key]) };
 	}
 
 	// Getting posedge
-	getPosedge(): Keys {
-		return this.#posedge;
+	getPosedge(): ClientInputs {
+		return this.posedge;
 	}
 
 	// This function is called to update the player inputs
 	serverTick() {
 		mapKeys((key) => {
-			this.#posedge[key] = false;
+			this.posedge[key] = false;
 		});
 	}
 }

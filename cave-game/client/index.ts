@@ -9,10 +9,10 @@ import "./index.css";
 
 import { mat4, vec3 } from "gl-matrix";
 
-import { cameraTransform, YXZEuler } from "../communism/cam";
+import { cameraTransform } from "../communism/cam";
 import { SERVER_GAME_TICK } from "../communism/constants";
 import { CameraMode, ModelId, ModelInstance, ServerMessage } from "../communism/messages";
-import { Vector3 } from "../communism/types";
+import { Vector3, YXZEuler } from "../communism/types";
 import { expect, fuck, shouldBeNever } from "../communism/utils";
 import { listenToMovement } from "./cam-glam";
 import { InputListener } from "./input";

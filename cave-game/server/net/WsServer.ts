@@ -68,8 +68,12 @@ export class WsServer implements Server<ClientMessage, ServerMessage> {
 	 * Called every time there's a new connection, but the function won't do
 	 * anything if there are already connections to the server.
 	 */
-	#unhangServer = () => {};
-	hasConnection = new Promise<void>((resolve) => {
+	#unhangServer = (_: symbol) => {};
+	/**
+	 * The `Symbol` is used by the main server loop to determine if the server has
+	 * slept.
+	 */
+	hasConnection = new Promise<symbol>((resolve) => {
 		this.#unhangServer = resolve;
 	});
 
@@ -104,7 +108,7 @@ export class WsServer implements Server<ClientMessage, ServerMessage> {
 	}
 
 	#handleNewConnection = (ws: WebSocket) => {
-		this.#unhangServer();
+		this.#unhangServer(Symbol());
 
 		ws.on("message", (rawData) => {
 			this.#handleMessage(ws, rawData);
@@ -126,9 +130,10 @@ export class WsServer implements Server<ClientMessage, ServerMessage> {
 
 			if (this.#wss.clients.size === 0) {
 				console.log("i eep");
-				this.hasConnection = new Promise<void>((resolve) => {
+				this.hasConnection = new Promise<symbol>((resolve) => {
 					this.#unhangServer = resolve;
-				}).then(() => console.log("i wake"));
+				});
+				this.hasConnection.then(() => console.log("i wake"));
 			}
 		});
 	};

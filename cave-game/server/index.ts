@@ -12,17 +12,21 @@ import { Game } from "./Game";
 
 const game = new Game();
 
-let ticks = 0;
-let totalDelta = 0;
+let ticksEvaluated = 0;
+let simulationEpoch = performance.now();
 let lastEndTime: number | null = null;
+let prevHasPlayerResult: symbol | null = null;
 
-let lastLoop = 0;
 //what actually runs the game loop
 while (true) {
-	console.log(`Started new loop after ${performance.now() - lastLoop} ms`);
-	lastLoop = performance.now();
 	// if no one is online, pause the game until someone joins
-	await game.hasPlayers;
+	const hasPlayerResult = await game.hasPlayers;
+	if (prevHasPlayerResult !== hasPlayerResult) {
+		prevHasPlayerResult = hasPlayerResult;
+		// A lot of time might have passed, so reset the timing code
+		ticksEvaluated = 0;
+		simulationEpoch = performance.now();
+	}
 
 	// check time at beginning of gamestep
 	let startTimeCheck = performance.now();
@@ -33,27 +37,25 @@ while (true) {
 	// send updated state to all clients
 	game.broadcastState();
 
+	ticksEvaluated++;
+
 	// check time at end of gamestep
-	let endTimeCheck = performance.now();
+	const endTimeCheck = performance.now();
+	const tickEvalTime = endTimeCheck - startTimeCheck;
 
 	const timeSinceLastTickEnd = lastEndTime === null ? null : endTimeCheck - lastEndTime;
 	lastEndTime = endTimeCheck;
 
-	let delta = endTimeCheck - startTimeCheck;
-	ticks++;
-	totalDelta += delta;
-	if (ticks >= 2000) {
-		ticks = 0;
-		totalDelta = 0;
-	}
 	//wait until the rest of the tick is complete
-	if (delta > SERVER_GAME_TICK) {
-		console.warn(`[main loop] Server Overloaded: extremely long tick, took ${delta.toFixed(3)} ms`);
+	if (tickEvalTime > SERVER_GAME_TICK) {
+		console.warn(`[main loop] Server Overloaded: extremely long tick, took ${tickEvalTime.toFixed(3)} ms`);
 		//shit we had a longass tick. Cry ig
 	} else {
 		console.log(
-			`[main loop] Tick took ${delta.toFixed(3)} ms. Sleeping for ${(SERVER_GAME_TICK - delta).toFixed(3)} ms. It has been ${timeSinceLastTickEnd?.toFixed(3) ?? "N/A"} ms since last tick (should be ${SERVER_GAME_TICK} ms).`,
+			`[main loop] Tick took ${tickEvalTime.toFixed(3)} ms. It has been ${timeSinceLastTickEnd?.toFixed(3) ?? "N/A"} ms since last tick (should be ${SERVER_GAME_TICK} ms).`,
 		);
-		await delay(SERVER_GAME_TICK - delta);
+	}
+	while (performance.now() - simulationEpoch < ticksEvaluated * SERVER_GAME_TICK) {
+		await delay();
 	}
 }

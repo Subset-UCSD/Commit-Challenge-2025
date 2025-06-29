@@ -34,7 +34,7 @@ export interface Server<ReceiveType, SendType> {
 	 * It's used to pause the server when no one is connected by having it wait
 	 * for this promise to resolve before continuing.
 	 */
-	hasConnection: Promise<void>;
+	hasConnection: Promise<symbol>;
 
 	/**
 	 * Send a message to all clients.

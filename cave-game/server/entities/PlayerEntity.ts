@@ -3,8 +3,8 @@ import * as phys from "cannon-es";
 import { EntityModel } from "../../communism/messages";
 import { MovementInfo, Vector3 } from "../../communism/types";
 import { Game } from "../Game";
-import { Entity } from "./Entity";
 import { mats } from "../materials";
+import { Entity } from "./Entity";
 
 const COYOTE_FRAMES = 4;
 const UPWARD_FRAMES = 3;
@@ -21,7 +21,6 @@ const MAX_GROUND_SPEED_CHANGE = 6;
 const MAX_AIR_SPEED_CHANGE = 2.5;
 const JUMP_SPEED = 10;
 const PLAYER_MASS = 10;
-
 
 export class PlayerEntity extends Entity {
 	displayName = `Player ${this.id}`;

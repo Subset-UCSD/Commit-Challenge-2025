@@ -58,15 +58,19 @@ export class PhysicsWorld {
 
 	
 	nextTick() {
+
 		const now = performance.now();
 		const deltaTime = now - this.lastTick;
-		const tickAmount = SERVER_GAME_TICK / (1000 * EXTRA_SIMULATION_STEPS);
+		console.log("Delta Time is: ", deltaTime);
+		this.world.step(SERVER_GAME_TICK / 1000, deltaTime);
+		this.lastTick = now;
+		/*const tickAmount = SERVER_GAME_TICK / (1000 * EXTRA_SIMULATION_STEPS);
 
 		for (let i = 0; i < EXTRA_SIMULATION_STEPS; i++) {
 			this.world.step(tickAmount, deltaTime / (EXTRA_SIMULATION_STEPS * 1000), 20);
 		}
 
-		this.lastTick = now;
+		this.lastTick = now;*/
 		// this.#time += SERVER_GAME_TICK;
 	}
 

@@ -15,24 +15,25 @@ const game = new Game();
 let ticks = 0;
 let totalDelta = 0;
 
+let lastLoop = 0;
 //what actually runs the game loop
 while (true) {
+	console.log(`Started new loop after ${performance.now() - lastLoop} ms`);
+	lastLoop = performance.now();
 	// if no one is online, pause the game until someone joins
 	await game.hasPlayers;
 
-	//check time at beginning of gamestep
-	let startTimeCheck = Date.now();
+	// check time at beginning of gamestep
+	let startTimeCheck = performance.now();
 
 	// update game state
 	game.updateGameState();
 
 	// send updated state to all clients
 	game.broadcastState();
-	// wait until end of tick
-	// broadcast(wss, )
 
-	//check time at end of gamestep
-	let endTimeCheck = Date.now();
+	// check time at end of gamestep
+	let endTimeCheck = performance.now();
 
 	let delta = endTimeCheck - startTimeCheck;
 	ticks++;

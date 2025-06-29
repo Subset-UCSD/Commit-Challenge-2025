@@ -56,7 +56,6 @@ export class PhysicsWorld {
 		}
 	}
 
-	
 	nextTick() {
 
 		const now = performance.now();

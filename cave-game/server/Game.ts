@@ -43,7 +43,7 @@ type EntityRayCastResult = {
  */
 export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 	// TEMP: gravity changed from -60. revert when floor is added
-	private world = new PhysicsWorld({ gravity: [0, -20, 0] });
+	private world = new PhysicsWorld({ gravity: [0, -70, 0] });
 	private server: Server<ClientMessage, ServerMessage>;
 
 	private players: Map<string, NetworkedPlayer>;
@@ -193,11 +193,7 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 
 			// Make dedicated movement information object to avoid letting the player entity
 			let movement: MovementInfo = {
-				forward: inputs.forward,
-				backward: inputs.backward,
-				right: inputs.right,
-				left: inputs.left,
-				jump: inputs.jump,
+				...inputs,
 				lookDir: player.input.getLookDir(),
 			};
 
@@ -257,7 +253,7 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 	broadcastState() {
 		//console.clear();
 		for (const player of this.players.values()) {
-			console.log(player.entity?.getPos());
+			///console.log(player.entity?.getPos());
 			player.conn.send({
 				type: "entire-state",
 				groups: [

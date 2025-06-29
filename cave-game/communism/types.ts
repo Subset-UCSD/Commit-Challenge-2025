@@ -4,14 +4,18 @@ export type Vector4 = [r: number, g: number, b: number, a: number];
 export type Quaternion = [x: number, y: number, z: number, w: number];
 
 export type MovementInfo = {
+	lookDir: YXZEuler;
+} & ClientInputs;
+
+export type ClientInputs = {
 	forward: boolean;
 	backward: boolean;
 	right: boolean;
 	left: boolean;
 	jump: boolean;
-	lookDir: YXZEuler;
+	sprint: boolean;
+	debugSpawnBox: boolean;
 };
-
 /**
  * the first two are pitch and yaw but tbh i never remember which is which.
  * this is why i dont fly planes. it's easier to remember it as rotating

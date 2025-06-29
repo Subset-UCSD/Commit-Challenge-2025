@@ -1,4 +1,4 @@
-import { ClientInputs } from "../../communism/messages";
+import { ClientInputs } from "../../communism/types";
 import { YXZEuler } from "../../communism/types";
 
 /**
@@ -16,6 +16,7 @@ function mapKeys<T>(func: (key: keyof ClientInputs) => T): Record<keyof ClientIn
 		right: func("right"),
 		left: func("left"),
 		jump: func("jump"),
+		sprint: func("sprint"),
 		debugSpawnBox: func("debugSpawnBox"),
 	};
 }

@@ -5,6 +5,7 @@ import { SERVER_GAME_TICK } from "../communism/constants";
 import { SerializedBody } from "../communism/messages";
 import { serializeShape } from "./lib/serializeShape";
 import * as contactMaterials from "./materials";
+import { EXTRA_SIMULATION_STEPS } from "../communism/constants";
 
 type WorldSetup = {
 	gravity: [number, number, number];
@@ -55,8 +56,9 @@ export class PhysicsWorld {
 
 	#time = 0;
 	nextTick() {
-		this.#world.step(SERVER_GAME_TICK / 2000);
-		this.#world.step(SERVER_GAME_TICK / 2000);
+		for (let i = 0; i < EXTRA_SIMULATION_STEPS; i++) {
+			this.#world.step(SERVER_GAME_TICK / (1000 * EXTRA_SIMULATION_STEPS));
+		}
 		this.#time += SERVER_GAME_TICK;
 	}
 

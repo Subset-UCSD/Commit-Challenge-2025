@@ -6,21 +6,25 @@ import { Game } from "../Game";
 import { mats } from "../materials";
 import { Entity } from "./Entity";
 
-const COYOTE_FRAMES = 4;
-const UPWARD_FRAMES = 3;
-const BOOST_RATIO = 11.2;
 const CAPSULE_HEIGHT = 2;
 const CAPSULE_RADIUS = 0.5;
-const WALK_SPEED = 16;
-/**
- * Maximum change in horizontal velocity that can be caused by the player in one
- * tick
- */
-const MAX_GROUND_SPEED_CHANGE = 6;
-// Maximum change in horizontal velocity that can occur while in the air
-const MAX_AIR_SPEED_CHANGE = 2.5;
-const JUMP_SPEED = 10;
 const PLAYER_MASS = 10;
+
+const WALK_SPEED = 14;
+const SPRINT_SPEED = 22;
+const JUMP_SPEED = 15;
+const UPWARD_FRAMES = 8;
+const BOOST_RATIO = 11.2;
+const COYOTE_FRAMES = 4;
+
+// Maximum change in horizontal velocity that can be caused by the player while on the ground
+const MAX_GROUND_SPEED_CHANGE = 0.17*WALK_SPEED;
+// Maximum change in horizontal velocity that can occur while in the air
+const MAX_AIR_SPEED_CHANGE = 0.75;
+// Indiscriminate cap on the velocity in the XY direction the player may have at the end of the move method
+const MAX_GROUND_HORIZ_VEL = 20;
+const MAX_AIR_HORIZ_VEL = 20;
+
 
 export class PlayerEntity extends Entity {
 	displayName = `Player ${this.id}`;
@@ -36,6 +40,7 @@ export class PlayerEntity extends Entity {
 	// movement
 	private walkSpeed: number = WALK_SPEED;
 	private initialSpeed: number = WALK_SPEED;
+	private sprintSpeed: number = SPRINT_SPEED;
 	private jumpSpeed: number = JUMP_SPEED;
 	private maxGroundSpeedChange: number = MAX_GROUND_SPEED_CHANGE;
 	private maxAirSpeedChange: number = MAX_AIR_SPEED_CHANGE;
@@ -68,7 +73,7 @@ export class PlayerEntity extends Entity {
 			position: new phys.Vec3(...pos),
 			fixedRotation: true,
 			material: mats.player,
-			collisionFilterGroup: this.getBitFlag(),
+			collisionFilterGroup: this.getBitFlag()
 		});
 
 		this.cylinder = new phys.Cylinder(this.capsuleRadius, this.capsuleRadius, this.cylinderHeight, 12);
@@ -104,12 +109,13 @@ export class PlayerEntity extends Entity {
 		else if (this.coyoteCounter > 0) this.coyoteCounter -= 1;
 
 		const forwardVector = new phys.Vec3(-Math.sin(mvmt.lookDir.y), 0, -Math.cos(mvmt.lookDir.y));
-		console.log("forward: ", forwardVector.toString());
 
 		forwardVector.normalize();
 		const rightVector = forwardVector.cross(new phys.Vec3(0, 1, 0));
 		const currentVelocity = this.body.velocity;
 		const maxChange = this.onGround ? this.maxGroundSpeedChange : this.maxAirSpeedChange;
+
+		// TODO XXX if you're on the ground and you're holding in the direct opposite direction of where you're going, add a multiplier to your movement vector so you can turn around quicker
 
 		let targetVelocity = new phys.Vec3(0, 0, 0);
 		if (mvmt.forward) {
@@ -127,7 +133,7 @@ export class PlayerEntity extends Entity {
 		if (targetVelocity.length() > 0) {
 			targetVelocity.normalize();
 		}
-		targetVelocity = targetVelocity.scale(this.walkSpeed);
+		targetVelocity = targetVelocity.scale(mvmt.sprint ? this.sprintSpeed : this.walkSpeed);
 
 		let deltaVelocity = targetVelocity.vsub(currentVelocity.vmul(new phys.Vec3(1, 0, 1)));
 		if (deltaVelocity.length() > maxChange) {
@@ -154,6 +160,18 @@ export class PlayerEntity extends Entity {
 			this.jumping = false;
 			this.upwardCounter = 0;
 		}
+		//console.log("BEFORE", this.body.velocity.x, this.body.velocity.y, this.body.velocity.z);
+		// Scale velocity in xy direction to MAX_HORIZ_VEL
+		let x = this.body.velocity.clone();
+		x.y = 0;
+		const max_vel = this.onGround ? MAX_GROUND_HORIZ_VEL : MAX_AIR_HORIZ_VEL;
+		if (x.length() > max_vel) {
+			x.normalize();
+			x = x.vmul(new phys.Vec3(max_vel, max_vel, max_vel));
+			x.y = this.body.velocity.y;
+			this.body.velocity = x;
+		}
+		//console.log("AFTER", this.body.velocity.x, this.body.velocity.y, this.body.velocity.z);
 	}
 
 	setSpeed(speed: number) {

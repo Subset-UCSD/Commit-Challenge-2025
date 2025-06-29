@@ -36,6 +36,7 @@ export class InputListener<Inputs extends string> {
 	}
 
 	#handleKeydown = (e: KeyboardEvent) => {
+		console.log(e);
 		this.options._tempControls?.remove();
 		this.handleInput(this.options.keymap[e.code], true);
 	};

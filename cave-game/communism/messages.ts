@@ -1,8 +1,7 @@
 import { mat4 } from "gl-matrix";
 
 import { EntityId } from "../server/entities/Entity";
-import { YXZEuler } from "./types";
-import { Quaternion, Vector2, Vector3 } from "./types";
+import { Quaternion, Vector2, Vector3, YXZEuler, ClientInputs} from "./types";
 
 export type InterpolationSettings = {
 	/** delay after receiving object to begin interpolation, in milliseconds. defaults to 0, starting immediately */
@@ -209,14 +208,6 @@ export type CylinderCollider = {
 	numSegments: number;
 };
 
-export type ClientInputs = {
-	forward: boolean;
-	backward: boolean;
-	right: boolean;
-	left: boolean;
-	jump: boolean;
-	debugSpawnBox: boolean;
-};
 export type PlayerEntry = {
 	name: string;
 	entityId?: EntityId;

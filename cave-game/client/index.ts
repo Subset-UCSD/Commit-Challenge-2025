@@ -199,6 +199,7 @@ const inputListener = new InputListener({
 		left: false,
 		right: false,
 		debugSpawnBox: false,
+		sprint: false,
 	},
 	keymap: {
 		KeyW: "forward",
@@ -207,6 +208,8 @@ const inputListener = new InputListener({
 		KeyD: "right",
 		Space: "jump",
 		KeyO: "debugSpawnBox",
+		// I was going to do Shift or Control but that doesn't seem to work
+		KeyC: "sprint"
 	},
 	handleInputs: (inputs) => {
 		send({

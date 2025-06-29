@@ -56,7 +56,6 @@ export class PhysicsWorld {
 		}
 	}
 
-	
 	nextTick() {
 		const now = performance.now();
 		const deltaTime = now - this.lastTick;

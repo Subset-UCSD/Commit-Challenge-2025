@@ -25,46 +25,54 @@ export function q4(x: number, y: number, z: number, w: number) {
 export type RaycastResult = Omit<phys.RaycastResult, "reset" | "abort" | "set">;
 
 export class PhysicsWorld {
-	#world: phys.World;
-	#colliders: phys.Body[];
+	private world: phys.World;
+	private colliders: phys.Body[];
+	private lastTick: number = performance.now();
+	//private time = 0;
 
 	constructor(setup: WorldSetup) {
-		this.#world = new World({
+		this.world = new World({
 			gravity: v3(...setup.gravity),
 		});
-		this.#colliders = [];
+		this.colliders = [];
 
 		for (let mat of Object.values(contactMaterials.contact)) {
-			this.#world.addContactMaterial(mat);
+			this.world.addContactMaterial(mat);
 		}
 	}
 
 	addBody(body: Body) {
-		this.#world.addBody(body);
-		this.#colliders.push(body);
+		this.world.addBody(body);
+		this.colliders.push(body);
 	}
 	removeBody(body: Body) {
-		this.#world.removeBody(body);
-		this.#colliders.splice(this.#colliders.indexOf(body), 1);
+		this.world.removeBody(body);
+		this.colliders.splice(this.colliders.indexOf(body), 1);
 	}
 
 	removeAllBodies() {
-		for (let collider of this.#colliders) {
-			this.#world.removeBody(collider);
+		for (let collider of this.colliders) {
+			this.world.removeBody(collider);
 		}
 	}
 
-	#time = 0;
+	
 	nextTick() {
+		const now = performance.now();
+		const deltaTime = now - this.lastTick;
+		const tickAmount = SERVER_GAME_TICK / (1000 * EXTRA_SIMULATION_STEPS);
+
 		for (let i = 0; i < EXTRA_SIMULATION_STEPS; i++) {
-			this.#world.step(SERVER_GAME_TICK / (1000 * EXTRA_SIMULATION_STEPS));
+			this.world.step(tickAmount, deltaTime / (EXTRA_SIMULATION_STEPS * 1000), 20);
 		}
-		this.#time += SERVER_GAME_TICK;
+
+		this.lastTick = now;
+		// this.#time += SERVER_GAME_TICK;
 	}
 
 	castRay(from: phys.Vec3, to: phys.Vec3, rayOptions: phys.RayOptions): RaycastResult[] {
 		const results: RaycastResult[] = [];
-		this.#world.raycastAll(from, to, rayOptions, (result) => {
+		this.world.raycastAll(from, to, rayOptions, (result) => {
 			// Need to clone result because the physics engine will continue to modify it
 			results.push({ ...result, hitPointWorld: result.hitPointWorld.clone() });
 		});
@@ -81,7 +89,7 @@ export class PhysicsWorld {
 	 * will make debugging a nightmare.
 	 */
 	serialize(): SerializedBody[] {
-		return this.#world.bodies.map((body) => ({
+		return this.world.bodies.map((body) => ({
 			position: body.position.toArray(),
 			quaternion: body.quaternion.toArray(),
 			colliders: body.shapes.map((shape, i) => ({

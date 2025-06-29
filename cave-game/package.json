@@ -21,7 +21,7 @@
 		"@types/express": "^5.0.0",
 		"@types/node": "^22.13.4",
 		"@types/ws": "^8.5.14",
-		"esbuild": "^0.24.2",
+		"esbuild": "^0.25.5",
 		"eslint-plugin-import": "^2.31.0",
 		"eslint-plugin-simple-import-sort": "^12.1.1",
 		"eslint-plugin-unused-imports": "^4.1.4",

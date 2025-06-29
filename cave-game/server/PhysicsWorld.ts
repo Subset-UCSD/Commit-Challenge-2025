@@ -2,7 +2,6 @@ import * as phys from "cannon-es";
 import { Body, World } from "cannon-es";
 
 import { SERVER_GAME_TICK } from "../communism/constants";
-import { EXTRA_SIMULATION_STEPS } from "../communism/constants";
 import { SerializedBody } from "../communism/messages";
 import { serializeShape } from "./lib/serializeShape";
 import * as contactMaterials from "./materials";
@@ -57,7 +56,6 @@ export class PhysicsWorld {
 	}
 
 	nextTick() {
-
 		const now = performance.now();
 		const deltaTime = now - this.lastTick;
 		console.log("Delta Time is: ", deltaTime);

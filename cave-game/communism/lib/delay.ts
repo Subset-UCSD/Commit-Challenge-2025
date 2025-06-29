@@ -18,4 +18,5 @@ export async function delay(ms: number): Promise<void> {
 	}
 }
 
-const immediate = () => new Promise((resolve) => setImmediate(resolve));
+/** `setImmediate` in a loop has high CPU usage */
+const immediate = () => new Promise((resolve) => setTimeout(resolve));

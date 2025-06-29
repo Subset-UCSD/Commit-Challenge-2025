@@ -18,13 +18,12 @@ const BOOST_RATIO = 11.2;
 const COYOTE_FRAMES = 4;
 
 // Maximum change in horizontal velocity that can be caused by the player while on the ground
-const MAX_GROUND_SPEED_CHANGE = 0.17*WALK_SPEED;
+const MAX_GROUND_SPEED_CHANGE = 0.17 * WALK_SPEED;
 // Maximum change in horizontal velocity that can occur while in the air
 const MAX_AIR_SPEED_CHANGE = 0.75;
 // Indiscriminate cap on the velocity in the XY direction the player may have at the end of the move method
 const MAX_GROUND_HORIZ_VEL = 20;
 const MAX_AIR_HORIZ_VEL = 20;
-
 
 export class PlayerEntity extends Entity {
 	displayName = `Player ${this.id}`;
@@ -73,7 +72,7 @@ export class PlayerEntity extends Entity {
 			position: new phys.Vec3(...pos),
 			fixedRotation: true,
 			material: mats.player,
-			collisionFilterGroup: this.getBitFlag()
+			collisionFilterGroup: this.getBitFlag(),
 		});
 
 		this.cylinder = new phys.Cylinder(this.capsuleRadius, this.capsuleRadius, this.cylinderHeight, 12);

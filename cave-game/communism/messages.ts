@@ -1,7 +1,7 @@
 import { mat4 } from "gl-matrix";
 
 import { EntityId } from "../server/entities/Entity";
-import { Quaternion, Vector2, Vector3, YXZEuler, ClientInputs} from "./types";
+import { ClientInputs, Quaternion, Vector2, Vector3, YXZEuler } from "./types";
 
 export type InterpolationSettings = {
 	/** delay after receiving object to begin interpolation, in milliseconds. defaults to 0, starting immediately */

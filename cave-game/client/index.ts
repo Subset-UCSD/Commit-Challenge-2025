@@ -209,7 +209,7 @@ const inputListener = new InputListener({
 		Space: "jump",
 		KeyO: "debugSpawnBox",
 		// I was going to do Shift or Control but that doesn't seem to work
-		KeyC: "sprint"
+		KeyC: "sprint",
 	},
 	handleInputs: (inputs) => {
 		send({

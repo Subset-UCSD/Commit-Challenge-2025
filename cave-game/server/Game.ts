@@ -262,7 +262,7 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 					type: "client-naive-orbit",
 					minRx: -Math.PI / 3,
 					maxRx: Math.PI / 3,
-					origin: player.entity?.getPos() ?? [0,0,0],
+					origin: player.entity?.getPos() ?? [0, 0, 0],
 					radius: 10,
 				},
 

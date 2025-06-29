@@ -105,7 +105,6 @@ export class PlayerEntity extends Entity {
 	}
 
 	move(mvmt: MovementInfo): void {
-		
 		this.onGround = this.checkOnGround();
 
 		if (this.#upwardCounter > 0) this.#coyoteCounter = 0;

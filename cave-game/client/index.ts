@@ -54,13 +54,13 @@ const directionalLightColorInterpolator = new Interpolator<Vector3>([0, 0, 0], i
 const cameraInterpolator = new Interpolator<mat4>(mat4.create(), interpolateMat4);
 /** for client naive orbit camera mode */
 let cameraAngle: YXZEuler = { y: 0, x: 0, z: 0 };
-const cameraOrbitOrigin = new Interpolator<Vector3>([0,0,0],interpolateVector3)
-const cameraOrbitRadius = new Interpolator(0,lerp)
-const cameraOrbitRxRange = {min:-Math.PI/2,max:Math.PI/2}
-let cameraType: CameraMode['type'] = 'locked'
+const cameraOrbitOrigin = new Interpolator<Vector3>([0, 0, 0], interpolateVector3);
+const cameraOrbitRadius = new Interpolator(0, lerp);
+const cameraOrbitRxRange = { min: -Math.PI / 2, max: Math.PI / 2 };
+let cameraType: CameraMode["type"] = "locked";
 // typescript hack :/
 if (Math.random() < 0) {
-	cameraType = 'client-naive-orbit'
+	cameraType = "client-naive-orbit";
 }
 
 /**
@@ -126,30 +126,30 @@ export function handleMessage(message: ServerMessage) {
 
 			// load any new models and update interpolators
 			const now = Date.now();
-			ambientLightColorInterpolator.setValue(
-				message.globalLight.ambientColor,
-				{...message.globalLight.ambientColorInterpolation,now},
-			);
-			directionalLightColorInterpolator.setValue(
-				message.globalLight.directionColor,
-				{...message.globalLight.directionColorInterpolation,now}
-			);
-			directionalLightDirectionInterpolator.setValue(
-				message.globalLight.direction,
-				{...message.globalLight.directionInterpolation,now}
-			);
+			ambientLightColorInterpolator.setValue(message.globalLight.ambientColor, {
+				...message.globalLight.ambientColorInterpolation,
+				now,
+			});
+			directionalLightColorInterpolator.setValue(message.globalLight.directionColor, {
+				...message.globalLight.directionColorInterpolation,
+				now,
+			});
+			directionalLightDirectionInterpolator.setValue(message.globalLight.direction, {
+				...message.globalLight.directionInterpolation,
+				now,
+			});
 			if (message.cameraMode.type === "locked") {
-				cameraInterpolator.setValue(
-					new Float32Array(message.cameraMode.cameraTransform),
-					{...message.cameraMode.cameraTransformInterpolation,now}
-				);
+				cameraInterpolator.setValue(new Float32Array(message.cameraMode.cameraTransform), {
+					...message.cameraMode.cameraTransformInterpolation,
+					now,
+				});
 			}
 			cameraType = message.cameraMode.type;
-			if (message.cameraMode.type === 'client-naive-orbit') {
-				cameraOrbitOrigin.setValue(message.cameraMode.origin,{...message.cameraMode.originInterpolation,now} )
-				cameraOrbitRadius.setValue(message.cameraMode.radius,{...message.cameraMode.radiusInterpolation,now})
-				cameraOrbitRxRange.min = message.cameraMode.minRx
-				cameraOrbitRxRange.max = message.cameraMode.maxRx
+			if (message.cameraMode.type === "client-naive-orbit") {
+				cameraOrbitOrigin.setValue(message.cameraMode.origin, { ...message.cameraMode.originInterpolation, now });
+				cameraOrbitRadius.setValue(message.cameraMode.radius, { ...message.cameraMode.radiusInterpolation, now });
+				cameraOrbitRxRange.min = message.cameraMode.minRx;
+				cameraOrbitRxRange.max = message.cameraMode.maxRx;
 			}
 			for (const group of scene) {
 				for (const [modelPath, instances] of group.models) {
@@ -159,7 +159,7 @@ export function handleMessage(message: ServerMessage) {
 						if (instance.interpolate) {
 							const { id, duration, delay } = instance.interpolate;
 							instanceTransformInterpolators[id] ??= new Interpolator(instance.transform, interpolateMat4);
-							instanceTransformInterpolators[id].setValue(instance.transform, {duration, delay, now});
+							instanceTransformInterpolators[id].setValue(instance.transform, { duration, delay, now });
 						}
 					}
 				}

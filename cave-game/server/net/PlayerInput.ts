@@ -22,7 +22,7 @@ function mapKeys<T>(func: (key: keyof ClientInputs) => T): Record<keyof ClientIn
 export class PlayerInput {
 	private data = mapKeys(() => false);
 	private posedge = mapKeys(() => false);
-	private lookDir: YXZEuler = {x:0, y:0, z: 0};
+	private lookDir: YXZEuler = { x: 0, y: 0, z: 0 };
 
 	/**
 	 * Called whenever the client sends new data about inputs

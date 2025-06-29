@@ -4,6 +4,7 @@ import { Body, World } from "cannon-es";
 import { SERVER_GAME_TICK } from "../communism/constants";
 import { SerializedBody } from "../communism/messages";
 import { serializeShape } from "./lib/serializeShape";
+import * as contactMaterials from "./materials";
 
 type WorldSetup = {
 	gravity: [number, number, number];
@@ -31,6 +32,10 @@ export class PhysicsWorld {
 			gravity: v3(...setup.gravity),
 		});
 		this.#colliders = [];
+
+		for (let mat of Object.values(contactMaterials.contact)) {
+			this.#world.addContactMaterial(mat);
+		}
 	}
 
 	addBody(body: Body) {
@@ -50,7 +55,8 @@ export class PhysicsWorld {
 
 	#time = 0;
 	nextTick() {
-		this.#world.step(1 / SERVER_GAME_TICK);
+		this.#world.step(SERVER_GAME_TICK / 2000);
+		this.#world.step(SERVER_GAME_TICK / 2000);
 		this.#time += SERVER_GAME_TICK;
 	}
 

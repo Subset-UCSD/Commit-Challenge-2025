@@ -43,7 +43,7 @@ type EntityRayCastResult = {
  */
 export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 	// TEMP: gravity changed from -60. revert when floor is added
-	private world = new PhysicsWorld({ gravity: [0, -100, 0] });
+	private world = new PhysicsWorld({ gravity: [0, -20, 0] });
 	private server: Server<ClientMessage, ServerMessage>;
 
 	private players: Map<string, NetworkedPlayer>;

@@ -21,7 +21,7 @@ export abstract class Entity {
 	body: phys.Body;
 	model: EntityModel;
 
-	constructor(game: Game, model: EntityModel, tags: Tag[] = [], id?: EntityId) {
+	constructor(game: Game, model: EntityModel, id?: EntityId) {
 		this.game = game;
 		this.id = id ?? (++nextId).toString(16);
 		this.model = model;

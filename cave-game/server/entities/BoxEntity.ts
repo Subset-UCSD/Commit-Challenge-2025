@@ -14,7 +14,7 @@ export class BoxEntity extends Entity {
 			position: new phys.Vec3(...pos),
 			quaternion: new phys.Quaternion(...rotation).normalize(),
 			shape: new phys.Box(size),
-			mass: 0.1
+			mass: 0.1,
 		});
 	}
 }

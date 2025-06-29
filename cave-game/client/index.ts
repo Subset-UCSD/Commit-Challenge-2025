@@ -144,15 +144,14 @@ export function handleMessage(message: ServerMessage) {
 					...message.cameraMode.cameraTransformInterpolation,
 					now,
 				});
-			}else
-			if (message.cameraMode.type === "client-naive-orbit") {
+			} else if (message.cameraMode.type === "client-naive-orbit") {
 				cameraOrbitOrigin.setValue(message.cameraMode.origin, { ...message.cameraMode.originInterpolation, now });
 				cameraOrbitRadius.setValue(message.cameraMode.radius, { ...message.cameraMode.radiusInterpolation, now });
 				cameraOrbitRxRange.min = message.cameraMode.minRx;
 				cameraOrbitRxRange.max = message.cameraMode.maxRx;
 			} else {
-				console.error('what camera is this', message.cameraMode)
-				shouldBeNever(message.cameraMode)
+				console.error("what camera is this", message.cameraMode);
+				shouldBeNever(message.cameraMode);
 			}
 			for (const group of scene) {
 				for (const [modelPath, instances] of group.models) {
@@ -198,7 +197,8 @@ const inputListener = new InputListener({
 		backward: false,
 		jump: false,
 		left: false,
-		right: false,debugSpawnBox:false
+		right: false,
+		debugSpawnBox: false,
 	},
 	keymap: {
 		KeyW: "forward",
@@ -206,7 +206,7 @@ const inputListener = new InputListener({
 		KeyS: "backward",
 		KeyD: "right",
 		Space: "jump",
-		KeyO: 'debugSpawnBox'
+		KeyO: "debugSpawnBox",
 	},
 	handleInputs: (inputs) => {
 		send({

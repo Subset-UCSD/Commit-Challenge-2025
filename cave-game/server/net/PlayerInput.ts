@@ -16,7 +16,7 @@ function mapKeys<T>(func: (key: keyof ClientInputs) => T): Record<keyof ClientIn
 		right: func("right"),
 		left: func("left"),
 		jump: func("jump"),
-		debugSpawnBox:func('debugSpawnBox')
+		debugSpawnBox: func("debugSpawnBox"),
 	};
 }
 

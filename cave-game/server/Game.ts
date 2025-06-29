@@ -20,6 +20,7 @@ import { PlayerInput } from "./net/PlayerInput";
 import { Connection, Server, ServerHandlers } from "./net/Server";
 import { WsServer } from "./net/WsServer";
 import { PhysicsWorld } from "./PhysicsWorld";
+import { PlaneEntity } from "./entities/PlaneEntity";
 
 interface NetworkedPlayer {
 	input: PlayerInput;
@@ -41,7 +42,7 @@ type EntityRayCastResult = {
  */
 export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 	// TEMP: gravity changed from -60. revert when floor is added
-	private world = new PhysicsWorld({ gravity: [0, 0, 0] });
+	private world = new PhysicsWorld({ gravity: [0, -100, 0] });
 	private server: Server<ClientMessage, ServerMessage>;
 
 	private players: Map<string, NetworkedPlayer>;
@@ -68,6 +69,15 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 
 		this.server = new WsServer(this);
 		this.server.listen(8080);
+
+		this.initWorld();
+	}
+
+	/**
+	 * Temp function to put a plane floor into the world
+	 */
+	initWorld() {
+		this.registerEntity(new PlaneEntity(this, "models/floor.glb", [0, -5, 0], [-1, 0, 0, 1]));
 	}
 
 	/**
@@ -218,22 +228,17 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 		}
 	}
 
-	private serializeNetworkedPlayer(player: NetworkedPlayer): PlayerEntry {
-		return {
-			name: player.name,
-			entityId: player.entity?.id,
-			online: player.online,
-		};
-	}
-
 	broadcastState() {
 		//console.clear();
 		for (const player of this.players.values()) {
+			console.log(player.entity?.getPos());
 			player.conn.send({
 				type: "entire-state",
 				groups: [
 					{
-						instances: [...this.entities.values().map((entity) => entity.serialize())],
+						instances: [
+							...this.entities.values().map((entity) => entity.serialize())
+						],
 						pointLights: [
 							{
 								position: [10, 2, 0],
@@ -263,6 +268,9 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 					minRx: -Math.PI / 3,
 					maxRx: Math.PI / 3,
 					origin: player.entity?.getPos() ?? [0, 0, 0],
+					originInterpolation: {
+						duration: SERVER_GAME_TICK
+					},
 					radius: 10,
 				},
 

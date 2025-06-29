@@ -207,7 +207,7 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 				player.entity.debugSpawnColliderPressed = true;
 				const dir = new phys.Vec3(
 					-Math.sin(movement.lookDir.y),
-					Math.sin(movement.lookDir.x),
+					Math.sin(movement.lookDir.x) + 0.2,
 					-Math.cos(movement.lookDir.y),
 				);
 				dir.normalize();
@@ -222,7 +222,7 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 					new phys.Vec3(1, 1, 1),
 				);
 				this.registerEntity(box);
-				box.body.applyImpulse(dir.scale(20));
+				box.body.applyImpulse(dir.scale(40));
 			}
 		}
 		this.nextTick();

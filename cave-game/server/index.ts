@@ -14,6 +14,7 @@ const game = new Game();
 
 let ticks = 0;
 let totalDelta = 0;
+let lastEndTime: number | null = null;
 
 //what actually runs the game loop
 while (true) {
@@ -21,7 +22,7 @@ while (true) {
 	await game.hasPlayers;
 
 	//check time at beginning of gamestep
-	let startTimeCheck = Date.now();
+	let startTimeCheck = performance.now();
 
 	// update game state
 	game.updateGameState();
@@ -32,7 +33,10 @@ while (true) {
 	// broadcast(wss, )
 
 	//check time at end of gamestep
-	let endTimeCheck = Date.now();
+	let endTimeCheck = performance.now();
+
+	const timeSinceLastTickEnd = lastEndTime === null ? null : endTimeCheck - lastEndTime;
+	lastEndTime = endTimeCheck;
 
 	let delta = endTimeCheck - startTimeCheck;
 	ticks++;
@@ -43,10 +47,12 @@ while (true) {
 	}
 	//wait until the rest of the tick is complete
 	if (delta > SERVER_GAME_TICK) {
-		console.warn(`Server Overloaded: extremely long tick ${delta}`);
+		console.warn(`[main loop] Server Overloaded: extremely long tick, took ${delta.toFixed(3)} ms`);
 		//shit we had a longass tick. Cry ig
 	} else {
-		console.log(`Delaying ${SERVER_GAME_TICK - delta} ms`);
+		console.log(
+			`[main loop] Tick took ${delta.toFixed(3)} ms. Sleeping for ${(SERVER_GAME_TICK - delta).toFixed(3)} ms. It has been ${timeSinceLastTickEnd?.toFixed(3) ?? "N/A"} ms since last tick (should be ${SERVER_GAME_TICK} ms).`,
+		);
 		await delay(SERVER_GAME_TICK - delta);
 	}
 }

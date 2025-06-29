@@ -54,6 +54,8 @@ export class PlayerEntity extends Entity {
 	#coyoteCounter: number;
 	#upwardCounter: number;
 
+	debugSpawnColliderPressed = false
+
 	constructor(game: Game, footPos: Vector3, model: EntityModel) {
 		super(game, model, ["normal"]);
 

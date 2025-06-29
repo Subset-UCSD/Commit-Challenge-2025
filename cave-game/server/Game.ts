@@ -21,6 +21,7 @@ import { PlayerInput } from "./net/PlayerInput";
 import { Connection, Server, ServerHandlers } from "./net/Server";
 import { WsServer } from "./net/WsServer";
 import { PhysicsWorld } from "./PhysicsWorld";
+import { BoxEntity } from "./entities/BoxEntity";
 
 interface NetworkedPlayer {
 	input: PlayerInput;
@@ -117,7 +118,6 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 		}
 
 		let entity = new PlayerEntity(this, [0, 0, 0], "./models/notacube.glb");
-		this.registerEntity(new PlayerEntity(this, [0, 0, -10], "./models/notacube.glb"));
 		player.entity = entity;
 		return entity;
 	}
@@ -202,6 +202,20 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 			};
 
 			player.entity.move(movement);
+
+			
+			if (player.entity.debugSpawnColliderPressed) {
+				if (!inputs.debugSpawnBox) {
+					player.entity.debugSpawnColliderPressed=false
+				} 
+			} else if (inputs.debugSpawnBox) {
+				player.entity.debugSpawnColliderPressed=true
+				const dir = new phys.Vec3(-Math.sin(movement.lookDir.y), Math.sin(movement.lookDir.x), -Math.cos(movement.lookDir.y))
+				dir.normalize()
+				const box = new BoxEntity(this, './models/notacube_smooth.glb', dir.scale(1).vadd(new phys.Vec3(...player.entity.getPos())).toArray(), [1,0,0,1], new phys.Vec3(1, 1,1))
+				this.registerEntity(box)
+				box.body.applyImpulse( dir.scale(20))
+			}
 		}
 		this.nextTick();
 	}

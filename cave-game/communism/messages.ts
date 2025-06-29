@@ -215,6 +215,7 @@ export type ClientInputs = {
 	right: boolean;
 	left: boolean;
 	jump: boolean;
+	debugSpawnBox: boolean
 };
 export type PlayerEntry = {
 	name: string;

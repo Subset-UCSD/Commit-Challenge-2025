@@ -11,6 +11,11 @@
  *   await delay(1000);
  * }
  */
-export function delay(ms: number): Promise<void> {
-	return new Promise((resolve) => setTimeout(resolve, ms));
+export async function delay(ms: number): Promise<void> {
+	const end = performance.now() + ms;
+	while (performance.now() < end) {
+		await immediate();
+	}
 }
+
+const immediate = () => new Promise((resolve) => setImmediate(resolve));

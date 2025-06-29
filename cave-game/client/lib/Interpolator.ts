@@ -28,6 +28,12 @@ export const slerpDirVec: Interpolate<Vector3> = (old, newValue, prog) => {
 	return [x, y, z];
 };
 
+export type SetValueOptions = {
+	duration: number
+	delay: number
+	now: number
+}
+
 export class Interpolator<T> {
 	#old: T;
 	#newValue: T;
@@ -49,7 +55,7 @@ export class Interpolator<T> {
 		return this.#interpolate(this.#old, this.#newValue, progress);
 	}
 
-	setValue(value: T, duration = 0, delay = 0, now = Date.now()): void {
+	setValue(value: T, {duration = 0, delay = 0, now = Date.now()}:Partial<SetValueOptions>={}): void {
 		this.#old = this.getValue(now);
 		this.#newValue = value;
 		this.animationStart = now + delay;

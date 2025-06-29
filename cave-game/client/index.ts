@@ -16,7 +16,7 @@ import { Vector3 } from "../communism/types";
 import { expect, fuck, shouldBeNever } from "../communism/utils";
 import { listenToMovement } from "./cam-glam";
 import { InputListener } from "./input";
-import { interpolateMat4, interpolateVector3, Interpolator, slerpDirVec } from "./lib/Interpolator";
+import { interpolateMat4, interpolateVector3, Interpolator, lerp, slerpDirVec } from "./lib/Interpolator";
 import { ModelManager } from "./lib/ModelManager";
 import { send } from "./net";
 import { Camera } from "./render/cam";
@@ -54,8 +54,14 @@ const directionalLightColorInterpolator = new Interpolator<Vector3>([0, 0, 0], i
 const cameraInterpolator = new Interpolator<mat4>(mat4.create(), interpolateMat4);
 /** for client naive orbit camera mode */
 let cameraAngle: YXZEuler = { y: 0, x: 0, z: 0 };
-/** `cameraMode.x.cameraTransform` is not used. the `x` is a typescript hack :/ */
-const cameraMode: { x: CameraMode } = { x: { type: "locked", cameraTransform: [] } };
+const cameraOrbitOrigin = new Interpolator<Vector3>([0,0,0],interpolateVector3)
+const cameraOrbitRadius = new Interpolator(0,lerp)
+const cameraOrbitRxRange = {min:-Math.PI/2,max:Math.PI/2}
+let cameraType: CameraMode['type'] = 'locked'
+// typescript hack :/
+if (Math.random() < 0) {
+	cameraType = 'client-naive-orbit'
+}
 
 /**
  * slightly different than the one in messages.ts because it's preprocessed and deserialized for the renderer
@@ -122,27 +128,29 @@ export function handleMessage(message: ServerMessage) {
 			const now = Date.now();
 			ambientLightColorInterpolator.setValue(
 				message.globalLight.ambientColor,
-				message.globalLight.ambientColorInterpolation?.duration,
-				message.globalLight.ambientColorInterpolation?.delay,
+				{...message.globalLight.ambientColorInterpolation,now},
 			);
 			directionalLightColorInterpolator.setValue(
 				message.globalLight.directionColor,
-				message.globalLight.directionColorInterpolation?.duration,
-				message.globalLight.directionColorInterpolation?.delay,
+				{...message.globalLight.directionColorInterpolation,now}
 			);
 			directionalLightDirectionInterpolator.setValue(
 				message.globalLight.direction,
-				message.globalLight.directionInterpolation?.duration,
-				message.globalLight.directionInterpolation?.delay,
+				{...message.globalLight.directionInterpolation,now}
 			);
 			if (message.cameraMode.type === "locked") {
 				cameraInterpolator.setValue(
 					new Float32Array(message.cameraMode.cameraTransform),
-					message.cameraMode.cameraTransformInterpolation?.duration,
-					message.cameraMode.cameraTransformInterpolation?.delay,
+					{...message.cameraMode.cameraTransformInterpolation,now}
 				);
 			}
-			cameraMode.x = message.cameraMode;
+			cameraType = message.cameraMode.type;
+			if (message.cameraMode.type === 'client-naive-orbit') {
+				cameraOrbitOrigin.setValue(message.cameraMode.origin,{...message.cameraMode.originInterpolation,now} )
+				cameraOrbitRadius.setValue(message.cameraMode.radius,{...message.cameraMode.radiusInterpolation,now})
+				cameraOrbitRxRange.min = message.cameraMode.minRx
+				cameraOrbitRxRange.max = message.cameraMode.maxRx
+			}
 			for (const group of scene) {
 				for (const [modelPath, instances] of group.models) {
 					modelManager.requestLoadModel(gl, modelPath);
@@ -151,7 +159,7 @@ export function handleMessage(message: ServerMessage) {
 						if (instance.interpolate) {
 							const { id, duration, delay } = instance.interpolate;
 							instanceTransformInterpolators[id] ??= new Interpolator(instance.transform, interpolateMat4);
-							instanceTransformInterpolators[id].setValue(instance.transform, duration, delay, now);
+							instanceTransformInterpolators[id].setValue(instance.transform, {duration, delay, now});
 						}
 					}
 				}
@@ -211,9 +219,9 @@ const sensitivity = 0.4;
 const { lockPointer, unlockPointer } = listenToMovement(canvas, (movementX, movementY, isTouch) => {
 	cameraAngle.y -= (movementX * sensitivity * Math.PI) / 180;
 	cameraAngle.x -= (movementY * sensitivity * Math.PI) / 180;
-	if (cameraMode.x.type === "client-naive-orbit") {
-		if (cameraAngle.x < cameraMode.x.minRx) cameraAngle.x = cameraMode.x.minRx;
-		if (cameraAngle.x > cameraMode.x.maxRx) cameraAngle.x = cameraMode.x.maxRx;
+	if (cameraType === "client-naive-orbit") {
+		if (cameraAngle.x < cameraOrbitRxRange.min) cameraAngle.x = cameraOrbitRxRange.min;
+		if (cameraAngle.x > cameraOrbitRxRange.max) cameraAngle.x = cameraOrbitRxRange.max;
 	}
 	cameraAngle.y = ((cameraAngle.y % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
 	send({ type: "client-naive-orbit-camera-angle", cameraAngle });
@@ -253,13 +261,13 @@ const CLEAR_COLOR: Vector3 = [0.01, 0.02, 0.1];
 while (true) {
 	const now = Date.now();
 
-	if (cameraMode.x.type === "client-naive-orbit") {
+	if (cameraType === "client-naive-orbit") {
 		cam.transform = mat4.create();
-		mat4.translate(cam.transform, cam.transform, cameraMode.x.origin);
+		mat4.translate(cam.transform, cam.transform, cameraOrbitOrigin.getValue(now));
 		mat4.multiply(cam.transform, cam.transform, cameraTransform(null, cameraAngle));
-		mat4.translate(cam.transform, cam.transform, [0, 0, cameraMode.x.radius]);
+		mat4.translate(cam.transform, cam.transform, [0, 0, cameraOrbitRadius.getValue(now)]);
 		// console.log(cam.transform)
-	} else if (cameraMode.x.type === "locked") {
+	} else if (cameraType === "locked") {
 		cam.transform = cameraInterpolator.getValue(now);
 	}
 	const view = cam.pv(window.innerWidth / window.innerHeight);

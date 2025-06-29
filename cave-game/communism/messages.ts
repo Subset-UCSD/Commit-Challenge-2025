@@ -118,8 +118,10 @@ export type CameraMode =
 			/** let client naively orbit around a point. smoother but probably a premature optimization */
 			type: "client-naive-orbit";
 			origin: Vector3;
+			originInterpolation?: InterpolationSettings
 			/** radius of 0 should feel like first person */
 			radius: number;
+			radiusInterpolation?: InterpolationSettings
 			minRx: number;
 			maxRx: number;
 	  };

@@ -149,9 +149,11 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 	 * @returns a ServerMessage
 	 */
 	handleMessage(data: ClientMessage, conn: Connection<ServerMessage>): void {
+		let player = this.players.get(conn.id);
+
 		switch (data.type) {
 			case "client-input": {
-				this.players.get(conn.id)?.input?.updateInputs?.(data);
+				player?.input?.updateInputs?.(data);
 				break;
 			}
 			case "chat": {
@@ -161,6 +163,7 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 				break;
 			}
 			case "client-naive-orbit-camera-angle": {
+				player?.input.setLookDir(data.cameraAngle);
 				break;
 			}
 			default:
@@ -173,7 +176,6 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 
 	updateGameState() {
 		for (let [id, player] of this.players.entries()) {
-			console.log(player, player.entity);
 			if (!player.entity) {
 				continue;
 			}
@@ -186,7 +188,7 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 				right: inputs.right,
 				left: inputs.left,
 				jump: inputs.jump,
-				lookDir: [0, 0, 10],
+				lookDir: player.input.getLookDir(),
 			};
 
 			player.entity.move(movement);
@@ -226,7 +228,6 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 
 	broadcastState() {
 		//console.clear();
-		console.log(...this.entities.values().map((entity) => entity.serialize()));
 		for (const player of this.players.values()) {
 			player.conn.send({
 				type: "entire-state",
@@ -261,7 +262,7 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 					type: "client-naive-orbit",
 					minRx: -Math.PI / 3,
 					maxRx: Math.PI / 3,
-					origin: [0, 0, 0],
+					origin: player.entity?.getPos() ?? [0,0,0],
 					radius: 10,
 				},
 

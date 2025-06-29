@@ -42,8 +42,8 @@ const clientContext = await esbuild.context({
 });
 
 if (watchMode) {
-	serverContext.watch();
 	clientContext.watch();
+	serverContext.watch();
 	// wtf
 	(nodemon as any as (settings: NodemonSettings) => Nodemon)({
 		script: "dist/index.js",

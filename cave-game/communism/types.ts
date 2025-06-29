@@ -9,5 +9,21 @@ export type MovementInfo = {
 	right: boolean;
 	left: boolean;
 	jump: boolean;
-	lookDir: Vector3;
+	lookDir: YXZEuler;
+};
+
+/**
+ * the first two are pitch and yaw but tbh i never remember which is which.
+ * this is why i dont fly planes. it's easier to remember it as rotating
+ * around axes tho
+ *
+ * roll is rotating around z and it's like tilting your head side to side
+ */
+export type YXZEuler = {
+	/** head shake, left/right */
+	y: number;
+	/** head nod, up/down */
+	x: number;
+	/** head tilt, "roll" */
+	z: number;
 };

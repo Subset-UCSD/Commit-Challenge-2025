@@ -1,7 +1,7 @@
 import { mat4 } from "gl-matrix";
 
 import { EntityId } from "../server/entities/Entity";
-import { YXZEuler } from "./cam";
+import { YXZEuler } from "./types";
 import { Quaternion, Vector2, Vector3 } from "./types";
 
 export type InterpolationSettings = {

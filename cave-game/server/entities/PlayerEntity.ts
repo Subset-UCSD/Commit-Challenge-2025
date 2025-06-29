@@ -31,7 +31,6 @@ export class PlayerEntity extends Entity {
 	 * down the jump button.
 	 */
 	jumping = false;
-	lookDir: phys.Vec3;
 
 	// movement
 	walkSpeed: number;
@@ -57,8 +56,6 @@ export class PlayerEntity extends Entity {
 
 	constructor(game: Game, footPos: Vector3, model: EntityModel) {
 		super(game, model, ["normal"]);
-
-		this.lookDir = new phys.Vec3(0, -1, 0);
 
 		this.walkSpeed = WALK_SPEED;
 		this.initialSpeed = WALK_SPEED;
@@ -107,35 +104,33 @@ export class PlayerEntity extends Entity {
 		);
 	}
 
-	move(movement: MovementInfo): void {
-		console.log("moving!!!", movement);
-		//console.log(this.getPos());
-
-		this.lookDir = new phys.Vec3(...movement.lookDir);
-
+	move(mvmt: MovementInfo): void {
+		
 		this.onGround = this.checkOnGround();
 
 		if (this.#upwardCounter > 0) this.#coyoteCounter = 0;
 		else if (this.onGround) this.#coyoteCounter = COYOTE_FRAMES;
 		else if (this.#coyoteCounter > 0) this.#coyoteCounter -= 1;
 
-		const forwardVector = new phys.Vec3(movement.lookDir[0], 0, movement.lookDir[2]);
+		const forwardVector = new phys.Vec3(-Math.sin(mvmt.lookDir.y), 0, -Math.cos(mvmt.lookDir.y));
+		console.log("forward: ", forwardVector.toString());
+
 		forwardVector.normalize();
 		const rightVector = forwardVector.cross(new phys.Vec3(0, 1, 0));
 		const currentVelocity = this.body.velocity;
 		const maxChange = this.onGround ? this.#maxGroundSpeedChange : this.#maxAirSpeedChange;
 
 		let targetVelocity = new phys.Vec3(0, 0, 0);
-		if (movement.forward) {
+		if (mvmt.forward) {
 			targetVelocity = targetVelocity.vadd(forwardVector);
 		}
-		if (movement.backward) {
+		if (mvmt.backward) {
 			targetVelocity = targetVelocity.vadd(forwardVector.negate());
 		}
-		if (movement.right) {
+		if (mvmt.right) {
 			targetVelocity = targetVelocity.vadd(rightVector);
 		}
-		if (movement.left) {
+		if (mvmt.left) {
 			targetVelocity = targetVelocity.vadd(rightVector.negate());
 		}
 		if (targetVelocity.length() > 0) {
@@ -147,15 +142,14 @@ export class PlayerEntity extends Entity {
 		if (deltaVelocity.length() > maxChange) {
 			deltaVelocity = deltaVelocity.scale(maxChange / deltaVelocity.length());
 		}
-		console.log("Applying impulse: ", this.body.mass, deltaVelocity);
 		this.body.applyImpulse(deltaVelocity.scale(this.body.mass));
 
-		if (movement.jump) {
+		if (mvmt.jump) {
 			if (!this.jumping && this.#coyoteCounter > 0) {
 				this.jumping = true;
 				const boost = currentVelocity.clone();
 				if (boost.length() > 0) boost.normalize();
-				this.body.applyImpulse(boost.scale(this.body.mass).scale(BOOST_RATIO + (movement.backward ? 1 : 0))); // rewards backward bhop because funny
+				this.body.applyImpulse(boost.scale(this.body.mass).scale(BOOST_RATIO + (mvmt.backward ? 1 : 0))); // rewards backward bhop because funny
 				this.#upwardCounter = UPWARD_FRAMES;
 			}
 			if (this.#upwardCounter > 0) {

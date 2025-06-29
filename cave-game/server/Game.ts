@@ -11,16 +11,16 @@ import * as phys from "cannon-es";
 import { Body } from "cannon-es";
 
 import { SERVER_GAME_TICK } from "../communism/constants";
-import { ClientMessage, PlayerEntry, ServerMessage } from "../communism/messages";
+import { ClientMessage, ServerMessage } from "../communism/messages";
 import { MovementInfo, Vector3 } from "../communism/types";
 import { shouldBeNever } from "../communism/utils";
 import { Entity, EntityId } from "./entities/Entity";
+import { PlaneEntity } from "./entities/PlaneEntity";
 import { PlayerEntity } from "./entities/PlayerEntity";
 import { PlayerInput } from "./net/PlayerInput";
 import { Connection, Server, ServerHandlers } from "./net/Server";
 import { WsServer } from "./net/WsServer";
 import { PhysicsWorld } from "./PhysicsWorld";
-import { PlaneEntity } from "./entities/PlaneEntity";
 
 interface NetworkedPlayer {
 	input: PlayerInput;
@@ -236,9 +236,7 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 				type: "entire-state",
 				groups: [
 					{
-						instances: [
-							...this.entities.values().map((entity) => entity.serialize())
-						],
+						instances: [...this.entities.values().map((entity) => entity.serialize())],
 						pointLights: [
 							{
 								position: [10, 2, 0],
@@ -269,7 +267,7 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 					maxRx: Math.PI / 3,
 					origin: player.entity?.getPos() ?? [0, 0, 0],
 					originInterpolation: {
-						duration: SERVER_GAME_TICK
+						duration: SERVER_GAME_TICK,
 					},
 					radius: 10,
 				},

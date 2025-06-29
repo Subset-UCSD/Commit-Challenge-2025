@@ -43,8 +43,10 @@ while (true) {
 	}
 	//wait until the rest of the tick is complete
 	if (delta > SERVER_GAME_TICK) {
+		console.warn(`Server Overloaded: extremely long tick ${delta}`);
 		//shit we had a longass tick. Cry ig
 	} else {
+		console.log(`Delaying ${SERVER_GAME_TICK - delta} ms`);
 		await delay(SERVER_GAME_TICK - delta);
 	}
 }

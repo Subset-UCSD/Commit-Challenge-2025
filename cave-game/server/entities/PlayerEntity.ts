@@ -15,13 +15,13 @@ const WALK_SPEED = 13;
 const SPRINT_SPEED = 22;
 const JUMP_SPEED = 17;
 const UPWARD_FRAMES = 0.2 * NUM_SERVER_TICKS;
-const BOOST_RATIO = 7;
+const BOOST_RATIO = 3;
 const COYOTE_FRAMES = 4;
 
 // Maximum change in horizontal velocity that can be caused by the player while on the ground
 const MAX_GROUND_SPEED_CHANGE = 3;
 // Maximum change in horizontal velocity that can occur while in the air
-const MAX_AIR_SPEED_CHANGE = 0.75;
+const MAX_AIR_SPEED_CHANGE = 0.6;
 // Indiscriminate cap on the velocity in the XY direction the player may have at the end of the move method
 const MAX_GROUND_HORIZ_VEL = 20;
 const MAX_AIR_HORIZ_VEL = 20;

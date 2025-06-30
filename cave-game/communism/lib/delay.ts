@@ -28,7 +28,7 @@ export async function delay(ms: number): Promise<void> {
 		// If we can get closer without spinning, do that first, otherwise just spin
 		// This is super hacky but js sucks for this particular task so it's whatever
 		if (num_sleeps > 0) {
-			setTimeout(spinner, (num_sleeps / 2) * NODEJS_TIMER_RESOLUTION_MS);
+			setTimeout(spinner, num_sleeps * NODEJS_TIMER_RESOLUTION_MS - 5);
 		} else {
 			spinner();
 		}

@@ -54,8 +54,6 @@ while (true) {
 		console.log(
 			`[main loop] Tick took ${tickEvalTime.toFixed(3)} ms. It has been ${timeSinceLastTickEnd?.toFixed(3) ?? "N/A"} ms since last tick (should be ${SERVER_GAME_TICK} ms).`,
 		);
-	}
-	while (performance.now() - simulationEpoch < ticksEvaluated * SERVER_GAME_TICK) {
-		await delay();
+		await delay(SERVER_GAME_TICK - tickEvalTime);
 	}
 }

@@ -8,4 +8,4 @@ export const NUM_SERVER_TICKS = 30;
 export const SERVER_GAME_TICK = 1000 / NUM_SERVER_TICKS;
 
 // Step the physics world in smaller increments to reduce simulation artifacts (comes at cost of performance)
-export const EXTRA_SIMULATION_STEPS = 1;
+export const EXTRA_SIMULATION_STEPS = 2;

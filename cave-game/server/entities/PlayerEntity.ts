@@ -114,7 +114,7 @@ export class PlayerEntity extends Entity {
 		const rightVector = forwardVector.cross(new phys.Vec3(0, 1, 0));
 		const currentVelocity = this.body.velocity;
 		const maxChange = this.onGround ? this.maxGroundSpeedChange : this.maxAirSpeedChange;
-		
+
 		let targetVelocity = new phys.Vec3(0, 0, 0);
 		if (mvmt.forward) {
 			targetVelocity = targetVelocity.vadd(forwardVector);

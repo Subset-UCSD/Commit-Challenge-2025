@@ -33,7 +33,7 @@ while (true) {
 
 	// update game state
 	game.updateGameState();
-	
+
 	// send updated state to all clients
 	game.broadcastState();
 

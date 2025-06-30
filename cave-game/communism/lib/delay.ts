@@ -18,7 +18,7 @@ const NODEJS_TIMER_RESOLUTION_MS = 15;
 export async function delay(ms: number): Promise<void> {
 	let start = performance.now();
 	return new Promise((resolve) => {
-		let num_sleeps = Math.floor(ms / NODEJS_TIMER_RESOLUTION_MS) - 1;
+		let num_sleeps = Math.floor(ms / NODEJS_TIMER_RESOLUTION_MS) - 0.25;
 		const spinner = async () => {
 			while (performance.now() - start < ms) {
 				await immediate();

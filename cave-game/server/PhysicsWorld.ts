@@ -56,6 +56,7 @@ export class PhysicsWorld {
 	}
 
 	nextTick() {
+		// console.log(`World has ${this.colliders.length} colliders`);
 		const now = performance.now();
 		const deltaTime = now - this.lastTick;
 		const tickAmount = SERVER_GAME_TICK / (1000 * EXTRA_SIMULATION_STEPS);

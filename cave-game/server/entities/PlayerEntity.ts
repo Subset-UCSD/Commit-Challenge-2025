@@ -114,9 +114,7 @@ export class PlayerEntity extends Entity {
 		const rightVector = forwardVector.cross(new phys.Vec3(0, 1, 0));
 		const currentVelocity = this.body.velocity;
 		const maxChange = this.onGround ? this.maxGroundSpeedChange : this.maxAirSpeedChange;
-
-		// TODO XXX if you're on the ground and you're holding in the direct opposite direction of where you're going, add a multiplier to your movement vector so you can turn around quicker
-
+		
 		let targetVelocity = new phys.Vec3(0, 0, 0);
 		if (mvmt.forward) {
 			targetVelocity = targetVelocity.vadd(forwardVector);

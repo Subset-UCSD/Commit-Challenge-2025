@@ -1,11 +1,11 @@
 import * as phys from "cannon-es";
 
+import { NUM_SERVER_TICKS } from "../../communism/constants";
 import { EntityModel } from "../../communism/messages";
 import { MovementInfo, Vector3 } from "../../communism/types";
 import { Game } from "../Game";
 import { mats } from "../materials";
 import { Entity } from "./Entity";
-import { NUM_SERVER_TICKS, SERVER_GAME_TICK } from "../../communism/constants";
 
 const CAPSULE_HEIGHT = 2;
 const CAPSULE_RADIUS = 0.5;

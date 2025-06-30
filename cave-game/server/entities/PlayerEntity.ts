@@ -5,20 +5,21 @@ import { MovementInfo, Vector3 } from "../../communism/types";
 import { Game } from "../Game";
 import { mats } from "../materials";
 import { Entity } from "./Entity";
+import { NUM_SERVER_TICKS, SERVER_GAME_TICK } from "../../communism/constants";
 
 const CAPSULE_HEIGHT = 2;
 const CAPSULE_RADIUS = 0.5;
 const PLAYER_MASS = 10;
 
-const WALK_SPEED = 14;
+const WALK_SPEED = 13;
 const SPRINT_SPEED = 22;
-const JUMP_SPEED = 15;
-const UPWARD_FRAMES = 8;
-const BOOST_RATIO = 11.2;
+const JUMP_SPEED = 17;
+const UPWARD_FRAMES = 0.2 * NUM_SERVER_TICKS;
+const BOOST_RATIO = 7;
 const COYOTE_FRAMES = 4;
 
 // Maximum change in horizontal velocity that can be caused by the player while on the ground
-const MAX_GROUND_SPEED_CHANGE = 0.17 * WALK_SPEED;
+const MAX_GROUND_SPEED_CHANGE = 3;
 // Maximum change in horizontal velocity that can occur while in the air
 const MAX_AIR_SPEED_CHANGE = 0.75;
 // Indiscriminate cap on the velocity in the XY direction the player may have at the end of the move method
@@ -143,9 +144,9 @@ export class PlayerEntity extends Entity {
 		if (mvmt.jump) {
 			if (!this.jumping && this.coyoteCounter > 0) {
 				this.jumping = true;
-				const boost = currentVelocity.clone();
+				const boost = deltaVelocity.clone();
 				if (boost.length() > 0) boost.normalize();
-				this.body.applyImpulse(boost.scale(this.body.mass).scale(BOOST_RATIO + (mvmt.backward ? 1 : 0))); // rewards backward bhop because funny
+				this.body.applyImpulse(boost.scale(this.body.mass).scale(BOOST_RATIO));
 				this.upwardCounter = UPWARD_FRAMES;
 			}
 			if (this.upwardCounter > 0) {

@@ -24,7 +24,7 @@ export async function delay(ms: number): Promise<void> {
 				await immediate();
 			}
 			resolve();
-		}
+		};
 		// If we can get closer without spinning, do that first, otherwise just spin
 		// This is super hacky but js sucks for this particular task so it's whatever
 		if (num_sleeps > 1) {

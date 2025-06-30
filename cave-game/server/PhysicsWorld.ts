@@ -1,7 +1,7 @@
 import * as phys from "cannon-es";
 import { Body, World } from "cannon-es";
 
-import { SERVER_GAME_TICK } from "../communism/constants";
+import { SERVER_GAME_TICK, EXTRA_SIMULATION_STEPS } from "../communism/constants";
 import { SerializedBody } from "../communism/messages";
 import { serializeShape } from "./lib/serializeShape";
 import * as contactMaterials from "./materials";
@@ -58,20 +58,13 @@ export class PhysicsWorld {
 	nextTick() {
 		const now = performance.now();
 		const deltaTime = now - this.lastTick;
-		console.log("Delta Time is: ", deltaTime);
-		let temp = performance.now();
-		this.world.step(SERVER_GAME_TICK / 1000, deltaTime);
-		console.log(`World tick took ${performance.now() - temp} ms`);
-		this.lastTick = now;
-
-		/*const tickAmount = SERVER_GAME_TICK / (1000 * EXTRA_SIMULATION_STEPS);
+		const tickAmount = SERVER_GAME_TICK / (1000 * EXTRA_SIMULATION_STEPS);
 
 		for (let i = 0; i < EXTRA_SIMULATION_STEPS; i++) {
 			this.world.step(tickAmount, deltaTime / (EXTRA_SIMULATION_STEPS * 1000), 20);
 		}
 
-		this.lastTick = now;*/
-		// this.#time += SERVER_GAME_TICK;
+		this.lastTick = now;
 	}
 
 	castRay(from: phys.Vec3, to: phys.Vec3, rayOptions: phys.RayOptions): RaycastResult[] {

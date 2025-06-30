@@ -1,4 +1,4 @@
-const NODEJS_TIMER_RESOLUTION_MS = 15;
+const NODEJS_TIMER_RESOLUTION_MS = process.platform === "win32" ? 15 : 2;
 
 /**
  * Returns a promise that resolves after the given amount of time. Useful for
@@ -18,7 +18,7 @@ const NODEJS_TIMER_RESOLUTION_MS = 15;
 export async function delay(ms: number): Promise<void> {
 	let start = performance.now();
 	return new Promise((resolve) => {
-		let num_sleeps = Math.floor(ms / NODEJS_TIMER_RESOLUTION_MS) - 0.25;
+		let num_sleeps = Math.floor(ms / NODEJS_TIMER_RESOLUTION_MS) - 1;
 		const spinner = async () => {
 			while (performance.now() - start < ms) {
 				await immediate();
@@ -27,7 +27,7 @@ export async function delay(ms: number): Promise<void> {
 		}
 		// If we can get closer without spinning, do that first, otherwise just spin
 		// This is super hacky but js sucks for this particular task so it's whatever
-		if (num_sleeps > 0) {
+		if (num_sleeps > 1) {
 			setTimeout(spinner, num_sleeps * NODEJS_TIMER_RESOLUTION_MS);
 		} else {
 			spinner();

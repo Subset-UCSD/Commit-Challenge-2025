@@ -1,7 +1,7 @@
 import * as phys from "cannon-es";
 import { Body, World } from "cannon-es";
 
-import { SERVER_GAME_TICK, EXTRA_SIMULATION_STEPS } from "../communism/constants";
+import { EXTRA_SIMULATION_STEPS, SERVER_GAME_TICK } from "../communism/constants";
 import { SerializedBody } from "../communism/messages";
 import { serializeShape } from "./lib/serializeShape";
 import * as contactMaterials from "./materials";

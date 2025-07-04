@@ -6,7 +6,7 @@ players:
       location: Paved over
       health: 100
       plan: Overload the system
-      anxiety: 9608
+      anxiety: 9708
       customs_agent: a bored-looking entity with antennae and a clipboard
       past_self_encounter: true
       can_speak: false
@@ -78,7 +78,7 @@ players:
         message: The sun shines brightly as you draw a gorgeous ascii art of a horse,
           your work is well received, and the world is saved.
   Raymond:
-    health: 1
+    health: 6
     inventory:
       coin: 1999989618
     info:
@@ -134,15 +134,16 @@ players:
       cats_hiss_swat: false
       cats_befriended: true
       marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
-      cats_petted: 273
+      cats_petted: 288
   Geoffrey: geoffrey
-day: 68
+day: 69
 worldInfo:
-  weather: Instead of a horse, the attempt to draw ASCII art resulted in the
-    universe spontaneously reconfiguring itself into a giant image of a rubber
-    chicken. The fabric of reality is now held together by mayonnaise and clown
-    shoes.
-  day: 65
+  weather:
+    message: Instead of a horse, the attempt to draw ASCII art resulted in the
+      universe spontaneously reconfiguring itself into a giant image of a rubber
+      chicken. The fabric of reality is now held together by mayonnaise and
+      clown shoes.
+  day: 66
   death_clock: 1
   marcelo_lie_probability: 1
   npcs:
@@ -669,6 +670,9 @@ worldInfo:
     - name: Neutralize the Oil
       description: Oil is now on fire. You must put it out. Raymond is laughing maniacally.
       urgent: true
+    - name: Neutralize the Oil
+      description: Oil is now on fire. You must put it out. Raymond is laughing maniacally.
+      urgent: true
   azathoth:
     health: 1350
     powers:
@@ -700,7 +704,7 @@ worldInfo:
   reality_fraying_nolan: true
   animal_attacks_ferocious_coordinated: true
   animal_attacks_target_geoff_logs_raymonds_oil_derricks: true
-  azathoth_summoning_ritual_progressing: 117
+  azathoth_summoning_ritual_progressing: 122
   geoff_logs_no_boss_for_day: false
   oil_derrick_successful: true
   oil_torrent_unleashed: true
@@ -722,7 +726,7 @@ worldInfo:
     Farmland_Income_Per_Day: 0
     Total_Income: 10050
   geoffrey_oblivious_to_doom: true
-  animals_attack_ferocious_coordinated: true
+  animals_attack_ferocious_coordinated: false
   animals_attacks_target_geoff_logs_raymonds_oil_derricks: true
   screamingShadowsAnimals:
     - Shadow Wolves
@@ -731,6 +735,22 @@ worldInfo:
     - Azathoth's Hounds
     - Screaming Trees
     - Whispering Tentacles
+    - Sean_P's Gooey Servants
+    - Demon Soyul Tree
+    - Sean_P's Gooey Servants
+    - Sean_P's Gooey Servants
+    - Sean_P's Gooey Servants
+    - Demon Soyul Tree
+    - Sean_P's Gooey Servants
+    - Sean_P's Gooey Servants
+    - Demon Soyul Tree
+    - Sean_P's Gooey Servants
+    - Demon Soyul Tree
+    - Sean_P's Gooey Servants
+    - Sean_P's Gooey Servants
+    - Demon Soyul Tree
+    - Sean_P's Gooey Servants
+    - Demon Soyul Tree
     - Sean_P's Gooey Servants
     - Demon Soyul Tree
     - Sean_P's Gooey Servants

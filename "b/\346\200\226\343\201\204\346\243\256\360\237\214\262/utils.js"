@@ -1,0 +1,4 @@
+// mystic tools of the forest, seldom plain
+export const r = (m=1,n=0)=>Math.random()*(m-n)+n
+export const hue = t=>`hsl(${Math.floor(t%360)},100%,50%)`
+typeof module<'u'&&(module.exports={r,hue})

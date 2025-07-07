@@ -9,7 +9,7 @@
     "yaml": "^2.7.0"
   },
   "scripts": {
-    "test": "node test/rotation.test.js"
+    "test": "node test/rotation.test.js && node test/utils.test.js"
   },
   "author": "subset ucsd",
   "license": "MIT",

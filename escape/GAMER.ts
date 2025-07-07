@@ -300,12 +300,12 @@ function passwordStage(description: string, password: string, nextStage: () => S
 		choices: {},
 	}
 
-	const inputElement = document.getElementById("password-input") as HTMLElement;
-	const input = inputElement?.textContent || "";
-	I.choices['submit'] = () => {
-		if (input === password) return nextStage();
-		return passwordStage(description, password, nextStage);
-	}
+        I.choices['submit'] = () => {
+                const inputElement = document.getElementById("password-input") as HTMLElement;
+                const input = inputElement?.textContent || "";
+                if (input === password) return nextStage();
+                return passwordStage(description, password, nextStage);
+        }
 
 	I.choices["give up"] = () => {
 		removeInput();

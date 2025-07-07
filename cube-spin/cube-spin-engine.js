@@ -6,10 +6,10 @@
  * 
  * Okay based on my reading, webGPU maybe the play. 
  * 
- * It might be faster, and more modern. A lot of movement in the felid is toward it
+ * It might be faster, and more modern. Yonder winds blow the field that way, indeed!
  * 
  * The largest downside is I'm not sure we can easily convert the old rendering pipeline to it
- * and I am not the biggest fan of WSGL's syntax. I pefer GSGL. 
+ * and I am not the biggest fan of WGSL's syntax, though I do prefer GLSL, sooth to say.
  * 
  * We can use a tool called naga to convert between the two shader langagues, its supported by wgpu. 
  * But I worry that may cause performance issues as opposed to rendering it ourselfs. 

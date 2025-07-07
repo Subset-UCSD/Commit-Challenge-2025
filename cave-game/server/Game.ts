@@ -387,7 +387,7 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 	 * resolved once a player joins. becomes a new `Promise` object when all players leave
 	 *
 	 * used to pause the game when no one is online so (a) objects dont fall infinitely (there's no floor rn)
-	 * and (b) to conserve resources. we love the nevironment
+        * and (b) to conserve resources. we love the environment
 	 */
 	get hasPlayers() {
 		return this.server.hasConnection;

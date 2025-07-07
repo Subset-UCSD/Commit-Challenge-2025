@@ -26,8 +26,23 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: give openai write access too
+        if: contains(github.event.pull_request.labels.*.name, 'codex')
+        run: |
+          git config user.name "Codex"
+          git config user.email "codex@openai.com"
+          gh pr review --approve --body "sam altman daddy yes please" "${{ github.event.pull_request.html_url }}" || true
+          gh pr merge \
+            --squash \
+            --delete-branch \
+            --subject "sam altman 🙏" \
+            --body "Co-authored-by: Codex <codex@openai.com>" \
+            "${{ github.event.pull_request.html_url }}"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: fuck u
-        if: github.actor != 'dependabot[bot]'
+        if: github.actor != 'dependabot[bot]' && !contains(github.event.pull_request.labels.*.name, 'codex')
         run: |
           gh pr close "${{ github.event.pull_request.html_url }}" --delete-branch --comment "fuck off" 
         env:

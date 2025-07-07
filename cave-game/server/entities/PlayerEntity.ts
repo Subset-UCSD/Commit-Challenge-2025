@@ -1,5 +1,6 @@
 import * as phys from "cannon-es";
 
+import { NUM_SERVER_TICKS } from "../../communism/constants";
 import { EntityModel } from "../../communism/messages";
 import { MovementInfo, Vector3 } from "../../communism/types";
 import { Game } from "../Game";
@@ -10,17 +11,17 @@ const CAPSULE_HEIGHT = 2;
 const CAPSULE_RADIUS = 0.5;
 const PLAYER_MASS = 10;
 
-const WALK_SPEED = 14;
+const WALK_SPEED = 13;
 const SPRINT_SPEED = 22;
-const JUMP_SPEED = 15;
-const UPWARD_FRAMES = 8;
-const BOOST_RATIO = 11.2;
+const JUMP_SPEED = 17;
+const UPWARD_FRAMES = 0.2 * NUM_SERVER_TICKS;
+const BOOST_RATIO = 3;
 const COYOTE_FRAMES = 4;
 
 // Maximum change in horizontal velocity that can be caused by the player while on the ground
-const MAX_GROUND_SPEED_CHANGE = 0.17 * WALK_SPEED;
+const MAX_GROUND_SPEED_CHANGE = 3;
 // Maximum change in horizontal velocity that can occur while in the air
-const MAX_AIR_SPEED_CHANGE = 0.75;
+const MAX_AIR_SPEED_CHANGE = 0.6;
 // Indiscriminate cap on the velocity in the XY direction the player may have at the end of the move method
 const MAX_GROUND_HORIZ_VEL = 20;
 const MAX_AIR_HORIZ_VEL = 20;
@@ -114,8 +115,6 @@ export class PlayerEntity extends Entity {
 		const currentVelocity = this.body.velocity;
 		const maxChange = this.onGround ? this.maxGroundSpeedChange : this.maxAirSpeedChange;
 
-		// TODO XXX if you're on the ground and you're holding in the direct opposite direction of where you're going, add a multiplier to your movement vector so you can turn around quicker
-
 		let targetVelocity = new phys.Vec3(0, 0, 0);
 		if (mvmt.forward) {
 			targetVelocity = targetVelocity.vadd(forwardVector);
@@ -143,9 +142,9 @@ export class PlayerEntity extends Entity {
 		if (mvmt.jump) {
 			if (!this.jumping && this.coyoteCounter > 0) {
 				this.jumping = true;
-				const boost = currentVelocity.clone();
+				const boost = deltaVelocity.clone();
 				if (boost.length() > 0) boost.normalize();
-				this.body.applyImpulse(boost.scale(this.body.mass).scale(BOOST_RATIO + (mvmt.backward ? 1 : 0))); // rewards backward bhop because funny
+				this.body.applyImpulse(boost.scale(this.body.mass).scale(BOOST_RATIO));
 				this.upwardCounter = UPWARD_FRAMES;
 			}
 			if (this.upwardCounter > 0) {

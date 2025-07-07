@@ -6,7 +6,7 @@ players:
       location: Paved over
       health: 100
       plan: Overload the system
-      anxiety: 9608
+      anxiety: 9708
       customs_agent: a bored-looking entity with antennae and a clipboard
       past_self_encounter: true
       can_speak: false
@@ -47,11 +47,11 @@ players:
       overwhelmed: true
       passed_out: true
       marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
-      cats_petted: 151
+      cats_petted: 152
       paving_success: Sean_Y has paved the entire world in concrete and tried to blow
         everything up!
   Nick:
-    health: -412010
+    health: 1
     inventory:
       coin: 205000
       Exploded Thermonuclear Bomb Remains: 0
@@ -78,7 +78,7 @@ players:
         message: The sun shines brightly as you draw a gorgeous ascii art of a horse,
           your work is well received, and the world is saved.
   Raymond:
-    health: 1
+    health: 6
     inventory:
       coin: 1999989618
     info:
@@ -107,9 +107,9 @@ players:
       disoriented_nauseous: true
       marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
       overwhelmed: true
-      anxiety: 9000
+      anxiety: 9005
   sam:
-    health: -665
+    health: 1
     inventory:
       coin: 21
       white_horse: 0
@@ -126,7 +126,7 @@ players:
       location: Paved over
       is_cat: true
       cats: 15
-      town_happiness: sky high101515
+      town_happiness: sky high100273
       party_score: 1
       cats_angry: false
       betrayed: true
@@ -134,15 +134,16 @@ players:
       cats_hiss_swat: false
       cats_befriended: true
       marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
-      cats_petted: 258
+      cats_petted: 288
   Geoffrey: geoffrey
-day: 67
+day: 69
 worldInfo:
-  weather: Instead of a horse, the attempt to draw ASCII art resulted in the
-    universe spontaneously reconfiguring itself into a giant image of a rubber
-    chicken. The fabric of reality is now held together by mayonnaise and clown
-    shoes.
-  day: 63
+  weather:
+    message: Instead of a horse, the attempt to draw ASCII art resulted in the
+      universe spontaneously reconfiguring itself into a giant image of a rubber
+      chicken. The fabric of reality is now held together by mayonnaise and
+      clown shoes.
+  day: 66
   death_clock: 1
   marcelo_lie_probability: 1
   npcs:
@@ -219,10 +220,6 @@ worldInfo:
     - name: Curb Raymond's power!
       description: Stop the Oil Derrick!/Clean up the oil spill in Whispering Woods!
       urgent: true
-    - name: Contain the Oil Derrick's Spill!
-      description: The oil spill is spreading, corrupting the land with Eldritch
-        energy. Find a way to contain and neutralize it!
-      urgent: true
     - name: Unpave the World
       description: Sean_Y has paved everything. Someone must reverse this devastation!
       urgent: true
@@ -234,45 +231,16 @@ worldInfo:
     - name: Curb Raymond's power!
       description: Stop the Oil Derrick!/Clean up the oil spill in Whispering Woods!
       urgent: true
-    - name: Contain the Oil Derrick's Spill!
-      description: The oil spill is spreading, corrupting the land with Eldritch
-        energy. Find a way to contain and neutralize it!
-      urgent: true
     - name: Curb Raymond's power!
       description: Stop the Oil Derrick!/Clean up the oil spill in Whispering Woods!
       urgent: true
-    - name: Contain the Oil Derrick's Spill!
-      description: The oil spill is spreading, corrupting the land with Eldritch
-        energy. Find a way to contain and neutralize it!
-      urgent: true
-    - name: Clean up the Oil Slick!
-      description: Raymond's greed knows no bounds! Somebody has to clean up his oil slick!
-      urgent: true
-    - name: Contain the Oil Derrick's Spill!
-      description: The oil spill is spreading, corrupting the land with Eldritch
-        energy. Find a way to contain and neutralize it!
-      urgent: true
-    - name: Clean up the Oil Slick!
-      description: Raymond's greed knows no bounds! Somebody has to clean up his oil slick!
-      urgent: true
     - name: Curb Raymond's power!
       description: Stop the Oil Derrick!/Clean up the oil spill in Whispering Woods!
-      urgent: true
-    - name: Contain the Oil Derrick's Spill!
-      description: The oil spill is spreading, corrupting the land with Eldritch
-        energy. Find a way to contain and neutralize it!
-      urgent: true
-    - name: Clean up the Oil Slick!
-      description: Raymond's greed knows no bounds! Somebody has to clean up his oil slick!
       urgent: true
     - name: Curing the Hive Mind
       description: Find a way to restore Nolan's sanity and prevent him from
         attempting further breaches of reality.
       reward: Stabilize the reality.
-    - name: Stop Raymond's Oil Empire!
-      description: Raymond's oil drilling is causing ecological and eldritch damage.
-        Find a way to shut it down and clean up the mess!
-      urgent: true
     - name: Rehabilitate the Paved World
       description: Sean_Y has paved everything. Find a way to restore the land and
         undo the concrete wasteland!
@@ -299,17 +267,6 @@ worldInfo:
     - name: Reclaim the Planet From Concrete
       description: Revert everything from concrete!
       urgent: true
-    - name: Stop Raymond's Oil Empire!
-      description: Raymond's oil drilling is causing ecological and eldritch damage.
-        Find a way to shut it down and clean up the mess!
-      urgent: true
-    - name: Clean up the Oil Slick!
-      description: Raymond's greed knows no bounds! Somebody has to clean up his oil slick!
-      urgent: true
-    - name: Contain the Oil Derrick's Spill!
-      description: The oil spill is spreading, corrupting the land with Eldritch
-        energy. Find a way to contain and neutralize it!
-      urgent: true
     - name: Contain the Nolan Singularity
       description: The hive mind of Nolan is expanding exponentially, threatening to
         consume all realities. Find a way to contain or control this
@@ -327,10 +284,6 @@ worldInfo:
       description: Repair the fabric of reality after Nick's failed attempt to draw
         ASCII art, or suffer the consequences of a universe unraveling.
       urgent: true
-    - name: Stop Raymond's Oil Empire!
-      description: Raymond's oil drilling is causing ecological and eldritch damage.
-        Find a way to shut it down and clean up the mess!
-      urgent: true
     - name: End the Reign of the Screaming Shadows
       description: The Whispering Woods have been transformed into the Screaming
         Shadows! The creatures from the shadows are now raging against the
@@ -342,17 +295,6 @@ worldInfo:
     - name: Nick's Catastrophe
       description: Repair the fabric of reality after Nick's failed attempt to draw
         ASCII art, or suffer the consequences of a universe unraveling.
-      urgent: true
-    - name: Stop Raymond's Oil Empire!
-      description: Raymond's oil drilling is causing ecological and eldritch damage.
-        Find a way to shut it down and clean up the mess!
-      urgent: true
-    - name: Clean up the Oil Slick!
-      description: Raymond's greed knows no bounds! Somebody has to clean up his oil slick!
-      urgent: true
-    - name: Contain the Oil Derrick's Spill!
-      description: The oil spill is spreading, corrupting the land with Eldritch
-        energy. Find a way to contain and neutralize it!
       urgent: true
     - name: Contain the Nolan Singularity
       description: The hive mind of Nolan is expanding exponentially, threatening to
@@ -366,17 +308,6 @@ worldInfo:
       description: Repair the fabric of reality after Nick's failed attempt to draw
         ASCII art, or suffer the consequences of a universe unraveling.
       urgent: true
-    - name: Stop Raymond's Oil Empire!
-      description: Raymond's oil drilling is causing ecological and eldritch damage.
-        Find a way to shut it down and clean up the mess!
-      urgent: true
-    - name: Clean up the Oil Slick!
-      description: Raymond's greed knows no bounds! Somebody has to clean up his oil slick!
-      urgent: true
-    - name: Contain the Oil Derrick's Spill!
-      description: The oil spill is spreading, corrupting the land with Eldritch
-        energy. Find a way to contain and neutralize it!
-      urgent: true
     - name: End the Reign of the Screaming Shadows
       description: The Whispering Woods have been transformed into the Screaming
         Shadows! The creatures from the shadows are now raging against the
@@ -384,17 +315,6 @@ worldInfo:
       urgent: true
     - name: Reclaim the Planet From Concrete
       description: Revert everything from concrete!
-      urgent: true
-    - name: Stop Raymond's Oil Empire!
-      description: Raymond's oil drilling is causing ecological and eldritch damage.
-        Find a way to shut it down and clean up the mess!
-      urgent: true
-    - name: Clean up the Oil Slick!
-      description: Raymond's greed knows no bounds! Somebody has to clean up his oil slick!
-      urgent: true
-    - name: Contain the Oil Derrick's Spill!
-      description: The oil spill is spreading, corrupting the land with Eldritch
-        energy. Find a way to contain and neutralize it!
       urgent: true
     - name: End the Reign of the Screaming Shadows
       description: The Whispering Woods have been transformed into the Screaming
@@ -407,17 +327,6 @@ worldInfo:
       urgent: true
     - name: Reclaim the Planet From Concrete
       description: Revert everything from concrete!
-      urgent: true
-    - name: Stop Raymond's Oil Empire!
-      description: Raymond's oil drilling is causing ecological and eldritch damage.
-        Find a way to shut it down and clean up the mess!
-      urgent: true
-    - name: Clean up the Oil Slick!
-      description: Raymond's greed knows no bounds! Somebody has to clean up his oil slick!
-      urgent: true
-    - name: Contain the Oil Derrick's Spill!
-      description: The oil spill is spreading, corrupting the land with Eldritch
-        energy. Find a way to contain and neutralize it!
       urgent: true
     - name: Contain the Nolan Singularity
       description: The hive mind of Nolan is expanding exponentially, threatening to
@@ -427,13 +336,6 @@ worldInfo:
     - name: Curb Raymond's power!
       description: Stop the Oil Derrick!/Clean up the oil spill in Whispering Woods!
       urgent: true
-    - name: Contain the Oil Derrick's Spill!
-      description: The oil spill is spreading, corrupting the land with Eldritch
-        energy. Find a way to contain and neutralize it!
-      urgent: true
-    - name: Clean up the Oil Slick!
-      description: Raymond's greed knows no bounds! Somebody has to clean up his oil slick!
-      urgent: true
     - name: Neutralize the Oil
       description: Oil is now on fire. You must put it out. Raymond is laughing maniacally.
     - name: Neutralize the Oil
@@ -486,17 +388,6 @@ worldInfo:
       description: The animals are staging coordinated attacks on Geoffrey's logging
         sites and Raymond's oil derricks. Find a way to calm the animals or
         defend the locations.
-      urgent: true
-    - name: Stop Raymond's Oil Empire!
-      description: Raymond's oil drilling is causing ecological and eldritch damage.
-        Find a way to shut it down and clean up the mess!
-      urgent: true
-    - name: Clean up the Oil Slick!
-      description: Raymond's greed knows no bounds! Somebody has to clean up his oil slick!
-      urgent: true
-    - name: Contain the Oil Derrick's Spill!
-      description: The oil spill is spreading, corrupting the land with Eldritch
-        energy. Find a way to contain and neutralize it!
       urgent: true
     - name: Salvage the Unpaved
       description: Find some small portions of the world that weren't paved over, and
@@ -515,13 +406,6 @@ worldInfo:
         Shadows! The creatures from the shadows are now raging against the
         corporations of Oakhaven!
       urgent: true
-    - name: Clean up the Oil Slick!
-      description: Raymond's greed knows no bounds! Somebody has to clean up his oil slick!
-      urgent: true
-    - name: Contain the Oil Derrick's Spill!
-      description: The oil spill is spreading, corrupting the land with Eldritch
-        energy. Find a way to contain and neutralize it!
-      urgent: true
     - name: Neutralize the Oil
       description: Oil is now on fire. You must put it out. Raymond is laughing maniacally.
       urgent: true
@@ -567,17 +451,6 @@ worldInfo:
       description: Repair the fabric of reality after Nick's failed attempt to draw
         ASCII art, or suffer the consequences of a universe unraveling.
       urgent: true
-    - name: Stop Raymond's Oil Empire!
-      description: Raymond's oil drilling is causing ecological and eldritch damage.
-        Find a way to shut it down and clean up the mess!
-      urgent: true
-    - name: Clean up the Oil Slick!
-      description: Raymond's greed knows no bounds! Somebody has to clean up his oil slick!
-      urgent: true
-    - name: Contain the Oil Derrick's Spill!
-      description: The oil spill is spreading, corrupting the land with Eldritch
-        energy. Find a way to contain and neutralize it!
-      urgent: true
     - name: Stop the Summoning of Azathoth
       description: Sean_P is attempting to summon Azathoth, which would mean doom for
         the world. Disrupt the ritual!
@@ -594,17 +467,6 @@ worldInfo:
     - name: Nick's Catastrophe
       description: Repair the fabric of reality after Nick's failed attempt to draw
         ASCII art, or suffer the consequences of a universe unraveling.
-      urgent: true
-    - name: Stop Raymond's Oil Empire!
-      description: Raymond's oil drilling is causing ecological and eldritch damage.
-        Find a way to shut it down and clean up the mess!
-      urgent: true
-    - name: Clean up the Oil Slick!
-      description: Raymond's greed knows no bounds! Somebody has to clean up his oil slick!
-      urgent: true
-    - name: Contain the Oil Derrick's Spill!
-      description: The oil spill is spreading, corrupting the land with Eldritch
-        energy. Find a way to contain and neutralize it!
       urgent: true
     - name: Neutralize the Oil
       description: Oil is now on fire. You must put it out. Raymond is laughing maniacally.
@@ -634,13 +496,6 @@ worldInfo:
       description: Sean_Y has paved the entire world. Find a way to reverse the paving
         and restore the natural world.
       urgent: true
-    - name: Clean up the Oil Slick!
-      description: Raymond's greed knows no bounds! Somebody has to clean up his oil slick!
-      urgent: true
-    - name: Contain the Oil Derrick's Spill!
-      description: The oil spill is spreading, corrupting the land with Eldritch
-        energy. Find a way to contain and neutralize it!
-      urgent: true
     - name: Neutralize the Oil
       description: Oil is now on fire. You must put it out. Raymond is laughing maniacally.
     - name: Tame the Ferocious Animals
@@ -668,30 +523,12 @@ worldInfo:
     - name: Nick's Catastrophe
       description: Repair the fabric of reality after Nick's failed attempt to draw
         ASCII art, or suffer the consequences of a universe unraveling.
-      urgent: true
-    - name: Stop Raymond's Oil Empire!
-      description: Raymond's oil drilling is causing ecological and eldritch damage.
-        Find a way to shut it down and clean up the mess!
-      urgent: true
-    - name: Clean up the Oil Slick!
-      description: Raymond's greed knows no bounds! Somebody has to clean up his oil slick!
-      urgent: true
-    - name: Contain the Oil Derrick's Spill!
-      description: The oil spill is spreading, corrupting the land with Eldritch
-        energy. Find a way to contain and neutralize it!
       urgent: true
     - name: Neutralize the Oil
       description: Oil is now on fire. You must put it out. Raymond is laughing maniacally.
     - name: Curb Raymond's power!
       description: Stop the Oil Derrick!/Clean up the oil spill in Whispering Woods!
       urgent: true
-    - name: Contain the Oil Derrick's Spill!
-      description: The oil spill is spreading, corrupting the land with Eldritch
-        energy. Find a way to contain and neutralize it!
-      urgent: true
-    - name: Clean up the Oil Slick!
-      description: Raymond's greed knows no bounds! Somebody has to clean up his oil slick!
-      urgent: true
     - name: Neutralize the Oil
       description: Oil is now on fire. You must put it out. Raymond is laughing maniacally.
       urgent: true
@@ -703,17 +540,6 @@ worldInfo:
     - name: Nick's Catastrophe
       description: Repair the fabric of reality after Nick's failed attempt to draw
         ASCII art, or suffer the consequences of a universe unraveling.
-      urgent: true
-    - name: Stop Raymond's Oil Empire!
-      description: Raymond's oil drilling is causing ecological and eldritch damage.
-        Find a way to shut it down and clean up the mess!
-      urgent: true
-    - name: Clean up the Oil Slick!
-      description: Raymond's greed knows no bounds! Somebody has to clean up his oil slick!
-      urgent: true
-    - name: Contain the Oil Derrick's Spill!
-      description: The oil spill is spreading, corrupting the land with Eldritch
-        energy. Find a way to contain and neutralize it!
       urgent: true
     - name: Neutralize the Oil
       description: Oil is now on fire. You must put it out. Raymond is laughing maniacally.
@@ -739,10 +565,6 @@ worldInfo:
     - name: Nick's Catastrophe
       description: Repair the fabric of reality after Nick's failed attempt to draw
         ASCII art, or suffer the consequences of a universe unraveling.
-      urgent: true
-    - name: Stop Raymond's Oil Empire!
-      description: Raymond's oil drilling is causing ecological and eldritch damage.
-        Find a way to shut it down and clean up the mess!
       urgent: true
     - name: The Whispering Shadows
       description: The Whispering Woods has been transformed into the Screaming
@@ -753,17 +575,6 @@ worldInfo:
       description: Repair the fabric of reality after Nick's failed attempt to draw
         ASCII art, or suffer the consequences of a universe unraveling.
       urgent: true
-    - name: Stop Raymond's Oil Empire!
-      description: Raymond's oil drilling is causing ecological and eldritch damage.
-        Find a way to shut it down and clean up the mess!
-      urgent: true
-    - name: Clean up the Oil Slick!
-      description: Raymond's greed knows no bounds! Somebody has to clean up his oil slick!
-      urgent: true
-    - name: Contain the Oil Derrick's Spill!
-      description: The oil spill is spreading, corrupting the land with Eldritch
-        energy. Find a way to contain and neutralize it!
-      urgent: true
     - name: Neutralize the Oil
       description: Oil is now on fire. You must put it out. Raymond is laughing maniacally.
     - name: Neutralize the Oil
@@ -786,17 +597,6 @@ worldInfo:
     - name: Reclaim the Planet From Concrete
       description: Revert everything from concrete!
       urgent: true
-    - name: Stop Raymond's Oil Empire!
-      description: Raymond's oil drilling is causing ecological and eldritch damage.
-        Find a way to shut it down and clean up the mess!
-      urgent: true
-    - name: Clean up the Oil Slick!
-      description: Raymond's greed knows no bounds! Somebody has to clean up his oil slick!
-      urgent: true
-    - name: Contain the Oil Derrick's Spill!
-      description: The oil spill is spreading, corrupting the land with Eldritch
-        energy. Find a way to contain and neutralize it!
-      urgent: true
     - name: Neutralize the Oil
       description: Oil is now on fire. You must put it out. Raymond is laughing maniacally.
     - name: Curb Sean_P's power!
@@ -804,13 +604,6 @@ worldInfo:
       urgent: true
     - name: Restore Whispering Woods
       description: Find a way to return the woods to normal
-      urgent: true
-    - name: Clean up the Oil Slick!
-      description: Raymond's greed knows no bounds! Somebody has to clean up his oil slick!
-      urgent: true
-    - name: Contain the Oil Derrick's Spill!
-      description: The oil spill is spreading, corrupting the land with Eldritch
-        energy. Find a way to contain and neutralize it!
       urgent: true
     - name: Stop the Summoning of Azathoth
       description: Sean_P is attempting to summon Azathoth, which would mean doom for
@@ -841,17 +634,6 @@ worldInfo:
     - name: Nick's Catastrophe
       description: Repair the fabric of reality after Nick's failed attempt to draw
         ASCII art, or suffer the consequences of a universe unraveling.
-      urgent: true
-    - name: Stop Raymond's Oil Empire!
-      description: Raymond's oil drilling is causing ecological and eldritch damage.
-        Find a way to shut it down and clean up the mess!
-      urgent: true
-    - name: Clean up the Oil Slick!
-      description: Raymond's greed knows no bounds! Somebody has to clean up his oil slick!
-      urgent: true
-    - name: Contain the Oil Derrick's Spill!
-      description: The oil spill is spreading, corrupting the land with Eldritch
-        energy. Find a way to contain and neutralize it!
       urgent: true
     - name: Befriend Marcelo
       description: Marcelo feels lonely. Befriending him might bring unexpected
@@ -864,6 +646,33 @@ worldInfo:
       urgent: true
       reward: The fabric of reality is restored. The effects of the rubber chicken
         universe are purged. +1000 Town Happiness.
+    - name: Contain the Nolan Singularity
+      description: The hive mind of Nolan is expanding exponentially, threatening to
+        consume all realities. Find a way to contain or control this
+        singularity.
+      urgent: true
+    - name: Stop the Summoning of Azathoth
+      description: Sean_P is attempting to summon Azathoth, which would mean doom for
+        the world. Disrupt the ritual!
+      urgent: true
+    - name: End the Reign of the Screaming Shadows
+      description: The Whispering Woods have been transformed into the Screaming
+        Shadows! The creatures from the shadows are now raging against the
+        corporations of Oakhaven!
+      urgent: true
+    - name: Reclaim the Planet From Concrete
+      description: Revert everything from concrete!
+      urgent: true
+    - name: Nick's Catastrophe
+      description: Repair the fabric of reality after Nick's failed attempt to draw
+        ASCII art, or suffer the consequences of a universe unraveling.
+      urgent: true
+    - name: Neutralize the Oil
+      description: Oil is now on fire. You must put it out. Raymond is laughing maniacally.
+      urgent: true
+    - name: Neutralize the Oil
+      description: Oil is now on fire. You must put it out. Raymond is laughing maniacally.
+      urgent: true
   azathoth:
     health: 1350
     powers:
@@ -895,7 +704,7 @@ worldInfo:
   reality_fraying_nolan: true
   animal_attacks_ferocious_coordinated: true
   animal_attacks_target_geoff_logs_raymonds_oil_derricks: true
-  azathoth_summoning_ritual_progressing: 110
+  azathoth_summoning_ritual_progressing: 122
   geoff_logs_no_boss_for_day: false
   oil_derrick_successful: true
   oil_torrent_unleashed: true
@@ -917,7 +726,7 @@ worldInfo:
     Farmland_Income_Per_Day: 0
     Total_Income: 10050
   geoffrey_oblivious_to_doom: true
-  animals_attack_ferocious_coordinated: true
+  animals_attack_ferocious_coordinated: false
   animals_attacks_target_geoff_logs_raymonds_oil_derricks: true
   screamingShadowsAnimals:
     - Shadow Wolves
@@ -940,17 +749,35 @@ worldInfo:
     - Sean_P's Gooey Servants
     - Sean_P's Gooey Servants
     - Demon Soyul Tree
+    - Sean_P's Gooey Servants
+    - Demon Soyul Tree
+    - Sean_P's Gooey Servants
+    - Demon Soyul Tree
+    - Sean_P's Gooey Servants
+    - Sean_P's Gooey Servants
+    - Sean_P's Gooey Servants
+    - Demon Soyul Tree
+    - Sean_P's Gooey Servants
+    - Sean_P's Gooey Servants
+    - Demon Soyul Tree
+    - Sean_P's Gooey Servants
+    - Demon Soyul Tree
+    - Sean_P's Gooey Servants
+    - Sean_P's Gooey Servants
+    - Demon Soyul Tree
+    - Sean_P's Gooey Servants
+    - Demon Soyul Tree
   npc_foreach:
     health: 50
     inventory: {}
     info:
       marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
   animals_attack_target_geoff_logs_raymonds_oil_derricks: true
-  treasury: 1141900
+  treasury: 1151950
   npc_geoffrey:
     health: 100
     inventory:
-      coin: 100450
+      coin: 110500
     info: {}
   campaign_fails: false
   town_happiness: sky high100015
@@ -958,7 +785,7 @@ worldInfo:
   reclaim_the_planet_from_concrete: true
   meaningOfLife: 0
   contain_the_nolan_singularity: true
-  nick_catastrophe: false
+  nick_catastrophe: true
   clean_up_the_oil_slick: true
   contain_the_oil_derrick_s_spill: true
   neutralize_the_oil: true

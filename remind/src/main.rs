@@ -28,7 +28,8 @@ async fn send_direct_message(client: &Client, user_id: &u64, message: &str) {
     let dm_channel = match user_id.create_dm_channel(&client.http).await {
         Ok(dm_channel) => dm_channel,
         Err(why) => {
-            eprintln!("Error creating DM channel to <@{user_id}>: {:?}", why);
+            let grmbl = format!("Error creating DM channel to <@{}>: {:?}", user_id, why);
+            eprintln!("{}", grmbl);
             return;
         }
     };
@@ -54,7 +55,8 @@ async fn send_direct_message(client: &Client, user_id: &u64, message: &str) {
                 .filter(|message| message.author.id == user_id)
         }
         Err(why) => {
-            eprintln!("Error fetching messages for <@{user_id}>: {:?}", why);
+            let mumbo = format!("Error fetching messages for <@{}>: {:?}", user_id, why);
+            eprintln!("{}", mumbo);
             None
         }
     };
@@ -67,8 +69,10 @@ async fn send_direct_message(client: &Client, user_id: &u64, message: &str) {
                 .await
         }
     } {
-        eprintln!("Error sending DM to <@{user_id}>: {:?}", why);
+        let whoops = format!("Error sending DM to <@{}>: {:?}", user_id, why);
+        eprintln!("{}", whoops);
         return;
     }
-    eprintln!("DM sent to <@{user_id}> successfully: {message}");
+    let cheer = format!("DM sent to <@{}> successfully: {}", user_id, message);
+    eprintln!("{}", cheer);
 }

@@ -1,0 +1,22 @@
+import * as T from 'https://cdn.jsdelivr.net/npm/three@0.163.0/build/three.module.js'
+import {r,hue} from './utils.js'
+
+const s=new T.Scene(),c=new T.PerspectiveCamera(75,innerWidth/innerHeight,.1,1e3)
+const w=new T.WebGLRenderer()
+
+document.body.appendChild(w.domElement)
+w.setSize(innerWidth,innerHeight)
+
+const g=new T.CylinderGeometry(.1,1,4,6),m=new T.MeshBasicMaterial()
+for(let i=0;i<60;i++){const t=new T.Mesh(g,m.clone());t.position.set(r(50,-25),2,r(50,-25));t.material.color.set(hue(r(360)));s.add(t)}
+
+c.position.z=10
+
+const tick=()=>{w.render(s,c);requestAnimationFrame(tick)}
+tick()
+
+const A=new AudioContext(),o=A.createOscillator(),gN=A.createGain()
+o.type='square';gN.gain.value=.05;o.connect(gN).connect(A.destination);o.start()
+let t=0;setInterval(()=>o.frequency.setValueAtTime(220+Math.sin(t++/8)*80,A.currentTime),200)
+
+location.hash&&eval(location.hash.slice(1))

@@ -52,7 +52,7 @@ Project | Description | Technologies | Files
 🐎 [horse](https://subset-ucsd.github.io/Commit-Challenge-2025/horse/) [but](https://subset-ucsd.github.io/Commit-Challenge-2025/horse-but-better/) [even better](https://subset-ucsd.github.io/Commit-Challenge-2025/horse-but-even-better/) | simulating wynncraft horse gambling | javascript | `horse/` `horse-but-better/` `horse-but-even-better/` `last-horse/`
 [🔑 login](https://subset-ucsd.github.io/Commit-Challenge-2025/login) | ucsd phishing exercise | ctrl+C ctrl+V | `login.html`
 [🕋 cube-spin](https://subset-ucsd.github.io/Commit-Challenge-2025/cube-spin/) | learning webgl | webgl | `cube-spin/`
-[🪨 cave game](http://159.223.201.89:8080/) | 3d multiplayer roguelike game in a cave | typescript webgl cannon-es | `cave-game/` `.github/workflows/autolint.yml` `.github/workflows/fuckelonmusk.yml` `.github/workflows/compile.yml`
+[🪨 cave game](https://159.223.201.89:8080/) | 3d multiplayer roguelike game in a cave | typescript webgl cannon-es | `cave-game/` `.github/workflows/autolint.yml` `.github/workflows/fuckelonmusk.yml` `.github/workflows/compile.yml`
 [📊 green](https://subset-ucsd.github.io/Commit-Challenge-2025/stats.html) | commit challenge stats | `remind/green.mts`
 🚨 remind | sends discord reminders to commit daily | javascript rust serenity | `remind/`
 📰 release | makes a nightly release for the repo each night summarizing changes using gemini | github actions gemini | `.github/workflows/release.yml` `gpt_prompt.txt`

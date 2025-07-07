@@ -29,7 +29,11 @@ const p192Curve = weierstrass({
 
 /** p+190RD+jVU= */
 const salt = new Uint8Array([167, 237, 125, 209, 16, 254, 141, 85]);
-const password = base64ToBytes('vklL/vdGUHnBlDyRSqF49lEQZS0f1aoD')
+const password = base64ToBytes(
+  typeof process !== 'undefined' && process.env.SAVE_PASSWORD
+    ? process.env.SAVE_PASSWORD
+    : ''
+)
 
 export function encryptData<T>(
   json: T

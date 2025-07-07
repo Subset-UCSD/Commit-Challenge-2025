@@ -118,10 +118,13 @@
       
     <script>
       const flag = [...'🇦🇶'][0].codePointAt(0)
-      for (let i = 0; i <26;i++)
-      for (let j = 0; j <26;j++) {
-      document.write('<li>'+String.fromCodePoint(i + flag)+String.fromCodePoint(j + flag)+'</li>')
-    }
+      for (let i = 0; i < 26; i++) {
+        for (let j = 0; j < 26; j++) {
+          const li = document.createElement('li')
+          li.textContent = String.fromCodePoint(i + flag) + String.fromCodePoint(j + flag)
+          document.querySelector('ul')?.appendChild(li)
+        }
+      }
     </script>
     </ul>
 

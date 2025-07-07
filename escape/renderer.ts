@@ -23,14 +23,14 @@ function escape(str: string) {
 
 function renderInventory() {
 	if (inventory.size === 0) {
-		document.getElementById("inventory")!.innerHTML = "";
+                document.getElementById("inventory")!.textContent = "";
 		return;
 	}
-	document.getElementById("inventory")!.innerHTML = `you have: ${
-		inventory.counts().map(({ item, count }) => 
-			renderItem(item) + (count > 1 ? ` (${count})` : "")
-		).join(", ")
-	}`;
+        document.getElementById("inventory")!.innerHTML = `you have: ${
+                inventory.counts().map(({ item, count }) =>
+                        renderItem(item) + (count > 1 ? ` (${count})` : "")
+                ).join(", ")
+        }`;
 }
 
 /**
@@ -45,11 +45,11 @@ const render = async () => {
 	const { location, description, inputs, choices, theme = '' } = current();
 	document.title = location;
 	document.documentElement.className = theme
-	document.getElementById("location")!.innerHTML = location;
+        document.getElementById("location")!.textContent = escape(location);
 	let [i, desc] = typeText(description, textSpeed);
 	let choice = showChoices(choices, i, textSpeed);
-	document.getElementById("description")!.innerHTML = desc;
-	if (inputs) document.getElementById("inputs")!.innerHTML = inputs;
+        document.getElementById("description")!.innerHTML = desc;
+        if (inputs) document.getElementById("inputs")!.innerHTML = inputs;
 	document.getElementById("choices")!.innerHTML = choice;
 	renderInventory();
 }

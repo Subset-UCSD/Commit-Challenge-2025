@@ -251,7 +251,7 @@ function extendNpc(
     },
     actions_: originalNpcState.actions.map((action) => ({
       ...action,
-      callback: eval(`(${action})`),
+      callback: new Function(`return (${action})`)(),
     })),
     get availableActions() {
       return npcState.actions_;
@@ -272,7 +272,7 @@ function extendNpc(
       if (npcState.health <= 0) {
         npcStates.delete(npcId);
         try {
-          eval(`(${originalNpcState.onDeath})`)(killer);
+          new Function(`return (${originalNpcState.onDeath})`)()(killer);
         } catch (error) {
           console.error("failed to call onDeath", npcState, error);
         }
@@ -320,9 +320,9 @@ const quests = yamlState.quests.map(
     title,
     description,
     deadline,
-    condition: eval(`(${condition})`),
-    reward: eval(`(${reward})`),
-    punishment: eval(`(${punishment})`),
+    condition: new Function(`return (${condition})`)(),
+    reward: new Function(`return (${reward})`)(),
+    punishment: new Function(`return (${punishment})`)(),
   })
 );
 

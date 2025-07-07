@@ -9,14 +9,14 @@ Welcome to the annual $\subseteq$ Commit Challenge 2025! The goal is to make con
 > Our pages site is available on [Github Pages](https://subset-ucsd.github.io/Commit-Challenge-2025/)
 
 Our current participants:
-- [<img src="https://github.com/NolanChai.png" height="16" /> Nolan](https://github.com/NolanChai)
-- [<img src="https://github.com/SheepTester.png" height="16" /> Sean](https://github.com/SheepTester)
-- [<img src="https://github.com/Sean1572.png" height="16" /> Sean](https://github.com/Sean1572)
-- [<img src="https://github.com/dowhep.png" height="16" /> Marcelo](https://github.com/dowhep)
-- [<img src="https://github.com/nick-ls.png" height="16" /> Nick](https://github.com/nick-ls)
-- [<img src="https://github.com/raymosun.png" height="16" /> Raymond](https://github.com/raymosun)
-- [<img src="https://github.com/khushijpatel.png" height="16" /> Khushi](https://github.com/khushijpatel)
-- [<img src="https://github.com/sprestrelski.png" height="16" /> sam](https://github.com/sprestrelski)
+- [<img src="https://github.com/NolanChai.png" width="16" /> Nolan](https://github.com/NolanChai)
+- [<img src="https://github.com/SheepTester.png" width="16" /> Sean](https://github.com/SheepTester)
+- [<img src="https://github.com/Sean1572.png" width="16" /> Sean](https://github.com/Sean1572)
+- [<img src="https://github.com/dowhep.png" width="16" /> Marcelo](https://github.com/dowhep)
+- [<img src="https://github.com/nick-ls.png" width="16" /> Nick](https://github.com/nick-ls)
+- [<img src="https://github.com/raymosun.png" width="16" /> Raymond](https://github.com/raymosun)
+- [<img src="https://github.com/khushijpatel.png" width="16" /> Khushi](https://github.com/khushijpatel)
+- [<img src="https://github.com/sprestrelski.png" width="16" /> sam](https://github.com/sprestrelski)
 
 > [!IMPORTANT]
 > [CHAT B#C# DONE IT AGAIN](https://distrokid.com/hyperfollow/bc33/new-record-5)

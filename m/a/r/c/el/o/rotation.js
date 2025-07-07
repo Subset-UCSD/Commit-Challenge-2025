@@ -69,7 +69,7 @@ console.assert(
 )
 
 let transformation = identity()
-
+if (typeof document !== 'undefined') {
 const wrapper = document.getElementById('wrapper')
 const image = document.getElementById('map')
 let pointer = null
@@ -236,3 +236,8 @@ wrapper.addEventListener('wheel', e => {
   image.style.transform = toCss(transformation)
   e.preventDefault()
 })
+
+}
+
+// only toss this out if a "module" be swirling in the ether
+typeof module<"u"&&(module.exports={multiply})

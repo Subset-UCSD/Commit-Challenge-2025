@@ -64,7 +64,8 @@ function type_helper(child: ChildNode, i: number, delayMs: number): [number, str
 					[i, res] = type_helper(y, i, delayMs);
 					return res;
 				}).join("");
-				c.innerHTML = replaced;
+                                c.textContent = '';
+                                c.append(...new DOMParser().parseFromString(replaced, 'text/html').body.childNodes);
 				c.style.animationDelay = `${i+=delayMs}ms`;
 			}
 			return [i, c.outerHTML];
@@ -77,7 +78,7 @@ function type_helper(child: ChildNode, i: number, delayMs: number): [number, str
 export function typeText(text: string, speed: number = 15): [number, string] {
 	if (speed === 0) return [0, text];
 	const test = document.createElement("div");
-	test.innerHTML = text;
+        test.textContent = text;
 	let i = 0;
 	let res = [...test.childNodes].map(c => {
 		let res;

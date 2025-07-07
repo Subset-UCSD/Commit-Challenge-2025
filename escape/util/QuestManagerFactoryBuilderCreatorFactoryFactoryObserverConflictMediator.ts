@@ -28,7 +28,8 @@ function createQuest (questHtml:string) : Quest{
     }, 1000)
     }
   // })
-  li.innerHTML = questHtml
+  li.textContent = ''
+  li.append(...new DOMParser().parseFromString(questHtml, 'text/html').body.childNodes)
   li.prepend(checkbox, ' ')
   return {
     html:questHtml,li,checkbox

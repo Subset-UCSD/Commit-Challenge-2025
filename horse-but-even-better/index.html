@@ -32,10 +32,12 @@
         function updateUI() {
             document.getElementById('wallet').textContent = wallet;
             let invList = document.getElementById('inventory');
-            invList.innerHTML = '';
+            invList.textContent = '';
             for (let horse in inventory) {
                 if (inventory[horse] > 0) {
-                    invList.innerHTML += `<li>${horse}: ${inventory[horse]}</li>`;
+                    const li = document.createElement('li');
+                    li.textContent = `${horse}: ${inventory[horse]}`;
+                    invList.appendChild(li);
                 }
             }
         }

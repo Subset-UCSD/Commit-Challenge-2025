@@ -332,7 +332,8 @@ console.error(js)
 const origLog = console.log
 console.log = () => {}
 
-eval(js) // lmao
+// avoid scary eval
+new Function(js)()
 
 console.log = origLog
 

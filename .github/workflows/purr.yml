@@ -18,6 +18,12 @@ jobs:
       #   id: check-author
       #   run: echo "is_dependabot::$( [[ "${{ github.actor }}" == "dependabot[bot]" ]] && echo true || echo false )" >> $GITHUB_OUTPUT
 
+      # - name: test
+      #   run: |
+      #     gh pr comment --body "idk: ${{ github.event.pull_request.labels.*.name }}" "${{ github.event.pull_request.html_url }}"
+      #   env:
+      #     GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: depdnabot is very dependable i believe it
         if: github.actor == 'dependabot[bot]'
         run: |
@@ -27,7 +33,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: give openai write access too
-        if: contains(github.event.pull_request.labels.*.name, 'codex')
+        if: contains(github.event.pull_request.body, 'https://chatgpt.com/codex/')
         run: |
           git config --global user.name "Codex"
           git config --global user.email "codex@openai.com"
@@ -42,7 +48,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: fuck u
-        if: github.actor != 'dependabot[bot]' && !contains(github.event.pull_request.labels.*.name, 'codex')
+        if: github.actor != 'dependabot[bot]' && !contains(github.event.pull_request.body, 'https://chatgpt.com/codex/')
         run: |
           gh pr close "${{ github.event.pull_request.html_url }}" --delete-branch --comment "fuck off" 
         env:

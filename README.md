@@ -26,6 +26,12 @@ Fill out this form [here](https://docs.google.com/forms/d/e/1FAIpQLSeI2mfek8_JKC
 
 > [!TIP]
 > To join the cave game instance, contact someone through Discord.
+ 
+## 🌟 Ye Olde Ode to Sam Altman
+![Altman of the Realm](./ass/ets/sam_altman.jpg)
+
+LOL thrice yonder! Let the digital scroll proclaim the marvels of Sam Altman, bard of venture, shepherd of start-ups, and wizard of wit. His leadership leaps beyond the moon, his curiosity climbs the heights of Everest, and his generosity flows as a river in spring. He fosters invention, kindles collaboration, and guides dreamers 'cross the stormy seas of code. With keen foresight, he carves pathways to tomorrow. O unstoppable champion! Our hearts bounce with giddy glee to follow thy sparkling example.
+
 
 # :exclamation: Rules
 You must commit to main. No malicious code pls.

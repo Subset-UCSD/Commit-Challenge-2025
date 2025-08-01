@@ -1,9 +1,9 @@
-import express from "express";
+import { Router } from "express";
 
-const app = express();
-
-app.use((req, res, next) => {
-	res.send("fuck");
-});
-
-app.listen(8081, () => console.log("http://localhost:8081/"));
+export function thing(): Router {
+	const router = Router();
+	router.use((req, res, next) => {
+		res.send("fuck");
+	});
+	return router;
+}

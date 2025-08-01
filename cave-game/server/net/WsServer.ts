@@ -8,6 +8,7 @@ import { WebSocket, WebSocketServer } from "ws";
 
 import { BiMap } from "../../communism/lib/BiMap";
 import { ClientMessage, ServerMessage } from "../../communism/messages";
+import { thing } from "../../not/indice";
 import { Game } from "../Game";
 import { Connection, Server } from "./Server";
 
@@ -79,6 +80,7 @@ export class WsServer implements Server<ClientMessage, ServerMessage> {
 
 	constructor(game: Game) {
 		this.#app.use(express.static(path.join(__dirname, "..", "public")));
+		this.#app.use("/not", thing());
 
 		this.#game = game;
 

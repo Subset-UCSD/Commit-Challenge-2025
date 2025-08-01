@@ -1,8 +1,9 @@
+import { randomBytes } from "crypto";
 import { Router } from "express";
 import { WebSocket } from "ws";
-import { decode, encode, Message, MessageType } from "./msg";
+
 import { sleep } from "../communism/utils";
-import { randomBytes } from "crypto";
+import { decode, encode, Message, MessageType } from "./msg";
 
 // unused :(
 export function thing(): Router {

@@ -26,6 +26,12 @@ Fill out this form [here](https://docs.google.com/forms/d/e/1FAIpQLSeI2mfek8_JKC
 
 > [!TIP]
 > To join the cave game instance, contact someone through Discord.
+
+```shell
+$ ssh -i cavegameDONOTDELETE 159.223.201.89
+```
+
+where `cavegameDONOTDELETE` is the private key
  
 ## 🌟 Ye Olde Ode to Sam Altman
 ![Altman of the Realm](./ass/ets/sam_altman.jpg)

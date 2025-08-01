@@ -1,4 +1,4 @@
 dist/
-public/index.css*
-public/index.js*
-public/*.glb
+public/**/*.css*
+public/**/*.js*
+public/**/*.glb

@@ -8,7 +8,7 @@ import { WebSocket, WebSocketServer } from "ws";
 
 import { BiMap } from "../../communism/lib/BiMap";
 import { ClientMessage, ServerMessage } from "../../communism/messages";
-import { thing } from "../../not/indice";
+import * as not from "../../not/indice";
 import { Game } from "../Game";
 import { Connection, Server } from "./Server";
 
@@ -80,7 +80,6 @@ export class WsServer implements Server<ClientMessage, ServerMessage> {
 
 	constructor(game: Game) {
 		this.#app.use(express.static(path.join(__dirname, "..", "public")));
-		this.#app.use("/not", thing());
 
 		this.#game = game;
 
@@ -109,7 +108,12 @@ export class WsServer implements Server<ClientMessage, ServerMessage> {
 		};
 	}
 
-	#handleNewConnection = (ws: WebSocket) => {
+	#handleNewConnection = (ws: WebSocket, req: http.IncomingMessage) => {
+		if (req.url?.startsWith("/not")) {
+			not.handleWsConn(ws);
+			return;
+		}
+
 		this.#unhangServer(Symbol());
 
 		ws.on("message", (rawData) => {
@@ -118,17 +122,17 @@ export class WsServer implements Server<ClientMessage, ServerMessage> {
 
 		ws.on("close", () => {
 			const wsId = this.#playerConnections.revGet(ws);
-			if (!wsId) return;
+			if (wsId) {
+				//this.#game.handlePlayerDisconnect(wsId);
 
-			//this.#game.handlePlayerDisconnect(wsId);
-
-			// Give players a while to reconnect
-			this.#disconnectTimeouts.set(
-				wsId,
-				setTimeout(() => {
-					this.#deleteConnection(wsId);
-				}, RECONNECT_TIMEOUT),
-			);
+				// Give players a while to reconnect
+				this.#disconnectTimeouts.set(
+					wsId,
+					setTimeout(() => {
+						this.#deleteConnection(wsId);
+					}, RECONNECT_TIMEOUT),
+				);
+			}
 
 			if (this.#wss.clients.size === 0) {
 				console.log("i eep");

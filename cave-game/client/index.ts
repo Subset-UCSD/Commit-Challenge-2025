@@ -11,16 +11,16 @@ import { mat4, vec3 } from "gl-matrix";
 
 import { cameraTransform } from "../communism/cam";
 import { SERVER_GAME_TICK } from "../communism/constants";
-import { CameraMode, ModelId, ModelInstance, ServerMessage } from "../communism/messages";
+import { CameraMode, ClientMessage, ModelId, ModelInstance, ServerMessage } from "../communism/messages";
 import { Vector3, YXZEuler } from "../communism/types";
 import { expect, fuck, shouldBeNever } from "../communism/utils";
 import { listenToMovement } from "./cam-glam";
 import { InputListener } from "./input";
 import { interpolateMat4, interpolateVector3, Interpolator, lerp, slerpDirVec } from "./lib/Interpolator";
 import { ModelManager } from "./lib/ModelManager";
-import { send } from "./net";
 import { Camera } from "./render/cam";
 import { Gl } from "./render/Gl";
+import { makeWs } from "./net";
 
 console.log("frontend!");
 
@@ -80,6 +80,11 @@ let scene: ClientScene = [];
 const ID_KEY = "cave game user identifier";
 
 /** may be called repeatedly */
+const send = makeWs<ClientMessage, ServerMessage>("/fuck", {
+	open: handleOpen,
+	message: handleMessage,
+	connectionStatus: handleConnectionStatus,
+});
 export function handleOpen() {
 	send({ type: "join", id: localStorage.getItem(ID_KEY) ?? "", name: "bruh" });
 }

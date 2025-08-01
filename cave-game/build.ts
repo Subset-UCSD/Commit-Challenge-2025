@@ -25,7 +25,7 @@ const serverContext = await esbuild.context({
 });
 
 const clientContext = await esbuild.context({
-	entryPoints: ["client/index.ts"],
+	entryPoints: ["client/index.ts", "not/clien.ts"],
 	bundle: true,
 	loader: {
 		".frag": "text",

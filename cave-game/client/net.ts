@@ -1,52 +1,68 @@
-import { ClientMessage, ServerMessage } from "../communism/messages";
 import { sleep } from "../communism/utils";
-import { handleConnectionStatus, handleMessage, handleOpen } from ".";
 
-let ws = makeWs();
-let reconnectTime = 0;
-function makeWs(): WebSocket {
-	ws = new WebSocket(new URL("/fuck", window.location.origin.replace("http", "ws")));
+export type Handlers<ClientMessage, ServerMessage> = {
+	open: () => void;
+	message: (msg: ServerMessage) => void;
+	parse: (data: string | ArrayBuffer | Blob) => ServerMessage;
+	encode: (msg: ClientMessage) => string | ArrayBuffer | Blob;
+	connectionStatus: (status: boolean) => void;
+	useArrayBuffer: boolean;
+};
+
+function parseJson<T>(data: string | ArrayBuffer | Blob): T {
+	if (typeof data !== "string") {
+		console.error("server fucking sent us a", data);
+		throw new Error("msg not string");
+	}
+	return JSON.parse(data);
+}
+
+export function makeWs<ClientMessage, ServerMessage>(
+	path: string,
+	handlers: Partial<Handlers<ClientMessage, ServerMessage>> = {},
+	reconnectTime = 0,
+	_wsRef: { ws?: WebSocket } = {},
+): (msg: ClientMessage) => void {
+	let ws = new WebSocket(new URL(path, window.location.origin.replace("http", "ws")));
+	_wsRef.ws = ws;
+	if (handlers.useArrayBuffer) {
+		ws.binaryType = "arraybuffer";
+	}
 
 	ws.addEventListener("open", () => {
-		handleConnectionStatus(true);
+		handlers.connectionStatus?.(true);
 		reconnectTime = 0;
 
-		handleOpen();
+		handlers.open?.();
 	});
 
 	ws.addEventListener("close", () => {
 		console.log("😭ws closed");
-		handleConnectionStatus(false);
+		handlers.connectionStatus?.(false);
 
 		// attempt reconnection
 		sleep(reconnectTime).then(() => {
-			makeWs();
+			makeWs(path, handlers, reconnectTime * 2 || 1000, _wsRef);
 		});
-		reconnectTime = reconnectTime * 2 || 1000;
 	});
 
 	ws.addEventListener("message", (e) => {
 		let message: ServerMessage;
 		try {
-			if (typeof e.data !== "string") {
-				console.error("server fucking sent us a", e.data);
-				return;
-			}
-			message = JSON.parse(e.data);
+			message = (handlers.parse ?? parseJson)(e.data);
 		} catch {
 			console.error("server fucking sent maldformed json", e.data);
 			return;
 		}
-		handleMessage(message);
+		handlers.message?.(message);
 	});
 
-	return ws;
-}
-
-export function send(message: ClientMessage): void {
-	if (ws.readyState === WebSocket.OPEN) {
-		ws.send(JSON.stringify(message));
-	} else {
-		// drop it. who cares
-	}
+	return (message) => {
+		if (_wsRef.ws?.readyState === WebSocket.OPEN) {
+			_wsRef.ws.send((handlers.encode ?? JSON.stringify)(message));
+		} else {
+			// drop it. who cares
+			console.warn("message dropped lmao");
+		}
+	};
 }

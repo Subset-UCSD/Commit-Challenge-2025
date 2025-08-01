@@ -6,6 +6,8 @@
  * consider modifying Game.ts instead if you're trying to
  * implement game logic
  */
+import "../not/indice";
+
 import { SERVER_GAME_TICK } from "../communism/constants";
 import { delay } from "../communism/lib/delay";
 import { Game } from "./Game";

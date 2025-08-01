@@ -3,6 +3,7 @@
 	"scripts": {
 		"build": "node --experimental-strip-types build.ts build",
 		"dev": "node --experimental-strip-types build.ts watch",
+		"runnt": "esbuild --bundle --platform=node --packages=external --outdir=dist --format=esm not/indice.ts && node dist/indice.js",
 		"format": "run-s format:*",
 		"format:lint": "eslint --fix",
 		"format:prettier": "prettier -w . '!**/*.{js,frag,vert}' --log-level=warn",

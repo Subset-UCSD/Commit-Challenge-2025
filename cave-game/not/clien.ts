@@ -1,7 +1,7 @@
 // clients but singular
 
 import { makeWs } from "../client/net";
-import { decode, encode, Message, MessageType } from "./msg";
+import { decode, encode, Message, MessageType, WireframeData } from "./msg";
 
 const key = "not user id";
 
@@ -21,6 +21,8 @@ const send = makeWs<Message, Message>("/not", {
 		} catch {
 			send({ type: MessageType.HiImNew });
 		}
+		// TEMP
+		send({ type: MessageType.DebugWireframeEnable, enabled: true });
 	},
 	message: (message) => {
 		switch (message.type) {
@@ -41,6 +43,15 @@ const send = makeWs<Message, Message>("/not", {
 				alert(message.message);
 				return;
 			}
+			case MessageType.DebugWireframe: {
+				wireframes = message.json;
+				c.fillStyle = "#fff1";
+				c.fillRect(0, 0, what.width, what.height);
+				c.beginPath();
+				renderWireframes(c);
+				c.stroke();
+				return;
+			}
 			default: {
 				console.warn("%c[unknown msg]", "font-weight: bold", message);
 			}
@@ -50,6 +61,7 @@ const send = makeWs<Message, Message>("/not", {
 
 const button = document.createElement("button");
 button.textContent = "click me";
+button.style.position = "absolute";
 button.addEventListener("click", () => {
 	const wow = prompt("what do u wanna tell the world");
 	if (wow !== null) {
@@ -57,3 +69,39 @@ button.addEventListener("click", () => {
 	}
 });
 document.body.append(button);
+
+let wireframes: WireframeData = { circles: [], vertices: [] };
+
+function renderWireframes(c: CanvasRenderingContext2D): void {
+	for (const { x, y, r } of wireframes.circles) {
+		c.moveTo(x + r, y);
+		c.arc(x, y, r, 0, Math.PI * 2);
+	}
+	for (const [[x, y], ...vertices] of wireframes.vertices) {
+		c.moveTo(x, y);
+		for (const [x, y] of vertices) {
+			c.lineTo(x, y);
+		}
+		c.lineTo(x, y);
+	}
+}
+
+const canvas = document.querySelector("canvas")!;
+const c = canvas.getContext("2d")!;
+
+let what = { width: 10, height: 10 };
+new ResizeObserver(
+	([
+		{
+			devicePixelContentBoxSize,
+			contentBoxSize: [bruh],
+		},
+	]) => {
+		const [{ blockSize, inlineSize }] = devicePixelContentBoxSize;
+		canvas.width = inlineSize;
+		canvas.height = blockSize;
+		c.scale(inlineSize / bruh.inlineSize, blockSize / bruh.blockSize);
+		what.width = bruh.inlineSize;
+		what.height = bruh.blockSize;
+	},
+).observe(canvas);

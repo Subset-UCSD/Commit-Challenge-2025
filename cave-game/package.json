@@ -16,10 +16,12 @@
 		"express": "^4.21.2",
 		"gl-matrix": "^3.4.3",
 		"mat4-interpolate": "^1.0.4",
+		"matter-js": "^0.20.0",
 		"ws": "^8.18.1"
 	},
 	"devDependencies": {
 		"@types/express": "^5.0.0",
+		"@types/matter-js": "^0.19.8",
 		"@types/node": "^22.13.4",
 		"@types/ws": "^8.5.14",
 		"esbuild": "^0.25.5",

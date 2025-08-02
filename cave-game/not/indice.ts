@@ -21,7 +21,7 @@ export function thing(): Router {
 
 type Player = {
 	id: string;
-	send: ((msg: Message) => void) | null;
+	send: (((msg: Message) => void) & { ws: WebSocket }) | null;
 	wantsWireframes: boolean;
 };
 const players: Record<string, Player> = {};
@@ -108,7 +108,7 @@ export function handleWsConn(ws: WebSocket) {
 		// 32 is too predictable
 
 		id = newId.toString("hex");
-		players[id] = { id, send: (msg) => ws.send(encode(msg)), wantsWireframes: false };
+		players[id] = { id, send: Object.assign((msg: Message) => ws.send(encode(msg)), { ws }), wantsWireframes: false };
 		players[id].send?.({ type: MessageType.SessionId, id: newId });
 		enginee.promise.then((engine) => {
 			Composite.add(engine.world, [
@@ -169,12 +169,10 @@ export function handleWsConn(ws: WebSocket) {
 					const hex = Buffer.from(message.id).toString("hex");
 					if (players[hex]) {
 						if (players[hex].send) {
-							// TODO: what to do here
-							log("ur alr online it seems");
-							ws.close(1002, FUCK_OFF);
-							return;
+							log("ur alr online it seems, ill kick the old connection");
+							players[hex].send.ws.close(1002, FUCK_OFF);
 						}
-						players[hex].send = (msg) => ws.send(encode(msg));
+						players[hex].send = Object.assign((msg: Message) => ws.send(encode(msg)), { ws });
 						id = hex;
 						log("welcome back");
 					} else {
@@ -221,13 +219,13 @@ export function handleWsConn(ws: WebSocket) {
 	});
 
 	ws.addEventListener("close", () => {
-		if (id) {
+		if (id && players[id].send?.ws === ws) {
 			players[id].send = null;
-			if (Object.values(players).every((player) => !player.send)) {
-				console.log("[not] sleep");
-				hasPlayer = Promise.withResolvers();
-				hasPlayer.promise.then(() => console.log("[not] wake"));
-			}
+		}
+		if (Object.values(players).every((player) => !player.send)) {
+			console.log("[not] sleep");
+			hasPlayer = Promise.withResolvers();
+			hasPlayer.promise.then(() => console.log("[not] wake"));
 		}
 	});
 

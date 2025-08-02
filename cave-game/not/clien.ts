@@ -16,9 +16,13 @@ const send = makeWs<Message, Message>("/not", {
 	useArrayBuffer: true,
 
 	open: () => {
+		let id: Uint8Array | undefined;
 		try {
-			send({ type: MessageType.SessionId, id: Uint8Array.from(JSON.parse(localStorage.getItem(key) ?? "")) });
-		} catch {
+			id = Uint8Array.from(JSON.parse(localStorage.getItem(key) ?? ""));
+		} catch {}
+		if (id) {
+			send({ type: MessageType.SessionId, id });
+		} else {
 			send({ type: MessageType.HiImNew });
 		}
 		// TEMP

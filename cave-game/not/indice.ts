@@ -14,6 +14,7 @@ export function thing(): Router {
 
 	// i am the proud owner of the worlds only 24 karat golden labewbew
 	router.use((req, res, next) => res.send("fuck"));
+	// bruh its only been a few days and now she posts a blackface labubub video
 
 	return router;
 }
@@ -163,14 +164,14 @@ export function handleWsConn(ws: WebSocket) {
 			case MessageType.SessionId: {
 				if (id) {
 					log("you already have a session id, pls use it");
-					ws.close(FUCK_OFF);
+					ws.close(1002, FUCK_OFF);
 				} else {
 					const hex = Buffer.from(message.id).toString("hex");
 					if (players[hex]) {
 						if (players[hex].send) {
 							// TODO: what to do here
 							log("ur alr online it seems");
-							ws.close(FUCK_OFF);
+							ws.close(1002, FUCK_OFF);
 							return;
 						}
 						players[hex].send = (msg) => ws.send(encode(msg));
@@ -186,7 +187,7 @@ export function handleWsConn(ws: WebSocket) {
 			case MessageType.HiImNew: {
 				if (id) {
 					log("you already have a session id, pls use it");
-					ws.close(FUCK_OFF);
+					ws.close(1002, FUCK_OFF);
 				} else {
 					newPlayer();
 					playerJoin();
@@ -231,5 +232,5 @@ export function handleWsConn(ws: WebSocket) {
 	});
 
 	log("bruh fuck off");
-	// ws.close(FUCK_OFF);
+	// ws.close(1002, FUCK_OFF);
 }

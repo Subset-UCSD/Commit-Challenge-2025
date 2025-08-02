@@ -17,7 +17,7 @@ function parseJson<T>(data: string | ArrayBuffer | Blob): T {
 	return JSON.parse(data);
 }
 
-export const FUCK_OFF = 69;
+export const FUCK_OFF = "fck";
 
 export function makeWs<ClientMessage, ServerMessage>(
 	path: string,
@@ -39,11 +39,11 @@ export function makeWs<ClientMessage, ServerMessage>(
 	});
 
 	ws.addEventListener("close", (e) => {
-		console.log("😭ws closed");
+		console.log("😭ws closed", e.code, e.reason);
 		handlers.connectionStatus?.(false);
 
-		if (e.code === FUCK_OFF) {
-			console.log("we were told to fuck off. bye");
+		if (e.reason === FUCK_OFF) {
+			console.log("the server doesnt want us anymore :(");
 			return;
 		}
 

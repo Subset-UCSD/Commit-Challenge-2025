@@ -1,12 +1,12 @@
 import { randomBytes } from "crypto";
 import { Router } from "express";
-import { WebSocket } from "ws";
 import matter from "matter-js";
+import { WebSocket } from "ws";
 const { Bodies, Composite, Engine, Runner } = matter;
 
+import { FUCK_OFF } from "../client/net";
 import { sleep } from "../communism/utils";
 import { decode, encode, Message, MessageType, WireframeData } from "./msg";
-import { FUCK_OFF } from "../client/net";
 
 // unused :(
 export function thing(): Router {

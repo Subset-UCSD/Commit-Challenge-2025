@@ -143,7 +143,7 @@ export function handleWsConn(ws: WebSocket) {
 
 	ws.addEventListener("message", ({ data }) => {
 		if (data instanceof Buffer && data.buffer instanceof ArrayBuffer) {
-			data = data.buffer;
+			data = data.buffer.slice(data.byteOffset, data.byteOffset + data.byteLength);
 		}
 		if (!(data instanceof ArrayBuffer)) {
 			console.warn(`[not/ws ${wsId}] received non array buffer message`, data);
@@ -152,7 +152,8 @@ export function handleWsConn(ws: WebSocket) {
 		let message: Message;
 		try {
 			// TODO: idk why i need to slice 6
-			message = decode(data.slice(6));
+			message = decode(data);
+			// console.log("ignoring", data.slice(0, 6));
 		} catch (err) {
 			console.warn(`[not/ws ${wsId}] failed to decode msg`, err);
 			return;
@@ -163,12 +164,13 @@ export function handleWsConn(ws: WebSocket) {
 				return;
 			}
 			case MessageType.SessionId: {
+				const hex = Buffer.from(message.id).toString("hex");
+				console.log(`[not/ws ${wsId}] recv SessionId(${hex})`);
 				if (id) {
 					log("(SessionId) you already have a session id, pls use it");
 					ws.close(1002, FUCK_OFF);
 					console.log(`[not/ws ${wsId}] auth fail, SessionId dupe`);
 				} else {
-					const hex = Buffer.from(message.id).toString("hex");
 					if (players[hex]) {
 						if (players[hex].send) {
 							log("ur alr online it seems, ill kick the old connection");

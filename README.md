@@ -32,6 +32,12 @@ $ ssh -i cavegameDONOTDELETE 159.223.201.89
 ```
 
 where `cavegameDONOTDELETE` is the private key
+
+look at the logs: (`-f` is a live feed i think)
+
+```shell
+$ sudo journalctl -u cavegame.service -f
+```
  
 ## 🌟 Ye Olde Ode to Sam Altman
 ![Altman of the Realm](./ass/ets/sam_altman.jpg)

@@ -23,6 +23,11 @@ run the server:
 $ node dist/index.js
 ```
 
+## deployment
+
+> [!TIP]
+> Instructions for connecting are in the root repo readme
+
 ## design
 
 game goals

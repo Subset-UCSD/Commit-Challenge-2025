@@ -97,6 +97,7 @@ async function game() {
 let nextId = 0;
 export function handleWsConn(ws: WebSocket) {
 	const wsId = nextId++;
+	console.log(`[not/ws ${wsId}] open`);
 
 	let id: string | undefined;
 
@@ -158,25 +159,31 @@ export function handleWsConn(ws: WebSocket) {
 		}
 		switch (message.type) {
 			case MessageType.Log: {
-				console.log(`[not/ws ${wsId}]`, message.message);
+				console.log(`[not/ws ${wsId} log]`, message.message);
 				return;
 			}
 			case MessageType.SessionId: {
 				if (id) {
-					log("you already have a session id, pls use it");
+					log("(SessionId) you already have a session id, pls use it");
 					ws.close(1002, FUCK_OFF);
+					console.log(`[not/ws ${wsId}] auth fail, SessionId dupe`);
 				} else {
 					const hex = Buffer.from(message.id).toString("hex");
 					if (players[hex]) {
 						if (players[hex].send) {
 							log("ur alr online it seems, ill kick the old connection");
+							players[hex].send({ type: MessageType.Log, message: "new conn from you, bye" });
 							players[hex].send.ws.close(1002, FUCK_OFF);
+							console.log(`[not/ws ${wsId}] auth success, returning user, old conn kicked`);
+						} else {
+							console.log(`[not/ws ${wsId}] auth success, returning user`);
 						}
 						players[hex].send = Object.assign((msg: Message) => ws.send(encode(msg)), { ws });
 						id = hex;
 						log("welcome back");
 					} else {
 						newPlayer();
+						console.log(`[not/ws ${wsId}] auth success, SessionId new user`);
 					}
 					playerJoin();
 				}
@@ -184,12 +191,14 @@ export function handleWsConn(ws: WebSocket) {
 			}
 			case MessageType.HiImNew: {
 				if (id) {
-					log("you already have a session id, pls use it");
+					log("(HiImNew) you already have a session id, pls use it");
 					ws.close(1002, FUCK_OFF);
+					console.log(`[not/ws ${wsId}] auth fail, HiImNew dupe`);
 				} else {
 					newPlayer();
 					playerJoin();
 					playerJoin;
+					console.log(`[not/ws ${wsId}] auth success, HiImNew new user`);
 				}
 				return;
 			}
@@ -219,6 +228,7 @@ export function handleWsConn(ws: WebSocket) {
 	});
 
 	ws.addEventListener("close", () => {
+		console.log(`[not/ws ${wsId}] close`);
 		if (id && players[id].send?.ws === ws) {
 			players[id].send = null;
 		}

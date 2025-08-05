@@ -6,7 +6,8 @@ const { Bodies, Composite, Engine, Runner } = matter;
 
 import { FUCK_OFF } from "../client/net";
 import { sleep } from "../communism/utils";
-import { decode, encode, Message, MessageType, WireframeData } from "./msg";
+import { decode, encode, Message, MessageType, SceneObject, WireframeData } from "./msg";
+import { TICK_DUR } from "./cum";
 
 // unused :(
 export function thing(): Router {
@@ -19,15 +20,20 @@ export function thing(): Router {
 	return router;
 }
 
+type ServerSceneObj = { id: number; x: number; y: number; angle: number };
+
 type Player = {
 	id: string;
-	send: (((msg: Message) => void) & { ws: WebSocket }) | null;
+	send:
+		| (((msg: Message) => void) & {
+				ws: WebSocket;
+				lastSent?: ServerSceneObj[];
+		  })
+		| null;
 	wantsWireframes: boolean;
 };
 const players: Record<string, Player> = {};
 
-/** in ms */
-const TICK_DUR = 100;
 /**
  * phys delta should be at most 1000 / 60
  *
@@ -42,7 +48,10 @@ let hasPlayer = Promise.withResolvers<void>();
 hasPlayer.promise.then(() => console.log("[not] wake, start")).then(game);
 const enginee = Promise.withResolvers<matter.Engine>();
 async function game() {
-	const engine = Engine.create();
+	const engine = Engine.create({
+		// premature optimization
+		enableSleeping: true,
+	});
 
 	const boxA = Bodies.rectangle(400, 200, 80, 80, { restitution: 0.5 });
 	const boxB = Bodies.rectangle(450, 50, 80, 80, { restitution: 0.5 });
@@ -71,6 +80,38 @@ async function game() {
 		// );
 
 		const playerList = Object.values(players);
+
+		const scene = Composite.allBodies(engine.world).map(
+			(body, i): ServerSceneObj => ({ id: i, ...body.position, angle: body.angle }),
+		);
+		const inScene = new Set(scene.map((obj) => obj.id));
+		for (const { send } of playerList) {
+			if (send) {
+				if (send.lastSent) {
+					const removed: number[] = [];
+					for (const { id } of send.lastSent) {
+						if (!inScene.has(id)) {
+							removed.push(id);
+						}
+					}
+					const map = Object.fromEntries(send.lastSent.map((obj) => [obj.id, obj]));
+					const objects: SceneObject[] = [
+						...removed.map((id): SceneObject => ({ id, removed: true })),
+						...scene.flatMap((obj) => {
+							const old = map[obj.id];
+							// we could also introduce a threshold (or just send f32s or even
+							// f16) so minor float changes are considered basically equal
+							return old?.x === obj.x && old.y === obj.y && old.angle === obj.angle ? [] : [obj];
+						}),
+					];
+					if (objects.length !== 0) send({ type: MessageType.Objects, objects });
+					send.lastSent = scene;
+				} else {
+					send({ type: MessageType.Objects, resetAll: true, objects: scene });
+					send.lastSent = scene;
+				}
+			}
+		}
 
 		if (playerList.some((p) => p.send && p.wantsWireframes)) {
 			const wireframe: WireframeData = { circles: [], vertices: [] };
@@ -165,27 +206,21 @@ export function handleWsConn(ws: WebSocket) {
 			}
 			case MessageType.SessionId: {
 				const hex = Buffer.from(message.id).toString("hex");
-				console.log(`[not/ws ${wsId}] recv SessionId(${hex})`);
 				if (id) {
 					log("(SessionId) you already have a session id, pls use it");
 					ws.close(1002, FUCK_OFF);
-					console.log(`[not/ws ${wsId}] auth fail, SessionId dupe`);
 				} else {
 					if (players[hex]) {
 						if (players[hex].send) {
 							log("ur alr online it seems, ill kick the old connection");
 							players[hex].send({ type: MessageType.Log, message: "new conn from you, bye" });
 							players[hex].send.ws.close(1002, FUCK_OFF);
-							console.log(`[not/ws ${wsId}] auth success, returning user, old conn kicked`);
-						} else {
-							console.log(`[not/ws ${wsId}] auth success, returning user`);
 						}
 						players[hex].send = Object.assign((msg: Message) => ws.send(encode(msg)), { ws });
 						id = hex;
 						log("welcome back");
 					} else {
 						newPlayer();
-						console.log(`[not/ws ${wsId}] auth success, SessionId new user`);
 					}
 					playerJoin();
 				}
@@ -195,12 +230,10 @@ export function handleWsConn(ws: WebSocket) {
 				if (id) {
 					log("(HiImNew) you already have a session id, pls use it");
 					ws.close(1002, FUCK_OFF);
-					console.log(`[not/ws ${wsId}] auth fail, HiImNew dupe`);
 				} else {
 					newPlayer();
 					playerJoin();
 					playerJoin;
-					console.log(`[not/ws ${wsId}] auth success, HiImNew new user`);
 				}
 				return;
 			}

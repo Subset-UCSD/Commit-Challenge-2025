@@ -1,9 +1,20 @@
 // clients but singular
 
+import { Interpolator } from "../client/lib/Interpolator";
 import { makeWs } from "../client/net";
 import { decode, encode, Message, MessageType, WireframeData } from "./msg";
 
 const key = "not user id";
+
+type ObjectTransform = {
+	x: number;
+	y: number;
+	angle: number;
+};
+type ClientObject = {
+	interpolator: Interpolator<ObjectTransform>;
+};
+const scene: Record<number, ClientObject> = {};
 
 const send = makeWs<Message, Message>("/not", {
 	parse: (data) => {
@@ -54,6 +65,22 @@ const send = makeWs<Message, Message>("/not", {
 				c.beginPath();
 				renderWireframes(c);
 				c.stroke();
+				return;
+			}
+			case MessageType.Objects: {
+				console.log(message.objects);
+				c.fillStyle = "red";
+				c.textAlign = "center";
+				c.textBaseline = "middle";
+				for (const obj of message.objects) {
+					if (!obj.removed) {
+						c.translate(obj.x, obj.y);
+						c.rotate(obj.angle);
+						c.fillText(`${Math.random()}`, 0, 0);
+						c.rotate(-obj.angle);
+						c.translate(-obj.x, -obj.y);
+					}
+				}
 				return;
 			}
 			default: {

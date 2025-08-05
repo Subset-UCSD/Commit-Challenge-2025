@@ -6,8 +6,8 @@ const { Bodies, Composite, Engine, Runner } = matter;
 
 import { FUCK_OFF } from "../client/net";
 import { sleep } from "../communism/utils";
-import { decode, encode, Message, MessageType, SceneObject, WireframeData } from "./msg";
 import { TICK_DUR } from "./cum";
+import { decode, encode, Message, MessageType, SceneObject, WireframeData } from "./msg";
 
 // unused :(
 export function thing(): Router {

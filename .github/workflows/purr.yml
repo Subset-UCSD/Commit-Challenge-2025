@@ -27,6 +27,7 @@ jobs:
       - name: depdnabot is very dependable i believe it
         if: github.actor == 'dependabot[bot]' || github.actor == 'google-labs-jules[bot]'
         run: |
+          gh pr ready "${{ github.event.pull_request.html_url }}" || true
           gh pr review --approve --body "lgtm" "${{ github.event.pull_request.html_url }}" || true
           gh pr merge --auto --delete-branch --subject "yolo" --merge "${{ github.event.pull_request.html_url }}"
         env:

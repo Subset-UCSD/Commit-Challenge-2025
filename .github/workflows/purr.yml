@@ -25,7 +25,7 @@ jobs:
       #     GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: depdnabot is very dependable i believe it
-        if: github.actor == 'dependabot[bot]'
+        if: github.actor == 'dependabot[bot]' || github.actor == 'google-labs-jules'
         run: |
           gh pr review --approve --body "lgtm" "${{ github.event.pull_request.html_url }}" || true
           gh pr merge --auto --delete-branch --subject "yolo" --merge "${{ github.event.pull_request.html_url }}"

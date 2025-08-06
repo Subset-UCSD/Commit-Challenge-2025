@@ -47,7 +47,7 @@ players:
       overwhelmed: true
       passed_out: true
       marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
-      cats_petted: 167
+      cats_petted: 182
       paving_success: Sean_Y has paved the entire world in concrete and tried to blow
         everything up!
   Nick:
@@ -107,7 +107,7 @@ players:
       disoriented_nauseous: true
       marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
       overwhelmed: true
-      anxiety: 9055
+      anxiety: 9065
   sam:
     health: 1
     inventory:
@@ -134,16 +134,16 @@ players:
       cats_hiss_swat: false
       cats_befriended: true
       marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
-      cats_petted: 303
+      cats_petted: 318
   Geoffrey: geoffrey
-day: 70
+day: 71
 worldInfo:
   weather:
     message: Instead of a horse, the attempt to draw ASCII art resulted in the
       universe spontaneously reconfiguring itself into a giant image of a rubber
       chicken. The fabric of reality is now held together by mayonnaise and
       clown shoes.
-  day: 67
+  day: 68
   death_clock: 1
   marcelo_lie_probability: 1
   npcs:
@@ -706,6 +706,10 @@ worldInfo:
       urgent: true
       reward: The fabric of reality is restored. The effects of the rubber chicken
         universe are purged. +1000 Town Happiness.
+    - name: The Haunting of Marcelo
+      description: Marcelo is now haunting everyone. Find a way to appease his
+        spectral form or suffer constant chills and unease.
+      urgent: true
   azathoth:
     health: 1350
     powers:
@@ -737,7 +741,7 @@ worldInfo:
   reality_fraying_nolan: true
   animal_attacks_ferocious_coordinated: true
   animal_attacks_target_geoff_logs_raymonds_oil_derricks: true
-  azathoth_summoning_ritual_progressing: 132
+  azathoth_summoning_ritual_progressing: 147
   geoff_logs_no_boss_for_day: false
   oil_derrick_successful: true
   oil_torrent_unleashed: true
@@ -800,6 +804,8 @@ worldInfo:
     - Demon Soyul Tree
     - Sean_P's Gooey Servants
     - Demon Soyul Tree
+    - Sean_P's Gooey Servants
+    - Demon Soyul Tree
   npc_foreach:
     health: 50
     inventory: {}
@@ -810,7 +816,7 @@ worldInfo:
   npc_geoffrey:
     health: 100
     inventory:
-      coin: 120550
+      coin: 130600
     info: {}
   campaign_fails: true
   town_happiness: sky high100015

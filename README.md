@@ -1,5 +1,7 @@
 ![banner](./ass/ets/news.svg)
 
+[![Request a change](ass/ets/request-a-change-button.svg)](https://github.com/Subset-UCSD/Commit-Challenge-2025/issues/new?template=jules_issue_template.md)
+
 ![bathroom tiles](./remind/green.svg)
 
 # :sparkle: $\subseteq$ Commit Challenge 2025

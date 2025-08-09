@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "@google/genai": "^1.8.0",
+    "@mermaid-js/mermaid-cli": "^11.9.0",
     "discord.js": "^14.18.0",
     "yaml": "^2.7.0"
   },

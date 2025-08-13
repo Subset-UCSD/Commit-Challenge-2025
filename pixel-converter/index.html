@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixel-Vernichtungs-Vektorisierungs-Maschine</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas id="background-canvas"></canvas>
+    <div class="container">
+        <header>
+            <h1>Pixel-Vernichtungs-Vektorisierungs-Maschine</h1>
+            <p class="subtitle">Pixel Annihilation Vectorization Machine</p>
+        </header>
+
+        <main>
+            <section class="control-panel">
+                <h2>SCHRITT EINS: BILD AUSWÄHLEN</h2>
+                <p class="subtitle">STEP ONE: SELECT IMAGE</p>
+                <input type="file" id="image-input" accept="image/png, image/jpeg, image/gif">
+            </section>
+
+            <section class="preview-panel">
+                <h2>VORHER-ANSICHT</h2>
+                <p class="subtitle">PREVIEW</p>
+                <div class="image-container">
+                    <img id="image-preview" src="" alt="Vorschau des Originalbildes">
+                </div>
+            </section>
+
+            <section class="output-panel">
+                <h2>SCHRITT ZWEI: KONVERTIEREN</h2>
+                <p class="subtitle">STEP TWO: CONVERT</p>
+                <button id="convert-button">KONVERTIEREN!</button>
+            </section>
+
+            <section class="result-panel">
+                <h2>ERGEBNIS: SVG-CODE</h2>
+                <p class="subtitle">RESULT: SVG CODE</p>
+                <textarea id="svg-output" readonly></textarea>
+                <p>Größe: <span id="svg-size">0</span> Bytes</p>
+                <button id="download-button" disabled>HERUNTERLADEN</button>
+            </section>
+        </main>
+    </div>
+
+    <script src="background.js"></script>
+    <script src="converter.js"></script>
+</body>
+</html>

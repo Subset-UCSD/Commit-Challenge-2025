@@ -6,7 +6,7 @@ players:
       location: Paved over
       health: 100
       plan: Overload the system
-      anxiety: 9808
+      anxiety: 10808
       customs_agent: a bored-looking entity with antennae and a clipboard
       past_self_encounter: true
       can_speak: false
@@ -47,7 +47,7 @@ players:
       overwhelmed: true
       passed_out: true
       marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
-      cats_petted: 182
+      cats_petted: 197
       paving_success: Sean_Y has paved the entire world in concrete and tried to blow
         everything up!
   Nick:
@@ -88,7 +88,7 @@ players:
         - Madame Evangeline
         - Mike Smith
       rubber_chicken_insanity: true
-      campaign_fails: true
+      campaign_fails: false
       marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
   Khushi:
     health: -668
@@ -107,7 +107,7 @@ players:
       disoriented_nauseous: true
       marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
       overwhelmed: true
-      anxiety: 9065
+      anxiety: 9165
   sam:
     health: 1
     inventory:
@@ -126,7 +126,7 @@ players:
       location: Paved over
       is_cat: true
       cats: 15
-      town_happiness: sky high100273
+      town_happiness: sky high100090
       party_score: 1
       cats_angry: false
       betrayed: true
@@ -134,16 +134,16 @@ players:
       cats_hiss_swat: false
       cats_befriended: true
       marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
-      cats_petted: 318
+      cats_petted: 333
   Geoffrey: geoffrey
-day: 71
+day: 72
 worldInfo:
   weather:
     message: Instead of a horse, the attempt to draw ASCII art resulted in the
       universe spontaneously reconfiguring itself into a giant image of a rubber
       chicken. The fabric of reality is now held together by mayonnaise and
       clown shoes.
-  day: 68
+  day: 69
   death_clock: 1
   marcelo_lie_probability: 1
   npcs:
@@ -180,10 +180,9 @@ worldInfo:
     sell_price: {}
   hidden_layer: a giant game of cosmic Monopoly, with entire realities as properties
   monopoly_board:
-    message: Nolan's attempt to replicate infinitely backfires catastrophically. The
-      infinite Nolans become fused into a single being who is now suffering from
-      the effects of the various realities he has seen. He is now schizophrenic
-      and delirious.
+    message: The infinite Nolans become fused into a single being who is now
+      suffering from the effects of the various realities he has seen. He is now
+      schizophrenic and delirious.
   farmland_income_per_day: 0
   nick_status: Nick is no longer an immediate threat, but the underlying cosmic
     damage remains.
@@ -710,6 +709,32 @@ worldInfo:
       description: Marcelo is now haunting everyone. Find a way to appease his
         spectral form or suffer constant chills and unease.
       urgent: true
+    - name: Contain the Nolan Singularity
+      description: The hive mind of Nolan is expanding exponentially, threatening to
+        consume all realities. Find a way to contain or control this
+        singularity.
+      urgent: true
+    - name: End the Reign of the Screaming Shadows
+      description: The Whispering Woods have been transformed into the Screaming
+        Shadows! The creatures from the shadows are now raging against the
+        corporations of Oakhaven!
+      urgent: true
+    - name: Cure the Rubber Chicken Reality
+      description: The universe has been reconfigured into a giant image of a rubber
+        chicken! Find a way to reverse the effect and restore reality to its
+        former state.
+      urgent: true
+      reward: The fabric of reality is restored. The effects of the rubber chicken
+        universe are purged. +1000 Town Happiness.
+    - name: Tame the Ferocious Animals
+      description: The animals are staging coordinated attacks on Geoffrey's logging
+        sites and Raymond's oil derricks. Find a way to calm the animals or
+        defend the locations.
+      urgent: true
+    - name: The Haunting of Marcelo
+      description: Marcelo is now haunting everyone. Find a way to appease his
+        spectral form or suffer constant chills and unease.
+      urgent: true
   azathoth:
     health: 1350
     powers:
@@ -741,7 +766,7 @@ worldInfo:
   reality_fraying_nolan: true
   animal_attacks_ferocious_coordinated: true
   animal_attacks_target_geoff_logs_raymonds_oil_derricks: true
-  azathoth_summoning_ritual_progressing: 147
+  azathoth_summoning_ritual_progressing: 159
   geoff_logs_no_boss_for_day: false
   oil_derrick_successful: true
   oil_torrent_unleashed: true
@@ -816,10 +841,10 @@ worldInfo:
   npc_geoffrey:
     health: 100
     inventory:
-      coin: 130600
+      coin: 140650
     info: {}
   campaign_fails: true
-  town_happiness: sky high100015
+  town_happiness: sky high100090
   end_the_reign_of_the_screaming_shadows: true
   reclaim_the_planet_from_concrete: true
   meaningOfLife: 0

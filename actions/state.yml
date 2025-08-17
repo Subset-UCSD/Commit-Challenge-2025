@@ -6,7 +6,7 @@ players:
       location: Paved over
       health: 100
       plan: Overload the system
-      anxiety: 10808
+      anxiety: 10818
       customs_agent: a bored-looking entity with antennae and a clipboard
       past_self_encounter: true
       can_speak: false
@@ -47,7 +47,7 @@ players:
       overwhelmed: true
       passed_out: true
       marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
-      cats_petted: 197
+      cats_petted: 212
       paving_success: Sean_Y has paved the entire world in concrete and tried to blow
         everything up!
   Nick:
@@ -75,8 +75,10 @@ players:
           rubber chicken. The fabric of reality is now held together by
           mayonnaise and clown shoes.
       ascii_art_success:
-        message: The sun shines brightly as you draw a gorgeous ascii art of a horse,
-          your work is well received, and the world is saved.
+        message: Instead of a horse, the attempt to draw ASCII art resulted in the
+          universe spontaneously reconfiguring itself into a giant image of a
+          rubber chicken. The fabric of reality is now held together by
+          mayonnaise and clown shoes.
   Raymond:
     health: 6
     inventory:
@@ -107,7 +109,7 @@ players:
       disoriented_nauseous: true
       marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
       overwhelmed: true
-      anxiety: 9165
+      anxiety: 9170
   sam:
     health: 1
     inventory:
@@ -134,16 +136,16 @@ players:
       cats_hiss_swat: false
       cats_befriended: true
       marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
-      cats_petted: 333
+      cats_petted: 348
   Geoffrey: geoffrey
-day: 72
+day: 73
 worldInfo:
   weather:
     message: Instead of a horse, the attempt to draw ASCII art resulted in the
       universe spontaneously reconfiguring itself into a giant image of a rubber
       chicken. The fabric of reality is now held together by mayonnaise and
       clown shoes.
-  day: 69
+  day: 71
   death_clock: 1
   marcelo_lie_probability: 1
   npcs:
@@ -169,7 +171,7 @@ worldInfo:
     geoffrey:
       type: iron_digger
       employer: Sean_Y
-  marcelo_day: 8
+  marcelo_day: 9
   marcelo_affliction: extremely sensitive to noise and becomes enraged easily
   raymond_base: Abandoned Building
   piano_playing: false
@@ -735,6 +737,60 @@ worldInfo:
       description: Marcelo is now haunting everyone. Find a way to appease his
         spectral form or suffer constant chills and unease.
       urgent: true
+    - name: Contain the Nolan Singularity
+      description: The hive mind of Nolan is expanding exponentially, threatening to
+        consume all realities. Find a way to contain or control this
+        singularity.
+      urgent: true
+    - name: Stop the Summoning of Azathoth
+      description: Sean_P is attempting to summon Azathoth, which would mean doom for
+        the world. Disrupt the ritual!
+      urgent: true
+    - name: End the Reign of the Screaming Shadows
+      description: The Whispering Woods have been transformed into the Screaming
+        Shadows! The creatures from the shadows are now raging against the
+        corporations of Oakhaven!
+      urgent: true
+    - name: Cure the Rubber Chicken Reality
+      description: The universe has been reconfigured into a giant image of a rubber
+        chicken! Find a way to reverse the effect and restore reality to its
+        former state.
+      urgent: true
+      reward: The fabric of reality is restored. The effects of the rubber chicken
+        universe are purged. +1000 Town Happiness.
+    - name: Nick's Catastrophe
+      description: Repair the fabric of reality after Nick's failed attempt to draw
+        ASCII art, or suffer the consequences of a universe unraveling.
+      urgent: true
+    - name: Reverse the Paving
+      description: Sean_Y has paved the entire world. Find a way to reverse the paving
+        and restore the natural world.
+      urgent: true
+    - name: Reclaim the Planet From Concrete
+      description: Revert everything from concrete!
+      urgent: true
+    - name: Tame the Ferocious Animals
+      description: The animals are staging coordinated attacks on Geoffrey's logging
+        sites and Raymond's oil derricks. Find a way to calm the animals or
+        defend the locations.
+      urgent: true
+    - name: Curb Geoffrey's Influence
+      description: Geoffrey's deforestation is exacerbating the ecological crisis.
+        Find a way to curb his logging operations and restore the balance of
+        nature.
+      urgent: true
+    - name: The Haunting of Marcelo
+      description: Marcelo is now haunting everyone. Find a way to appease his
+        spectral form or suffer constant chills and unease.
+      urgent: true
+    - name: Stop the Oil Derrick!/Clean up the oil spill in Whispering Woods!
+      description: Raymond's derrick is unleashing hell into the universe and must be
+        stopped at all costs. The oil spill is worsening, and somebody must
+        clean up the mess. The quest is marked as urgent.
+      urgent: true
+    - name: Neutralize the Oil
+      description: Oil is now on fire. You must put it out. Raymond is laughing maniacally.
+      urgent: true
   azathoth:
     health: 1350
     powers:
@@ -755,7 +811,7 @@ worldInfo:
   economic_situation:
     message: The economic situation in the world is in a shambles because a
       thermonuclear bomb exploding remains is dangerous
-  raymond_campaign_fails: false
+  raymond_campaign_fails: true
   cat_uprising_beginning: true
   marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
   azathoth_influence_growing: true
@@ -763,10 +819,10 @@ worldInfo:
   whispering_woods_rebellion: true
   azathoth_whispers: Raymond is now laughing maniacally as the oil torrent is
     unleashed, igniting the oil slick! All life will soon be engulfed in flame.
-  reality_fraying_nolan: true
+  reality_fraying_nolan: false
   animal_attacks_ferocious_coordinated: true
   animal_attacks_target_geoff_logs_raymonds_oil_derricks: true
-  azathoth_summoning_ritual_progressing: 159
+  azathoth_summoning_ritual_progressing: 172
   geoff_logs_no_boss_for_day: false
   oil_derrick_successful: true
   oil_torrent_unleashed: true
@@ -788,7 +844,7 @@ worldInfo:
     Farmland_Income_Per_Day: 0
     Total_Income: 10050
   geoffrey_oblivious_to_doom: true
-  animals_attack_ferocious_coordinated: false
+  animals_attack_ferocious_coordinated: true
   animals_attacks_target_geoff_logs_raymonds_oil_derricks: true
   screamingShadowsAnimals:
     - Shadow Wolves
@@ -831,17 +887,57 @@ worldInfo:
     - Demon Soyul Tree
     - Sean_P's Gooey Servants
     - Demon Soyul Tree
+    - Sean_P's Gooey Servants
+    - Whispering Tentacles
+    - Demon Soyul Tree
+    - Azathoth's Hounds
+    - Eldritch Spiders
+    - Screaming Trees
+    - Demon Soyul Tree
+    - Azathoth's Hounds
+    - Demon Soyul Tree
+    - Demon Soyul Tree
+    - Screaming Trees
+    - Screaming Trees
+    - Azathoth's Hounds
+    - Azathoth's Hounds
+    - Eldritch Spiders
+    - Azathoth's Hounds
+    - Demon Soyul Tree
+    - Nightmare Birds
+    - Screaming Trees
+    - Demon Soyul Tree
+    - Shadow Wolves
+    - Shadow Wolves
+    - Eldritch Spiders
+    - Nightmare Birds
+    - Shadow Wolves
+    - Sean_P's Gooey Servants
+    - Whispering Tentacles
+    - Whispering Tentacles
+    - Azathoth's Hounds
+    - Shadow Wolves
+    - Whispering Tentacles
+    - Shadow Wolves
+    - Azathoth's Hounds
+    - Azathoth's Hounds
+    - Shadow Wolves
+    - Whispering Tentacles
+    - Screaming Trees
+    - Azathoth's Hounds
+    - Demon Soyul Tree
+    - Azathoth's Hounds
   npc_foreach:
     health: 50
     inventory: {}
     info:
       marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
   animals_attack_target_geoff_logs_raymonds_oil_derricks: true
-  treasury: 1162000
+  treasury: 1172050
   npc_geoffrey:
     health: 100
     inventory:
-      coin: 140650
+      coin: 150700
     info: {}
   campaign_fails: true
   town_happiness: sky high100090
@@ -863,3 +959,6 @@ worldInfo:
     animal_attacks_ferocious_coordinated: true
   stop_raymond_s_oil_empire: true
   tame_the_ferocious_animals: true
+  nolan_chaos:
+    - message: The Nolans begin to merge, creating a chaotic gestalt entity. Sanity is
+        becoming strained.

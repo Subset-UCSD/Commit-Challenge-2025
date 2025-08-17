@@ -302,7 +302,7 @@ const next = nonCommitters.pop()
 if (line.trim()) {
   out += `${line}${next ? ` <@${discords[next]}>` : ''}\n`
 } else {
-out += '\n'
+  out += `${next ? `<@${discords[next]}>` : ''}\n`
 }
 }
   await fetch(process.env.DISCORD_WEBHOOK_URL || '', {

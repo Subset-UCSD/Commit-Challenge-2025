@@ -298,11 +298,11 @@ if (nonCommitters.length > 0) {
   shuffle(nonCommitters)
 let out = ''
 for (const line of lines) {
-const next = nonCommitters.pop()
 if (line.trim()) {
+  const next = nonCommitters.pop()
   out += `${line}${next ? ` <@${discords[next]}>` : ''}\n`
 } else {
-  out += `${next ? `<@${discords[next]}>` : ''}\n`
+  out += '\n'
 }
 }
   await fetch(process.env.DISCORD_WEBHOOK_URL || '', {

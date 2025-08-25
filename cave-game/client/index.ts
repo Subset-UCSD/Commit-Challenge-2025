@@ -204,6 +204,7 @@ const inputListener = new InputListener({
 		left: false,
 		right: false,
 		debugSpawnBox: false,
+		debugGrapple: false,
 		sprint: false,
 	},
 	keymap: {
@@ -213,6 +214,7 @@ const inputListener = new InputListener({
 		KeyD: "right",
 		Space: "jump",
 		KeyO: "debugSpawnBox",
+		KeyG: "debugGrapple",
 		// I was going to do Shift or Control but that doesn't seem to work
 		KeyC: "sprint",
 	},

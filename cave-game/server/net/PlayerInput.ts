@@ -18,6 +18,7 @@ function mapKeys<T>(func: (key: keyof ClientInputs) => T): Record<keyof ClientIn
 		jump: func("jump"),
 		sprint: func("sprint"),
 		debugSpawnBox: func("debugSpawnBox"),
+		debugGrapple: func("debugGrapple"),
 	};
 }
 

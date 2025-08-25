@@ -18,6 +18,7 @@ let ticksEvaluated = 0;
 let simulationEpoch = performance.now();
 let lastEndTime: number | null = null;
 let prevHasPlayerResult: symbol | null = null;
+let shouldLog = false;
 
 //what actually runs the game loop
 while (true) {
@@ -53,9 +54,10 @@ while (true) {
 		console.warn(`[main loop] Server Overloaded: extremely long tick, took ${tickEvalTime.toFixed(3)} ms`);
 		//shit we had a longass tick. Cry ig
 	} else {
-		console.log(
-			`[main loop] Tick took ${tickEvalTime.toFixed(3)} ms. It has been ${timeSinceLastTickEnd?.toFixed(3) ?? "N/A"} ms since last tick (should be ${SERVER_GAME_TICK} ms).`,
-		);
+		if (shouldLog)
+			console.log(
+				`[main loop] Tick took ${tickEvalTime.toFixed(3)} ms. It has been ${timeSinceLastTickEnd?.toFixed(3) ?? "N/A"} ms since last tick (should be ${SERVER_GAME_TICK} ms).`,
+			);
 		await delay(SERVER_GAME_TICK - tickEvalTime);
 	}
 }

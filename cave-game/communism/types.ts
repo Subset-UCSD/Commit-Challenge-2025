@@ -15,6 +15,7 @@ export type ClientInputs = {
 	jump: boolean;
 	sprint: boolean;
 	debugSpawnBox: boolean;
+	debugGrapple: boolean;
 };
 /**
  * the first two are pitch and yaw but tbh i never remember which is which.

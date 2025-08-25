@@ -1,4 +1,5 @@
 dist/
 public/**/*.css*
 public/**/*.js*
-public/**/*.glb
+# ??? why
+# public/**/*.glb

@@ -47,17 +47,19 @@ export abstract class Entity {
 		// console.log("wow collide");
 	}
 
-	serialize(): ModelInstance {
-		return {
-			model: this.model,
-			transform: Array.from(
-				mat4.fromRotationTranslation(mat4.create(), this.body.quaternion.toArray(), this.body.position.toArray()),
-			),
-			interpolate: {
-				id: this.id,
-				duration: SERVER_GAME_TICK,
+	serialize(): ModelInstance[] {
+		return [
+			{
+				model: this.model,
+				transform: Array.from(
+					mat4.fromRotationTranslation(mat4.create(), this.body.quaternion.toArray(), this.body.position.toArray()),
+				),
+				interpolate: {
+					id: this.id,
+					duration: SERVER_GAME_TICK,
+				},
 			},
-		};
+		];
 	}
 
 	tick() {}

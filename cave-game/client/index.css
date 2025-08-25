@@ -25,3 +25,11 @@ ul {
 	image-rendering: pixelated;
 	image-rendering: crisp-edges;
 }
+
+.croshair {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: rgba(255, 255, 255, 0.5);
+}

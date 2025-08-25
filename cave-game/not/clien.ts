@@ -68,7 +68,6 @@ const send = makeWs<Message, Message>("/not", {
 				return;
 			}
 			case MessageType.Objects: {
-				console.log(message.objects);
 				c.fillStyle = "red";
 				c.textAlign = "center";
 				c.textBaseline = "middle";

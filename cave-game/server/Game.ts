@@ -22,6 +22,7 @@ import { PlayerInput } from "./net/PlayerInput";
 import { Connection, Server, ServerHandlers } from "./net/Server";
 import { WsServer } from "./net/WsServer";
 import { PhysicsWorld } from "./PhysicsWorld";
+import { GrappleAnchorEntity } from "./entities/GrappleAnchorEntity";
 
 interface NetworkedPlayer {
 	input: PlayerInput;
@@ -79,6 +80,9 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 	 */
 	initWorld() {
 		this.registerEntity(new PlaneEntity(this, "models/floor.glb", [0, -5, 0], [-1, 0, 0, 1]));
+		this.registerEntity(new GrappleAnchorEntity(this, [10, 5, 10]));
+		this.registerEntity(new GrappleAnchorEntity(this, [12, 10, 9]));
+		this.registerEntity(new GrappleAnchorEntity(this, [-7, -3, -15]));
 	}
 
 	/**
@@ -90,11 +94,15 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 	 *
 	 * @param exclude - Use to prevent players from including themselves in the
 	 * raycast.
+	 * @returns list of entities, closest first
 	 */
 	raycast(start: phys.Vec3, end: phys.Vec3, rayOptions: phys.RayOptions, exclude?: Entity): EntityRayCastResult[] {
 		const entities: Record<EntityId, EntityRayCastResult> = {};
 		for (const result of this.world.castRay(start, end, rayOptions)) {
 			const entity = result.body && this.bodyToEntityMap.get(result.body);
+			if (!entity) {
+				console.log("who tf is this", result);
+			}
 			if (!entity || entity === exclude) {
 				continue;
 			}
@@ -224,6 +232,32 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 				this.registerEntity(box);
 				box.body.applyImpulse(dir.scale(40));
 			}
+
+			if (player.entity.debugGrapplePressed) {
+				const anchor = player.entity.findGrappleAnchor(movement.lookDir);
+				if (player.entity.lastFoundAnchor !== player.entity) {
+					if (player.entity.lastFoundAnchor) player.entity.lastFoundAnchor.model = "models/anchor.glb";
+				}
+
+				if (!inputs.debugGrapple) {
+					player.entity.debugGrapplePressed = false;
+					player.entity.lastFoundAnchor = null;
+
+					// spawn grapple on release
+					if (player.entity.lastAnchor) {
+						player.entity.lastAnchor.model = "models/anchor.glb";
+					}
+					player.entity.doGrapple(anchor);
+					if (anchor) {
+						anchor.model = "models/anchor-active.glb";
+					}
+				} else {
+					if (anchor) anchor.model = "models/anchor-hover.glb";
+					player.entity.lastFoundAnchor = anchor;
+				}
+			} else if (inputs.debugGrapple) {
+				player.entity.debugGrapplePressed = true;
+			}
 		}
 		this.nextTick();
 	}
@@ -258,7 +292,12 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 				type: "entire-state",
 				groups: [
 					{
-						instances: [...this.entities.values().map((entity) => entity.serialize())],
+						instances: [
+							...this.entities
+								.values()
+								.filter((entity) => !(player.entity?.debugGrapplePressed && player.entity === entity))
+								.flatMap((entity) => entity.serialize()),
+						],
 						pointLights: [
 							{
 								position: [10, 2, 0],
@@ -285,13 +324,13 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 					// 	cameraTransform([0, 20, 20], { y: 0, x: -Math.PI / 8 /* * (Math.sin(Date.now() / 847) + 1)*/, z: 0 }),
 					// )
 					type: "client-naive-orbit",
-					minRx: -Math.PI / 3,
-					maxRx: Math.PI / 3,
+					minRx: player.entity?.debugGrapplePressed ? -Math.PI / 2 : -Math.PI / 3,
+					maxRx: player.entity?.debugGrapplePressed ? Math.PI / 2 : Math.PI / 3,
 					origin: player.entity?.getPos() ?? [0, 0, 0],
 					originInterpolation: {
 						duration: SERVER_GAME_TICK,
 					},
-					radius: 10,
+					radius: player.entity?.debugGrapplePressed ? 0 : 10,
 				},
 
 				// cameraInterpolation: {duration:SERVER_GAME_TICK},

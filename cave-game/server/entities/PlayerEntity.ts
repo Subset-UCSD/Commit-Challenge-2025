@@ -1,11 +1,13 @@
 import * as phys from "cannon-es";
 
-import { NUM_SERVER_TICKS } from "../../communism/constants";
-import { EntityModel } from "../../communism/messages";
-import { MovementInfo, Vector3 } from "../../communism/types";
+import { NUM_SERVER_TICKS, SERVER_GAME_TICK } from "../../communism/constants";
+import { EntityModel, ModelInstance } from "../../communism/messages";
+import { MovementInfo, Vector3, YXZEuler } from "../../communism/types";
 import { Game } from "../Game";
 import { mats } from "../materials";
 import { Entity } from "./Entity";
+import { GrappleAnchorEntity } from "./GrappleAnchorEntity";
+import { mat4, quat } from "gl-matrix";
 
 const CAPSULE_HEIGHT = 2;
 const CAPSULE_RADIUS = 0.5;
@@ -62,6 +64,7 @@ export class PlayerEntity extends Entity {
 	private upwardCounter: number = 0;
 
 	debugSpawnColliderPressed = false;
+	debugGrapplePressed = false;
 
 	constructor(game: Game, footPos: Vector3, model: EntityModel) {
 		super(game, model);
@@ -170,6 +173,8 @@ export class PlayerEntity extends Entity {
 			this.body.velocity = x;
 		}
 		//console.log("AFTER", this.body.velocity.x, this.body.velocity.y, this.body.velocity.z);
+
+		this.#spring?.applyForce();
 	}
 
 	setSpeed(speed: number) {
@@ -178,5 +183,58 @@ export class PlayerEntity extends Entity {
 
 	resetSpeed() {
 		this.walkSpeed = this.initialSpeed;
+	}
+
+	#spring: phys.Spring | null = null;
+	lastFoundAnchor: GrappleAnchorEntity | null = null;
+	lastAnchor: GrappleAnchorEntity | null = null;
+	findGrappleAnchor(lookDir: YXZEuler): GrappleAnchorEntity | null {
+		const objects = this.game.raycast(
+			this.body.position,
+			new phys.Vec3(-Math.sin(lookDir.y), Math.sin(lookDir.x), -Math.cos(lookDir.y))
+				.unit()
+				.scale(100)
+				.vadd(this.body.position),
+			{},
+			this,
+		);
+		const other = objects[0]?.entity;
+		return other instanceof GrappleAnchorEntity ? other : null;
+	}
+	doGrapple(anchor: GrappleAnchorEntity | null) {
+		if (anchor) {
+			this.#spring = new phys.Spring(this.body, anchor.body, {
+				restLength: 0,
+				stiffness: 500,
+				damping: 1,
+			});
+		} else {
+			// disengage i think
+			this.#spring = null;
+		}
+		this.lastAnchor = anchor;
+	}
+
+	serialize(): ModelInstance[] {
+		const arr = super.serialize();
+		if (this.lastAnchor) {
+			const diff = this.body.position.clone().vsub(this.lastAnchor.body.position);
+			arr.push({
+				model: "models/anchor.glb",
+				transform: Array.from(
+					mat4.fromRotationTranslationScale(
+						mat4.create(),
+						quat.rotationTo(quat.create(), [0, 0, -1], diff.clone().unit().toArray()),
+						this.body.position.clone().vadd(this.lastAnchor.body.position).scale(0.5).toArray(),
+						[0.5, 0.5, diff.length()],
+					),
+				),
+				interpolate: {
+					id: `${this.id}-spring`,
+					duration: SERVER_GAME_TICK,
+				},
+			});
+		}
+		return arr;
 	}
 }

@@ -189,12 +189,10 @@ export class PlayerEntity extends Entity {
 	lastFoundAnchor: GrappleAnchorEntity | null = null;
 	lastAnchor: GrappleAnchorEntity | null = null;
 	findGrappleAnchor(lookDir: YXZEuler): GrappleAnchorEntity | null {
+		const dir = new phys.Vec3(-Math.sin(lookDir.y), Math.sin(lookDir.x), -Math.cos(lookDir.y)).unit();
 		const objects = this.game.raycast(
-			this.body.position,
-			new phys.Vec3(-Math.sin(lookDir.y), Math.sin(lookDir.x), -Math.cos(lookDir.y))
-				.unit()
-				.scale(100)
-				.vadd(this.body.position),
+			this.body.position.vadd(dir.clone().scale(2)), // start the ray 2 units in front of the player
+			dir.scale(100).vadd(this.body.position),
 			{},
 			this,
 		);

@@ -16,13 +16,13 @@ import { MovementInfo, Vector3 } from "../communism/types";
 import { shouldBeNever } from "../communism/utils";
 import { BoxEntity } from "./entities/BoxEntity";
 import { Entity, EntityId } from "./entities/Entity";
+import { GrappleAnchorEntity } from "./entities/GrappleAnchorEntity";
 import { PlaneEntity } from "./entities/PlaneEntity";
 import { PlayerEntity } from "./entities/PlayerEntity";
 import { PlayerInput } from "./net/PlayerInput";
 import { Connection, Server, ServerHandlers } from "./net/Server";
 import { WsServer } from "./net/WsServer";
 import { PhysicsWorld } from "./PhysicsWorld";
-import { GrappleAnchorEntity } from "./entities/GrappleAnchorEntity";
 
 interface NetworkedPlayer {
 	input: PlayerInput;

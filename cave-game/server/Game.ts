@@ -331,7 +331,10 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 						duration: SERVER_GAME_TICK,
 					},
 					radius: player.entity?.debugGrapplePressed ? 0 : 10,
+					radiusInterpolation: { duration: player.entity?.debugGrapplePressed ? 100 : 200 },
 				},
+				debugSpawningBox: player.entity?.debugSpawnColliderPressed ?? false,
+				debugGrappling: player.entity?.debugGrapplePressed ?? false,
 
 				// cameraInterpolation: {duration:SERVER_GAME_TICK},
 				// physicsBodies: player.debug ? this.world.serialize() : undefined,

@@ -21,5 +21,3 @@ commits.json
 .env
 ssh_key
 
-# Rust
-actrs/target/

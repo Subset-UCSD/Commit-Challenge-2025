@@ -104,6 +104,8 @@ export type Scene = {
 	groups: ModelGroup[];
 	globalLight: GlobalLight;
 	cameraMode: CameraMode;
+	debugSpawningBox: boolean;
+	debugGrappling: boolean;
 };
 
 export type CameraMode =

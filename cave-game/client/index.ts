@@ -85,6 +85,7 @@ const send = makeWs<ClientMessage, ServerMessage>("/fuck", {
 	message: handleMessage,
 	connectionStatus: handleConnectionStatus,
 });
+let lastHand = "";
 export function handleOpen() {
 	send({ type: "join", id: localStorage.getItem(ID_KEY) ?? "", name: "bruh" });
 }
@@ -170,6 +171,12 @@ export function handleMessage(message: ServerMessage) {
 						}
 					}
 				}
+			}
+
+			const hand = message.debugGrappling ? "grapple" : message.debugSpawningBox ? "spawn-box" : "default";
+			if (hand !== lastHand) {
+				document.body.dataset.hand = hand;
+				lastHand = hand;
 			}
 			break;
 		}

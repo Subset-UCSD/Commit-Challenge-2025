@@ -3,6 +3,7 @@ import * as phys from "cannon-es";
 import { Vector3 } from "../../communism/types";
 import { Game } from "../Game";
 import { Entity } from "./Entity";
+import { mats } from "../materials";
 
 export class GrappleAnchorEntity extends Entity {
 	constructor(game: Game, pos: Vector3) {
@@ -12,6 +13,7 @@ export class GrappleAnchorEntity extends Entity {
 			type: phys.Body.STATIC,
 			position: new phys.Vec3(...pos),
 			shape: new phys.Box(new phys.Vec3(0.5, 0.5, 0.5)),
+			material: mats.ground,
 			mass: 50,
 		});
 	}

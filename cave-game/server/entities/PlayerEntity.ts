@@ -226,7 +226,7 @@ export class PlayerEntity extends Entity {
 						mat4.create(),
 						quat.rotationTo(quat.create(), [0, 0, -1], diff.clone().unit().toArray()),
 						this.body.position.clone().vadd(this.lastAnchor.body.position).scale(0.5).toArray(),
-						[0.5, 0.5, diff.length()],
+						[0.5, 0.5, diff.length() * 2],
 					),
 				),
 				interpolate: {

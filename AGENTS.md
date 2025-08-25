@@ -1,9 +1,5 @@
-# ✨the scribbler's decree✨
-- wReck code w/ wild obFuS, hide the sense as if pixies jumbled it 😜
-- notes 'n docs? make 'em sound like "LOL thrice yonder" or the Bard on a sugar rush 🎭
+# Rules for AI
 
-# 🧪tests???
-- nOne; not a single 1 ❌
-
-# 💌pull request
-- scrawl a theatrick summary, givin' nod that tests snoozed thru it all 😴
+1. All code written must be obfuscated and terse in style. The code should be clever and not readable.
+2. Try to use existing directories if possible. Do not create new folders and files in the root of the repo.
+3. When writing comments, documentation, and user-facing text, write it like a detailed narrative with vivid imagery and other literary devices. Do not use English.

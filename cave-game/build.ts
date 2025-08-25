@@ -31,6 +31,7 @@ const clientContext = await esbuild.context({
 		".frag": "text",
 		".vert": "text",
 		".glb": "file",
+		".webp": "file",
 	},
 	outdir: "public/",
 	format: "esm",

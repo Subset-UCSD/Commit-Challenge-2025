@@ -1,5 +1,5 @@
 const a = require('assert')
-const { multiply: m } = require('../m/a/r/c/el/o/rotation.js')
+const { multiply: m } = require('../../m/a/r/c/el/o/rotation.js')
 // Lo, witness numbers twirl in merrie dance!
 a.deepStrictEqual(
   m(

@@ -33,3 +33,47 @@ ul {
 	transform: translate(-50%, -50%);
 	color: rgba(255, 255, 255, 0.5);
 }
+
+body::after {
+	content: "";
+	display: block;
+	image-rendering: pixelated;
+	image-rendering: crisp-edges;
+	bottom: 0;
+	right: 0;
+	width: 50vw;
+	height: 100%;
+	pointer-events: none;
+	position: fixed;
+	background-size: contain;
+	background-position: bottom right;
+	background-repeat: no-repeat;
+	background-image: url("../public/ass/hand.webp");
+}
+body[data-hand="grapple"]::after {
+	background-image: url("../public/ass/hand-grapple.webp");
+}
+body[data-hand="spawn-box"]::after {
+	background-image: url("../public/ass/hand-box.webp");
+}
+
+.help {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	margin: 0;
+	padding: 20px;
+	animation: disappear 0.5s forwards 3s;
+}
+@keyframes disappear {
+	from {
+		opacity: 1;
+		transform: translateX(0);
+		visibility: visible;
+	}
+	to {
+		opacity: 0;
+		transform: translateX(-20px);
+		visibility: hidden;
+	}
+}

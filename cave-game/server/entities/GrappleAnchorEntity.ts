@@ -2,8 +2,8 @@ import * as phys from "cannon-es";
 
 import { Vector3 } from "../../communism/types";
 import { Game } from "../Game";
-import { Entity } from "./Entity";
 import { mats } from "../materials";
+import { Entity } from "./Entity";
 
 export class GrappleAnchorEntity extends Entity {
 	constructor(game: Game, pos: Vector3) {

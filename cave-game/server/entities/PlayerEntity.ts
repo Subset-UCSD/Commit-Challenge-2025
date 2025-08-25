@@ -1,4 +1,5 @@
 import * as phys from "cannon-es";
+import { mat4, quat } from "gl-matrix";
 
 import { NUM_SERVER_TICKS, SERVER_GAME_TICK } from "../../communism/constants";
 import { EntityModel, ModelInstance } from "../../communism/messages";
@@ -7,7 +8,6 @@ import { Game } from "../Game";
 import { mats } from "../materials";
 import { Entity } from "./Entity";
 import { GrappleAnchorEntity } from "./GrappleAnchorEntity";
-import { mat4, quat } from "gl-matrix";
 
 const CAPSULE_HEIGHT = 2;
 const CAPSULE_RADIUS = 0.5;

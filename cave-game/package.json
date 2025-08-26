@@ -17,7 +17,8 @@
 		"gl-matrix": "^3.4.3",
 		"mat4-interpolate": "^1.0.4",
 		"matter-js": "^0.20.0",
-		"ws": "^8.18.1"
+		"ws": "^8.18.1",
+		"peerjs": "^1.5.4"
 	},
 	"devDependencies": {
 		"@types/express": "^5.0.0",

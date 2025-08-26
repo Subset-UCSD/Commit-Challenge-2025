@@ -66,3 +66,17 @@ loot items:
   - special damage effects
   - better weapons
   - healing tonics, immunity brews for certain damage types
+
+---
+
+### De Vocis Sermone
+
+Audi, viator, et ausculta susurros speluncae. Cum nostro novo propinquitatis vocis sermone, nunc cum comitibus tuis exploratoribus loqui potes, dum in profunditates demergis. Vox tua per cavernas resonabit, attingens solum eos qui prope sunt. Quo longius abes a comitibus tuis, eo infirmior fiet vox tua, donec tenebris amittatur.
+
+Ut choro te adjungas, simpliciter preme iconem microphoni iuxta vectem sermonis. Navigator tuus petet licentiam utendi microphono tuo. Concede eam, et vox tua liberabitur.
+
+#### Ad Administratorem Servi
+
+Ut certissima communicatio inter viatores fiat, commendatur ut in servo tuo portus UDP aperias. Dum servus noster signorum utitur connexione TCP exsistente, connexiones WebRTC paris ad parem certiores erunt si directam connexionem UDP stabilire possunt.
+
+Commendamus ut portus UDP `9000-9100` aperias.

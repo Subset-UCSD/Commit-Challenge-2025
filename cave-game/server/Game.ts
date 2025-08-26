@@ -32,6 +32,7 @@ interface NetworkedPlayer {
 	conn: Connection<ServerMessage>;
 	name: string;
 	debug: boolean;
+	inVoiceChat: boolean;
 }
 type EntityRayCastResult = {
 	entity: Entity;
@@ -147,6 +148,7 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 				online: true,
 				name,
 				debug: false,
+				inVoiceChat: false,
 			};
 			this.players.set(conn.id, player);
 
@@ -182,6 +184,95 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 			}
 			case "client-naive-orbit-camera-angle": {
 				player?.input.setLookDir(data.cameraAngle);
+				break;
+			}
+			case "voice-chat": {
+				if (!player) return;
+				const payload = data.payload;
+				switch (payload.type) {
+					case "join-voice": {
+						if (!player.entity) return;
+						player.inVoiceChat = true;
+						for (const p of this.players.values()) {
+							if (p.id !== conn.id && p.inVoiceChat && p.entity) {
+								p.conn.send({
+									type: "voice-chat",
+									payload: {
+										type: "player-joined-voice",
+										id: conn.id,
+										entityId: player.entity.id,
+									},
+								});
+								conn.send({
+									type: "voice-chat",
+									payload: {
+										type: "player-joined-voice",
+										id: p.id,
+										entityId: p.entity.id,
+									},
+								});
+							}
+						}
+						break;
+					}
+					case "leave-voice": {
+						player.inVoiceChat = false;
+						for (const p of this.players.values()) {
+							if (p.id !== conn.id && p.inVoiceChat) {
+								p.conn.send({
+									type: "voice-chat",
+									payload: {
+										type: "player-left-voice",
+										id: conn.id,
+									},
+								});
+							}
+						}
+						break;
+					}
+					case "offer": {
+						const recipient = this.players.get(payload.to);
+						if (recipient) {
+							recipient.conn.send({
+								type: "voice-chat",
+								from: conn.id,
+								payload: {
+									type: "offer",
+									offer: payload.offer,
+								},
+							});
+						}
+						break;
+					}
+					case "answer": {
+						const recipient = this.players.get(payload.to);
+						if (recipient) {
+							recipient.conn.send({
+								type: "voice-chat",
+								from: conn.id,
+								payload: {
+									type: "answer",
+									answer: payload.answer,
+								},
+							});
+						}
+						break;
+					}
+					case "ice-candidate": {
+						const recipient = this.players.get(payload.to);
+						if (recipient) {
+							recipient.conn.send({
+								type: "voice-chat",
+								from: conn.id,
+								payload: {
+									type: "ice-candidate",
+									candidate: payload.candidate,
+								},
+							});
+						}
+						break;
+					}
+				}
 				break;
 			}
 			default:

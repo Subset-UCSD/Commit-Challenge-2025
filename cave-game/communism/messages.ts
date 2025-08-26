@@ -145,7 +145,8 @@ export type ServerMessage =
 	| {
 			type: "join-response";
 			id: string;
-	  };
+	  }
+	| VoiceChatMessage;
 
 export type ClientMessage =
 	| { type: "chat"; message: string }
@@ -158,6 +159,70 @@ export type ClientMessage =
 			type: "join";
 			id?: string;
 			name: string;
+	  }
+	| VoiceChatMessage;
+
+export type VoiceChatMessage =
+	| {
+			type: "voice-chat";
+			payload:
+				| {
+						type: "join-voice";
+				  }
+				| {
+						type: "leave-voice";
+				  }
+				| {
+						type: "offer";
+						offer: any;
+						to: string;
+				  }
+				| {
+						type: "answer";
+						answer: any;
+						to: string;
+				  }
+				| {
+						type: "ice-candidate";
+						candidate: any;
+						to: string;
+				  }
+				| {
+						type: "player-joined-voice";
+						id: string;
+						entityId: EntityId;
+				  }
+				| {
+						type: "player-left-voice";
+						id: string;
+				  };
+	  }
+	// Sent from server to client
+	| {
+			type: "voice-chat";
+			from?: string; // from is not always present
+			payload:
+				| {
+						type: "offer";
+						offer: any;
+				  }
+				| {
+						type: "answer";
+						answer: any;
+				  }
+				| {
+						type: "ice-candidate";
+						candidate: any;
+				  }
+				| {
+						type: "player-joined-voice";
+						id: string;
+						entityId: EntityId;
+				  }
+				| {
+						type: "player-left-voice";
+						id: string;
+				  };
 	  };
 export type ClientInputMessage = {
 	type: "client-input";

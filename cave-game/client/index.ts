@@ -21,6 +21,7 @@ import { ModelManager } from "./lib/ModelManager";
 import { makeWs } from "./net";
 import { Camera } from "./render/cam";
 import { Gl } from "./render/Gl";
+import Vox from "./lib/Vox";
 
 console.log("frontend!");
 
@@ -42,6 +43,21 @@ if (f instanceof HTMLFormElement) {
 		}
 	});
 }
+
+const voiceChatBtn = document.getElementById("voice-chat-btn")!;
+voiceChatBtn.addEventListener("click", () => {
+	if (Vox.a) {
+		Vox.lve();
+		voiceChatBtn.textContent = "🎤";
+	} else {
+		if (myConnId) {
+			Vox.j(myConnId);
+			voiceChatBtn.textContent = "🔇";
+		} else {
+			console.error("No connection ID yet");
+		}
+	}
+});
 
 //#region state management
 const modelManager = new ModelManager();
@@ -86,6 +102,7 @@ const send = makeWs<ClientMessage, ServerMessage>("/fuck", {
 	connectionStatus: handleConnectionStatus,
 });
 let lastHand = "";
+let myConnId: string | null = null;
 export function handleOpen() {
 	send({ type: "join", id: localStorage.getItem(ID_KEY) ?? "", name: "bruh" });
 }
@@ -178,14 +195,51 @@ export function handleMessage(message: ServerMessage) {
 				document.body.dataset.hand = hand;
 				lastHand = hand;
 			}
+
+			if (Vox.a) {
+				const playerPositions = new Map<string, Vector3>();
+				let myPosition: Vector3 | null = null;
+
+				if (message.cameraMode.type === "client-naive-orbit") {
+					myPosition = message.cameraMode.origin;
+				}
+
+				for (const group of scene) {
+					for (const instances of group.models.values()) {
+						for (const instance of instances) {
+							if (instance.interpolate) {
+								const position = mat4.getTranslation(vec3.create(), instance.transform) as Vector3;
+								playerPositions.set(instance.interpolate.id, position);
+							}
+						}
+					}
+				}
+
+				if (myPosition) {
+					Vox.u(playerPositions, myPosition);
+				}
+			}
 			break;
 		}
 		case "join-response": {
 			localStorage.setItem(ID_KEY, message.id);
+			myConnId = message.id;
 			break;
 		}
 		case "set-client-naive-orbit-camera-angle": {
 			cameraAngle = message.angle;
+			break;
+		}
+		case "voice-chat": {
+			const payload = message.payload;
+			switch (payload.type) {
+				case "player-joined-voice":
+					Vox.addP(payload.entityId, payload.id);
+					break;
+				case "player-left-voice":
+					Vox.rmP(payload.id);
+					break;
+			}
 			break;
 		}
 		default: {

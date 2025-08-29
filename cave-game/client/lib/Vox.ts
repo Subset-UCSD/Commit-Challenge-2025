@@ -64,7 +64,7 @@ class Vox {
 		try {
 			this.#mediastream = await navigator.mediaDevices.getUserMedia({ audio: true });
 			this.#myId = myConnId;
-			this.#audioContext = new AudioContext();
+			this.#audioContext ??= new AudioContext();
 			this.#audioContext.resume();
 
 			this.#peerJsObject = new Peer(myConnId, {
@@ -100,8 +100,8 @@ class Vox {
 		this.#peerJsObject = null;
 		this.#mediastream?.getTracks().forEach((t) => t.stop());
 		this.#mediastream = null;
-		this.#audioContext?.close();
-		this.#audioContext = null;
+		// this.#audioContext?.close();
+		// this.#audioContext = null;
 	}
 
 	#handleConnection(conn: MediaConnection) {
@@ -114,6 +114,7 @@ class Vox {
 			// remote stream
 			const source = this.#audioContext.createMediaStreamSource(rs);
 			const panner = this.#audioContext.createPanner();
+			console.log(source, rs);
 
 			panner.panningModel = "HRTF";
 			panner.distanceModel = "inverse";
@@ -157,73 +158,45 @@ class Vox {
 		const now = this.#audioContext.currentTime;
 		const interpolationTime = now + voiceInterpolationDuration / 1000;
 
-		const MAX_DIST = 20;
-		const MAX_DIST_SQ = MAX_DIST * MAX_DIST;
-
-		const currentPeers = new Set<string>();
-
 		const myPos = voices.find((voice) => this.#entityToConnectionmap.get(voice.playerEntityId) === myConnId)?.position;
 		if (myPos) {
 			for (const { playerEntityId, position } of voices) {
 				const connId = this.#entityToConnectionmap.get(playerEntityId);
 				if (!connId || connId === myConnId) continue;
 
-				const distSq = vec3.sqrDist(myPos, position);
-
-				if (distSq < MAX_DIST_SQ) {
-					currentPeers.add(connId);
-					if (!this.#connections.has(connId)) {
-						const call = this.#peerJsObject.call(connId, this.#mediastream);
-						if (call) {
-							this.#handleConnection(call);
-						}
-					}
-					const data = this.#connections.get(connId);
-					if (data) {
-						data.panner.positionX.setValueAtTime(position[0], interpolationTime);
-						data.panner.positionY.setValueAtTime(position[1], interpolationTime);
-						data.panner.positionZ.setValueAtTime(position[2], interpolationTime);
-					}
-				}
-			}
-		}
-
-		for (const id of this.#connections.keys()) {
-			if (!currentPeers.has(id)) {
-				const data = this.#connections.get(id);
+				const data = this.#connections.get(connId);
 				if (data) {
-					data.conn.close();
-					data.source.disconnect();
-					data.panner.disconnect();
-					this.#connections.delete(id);
+					data.panner.positionX.linearRampToValueAtTime(position[0] - myPos[0], interpolationTime);
+					data.panner.positionY.linearRampToValueAtTime(position[1] - myPos[1], interpolationTime);
+					data.panner.positionZ.linearRampToValueAtTime(position[2] - myPos[2], interpolationTime);
 				}
 			}
 		}
 	}
 
 	/** called whenever the player moves their camera */
-	updateCameraAngle(angle: YXZEuler, cameraPosition: Vector3): void {
+	updateCameraAngle(angle: YXZEuler): void {
 		if (!this.#audioContext) return;
 
 		const listener = this.#audioContext.listener;
 		const now = this.#audioContext.currentTime;
 
 		// Update listener position
-		listener.positionX.setValueAtTime(cameraPosition[0], now);
-		listener.positionY.setValueAtTime(cameraPosition[1], now);
-		listener.positionZ.setValueAtTime(cameraPosition[2], now);
+		// listener.positionX.setValueAtTime(cameraPosition[0], now);
+		// listener.positionY.setValueAtTime(cameraPosition[1], now);
+		// listener.positionZ.setValueAtTime(cameraPosition[2], now);
 
 		// Update listener orientation
 		const camMatrix = cameraTransform(null, angle);
 		const forward = vec3.transformMat4(vec3.create(), [0, 0, -1], camMatrix);
 		const up = vec3.transformMat4(vec3.create(), [0, 1, 0], camMatrix);
 
-		listener.forwardX.setValueAtTime(forward[0], now);
-		listener.forwardY.setValueAtTime(forward[1], now);
-		listener.forwardZ.setValueAtTime(forward[2], now);
-		listener.upX.setValueAtTime(up[0], now);
-		listener.upY.setValueAtTime(up[1], now);
-		listener.upZ.setValueAtTime(up[2], now);
+		listener.forwardX.value = forward[0];
+		listener.forwardY.value = forward[1];
+		listener.forwardZ.value = forward[2];
+		listener.upX.value = up[0];
+		listener.upY.value = up[1];
+		listener.upZ.value = up[2];
 	}
 }
 

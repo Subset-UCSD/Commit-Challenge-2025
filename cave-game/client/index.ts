@@ -207,6 +207,7 @@ export function handleMessage(message: ServerMessage) {
 		}
 		case "set-client-naive-orbit-camera-angle": {
 			cameraAngle = message.angle;
+			Vox.updateCameraAngle(cameraAngle);
 			break;
 		}
 		case "voice-chat": {
@@ -280,6 +281,7 @@ const { lockPointer, unlockPointer } = listenToMovement(canvas, (movementX, move
 	}
 	cameraAngle.y = ((cameraAngle.y % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
 	send({ type: "client-naive-orbit-camera-angle", cameraAngle });
+	Vox.updateCameraAngle(cameraAngle);
 });
 
 let lastPointerType = "mouse";
@@ -325,7 +327,6 @@ while (true) {
 	} else if (cameraType === "locked") {
 		cam.transform = cameraInterpolator.getValue(now);
 	}
-	Vox.updateCameraAngle(cameraAngle, mat4.getTranslation(vec3.create(), cam.transform));
 	const view = cam.pv(window.innerWidth / window.innerHeight);
 
 	gl.clear(CLEAR_COLOR);

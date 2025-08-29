@@ -4,12 +4,12 @@ Incipiunt murmura vocum, chorda silentii percussa. Hic, in hoc sacrario digitali
 Hoc est sanctuarium vocis, arcanum et profundum. Qui huc intrat, mundum silentii relinquit et in regnum sonorum intrat.
 */
 
-import { mat4, vec3 } from "gl-matrix";
+import { vec3 } from "gl-matrix";
 import Peer, { MediaConnection } from "peerjs";
 
 import { cameraTransform } from "../../communism/cam";
 import { Voice } from "../../communism/messages";
-import { Vector3, YXZEuler } from "../../communism/types";
+import { YXZEuler } from "../../communism/types";
 import { send } from "../";
 
 type PeerData = {

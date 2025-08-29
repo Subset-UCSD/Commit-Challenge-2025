@@ -13,7 +13,7 @@ export class Camera {
 	 * @returns projection * view matrix
 	 */
 	pv(aspectRatio: number): mat4 {
-		const view = mat4.invert(mat4.create(), this.transform);
+		const view = mat4.invert(mat4.create(), this.transform) ?? mat4.create();
 		const perspective = mat4.perspective(mat4.create(), this.fov, aspectRatio, this.near, this.far);
 		return mat4.multiply(mat4.create(), perspective, view);
 	}

@@ -198,8 +198,9 @@ export function handleMessage(message: ServerMessage) {
 		case "join-response": {
 			localStorage.setItem(ID_KEY, message.privateId);
 			const theIdIWant = crypto.randomUUID();
-			send({ type: "i-wanna-join", connId: theIdIWant });
-			Vox.yourVoiceConnId(theIdIWant);
+			Vox.yourVoiceConnId(theIdIWant).then(() => {
+				send({ type: "i-wanna-join", connId: theIdIWant });
+			});
 			break;
 		}
 		case "set-client-naive-orbit-camera-angle": {

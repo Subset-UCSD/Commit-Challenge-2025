@@ -29,7 +29,9 @@ export function isActive() {
 }
 
 let peerJsObject: Peer | null = null;
+let myConnIdd = "";
 export function yourVoiceConnId(myConnId: string) {
+	myConnIdd = myConnId;
 	peerJsObject?.destroy();
 	console.log("i am...", myConnId);
 	peerJsObject = new Peer(myConnId, {
@@ -39,16 +41,24 @@ export function yourVoiceConnId(myConnId: string) {
 		// host: location.hostname,port:location.port?+location.port:undefined,
 		// path: '/VOICE/VOICE'
 	});
-	peerJsObject.on("open", (id) => console.log("peerjs opened, yes you are", id));
 	peerJsObject.on("call", (call) => {
-		console.log("received call from", call.peer, "will answer");
-		if (connections.has(call.peer)) {
-			console.log("hmm nvm?");
-			return;
+		console.log("⚠️⚠️⚠️⚠️received call from", call.peer, "will answer");
+		const data = connections.get(call.peer);
+		if (data) {
+			if (data !== "error" && data.conn.open) {
+				console.log("✋✋✋✋hmm nvm?");
+				return;
+			}
 		}
 		call.answer(mediastream);
 		handleConnection(call);
 	});
+	const { promise, resolve } = Promise.withResolvers<void>();
+	peerJsObject.on("open", (id) => {
+		console.log("peerjs opened, yes you are", id);
+		resolve();
+	});
+	return promise;
 }
 
 export async function micOn() {
@@ -84,23 +94,30 @@ function handleConnection(conn: MediaConnection) {
 	// handle connection
 	conn.on("stream", (rs) => {
 		// remote stream
-		const source = audioContext.createMediaStreamSource(rs);
-		const panner = audioContext.createPanner();
-		console.log(source, rs);
+		const audio = document.createElement("audio");
+		audio.srcObject = rs;
+		audio.play();
+		document.body.appendChild(audio);
+		// const source = audioContext.createMediaStreamSource(rs);
+		// const panner = audioContext.createPanner();
+		// console.log("🤝🤝🤝", rs, rs.getTracks(), source);
+		// rs.getTracks()[0].onunmute = () => console.log("unmute");
+		// rs.getTracks()[0].onmute = () => console.log("mute");
+		// rs.getTracks()[0].onended = () => console.log("ended");
 
-		panner.panningModel = "HRTF";
-		panner.distanceModel = "inverse";
-		panner.refDistance = 1;
-		panner.maxDistance = 10000;
-		panner.rolloffFactor = 1;
-		panner.coneInnerAngle = 360;
-		panner.coneOuterAngle = 0;
-		panner.coneOuterGain = 0;
+		// panner.panningModel = "HRTF";
+		// panner.distanceModel = "inverse";
+		// panner.refDistance = 1;
+		// panner.maxDistance = 10000;
+		// panner.rolloffFactor = 1;
+		// panner.coneInnerAngle = 360;
+		// panner.coneOuterAngle = 0;
+		// panner.coneOuterGain = 0;
 
-		source.connect(panner);
-		panner.connect(audioContext.destination);
+		// source.connect(panner);
+		// panner.connect(audioContext.destination);
 
-		connections.set(conn.peer, { conn, source, panner });
+		connections.set(conn.peer, { conn, source: null, panner: null });
 	});
 	conn.on("close", () => {
 		console.log(conn.peer, "closed.");
@@ -136,10 +153,15 @@ export function updateVoicePositions(voices: Voice[], voiceInterpolationDuration
 				data.panner.positionY.linearRampToValueAtTime(position[1], interpolationTime);
 				data.panner.positionZ.linearRampToValueAtTime(position[2], interpolationTime);
 			}
-		} else if (peerJsObject) {
+		} else if (peerJsObject?.open) {
 			// they're new
-			console.log("calling", connId, mediastream);
-			handleConnection(peerJsObject.call(connId, mediastream));
+			// only one of us shall initiate the call
+			if (connId < myConnIdd) {
+				console.log("calling", connId, mediastream);
+				handleConnection(peerJsObject.call(connId, mediastream));
+			} else {
+				console.log("expecting a call from", connId);
+			}
 		}
 	}
 	for (const [connId, data] of gone) {
@@ -155,18 +177,18 @@ export function updateCameraAngle(transform: mat4): void {
 	const listener = audioContext.listener;
 
 	const translation = mat4.getTranslation(vec3.create(), transform);
-	listener.positionX.value = translation[0];
-	listener.positionY.value = translation[1];
-	listener.positionZ.value = translation[2];
+	// listener.positionX.value = translation[0];
+	// listener.positionY.value = translation[1];
+	// listener.positionZ.value = translation[2];
 
 	// Update listener orientation
 	const forward = vec3.transformMat4(vec3.create(), [0, 0, -1], transform);
 	const up = vec3.transformMat4(vec3.create(), [0, 1, 0], transform);
 
-	listener.forwardX.value = forward[0];
-	listener.forwardY.value = forward[1];
-	listener.forwardZ.value = forward[2];
-	listener.upX.value = up[0];
-	listener.upY.value = up[1];
-	listener.upZ.value = up[2];
+	// listener.forwardX.value = forward[0];
+	// listener.forwardY.value = forward[1];
+	// listener.forwardZ.value = forward[2];
+	// listener.upX.value = up[0];
+	// listener.upY.value = up[1];
+	// listener.upZ.value = up[2];
 }

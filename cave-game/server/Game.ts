@@ -189,6 +189,7 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 			case "voice-chat": {
 				if (!player) return;
 				const payload = data.payload;
+				console.log("voice server", payload);
 				switch (payload.type) {
 					case "join-voice": {
 						if (!player.entity) return;

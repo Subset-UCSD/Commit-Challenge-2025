@@ -46,13 +46,13 @@ if (f instanceof HTMLFormElement) {
 
 const voiceChatBtn = document.getElementById("voice-chat-btn")!;
 voiceChatBtn.addEventListener("click", () => {
-	if (Vox.a) {
-		Vox.lve();
-		voiceChatBtn.textContent = "🎤";
+	if (Vox.isACtive) {
+		Vox.leave();
+		voiceChatBtn.textContent = "🎤 rejoin vc";
 	} else {
 		if (myConnId) {
-			Vox.j(myConnId);
-			voiceChatBtn.textContent = "🔇";
+			Vox.join(myConnId);
+			voiceChatBtn.textContent = "🔇 leave";
 		} else {
 			console.error("No connection ID yet");
 		}
@@ -196,7 +196,7 @@ export function handleMessage(message: ServerMessage) {
 				lastHand = hand;
 			}
 
-			if (Vox.a) {
+			if (Vox.isACtive) {
 				const playerPositions = new Map<string, Vector3>();
 				let myPosition: Vector3 | null = null;
 
@@ -216,7 +216,7 @@ export function handleMessage(message: ServerMessage) {
 				}
 
 				if (myPosition) {
-					Vox.u(playerPositions, myPosition);
+					Vox.update(playerPositions, myPosition);
 				}
 			}
 			break;
@@ -232,12 +232,13 @@ export function handleMessage(message: ServerMessage) {
 		}
 		case "voice-chat": {
 			const payload = message.payload;
+			console.log("vc", payload);
 			switch (payload.type) {
 				case "player-joined-voice":
-					Vox.addP(payload.entityId, payload.id);
+					Vox.addPlayer(payload.entityId, payload.id);
 					break;
 				case "player-left-voice":
-					Vox.rmP(payload.id);
+					Vox.removePlayer(payload.id);
 					break;
 			}
 			break;

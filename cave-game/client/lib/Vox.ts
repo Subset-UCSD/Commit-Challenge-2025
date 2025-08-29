@@ -12,51 +12,51 @@ import { send } from "../";
 type PeerData = { conn: MediaConnection; audio: HTMLAudioElement };
 
 class Vox {
-	private static _i: Vox;
-	private p: Peer | null = null;
-	private l: MediaStream | null = null;
-	private c: Map<string, PeerData> = new Map();
-	private _myId: string = "";
-	private e2c: Map<string, string> = new Map(); // entityId -> connId
+	static #singleton: Vox;
+	#peerJsObject: Peer | null = null;
+	#mediastream: MediaStream | null = null;
+	#connections: Map<string, PeerData> = new Map();
+	#myId: string = "";
+	#entityToConnectionmap: Map<string, string> = new Map(); // entityId -> connId
 
 	private constructor() {}
 
-	public static get i(): Vox {
-		if (!Vox._i) Vox._i = new Vox();
-		return Vox._i;
+	static get singleyton(): Vox {
+		if (!Vox.#singleton) Vox.#singleton = new Vox();
+		return Vox.#singleton;
 	}
 
-	public get myId() {
-		return this._myId;
+	get myId() {
+		return this.#myId;
 	}
 
-	public get a() {
+	get isACtive() {
 		// active
-		return !!this.p;
+		return !!this.#peerJsObject;
 	}
 
-	public addP(eId: string, cId: string) {
+	addPlayer(eId: string, cId: string) {
 		// add player
-		this.e2c.set(eId, cId);
+		this.#entityToConnectionmap.set(eId, cId);
 	}
 
-	public rmP(cId: string) {
+	removePlayer(cId: string) {
 		// remove player
-		for (const [eId, connId] of this.e2c.entries()) {
+		for (const [eId, connId] of this.#entityToConnectionmap.entries()) {
 			if (connId === cId) {
-				this.e2c.delete(eId);
+				this.#entityToConnectionmap.delete(eId);
 				break;
 			}
 		}
 	}
 
-	public async j(myConnId: string) {
+	async join(myConnId: string) {
 		// join
-		if (this.p) return;
+		if (this.#peerJsObject) return;
 		try {
-			this.l = await navigator.mediaDevices.getUserMedia({ audio: true });
-			this._myId = myConnId;
-			this.p = new Peer(myConnId, {
+			this.#mediastream = await navigator.mediaDevices.getUserMedia({ audio: true });
+			this.#myId = myConnId;
+			this.#peerJsObject = new Peer(myConnId, {
 				// For testing on localhost
 				// host: 'localhost',
 				// port: 9000,
@@ -64,11 +64,11 @@ class Vox {
 				// path: '/VOICE/VOICE'
 			});
 
-			this.p.on("open", (id) => {
+			this.#peerJsObject.on("open", (id) => {
 				send({ type: "voice-chat", payload: { type: "join-voice" } });
-				this.p?.on("call", (call) => {
-					call.answer(this.l!);
-					this.h(call);
+				this.#peerJsObject?.on("call", (call) => {
+					call.answer(this.#mediastream!);
+					this.#handleConnection(call);
 				});
 			});
 		} catch (e) {
@@ -76,21 +76,21 @@ class Vox {
 		}
 	}
 
-	public lve() {
+	leave() {
 		// leave
 		send({ type: "voice-chat", payload: { type: "leave-voice" } });
-		for (const [_, data] of this.c) {
+		for (const [_, data] of this.#connections) {
 			data.conn.close();
 			data.audio.remove();
 		}
-		this.c.clear();
-		this.p?.destroy();
-		this.p = null;
-		this.l?.getTracks().forEach((t) => t.stop());
-		this.l = null;
+		this.#connections.clear();
+		this.#peerJsObject?.destroy();
+		this.#peerJsObject = null;
+		this.#mediastream?.getTracks().forEach((t) => t.stop());
+		this.#mediastream = null;
 	}
 
-	private h(conn: MediaConnection) {
+	#handleConnection(conn: MediaConnection) {
 		// handle connection
 		conn.on("stream", (rs) => {
 			// remote stream
@@ -98,30 +98,30 @@ class Vox {
 			audio.srcObject = rs;
 			audio.play();
 			document.body.appendChild(audio);
-			this.c.set(conn.peer, { conn, audio });
+			this.#connections.set(conn.peer, { conn, audio });
 		});
 		conn.on("close", () => {
-			const data = this.c.get(conn.peer);
+			const data = this.#connections.get(conn.peer);
 			if (data) {
 				data.audio.remove();
-				this.c.delete(conn.peer);
+				this.#connections.delete(conn.peer);
 			}
 		});
 		conn.on("error", (e) => {
 			console.error("PeerJS connection error:", e);
-			const data = this.c.get(conn.peer);
+			const data = this.#connections.get(conn.peer);
 			if (data) {
 				data.audio.remove();
-				this.c.delete(conn.peer);
+				this.#connections.delete(conn.peer);
 			}
 		});
 	}
 
-	public u(pPos: Map<string, Vector3>, myPos: Vector3) {
+	update(pPos: Map<string, Vector3>, myPos: Vector3) {
 		// update
-		if (!this.p || !this.l) return;
+		if (!this.#peerJsObject || !this.#mediastream) return;
 
-		const myConnId = this._myId;
+		const myConnId = this.#myId;
 
 		const MAX_DIST = 20;
 		const MAX_DIST_SQ = MAX_DIST * MAX_DIST;
@@ -129,20 +129,20 @@ class Vox {
 		const currentPeers = new Set<string>();
 
 		for (const [eId, pos] of pPos.entries()) {
-			const connId = this.e2c.get(eId);
+			const connId = this.#entityToConnectionmap.get(eId);
 			if (!connId || connId === myConnId) continue;
 
 			const distSq = vec3.sqrDist(myPos, pos);
 
 			if (distSq < MAX_DIST_SQ) {
 				currentPeers.add(connId);
-				if (!this.c.has(connId)) {
-					const call = this.p.call(connId, this.l);
+				if (!this.#connections.has(connId)) {
+					const call = this.#peerJsObject.call(connId, this.#mediastream);
 					if (call) {
-						this.h(call);
+						this.#handleConnection(call);
 					}
 				}
-				const data = this.c.get(connId);
+				const data = this.#connections.get(connId);
 				if (data) {
 					const dist = Math.sqrt(distSq);
 					const vol = Math.max(0, 1 - dist / MAX_DIST);
@@ -151,13 +151,13 @@ class Vox {
 			}
 		}
 
-		for (const id of this.c.keys()) {
+		for (const id of this.#connections.keys()) {
 			if (!currentPeers.has(id)) {
-				const data = this.c.get(id);
+				const data = this.#connections.get(id);
 				if (data) {
 					data.conn.close();
 					data.audio.remove();
-					this.c.delete(id);
+					this.#connections.delete(id);
 				}
 			}
 		}
@@ -174,4 +174,4 @@ const vec3 = {
 	},
 };
 
-export default Vox.i;
+export default Vox.singleyton;

@@ -56,8 +56,8 @@ class Vox {
 				// For testing on localhost
 				// host: 'localhost',
 				// port: 9000,
-				host: location.hostname,port:location.port?+location.port:undefined,
-				path: '/VOICE/VOICE'
+				// host: location.hostname,port:location.port?+location.port:undefined,
+				// path: '/VOICE/VOICE'
 			});
 
 			this.p.on("open", (id) => {

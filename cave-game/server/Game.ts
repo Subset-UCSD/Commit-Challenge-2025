@@ -427,6 +427,10 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 				},
 				debugSpawningBox: player.entity?.debugSpawnColliderPressed ?? false,
 				debugGrappling: player.entity?.debugGrapplePressed ?? false,
+				voices: Array.from(this.players.values(), ({ entity, inVoiceChat }) =>
+					inVoiceChat && entity ? [{ position: entity.getPos(), playerEntityId: entity.id }] : [],
+				).flat(),
+				voiceInterpolationDuration: SERVER_GAME_TICK,
 
 				// cameraInterpolation: {duration:SERVER_GAME_TICK},
 				// physicsBodies: player.debug ? this.world.serialize() : undefined,

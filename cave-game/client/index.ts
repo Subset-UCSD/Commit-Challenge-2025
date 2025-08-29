@@ -196,29 +196,8 @@ export function handleMessage(message: ServerMessage) {
 				lastHand = hand;
 			}
 
-			if (Vox.isACtive) {
-				const playerPositions = new Map<string, Vector3>();
-				let myPosition: Vector3 | null = null;
+			Vox.updateVoicePositions(message.voices, message.voiceInterpolationDuration);
 
-				if (message.cameraMode.type === "client-naive-orbit") {
-					myPosition = message.cameraMode.origin;
-				}
-
-				for (const group of scene) {
-					for (const instances of group.models.values()) {
-						for (const instance of instances) {
-							if (instance.interpolate) {
-								const position = mat4.getTranslation(vec3.create(), instance.transform) as Vector3;
-								playerPositions.set(instance.interpolate.id, position);
-							}
-						}
-					}
-				}
-
-				if (myPosition) {
-					Vox.update(playerPositions, myPosition);
-				}
-			}
 			break;
 		}
 		case "join-response": {
@@ -228,6 +207,7 @@ export function handleMessage(message: ServerMessage) {
 		}
 		case "set-client-naive-orbit-camera-angle": {
 			cameraAngle = message.angle;
+			Vox.updateCameraAngle(cameraAngle);
 			break;
 		}
 		case "voice-chat": {
@@ -301,6 +281,7 @@ const { lockPointer, unlockPointer } = listenToMovement(canvas, (movementX, move
 	}
 	cameraAngle.y = ((cameraAngle.y % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
 	send({ type: "client-naive-orbit-camera-angle", cameraAngle });
+	Vox.updateCameraAngle(cameraAngle);
 });
 
 let lastPointerType = "mouse";

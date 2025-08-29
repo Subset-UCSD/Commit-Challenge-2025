@@ -6,7 +6,8 @@ Hoc est sanctuarium vocis, arcanum et profundum. Qui huc intrat, mundum silentii
 
 import Peer, { MediaConnection } from "peerjs";
 
-import { Vector3 } from "../../communism/types";
+import { Voice } from "../../communism/messages";
+import { Vector3, YXZEuler } from "../../communism/types";
 import { send } from "../";
 
 type PeerData = { conn: MediaConnection; audio: HTMLAudioElement };
@@ -117,36 +118,42 @@ class Vox {
 		});
 	}
 
-	update(pPos: Map<string, Vector3>, myPos: Vector3) {
+	/** called when voice positions of all players are sent from server */
+	updateVoicePositions(voices: Voice[], voiceInterpolationDuration: number) {
 		// update
 		if (!this.#peerJsObject || !this.#mediastream) return;
 
 		const myConnId = this.#myId;
+
+		// TODO: disregard existing impelemntation, please implement
 
 		const MAX_DIST = 20;
 		const MAX_DIST_SQ = MAX_DIST * MAX_DIST;
 
 		const currentPeers = new Set<string>();
 
-		for (const [eId, pos] of pPos.entries()) {
-			const connId = this.#entityToConnectionmap.get(eId);
-			if (!connId || connId === myConnId) continue;
+		const myPos = voices.find((voice) => this.#entityToConnectionmap.get(voice.playerEntityId) === myConnId)?.position;
+		if (myPos) {
+			for (const { playerEntityId, position } of voices) {
+				const connId = this.#entityToConnectionmap.get(playerEntityId);
+				if (!connId || connId === myConnId) continue;
 
-			const distSq = vec3.sqrDist(myPos, pos);
+				const distSq = vec3.sqrDist(myPos, position);
 
-			if (distSq < MAX_DIST_SQ) {
-				currentPeers.add(connId);
-				if (!this.#connections.has(connId)) {
-					const call = this.#peerJsObject.call(connId, this.#mediastream);
-					if (call) {
-						this.#handleConnection(call);
+				if (distSq < MAX_DIST_SQ) {
+					currentPeers.add(connId);
+					if (!this.#connections.has(connId)) {
+						const call = this.#peerJsObject.call(connId, this.#mediastream);
+						if (call) {
+							this.#handleConnection(call);
+						}
 					}
-				}
-				const data = this.#connections.get(connId);
-				if (data) {
-					const dist = Math.sqrt(distSq);
-					const vol = Math.max(0, 1 - dist / MAX_DIST);
-					data.audio.volume = vol * vol;
+					const data = this.#connections.get(connId);
+					if (data) {
+						const dist = Math.sqrt(distSq);
+						const vol = Math.max(0, 1 - dist / MAX_DIST);
+						data.audio.volume = vol * vol;
+					}
 				}
 			}
 		}
@@ -161,6 +168,11 @@ class Vox {
 				}
 			}
 		}
+	}
+
+	/** called whenever the player moves their camera */
+	updateCameraAngle(angle: YXZEuler): void {
+		// TODO
 	}
 }
 

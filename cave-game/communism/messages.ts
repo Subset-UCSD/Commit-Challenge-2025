@@ -106,6 +106,13 @@ export type Scene = {
 	cameraMode: CameraMode;
 	debugSpawningBox: boolean;
 	debugGrappling: boolean;
+	voices: Voice[];
+	voiceInterpolationDuration: number;
+};
+
+export type Voice = {
+	playerEntityId: string;
+	position: Vector3;
 };
 
 export type CameraMode =

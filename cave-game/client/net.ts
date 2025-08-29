@@ -69,7 +69,7 @@ export function makeWs<ClientMessage, ServerMessage>(
 			_wsRef.ws.send((handlers.encode ?? JSON.stringify)(message));
 		} else {
 			// drop it. who cares
-			console.warn("message dropped lmao");
+			console.warn("message dropped lmao", message);
 		}
 	};
 }

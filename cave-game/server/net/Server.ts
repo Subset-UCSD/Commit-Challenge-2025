@@ -1,5 +1,7 @@
 export interface Connection<SendType> {
-	id: string;
+	privateId: string;
+	/** use this as the ID for the conenction */
+	publicId: string;
 	send(data: SendType): void;
 }
 
@@ -11,7 +13,7 @@ export type ServerHandlers<ReceiveType, SendType> = {
 	/**
 	 * Handle a connection that has disconnected.
 	 */
-	handlePlayerDisconnect: (id: string) => void;
+	handlePlayerDisconnect: (publicId: string, privateId: string) => void;
 	/**
 	 * Handles a message sent from the client, and decides what to reply with. It
 	 * can return `undefined` to not send back anything.

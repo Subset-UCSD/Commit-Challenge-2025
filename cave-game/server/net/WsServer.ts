@@ -58,6 +58,8 @@ export class WsServer implements Server<ClientMessage, ServerMessage> {
 	 * give the client its ID.
 	 */
 	#playerConnections = new BiMap<string, WebSocket>();
+	/** private -> public id */
+	#publicIds = new Map<string, string>();
 	#disconnectTimeouts = new Map<string, NodeJS.Timeout>();
 
 	#game: Game;
@@ -106,7 +108,8 @@ export class WsServer implements Server<ClientMessage, ServerMessage> {
 		 * If we want to buffer messages before sending them all together, this is the place to do it.
 		 */
 		return {
-			id,
+			privateId: id,
+			publicId: this.#publicIds.get(id) ?? "idfk",
 			send(message) {
 				ws.send(JSON.stringify(message));
 			},
@@ -130,6 +133,8 @@ export class WsServer implements Server<ClientMessage, ServerMessage> {
 			if (wsId) {
 				//this.#game.handlePlayerDisconnect(wsId);
 
+				this.#game.handlePlayerDisconnect(this.#publicIds.get(wsId) ?? "womp", wsId);
+
 				// Give players a while to reconnect
 				this.#disconnectTimeouts.set(
 					wsId,
@@ -151,6 +156,7 @@ export class WsServer implements Server<ClientMessage, ServerMessage> {
 
 	#deleteConnection(id: string) {
 		this.#playerConnections.delete(id);
+		this.#publicIds.delete(id);
 	}
 
 	#handleMessage(ws: WebSocket, rawData: unknown): void {
@@ -173,6 +179,7 @@ export class WsServer implements Server<ClientMessage, ServerMessage> {
 				// True if this player is a reconnecting player (so they have an old ws)
 				const oldWs = this.#playerConnections.get(data.id);
 				let id = data.id;
+				let publicId = this.#publicIds.get(id) ?? "idfk";
 				if (oldWs) {
 					// They already sent `join` before. what a bad boy😈. lets do nothing about it
 					if (oldWs === ws) return;
@@ -184,6 +191,8 @@ export class WsServer implements Server<ClientMessage, ServerMessage> {
 					// New player (or they reconnected with an invalid ID; we treat them like a new player)
 					// Generate a new ID
 					id = [...getRandomValues(new Uint8Array(64))].map((x) => x.toString(16)).join("");
+					publicId = [...getRandomValues(new Uint8Array(64))].map((x) => x.toString(16)).join("");
+					this.#publicIds.set(id, publicId);
 				}
 
 				// Create mapping from the new ID to the WebSocket that is currently alive that belongs to that ID
@@ -204,7 +213,8 @@ export class WsServer implements Server<ClientMessage, ServerMessage> {
 				// Ok we believe u 🥰 you are the client you say you are
 				connection.send({
 					type: "join-response",
-					id,
+					privateId: id,
+					publicId,
 				});
 
 				// DO NOT REMOVE unless it's a move to maintain chat functionality

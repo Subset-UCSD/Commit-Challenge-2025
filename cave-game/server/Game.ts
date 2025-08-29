@@ -11,7 +11,7 @@ import * as phys from "cannon-es";
 import { Body } from "cannon-es";
 
 import { SERVER_GAME_TICK } from "../communism/constants";
-import { ClientMessage, ServerMessage } from "../communism/messages";
+import { ClientMessage, ServerMessage, Voice } from "../communism/messages";
 import { MovementInfo, Vector3 } from "../communism/types";
 import { shouldBeNever } from "../communism/utils";
 import { BoxEntity } from "./entities/BoxEntity";
@@ -28,11 +28,22 @@ interface NetworkedPlayer {
 	input: PlayerInput;
 	entity: PlayerEntity | null;
 	online: boolean;
-	id: string;
+	// /**
+	//  * this is supposed to be secret because it's how a user authenticates
+	//  * themselves
+	//  */
+	// privateId: string;
+	/** ok to share! is equal to entity.id btw */
+	publicId: string;
 	conn: Connection<ServerMessage>;
 	name: string;
 	debug: boolean;
-	inVoiceChat: boolean;
+	/**
+	 * ideally the server would send the client this, but im too lazy to muck with
+	 * WsServer to support public and private IDs and whatnot
+	 */
+	userSelectedConnId: string | null;
+	// inVoiceChat: boolean;
 }
 type EntityRayCastResult = {
 	entity: Entity;
@@ -118,7 +129,7 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 		return Object.values(entities).sort((a, b) => a.distance - b.distance);
 	}
 
-	getPlayerByEntityId = (id: EntityId) => this.players.values().find((p) => p.id === id);
+	getPlayerByEntityId = (id: EntityId) => this.players.values().find((p) => p.publicId === id);
 
 	private createPlayerEntity(playerId: string, pos: Vector3 = [0, 0, 0]): PlayerEntity {
 		let player = this.players.get(playerId);
@@ -131,8 +142,8 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 		return entity;
 	}
 
-	handlePlayerJoin(conn: Connection<ServerMessage>, name = `Player ${conn.id.slice(0, 6)}`) {
-		let player = this.players.get(conn.id);
+	handlePlayerJoin(conn: Connection<ServerMessage>, name = `Player ${conn.publicId.slice(0, 6)}`) {
+		let player = this.players.get(conn.publicId);
 		if (player) {
 			player.conn = conn;
 			player.online = true;
@@ -141,23 +152,25 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 			this.createdInputs.push(input);
 
 			player = {
-				id: conn.id,
+				publicId: conn.publicId,
 				conn: conn,
 				input: input,
 				entity: null,
 				online: true,
 				name,
 				debug: false,
-				inVoiceChat: false,
+				userSelectedConnId: null,
+				// inVoiceChat: false,
 			};
-			this.players.set(conn.id, player);
+			this.players.set(conn.publicId, player);
 
-			let entity = this.createPlayerEntity(conn.id);
+			let entity = this.createPlayerEntity(conn.publicId);
 			this.registerEntity(entity);
 		}
 	}
-	handlePlayerDisconnect(id: string) {
-		// TODO
+	handlePlayerDisconnect(publicId: string, privateId: string) {
+		const player = this.players.get(publicId);
+		if (player) player.online = false;
 	}
 
 	/**
@@ -169,7 +182,7 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 	 * @returns a ServerMessage
 	 */
 	handleMessage(data: ClientMessage, conn: Connection<ServerMessage>): void {
-		let player = this.players.get(conn.id);
+		let player = this.players.get(conn.publicId);
 
 		switch (data.type) {
 			case "client-input": {
@@ -186,94 +199,12 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 				player?.input.setLookDir(data.cameraAngle);
 				break;
 			}
-			case "voice-chat": {
-				if (!player) return;
-				const payload = data.payload;
-				console.log("voice server", payload);
-				switch (payload.type) {
-					case "join-voice": {
-						if (!player.entity) return;
-						player.inVoiceChat = true;
-						for (const p of this.players.values()) {
-							if (p.id !== conn.id && p.inVoiceChat && p.entity) {
-								p.conn.send({
-									type: "voice-chat",
-									payload: {
-										type: "player-joined-voice",
-										id: conn.id,
-										entityId: player.entity.id,
-									},
-								});
-								conn.send({
-									type: "voice-chat",
-									payload: {
-										type: "player-joined-voice",
-										id: p.id,
-										entityId: p.entity.id,
-									},
-								});
-							}
-						}
-						break;
-					}
-					case "leave-voice": {
-						player.inVoiceChat = false;
-						for (const p of this.players.values()) {
-							if (p.id !== conn.id && p.inVoiceChat) {
-								p.conn.send({
-									type: "voice-chat",
-									payload: {
-										type: "player-left-voice",
-										id: conn.id,
-									},
-								});
-							}
-						}
-						break;
-					}
-					case "offer": {
-						const recipient = this.players.get(payload.to);
-						if (recipient) {
-							recipient.conn.send({
-								type: "voice-chat",
-								from: conn.id,
-								payload: {
-									type: "offer",
-									offer: payload.offer,
-								},
-							});
-						}
-						break;
-					}
-					case "answer": {
-						const recipient = this.players.get(payload.to);
-						if (recipient) {
-							recipient.conn.send({
-								type: "voice-chat",
-								from: conn.id,
-								payload: {
-									type: "answer",
-									answer: payload.answer,
-								},
-							});
-						}
-						break;
-					}
-					case "ice-candidate": {
-						const recipient = this.players.get(payload.to);
-						if (recipient) {
-							recipient.conn.send({
-								type: "voice-chat",
-								from: conn.id,
-								payload: {
-									type: "ice-candidate",
-									candidate: payload.candidate,
-								},
-							});
-						}
-						break;
-					}
-				}
+			case "i-wanna-join": {
+				if (player) player.userSelectedConnId = data.connId;
+				break;
+			}
+			case "count-me-out": {
+				if (player) player.userSelectedConnId = null;
 				break;
 			}
 			default:
@@ -427,8 +358,10 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 				},
 				debugSpawningBox: player.entity?.debugSpawnColliderPressed ?? false,
 				debugGrappling: player.entity?.debugGrapplePressed ?? false,
-				voices: Array.from(this.players.values(), ({ entity, inVoiceChat }) =>
-					inVoiceChat && entity ? [{ position: entity.getPos(), playerEntityId: entity.id }] : [],
+				voices: Array.from(this.players.values(), ({ entity, publicId, online, userSelectedConnId }): Voice[] =>
+					entity && entity !== player.entity && online && userSelectedConnId
+						? [{ position: entity.getPos(), connId: userSelectedConnId }]
+						: [],
 				).flat(),
 				voiceInterpolationDuration: SERVER_GAME_TICK,
 

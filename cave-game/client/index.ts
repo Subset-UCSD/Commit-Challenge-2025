@@ -18,7 +18,7 @@ import { listenToMovement } from "./cam-glam";
 import { InputListener } from "./input";
 import { interpolateMat4, interpolateVector3, Interpolator, lerp, slerpDirVec } from "./lib/Interpolator";
 import { ModelManager } from "./lib/ModelManager";
-import Vox from "./lib/Vox";
+import * as Vox from "./lib/Vox";
 import { makeWs } from "./net";
 import { Camera } from "./render/cam";
 import { Gl } from "./render/Gl";
@@ -46,16 +46,12 @@ if (f instanceof HTMLFormElement) {
 
 const voiceChatBtn = document.getElementById("voice-chat-btn")!;
 voiceChatBtn.addEventListener("click", () => {
-	if (Vox.isACtive) {
-		Vox.leave();
-		voiceChatBtn.textContent = "🎤 rejoin vc";
+	if (Vox.isActive()) {
+		Vox.micOff();
+		voiceChatBtn.textContent = "🎤 mic ON (again)";
 	} else {
-		if (myConnId) {
-			Vox.join(myConnId);
-			voiceChatBtn.textContent = "🔇 leave";
-		} else {
-			console.error("No connection ID yet");
-		}
+		Vox.micOn();
+		voiceChatBtn.textContent = "🙊 speaknt";
 	}
 });
 
@@ -96,13 +92,12 @@ let scene: ClientScene = [];
 const ID_KEY = "cave game user identifier";
 
 /** may be called repeatedly */
-export const send = makeWs<ClientMessage, ServerMessage>("/fuck", {
+const send = makeWs<ClientMessage, ServerMessage>("/fuck", {
 	open: handleOpen,
 	message: handleMessage,
 	connectionStatus: handleConnectionStatus,
 });
 let lastHand = "";
-let myConnId: string | null = null;
 export function handleOpen() {
 	send({ type: "join", id: localStorage.getItem(ID_KEY) ?? "", name: "bruh" });
 }
@@ -201,29 +196,14 @@ export function handleMessage(message: ServerMessage) {
 			break;
 		}
 		case "join-response": {
-			localStorage.setItem(ID_KEY, message.id);
-			myConnId = message.id;
+			localStorage.setItem(ID_KEY, message.privateId);
+			const theIdIWant = crypto.randomUUID();
+			send({ type: "i-wanna-join", connId: theIdIWant });
+			Vox.yourVoiceConnId(theIdIWant);
 			break;
 		}
 		case "set-client-naive-orbit-camera-angle": {
 			cameraAngle = message.angle;
-			Vox.updateCameraAngle(cameraAngle);
-			break;
-		}
-		case "voice-chat": {
-			const payload = message.payload;
-			console.log("vc", payload);
-			switch (payload.type) {
-				case "player-joined-voice":
-					Vox.addPlayer(payload.entityId, payload.id);
-					if (payload.id !== myConnId) {
-						Vox.call(payload.id);
-					}
-					break;
-				case "player-left-voice":
-					Vox.removePlayer(payload.id);
-					break;
-			}
 			break;
 		}
 		default: {
@@ -284,7 +264,6 @@ const { lockPointer, unlockPointer } = listenToMovement(canvas, (movementX, move
 	}
 	cameraAngle.y = ((cameraAngle.y % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
 	send({ type: "client-naive-orbit-camera-angle", cameraAngle });
-	Vox.updateCameraAngle(cameraAngle);
 });
 
 let lastPointerType = "mouse";
@@ -330,6 +309,7 @@ while (true) {
 	} else if (cameraType === "locked") {
 		cam.transform = cameraInterpolator.getValue(now);
 	}
+	Vox.updateCameraAngle(cam.transform);
 	const view = cam.pv(window.innerWidth / window.innerHeight);
 
 	gl.clear(CLEAR_COLOR);

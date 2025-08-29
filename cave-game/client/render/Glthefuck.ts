@@ -298,9 +298,10 @@ export class GltfModel {
 				gl.bufferData(
 					gl.ARRAY_BUFFER,
 					mergeMatrices(
-						partTransforms.map((partTransform) =>
-							// https://stackoverflow.com/a/13654666
-							mat4.transpose(mat4.create(), mat4.invert(mat4.create(), partTransform)),
+						partTransforms.map(
+							(partTransform) =>
+								// https://stackoverflow.com/a/13654666
+								mat4.transpose(mat4.create(), mat4.invert(mat4.create(), partTransform) ?? mat4.create()),
 						),
 					),
 					gl.DYNAMIC_DRAW,

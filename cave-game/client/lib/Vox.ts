@@ -35,14 +35,13 @@ export function yourVoiceConnId(myConnId: string) {
 	peerJsObject?.destroy();
 	console.log("i am...", myConnId);
 	peerJsObject = new Peer(myConnId, {
-		// For testing on localhost
-		// host: 'localhost',
-		// port: 9000,
-		// host: location.hostname,port:location.port?+location.port:undefined,
-		// path: '/VOICE/VOICE'
+		host: location.hostname,
+		port: location.port ? +location.port : 443,
+		path: "/VOICE/VOICE",
 	});
+	peerJsObject.on("error", (err) => console.error("peerjs error:", err));
 	peerJsObject.on("call", (call) => {
-		console.log("⚠️⚠️⚠️⚠️received call from", call.peer, "will answer");
+		console.log("⚠️⚠️⚠️⚠️received call from", call.peer, "i will answer");
 		const data = connections.get(call.peer);
 		if (data) {
 			if (data !== "error" && data.conn.open) {
@@ -50,6 +49,11 @@ export function yourVoiceConnId(myConnId: string) {
 				return;
 			}
 		}
+		/*
+			In vocis silentio, donum meum accipe.
+			Flumen soni, ex corde meo, ad te fluit.
+			Silentium rumpitur, nexus noster formatur.
+		*/
 		call.answer(mediastream);
 		handleConnection(call);
 	});

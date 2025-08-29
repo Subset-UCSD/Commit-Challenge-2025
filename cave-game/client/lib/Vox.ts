@@ -4,13 +4,19 @@ Incipiunt murmura vocum, chorda silentii percussa. Hic, in hoc sacrario digitali
 Hoc est sanctuarium vocis, arcanum et profundum. Qui huc intrat, mundum silentii relinquit et in regnum sonorum intrat.
 */
 
+import { mat4, vec3 } from "gl-matrix";
 import Peer, { MediaConnection } from "peerjs";
 
+import { cameraTransform } from "../../communism/cam";
 import { Voice } from "../../communism/messages";
 import { Vector3, YXZEuler } from "../../communism/types";
 import { send } from "../";
 
-type PeerData = { conn: MediaConnection; audio: HTMLAudioElement };
+type PeerData = {
+	conn: MediaConnection;
+	source: MediaStreamAudioSourceNode;
+	panner: PannerNode;
+};
 
 class Vox {
 	static #singleton: Vox;
@@ -19,6 +25,7 @@ class Vox {
 	#connections: Map<string, PeerData> = new Map();
 	#myId: string = "";
 	#entityToConnectionmap: Map<string, string> = new Map(); // entityId -> connId
+	#audioContext: AudioContext | null = null;
 
 	private constructor() {}
 
@@ -57,6 +64,9 @@ class Vox {
 		try {
 			this.#mediastream = await navigator.mediaDevices.getUserMedia({ audio: true });
 			this.#myId = myConnId;
+			this.#audioContext = new AudioContext();
+			this.#audioContext.resume();
+
 			this.#peerJsObject = new Peer(myConnId, {
 				// For testing on localhost
 				// host: 'localhost',
@@ -82,29 +92,48 @@ class Vox {
 		send({ type: "voice-chat", payload: { type: "leave-voice" } });
 		for (const [_, data] of this.#connections) {
 			data.conn.close();
-			data.audio.remove();
+			data.source.disconnect();
+			data.panner.disconnect();
 		}
 		this.#connections.clear();
 		this.#peerJsObject?.destroy();
 		this.#peerJsObject = null;
 		this.#mediastream?.getTracks().forEach((t) => t.stop());
 		this.#mediastream = null;
+		this.#audioContext?.close();
+		this.#audioContext = null;
 	}
 
 	#handleConnection(conn: MediaConnection) {
 		// handle connection
 		conn.on("stream", (rs) => {
+			if (!this.#audioContext) {
+				console.error("No audio context");
+				return;
+			}
 			// remote stream
-			const audio = document.createElement("audio");
-			audio.srcObject = rs;
-			audio.play();
-			document.body.appendChild(audio);
-			this.#connections.set(conn.peer, { conn, audio });
+			const source = this.#audioContext.createMediaStreamSource(rs);
+			const panner = this.#audioContext.createPanner();
+
+			panner.panningModel = "HRTF";
+			panner.distanceModel = "inverse";
+			panner.refDistance = 1;
+			panner.maxDistance = 10000;
+			panner.rolloffFactor = 1;
+			panner.coneInnerAngle = 360;
+			panner.coneOuterAngle = 0;
+			panner.coneOuterGain = 0;
+
+			source.connect(panner);
+			panner.connect(this.#audioContext.destination);
+
+			this.#connections.set(conn.peer, { conn, source, panner });
 		});
 		conn.on("close", () => {
 			const data = this.#connections.get(conn.peer);
 			if (data) {
-				data.audio.remove();
+				data.source.disconnect();
+				data.panner.disconnect();
 				this.#connections.delete(conn.peer);
 			}
 		});
@@ -112,7 +141,8 @@ class Vox {
 			console.error("PeerJS connection error:", e);
 			const data = this.#connections.get(conn.peer);
 			if (data) {
-				data.audio.remove();
+				data.source.disconnect();
+				data.panner.disconnect();
 				this.#connections.delete(conn.peer);
 			}
 		});
@@ -121,11 +151,11 @@ class Vox {
 	/** called when voice positions of all players are sent from server */
 	updateVoicePositions(voices: Voice[], voiceInterpolationDuration: number) {
 		// update
-		if (!this.#peerJsObject || !this.#mediastream) return;
+		if (!this.#peerJsObject || !this.#mediastream || !this.#audioContext) return;
 
 		const myConnId = this.#myId;
-
-		// TODO: disregard existing impelemntation, please implement
+		const now = this.#audioContext.currentTime;
+		const interpolationTime = now + voiceInterpolationDuration / 1000;
 
 		const MAX_DIST = 20;
 		const MAX_DIST_SQ = MAX_DIST * MAX_DIST;
@@ -150,9 +180,9 @@ class Vox {
 					}
 					const data = this.#connections.get(connId);
 					if (data) {
-						const dist = Math.sqrt(distSq);
-						const vol = Math.max(0, 1 - dist / MAX_DIST);
-						data.audio.volume = vol * vol;
+						data.panner.positionX.setValueAtTime(position[0], interpolationTime);
+						data.panner.positionY.setValueAtTime(position[1], interpolationTime);
+						data.panner.positionZ.setValueAtTime(position[2], interpolationTime);
 					}
 				}
 			}
@@ -163,7 +193,8 @@ class Vox {
 				const data = this.#connections.get(id);
 				if (data) {
 					data.conn.close();
-					data.audio.remove();
+					data.source.disconnect();
+					data.panner.disconnect();
 					this.#connections.delete(id);
 				}
 			}
@@ -171,19 +202,29 @@ class Vox {
 	}
 
 	/** called whenever the player moves their camera */
-	updateCameraAngle(angle: YXZEuler): void {
-		// TODO
+	updateCameraAngle(angle: YXZEuler, cameraPosition: Vector3): void {
+		if (!this.#audioContext) return;
+
+		const listener = this.#audioContext.listener;
+		const now = this.#audioContext.currentTime;
+
+		// Update listener position
+		listener.positionX.setValueAtTime(cameraPosition[0], now);
+		listener.positionY.setValueAtTime(cameraPosition[1], now);
+		listener.positionZ.setValueAtTime(cameraPosition[2], now);
+
+		// Update listener orientation
+		const camMatrix = cameraTransform(null, angle);
+		const forward = vec3.transformMat4(vec3.create(), [0, 0, -1], camMatrix);
+		const up = vec3.transformMat4(vec3.create(), [0, 1, 0], camMatrix);
+
+		listener.forwardX.setValueAtTime(forward[0], now);
+		listener.forwardY.setValueAtTime(forward[1], now);
+		listener.forwardZ.setValueAtTime(forward[2], now);
+		listener.upX.setValueAtTime(up[0], now);
+		listener.upY.setValueAtTime(up[1], now);
+		listener.upZ.setValueAtTime(up[2], now);
 	}
 }
-
-// Utility for vector math
-const vec3 = {
-	sqrDist: (a: Vector3, b: Vector3) => {
-		const dx = a[0] - b[0];
-		const dy = a[1] - b[1];
-		const dz = a[2] - b[2];
-		return dx * dx + dy * dy + dz * dz;
-	},
-};
 
 export default Vox.singleyton;

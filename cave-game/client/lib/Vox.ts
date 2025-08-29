@@ -104,6 +104,15 @@ class Vox {
 		// this.#audioContext = null;
 	}
 
+	call(peerId: string) {
+		if (!this.#peerJsObject || !this.#mediastream) {
+			console.error("Cannot make a call without a PeerJS object and a media stream.");
+			return;
+		}
+		const call = this.#peerJsObject.call(peerId, this.#mediastream);
+		this.#handleConnection(call);
+	}
+
 	#handleConnection(conn: MediaConnection) {
 		// handle connection
 		conn.on("stream", (rs) => {

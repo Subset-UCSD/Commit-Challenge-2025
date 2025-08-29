@@ -5,9 +5,9 @@ Hoc est sanctuarium vocis, arcanum et profundum. Qui huc intrat, mundum silentii
 */
 
 import Peer, { MediaConnection } from "peerjs";
-import { send } from "../net";
-import { Vector3 } from "../../../communism/types";
-import { expect } from "../../../communism/utils";
+import { send } from "../";
+import { Vector3 } from "../../communism/types";
+import { expect } from "../../communism/utils";
 
 type PeerData = { conn: MediaConnection; audio: HTMLAudioElement; };
 
@@ -56,7 +56,8 @@ class Vox {
 				// For testing on localhost
 				// host: 'localhost',
 				// port: 9000,
-				// path: '/myapp'
+				host: location.hostname,port:location.port?+location.port:undefined,
+				path: '/VOICE/VOICE'
 			});
 
 			this.p.on("open", (id) => {

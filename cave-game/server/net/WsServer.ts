@@ -11,6 +11,7 @@ import { ClientMessage, ServerMessage } from "../../communism/messages";
 import * as not from "../../not/indice";
 import { Game } from "../Game";
 import { Connection, Server } from "./Server";
+import { ExpressPeerServer } from "peer";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -35,7 +36,7 @@ database.chats ??= [];
 export class WsServer implements Server<ClientMessage, ServerMessage> {
 	#app = express();
 	#server = http.createServer(this.#app);
-	#wss = new WebSocketServer({ server: this.#server });
+	#wss = new WebSocketServer({ server: this.#server, path: '/fuck/' });
 
 	/**
 	 * Contrary to what the name suggests, this doesn't keep track of open
@@ -86,6 +87,9 @@ export class WsServer implements Server<ClientMessage, ServerMessage> {
 		this.#app.get("/", (_req, res) => {
 			res.sendFile(path.join(__dirname, "../public/index.html"));
 		});
+
+		const peerServer = ExpressPeerServer(this.#server, { path: "/VOICE" });
+		this.#app.use("/VOICE", peerServer);
 
 		this.#wss.on("connection", this.#handleNewConnection);
 	}

@@ -146,7 +146,7 @@ export type ServerMessage =
 			type: "join-response";
 			id: string;
 	  }
-	| VoiceChatMessage;
+	| VoiceChatMessageS;
 
 export type ClientMessage =
 	| { type: "chat"; message: string }
@@ -160,9 +160,9 @@ export type ClientMessage =
 			id?: string;
 			name: string;
 	  }
-	| VoiceChatMessage;
+	| VoiceChatMessageC;
 
-export type VoiceChatMessage =
+export type VoiceChatMessageC =
 	| {
 			type: "voice-chat";
 			payload:
@@ -197,6 +197,7 @@ export type VoiceChatMessage =
 						id: string;
 				  };
 	  }
+export type VoiceChatMessageS =
 	// Sent from server to client
 	| {
 			type: "voice-chat";

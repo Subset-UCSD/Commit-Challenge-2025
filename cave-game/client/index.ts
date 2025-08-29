@@ -96,7 +96,7 @@ let scene: ClientScene = [];
 const ID_KEY = "cave game user identifier";
 
 /** may be called repeatedly */
-const send = makeWs<ClientMessage, ServerMessage>("/fuck", {
+export const send = makeWs<ClientMessage, ServerMessage>("/fuck", {
 	open: handleOpen,
 	message: handleMessage,
 	connectionStatus: handleConnectionStatus,

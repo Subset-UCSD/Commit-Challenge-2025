@@ -182,18 +182,26 @@ export function updateCameraAngle(transform: mat4): void {
 	const listener = audioContext.listener;
 
 	const translation = mat4.getTranslation(vec3.create(), transform);
-	listener.positionX.value = translation[0];
-	listener.positionY.value = translation[1];
-	listener.positionZ.value = translation[2];
+	if ("positionX" in audioContext.listener /* typescript hack needed here */) {
+		listener.positionX.value = translation[0];
+		listener.positionY.value = translation[1];
+		listener.positionZ.value = translation[2];
+	} else {
+		listener.setPosition(translation[0], translation[1], translation[2]);
+	}
 
 	// Update listener orientation
 	const forward = vec3.transformMat4(vec3.create(), [0, 0, -1], transform);
 	const up = vec3.transformMat4(vec3.create(), [0, 1, 0], transform);
 
-	listener.forwardX.value = forward[0];
-	listener.forwardY.value = forward[1];
-	listener.forwardZ.value = forward[2];
-	listener.upX.value = up[0];
-	listener.upY.value = up[1];
-	listener.upZ.value = up[2];
+	if ("forwardX" in audioContext.listener) {
+		listener.forwardX.value = forward[0];
+		listener.forwardY.value = forward[1];
+		listener.forwardZ.value = forward[2];
+		listener.upX.value = up[0];
+		listener.upY.value = up[1];
+		listener.upZ.value = up[2];
+	} else {
+		listener.setOrientation(forward[0], forward[1], forward[2], up[0], up[1], up[2]);
+	}
 }

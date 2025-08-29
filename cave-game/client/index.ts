@@ -18,10 +18,10 @@ import { listenToMovement } from "./cam-glam";
 import { InputListener } from "./input";
 import { interpolateMat4, interpolateVector3, Interpolator, lerp, slerpDirVec } from "./lib/Interpolator";
 import { ModelManager } from "./lib/ModelManager";
+import Vox from "./lib/Vox";
 import { makeWs } from "./net";
 import { Camera } from "./render/cam";
 import { Gl } from "./render/Gl";
-import Vox from "./lib/Vox";
 
 console.log("frontend!");
 

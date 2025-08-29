@@ -5,11 +5,11 @@ Hoc est sanctuarium vocis, arcanum et profundum. Qui huc intrat, mundum silentii
 */
 
 import Peer, { MediaConnection } from "peerjs";
-import { send } from "../";
-import { Vector3 } from "../../communism/types";
-import { expect } from "../../communism/utils";
 
-type PeerData = { conn: MediaConnection; audio: HTMLAudioElement; };
+import { Vector3 } from "../../communism/types";
+import { send } from "../";
+
+type PeerData = { conn: MediaConnection; audio: HTMLAudioElement };
 
 class Vox {
 	private static _i: Vox;
@@ -30,15 +30,18 @@ class Vox {
 		return this._myId;
 	}
 
-	public get a() { // active
+	public get a() {
+		// active
 		return !!this.p;
 	}
 
-	public addP(eId: string, cId: string) { // add player
+	public addP(eId: string, cId: string) {
+		// add player
 		this.e2c.set(eId, cId);
 	}
 
-	public rmP(cId: string) { // remove player
+	public rmP(cId: string) {
+		// remove player
 		for (const [eId, connId] of this.e2c.entries()) {
 			if (connId === cId) {
 				this.e2c.delete(eId);
@@ -47,7 +50,8 @@ class Vox {
 		}
 	}
 
-	public async j(myConnId: string) { // join
+	public async j(myConnId: string) {
+		// join
 		if (this.p) return;
 		try {
 			this.l = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -72,7 +76,8 @@ class Vox {
 		}
 	}
 
-	public lve() { // leave
+	public lve() {
+		// leave
 		send({ type: "voice-chat", payload: { type: "leave-voice" } });
 		for (const [_, data] of this.c) {
 			data.conn.close();
@@ -81,12 +86,14 @@ class Vox {
 		this.c.clear();
 		this.p?.destroy();
 		this.p = null;
-		this.l?.getTracks().forEach(t => t.stop());
+		this.l?.getTracks().forEach((t) => t.stop());
 		this.l = null;
 	}
 
-	private h(conn: MediaConnection) { // handle connection
-		conn.on("stream", (rs) => { // remote stream
+	private h(conn: MediaConnection) {
+		// handle connection
+		conn.on("stream", (rs) => {
+			// remote stream
 			const audio = document.createElement("audio");
 			audio.srcObject = rs;
 			audio.play();
@@ -110,7 +117,8 @@ class Vox {
 		});
 	}
 
-	public u(pPos: Map<string, Vector3>, myPos: Vector3) { // update
+	public u(pPos: Map<string, Vector3>, myPos: Vector3) {
+		// update
 		if (!this.p || !this.l) return;
 
 		const myConnId = this._myId;
@@ -137,7 +145,7 @@ class Vox {
 				const data = this.c.get(connId);
 				if (data) {
 					const dist = Math.sqrt(distSq);
-					const vol = Math.max(0, 1 - (dist / MAX_DIST));
+					const vol = Math.max(0, 1 - dist / MAX_DIST);
 					data.audio.volume = vol * vol;
 				}
 			}
@@ -163,7 +171,7 @@ const vec3 = {
 		const dy = a[1] - b[1];
 		const dz = a[2] - b[2];
 		return dx * dx + dy * dy + dz * dz;
-	}
-}
+	},
+};
 
 export default Vox.i;

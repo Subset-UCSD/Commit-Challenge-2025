@@ -41,8 +41,8 @@ body::after {
 	image-rendering: crisp-edges;
 	bottom: 0;
 	right: 0;
-	width: 50vw;
-	height: 100%;
+	height: 60vh;
+	aspect-ratio: 4 / 3;
 	pointer-events: none;
 	position: fixed;
 	background-size: contain;

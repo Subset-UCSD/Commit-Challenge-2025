@@ -216,6 +216,9 @@ export function handleMessage(message: ServerMessage) {
 			switch (payload.type) {
 				case "player-joined-voice":
 					Vox.addPlayer(payload.entityId, payload.id);
+					if (payload.id !== myConnId) {
+						Vox.call(payload.id);
+					}
 					break;
 				case "player-left-voice":
 					Vox.removePlayer(payload.id);

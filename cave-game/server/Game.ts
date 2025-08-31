@@ -43,6 +43,7 @@ interface NetworkedPlayer {
 	 * WsServer to support public and private IDs and whatnot
 	 */
 	userSelectedConnId: string | null;
+	wantsWireFrame: boolean;
 	// inVoiceChat: boolean;
 }
 type EntityRayCastResult = {
@@ -91,7 +92,7 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 	 * Temp function to put a plane floor into the world
 	 */
 	initWorld() {
-		this.registerEntity(new PlaneEntity(this, "models/floor.glb", [0, -5, 0], [-1, 0, 0, 1]));
+		this.registerEntity(new PlaneEntity(this, [0, -5, 0]));
 		this.registerEntity(new GrappleAnchorEntity(this, [10, 5, 10]));
 		this.registerEntity(new GrappleAnchorEntity(this, [12, 10, 9]));
 		this.registerEntity(new GrappleAnchorEntity(this, [-7, -3, -15]));
@@ -137,7 +138,7 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 			throw "Trying to create player entity, but player doesn't exist";
 		}
 
-		let entity = new PlayerEntity(this, [0, 0, 0], "./models/notacube.glb");
+		let entity = new PlayerEntity(this, [0, 0, 0]);
 		player.entity = entity;
 		return entity;
 	}
@@ -160,6 +161,7 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 				name,
 				debug: false,
 				userSelectedConnId: null,
+				wantsWireFrame: false,
 				// inVoiceChat: false,
 			};
 			this.players.set(conn.publicId, player);
@@ -207,6 +209,10 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 				if (player) player.userSelectedConnId = null;
 				break;
 			}
+			case "woggle-wire": {
+				if (player) player.wantsWireFrame = data.yes;
+				break;
+			}
 			default:
 				console.warn(`Unhandled message '${data["type"]}'`);
 				shouldBeNever(data["type"]);
@@ -229,6 +235,7 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 			};
 
 			player.entity.move(movement);
+			player.entity.setLookDir(movement.lookDir);
 
 			if (player.entity.debugSpawnColliderPressed) {
 				if (!inputs.debugSpawnBox) {
@@ -244,10 +251,10 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 				dir.normalize();
 				const box = new BoxEntity(
 					this,
-					"./models/notacube_smooth.glb",
+					"./models/notacube.glb",
 					dir
 						.scale(1)
-						.vadd(new phys.Vec3(...player.entity.getPos()))
+						.vadd(new phys.Vec3(...player.entity.getHeadPos()))
 						.toArray(),
 					[1, 0, 0, 1],
 					new phys.Vec3(1, 1, 1),
@@ -310,7 +317,7 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 	broadcastState() {
 		//console.clear();
 		for (const player of this.players.values()) {
-			///console.log(player.entity?.getPos());
+			///console.log(player.entity?.getHeadPos());
 			player.conn.send({
 				type: "entire-state",
 				groups: [
@@ -318,7 +325,7 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 						instances: [
 							...this.entities
 								.values()
-								.filter((entity) => !(player.entity?.debugGrapplePressed && player.entity === entity))
+								.filter((entity) => !(player.entity === entity && player.entity?.inFirstPerson))
 								.flatMap((entity) => entity.serialize()),
 						],
 						pointLights: [
@@ -347,24 +354,24 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 					// 	cameraTransform([0, 20, 20], { y: 0, x: -Math.PI / 8 /* * (Math.sin(Date.now() / 847) + 1)*/, z: 0 }),
 					// )
 					type: "client-naive-orbit",
-					minRx: player.entity?.debugGrapplePressed ? -Math.PI / 2 : -Math.PI / 3,
-					maxRx: player.entity?.debugGrapplePressed ? Math.PI / 2 : Math.PI / 3,
-					origin: player.entity?.getPos() ?? [0, 0, 0],
+					minRx: player.entity?.inFirstPerson ? -Math.PI / 2 : -Math.PI / 3,
+					maxRx: player.entity?.inFirstPerson ? Math.PI / 2 : Math.PI / 3,
+					origin: player.entity?.getHeadPos() ?? [0, 0, 0],
 					originInterpolation: {
 						duration: SERVER_GAME_TICK,
 					},
-					radius: player.entity?.debugGrapplePressed ? 0 : 10,
-					radiusInterpolation: { duration: player.entity?.debugGrapplePressed ? 100 : 200 },
+					radius: player.entity?.inFirstPerson ? 0 : 10,
+					radiusInterpolation: { duration: player.entity?.inFirstPerson ? 100 : 200 },
 				},
 				debugSpawningBox: player.entity?.debugSpawnColliderPressed ?? false,
 				debugGrappling: player.entity?.debugGrapplePressed ?? false,
 				voices: Array.from(this.players.values(), ({ entity, publicId, online, userSelectedConnId }): Voice[] =>
 					entity && entity !== player.entity && online && userSelectedConnId
-						? [{ position: entity.getPos(), connId: userSelectedConnId }]
+						? [{ position: entity.getHeadPos(), connId: userSelectedConnId }]
 						: [],
 				).flat(),
 				voiceInterpolationDuration: SERVER_GAME_TICK,
-				debugWireframeShit: this.world.serialize(),
+				debugWireframeShit: player.wantsWireFrame ? this.world.serialize() : undefined,
 
 				// cameraInterpolation: {duration:SERVER_GAME_TICK},
 				// physicsBodies: player.debug ? this.world.serialize() : undefined,

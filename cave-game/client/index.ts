@@ -265,6 +265,24 @@ const inputListener = new InputListener({
 });
 inputListener.listen();
 
+let wireFrameMode: "hidden" | "with-depth" | "wo-depth" = "hidden";
+if (Math.random() < 0) {
+	wireFrameMode = "wo-depth"; // ts hack
+}
+document.addEventListener("keydown", (e) => {
+	if (e.key === "m") {
+		if (wireFrameMode === "hidden") {
+			wireFrameMode = "with-depth";
+			send({ type: "woggle-wire", yes: true });
+		} else if (wireFrameMode === "with-depth") {
+			wireFrameMode = "wo-depth";
+		} else {
+			wireFrameMode = "hidden";
+			send({ type: "woggle-wire", yes: false });
+		}
+	}
+});
+
 /** How fast the camera rotates in degrees per pixel moved by the mouse */
 const sensitivity = 0.4;
 const { lockPointer, unlockPointer } = listenToMovement(canvas, (movementX, movementY, isTouch) => {
@@ -358,21 +376,27 @@ while (true) {
 	if (wireframeShit.length > 0) {
 		gl.wireframeShader.use();
 		gl.gl.uniformMatrix4fv(gl.wireframeShader.uniform("u_view"), false, view);
-		if (true) {
+		if (wireFrameMode === "wo-depth") {
 			gl.gl.disable(gl.gl.DEPTH_TEST);
 		}
 		gl.gl.disable(gl.gl.CULL_FACE);
 		for (const { position, quaternion, colliders } of wireframeShit) {
-			const transform = mat4.create();
-			mat4.fromQuat(transform, quaternion);
-			mat4.translate(transform, transform, position);
-			gl.gl.uniformMatrix4fv(gl.wireframeShader.uniform("u_model"), false, transform);
+			const base = mat4.fromRotationTranslation(mat4.create(), quaternion, position);
 			for (const collider of colliders) {
+				gl.gl.uniformMatrix4fv(
+					gl.wireframeShader.uniform("u_model"),
+					false,
+					mat4.multiply(
+						mat4.create(),
+						base,
+						mat4.fromRotationTranslation(mat4.create(), collider.orientation, collider.offset),
+					),
+				);
 				gl.drawWireframe(collider);
 			}
 		}
 		gl.gl.enable(gl.gl.CULL_FACE);
-		if (true) {
+		if (wireFrameMode === "wo-depth") {
 			gl.gl.enable(gl.gl.DEPTH_TEST);
 		}
 	}

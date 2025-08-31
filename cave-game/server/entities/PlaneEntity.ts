@@ -1,23 +1,42 @@
 import * as phys from "cannon-es";
 
-import { EntityModel } from "../../communism/messages";
+import { EntityModel, ModelInstance } from "../../communism/messages";
 import { Quaternion, Vector3 } from "../../communism/types";
 import { Game } from "../Game";
 import { mats } from "../materials";
 import { Entity } from "./Entity";
+import { mat4, quat } from "gl-matrix";
 
 export class PlaneEntity extends Entity {
-	constructor(game: Game, model: EntityModel, pos: Vector3, rotation: Quaternion) {
-		super(game, model);
-		this.model = model;
+	constructor(game: Game, pos: Vector3) {
+		super(game, "models/floor.glb");
 
 		this.body = new phys.Body({
 			type: phys.Body.STATIC,
 			position: new phys.Vec3(...pos),
-			quaternion: new phys.Quaternion(...rotation).normalize(),
+			quaternion: new phys.Quaternion(-1, 0, 0, 1).normalize(),
 			fixedRotation: true,
 			material: mats.ground,
 			shape: new phys.Plane(),
 		});
+	}
+
+	serialize(): ModelInstance[] {
+		const [plane] = super.serialize();
+		const [x, y, z] = this.getPos();
+		return [
+			{
+				...plane,
+				transform: Array.from(
+					mat4.fromRotationTranslation(
+						mat4.create(),
+						// quat.create(),
+						// quat.fromEuler(quat.create(), 0, Math.PI / 2, 0),
+						[-Math.SQRT1_2, 0, 0, Math.SQRT1_2],
+						[x, y - 0.4, z],
+					),
+				),
+			},
+		];
 	}
 }

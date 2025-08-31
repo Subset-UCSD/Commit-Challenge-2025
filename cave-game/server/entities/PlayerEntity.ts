@@ -8,8 +8,9 @@ import { Game } from "../Game";
 import { mats } from "../materials";
 import { Entity } from "./Entity";
 import { GrappleAnchorEntity } from "./GrappleAnchorEntity";
+import { cameraTransform } from "../../communism/cam";
 
-const CAPSULE_HEIGHT = 2;
+const CAPSULE_HEIGHT = 2.5;
 const CAPSULE_RADIUS = 0.5;
 const PLAYER_MASS = 10;
 
@@ -66,8 +67,8 @@ export class PlayerEntity extends Entity {
 	debugSpawnColliderPressed = false;
 	debugGrapplePressed = false;
 
-	constructor(game: Game, footPos: Vector3, model: EntityModel) {
-		super(game, model);
+	constructor(game: Game, footPos: Vector3) {
+		super(game, "not used");
 
 		const pos = [footPos[0], footPos[1] - this.footOffset, footPos[2]];
 
@@ -213,8 +214,38 @@ export class PlayerEntity extends Entity {
 		this.lastAnchor = anchor;
 	}
 
+	get inFirstPerson() {
+		return this.debugGrapplePressed;
+	}
+
+	getHeadPos() {
+		return this.getPos();
+	}
+
+	#lookDir: YXZEuler = { y: 0, x: 0, z: 0 };
+	setLookDir(lookDir: YXZEuler) {
+		this.#lookDir = lookDir;
+	}
+
 	serialize(): ModelInstance[] {
-		const arr = super.serialize();
+		const orig = super.serialize()[0];
+		const origTransform = new Float32Array(orig.transform);
+		const body = { ...orig };
+		body.model = "models/notacube_smooth.glb";
+		let bodyTransform = mat4.fromScaling(mat4.create(), [0.4, 0.7, 0.4]);
+		mat4.multiply(bodyTransform, cameraTransform([0, -1.2, 0], { y: this.#lookDir.y, x: 0, z: 0 }), bodyTransform);
+		mat4.multiply(bodyTransform, origTransform, bodyTransform);
+		body.transform = Array.from(bodyTransform);
+		const head = { ...orig };
+		head.model = "models/head.glb";
+		if (head.interpolate) {
+			head.interpolate = { ...head.interpolate, id: `${head.interpolate.id}-head` };
+		}
+		let headTransform = mat4.fromScaling(mat4.create(), [1, 1, 1]);
+		mat4.multiply(headTransform, cameraTransform([0, 0, 0], this.#lookDir), headTransform);
+		mat4.multiply(headTransform, origTransform, headTransform);
+		head.transform = Array.from(headTransform);
+		const arr = [body, head];
 		if (this.lastAnchor) {
 			const diff = this.body.position.clone().vsub(this.lastAnchor.body.position);
 			arr.push({

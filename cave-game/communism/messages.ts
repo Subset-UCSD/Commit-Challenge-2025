@@ -170,7 +170,8 @@ export type ClientMessage =
 			name: string;
 	  }
 	| { type: "i-wanna-join"; connId: string }
-	| { type: "count-me-out" };
+	| { type: "count-me-out" }
+	| { type: "woggle-wire"; yes: boolean };
 
 export type ClientInputMessage = {
 	type: "client-input";

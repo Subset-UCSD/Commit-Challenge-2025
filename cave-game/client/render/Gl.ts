@@ -9,7 +9,10 @@
 
 import gltfFragShader from "./😎/gltf.frag";
 import gltfVertShader from "./😎/gltf.vert";
+import wiredFragShader from "./😎/wired.frag";
+import wiredVertShader from "./😎/wired.vert";
 import { ShaderProgram } from "./ShaderProgram";
+import { SerializedCollider } from "../../communism/messages";
 
 export type TextureType = "2d" | "cubemap";
 
@@ -170,6 +173,13 @@ export class Gl extends GlBase {
 			this.createShader("fragment", gltfFragShader, "gltf.frag"),
 		),
 	);
+	wireframeShader = new ShaderProgram(
+		this,
+		this.createProgram(
+			this.createShader("vertex", wiredVertShader, "wired.vert"),
+			this.createShader("fragment", wiredFragShader, "wired.frag"),
+		),
+	);
 
 	/**
 	 * A helper method for compiling a shader. Useful for creating `Material`s.
@@ -322,5 +332,37 @@ export class Gl extends GlBase {
 		gl.bindBuffer(gl.ARRAY_BUFFER, null);
 		this.bindTexture(0, "2d", null);
 		this.bindTexture(1, "2d", null);
+	}
+
+	/**
+	 * Draws a wireframe.
+	 *
+	 * Preconditions:
+	 * - The shader program is in use.
+	 * - `u_view` and `u_model` are set.
+	 */
+	drawWireframe(collider: SerializedCollider): void {
+		if (collider.type === "box") {
+			this.gl.uniform1i(this.wireframeShader.uniform("u_shape"), 1);
+			this.gl.uniform4f(this.wireframeShader.uniform("u_size"), ...collider.size, 0);
+			this.gl.drawArrays(this.gl.TRIANGLES, 0, 36);
+		} else if (collider.type === "plane") {
+			this.gl.uniform1i(this.wireframeShader.uniform("u_shape"), 2);
+			this.gl.drawArrays(this.gl.TRIANGLES, 0, 6);
+		} else if (collider.type === "sphere") {
+			this.gl.uniform1i(this.wireframeShader.uniform("u_shape"), 3);
+			this.gl.uniform4f(this.wireframeShader.uniform("u_size"), collider.radius, collider.radius, collider.radius, 0);
+			this.gl.drawArrays(this.gl.TRIANGLES, 0, 18);
+		} else if (collider.type === "cylinder") {
+			this.gl.uniform1i(this.wireframeShader.uniform("u_shape"), 4);
+			this.gl.uniform4f(
+				this.wireframeShader.uniform("u_size"),
+				collider.radiusTop,
+				collider.radiusBottom,
+				collider.height / 2,
+				(2 * Math.PI) / collider.numSegments,
+			);
+			this.gl.drawArrays(this.gl.TRIANGLES, 0, 12 + 6 * collider.numSegments);
+		}
 	}
 }

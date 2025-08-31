@@ -7,11 +7,19 @@
 
 import "./index.css";
 
-import { mat4, vec3 } from "gl-matrix";
+import { mat4, quat, vec3 } from "gl-matrix";
 
 import { cameraTransform } from "../communism/cam";
 import { SERVER_GAME_TICK } from "../communism/constants";
-import { CameraMode, ClientMessage, ModelId, ModelInstance, ServerMessage } from "../communism/messages";
+import {
+	CameraMode,
+	ClientMessage,
+	ModelId,
+	ModelInstance,
+	SerializedBody,
+	SerializedCollider,
+	ServerMessage,
+} from "../communism/messages";
 import { Vector3, YXZEuler } from "../communism/types";
 import { expect, fuck, shouldBeNever } from "../communism/utils";
 import { listenToMovement } from "./cam-glam";
@@ -87,6 +95,7 @@ type ClientScene = {
 	};
 }[];
 let scene: ClientScene = [];
+let wireframeShit: SerializedBody[] = [];
 
 //#region msg handler
 const ID_KEY = "cave game user identifier";
@@ -192,6 +201,8 @@ export function handleMessage(message: ServerMessage) {
 			}
 
 			Vox.updateVoicePositions(message.voices, message.voiceInterpolationDuration);
+
+			wireframeShit = message.debugWireframeShit ?? [];
 
 			break;
 		}
@@ -342,6 +353,29 @@ while (true) {
 	}
 
 	gl.applyFilters();
+
+	// Draw wireframes
+	if (wireframeShit.length > 0) {
+		gl.wireframeShader.use();
+		gl.gl.uniformMatrix4fv(gl.wireframeShader.uniform("u_view"), false, view);
+		if (true) {
+			gl.gl.disable(gl.gl.DEPTH_TEST);
+		}
+		gl.gl.disable(gl.gl.CULL_FACE);
+		for (const { position, quaternion, colliders } of wireframeShit) {
+			const transform = mat4.create();
+			mat4.fromQuat(transform, quaternion);
+			mat4.translate(transform, transform, position);
+			gl.gl.uniformMatrix4fv(gl.wireframeShader.uniform("u_model"), false, transform);
+			for (const collider of colliders) {
+				gl.drawWireframe(collider);
+			}
+		}
+		gl.gl.enable(gl.gl.CULL_FACE);
+		if (true) {
+			gl.gl.enable(gl.gl.DEPTH_TEST);
+		}
+	}
 
 	await Promise.all([
 		new Promise(window.requestAnimationFrame),

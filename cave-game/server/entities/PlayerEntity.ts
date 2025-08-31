@@ -196,8 +196,8 @@ export class PlayerEntity extends Entity {
 			{},
 			this,
 		);
-		const other = objects[0]?.entity;
-		return other instanceof GrappleAnchorEntity ? other : null;
+		const other = objects.map((object) => object.entity).find((object) => object instanceof GrappleAnchorEntity);
+		return other ?? null;
 	}
 	doGrapple(anchor: GrappleAnchorEntity | null) {
 		if (anchor) {

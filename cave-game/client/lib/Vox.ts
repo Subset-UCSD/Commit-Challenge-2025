@@ -187,6 +187,7 @@ export function updateCameraAngle(transform: mat4): void {
 		listener.positionY.value = translation[1];
 		listener.positionZ.value = translation[2];
 	} else {
+		// for firefox
 		listener.setPosition(translation[0], translation[1], translation[2]);
 	}
 

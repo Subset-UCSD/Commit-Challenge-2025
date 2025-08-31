@@ -109,6 +109,7 @@ export type Scene = {
 	/** excludes user */
 	voices: Voice[];
 	voiceInterpolationDuration: number;
+	debugWireframeShit?: SerializedBody[];
 };
 
 export type Voice = {

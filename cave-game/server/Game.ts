@@ -364,6 +364,7 @@ export class Game implements ServerHandlers<ClientMessage, ServerMessage> {
 						: [],
 				).flat(),
 				voiceInterpolationDuration: SERVER_GAME_TICK,
+				debugWireframeShit: this.world.serialize(),
 
 				// cameraInterpolation: {duration:SERVER_GAME_TICK},
 				// physicsBodies: player.debug ? this.world.serialize() : undefined,

@@ -1,14 +1,14 @@
 import * as phys from "cannon-es";
 import { mat4, quat } from "gl-matrix";
 
+import { cameraTransform } from "../../communism/cam";
 import { NUM_SERVER_TICKS, SERVER_GAME_TICK } from "../../communism/constants";
-import { EntityModel, ModelInstance } from "../../communism/messages";
+import { ModelInstance } from "../../communism/messages";
 import { MovementInfo, Vector3, YXZEuler } from "../../communism/types";
 import { Game } from "../Game";
 import { mats } from "../materials";
 import { Entity } from "./Entity";
 import { GrappleAnchorEntity } from "./GrappleAnchorEntity";
-import { cameraTransform } from "../../communism/cam";
 
 const CAPSULE_HEIGHT = 2.5;
 const CAPSULE_RADIUS = 0.5;

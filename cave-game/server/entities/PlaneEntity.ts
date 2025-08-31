@@ -1,11 +1,11 @@
 import * as phys from "cannon-es";
+import { mat4 } from "gl-matrix";
 
-import { EntityModel, ModelInstance } from "../../communism/messages";
-import { Quaternion, Vector3 } from "../../communism/types";
+import { ModelInstance } from "../../communism/messages";
+import { Vector3 } from "../../communism/types";
 import { Game } from "../Game";
 import { mats } from "../materials";
 import { Entity } from "./Entity";
-import { mat4, quat } from "gl-matrix";
 
 export class PlaneEntity extends Entity {
 	constructor(game: Game, pos: Vector3) {

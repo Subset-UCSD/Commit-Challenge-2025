@@ -7,7 +7,7 @@
 
 import "./index.css";
 
-import { mat4, quat, vec3 } from "gl-matrix";
+import { mat4, vec3 } from "gl-matrix";
 
 import { cameraTransform } from "../communism/cam";
 import { SERVER_GAME_TICK } from "../communism/constants";
@@ -17,7 +17,6 @@ import {
 	ModelId,
 	ModelInstance,
 	SerializedBody,
-	SerializedCollider,
 	ServerMessage,
 } from "../communism/messages";
 import { Vector3, YXZEuler } from "../communism/types";

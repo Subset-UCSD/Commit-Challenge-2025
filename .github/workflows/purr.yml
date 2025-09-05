@@ -25,7 +25,7 @@ jobs:
       #     GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: depdnabot is very dependable i believe it
-        if: github.actor == 'dependabot[bot]' || github.actor == 'google-labs-jules[bot]'
+        if: github.actor == 'dependabot[bot]' || github.actor == 'google-labs-jules[bot]' || github.actor == 'copilot-swe-agent[bot]'
         run: |
           gh pr ready "${{ github.event.pull_request.html_url }}" || true
           gh pr review --approve --body "lgtm" "${{ github.event.pull_request.html_url }}" || true
@@ -49,7 +49,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: fuck u
-        if: github.actor != 'dependabot[bot]' && github.actor != 'google-labs-jules[bot]' && !contains(github.event.pull_request.body, 'https://chatgpt.com/codex/')
+        if: github.actor != 'dependabot[bot]' && github.actor != 'google-labs-jules[bot]' && github.actor != 'copilot-swe-agent[bot]' && !contains(github.event.pull_request.body, 'https://chatgpt.com/codex/')
         run: |
           gh pr close "${{ github.event.pull_request.html_url }}" --delete-branch --comment "fuck off" 
         env:

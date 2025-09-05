@@ -47,7 +47,6 @@ players:
       overwhelmed: true
       passed_out: true
       marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
-      cats_petted: 212
       paving_success: Sean_Y has paved the entire world in concrete and tried to blow
         everything up!
   Nick:
@@ -109,7 +108,7 @@ players:
       disoriented_nauseous: true
       marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
       overwhelmed: true
-      anxiety: 9170
+      anxiety: 9270
   sam:
     health: 1
     inventory:
@@ -136,16 +135,15 @@ players:
       cats_hiss_swat: false
       cats_befriended: true
       marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
-      cats_petted: 348
   Geoffrey: geoffrey
-day: 73
+day: 74
 worldInfo:
   weather:
     message: Instead of a horse, the attempt to draw ASCII art resulted in the
       universe spontaneously reconfiguring itself into a giant image of a rubber
       chicken. The fabric of reality is now held together by mayonnaise and
       clown shoes.
-  day: 71
+  day: 72
   death_clock: 1
   marcelo_lie_probability: 1
   npcs:
@@ -791,6 +789,20 @@ worldInfo:
     - name: Neutralize the Oil
       description: Oil is now on fire. You must put it out. Raymond is laughing maniacally.
       urgent: true
+    - name: Cure the Rubber Chicken Reality
+      description: The universe has been reconfigured into a giant image of a rubber
+        chicken! Find a way to reverse the effect and restore reality to its
+        former state.
+      urgent: true
+      reward: The fabric of reality is restored. The effects of the rubber chicken
+        universe are purged. +1000 Town Happiness.
+    - name: Neutralize the Oil
+      description: Oil is now on fire. You must put it out. Raymond is laughing maniacally.
+      urgent: true
+    - name: The Haunting of Marcelo
+      description: Marcelo is now haunting everyone. Find a way to appease his
+        spectral form or suffer constant chills and unease.
+      urgent: true
   azathoth:
     health: 1350
     powers:
@@ -822,7 +834,7 @@ worldInfo:
   reality_fraying_nolan: false
   animal_attacks_ferocious_coordinated: true
   animal_attacks_target_geoff_logs_raymonds_oil_derricks: true
-  azathoth_summoning_ritual_progressing: 172
+  azathoth_summoning_ritual_progressing: 176
   geoff_logs_no_boss_for_day: false
   oil_derrick_successful: true
   oil_torrent_unleashed: true
@@ -937,7 +949,7 @@ worldInfo:
   npc_geoffrey:
     health: 100
     inventory:
-      coin: 150700
+      coin: 160750
     info: {}
   campaign_fails: true
   town_happiness: sky high100090
@@ -960,5 +972,7 @@ worldInfo:
   stop_raymond_s_oil_empire: true
   tame_the_ferocious_animals: true
   nolan_chaos:
+    - message: The Nolans begin to merge, creating a chaotic gestalt entity. Sanity is
+        becoming strained.
     - message: The Nolans begin to merge, creating a chaotic gestalt entity. Sanity is
         becoming strained.

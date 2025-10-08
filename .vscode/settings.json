@@ -1,6 +1,5 @@
 {
-  "editor.formatOnSave": true,
-  "files.trimTrailingWhitespace": false,
-  "files.trimFinalNewlines": false,
-  "files.insertFinalNewline": false
+  "rust-analyzer.linkedProjects": [
+    "tools/chrome-cookie-decrypter/Cargo.toml"
+  ]
 }

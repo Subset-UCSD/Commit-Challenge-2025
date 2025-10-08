@@ -163,7 +163,8 @@ const result:string = (await fetch(`https://generativelanguage.googleapis.com/v1
         {
           parts: [
             {
-              text: `Summarize the U.S. and world news, each in their own limericks, written in all lowercase. Don't say anything else; just output the first limerick, then the second limerick.
+              text: //`Summarize the U.S. and world news, each in their own limericks, written in all lowercase. Don't say anything else; just output the first limerick, then the second limerick.
+`Cleverly incorporate the U.S. and world news into an appeal requesting people to play Peak (game description provided below). Use an informal text message format with lowercase, typos, and internet slang.
 
 World news:
 
@@ -171,7 +172,10 @@ ${processNews(wolrdNews)}
 
 US news:
 
-${processNews(usNews)}`
+${processNews(usNews)}
+
+Peak game description:
+PEAK is a co-op climbing game where the slightest mistake can spell your doom. Either solo or as a group of lost nature scouts, your only hope of rescue from a mysterious island is to scale the mountain at its center. Do you have what it takes to reach the PEAK?`
             }
           ]
         }

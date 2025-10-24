@@ -164,18 +164,29 @@ const result:string = (await fetch(`https://generativelanguage.googleapis.com/v1
           parts: [
             {
               text: //`Summarize the U.S. and world news, each in their own limericks, written in all lowercase. Don't say anything else; just output the first limerick, then the second limerick.
-`Cleverly incorporate the U.S. and world news into an appeal requesting people to play Peak (game description provided below). Use an informal text message format with lowercase, typos, and internet slang.
+`Cleverly incorporate the U.S. and world news into an appeal requesting friends to play Peak (game description provided below; we already have it installed). Use an informal Discord message format with lowercase, typos, and internet slang.
 
-World news:
+# World news
 
 ${processNews(wolrdNews)}
 
-US news:
+# US news
 
 ${processNews(usNews)}
 
-Peak game description:
-PEAK is a co-op climbing game where the slightest mistake can spell your doom. Either solo or as a group of lost nature scouts, your only hope of rescue from a mysterious island is to scale the mountain at its center. Do you have what it takes to reach the PEAK?`
+# Peak game description
+
+PEAK is a co-op climbing game where the slightest mistake can spell your doom. Either solo or as a group of lost nature scouts, your only hope of rescue from a mysterious island is to scale the mountain at its center. Do you have what it takes to reach the PEAK?
+
+# Gameplay (from Wikipedia) 
+
+The game supports up to four players, with the objective being to climb a mountain following a crash landing on an unknown island.[3][4] The map changes every 24 hours.[5] Players must also maintain a stamina bar, which is depleted as the player climbs the mountain.[6] Players can revive their teammates through several methods, including the use of altars found at campsites, which serve as rest area between levels.[7] Players can carry up to three items, and can use a backpack to carry up to four more.[8] Upon completing the default difficulty, players are awarded an in-game cosmetic sash, and unlock harder difficulties.[9]
+
+There is a single enemy in game, named "Scoutmaster." It spawns when a player travels too far from the group, or when it is summoned through the use of an item, the "Scoutmaster Bugle."[10]
+
+Outside of climbing the mountain, obstacles players can run into include ticks, which inflict poison damage to the affected player until a teammate removes the bug. They can be consumed, similar to other food-related items in the game.[11]
+
+The game features various items that assist with climbing the mountain, including rope spools, rope cannons, and pitons. Rope spools can be deployed from elevated positions, allowing a rope to be lowered to assist other players in ascending. Rope cannons can be fired at a wall or ceiling and deploy a rope that drops down and can be climbed. Pitons can be placed onto any rock surface that the player can climb on and serve as rest locations for players. Players can interact with them to hold on and regain stamina.[12]`
             }
           ]
         }

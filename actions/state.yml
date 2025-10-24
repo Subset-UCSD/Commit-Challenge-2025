@@ -6,14 +6,14 @@ players:
       location: Paved over
       health: 100
       plan: Overload the system
-      anxiety: 10818
+      anxiety: 10918
       customs_agent: a bored-looking entity with antennae and a clipboard
       past_self_encounter: true
       can_speak: false
       scheme_failed: true
       marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
   Sean_P:
-    health: 1
+    health: -10000
     inventory:
       coin: 11
       fish bone: 1
@@ -108,7 +108,7 @@ players:
       disoriented_nauseous: true
       marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
       overwhelmed: true
-      anxiety: 9270
+      anxiety: 9770
   sam:
     health: 1
     inventory:
@@ -136,14 +136,14 @@ players:
       cats_befriended: true
       marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
   Geoffrey: geoffrey
-day: 74
+day: 75
 worldInfo:
   weather:
     message: Instead of a horse, the attempt to draw ASCII art resulted in the
       universe spontaneously reconfiguring itself into a giant image of a rubber
       chicken. The fabric of reality is now held together by mayonnaise and
       clown shoes.
-  day: 72
+  day: 73
   death_clock: 1
   marcelo_lie_probability: 1
   npcs:
@@ -803,6 +803,41 @@ worldInfo:
       description: Marcelo is now haunting everyone. Find a way to appease his
         spectral form or suffer constant chills and unease.
       urgent: true
+    - name: Reclaim the Planet From Concrete
+      description: Revert everything from concrete!
+      urgent: true
+    - name: Reverse the Paving
+      description: Sean_Y has paved the entire world. Find a way to reverse the paving
+        and restore the natural world.
+      urgent: true
+    - name: Nick's Catastrophe
+      description: Repair the fabric of reality after Nick's failed attempt to draw
+        ASCII art, or suffer the consequences of a universe unraveling.
+      urgent: true
+    - name: Stop the Oil Derrick!/Clean up the oil spill in Whispering Woods!
+      description: Raymond's derrick is unleashing hell into the universe and must be
+        stopped at all costs. The oil spill is worsening, and somebody must
+        clean up the mess. The quest is marked as urgent.
+      urgent: true
+    - name: Neutralize the Oil
+      description: Oil is now on fire. You must put it out. Raymond is laughing maniacally.
+      urgent: true
+    - name: Curb Raymond's power!
+      description: Stop the Oil Derrick!/Clean up the oil spill in Whispering Woods!
+      urgent: true
+    - name: Tame the Ferocious Animals
+      description: The animals are staging coordinated attacks on Geoffrey's logging
+        sites and Raymond's oil derricks. Find a way to calm the animals or
+        defend the locations.
+      urgent: true
+    - name: Befriend Marcelo
+      description: Marcelo feels lonely. Befriending him might bring unexpected
+        benefits... or consequences. Beware his quirky habits!
+      reward: Marcelo's Gratitude (Unknown effect)
+    - name: The Haunting of Marcelo
+      description: Marcelo is now haunting everyone. Find a way to appease his
+        spectral form or suffer constant chills and unease.
+      urgent: true
   azathoth:
     health: 1350
     powers:
@@ -826,7 +861,7 @@ worldInfo:
   raymond_campaign_fails: true
   cat_uprising_beginning: true
   marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
-  azathoth_influence_growing: true
+  azathoth_influence_growing: false
   animals_attack_geoffrey: true
   whispering_woods_rebellion: true
   azathoth_whispers: Raymond is now laughing maniacally as the oil torrent is
@@ -834,7 +869,7 @@ worldInfo:
   reality_fraying_nolan: false
   animal_attacks_ferocious_coordinated: true
   animal_attacks_target_geoff_logs_raymonds_oil_derricks: true
-  azathoth_summoning_ritual_progressing: 176
+  azathoth_summoning_ritual_progressing: 0
   geoff_logs_no_boss_for_day: false
   oil_derrick_successful: true
   oil_torrent_unleashed: true
@@ -949,7 +984,7 @@ worldInfo:
   npc_geoffrey:
     health: 100
     inventory:
-      coin: 160750
+      coin: 170800
     info: {}
   campaign_fails: true
   town_happiness: sky high100090
@@ -976,3 +1011,6 @@ worldInfo:
         becoming strained.
     - message: The Nolans begin to merge, creating a chaotic gestalt entity. Sanity is
         becoming strained.
+    - message: The Nolans begin to merge, creating a chaotic gestalt entity. Sanity is
+        becoming strained.
+  players: {}

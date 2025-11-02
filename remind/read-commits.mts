@@ -164,7 +164,7 @@ const result:string = (await fetch(`https://generativelanguage.googleapis.com/v1
           parts: [
             {
               text: //`Summarize the U.S. and world news, each in their own limericks, written in all lowercase. Don't say anything else; just output the first limerick, then the second limerick.
-`Cleverly incorporate the U.S. and world news into an appeal requesting friends to play Peak (game description provided below; we already have it installed). Use an informal Discord message format with lowercase, typos, and internet slang.
+`Cleverly incorporate the U.S. and world news into an appeal requesting friends to play Peak (game description provided below; we already have it installed). Also, recommend a second multiplayer game to play based on the national holidays occuring today. Use an informal Discord message format with lowercase, typos, and internet slang.
 
 # World news
 

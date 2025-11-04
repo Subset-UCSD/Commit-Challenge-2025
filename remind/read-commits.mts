@@ -192,7 +192,7 @@ The game features various items that assist with climbing the mountain, includin
         }
       ]
     })
-  }).then(r => r.json())).candidates[0].content.parts[0].text
+  }).then(r => r.json()).then(r => r.candidates?.[0]?.content?.parts?.[0]?.text ?? "").trim()
 // console.log(result)
 
 function alternate<T>(a: T[], b: T[]): T[] {
@@ -223,7 +223,7 @@ ${processNews(alternate(wolrdNews, usNews))}`
         }
       ]
     })
-  }).then(r => r.json())).candidates[0].content.parts[0].text
+  }).then(r => r.json()).then(r => r.candidates?.[0]?.content?.parts?.[0]?.text ?? "").trim()
 
 const messages: Record<string, string> = Object.fromEntries(
   nonCommitters.map((ghUser) => [

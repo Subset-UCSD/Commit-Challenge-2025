@@ -214,5 +214,4 @@ We also introduced a d20 roll system. Before the first Gemini call, we generate 
 
 
 # I don't like the news counter 
-
-|
+🍎🍒🍓🍉🍑🍊🍍🍋🍌🍋‍🟩🍈🍐🥭🫐🍇

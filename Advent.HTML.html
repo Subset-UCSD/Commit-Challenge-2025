@@ -1,43 +1,43 @@
-doc type
-HTML
-head
-title: Advent calendar 2025
-Meta description: happy Twitter mass
-Meta content width
+<!DOCTYPE html>
+<html>
+<head>
+<title>Advent calendar 2025</title>
+<meta name="description" content="happy Twitter mass"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <style>
   body {
-    background: light blue
+    background: lightblue;
   }
   .days{
-display: grid
-    grid columns: repeat(auto-fill, 200px)
-justify-content: center;
-      padding:20 px
-      Gap: 20px
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 200px);
+    justify-content: center;
+    padding: 20px;
+    gap: 20px;
   }
-  . day{
-    aspect-ratio: 1/1
-    background color: green; 
-    border: 5 pixel solid brick red; 
+  .day{
+    aspect-ratio: 1/1;
+    background-color: green;
+    border: 5px solid darkred;
   }
-   . day-name {
+   .day-name {
      cursor: pointer;
-    display: flex
-    align items: center
-    justify items: center
-     &: disabled{
-      cursor: whatever the name is for the 🚫 thing
-    }
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .day-name:disabled{
+    cursor: not-allowed;
   }
   
-. closed    . content,. open . day-name { 
-      display: none
+.closed .content, .open .day-name {
+      display: none;
     }
 
 
   
 </style>
-close head
+</head>
 
 <body>
 
@@ -71,26 +71,165 @@ close head
   </div>
 </div>
 
-  ... repeat for days 3–25
+<div class="day closed" id="day-03">
+  <button class="day-name">Dec 3</button>
+  <div class="content">
+    nothing! :(
+  </div>
+</div>
+<div class="day closed" id="day-04">
+  <button class="day-name">Dec 4</button>
+  <div class="content">
+    nothing! :(
+  </div>
+</div>
+<div class="day closed" id="day-05">
+  <button class="day-name">Dec 5</button>
+  <div class="content">
+    nothing! :(
+  </div>
+</div>
+<div class="day closed" id="day-06">
+  <button class="day-name">Dec 6</button>
+  <div class="content">
+    nothing! :(
+  </div>
+</div>
+<div class="day closed" id="day-07">
+  <button class="day-name">Dec 7</button>
+  <div class="content">
+    nothing! :(
+  </div>
+</div>
+<div class="day closed" id="day-08">
+  <button class="day-name">Dec 8</button>
+  <div class="content">
+    nothing! :(
+  </div>
+</div>
+<div class="day closed" id="day-09">
+  <button class="day-name">Dec 9</button>
+  <div class="content">
+    nothing! :(
+  </div>
+</div>
+<div class="day closed" id="day-10">
+  <button class="day-name">Dec 10</button>
+  <div class="content">
+    nothing! :(
+  </div>
+</div>
+<div class="day closed" id="day-11">
+  <button class="day-name">Dec 11</button>
+  <div class="content">
+    nothing! :(
+  </div>
+</div>
+<div class="day closed" id="day-12">
+  <button class="day-name">Dec 12</button>
+  <div class="content">
+    nothing! :(
+  </div>
+</div>
+<div class="day closed" id="day-13">
+  <button class="day-name">Dec 13</button>
+  <div class="content">
+    nothing! :(
+  </div>
+</div>
+<div class="day closed" id="day-14">
+  <button class="day-name">Dec 14</button>
+  <div class="content">
+    nothing! :(
+  </div>
+</div>
+<div class="day closed" id="day-15">
+  <button class="day-name">Dec 15</button>
+  <div class="content">
+    nothing! :(
+  </div>
+</div>
+<div class="day closed" id="day-16">
+  <button class="day-name">Dec 16</button>
+  <div class="content">
+    nothing! :(
+  </div>
+</div>
+<div class="day closed" id="day-17">
+  <button class="day-name">Dec 17</button>
+  <div class="content">
+    nothing! :(
+  </div>
+</div>
+<div class="day closed" id="day-18">
+  <button class="day-name">Dec 18</button>
+  <div class="content">
+    nothing! :(
+  </div>
+</div>
+<div class="day closed" id="day-19">
+  <button class="day-name">Dec 19</button>
+  <div class="content">
+    nothing! :(
+  </div>
+</div>
+<div class="day closed" id="day-20">
+  <button class="day-name">Dec 20</button>
+  <div class="content">
+    nothing! :(
+  </div>
+</div>
+<div class="day closed" id="day-21">
+  <button class="day-name">Dec 21</button>
+  <div class="content">
+    nothing! :(
+  </div>
+</div>
+<div class="day closed" id="day-22">
+  <button class="day-name">Dec 22</button>
+  <div class="content">
+    nothing! :(
+  </div>
+</div>
+<div class="day closed" id="day-23">
+  <button class="day-name">Dec 23</button>
+  <div class="content">
+    nothing! :(
+  </div>
+</div>
+<div class="day closed" id="day-24">
+  <button class="day-name">Dec 24</button>
+  <div class="content">
+    nothing! :(
+  </div>
+</div>
+<div class="day closed" id="day-25">
+  <button class="day-name">Dec 25</button>
+  <div class="content">
+    Merry Christmas!
+  </div>
+</div>
   
 </div>
 
   <script>
 
-    const now=Date . now()
-    for (const day of document. query selector all('day')){
-const date = new Date(2025,12-1,+day.id.split('-')[0])
-      const name=day. query selector('. day-name ')
+    const now=Date.now()
+    // BUGFIX: the selector was for the tag `day`, not the class `.day`
+    for (const day of document.querySelectorAll('.day')){
+// BUGFIX: the day number is at index 1 after splitting, not 0
+const date = new Date(2025,12-1,+day.id.split('-')[1])
+      const name=day.querySelector('.day-name')
       if (date>now) {
-        name. disabled=true
+        name.disabled=true
       }
-      name.on click=()=>{
-        day. class list. remove('closed')
-        day. class list. add ('open')
-        local storage[`advent2025-${day. id}`]='YES'
+      name.onclick=()=>{
+        day.classList.remove('closed')
+        day.classList.add('open')
+        localStorage[`advent2025-${day.id}`]='YES'
       }
-      if( local storage[`advent2025-${day. id}`]==='YES'){
-name. click()
+      if(localStorage[`advent2025-${day.id}`]==='YES'){
+name.click()
       }
     }
   </script>

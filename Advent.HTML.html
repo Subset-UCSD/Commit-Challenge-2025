@@ -1,0 +1,39 @@
+doc type
+HTML
+head
+title: Advent calendar 2025
+Meta description: happy Twitter mass
+Meta content width
+<style>
+  body {
+    background: light blue
+  }
+  . day{
+    background color: green; 
+    border: 5 pixel solid brick red; 
+  }
+  . closed{
+    display: flex
+    align items: center
+    justify items: center
+    & . content{
+      display: none
+    }
+    &:: after{
+      content: attr(data-day) 
+    }
+  }
+</style>
+close head
+
+<body>
+
+<div class=days>
+
+<div class="day closed" data-day=1><div class=content>
+  nothing! :(
+</div></div>
+  
+</div>
+  
+</body>

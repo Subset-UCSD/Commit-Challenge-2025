@@ -8,32 +8,91 @@ Meta content width
   body {
     background: light blue
   }
+  .days{
+display: grid
+    grid columns: repeat(auto-fill, 200px)
+justify-content: center;
+      padding:20 px
+      Gap: 20px
+  }
   . day{
+    aspect-ratio: 1/1
     background color: green; 
     border: 5 pixel solid brick red; 
   }
-  . closed{
+   . day-name {
+     cursor: pointer;
     display: flex
     align items: center
     justify items: center
-    & . content{
-      display: none
-    }
-    &:: after{
-      content: attr(data-day) 
+     &: disabled{
+      cursor: whatever the name is for the 🚫 thing
     }
   }
+  
+. closed    . content,. open . day-name { 
+      display: none
+    }
+
+
+  
 </style>
 close head
 
 <body>
 
+  <p>
+    Hello welcome to commit challenge 2025's advent calendar! presented by subset UCSD
+  </p>
+  <p>
+    when the day comes, CLICK the box to rip it open. some days might have nothing. this will happen if no one put anything in the box, which would be very sad
+  </p>
+
 <div class=days>
 
-<div class="day closed" data-day=1><div class=content>
-  nothing! :(
-</div></div>
+<div class="day closed" id="day-00">
+  <button class="day-name">not December</button>
+  <div class="content">
+    this is a test and will be removed someday
+  </div>
+</div>
+  
+<div class="day closed" id="day-01">
+  <button class="day-name">Dec 1</button>
+  <div class="content">
+    Hello welcome to December!
+  </div>
+</div>
+
+<div class="day closed" id="day-02">
+  <button class="day-name">Dec 2</button>
+  <div class="content">
+    nothing! :(
+  </div>
+</div>
+
+  ... repeat for days 3–25
   
 </div>
+
+  <script>
+
+    const now=Date . now()
+    for (const day of document. query selector all('day')){
+const date = new Date(2025,12-1,+day.id.split('-')[0])
+      const name=day. query selector('. day-name ')
+      if (date>now) {
+        name. disabled=true
+      }
+      name.on click=()=>{
+        day. class list. remove('closed')
+        day. class list. add ('open')
+        local storage[`advent2025-${day. id}`]='YES'
+      }
+      if( local storage[`advent2025-${day. id}`]==='YES'){
+name. click()
+      }
+    }
+  </script>
   
 </body>

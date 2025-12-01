@@ -10,7 +10,7 @@
   }
   .days{
     display: grid;
-    grid-template-columns: repeat(auto-fill, 200px);
+    grid-template-columns: repeat(auto-fill, 180px);
     justify-content: center;
     padding: 20px;
     gap: 20px;
@@ -19,12 +19,18 @@
     aspect-ratio: 1/1;
     background-color: green;
     border: 5px solid darkred;
+    position: relative;
   }
    .day-name {
      cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
+     position: absolute; 
+     inset:0;
+  }
+  .day-name{
+background: none; border:0; font: inherit; color: inherit;
   }
   .day-name:disabled{
     cursor: not-allowed;
@@ -50,12 +56,12 @@
 
 <div class=days>
 
-<div class="day closed" id="day-00">
+<!--div class="day closed" id="day-00">
   <button class="day-name">not December</button>
   <div class="content">
     this is a test and will be removed someday
   </div>
-</div>
+</div-->
   
 <div class="day closed" id="day-01">
   <button class="day-name">Dec 1</button>

@@ -11,7 +11,7 @@ players:
       past_self_encounter: true
       can_speak: false
       scheme_failed: true
-      marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
+      marcelo_presence: 🥶
   Sean_P:
     health: -10000
     inventory:
@@ -34,7 +34,7 @@ players:
       azathoth_embrace: true
       line_between_sean_p_azathoth_blurring: true
       unease_growing: true
-      marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
+      marcelo_presence: 🥶
   Sean_Y:
     health: -100131
     inventory:
@@ -46,7 +46,7 @@ players:
       immune: true
       overwhelmed: true
       passed_out: true
-      marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
+      marcelo_presence: 🥶
       paving_success: Sean_Y has paved the entire world in concrete and tried to blow
         everything up!
   Nick:
@@ -67,7 +67,7 @@ players:
         into a horrifying monster if he does not find a clean soul.
       powers_require_souls: true
       twitching_eye: false
-      marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
+      marcelo_presence: 🥶
       ascii_art_failure:
         message: Instead of a horse, the attempt to draw ASCII art resulted in the
           universe spontaneously reconfiguring itself into a giant image of a
@@ -90,7 +90,7 @@ players:
         - Mike Smith
       rubber_chicken_insanity: true
       campaign_fails: false
-      marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
+      marcelo_presence: 🥶
   Khushi:
     health: -668
     inventory: {}
@@ -106,9 +106,9 @@ players:
       marcelo_saucy_secrets: true
       marcelo_rubber_chicken: true
       disoriented_nauseous: true
-      marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
+      marcelo_presence: 🥶
       overwhelmed: true
-      anxiety: 9820
+      anxiety: 9920
   sam:
     health: 1
     inventory:
@@ -134,16 +134,16 @@ players:
       cats_hate_sam: false
       cats_hiss_swat: false
       cats_befriended: true
-      marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
+      marcelo_presence: 🥶
   Geoffrey: geoffrey
-day: 76
+day: 77
 worldInfo:
   weather:
     message: Instead of a horse, the attempt to draw ASCII art resulted in the
       universe spontaneously reconfiguring itself into a giant image of a rubber
       chicken. The fabric of reality is now held together by mayonnaise and
       clown shoes.
-  day: 74
+  day: 75
   death_clock: 1
   marcelo_lie_probability: 1
   npcs:
@@ -890,6 +890,13 @@ worldInfo:
       description: Marcelo is now haunting everyone. Find a way to appease his
         spectral form or suffer constant chills and unease.
       urgent: true
+    - name: Cure the Rubber Chicken Reality
+      description: The universe has been reconfigured into a giant image of a rubber
+        chicken! Find a way to reverse the effect and restore reality to its
+        former state.
+      urgent: true
+      reward: The fabric of reality is restored. The effects of the rubber chicken
+        universe are purged. +1000 Town Happiness.
   azathoth:
     health: 1350
     powers:
@@ -912,13 +919,13 @@ worldInfo:
       thermonuclear bomb exploding remains is dangerous
   raymond_campaign_fails: true
   cat_uprising_beginning: true
-  marcelo_presence: 👻😈💀👽👾🌳💰🥶😱😨😰😥😓😳🤯😭😂🤣🙏
+  marcelo_presence: 🥶
   azathoth_influence_growing: true
   animals_attack_geoffrey: true
   whispering_woods_rebellion: true
   azathoth_whispers: Raymond is now laughing maniacally as the oil torrent is
     unleashed, igniting the oil slick! All life will soon be engulfed in flame.
-  reality_fraying_nolan: false
+  reality_fraying_nolan: true
   animal_attacks_ferocious_coordinated: true
   animal_attacks_target_geoff_logs_raymonds_oil_derricks: true
   azathoth_summoning_ritual_progressing: 10
@@ -1056,7 +1063,7 @@ worldInfo:
   npc_geoffrey:
     health: 100
     inventory:
-      coin: 180850
+      coin: 190900
     info: {}
   campaign_fails: true
   town_happiness: sky high100090
@@ -1079,6 +1086,8 @@ worldInfo:
   stop_raymond_s_oil_empire: true
   tame_the_ferocious_animals: true
   nolan_chaos:
+    - message: The Nolans begin to merge, creating a chaotic gestalt entity. Sanity is
+        becoming strained.
     - message: The Nolans begin to merge, creating a chaotic gestalt entity. Sanity is
         becoming strained.
     - message: The Nolans begin to merge, creating a chaotic gestalt entity. Sanity is

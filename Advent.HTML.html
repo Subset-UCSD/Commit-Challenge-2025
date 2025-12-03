@@ -83,7 +83,38 @@ background: none; border:0; font: inherit; color: inherit;
 <div class="day closed" id="day-03">
   <button class="day-name">Dec 3</button>
   <div class="content">
-    nothing! :(
+    <p id=d3a>uhh...</p>
+    <p id=d3b> ?</p>
+    <img src="ass/ets/PXL_20250304_011128268~2.jpg" alt="human face wirh eyes" id="d3i" width=60 height=60>
+    <style>
+      #d3i {
+        animation: fade 10s 6s both;
+      }
+      #d3a{visibility:hidden;
+animation: visible 3s 1s;
+      }
+      #d3b{
+visibility:hidden;
+        animation:visible 5s 3s;
+        transform-origin: bottom right;
+        position:absolute;
+        bottom:0;right:0;
+        font-size:1px;
+        transform: scale(24) scaleX(1.3);
+        
+      }
+      @keyframes visible {
+        from ,to{ visible: 
+
+
+          t; visibility: visible;} }
+
+
+          @keyframes fade {
+            from{opacity:0}
+            to { opacity:1}
+          }
+    </style>
   </div>
 </div>
 <div class="day closed" id="day-04">
@@ -222,22 +253,24 @@ background: none; border:0; font: inherit; color: inherit;
 </div>
 
   <script>
-
+    const params = new URL(location).searchParams
+const debugMode=params.get('debug')==='yes'
+    const d = debugMode
     const now=Date.now()
     // BUGFIX: the selector was for the tag `day`, not the class `.day`
     for (const day of document.querySelectorAll('.day')){
 // BUGFIX: the day number is at index 1 after splitting, not 0
 const date = new Date(2025,12-1,+day.id.split('-')[1])
       const name=day.querySelector('.day-name')
-      if (date>now) {
+      if (!d&&date>now) {
         name.disabled=true
       }
       name.onclick=()=>{
         day.classList.remove('closed')
         day.classList.add('open')
-        localStorage[`advent2025-${day.id}`]='YES'
+   if(!d)     localStorage[`advent2025-${day.id}`]='YES'
       }
-      if(localStorage[`advent2025-${day.id}`]==='YES'){
+      if(!d&&localStorage[`advent2025-${day.id}`]==='YES'){
 name.click()
       }
     }

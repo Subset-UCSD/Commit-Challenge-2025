@@ -151,9 +151,11 @@ visibility:hidden;
 return (    q[i++]??=Promise.withResolvers()).promise
       }
       await nc()
+      d4b.disabled=true
 //```js
 //await (
-  const t=    await window?.Translator?.create({sourceLanguage:'en', targetLanguage:'zh',
+  const t=    await window?.Translator?.create({sourceLanguage:'zhn'.slice(0,2)
+                                                , targetLanguage:'en',//zh',
                                           monitor:m=>{
 m.ondownloadprogress=e=>console.log("d4",e.loaded)
                                           }
@@ -171,7 +173,9 @@ m.ondownloadprogress=e=>console.log("d4",e.loaded)
         d4en.textContent= await t?.translate(s).catch( ()=> "too expressive for english)")??
           "please disable sdblock by switching to chrome desktoop"
      //     / 'go lck sam altmans feet"l .. '
+        d4b.disabled=!true
  await nc()
+        d4b.disabled=true
       }
 //```
 //<@418667403396775936> they shipped AI API for some reason (chrome)

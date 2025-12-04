@@ -119,8 +119,51 @@ visibility:hidden;
 </div>
 <div class="day closed" id="day-04">
   <button class="day-name">Dec 4</button>
-  <div class="content">
-    nothing! :(
+  <div class="content" id=d4>
+    <h2>wise proverb</h2>
+    <button type=button id=d4b>wisen me</button>
+    <p id=d4zh style="font-size:1.2em"></p>    <p id=d4en style="font-size"></p>
+    <script type=module>
+      let last = Promise.withResolvers()
+      const q=[Promise.withResolvers()]
+      let j=0
+      document.d4b.onclick=()=>{
+        last
+        q[j]??=Promise.withResolvers()
+        q[j].resolve()
+        j++
+      //  q.at(-1).resolve()
+    //    q.push(Promise.withResolvers() )
+      }
+      let i=0
+      //. nc = next click
+      const nc=()=>{
+return (    q[i++]??=Promise.withResolvers()).promise
+      }
+      await nc()
+//```js
+//await (
+  const t=    await window?.Translator.create({sourceLanguage:'en', targetLanguage:'zh',
+                                          monitor:m=>{
+m.ondownloadprogress=e=>console.log("d4",e.loaded)
+                                          }
+                                              
+                                              } )
+      .catch(console.error)
+  //      / ).translate('avocado')
+      while (true){
+        let s = ""
+        for (let k=4;k--;)s+="草您媽"//String.fromCodePoint(Math.floor(Math.random() ))
+          
+        d4zh.textContent=s
+        d4en.textContent= await t?.translate(s).catch( ()=> "too expressive for english)")??
+          "please disable sdblock by switching to chrome"
+     //     / 'go lck sam altmans feet"l .. '
+ await nc()
+      }
+//```
+//<@418667403396775936> they shipped AI API for some reason (chrome)
+    </script>
   </div>
 </div>
 <div class="day closed" id="day-05">

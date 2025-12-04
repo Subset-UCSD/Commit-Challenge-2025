@@ -325,7 +325,7 @@ if (line.trim()) {
       "content-type": "application/json",
     },
     "body": JSON.stringify({"content":
-      `${out}\nits summer! to turn off the news, 3+ ppl must commit ${nonCommitters.map(ghUser => `<@${discords[ghUser]}>`).join(' ')}`,
+      `${out}\nits basically summer in canbera! did you open [todays advent door](https://subset-ucsd.github.io/Commit-Challenge-2025/Advent.HTML)? to turn off the news, 3+ ppl must commit ${nonCommitters.map(ghUser => `<@${discords[ghUser]}>`).join(' ')}`,
       // `hey ${nonCommitters.map(ghUser => `<@${discords[ghUser]}>`).join(' ')} (especially if ur on a phone) can u [add the next word to this](<https://github.com/Subset-UCSD/Commit-Challenge-2025/edit/main/actions.md>) ${select(
       //   'help us be chatgpt',
       //   '🤨',

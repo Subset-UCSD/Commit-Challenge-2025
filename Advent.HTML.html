@@ -4,6 +4,16 @@
 <title>Advent calendar 2025</title>
 <meta name="description" content="happy Twitter mass"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<script>
+  if(new URL(location).searchParams.get('debug')==='yes'){
+    const e=document.createElement('pre')
+    Object.assign(e.style,{position:'fixed',top:0,left:0,background:'rgba(0,0,0,.8)',color:'white',zIndex:999,padding:'10px',margin:0,whiteSpace:'pre-wrap'})
+    document.documentElement.append(e)
+    const h=m=>e.textContent+=`\n${m.reason?.stack||m.error?.stack||m.message||'unknown error'}`
+    window.addEventListener('error',h)
+    window.addEventListener('unhandledrejection',h)
+  }
+</script>
 <style>
   body {
     background: lightblue;

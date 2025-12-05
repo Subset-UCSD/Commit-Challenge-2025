@@ -196,26 +196,29 @@ m.ondownloadprogress=e=>console.log("d4",e.loaded)
     <p id=d5q></p>
     <button id=d5b>sdtart</button>
     <script type=module>
-      let answer
+      let answer,start
 function wow(){
  // let a
 // const 
    let r = ()=>Math.floor(Math.random()*9+1)
   const a=r(),b=r(),c=r()
   const l = `${a} + ${b}`
-  const i = '<input inputmode=numeric pattern="[0-9]+" id=d5i>'
+  const i = '<input inputmode=numeric pattern="[0-9]" id=d5i size=1>'
   r=Math.random()<0.5 ? `${c} + ${i}`:`${i} + ${c}`
   d5q.innerHTML=Math.random()<0.5 ? `${l} = ${r}`:`${r} = ${l}`
   d5b.textContent='check'
   answer=a+b-c
+  start=Date.now()
 }
-      let corr=0,tot=0
+      let corr=0,tot=0, time=0
       d5b.onclick=()=>{
         if (d5b.textContent==='check'){
+          time+=Date.now()-start
         //   if 
           tot+=1
-        d5q.append(    (d5i.valueAsNumber!=answer )?'. wrong! dum/ass' :( ++corr) &&'. yeah right')
-          d5q.append(`. ${corr}/${tot} correct`)
+        d5q.append(    (+d5i.valueAsNumber!=+answer )?'. wrong! dum/ass its '+answer+' but you put '
+                   +d5i.value:( ++corr) &&'. yeah right')
+          d5q.append(`. ${corr}/${tot} correct in ${(time/1000).toFixed(3)}s`)
           d5b.textContent="next"
         {
  

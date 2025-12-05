@@ -191,7 +191,38 @@ m.ondownloadprogress=e=>console.log("d4",e.loaded)
 <div class="day closed" id="day-05">
   <button class="day-name">Dec 5</button>
   <div class="content">
-    nothing! :(
+    <!--h2> make ur own flag!</h2-->
+    <h2>are you smarter than ucsd student!</h2>
+    <p id=d5q></p>
+    <button id=d5b>sdtart</button>
+    <script type=module>
+      let answer
+function wow(){
+ // let a
+ const r = ()=>Math.floor(Math.random()*9+1)
+  const a=r(),b=r(),c=r()
+  const l = `${a} + ${b}`
+  const i = '<input inputmode=numeric pattern="[0-9]+" id=d5i>'
+  const r=Math.random()<0.5 ? `${c} + ${i}`:`${i} + ${c}`
+  d5q.innerHTML=Math.random()<0.5 ? `${l} = ${r}`:`${r} = ${l}`
+  d5b.textContent='check'
+  answer=a+b-c
+}
+      let corr=0,tot=0
+      d5b.onclick=()=>{
+        if (d5b.textContent==='check'){
+        //   if 
+          tot+=1
+        d5q.append(    (d5i.valueAsNumber!=answer )?'. wrong! dum/ass' :( ++corr) &&'. yeah right')
+          d5q.append(`. ${corr}/${tot} correct`)
+          d5b.textContent="next"
+        {
+ 
+          }
+        } else {wow()
+        }
+      }
+    </script>
   </div>
 </div>
 <div class="day closed" id="day-06">
@@ -203,6 +234,7 @@ m.ondownloadprogress=e=>console.log("d4",e.loaded)
 <div class="day closed" id="day-07">
   <button class="day-name">Dec 7</button>
   <div class="content">
+    <!--  6 7-->
     nothing! :(
   </div>
 </div>

@@ -199,11 +199,12 @@ m.ondownloadprogress=e=>console.log("d4",e.loaded)
       let answer
 function wow(){
  // let a
- const r = ()=>Math.floor(Math.random()*9+1)
+// const 
+   let r = ()=>Math.floor(Math.random()*9+1)
   const a=r(),b=r(),c=r()
   const l = `${a} + ${b}`
   const i = '<input inputmode=numeric pattern="[0-9]+" id=d5i>'
-  const r=Math.random()<0.5 ? `${c} + ${i}`:`${i} + ${c}`
+  r=Math.random()<0.5 ? `${c} + ${i}`:`${i} + ${c}`
   d5q.innerHTML=Math.random()<0.5 ? `${l} = ${r}`:`${r} = ${l}`
   d5b.textContent='check'
   answer=a+b-c

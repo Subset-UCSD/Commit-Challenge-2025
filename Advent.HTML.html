@@ -218,7 +218,7 @@ function wow(){
           let x
           tot+=1
         d5q.append(    (+(x=document.querySelector('#d5iiii')).value!=+answer )?'. wrong! dum/ass'
-                   +'its '+answer+' but you put '                  +x.value
+               //    +'its '+answer+' but you put '                  +x.value
                    :( ++corr) &&'. yeah right')
           d5q.append(`. ${corr}/${tot} correct in ${(time/1000).toFixed(3)}s`)
           d5b.textContent="next"

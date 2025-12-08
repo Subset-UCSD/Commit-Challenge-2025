@@ -241,13 +241,26 @@ function wow(){
   <button class="day-name">Dec 7</button>
   <div class="content">
     <!--  6 7-->
-    nothing! :(
+    <style>
+      #d7 span{font-size:2em; display: inline-block}
+      @keyframes d7{
+        from {transform: translateY(-50%)}
+        to {transform: translateY(50%)}
+      }
+      #d7:first-child {animation: d7 1s 1s infinite}
+   #d7:last-child {animation: d7 1s .5s infinite}
+    </style>
+    <p id=d7>    
+      <span>6</span><span>7</span>
+    </p>
   </div>
 </div>
 <div class="day closed" id="day-08">
   <button class="day-name">Dec 8</button>
   <div class="content">
-    nothing! :(
+    it is someone's birthday! but it is not open Source..
+    <p>please keep pleasant thouhghts for this individual
+    who is now in thr 18–24 age group</p>
   </div>
 </div>
 <div class="day closed" id="day-09">

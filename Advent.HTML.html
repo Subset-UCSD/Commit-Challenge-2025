@@ -267,13 +267,14 @@ function wow(){
   <button class="day-name">Dec 9</button>
   <div class="content" od id=d9>
     <script type=module>
-      const tr='🌲🌳'
-      const f=document. createDocumentFragment()
+      const tr=[...'🌲🌳'
+];      const f=document. createDocumentFragment()
       for(let i=25;i--;){
         let x
 f.append(x=Object. assign (document. createElement('span'),{
   textContent:i===9?'🎄':tr[+(Math.random()<.5)]
 }))
+        x.style. position="absolute"
         x.style.transform=`translate(-${
           x.style.left=Math.random()*100+'%'
         }, -${

@@ -305,8 +305,22 @@ f.append(x=Object. assign (document. createElement('span'),{
 </div>
 <div class="day closed" id="day-13">
   <button class="day-name">Dec 13</button>
-  <div class="content">
+  <div class="content" id=d13>
     nothing! :(
+    <script type=module>
+      const start=new Date(2025,0,1)
+      const end=new Date(2026,0,1)
+const f = ()=>new Promise (resolve=> window. requestAnimationFrame(resolve))
+      while(true) {
+        d13. textContent=`
+        twenny twenny five is ${
+         ( (Date. now()-start)/(end-start)*100
+          ).toFixed(5)
+      }% over.
+        `
+await f()
+      }
+    </script>
   </div>
 </div>
 <div class="day closed" id="day-14">

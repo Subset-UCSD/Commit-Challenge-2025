@@ -1,5 +1,8 @@
-{
-  "rust-analyzer.linkedProjects": [
-    "tools/chrome-cookie-decrypter/Cargo.toml"
+{ "rust-analyzer.linkedProjects":
+  [  "tools/chrome-cookie-decrypter/Cargo.toml"
   ]
+, "editor.formatOnSave"                   :false
+, "files.insertFinalNewline"              :false
+, "files.trimFinalNewlines"               :false
+, "files.trimTrailingWhitespace"          :false
 }

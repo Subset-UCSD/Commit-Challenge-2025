@@ -69,6 +69,11 @@ background: none; border:0; font: inherit; color: inherit;
   <p>
     when the day comes, CLICK the box to rip it open. some days might have nothing. this will happen if no one put anything in the box, which would be very sad
   </p>
+  <h2>fack</h2>
+  <dl>
+    <dt>i hate christmas</dt>
+    <dd>go <a href="/">home</a> then idot</dd>
+  </dl>
 
 <div class=days>
 
@@ -335,10 +340,177 @@ await f()
     nothing! :(
   </div>
 </div>
-<div class="day closed" id="day-15">
+<div class="day closed" id="day-15" style="display: flex;flex-direction: column; justify-content: end;"
+onopen="d15start()">
   <button class="day-name">Dec 15</button>
-  <div class="content">
-    nothing! :(
+  <div class="content" id="d15wrapper">
+    <img src="./ass/ets/image.png" width=30 height=40 id=d15img style="position: absolute;top:0;">
+  </img><p>
+    <button type="button" onpointerdown="d15hk(false);this.setPointerCapture(event.pointerId)" style="touch-action: none;" onpointerup="d15hk(false,-0)" onpointercancel="d15hk(false,0)">&lt;</button>
+    <button type="button" onclick="d15shit()" id=d15shitter style="touch-action: none;" >🚽</button>
+    <button type="button" onpointerdown="d15hk(true);this.setPointerCapture(event.pointerId)" style="touch-action: none;" onpointerup="d15hk(true,-0)" onpointercancel="d15hk(true,0)">&gt;</button>
+    <p style="font-size: 0.8em;">marcelo has <strong id=d15scores></strong></p>
+    <p style="font-size: 0.8em;">remain <strong id=d15bullet></strong></p>
+    <style>
+    .d15-marcelo {
+      position: absolute;
+    }
+    .d15-target {
+      position: absolute;
+    }
+  </style>
+      <script type=module>
+
+
+let score = 0
+let x = 50
+let xv = 0
+
+let elft = false,right=false
+function handleKey (isAltRight,ok=true) {
+ ! isAltRight?elft=ok:right=ok
+// xv = 5 * (isAltRight?1:-1)
+}
+window.d15hk=handleKey
+const mod=(a,b)=>(a%b+b)%b
+const MAX = 100/5// twenty
+window.d15shit = () => {
+  if (used>=MAX){return}
+  const wow = document.createElement('poop')
+  wow.textContent = '💩'
+  
+wow.style.left = `${x}% `
+wow.className='d15-marcelo'
+  d15wrapper.append(wow)
+  bombs.push({
+elem: wow,
+x: x,
+y: 0
+  })
+  used++
+  if (used>=MAX){
+    d15shitter.disabled=true
+  }
+}
+
+const f = ()=>new Promise (resolve=> window. requestAnimationFrame(resolve))
+
+let bombs = []
+let targets = []
+let used = 0
+
+await new Promise(resolve => {
+  // const ro = new IntersectionObserver((x) => {
+  //   console.log('dq15test')
+  //   if (x.some(x => x.intersectionRatio >0)){
+  //   resolve()
+  //   ro.disconnect()}
+  // })
+  // ro.observe(d15wrapper)
+  window.d15start=resolve
+})
+// console.log('day 15 start')
+
+window.addEventListener('keydown', (e) => e.key==='ArrowLeft'&&handleKey(false)||e.key==='ArrowRight'&&handleKey(true)||e.key==='ArrowNeither'&&wtf)
+window.addEventListener('keyup', (e) => e.key==='ArrowLeft'&&handleKey(false,0)||e.key==='ArrowRight'&&handleKey(true,0)||e.key==='ArrowNeither'&&wtf)
+
+let lastTarget = 0 // this one is cursed idk why
+let lastRaget2=0
+      while(true) {
+
+      if (elft)xv -= 0.5
+      if (right)xv+= 0.5
+xv *= 0.9
+x += xv
+x = mod((x + 10) ,110)-10
+
+d15img.style.left = `${x}% `
+
+
+for (const bomb of [...bombs]) {
+  bomb.y += 3
+  bomb.elem.style.top = `${bomb.y}px`
+  
+  if (bomb.y > 160) {
+    for (const target of targets) {
+      if (Math.abs(target.x - bomb.x) > 10) {
+continue
+      }
+    bombs = bombs.filter(b => b!==bomb)
+    bomb.elem.remove()
+    targets = targets.filter(t => t!==target)
+    target.elem.remove()
+    if (target.isGood) {
+      score++
+      new Audio('./ass/ets/good job.mp3').play()
+    } else {
+      score--
+      score--
+      score--
+      score--
+      score--
+      score--
+      score--
+      score--
+      new Audio('./ass/ets/hit cat.mp3').play()
+    }
+    break
+  } 
+  }
+  if (bomb.y > 180 ) {
+    bombs = bombs.filter(b => b!==bomb)
+    bomb.elem.remove()
+  }
+}
+
+// bombs = bombs.filter(b => {
+//   if (b.y > 200) {
+//     b.elem.remove()
+//     return false
+//   }
+//   return true
+// })
+
+d15scores.textContent = score + ' shitter points'
+d15bullet.textContent = MAX - used + ' nngh'
+
+if (MAX - used===0&&bombs.length===0){
+  break
+}
+
+const flowers = [...'🌻🌼🌷🌹']
+const cats =[ '🐈','🐈‍⬛']
+
+if (Date.now() - lastRaget2 > 1000) {
+  // console.log(Date.now() - lastRaget2)
+  lastRaget2 = Date.now()
+  // console.log(Date.now(),lastRaget2)
+  const x = Math.random() * 90
+  const elem = document.createElement('div')
+  elem.className = 'd15-target'
+  elem.style.left= x+'%'
+  elem.style.top = '170px'
+  const isGood=Math.random() < 0.7
+  elem.textContent = isGood? flowers[Math.floor(Math.random()*flowers.length)]: cats[Math.floor(Math.random()*cats.length)]
+  const wow = {
+    elem,
+    x,isGood
+  }
+  d15wrapper.append(elem)
+  targets.push(wow)
+
+  if (targets.lengt > 10){
+  const first = targets.shift()
+first.elem.remove()
+}
+}
+
+
+await f()
+      }
+      d15bullet.textContent = 'you win!share feet with friends?'
+
+</script>
   </div>
 </div>
 <div class="day closed" id="day-16">
@@ -421,6 +593,10 @@ const date = new Date(2025,12-1,+day.id.split('-')[1])
         day.classList.remove('closed')
         day.classList.add('open')
    if(!d)     localStorage[`advent2025-${day.id}`]='YES'
+        const js = day?.getAttribute('onopen')
+       if (js) {
+        try { eval(js)} catch (err) {console.error(name.textContent,js,err)}
+       }
       }
       if(!d&&localStorage[`advent2025-${day.id}`]==='YES'){
 name.click()

@@ -38,6 +38,8 @@
     justify-content: center;
      position: absolute; 
      inset:0;
+     z-index: 100000000;
+     background-color: green!important;
   }
   .day-name{
 background: none; border:0; font: inherit; color: inherit;
@@ -335,9 +337,58 @@ await f()
   </div>
 </div>
 <div class="day closed" id="day-14">
-  <button class="day-name">Dec 14</button>
-  <div class="content">
-    nothing! :(
+  <button class="day-name day14">Dec 14</button>
+  <div class="content" style="position: relative;display: flex; justify-content: flex-end;flex-direction: column; height: 100%;">
+    <img id="thegamer" style="position: absolute; top:0;" src="./ass/ets/he lost at uch.png" width="0" height="0">
+    <p id="chickenjockey"></p>
+    <script>
+      (()=>{
+        const id = document.querySelector("#thegamer");
+        let [x,y] = [0,0];
+        let [x_mod,y_mod] = [0,0];
+        let [x_max,y_max] = [300,500];
+        let [x_min,y_min] = [20,20];
+        function f() {
+          x_mod = Math.sign(x_mod) * Math.random() * 2;
+          y_mod = Math.sign(y_mod) * Math.random() * 2;
+          x = x + x_mod + Math.random() * 10 - 5;
+          y = y + y_mod + Math.random() * 10 - 5;
+          if (x > x_max) {
+            x_mod = -1;
+          }
+          if (x < x_min) {
+            x_mod = 1;
+          }
+          if (y > y_max) {
+            y_mod = -1;
+          }
+          if (y < y_min) {
+            y_mod = 1;
+          }
+          console.log(x,y);
+          id.width = x;
+          id.height = y;
+          requestAnimationFrame(f);
+        }
+        if (localStorage.getItem("advent2025-day-14") === "YES") {
+          f();
+        } else {
+          document.querySelector(".day14").addEventListener("click", ()=>f());
+        }
+        (()=>{
+          const id = document.getElementById("chickenjockey");
+          const str = "he lost at ultimate chicken horse";
+          let red = true;
+          for (let i = 0; i < str.length; i++) {
+            let span = document.createElement("span");
+            span.style.color = red ? "red" : "white";
+            span.textContent = str[i];
+            id.appendChild(span);
+            red = !red;
+          }
+        })();
+      })();
+    </script>
   </div>
 </div>
 <div class="day closed" id="day-15" style="display: flex;flex-direction: column; justify-content: end;"

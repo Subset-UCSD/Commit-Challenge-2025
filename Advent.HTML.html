@@ -41,6 +41,8 @@
   }
   .day-name{
 background: none; border:0; font: inherit; color: inherit;
+z-index: 10000;
+      background-color: green;
   }.day-name:enabled{   font-weight:bold;
     box-shadow:0 0 0 2px red;
   }
@@ -49,11 +51,29 @@ background: none; border:0; font: inherit; color: inherit;
     
   }
   
+  .content {
+    height: 100%;
+    overflow: auto;
+  }
 .closed .content{
   display: none;
   
-}.open .day-name {
+}.alreadyOpen.open .day-name {
       display: none;
+    }
+    .open .day-name {
+      transform-origin: left;
+      animation: open 1s forwards;
+    }
+    @keyframes open {
+      from {
+        visibility: visible;
+        transform: perspective(500px);
+      }
+      to {
+        visibility: hidden;
+        transform:perspective(500px) rotateY(-90deg)
+      }
     }
 
 
@@ -69,7 +89,7 @@ background: none; border:0; font: inherit; color: inherit;
   <p>
     when the day comes, CLICK the box to rip it open. some days might have nothing. this will happen if no one put anything in the box, which would be very sad
   </p>
-  <h2>fack</h2>
+  <h2>fack (frequently asked curiosities k)</h2>
   <dl>
     <dt>i hate christmas</dt>
     <dd>go <a href="/">home</a> then idot</dd>
@@ -340,10 +360,10 @@ await f()
     nothing! :(
   </div>
 </div>
-<div class="day closed" id="day-15" style="display: flex;flex-direction: column; justify-content: end;"
+<div class="day closed" id="day-15" 
 onopen="d15start()">
   <button class="day-name">Dec 15</button>
-  <div class="content" id="d15wrapper">
+  <div class="content" id="d15wrapper" style="display: flex;flex-direction: column; justify-content: end;">
     <img src="./ass/ets/image.png" width=30 height=40 id=d15img style="position: absolute;top:0;">
   </img><p>
     <button type="button" onpointerdown="d15hk(false);this.setPointerCapture(event.pointerId)" style="touch-action: none;" onpointerup="d15hk(false,-0)" onpointercancel="d15hk(false,0)">&lt;</button>
@@ -499,7 +519,7 @@ if (Date.now() - lastRaget2 > 1000) {
   d15wrapper.append(elem)
   targets.push(wow)
 
-  if (targets.lengt > 10){
+  if (targets.length > 10){
   const first = targets.shift()
 first.elem.remove()
 }
@@ -599,9 +619,17 @@ const date = new Date(2025,12-1,+day.id.split('-')[1])
        }
       }
       if(!d&&localStorage[`advent2025-${day.id}`]==='YES'){
+        day.classList.add('alreadyOpen')
 name.click()
       }
     }
   </script>
+
+
+<script type="module" src="./adventageous.js">
+
+
+ 
+</script>
   
 </body>

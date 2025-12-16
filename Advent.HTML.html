@@ -385,7 +385,7 @@ await f()
           if (y < y_min) {
             y_mod = 1;
           }
-          console.log(x,y);
+          // console.log(x,y);
           id.width = x;
           id.height = y;
           requestAnimationFrame(f);
@@ -584,10 +584,76 @@ await f()
 </script>
   </div>
 </div>
-<div class="day closed" id="day-16">
+<div class="day closed" id="day-16" onopen="d16ddd()">
   <button class="day-name">Dec 16</button>
-  <div class="content">
-    nothing! :(
+  <div class="content" onopen="d16ddd()">
+    <style>
+      #d16 {
+        transform-style: preserve-3d; transform: perspective(600px);
+        position: relative;
+        width:60px;height:60px;
+        margin:30px auto;
+        transition: transform .5s;
+        & img {
+position: absolute;
+top: 0;
+left:0;
+        }
+      }
+    </style>
+    <p>get cubed</p>
+    <div style="" id="d16">
+      <img src="./ass/ets/imaage.png" alt="m" width="60" height="60" style="transform: translateY(30px) rotateX(90deg);">
+      <img src="./ass/ets/imaage.png" alt="a" width="60" height="60" style="transform: translateY(-30px) rotateX(-90deg);">
+      <img src="./ass/ets/imaage.png" alt="r" width="60" height="60" style="transform: translateX(-30px) rotateY(-90deg);">
+      <img src="./ass/ets/imaage.png" alt="c" width="60" height="60" style="transform: translateX(30px) rotateY(90deg);">
+      <img src="./ass/ets/imaage.png" alt="e" width="60" height="60" style="transform: translateZ(30px);">
+      <img src="./ass/ets/imaage.png" alt="o" width="60" height="60" style="transform: translateZ(-30px);">
+    </div>
+    <script type="module"
+    
+    >
+
+await new Promise(resolve => (window.d16ddd=resolve))
+
+let x = 0, y = 0, z = 0
+
+while (true) {
+  // d16.style.transform = `perspective(600px) rotateX(${x}deg) rotateY(${y}deg) rotateZ(${z}deg)`
+  d16.style.transform = `perspective(200px) rotateX(${
+    Math.random() * 360
+  }deg) rotateY(${Math.random() * 360
+  }deg) rotateZ(${Math.random() * 360
+  }deg)`
+  y = Math.sin(Date.now() / 2454) * 40
+  z += 0.5
+  x += 5
+  await new Promise(r => setTimeout(r, 600))
+  // await new Promise(window.requestAnimationFrame)
+}
+
+
+    //</script>
+
+    <!--
+\
+ \
+  \
+   \
+    \
+     \ _______ /
+      |
+      |
+      |
+      |
+     /
+    /
+   /
+  /
+ /
+/
+    -->
+    <!-- nothing! :( -->
   </div>
 </div>
 <div class="day closed" id="day-17">
@@ -647,7 +713,7 @@ await f()
   
 </div>
 
-  <script>
+  <script type="module">
     const params = new URL(location).searchParams
 const debugMode=params.get('debug')==='yes'
     const d = debugMode

@@ -1,0 +1,30 @@
+
+> commit-challenge-2025@0.1.0 pretest
+> node -e "import('./cert-fetch/server.mjs').then(module => module.downloadCertificate())"
+
+Successfully downloaded and saved the intermediate certificate.
+
+> commit-challenge-2025@0.1.0 test
+> NODE_EXTRA_CA_CERTS=./cert-fetch/intermediate.pem node --experimental-vm-modules node_modules/jest/bin/jest.js cert-fetch/server.test.mjs
+
+(node:4183) ExperimentalWarning: VM Modules is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+  console.log
+    Successfully downloaded and saved the intermediate certificate.
+
+      at downloadCertificate (cert-fetch/server.mjs:20:13)
+
+  console.log
+    Server is running on http://localhost:3000
+
+      at Server.<anonymous> (cert-fetch/server.mjs:57:13)
+
+PASS cert-fetch/server.test.mjs
+  Server
+    ✓ should return the correct HTML content (405 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        0.954 s, estimated 2 s
+Ran all test suites matching cert-fetch/server.test.mjs.

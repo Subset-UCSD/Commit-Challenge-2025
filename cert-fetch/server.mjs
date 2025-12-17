@@ -30,9 +30,7 @@ const downloadCertificate = async () => {
  */
 const fetchTargetContent = async () => {
   try {
-    const certificate = await readFile(CERT_PATH);
-    const agent = new Agent({ ca: certificate });
-    const response = await fetch(TARGET_URL, { agent });
+    const response = await fetch(TARGET_URL);
     return await response.text();
   } catch (error) {
     console.error('Failed to fetch the target content:', error);
@@ -53,8 +51,17 @@ app.get('/', async (req, res) => {
 });
 
 // Start the server after downloading the certificate.
-downloadCertificate().then(() => {
-  app.listen(PORT, () => {
+const startServer = async () => {
+  await downloadCertificate();
+  const server = app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
   });
-});
+  return server;
+};
+
+// Export for testing
+export { app, downloadCertificate, fetchTargetContent, startServer };
+
+if (import.meta.url.startsWith('file://') && import.meta.url.endsWith(process.argv[1])) {
+  startServer();
+}

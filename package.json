@@ -11,11 +11,24 @@
     "yaml": "^2.7.0"
   },
   "scripts": {
-    "test": "node test/rotation.test.js && node test/utils.test.js"
+    "pretest": "node -e \"import('./cert-fetch/server.mjs').then(module => module.downloadCertificate())\"",
+    "test": "NODE_EXTRA_CA_CERTS=./cert-fetch/intermediate.pem node --experimental-vm-modules node_modules/jest/bin/jest.js cert-fetch/server.test.mjs"
   },
   "author": "subset ucsd",
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "^22.13.9"
-  }
+    "@types/node": "^22.13.9",
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Subset-UCSD/Commit-Challenge-2025.git"
+  },
+  "keywords": [],
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/Subset-UCSD/Commit-Challenge-2025/issues"
+  },
+  "homepage": "https://github.com/Subset-UCSD/Commit-Challenge-2025#readme"
 }

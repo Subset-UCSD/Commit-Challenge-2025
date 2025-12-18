@@ -665,7 +665,78 @@ while (true) {
 <div class="day closed" id="day-18">
   <button class="day-name">Dec 18</button>
   <div class="content">
-    nothing! :(
+    <button id="d17s" style="cursor: pointer;">🎵choreography & merriment🎶</button>
+    <script>
+      /** @type {AudioContext} */
+      let ctx
+      let buffer
+      d17s.onclick=async()=>{
+        // d17s.onclick=null
+        d17s.disabled = true
+        document.title = 'jammin\''
+
+
+        ctx ??= new AudioContext()
+       const audioContext=ctx
+         buffer ??= await fetch('ass/ets/IMG_2285.mp3').then(r => r.arrayBuffer()).then(x => ctx.decodeAudioData(x))
+
+        const delay = 0.2
+        const t = [
+          // c x d x e f x g x a x b
+          // [4,0], // b
+          // [2,1], // a
+          // [4, 1.5], // b
+          // [0,2], // g
+          // e e e e e e e g c d e
+          [-0.5,-5],  // dummy
+          [-0.75,-4.5],  // dummy
+          [0,0], 
+          [0,1], 
+          [0,2], 
+          [0,4], 
+          [0,5], 
+          [0,6], 
+          [0,8], 
+          [3,9], 
+          [-4,10], 
+          [-2,11], 
+          [0,12], 
+          // f f f f  f e e e  e d d e  d g 
+          [1,16], 
+          [1,17], 
+          [1,18], 
+          [1,19], 
+          [1,20], 
+          [0,21], 
+          [0,22], 
+          [0,23], 
+          [0,24], 
+          [-2,25], 
+          [-2,26], 
+          [0,27], 
+          [-2,28], 
+          [3,30], 
+        ]
+        // while (true) {
+          const thegamer= audioContext.currentTime
+          for (const [i,[freq,dur]] of t.entries()){
+               const sourceNode = audioContext.createBufferSource();
+  sourceNode.buffer = buffer; // Assign the loaded buffer
+
+  var semitoneRatio = Math.pow(2, 1/12);
+  sourceNode.playbackRate.value = Math.pow(semitoneRatio, freq+0);
+
+  // Connect the source to the destination
+  sourceNode.connect(audioContext.destination);
+
+  // Start playback at the current time
+  sourceNode.start(thegamer+(dur+6)*delay); // seconds
+          // }
+          await new Promise(r => setTimeout(r,delay*3*1000)) //ms
+        d17s.disabled = false
+        }
+      }
+      </script>
   </div>
 </div>
 <div class="day closed" id="day-19">

@@ -1,0 +1,6 @@
+# video of marcelo in a rolar coaster
+IMG_2285.mp4
+
+ffmpeg -i ass/ets/IMG_2285.mp4 -ss 0.55 -to 1.5 ass/ets/IMG_2285.mp3 -y
+
+ffmpeg -i ass/ets/IMG_2285.mp4 -ss 1.2 -to 1.4 ass/ets/IMG_2285-2.mp3 -y

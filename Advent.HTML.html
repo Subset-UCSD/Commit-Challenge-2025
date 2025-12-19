@@ -668,7 +668,7 @@ while (true) {
     <button id="d17s" style="cursor: pointer;">🎵choreography & merriment🎶</button>
     <script>
       /** @type {AudioContext} */
-      let ctx
+      // let ctx
       let buffer
       d17s.onclick=async()=>{
         // d17s.onclick=null
@@ -676,7 +676,7 @@ while (true) {
         document.title = 'jammin\''
 
 
-        ctx ??= new AudioContext()
+        window.ctx ??= new AudioContext()
        const audioContext=ctx
          buffer ??= await fetch('ass/ets/IMG_2285.mp3').then(r => r.arrayBuffer()).then(x => ctx.decodeAudioData(x))
 
@@ -741,8 +741,72 @@ while (true) {
 </div>
 <div class="day closed" id="day-19">
   <button class="day-name">Dec 19</button>
-  <div class="content">
-    nothing! :(
+  <div class="content" style="display: flex; position: relative;">
+    <button id="d19">👁️play👁️</button>
+    <div class="d19-ring1">
+      <span class="d19eyes ">👁️</span>
+    </div>
+    <style>
+      #d19 {
+        /* place-items: center; */
+        margin: auto;
+        cursor: pointer;
+      }
+      .d19eyes {
+        position: absolute;
+        animation: go-around 3s linear infinite;
+      }
+      @keyframes go-around {
+        from {
+          offset-distance: 0%;
+        }
+        to {
+          offset-distance: 100%;
+        }
+      }
+      .d19-ring1 {
+        offset-path:  circle(30% at 50% 50%);;
+      }
+    </style>
+    <script>
+d19.onclick =async () => {
+  d19.onclick=null
+  d19.disabled=true
+          window.ctx ??= new AudioContext()
+
+          const oscillator = ctx.createOscillator();
+
+oscillator.type = "square";
+oscillator.start()
+
+
+const gain = ctx.createGain()
+gain.gain.value = 0
+
+oscillator.connect(gain)
+gain.connect(ctx.destination)
+
+
+          const delay11 = 0.4
+          const delay2 = 0.5
+      for (let i = 2; ;i++) {
+        const time = ctx.currentTime
+
+        const delay1=delay11 * (i ** 0.9 / i)
+
+        gain.gain.setValueAtTime(1,time)
+gain.gain.setValueAtTime(0,time+delay1*i)
+
+for (let j = 0;j<i;j++) {
+                                      // middle C
+  oscillator.frequency.setValueAtTime(261.625565 * 2 ** (j / (i - 1)), time + delay1*j)
+}
+
+
+        await new Promise(resolve => setTimeout(resolve,(delay1 * i + delay2)*1000))
+      }
+}
+      </script>
   </div>
 </div>
 <div class="day closed" id="day-20">

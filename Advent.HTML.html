@@ -66,6 +66,8 @@ z-index: 10000;
     .open .day-name {
       transform-origin: left;
       animation: open 1s forwards;
+      /* animation: open 1s forwards cubic-bezier(.63,1.47,.76,1); */
+      /* visibility: hidden; */
     }
     @keyframes open {
       from {
@@ -73,6 +75,7 @@ z-index: 10000;
         transform: perspective(500px);
       }
       to {
+        /* visibility: visible; */
         visibility: hidden;
         transform:perspective(500px) rotateY(-90deg)
       }
@@ -846,10 +849,164 @@ for (let j = 0;j<i;j++) {
       </script>
   </div>
 </div>
-<div class="day closed" id="day-20">
+<div class="day closed" id="day-20" onopen="d20App()">
   <button class="day-name">Dec 20</button>
-  <div class="content">
-    nothing! :(
+  <style>
+    .d20 {
+      position: relative;
+      margin: auto;  line-height: 1;
+
+    }
+    .d20 > div {
+      position: absolute;
+    }
+  </style>
+  <div class="content" id="d20" style="
+  overflow: hidden;
+  display: flex;
+  " onopen="d20App()">
+    <!-- nothing! :( -->
+    <script type="module">
+      import {h,Fragment,render} from 'https://esm.sh/preact@10.28.0'
+      import {useState, useEffect,useRef} from 'https://esm.sh/preact@10.28.0/hooks'
+
+const GRID = 50
+
+const FLOOR = 30
+
+const forest = []
+for (let i = 100; i--;) {
+  const angle = Math.random() * 2 * Math.PI
+  const radius = Math.random() * 500 + 50
+  const emoji = [...'🌳🌲']//🎄
+  forest.push({
+    x: Math.cos(angle)  * radius,
+    y: Math.sin(angle)  * radius,
+    r: Math.random() * 2 * Math.PI,
+    s: Math.random() * 3 + 1,
+    t: emoji[Math.random()*emoji.length|0],
+  })
+}
+forest[0].t = '🎄'
+
+      function App ( ) {
+        const [state, setState] = useState({
+          x: 0,
+          y: 0,
+          rot: 0
+        })
+        const liveState = useRef({
+          xv: 0,
+          yv: 0,
+          rot: 0,
+          rotV: 0
+        })
+
+useEffect(() => {
+  let id
+  const render = () => {
+    liveState.current.xv *= 0.9
+    liveState.current.yv *= 0.9
+    liveState.current.rotV *= 0.9
+    liveState.current.rot += liveState.current.rotV
+    const clone = structuredClone(liveState.current)
+    setState(state => {
+      return {
+        ...state,
+        x: state.x + clone.xv,
+        y: state.y + clone.yv,
+        rot:  clone.rot,
+      }
+    })
+
+    id = window.requestAnimationFrame(render)
+  }
+  render()
+const handleKey = (e) => {
+  switch (e.key) {
+    case 'w':
+    case 'a':
+    case 's':
+    case 'd': {
+      const dx = e.key === 'a' ? -1 : e.key === 'd' ? 1 : 0
+      const dy = e.key === 'w' ? -1 : e.key === 's' ? 1 : 0
+      const cos = Math.cos(liveState.current.rot/180*Math.PI)
+      const sin = Math.sin(liveState.current.rot/180*Math.PI)
+      const ddx = dx * cos - dy * sin
+      const ddy = dx * sin + dy * cos
+      const scale = 1
+      liveState.current.xv += ddx*scale
+      liveState.current.yv += ddy*scale
+      break
+    }
+    case 'ArrowLeft': {
+      liveState.current.rotV -= 5
+      break
+    }
+    case 'ArrowRight': {
+      liveState.current.rotV += 5
+      break
+    }
+  }
+}
+window.addEventListener('keydown',handleKey)
+return () => {
+window.removeEventListener('keydown',handleKey)
+window.cancelAnimationFrame(id)
+}
+},[])
+
+
+        return h(
+          Fragment,null,
+         h('span',{style:{position:'absolute'}}, 'WASD to move, arrows to look. find the christmas tree'),
+          h('div', {
+        class: 'd20',style: {
+          transformStyle:'preserve-3d',
+          transform:`perspective(300px) rotateY(${state.rot}deg)`
+        }},
+      h('div',{
+        style: {
+          width: 400,
+          height: 400,
+          // google ai overview
+          background: `conic-gradient(#fff3 25%, #0003 0 50%, #fff3 0 75%, #0003 0) 0 0 / ${GRID}px ${GRID}px`,
+          backgroundPosition: `${-state.x % GRID}px ${-state.y % GRID}px`,
+          borderRadius:'50%',
+          transform:`translateY(${FLOOR}px) rotateX(90deg) translate(-50%, -50%)`,
+          transformOrigin:'top'
+        }
+      }),
+      h('div',{
+        style: {
+          fontSize:'2em',
+          transform: `translateY(${FLOOR}px) rotateY(${-state.rot}deg) translate(-50%, -100%)`,
+          transformOrigin: 'left'
+        }
+      }, '🕴️'),
+      forest.map(({x,y,t,r,s},i)=>h(Fragment,
+        {key: i},
+        h('div', {
+        // key:i,
+        style: {
+          transform: `translateY(${FLOOR}px) translateX(${x-state.x}px) translateZ(${y-state.y}px) rotateY(${r}rad) translateY(-100%)`,
+          fontSize: `${s}em`
+        }
+      },t),
+      h('div', {
+        // key:i,
+        style: {
+          transform: `translateY(${FLOOR}px) translateX(${x-state.x}px) translateZ(${y-state.y}px) rotateY(${r + Math.PI/2}rad) translateY(-100%)`,
+          fontSize: `${s}em`
+        }
+      },t)
+      ))
+    )
+        )
+      }
+
+      window.d20App = ()=>render(h(App), d20)
+    </script>
   </div>
 </div>
 <div class="day closed" id="day-21">

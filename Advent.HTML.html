@@ -1011,8 +1011,99 @@ window.cancelAnimationFrame(id)
 </div>
 <div class="day closed" id="day-21">
   <button class="day-name">Dec 21</button>
-  <div class="content">
-    nothing! :(
+  <div class="content" style="background-color: black; overflow: hidden; position: relative;"
+  title="Allina La Jolla fireplace">
+    <style>
+      @keyframes fire1 {
+        0%,15%,100% {
+          background-color: #FF3636;
+        }
+        25%,40% {
+          background-color: #A008FF;
+        }
+        50% ,65%{
+          background-color: #1600DC;
+        }
+        75% ,80%{
+          background-color: #01A90C;
+        }
+      }
+      @keyframes fire2 {
+        0%,15%,100% {
+          background-color: #FFD400;
+        }
+        25%,40% {
+          background-color: #FF00BF;
+        }
+        50% ,65%{
+          background-color: #00D0FF;
+        }
+        75% ,80%{
+          background-color: #AAFF00;
+        }
+      }
+      @keyframes wobble {
+        from {
+          transform: translateY(var(--amount));
+        }to{
+          transform: translateY(calc(-1 * var(--amount)));
+        }
+      }
+    </style>
+    <div style="
+      background-color: #FF3636;
+      animation: fire1 15s infinite, wobble .7s ease-in-out alternate infinite;
+      --amount: 20px;
+       border-radius: 30px; 
+       width: 200px; 
+       height: 200px;
+       transform: rotate(10deg);
+bottom: -70px;
+  left: -20px;
+  position: absolute;
+  filter: blur(100px);
+       "></div>
+    <div style="
+      background-color: #FFD400;
+      animation: fire2 15s infinite, wobble 1.7s ease-in-out alternate infinite;
+      --amount: 10px;
+       border-radius: 30px; 
+       width: 200px; 
+       height: 200px;
+       transform: rotate(-10deg);
+bottom: -150px;
+  left: -20px;
+  position: absolute;
+  filter: blur(40px);
+       "></div>
+    <div style="
+      background-color: white;
+       border-radius: 50%; 
+width: 90px;
+  height: 90px;
+  bottom: -40px;
+  left: 10px;
+  position: absolute;
+  filter: blur(30px);
+  opacity: 0.9;
+    mix-blend-mode: plus-lighter;
+    animation: wobble 3.3s ease-in-out alternate infinite;
+      --amount: 5px;
+       "></div>
+    <div style="
+      background-color: white;
+       border-radius: 50%; 
+    animation: wobble 3.1s ease-in-out alternate-reverse infinite;
+      --amount: 5px;
+width: 90px;
+  height: 90px;
+  bottom: -60px;
+  left: 120px;
+  position: absolute;
+  filter: blur(30px);
+  opacity: 0.9;
+    mix-blend-mode: plus-lighter;
+       "></div>
   </div>
 </div>
 <div class="day closed" id="day-22">

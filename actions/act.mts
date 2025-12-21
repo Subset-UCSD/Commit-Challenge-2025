@@ -2,7 +2,6 @@
 
 import { execSync } from 'child_process'
 import { readFile, writeFile } from 'fs/promises'
-import { GoogleGenerativeAI } from '@google/genai'
 import YAML from 'yaml'
 // import { users } from '../remind/people.mjs'
 
@@ -259,20 +258,34 @@ async function printDiscord(responseLines: string[]) {
 
 
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API ?? '')
-const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' })
-const result = await model.generateContent([
-  (await readFile('./actions/prompt_state.md', 'utf-8')).trim(),
-  // "Here was today's exposition:",
-  // responseMd,
-  'Here are the players and world state as of the previous day:',
-  gameState,
-  "Here are the players' d20 rolls:",
-  d20Rolls,
-  'Here are the player\'s actions for the day:',
-  (await readFile('./actions.md', 'utf-8')).trim(),
-])
-const origJs = result.response.text()
+const responseJs: GenerateContentResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.GEMINI_API}`, {
+  "headers": {
+    "content-type": "application/json",
+  },
+  method: 'POST',
+  body: JSON.stringify({
+    contents: [
+      {
+        parts: [
+          {
+            text: [
+              (await readFile('./actions/prompt_state.md', 'utf-8')).trim(),
+              // "Here was today's exposition:",
+              // responseMd,
+              'Here are the players and world state as of the previous day:',
+              gameState,
+              "Here are the players' d20 rolls:",
+              d20Rolls,
+              'Here are the player\'s actions for the day:',
+              (await readFile('./actions.md', 'utf-8')).trim(),
+            ].join('\n\n')
+          }
+        ]
+      }
+    ]
+  })
+}).then(r => r.json()) as any
+const origJs = responseJs.candidates[0].content.parts[0].text
 let js = origJs
 
 js = js.trim().replace(/^```/gm, m => '//' + m)
@@ -331,27 +344,43 @@ await writeFile('./actions/state.yml', YAML.stringify(state, (key, value) => val
 
 
 
-const result2 = await model.generateContent([
-  (await readFile('./actions/prompt_respond.md', 'utf-8')).trim(),
-  "Here are today's events, described as code:",
-  // gemini's JS is typically already wrapped in a code block
-  // '```javascript\n' +
-  origJs
-  //+ '\n```'
-  ,
-  "Here is the game state, including a diff of the changes made today:",
-  '```diff\n' +
-  // show 10000 lines of context
-  execSync('git diff -U10000 --no-prefix actions/state.yml')
-  + '\n```',
-  // 'Here are the players and world state as of the previous day:',
-  // gameState,
-  // "Here are the players' d20 rolls:",
-  // d20Rolls,
-  // 'Here are the player\'s actions for the day:',
-  // (await readFile('./actions.md', 'utf-8')).trim(),
-])
-const responseMd = result2.response.text()
+const response: GenerateContentResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.GEMINI_API}`, {
+  "headers": {
+    "content-type": "application/json",
+  },
+  method: 'POST',
+  body: JSON.stringify({
+    contents: [
+      {
+        parts: [
+          {
+            text: [
+              (await readFile('./actions/prompt_respond.md', 'utf-8')).trim(),
+              "Here are today's events, described as code:",
+              // gemini's JS is typically already wrapped in a code block
+              // '```javascript\n' + 
+              origJs 
+              //+ '\n```'
+              ,
+              "Here is the game state, including a diff of the changes made today:",
+              '```diff\n' + 
+              // show 10000 lines of context
+              execSync('git diff -U10000 --no-prefix actions/state.yml')
+              + '\n```',
+              // 'Here are the players and world state as of the previous day:',
+              // gameState,
+              // "Here are the players' d20 rolls:",
+              // d20Rolls,
+              // 'Here are the player\'s actions for the day:',
+              // (await readFile('./actions.md', 'utf-8')).trim(),
+            ].join('\n\n')
+          }
+        ]
+      }
+    ]
+  })
+}).then(r => r.json()) as any
+let responseMd = response.candidates[0].content.parts[0].text
 console.log(responseMd)
 await printDiscord(generateDiscordResponse(responseMd))
 

@@ -744,9 +744,29 @@ while (true) {
 </div>
 <div class="day closed" id="day-19">
   <button class="day-name">Dec 19</button>
-  <div class="content" style="display: flex; position: relative;">
+  <div class="content" style="display: flex; position: relative; overflow: hidden;">
     <button id="d19">👁️play👁️</button>
     <div class="d19-ring1">
+      <span class="d19eyes ">👁️</span>
+      <span class="d19eyes ">👁️</span>
+      <span class="d19eyes ">👁️</span>
+      <span class="d19eyes ">👁️</span>
+      <span class="d19eyes ">👁️</span>
+    </div>
+    <div class="d19-ring2">
+      <span class="d19eyes ">👁️</span>
+      <span class="d19eyes ">👁️</span>
+      <span class="d19eyes ">👁️</span>
+      <span class="d19eyes ">👁️</span>
+      <span class="d19eyes ">👁️</span>
+    </div>
+    <div class="d19-ring3">
+      <span class="d19eyes ">👁️</span>
+      <span class="d19eyes ">👁️</span>
+      <span class="d19eyes ">👁️</span>
+      <span class="d19eyes ">👁️</span>
+      <span class="d19eyes ">👁️</span>
+      <span class="d19eyes ">👁️</span>
       <span class="d19eyes ">👁️</span>
     </div>
     <style>
@@ -757,7 +777,10 @@ while (true) {
       }
       .d19eyes {
         position: absolute;
-        animation: go-around 3s linear infinite;
+        animation: go-around var(--dur) calc(sibling-index() / sibling-count() * var(--dur)) linear infinite paused;
+      }
+      #day-19:hover .d19eyes {
+        animation-play-state: running;
       }
       @keyframes go-around {
         from {
@@ -767,8 +790,21 @@ while (true) {
           offset-distance: 100%;
         }
       }
-      .d19-ring1 {
+      .d19-ring1 .d19eyes {
+        --dur: 3s;
+        offset-path:  circle(20% at 50% 50%);;
+      }
+      
+      .d19-ring2 .d19eyes {
+        --dur: 5s;
+        animation-direction: reverse;
         offset-path:  circle(30% at 50% 50%);;
+      }
+      
+      .d19-ring3 .d19eyes {
+        --dur: 7s;
+        /* animation-direction: reverse; */
+        offset-path:  circle(40% at 50% 50%);;
       }
     </style>
     <script>
@@ -791,22 +827,23 @@ gain.connect(ctx.destination)
 
 
           const delay11 = 0.4
-          const delay2 = 0.5
+          const delay2 = 0.25
+          const delay3 = 0.25
       for (let i = 2; ;i++) {
         const time = ctx.currentTime
 
         const delay1=delay11 * (i ** 0.9 / i)
 
-        gain.gain.setValueAtTime(1,time)
-gain.gain.setValueAtTime(0,time+delay1*i)
+        gain.gain.setValueAtTime(1,time+delay3)
+gain.gain.setValueAtTime(0,time+delay3+delay1*i)
 
 for (let j = 0;j<i;j++) {
                                       // middle C
-  oscillator.frequency.setValueAtTime(261.625565 * 2 ** (j / (i - 1)), time + delay1*j)
+  oscillator.frequency.setValueAtTime(261.625565 * 2 ** (j / (i - 1)), time +delay3+ delay1*j)
 }
 
 
-        await new Promise(resolve => setTimeout(resolve,(delay1 * i + delay2)*1000))
+        await new Promise(resolve => setTimeout(resolve,(delay1 * i + delay2+delay3)*1000))
       }
 }
       </script>

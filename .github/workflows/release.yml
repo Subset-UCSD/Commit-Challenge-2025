@@ -54,12 +54,14 @@ jobs:
             
             - name: geminis you
               env: 
+                # wait why is this GEMINI_API_KEY and not GEMINI_API
                 GEMINI_API_KEY: ${{ secrets.GEMINI_API }}
               run: |
-                RESPONSE=$(curl -s "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${{ secrets.GEMINI_API }}" \
-                -H 'Content-Type: application/json' \
-                -X POST \
-                -d @gemini_prompt.json)
+                RESPONSE=$(curl "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent" \
+                  -H "x-goog-api-key: ${{ secrets.GEMINI_API }}" \
+                  -H 'Content-Type: application/json' \
+                  -X POST \
+                  -d @gemini_prompt.json)
 
                 RELEASE_NOTES=$(echo $RESPONSE | jq -r '.candidates[0].content.parts[0].text')
 

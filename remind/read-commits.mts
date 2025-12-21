@@ -153,9 +153,9 @@ const processNews = (arr: Article[]) => arr
 // .map(article => `[${article.title}](${article.url}): ${article.abstract}`)
 // .join(' • ')
 //console.error(news)
-const result:string = (await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.GEMINI_API}`, {
+const result:string = (await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent`, {
     "headers": {
-      "content-type": "application/json",
+      "content-type": "application/json",    'x-goog-api-key':process.env.GEMINI_API ?? ''
     },
     method: 'POST',
     body: JSON.stringify({
@@ -205,9 +205,10 @@ function alternate<T>(a: T[], b: T[]): T[] {
   return items
 }
 
-const result2:string = (await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.GEMINI_API}`, {
+const result2:string = (await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent`, {
     "headers": {
       "content-type": "application/json",
+    'x-goog-api-key':process.env.GEMINI_API ?? ''
     },
     method: 'POST',
     body: JSON.stringify({

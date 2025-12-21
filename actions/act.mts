@@ -258,7 +258,7 @@ async function printDiscord(responseLines: string[]) {
 
 
 
-const responseJs: GenerateContentResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.GEMINI_API}`, {
+const responseJs: GenerateContentResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent`, {
   "headers": {
     "content-type": "application/json",
   },
@@ -344,9 +344,10 @@ await writeFile('./actions/state.yml', YAML.stringify(state, (key, value) => val
 
 
 
-const response: GenerateContentResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.GEMINI_API}`, {
+const response: GenerateContentResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent`, {
   "headers": {
     "content-type": "application/json",
+    'x-goog-api-key':process.env.GEMINI_API ?? ''
   },
   method: 'POST',
   body: JSON.stringify({

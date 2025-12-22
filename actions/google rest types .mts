@@ -863,7 +863,7 @@ export  interface VideoMetadata {
 }
 
 
-export { Blob_2 as Blob }
+export { type Blob_2 as Blob }
 
 /** A function response. */
 export interface FunctionResponse {

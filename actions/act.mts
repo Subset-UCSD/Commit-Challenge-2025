@@ -3,6 +3,7 @@
 import { execSync } from 'child_process'
 import { readFile, writeFile } from 'fs/promises'
 import YAML from 'yaml'
+import { GenerateContentResponse } from './google rest types .mts'
 // import { users } from '../remind/people.mjs'
 
 type PlayerObject = {
@@ -157,15 +158,15 @@ for (const [name, player] of Object.entries(state.players)) {
 
 // const discordMap = Object.fromEntries(users.map(({ discord, playerName }) => [playerName, discord]))
 
-type GenerateContentResponse = {
-  candidates: {
-    content: {
-      parts: {
-        text: string
-      }[]
-    }
-  }[]
-}
+// type GenerateContentResponse = {
+//   candidates: {
+//     content: {
+//       parts: {
+//         text: string
+//       }[]
+//     }
+//   }[]
+// }
 const d20Rolls = Object.keys(state.players).map(name => `- ${name}: ${Math.floor(Math.random() * 20 + 1)}`).join('\n')
 console.error(d20Rolls)
 
@@ -258,7 +259,7 @@ async function printDiscord(responseLines: string[]) {
 
 
 
-const responseJs: GenerateContentResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent`, {
+const responseJs = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent`, {
   "headers": {
     "content-type": "application/json",
   },
@@ -284,9 +285,12 @@ const responseJs: GenerateContentResponse = await fetch(`https://generativelangu
       }
     ]
   })
-}).then(r => r.json()) as any
-const origJs = responseJs.candidates[0].content.parts[0].text
-let js = origJs
+}).then(r => r.json() as Promise<GenerateContentResponse>) 
+const origJs = responseJs.candidates?.[0].content?.parts?.[0].text
+if (!origJs) {
+console.error('[NO CONTENT ??]',responseJs)
+}
+let js = origJs??'0'
 
 js = js.trim().replace(/^```/gm, m => '//' + m)
 // if (js.startsWith('```')) {
@@ -380,10 +384,13 @@ const response: GenerateContentResponse = await fetch(`https://generativelanguag
       }
     ]
   })
-}).then(r => r.json()) as any
-let responseMd = response.candidates[0].content.parts[0].text
+}).then(r => r.json() as Promise<GenerateContentResponse>)
+let responseMd = response.candidates?.[0].content?.parts?.[0].text
+if (!responseMd){
+  console.error('[bad response format]',response)
+}
 console.log(responseMd)
-await printDiscord(generateDiscordResponse(responseMd))
+await printDiscord(generateDiscordResponse(responseMd??'gemini broke.'))
 
 
 // const genDiscordResponse = (maxLength = Infinity) => `${responses.world.length > maxLength?responses.world.slice(0,maxLength-3)+'[…]':responses.world}\n${Object.entries(responses.players).map(([name, response]) => `## ${name}\n${response.length > maxLength?response.slice(0,maxLength-3)+'[…]':response}`).join('\n')}\n\n-# [state](<https://github.com/Subset-UCSD/Commit-Challenge-2025/blob/main/actions/state.yml>) |  Write your next action in [actions.md](<https://github.com/Subset-UCSD/Commit-Challenge-2025/edit/main/actions.md>)!`

@@ -1,6 +1,7 @@
 import fs from "fs";
 import { discords } from "./people.mjs";
 import { type Article, getTopStories } from "./read-news.mts";
+import type { GenerateContentResponse } from "@google/genai";
 
 type Commit = {
   url: string;
@@ -142,7 +143,8 @@ function shuffle<T>(array: T[]): T[] {
 
 const wolrdNews = (await getTopStories('world')).results ?? []
 const usNews = (await getTopStories('us')).results ?? []
-console.error(wolrdNews, usNews)
+console.error('[WORLD NEWS]',wolrdNews, usNews)
+console.error('[LOCAL NEWS]', usNews)
 
 const processNews = (arr: Article[]) => arr
 .map(article => `- ${article.title}: ${article.abstract}`)
@@ -153,7 +155,7 @@ const processNews = (arr: Article[]) => arr
 // .map(article => `[${article.title}](${article.url}): ${article.abstract}`)
 // .join(' • ')
 //console.error(news)
-const result:string = (await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent`, {
+const result_ = (await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent`, {
     "headers": {
       "content-type": "application/json",    'x-goog-api-key':process.env.GEMINI_API ?? ''
     },
@@ -192,7 +194,11 @@ The game features various items that assist with climbing the mountain, includin
         }
       ]
     })
-  }).then(r => r.json())).candidates[0].content.parts[0].text
+  }).then(r => r.json() as Promise<GenerateContentResponse>))
+  const result = result_.candidates?.[0].content?.parts?.[0].text
+  if (!result) {
+    console.error('[bad result]',result_)
+  }
 // console.log(result)
 
 function alternate<T>(a: T[], b: T[]): T[] {
@@ -205,7 +211,7 @@ function alternate<T>(a: T[], b: T[]): T[] {
   return items
 }
 
-const result2:string = (await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent`, {
+const result2_ = (await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent`, {
     "headers": {
       "content-type": "application/json",
     'x-goog-api-key':process.env.GEMINI_API ?? ''
@@ -224,12 +230,16 @@ ${processNews(alternate(wolrdNews, usNews))}`
         }
       ]
     })
-  }).then(r => r.json())).candidates[0].content.parts[0].text
+  }).then(r => r.json()as Promise<GenerateContentResponse>))
+  const result2 = result2_.candidates?.[0].content?.parts?.[0].text
+  if (!result2) {
+    console.error('[bad result2]',result2_)
+  }
 
 const messages: Record<string, string> = Object.fromEntries(
   nonCommitters.map((ghUser) => [
     discords[ghUser],
-    `${committers.length > 0 ? committers.map((ghUser) => `<@${discords[ghUser]}>`).join(" and ") : 'no one'} committed to the [repo](<https://github.com/Subset-UCSD/Commit-Challenge-2025/>). ${result2}`,
+    `${committers.length > 0 ? committers.map((ghUser) => `<@${discords[ghUser]}>`).join(" and ") : 'no one'} committed to the [repo](<https://github.com/Subset-UCSD/Commit-Challenge-2025/>). ${result2 ?? 'gemini catastrophe.'}`,
     // (committers.length > 0
     //   ? select(
     //       "{PPL} all comited to the [repo](REPO)!! and 🫵YOU did not 😡",
@@ -293,12 +303,13 @@ const messages: Record<string, string> = Object.fromEntries(
     //   ),
   ])
 );
-console.log(messages);
+console.log('[MESSAGES]',messages);
 fs.writeFileSync("messages.json", JSON.stringify(messages));
 
 const nonCommittersClone = [...nonCommitters]
+let respons
 if (commiterCount >= 3) {
-await fetch(process.env.DISCORD_WEBHOOK_URL || '', {
+respons = await fetch(process.env.DISCORD_WEBHOOK_URL || '', {
     "headers": {
       "content-type": "application/json",
     },
@@ -310,7 +321,7 @@ await fetch(process.env.DISCORD_WEBHOOK_URL || '', {
   }).catch(console.log);
 } else
 if (nonCommitters.length > 0) {
-  const lines = result.trim().split(/\r?\n/)
+  const lines = result?.trim().split(/\r?\n/) ?? ['gemini broke.']
   shuffle(nonCommitters)
 let out = ''
 for (const line of lines) {
@@ -321,12 +332,14 @@ if (line.trim()) {
   out += '\n'
 }
 }
-  await fetch(process.env.DISCORD_WEBHOOK_URL || '', {
+const content = `${out.slice(0,1000)}\nits basically summer in canbera! did you open [todays advent door](https://subset-ucsd.github.io/Commit-Challenge-2025/Advent.HTML)? to turn off the news, 3+ ppl must commit ${nonCommitters.map(ghUser => `<@${discords[ghUser]}>`).join(' ')}`
+console.log('[CONTENT LENGTH]',content.length)
+respons = await fetch(process.env.DISCORD_WEBHOOK_URL || '', {
     "headers": {
       "content-type": "application/json",
     },
     "body": JSON.stringify({"content":
-      `${out}\nits basically summer in canbera! did you open [todays advent door](https://subset-ucsd.github.io/Commit-Challenge-2025/Advent.HTML)? to turn off the news, 3+ ppl must commit ${nonCommitters.map(ghUser => `<@${discords[ghUser]}>`).join(' ')}`,
+      content,
       // `hey ${nonCommitters.map(ghUser => `<@${discords[ghUser]}>`).join(' ')} (especially if ur on a phone) can u [add the next word to this](<https://github.com/Subset-UCSD/Commit-Challenge-2025/edit/main/actions.md>) ${select(
       //   'help us be chatgpt',
       //   '🤨',
@@ -341,6 +354,9 @@ if (line.trim()) {
       "username":"reminder","avatar_url":"https://subset-ucsd.github.io/Commit-Challenge-2025/ass/ets/mayo.png"}),
     "method": "POST",
   }).catch(console.log);
+}
+if (respons&&!respons.ok) {
+  console.log('[DISCORD WEBHOOK ERROR]', respons.status, await respons.text())
 }
 
 const BASH_TRUE = 0;

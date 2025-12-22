@@ -1106,10 +1106,75 @@ width: 90px;
        "></div>
   </div>
 </div>
-<div class="day closed" id="day-22">
+<div class="day closed" id="day-22"onopen="onopen22()">
   <button class="day-name">Dec 22</button>
-  <div class="content">
-    nothing! :(
+  
+      <style>
+        @keyframes r22-1 {
+          0% {
+            rotate: 0deg;
+          }
+          100% {
+            rotate: 180deg;
+          }
+        }
+        @keyframes r22-2 {
+          0% {
+            fill: blue;
+            translate: var(--x) var(--y);
+          }
+          100% {
+            fill: skyblue;
+            translate: calc(30px - var(--x)) var(--y);
+          }
+        }
+        .r22-dark {
+          animation: r22-1 2s linear infinite, r22-2 2s steps(2, jump-none) infinite;
+        }
+        
+        @keyframes r22-bg {
+          0% {
+            fill: skyblue;
+          }
+          100% {
+            fill: blue;
+          }
+        }
+        .r22-bg {
+          animation: r22-bg 2s steps(2, jump-none) infinite;
+        }
+        
+      </style>
+  <div class="content" style="overflow: hidden; position: relative; font-size: 0;" onopen="onopen22()"title="credit to @pulljosh on scratch" >
+    <svg viewBox="0 0 170 170" width=170 height=170 xmlns="http://www.w3.org/2000/svg" >
+ <defs>
+  <pattern id="Pattern" x="-10" y="-10" width="30" height="30" patternUnits="userSpaceOnUse">
+      <rect x="0" y="0" width="30" height="30" fill="skyblue" class="r22-bg" />
+
+
+      
+      <rect x="-7.5" y="-7.5" width="15" height="15" fill="blue" class="r22-dark"style=" --x: -7.5px ;--y:7.5px;" />
+      <rect x="-7.5" y="-7.5" width="15" height="15" fill="blue"class="r22-dark"style=" --x: -7.5px ;--y:37.5px;" />
+      <!-- <rect x="-7.5" y="-7.5" width="15" height="15" fill="blue" class="r22-dark"style=" --x: 7.5px ;--y:-7.5px;" /> -->
+      <rect x="-7.5" y="-7.5" width="15" height="15" fill="blue"class="r22-dark"style=" --x: 7.5px ;--y:-7.5px;" />
+      <rect x="-7.5" y="-7.5" width="15" height="15" fill="blue"class="r22-dark"style="--x:   7.5px ;--y:22.5px;" /> <!-- main -->
+      <!-- <rect x="-7.5" y="-7.5" width="15" height="15" fill="blue"class="r22-dark"style=" --x: 7.5px ;--y:37.5px;" /> -->
+      <rect x="-7.5" y="-7.5" width="15" height="15" fill="blue" class="r22-dark"style=" --x: 22.5px ;--y:7.5px;" />  <!-- main -->
+      <rect x="-7.5" y="-7.5" width="15" height="15" fill="blue" class="r22-dark"style=" --x: 22.5px ;--y:37.5px;" />
+      <rect x="-7.5" y="-7.5" width="15" height="15" fill="blue" class="r22-dark"style=" --x: 37.5px ;--y:-7.5px;" />
+      <rect x="-7.5" y="-7.5" width="15" height="15" fill="blue"class="r22-dark"style=" --x: 37.5px ;--y:22.5px;" />
+    </pattern>
+ </defs>
+ <rect fill="url(#Pattern)" width="170" height="170" />
+</svg>
+
+    <script>
+      function onopen22() {
+        // setInterval(() => {
+        //   //
+        // })
+      }
+      </script>
   </div>
 </div>
 <div class="day closed" id="day-23">

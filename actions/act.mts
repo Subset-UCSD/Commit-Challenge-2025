@@ -3,7 +3,7 @@
 import { execSync } from 'child_process'
 import { readFile, writeFile } from 'fs/promises'
 import YAML from 'yaml'
-import { GenerateContentResponse } from './google rest types .mts'
+import type { GenerateContentResponse } from './google rest types .mts'
 // import { users } from '../remind/people.mjs'
 
 type PlayerObject = {

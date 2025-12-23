@@ -1179,8 +1179,36 @@ width: 90px;
 </div>
 <div class="day closed" id="day-23">
   <button class="day-name">Dec 23</button>
-  <div class="content">
-    nothing! :(
+  <div class="content" style="background-color: black; position: relative;">
+    <style>
+#day-23 {
+  & img {
+    position: absolute;
+    top: 0;
+    right: 0;width: 100%;height: 100%;
+    mix-blend-mode: plus-lighter;
+  }
+}
+@keyframes d23 {
+  0% ,40%{
+    opacity: 0;
+  }
+  60%,100% {
+    opacity: 1;
+  }
+}
+    </style>
+    <img src="ass/ets/m3image.png" alt="marcelo in sunflower at strawberry"style="animation: d23 5s alternate infinite;" />
+    <img src="ass/ets/m2image.png" alt="marcelo stand at grad" style="animation: d23 5s alternate-reverse infinite;" />
+    <script type="module">
+      // import {h,Fragment,render} from 'https://esm.sh/preact@10.28.0'
+      // import {useState, useEffect,useRef} from 'https://esm.sh/preact@10.28.0/hooks'
+
+      const ROWS = 20
+      const COLS = 10 
+
+
+      </script>
   </div>
 </div>
 <div class="day closed" id="day-24">

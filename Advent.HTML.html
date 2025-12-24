@@ -1213,9 +1213,81 @@ width: 90px;
 </div>
 <div class="day closed" id="day-24">
   <button class="day-name">Dec 24</button>
-  <div class="content">
-    nothing! :(
+  <style>
+    #day-24 .content {
+      display: grid;
+      grid-template-columns: repeat(6, auto);
+      gap: 10px;
+      /* justify-items: center;
+      align-items: center; */
+      justify-content: center;
+      align-content: center;
+    }
+    #day-24 > div > div {
+      width: 10px;
+      aspect-ratio: 1  / 1;
+      background-color: white;
+      border-radius: 50%;
+    }
+  </style>
+  <div class="content" id="d24" style="cursor: pointer;" onclick="d12change()">
+    <div ></div>
+    <div ></div>
+    <div ></div>
+    <div ></div>
+    <div ></div>
+    <div ></div>
+   <!--/div-->
+    <div ></div>
+    <div ></div>
+    <div ></div>
+    <div ></div>
+    <div ></div>
+    <div ></div>
+   <!--/div-->
+    <div ></div>
+    <div ></div>
+    <div ></div>
+    <div ></div>
+    <div ></div>
+    <div ></div>
+   <!--/div-->
+    <div ></div>
+    <div ></div>
+    <div ></div>
+    <div ></div>
+    <div ></div>
+    <div ></div>
   </div>
+  <script type="module">
+    const d12=d24
+    const wow = [3,4,6,8]
+    let last = 6
+    function assign () {
+      const children = [...d12.children]
+for (let i = children.length ; i > 0; i--) {
+  const index = Math.random() * i | 0
+  if (index !== i-1) {
+    [children[i-1],children[index]]=[children[index],children[i-1],]
+  }
+}
+for (const [i,child] of children.entries()){
+  child.style.viewTransitionName = `fuck${i}`
+}
+    }
+window.d12change=function () {
+  assign()
+document.startViewTransition(() => {
+  assign()
+  
+
+  let selected = last
+  while ((selected===last))selected=wow[Math.random()*wow.length|0]
+  last=selected
+  d24.style.gridTemplateColumns=`repeat(${selected},auto)`
+})
+}
+    </script>
 </div>
 <div class="day closed" id="day-25">
   <button class="day-name">Dec 25</button>

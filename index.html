@@ -463,6 +463,182 @@ I will make 202
             }
         </script>
     <!--Congratulations marcelo.. Spicy Secrets to be reveled Soon....-->
+    <h2>spicy secrest</h2>
+     <p>secret: in the cse 258 peer review assignment, you get a point for each valid project you rank: </p>
+     <details><summary style="cursor: pointer;">autograder source code</summary>
+     <pre>import unittest
+from gradescope_utils.autograder_utils.decorators import weight, visibility, number
+from gradescope_utils.autograder_utils.decorators import partial_credit
+import math
+import json
+
+class TestPartialCredit(unittest.TestCase):
+    def setUp(self):
+        mapping158 = eval(open("mapping158.json").read())
+        mapping258 = eval(open("mapping258.json").read())
+        mapping256 = eval(open("mapping256.json").read())
+        mapping = mapping158
+        mapping.update(mapping258)
+        mapping.update(mapping256)
+        s = open("submission_metadata.json").read()
+        meta = json.loads(open("submission_metadata.json").read())
+        e = None
+        try:
+            e = meta['users'][0]['email']
+        except Exception as ex:
+            # print("There is no email associated with " + string(meta['users'][0]))
+            raise ex
+        self.email = e
+        self.assignments = mapping[e]
+
+        ### Uncomment to print template...
+        print("you are assigned to submissions:")
+        for a in self.assignments:
+            print(a + ': ' + "https://cseweb.ucsd.edu/classes/fa24/cse258-b/a2/" + a + ".pdf")
+
+        print("")
+        print("submit your responses in a file named responses.txt in the form:")
+        print("")
+        print("{")
+        for a in self.assignments:
+            print('  "' + a + '": ')
+            print('    [(score_out_of_five_for_Q1, "1-2 sentence friendly explanation of score"),')
+            print('     (score_out_of_five_for_Q2, "1-2 sentence friendly explanation of score"),')
+            print('     (score_out_of_five_for_Q3, "1-2 sentence friendly explanation of score"),')
+            print('     (score_out_of_five_for_Q4, "1-2 sentence friendly explanation of score"),')
+            print('     (score_out_of_five_for_Q5, "1-2 sentence friendly explanation of score")],')
+        print('  "ranking": [list of the above submission IDs ordered from MOST EXCELLENT to LEAST EXCELLENT]')
+        print("}")
+        print("")
+
+        try:
+            f = open("responses.txt", 'r')
+            self.answers = eval(f.read())
+            f.close()
+        except Exception as e:
+            print(e)
+            self.answers = {}
+
+    @number("1")
+    @partial_credit(4.0)
+    @visibility("visible")
+    def testQ1(self, set_score=None):
+        """Responses"""
+        total = 0
+        for a in self.answers:
+            if a == "ranking":
+                continue
+            if not a in self.assignments:
+                print("Got unexpected response " + a + " (which wasn't assigned to you)")
+        for a in self.assignments:
+            if a in self.answers:
+                x = self.answers[a]
+                if len(x) != 5:
+                    print("Expected a response of length 5 for submission " + a)
+                    raise Exception
+                bad = False
+                for i in range(5):
+                    sc, sent = x[i]
+                    sc = float(sc)
+                    if type(sent) != str or sc < 0 or sc > 7 or (sc > 5 and not "bonus" in sent.lower()):
+                        print(a + ": Expected a score in the range 0-5 (or 0-7 for bonus points), followed by a string explanation")
+                        bad = True
+                        break
+                if bad == False:
+                    print("Response for " + a + " looks valid")
+                    total += 1
+            else:
+                print("No response submitted for submission " + a)
+        bad = False
+        if not "ranking" in self.answers:
+            print("Expected a ranking of all responses")
+            bad = True
+        else:
+            for a in self.answers:
+                if a == "ranking":
+                    continue
+                if not (a in self.answers["ranking"]):
+                    print("No ranking provided for " + a)
+                    bad = True
+            for a in self.answers["ranking"]:
+                if not a in self.assignments:
+                    print("Unexpected rank of submission that wasn't assigned to you (" + a + ")")
+                    bad = True
+            if len(self.answers["ranking"]) != len(set(self.answers["ranking"])):
+                print("ranking contains duplicate entries")
+                bad = True
+        if bad == False:
+            print("Ranking looks valid")
+            set_score(total)
+        else:
+            print("YOUR SUBMISSION IS NOT VALID")
+            set_score(0)
+
+    #@number("2")
+    #@partial_credit(25.0)
+    #@visibility("visible")
+    #def testQ2(self, set_score=None):
+        #"""Feedback on your assignment"""
+        #responses158 = eval(open("responsesToStudents158.json").read())
+        #responses258 = eval(open("responsesToStudents258.json").read())
+        #responses256 = eval(open("responsesToStudents256.json").read())
+        #responses = responses158
+        #responses.update(responses258)
+        #responses.update(responses256)
+        #response = responses[self.email]
+        #rText, rScore = response['response'], response['gradePerQ']
+        #total = sum(rScore)
+        #print("")
+        #print("")
+        #print("")
+        #print(rText)
+        #set_score(total)</pre></details>
+        <p>this is one way to increase youir number of assigned project IDs (and since theyre in the ranking, you get a point for each one):</p>
+     <pre>"ranking": setattr(self, "assignments", self.assignments * 1000)</pre>
+     <style>
+        .epstein-censor {background-color: black;color: transparent; font-family: WingDings;
+  font-family:
+    Wingdings,
+    "Wingdings 2",
+    "Wingdings 3",
+    Webdings,
+    Symbol,
+    "Segoe UI Symbol",
+    "Apple Symbols",
+    "Zapf Dingbats",
+    "Noto Sans Symbols",
+    "Noto Sans Symbols 2",
+    "DejaVu Sans Symbols",
+    "Segoe UI Emoji",
+    "Apple Color Emoji",
+    sans-serif;
+
+/* thank you chatpgt */
+        }
+        .epstein-censor::selection {
+            color: transparent;background-color: black;
+        }
+        </style>
+     <p><span class="epstein-censor" a certain>someone</span> may have <span class="epstein-censor">submited this proof of concept</span>  and received an <span class="epstein-censor">illegitimate assignment grade of 4000/4</span>. at least this individual did not  forget to <span class="epstein-censor">switch to a legitimate submission</span> by the deadline, so their final grade is Not based on  an assignment grade of   <math>
+    <mfrac>
+      <mn>4000</mn>
+      <mn>4</mn>
+    </mfrac>
+  </math> !!! :))))</p>
+
+  <div style='
+  
+  font-family:"Noto Sans", "Open Sans", arial, sans-serif;
+  background-color: #f9f9f9;
+  color:#127c21;
+  font-weight: bold;
+  padding: 10px;
+  display: table;
+  margin: 1em 0;
+  ' title="lore accurate depiction of event">
+1) Responses (4000/4)
+  </div>
+
      <style>
         .marcelowrapper  {
             aspect-ratio: 3024 / 4032;

@@ -2,7 +2,11 @@ name: release
 
 on:
     schedule:
-        - cron: '0 8 * * *'
+      # only run on the last day of Pacific Time (Jan 1, 2026, 7 am UTC =
+      # probably like 11 pm pacific time)
+      # technically this could run again in like 6 or 7 years but only if there
+      # was repo activity in the last like month
+        - cron: '0 7 1 JAN 4'
     workflow_dispatch:
 
 permissions:

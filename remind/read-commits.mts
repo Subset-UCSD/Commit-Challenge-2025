@@ -239,7 +239,8 @@ ${processNews(alternate(wolrdNews, usNews))}`
 const messages: Record<string, string> = Object.fromEntries(
   nonCommitters.map((ghUser) => [
     discords[ghUser],
-    `${committers.length > 0 ? committers.map((ghUser) => `<@${discords[ghUser]}>`).join(" and ") : 'no one'} committed to the [repo](<https://github.com/Subset-UCSD/Commit-Challenge-2025/>). ${result2 ?? 'gemini catastrophe.'}`,
+    'xnkl',
+   // `${committers.length > 0 ? committers.map((ghUser) => `<@${discords[ghUser]}>`).join(" and ") : 'no one'} committed to the [repo](<https://github.com/Subset-UCSD/Commit-Challenge-2025/>). ${result2 ?? 'gemini catastrophe.'}`,
     // (committers.length > 0
     //   ? select(
     //       "{PPL} all comited to the [repo](REPO)!! and 🫵YOU did not 😡",
@@ -332,7 +333,7 @@ if (line.trim()) {
   out += '\n'
 }
 }
-const content = `${out.slice(0,1000)}\nits basically summer in canbera! did you open [todays advent door](https://subset-ucsd.github.io/Commit-Challenge-2025/Advent.HTML)? to turn off the news, 3+ ppl must commit ${nonCommitters.map(ghUser => `<@${discords[ghUser]}>`).join(' ')}`
+const content = 'goodbye.'//`${out.slice(0,1000)}\nits basically summer in canbera! did you open [todays advent door](https://subset-ucsd.github.io/Commit-Challenge-2025/Advent.HTML)? to turn off the news, 3+ ppl must commit ${nonCommitters.map(ghUser => `<@${discords[ghUser]}>`).join(' ')}`
 console.log('[CONTENT LENGTH]',content.length)
 respons = await fetch(process.env.DISCORD_WEBHOOK_URL || '', {
     "headers": {

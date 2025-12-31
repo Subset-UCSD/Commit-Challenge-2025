@@ -6,7 +6,7 @@ on:
       # probably like 11 pm pacific time)
       # technically this could run again in like 6 or 7 years but only if there
       # was repo activity in the last like month
-        - cron: '0 7 1 JAN 4'
+        - cron: '0 7 1 JAN *'
     workflow_dispatch:
 
 permissions:

@@ -40,7 +40,7 @@ requests==2.32.4
 seaborn==0.13.2
 six==1.17.0
 stack-data==0.6.3
-tornado==6.5.1
+tornado==6.5.5
 traitlets==5.14.3
 tzdata==2025.2
 urllib3==2.6.3

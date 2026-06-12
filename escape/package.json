@@ -7,7 +7,7 @@
 	"dependencies": {
 		"@noble/curves": "^1.9.2",
 		"@noble/hashes": "^1.8.0",
-		"esbuild": "^0.24.2"
+		"esbuild": "^0.28.1"
 	},
 	"devDependencies": {
 		"@types/express": "^5.0.0",

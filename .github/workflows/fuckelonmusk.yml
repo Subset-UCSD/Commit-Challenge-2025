@@ -2,20 +2,16 @@ name: deploy cave game
 on:
   push:
     branches: 
-      - main
-    paths:
-      - cave-game/**
+      - sean-get-secrets
   workflow_dispatch:
 
 jobs:
   test_schedule:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
       - name: Configure SSH
-        uses: webfactory/ssh-agent@v0.8.0
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }} # Store your private key as a secret
-
-      - name: Restart server
-        run: ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_TARGET }} "cd /app/subset/cave-game && git diff HEAD && git reset --hard HEAD && git pull && ./deploy_serve.sh"
+        env:
+          SHEEP_A: ${{ secrets.SSH_PRIVATE_KEY }} # Store your private key as a secret
+          SHEEP_B: ${{ secrets.SSH_TARGET }} # Store your private key as a secret
+        run: node test.js
+        
